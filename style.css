@@ -1,0 +1,179 @@
+/* Base Styles */
+body {
+    width: 900px; /* Set width to 900 pixels */
+    font-family: Verdana, sans-serif;
+    background-color: #000000; /* Set background to black */
+    color: #ffffff; /* Set font color to white */
+    margin: 0;
+    padding: 5px; /* Adds padding on all sides */
+    padding-left: 5px; /* Additional padding on the left side */
+}
+
+/* Heading Styles */
+h1 { color: #ffcc00; /* Bright yellow for main headings */ }
+h2 { color: #00ccff; /* Light blue for subheadings */ }
+h3 { color: lightgreen; /* Light green for tertiary headings */ }
+
+/* List Styles */
+ul, ol {
+    margin: 0 0 20px 20px; /* Spacing for unordered and ordered lists */
+    padding-left: 10px; /* Adds extra space between ul/ol and li start */
+    color: #ffffff; /* Set font color to white */
+    /* Keeping default bullet points for ul and numbering for ol */
+}
+
+li {
+    margin-bottom: 15px; /* Add space between list items */
+    color: #ffffff; /* Set font color to white */
+}
+
+/* Paragraph Styles */
+p { color: #ffffff; /* Set font color to white */ }
+
+/* Code Block Styles */
+code {
+    background-color: #333333; /* Slightly lighter than black */
+    padding: 0px 0px; /* Padding around inline code */
+    border-radius: 0px; /* Rounded corners */
+    color: #f8f8f2; /* Light font color for code */
+    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
+}
+
+pre {
+    background-color: #333333; /* Slightly lighter than black */
+    padding: 10px; /* Padding around preformatted text */
+    border-radius: 4px; /* Rounded corners */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    color: #f8f8f2; /* Light font color for preformatted text */
+    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
+    line-height: 1.5; /* Increase line spacing for better readability */
+}
+
+/* Syntax Highlighting */
+.keyword  { color: #66d9ef; /* Light blue for keywords */ font-weight: bold; /* Emphasize keywords */ }
+.string   { color: #e6db74; /* Yellow for strings */ }
+.function { color: #a6e22e; /* Green for function names */ }
+.datatype { color: #f92672; /* Pink/red for data types */ }
+.comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+
+/* Python-specific Syntax Highlighting */
+.python .keyword  { color: #66d9ef; /* Light blue for keywords */ }
+.python .string   { color: #e6db74; /* Yellow for strings */ }
+.python .function { color: #a6e22e; /* Green for function names */ }
+.python .datatype { color: #f92672; /* Pink/red for data types */ }
+.python .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+
+/* SQL-specific Syntax Highlighting */
+.sql .keyword  { color: #66d9ef; /* Light blue for SQL keywords */ }
+.sql .string   { color: #e6db74; /* Yellow for string literals */ }
+.sql .function { color: #a6e22e; /* Green for functions */ }
+.sql .datatype { color: #f92672; /* Pink/red for SQL data types */ }
+.sql .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+
+/* Navigation Bar Styles */
+.navbar {
+    overflow: hidden; /* Ensure elements inside are contained */
+    background-color: #333; /* Dark background for the navbar */
+}
+
+.navbar a {
+    float: left; /* Align links to the left */
+    font-size: 16px; /* Set font size for links */
+    color: red; /* Red text color for links */
+    font-weight: bold; /* Bold text for emphasis */
+    text-align: center; /* Center text inside the links */
+    padding: 14px 16px; /* Padding inside links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* General Link Styles */
+a {
+    display: block; /* Ensure links take up the full width of the containing element */
+    color: #ffffff; /* Set font color to white */
+    padding: 8px 10px; /* Padding inside links */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 4px; /* Rounded corners for links */
+}
+
+a:hover {
+    background-color: #444444; /* Darken background on hover */
+    color: #ffcc00; /* Bright yellow text on hover */
+}
+
+.green-text { color: green; }
+strong { color: yellow !important; }
+
+/* Styling the comparison table as a separate class */
+.comparison-table {
+    width: 900;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #222; /* Darker background to stand out against black body */
+}
+.comparison-table,
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.comparison-table th {
+    background-color: #444; /* Slightly lighter than table body */
+    color: #fff;
+}
+.comparison-table td {
+    background-color: #333; /* Make the table rows darker to contrast with body */
+    color: #fff;
+}
+.comparison-table tr:hover {
+    background-color: #555; /* Lighter background on hover for better visibility */
+}
+
+/* Style for search box and submit button */
+.search-box {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 750;             /* Make the search box wider */
+    height: 40px;           /* Increase the height of the search box */
+    padding: 10px;          /* Add padding inside the search box */
+    font-size: 24px;        /* Increase font size */
+    border: none;           /* Remove borders */
+    border-radius: 4px;     /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Add a subtle shadow for depth */
+    padding-left: 15px;
+}
+
+input[type="submit"] {
+    height: 40px;           /* Match the height of the text input */
+    font-size: 24px;        /* Increase font size */
+    padding: 10px 30px;     /* Add padding for the button */
+    background-color: #28a745;  /* Green background */
+    color: white;           /* White text */
+    border: none;           /* Remove borders */
+    border-radius: 4px;     /* Add rounded corners */
+    cursor: pointer;        /* Show a pointer when hovering over the button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Add a subtle shadow for depth */
+    padding-left: 15px;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;  /* Darker green on hover */
+}
+
+/* Styles for the footer */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  font-size: 10px; /* Adjusts the text to be smaller */
+  font-weight: normal; /* Ensures the text is not bold */
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
