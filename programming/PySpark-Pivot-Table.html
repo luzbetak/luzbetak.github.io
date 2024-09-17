@@ -10,7 +10,7 @@
     </p>
     
     <h2>Sample Data (JSON Format)</h2>
-    <code class="python">
+    <pre><code class="python">
 [
     {"employee": "Alice", "region": "North", "sales": 100},
     {"employee": "Bob", "region": "North", "sales": 200},
@@ -19,11 +19,11 @@
     {"employee": "Alice", "region": "East", "sales": 150},
     {"employee": "Bob", "region": "West", "sales": 250}
 ]
-    </code>
+    </code></pre>
 
     <h2>PySpark Application Using Pivot Table</h2>
     <p>The following PySpark code demonstrates how to create a pivot table with the provided sample data:</p>
-    <code class="python">
+    <pre><code class="python">
 <span class="comment"># Import necessary modules</span>
 <span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
 <span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> sum
@@ -57,7 +57,7 @@ pivot_df.show()
 
 <span class="comment"># Stop the Spark session</span>
 spark.stop()
-    </code>
+    </code></pre>
 
     <h2>Explanation</h2>
     <ul>
@@ -68,12 +68,12 @@ spark.stop()
 
     <h2>Output</h2>
     <p>The pivoted DataFrame would look something like this:</p>
-    <code class="python">
+    <pre><code class="python">
 | employee | North | South | East | West |
 |----------|-------|-------|------|------|
 | Alice    | 100   | 300   | 150  | null |
 | Bob      | 200   | 400   | null | 250  |
-    </code>
+    </code></pre>
 
   {% include footer.html %}
 
