@@ -192,6 +192,8 @@ input[type="submit"]:hover {
 
 .counter-container {
   display: flex;
+  background-color: black;
+  color: white;
   justify-content: center;
   align-items: center;
   height: 100px; /* Adjust as needed */
