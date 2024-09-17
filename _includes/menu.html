@@ -6,22 +6,31 @@
   <title>{{ include.title }}</title>
   <link rel="stylesheet" type="text/css" href="/style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- link rel="icon" href="/favicon.ico" type="image/x-icon" -->
-  <!-- Favicon in PNG format for modern browsers -->
   <link rel="icon" href="/linux2.png" type="image/png" sizes="32x32">
 </head>
+
 <body>
   <!-- Navigation Menu -->
-  <table width="900">
-    <tr>
-      <td>
-        <div class="navbar">
-          <a href="http://luzbetak.github.io/">Kevin Luzbetak</a>
-          <a href="http://luzbetak.github.io/programming">Programming</a>
-          <a href="http://luzbetak.github.io/teams">Teams</a>
-          <a href="https://github.com/luzbetak" target="_blank">Github</a>
-        </div>
-      </td>
-    </tr>
-  </table>
+  <div class="navbar">
+    <a id="home" href="http://luzbetak.github.io/">Kevin Luzbetak</a>
+    <a id="programming" href="http://luzbetak.github.io/programming">Programming</a>
+    <a id="teams" href="http://luzbetak.github.io/teams">Teams</a>
+    <a href="https://github.com/luzbetak" target="_blank">Github</a>
+  </div>
+
+  <script>
+    // Get current path
+    const currentPath = window.location.pathname;
+
+    // Highlight the correct link based on the current path
+    if (currentPath === '/' || currentPath === '/index.html') {
+      document.getElementById('home').style.backgroundColor = '#555'; // Change background for Kevin Luzbetak
+    } else if (currentPath.includes('programming')) {
+      document.getElementById('programming').style.backgroundColor = '#555'; // Change background for Programming
+    } else if (currentPath.includes('teams')) {
+      document.getElementById('teams').style.backgroundColor = '#555'; // Change background for Teams
+    }
+  </script>
+</body>
+</html>
 
