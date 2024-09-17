@@ -196,7 +196,7 @@ input[type="submit"]:hover {
   color: white;
   justify-content: center;
   align-items: center;
-  height: 100px; /* Adjust as needed */
-  margin-top: 10px;
+  height: 300px; /* Adjust as needed */
+  margin-top: 0px;
 }
 
