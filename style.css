@@ -79,7 +79,7 @@ pre {
 .navbar a {
     float: left; /* Align links to the left */
     font-size: 16px; /* Set font size for links */
-    color: white; /* Text color for links */
+    color: red; /* Text color for links */
     font-weight: bold; /* Bold text for emphasis */
     text-align: center; /* Center text inside the links */
     padding: 14px 16px; /* Padding inside links */
