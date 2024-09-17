@@ -19,16 +19,19 @@
   </div>
 
   <script>
-    // Get current path
+    // Get the current path and normalize it
     const currentPath = window.location.pathname;
 
+    // Function to remove trailing slash if exists
+    const normalizePath = (path) => path.replace(/\/$/, '');
+
     // Highlight the correct link based on the current path
-    if (currentPath === '/' || currentPath === '/index.html') {
-      document.getElementById('home').style.backgroundColor = '#555'; // Change background for Kevin Luzbetak
-    } else if (currentPath.includes('programming')) {
-      document.getElementById('programming').style.backgroundColor = '#555'; // Change background for Programming
-    } else if (currentPath.includes('teams')) {
-      document.getElementById('teams').style.backgroundColor = '#555'; // Change background for Teams
+    if (normalizePath(currentPath) === '' || normalizePath(currentPath) === '/index.html') {
+      document.getElementById('home').classList.add('active'); // Add 'active' class to Kevin Luzbetak
+    } else if (normalizePath(currentPath).includes('/programming')) {
+      document.getElementById('programming').classList.add('active'); // Add 'active' class to Programming
+    } else if (normalizePath(currentPath).includes('/teams')) {
+      document.getElementById('teams').classList.add('active'); // Add 'active' class to Teams
     }
   </script>
 </body>
