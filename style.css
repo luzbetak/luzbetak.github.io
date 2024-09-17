@@ -169,7 +169,7 @@ input[type="submit"]:hover {
   padding: 20px;
   background-color: black;
   color: white;
-  font-size: 10px; /* Adjusts the text to be smaller */
+  font-size: 12px; /* Adjusts the text to be smaller */
   font-weight: normal; /* Ensures the text is not bold */
 }
 
