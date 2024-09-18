@@ -1,6 +1,6 @@
 /* Base Styles */
 body {
-    width: 900px; /* Set width to 900 pixels */
+    width: 1000px; /* Set width to 900 pixels */
     font-family: Verdana, sans-serif;
     background-color: #000000; /* Set background to black */
     color: #ffffff; /* Set font color to white */
@@ -85,7 +85,7 @@ strong { color: yellow !important; font-weight: 600; }
 
 /* Styling the comparison table as a separate class */
 .comparison-table {
-    width: 900;
+    width: 1000;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: #222; /* Darker background to stand out against black body */
