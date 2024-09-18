@@ -221,13 +221,13 @@ pre {
 /* color: #75715e;  Gray       */ 
 
 /* Syntax Highlighting font-weight: bold; */
-.keyword  { color: #e6db74; /* Light blue for keywords   */ font-weight: 550; }
+.keyword  { color: #e6db74; /* Yellow */ font-weight: 550; }
 .string   { color: #ff00ff; /* Yellow for strings        */ }
 .function { color: #66d9ef; /* Green for function names  */ }
 .datatype { color: #f92672; /* Pink/red for data types   */ }
 .comment  { color: #66d9ef; /* Gray for comments */ font-style: italic; }
 
-.python .keyword  { color: #e6db74; /* Yellow keywords           */ font-weight: 550; }
+.python .keyword  { color: #e6db74; /* Yellow */ font-weight: 550; }
 .python .string   { color: #ff00ff; /* Purple color              */ }
 .python .function { color: #66d9ef; /* Light Cyan function names */ }
 .python .datatype { color: #f92672; /* Pink/red for data types   */ }
