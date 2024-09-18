@@ -49,27 +49,6 @@ pre {
     line-height: 1.5; /* Increase line spacing for better readability */
 }
 
-/* Syntax Highlighting */
-.keyword  { color: #66d9ef; /* Light blue for keywords */ font-weight: bold; /* Emphasize keywords */ }
-.string   { color: #e6db74; /* Yellow for strings */ }
-.function { color: #a6e22e; /* Green for function names */ }
-.datatype { color: #f92672; /* Pink/red for data types */ }
-.comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
-
-/* Python-specific Syntax Highlighting */
-.python .keyword  { color: #66d9ef; /* Light blue for keywords */ }
-.python .string   { color: #e6db74; /* Yellow for strings */ }
-.python .function { color: #a6e22e; /* Green for function names */ }
-.python .datatype { color: #f92672; /* Pink/red for data types */ }
-.python .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
-
-/* SQL-specific Syntax Highlighting */
-.sql .keyword  { color: #66d9ef; /* Light blue for SQL keywords */ }
-.sql .string   { color: #e6db74; /* Yellow for string literals */ }
-.sql .function { color: #a6e22e; /* Green for functions */ }
-.sql .datatype { color: #f92672; /* Pink/red for SQL data types */ }
-.sql .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
-
 /* Navigation Bar Styles */
 .navbar {
     overflow: hidden; /* Ensure elements inside are contained */
@@ -199,4 +178,28 @@ input[type="submit"]:hover {
   height: 300px; /* Adjust as needed */
   margin-top: 0px;
 }
+
+/* Syntax Highlighting */
+.keyword  { color: #66d9ef; /* Light blue for keywords */ font-weight: bold; /* Emphasize keywords */ }
+.string   { color: #e6db74; /* Yellow for strings */ }
+.function { color: #a6e22e; /* Green for function names */ }
+.datatype { color: #f92672; /* Pink/red for data types */ }
+.comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+
+/* Python-specific Syntax Highlighting */
+/* color: #e6db74;  Yellow */ 
+/* color: #75715e;  Gray   */
+/* color: #a6e22e;  Green  */
+.python .keyword  { color: #66d9ef; /* Light blue for keywords */ }
+.python .string   { color: #ff00ff; /* Purple color */ }
+.python .function { color: #66d9ef; /* Light Cyan function names */ }
+.python .datatype { color: #f92672; /* Pink/red for data types */ }
+.python .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+
+/* SQL-specific Syntax Highlighting */
+.sql .keyword  { color: #66d9ef; /* Light blue for SQL keywords */ }
+.sql .string   { color: #e6db74; /* Yellow for string literals */ }
+.sql .function { color: #a6e22e; /* Green for functions */ }
+.sql .datatype { color: #f92672; /* Pink/red for SQL data types */ }
+.sql .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
 
