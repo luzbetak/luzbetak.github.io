@@ -27,7 +27,6 @@
 <span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
 <span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> sum
 
-<span class="comment"># Initialize Spark session</span>
 spark = SparkSession.builder \
     .appName(<span class="string">"Pivot Table Example"</span>) \
     .getOrCreate()
@@ -35,11 +34,11 @@ spark = SparkSession.builder \
 <span class="comment"># Sample data as a list of dictionaries</span>
 data = [
     {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"North"</span>, "sales": 100},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"North"</span>, "sales": 200},
+    {"employee": <span class="string">"Bob"</span>,   "region": <span class="string">"North"</span>, "sales": 200},
     {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"South"</span>, "sales": 300},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"South"</span>, "sales": 400},
-    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"East"</span>, "sales": 150},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"West"</span>, "sales": 250}
+    {"employee": <span class="string">"Bob"</span>,   "region": <span class="string">"South"</span>, "sales": 400},
+    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"East"</span>,  "sales": 150},
+    {"employee": <span class="string">"Bob"</span>,   "region": <span class="string">"West"</span>,  "sales": 250}
 ]
 
 <span class="comment"># Create DataFrame from the data</span>
