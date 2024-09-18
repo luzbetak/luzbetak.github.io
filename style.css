@@ -194,15 +194,15 @@ input[type="submit"]:hover {
 
 /* Code Block Styles */
 code {
-    background-color: #2b2b2b; /* Slightly lighter than black */
-    padding: 0px 0px; /* Padding around inline code */
-    border-radius: 0px; /* Rounded corners */
-    color: #f8f8f2; /* Light font color for code */
+    background-color: #262626; /* Slightly lighter than black */
+    padding: 0px 0px;          /* Padding around inline code */
+    border-radius: 0px;        /* Rounded corners */
+    color: #f8f8f2;            /* Light font color for code */
     font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
 }
 
 pre {
-    background-color: #2b2b2b; /* Slightly lighter than black */
+    background-color: #262626; /* Slightly lighter than black */
     padding: 10px;             /* Padding around preformatted text */
     border-radius: 4px;        /* Rounded corners */
     overflow-x: auto;          /* Allow horizontal scrolling if needed */
