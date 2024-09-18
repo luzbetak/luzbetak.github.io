@@ -187,10 +187,11 @@ input[type="submit"]:hover {
 .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
 
 /* Python-specific Syntax Highlighting */
-/* color: #e6db74;  Yellow */ 
-/* color: #75715e;  Gray   */
-/* color: #a6e22e;  Green  */
-.python .keyword  { color: #66d9ef; /* Light blue for keywords */ }
+/* color: #e6db74;  Yellow     */ 
+/* color: #75715e;  Gray       */
+/* color: #a6e22e;  Green      */
+/* color: #66d9ef;  Light Blue */
+.python .keyword  { color: #e6db74; /* Yellow keywords */ }
 .python .string   { color: #ff00ff; /* Purple color */ }
 .python .function { color: #66d9ef; /* Light Cyan function names */ }
 .python .datatype { color: #f92672; /* Pink/red for data types */ }
