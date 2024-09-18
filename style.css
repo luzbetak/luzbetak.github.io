@@ -164,7 +164,7 @@ input[type="submit"]:hover {
 /* #333333; Slightly lighter than black */
 /* #444444; Slightly lighter than the background */
 code {
-    background-color: #444444; /* Slightly lighter than black */
+    background-color: #222222; /* Slightly lighter than black */
     padding: 0px 0px; /* Padding around inline code */
     border-radius: 0px; /* Rounded corners */
     color: #f8f8f2; /* Light font color for code */
@@ -172,7 +172,7 @@ code {
 }
 
 pre {
-    background-color: #444444; /* Slightly lighter than black */
+    background-color: #222222; /* Slightly lighter than black */
     padding: 10px; /* Padding around preformatted text */
     border-radius: 4px; /* Rounded corners */
     overflow-x: auto; /* Allow horizontal scrolling if needed */
