@@ -30,25 +30,6 @@ li {
 /* Paragraph Styles */
 p { color: #ffffff; /* Set font color to white */ }
 
-/* Code Block Styles */
-code {
-    background-color: #333333; /* Slightly lighter than black */
-    padding: 0px 0px; /* Padding around inline code */
-    border-radius: 0px; /* Rounded corners */
-    color: #f8f8f2; /* Light font color for code */
-    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
-}
-
-pre {
-    background-color: #333333; /* Slightly lighter than black */
-    padding: 10px; /* Padding around preformatted text */
-    border-radius: 4px; /* Rounded corners */
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    color: #f8f8f2; /* Light font color for preformatted text */
-    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
-    line-height: 1.5; /* Increase line spacing for better readability */
-}
-
 /* Navigation Bar Styles */
 .navbar {
     overflow: hidden; /* Ensure elements inside are contained */
@@ -178,6 +159,28 @@ input[type="submit"]:hover {
   height: 300px; /* Adjust as needed */
   margin-top: 0px;
 }
+
+/* Code Block Styles */
+/* #333333; Slightly lighter than black */
+/* #444444; Slightly lighter than the background */
+code {
+    background-color: #444444; /* Slightly lighter than black */
+    padding: 0px 0px; /* Padding around inline code */
+    border-radius: 0px; /* Rounded corners */
+    color: #f8f8f2; /* Light font color for code */
+    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
+}
+
+pre {
+    background-color: #444444; /* Slightly lighter than black */
+    padding: 10px; /* Padding around preformatted text */
+    border-radius: 4px; /* Rounded corners */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    color: #f8f8f2; /* Light font color for preformatted text */
+    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
+    line-height: 1.5; /* Increase line spacing for better readability */
+}
+
 
 /* Syntax Highlighting */
 .keyword  { color: #66d9ef; /* Light blue for keywords */ font-weight: bold; /* Emphasize keywords */ }
