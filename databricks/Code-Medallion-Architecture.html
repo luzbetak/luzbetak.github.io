@@ -8,7 +8,7 @@
 
     <h3>PySpark Code Example:</h3>
 
-    <pre><code><span class="comment"># Initialize Spark session with Delta support</span>
+    <pre><code>
 <span class="datatype">spark</span> = SparkSession.builder \
     .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
     .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
