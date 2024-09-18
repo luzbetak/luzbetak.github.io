@@ -2,15 +2,15 @@
 ---
 {% include menu.html title="Kevin Luzbetak Github Pages" %}
 
-    <h1>Pivot Table Overview</h1>
-    <p>
-        A <strong>pivot table</strong> is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns.
-        In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like <code>sum</code>, <code>count</code>, <code>average</code>, etc.
-        This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes.
-    </p>
-    
-    <h2>Sample Data (JSON Format)</h2>
-    <pre><code class="python">
+<h1>Pivot Table Overview</h1>
+<p>
+    A <strong>pivot table</strong> is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns.
+    In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like <code>sum</code>, <code>count</code>, <code>average</code>, etc.
+    This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes.
+</p>
+
+<h2>Sample Data (JSON Format)</h2>
+<pre><code class="python">
 [
     {"employee": "Alice", "region": "North", "sales": 100},
     {"employee": "Bob", "region": "North", "sales": 200},
@@ -19,64 +19,76 @@
     {"employee": "Alice", "region": "East", "sales": 150},
     {"employee": "Bob", "region": "West", "sales": 250}
 ]
-    </code></pre>
+</code></pre>
 
-    <h2>PySpark Application Using Pivot Table</h2>
-    <p>The following PySpark code demonstrates how to create a pivot table with the provided sample data:</p>
-    <pre><code class="python">
-<span class="comment"># Import necessary modules</span>
-<span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
-<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> sum
+<h2>PySpark Application to Display Both Tables</h2>
+<p>The following PySpark code demonstrates how to display the original DataFrame (Table 1) and the pivoted DataFrame (Table 2):</p>
+<pre><code class="python">
+# Import necessary modules
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import sum
 
-<span class="comment"># Initialize Spark session</span>
+# Initialize Spark session
 spark = SparkSession.builder \
-    .appName(<span class="string">"Pivot Table Example"</span>) \
+    .appName("Pivot Table Example with Two Tables") \
     .getOrCreate()
 
-<span class="comment"># Sample data as a list of dictionaries</span>
+# Sample data as a list of dictionaries
 data = [
-    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"North"</span>, "sales": 100},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"North"</span>, "sales": 200},
-    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"South"</span>, "sales": 300},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"South"</span>, "sales": 400},
-    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"East"</span>, "sales": 150},
-    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"West"</span>, "sales": 250}
+    {"employee": "Alice", "region": "North", "sales": 100},
+    {"employee": "Bob", "region": "North", "sales": 200},
+    {"employee": "Alice", "region": "South", "sales": 300},
+    {"employee": "Bob", "region": "South", "sales": 400},
+    {"employee": "Alice", "region": "East", "sales": 150},
+    {"employee": "Bob", "region": "West", "sales": 250}
 ]
 
-<span class="comment"># Create DataFrame from the data</span>
+# Create DataFrame from the data
 df = spark.createDataFrame(data)
 
-<span class="comment"># Show the original DataFrame</span>
+# Display Table 1 - The Original DataFrame
 df.show()
 
-<span class="comment"># Pivot the table to show sales by employee per region</span>
-pivot_df = df.groupBy(<span class="string">"employee"</span>).pivot(<span class="string">"region"</span>).agg(sum(<span class="string">"sales"</span>))
+# Pivot the table to show sales by employee per region
+pivot_df = df.groupBy("employee").pivot("region").agg(sum("sales"))
 
-<span class="comment"># Show the pivoted DataFrame</span>
+# Display Table 2 - The Pivoted DataFrame
 pivot_df.show()
 
-<span class="comment"># Stop the Spark session</span>
+# Stop the Spark session
 spark.stop()
-    </code></pre>
+</code></pre>
 
-    <h2>Explanation</h2>
-    <ul>
-        <li><code class="python">groupBy("employee")</code> groups the data by employee.</li>
-        <li><code class="python">pivot("region")</code> creates new columns for each unique value in the "region" column (e.g., "North", "South", "East", "West").</li>
-        <li><code class="python">agg(sum("sales"))</code> aggregates the sales data by summing the values for each combination of employee and region.</li>
-    </ul>
+<h2>Explanation</h2>
+<ul>
+    <li><code class="python">df.show()</code> displays the original DataFrame (Table 1), containing employee, region, and sales data.</li>
+    <li><code class="python">pivot_df.show()</code> displays the pivoted DataFrame (Table 2), with sales aggregated by employee and region.</li>
+</ul>
 
-    <h2>Output</h2>
-    <p>The pivoted DataFrame would look something like this:</p>
-    <pre><code class="python">
-| employee | North | South | East | West |
-|----------|-------|-------|------|------|
-| Alice    | 100   | 300   | 150  | null |
-| Bob      | 200   | 400   | null | 250  |
-    </code></pre>
+<h2>Output</h2>
+<p>The output would look something like this:</p>
 
-  {% include footer.html %}
+<h3>Table 1 - Original DataFrame</h3>
+<pre><code class="python">
++--------+-------+-----+
+|employee| region|sales|
++--------+-------+-----+
+|   Alice|  North|  100|
+|     Bob|  North|  200|
+|   Alice|  South|  300|
+|     Bob|  South|  400|
+|   Alice|   East|  150|
+|     Bob|   West|  250|
++--------+-------+-----+
+</code></pre>
 
-  </body>
-</html>
+<h3>Table 2 - Pivoted DataFrame</h3>
+<pre><code class="python">
++--------+-----+-----+------+-----+
+|employee| East|North| South| West|
++--------+-----+-----+------+-----+
+|   Alice|  150|  100|   300| null|
+|     Bob| null|  200|   400|  250|
++--------+-----+-----+------+-----+
+</code></pre>
 
