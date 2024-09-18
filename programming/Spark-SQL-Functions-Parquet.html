@@ -17,7 +17,10 @@
         df.createOrReplaceTempView(<span class="string">"people"</span>)
 
         <span class="comment"># Select distinct names</span>
-        unique_names_df = spark.sql(<span class="string">"SELECT DISTINCT name FROM people"</span>)
+        unique_names_df = spark.sql(<span class="string">
+                        "SELECT DISTINCT name"
+                        "FROM people"
+                        </span>)
 
         <span class="comment"># Show result</span>
         unique_names_df.show()
@@ -26,7 +29,10 @@
     <h2>2. Count Records</h2>
     <pre class="python">
         <span class="comment"># Count the number of rows in the DataFrame</span>
-        count_df = spark.sql(<span class="string">"SELECT COUNT(*) as total_count FROM people"</span>)
+        count_df = spark.sql(<span class="string">
+                        "SELECT COUNT(*) as total_count"
+                        "FROM people"
+                        </span>)
 
         <span class="comment"># Show result</span>
         count_df.show()
@@ -35,8 +41,10 @@
     <h2>3. Group By and Count</h2>
     <pre class="python">
         <span class="comment"># Group by name and count occurrences</span>
-        group_by_count_df = spark.sql(<span class="string">"SELECT name, COUNT(*) as name_count"
-                                                           "FROM people GROUP BY name"</span>)
+        group_by_count_df = spark.sql(<span class="string">
+                       "SELECT name, COUNT(*) as name_count"
+                       "FROM people GROUP BY name"
+                       </span>)
 
         <span class="comment"># Show result</span>
         group_by_count_df.show()
@@ -51,7 +59,10 @@
         df2.createOrReplaceTempView(<span class="string">"salaries"</span>)
 
         <span class="comment"># Group by name and sum salaries</span>
-        sum_salaries_df = spark.sql(<span class="string">"SELECT name, SUM(salary) as total_salary FROM salaries GROUP BY name"</span>)
+        sum_salaries_df = spark.sql(<span class="string">
+                          "SELECT name, SUM(salary) as total_salary" 
+                          "FROM salaries GROUP BY name"
+                          </span>)
 
         <span class="comment"># Show result</span>
         sum_salaries_df.show()
@@ -60,7 +71,10 @@
     <h2>5. Group By with Aggregation (Average)</h2>
     <pre class="python">
         <span class="comment"># Group by name and calculate average salary</span>
-        avg_salaries_df = spark.sql(<span class="string">"SELECT name, AVG(salary) as avg_salary FROM salaries GROUP BY name"</span>)
+        avg_salaries_df = spark.sql(<span class="string">
+                          "SELECT name, AVG(salary) as avg_salary"
+                          "FROM salaries GROUP BY name"
+                          </span>)
 
         <span class="comment"># Show result</span>
         avg_salaries_df.show()
