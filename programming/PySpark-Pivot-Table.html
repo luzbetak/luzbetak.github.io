@@ -2,15 +2,15 @@
 ---
 {% include menu.html title="Kevin Luzbetak Github Pages" %}
 
-<h1>Pivot Table Overview</h1>
-<p>
-    A <strong>pivot table</strong> is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns.
-    In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like <code>sum</code>, <code>count</code>, <code>average</code>, etc.
-    This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes.
-</p>
-
-<h2>Sample Data (JSON Format)</h2>
-<pre><code class="python">
+    <h1>Pivot Table Overview</h1>
+    <p>
+        A <strong>pivot table</strong> is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns.
+        In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like <code>sum</code>, <code>count</code>, <code>average</code>, etc.
+        This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes.
+    </p>
+    
+    <h2>Sample Data (JSON Format)</h2>
+    <pre><code class="python">
 [
     {"employee": "Alice", "region": "North", "sales": 100},
     {"employee": "Bob", "region": "North", "sales": 200},
@@ -19,51 +19,52 @@
     {"employee": "Alice", "region": "East", "sales": 150},
     {"employee": "Bob", "region": "West", "sales": 250}
 ]
-</code></pre>
+    </code></pre>
 
-<h2>PySpark Application to Display Both Tables</h2>
-<p>The following PySpark code demonstrates how to display the original DataFrame (Table 1) and the pivoted DataFrame (Table 2):</p>
-<pre><code class="python">
-# Import necessary modules
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import sum
+    <h2>PySpark Application Using Pivot Table</h2>
+    <p>The following PySpark code demonstrates how to create a pivot table with the provided sample data:</p>
+    <pre><code class="python">
+<span class="comment"># Import necessary modules</span>
+<span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
+<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> sum
 
-# Initialize Spark session
+<span class="comment"># Initialize Spark session</span>
 spark = SparkSession.builder \
-    .appName("Pivot Table Example with Two Tables") \
+    .appName(<span class="string">"Pivot Table Example"</span>) \
     .getOrCreate()
 
-# Sample data as a list of dictionaries
+<span class="comment"># Sample data as a list of dictionaries</span>
 data = [
-    {"employee": "Alice", "region": "North", "sales": 100},
-    {"employee": "Bob", "region": "North", "sales": 200},
-    {"employee": "Alice", "region": "South", "sales": 300},
-    {"employee": "Bob", "region": "South", "sales": 400},
-    {"employee": "Alice", "region": "East", "sales": 150},
-    {"employee": "Bob", "region": "West", "sales": 250}
+    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"North"</span>, "sales": 100},
+    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"North"</span>, "sales": 200},
+    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"South"</span>, "sales": 300},
+    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"South"</span>, "sales": 400},
+    {"employee": <span class="string">"Alice"</span>, "region": <span class="string">"East"</span>, "sales": 150},
+    {"employee": <span class="string">"Bob"</span>, "region": <span class="string">"West"</span>, "sales": 250}
 ]
 
-# Create DataFrame from the data
+<span class="comment"># Create DataFrame from the data</span>
 df = spark.createDataFrame(data)
 
-# Display Table 1 - The Original DataFrame
+<span class="comment"># Show the original DataFrame</span>
 df.show()
 
-# Pivot the table to show sales by employee per region
-pivot_df = df.groupBy("employee").pivot("region").agg(sum("sales"))
+<span class="comment"># Pivot the table to show sales by employee per region</span>
+pivot_df = df.groupBy(<span class="string">"employee"</span>).pivot(<span class="string">"region"</span>).agg(sum(<span class="string">"sales"</span>))
 
-# Display Table 2 - The Pivoted DataFrame
+<span class="comment"># Show the pivoted DataFrame</span>
 pivot_df.show()
 
-# Stop the Spark session
+<span class="comment"># Stop the Spark session</span>
 spark.stop()
-</code></pre>
+    </code></pre>
 
-<h2>Explanation</h2>
-<ul>
-    <li><code class="python">df.show()</code> displays the original DataFrame (Table 1), containing employee, region, and sales data.</li>
-    <li><code class="python">pivot_df.show()</code> displays the pivoted DataFrame (Table 2), with sales aggregated by employee and region.</li>
-</ul>
+    <h2>Explanation</h2>
+    <ul>
+        <li><code class="python">groupBy("employee")</code> groups the data by employee.</li>
+        <li><code class="python">pivot("region")</code> creates new columns for each unique value in the "region" column (e.g., "North", "South", "East", "West").</li>
+        <li><code class="python">agg(sum("sales"))</code> aggregates the sales data by summing the values for each combination of employee and region.</li>
+    </ul>
 
 <h2>Output</h2>
 <p>The output would look something like this:</p>
@@ -91,4 +92,9 @@ spark.stop()
 |     Bob| null|  200|   400|  250|
 +--------+-----+-----+------+-----+
 </code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>
 
