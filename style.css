@@ -81,7 +81,7 @@ a:hover {
 }
 
 .green-text { color: green; }
-strong { color: yellow !important; font-weight: 700; }
+strong { color: yellow !important; font-weight: 600; }
 
 /* Styling the comparison table as a separate class */
 .comparison-table {
