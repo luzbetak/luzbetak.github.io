@@ -47,11 +47,11 @@ p { color: #ffffff; /* Set font color to white */ }
 }
 
 .navbar a:hover {
-    background-color: #555; /* Hover effect */
+    background-color: #333333; /* Hover effect */
 }
 
 .navbar a.active {
-    background-color: #555; /* Highlighted background for the active page */
+    background-color: #333333; /* Highlighted background for the active page */
 }
 
 
