@@ -160,10 +160,11 @@ input[type="submit"]:hover {
   margin-top: 0px;
 }
 
-/* Code Block Styles */
-/* #333333; Slightly lighter than black */
-/* #444444; Slightly lighter than the background */
 /* Black Color Shades
+#222222 (Darkest)
+#2b2b2b
+#333333
+#444444 (Lightest)
 1,  #000000 
 2,  #050505
 3,  #0a0a0a
@@ -190,8 +191,9 @@ input[type="submit"]:hover {
 24, #737373
 25, #787878
  */
+/* Code Block Styles */
 code {
-    background-color: #222222; /* Slightly lighter than black */
+    background-color: #333333; /* Slightly lighter than black */
     padding: 0px 0px; /* Padding around inline code */
     border-radius: 0px; /* Rounded corners */
     color: #f8f8f2; /* Light font color for code */
@@ -199,7 +201,7 @@ code {
 }
 
 pre {
-    background-color: #222222; /* Slightly lighter than black */
+    background-color: #333333; /* Slightly lighter than black */
     padding: 10px; /* Padding around preformatted text */
     border-radius: 4px; /* Rounded corners */
     overflow-x: auto; /* Allow horizontal scrolling if needed */
