@@ -217,26 +217,25 @@ pre {
 /* color: #e6db74;  Yellow     */ 
 /* color: #75715e;  Gray       */
 /* color: #a6e22e;  Green      */
-/* color: #66d9ef;  Light Blue */
 /* color: #75715e;  Gray       */ 
 
 /* Syntax Highlighting font-weight: bold; */
-.keyword  { color: #e6db74; /* Yellow */ font-weight: 550; }
-.string   { color: #ff00ff; /* Yellow for strings        */ }
-.function { color: #66d9ef; /* Green for function names  */ }
-.datatype { color: #f92672; /* Pink/red for data types   */ }
-.comment  { color: #66d9ef; /* Gray for comments */ font-style: italic; }
+.keyword  { color: #e6db74; /* Yellow */ font-weight: 550;       }
+.string   { color: #ff00ff; /* Yellow for strings             */ }
+.function { color: #66d9ef; /* Light Cyan                     */ }
+.datatype { color: #f92672; /* Pink/red for data types        */ }
+.comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
 
-.python .keyword  { color: #e6db74; /* Yellow */ font-weight: 550; }
-.python .string   { color: #ff00ff; /* Purple color              */ }
-.python .function { color: #66d9ef; /* Light Cyan function names */ }
-.python .datatype { color: #f92672; /* Pink/red for data types   */ }
-.python .comment  { color: #66d9ef; /* Gray for comments */ font-style: italic; }
+.python .keyword  { color: #e6db74; /* Yellow */ font-weight: 550;       }
+.python .string   { color: #ff00ff; /* Purple color                   */ }
+.python .function { color: #66d9ef; /* Light Cyan                     */ }
+.python .datatype { color: #f92672; /* Pink/red for data types        */ }
+.python .comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
 
 /* SQL-specific Syntax Highlighting */
-.sql .keyword  { color: #66d9ef; /* Light blue for SQL keywords  */ }
-.sql .string   { color: #e6db74; /* Yellow for string literals   */ }
-.sql .function { color: #a6e22e; /* Green for functions          */ }
-.sql .datatype { color: #f92672; /* Pink/red for SQL data types  */ }
-.sql .comment  { color: #75715e; /* Gray for comments */ font-style: italic; }
+.sql .keyword  { color: #66d9ef; /* Light Cyan */ }
+.sql .string   { color: #e6db74; /* Yellow for string literals     */ }
+.sql .function { color: #a6e22e; /* Green for functions            */ }
+.sql .datatype { color: #f92672; /* Pink/red for SQL data types    */ }
+.sql .comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
 
