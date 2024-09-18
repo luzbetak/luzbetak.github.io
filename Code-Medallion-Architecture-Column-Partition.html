@@ -1,0 +1,114 @@
+---
+---
+{% include menu.html title="Medallion Architecture Example with Delta Lake" % }
+
+
+<h1>Medallion Architecture Example with Delta Lake</h1>
+
+    <pre><code><span class="comment"># Import necessary libraries</span>
+<span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
+<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> col, current_date, date_sub, sum, count
+
+<span class="comment"># Initialize Spark session with Delta support</span>
+<span class="keyword">spark</span> = SparkSession.builder \
+    .<span class="function">appName</span>(<span class="string">"Medallion Architecture Example"</span>) \
+    .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
+    .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
+    .<span class="function">getOrCreate</span>()
+
+<span class="comment"># Define paths for Bronze, Silver, and Gold layers</span>
+<span class="keyword">bronze_path</span> = <span class="string">"/mnt/delta/bronze"</span>
+<span class="keyword">silver_path</span> = <span class="string">"/mnt/delta/silver"</span>
+<span class="keyword">gold_path</span>   = <span class="string">"/mnt/delta/gold"</span>
+
+<span class="comment"># ----------- Bronze Layer (Raw Data Ingestion) ------------------------------ #</span>
+<span class="comment"># Step 1: Load raw data (assuming the data contains a 'date' column in 'json' format)</span>
+<span class="keyword">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)
+<span class="comment"># Step 2: Repartition the raw data by the 'date' column for optimized processing</span>
+<span class="keyword">raw_data</span> = <span class="keyword">raw_data</span>.<span class="function">repartition</span>(256, col(<span class="string">"date"</span>))
+<span class="comment"># Step 3: Write the partitioned data to the Bronze layer</span>
+<span class="keyword">raw_data</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="keyword">partitionBy</span>(<span class="string">"date"</span>).<span class="function">save</span>(<span class="keyword">bronze_path</span>)
+<span class="comment"># ----------- Silver Layer (Filter Data by Date) ----------------------------- #</span>
+<span class="comment"># Step 4: Read the data from the Bronze layer</span>
+<span class="keyword">bronze_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">bronze_path</span>)
+<span class="comment"># Step 5: Filter data for today and the last 7 days</span>
+<span class="keyword">days</span> = 7
+<span class="keyword">silver_df</span> = <span class="keyword">bronze_df</span>.<span class="function">filter</span>(
+    (col(<span class="string">"date"</span>) >= date_sub(current_date(), <span class="keyword">days</span>)) & (col(<span class="string">"date"</span>) <= current_date())
+)
+
+<span class="comment"># Step 6: Write the filtered data to the Silver layer</span>
+<span class="keyword">silver_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">silver_path</span>)
+<span class="comment"># ----------- Gold Layer (Aggregation and Optimization) ---------------------- #</span>
+<span class="comment"># Step 7: Read the data from the Silver layer</span>
+<span class="keyword">silver_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">silver_path</span>)
+<span class="comment"># Step 8: Perform aggregation (e.g., total sales and total orders by category)</span>
+<span class="keyword">gold_df</span> = <span class="keyword">silver_df</span>.<span class="function">groupBy</span>(<span class="string">"category"</span>) \
+                   .<span class="function">agg</span>(count(<span class="string">"order_id"</span>).<span class="keyword">alias</span>(<span class="string">"total_orders"</span>),
+                   sum(<span class="string">"sales_amount"</span>).<span class="keyword">alias</span>(<span class="string">"total_sales"</span>))
+<span class="comment"># Step 9: Write the aggregated data to the Gold layer</span>
+<span class="keyword">gold_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">gold_path</span>)
+<span class="comment"># Stop the Spark session</span>
+<span class="keyword">spark.stop</span>()
+    </code></pre>
+
+
+<hr>
+
+<h1>Medallion Architecture with PySpark Example</h1>
+
+    <ol>
+        <li><h3>Bronze Layer (Raw Data Ingestion)</h3>
+            <ul>
+                <li><strong>Step 1:</strong> Load raw data from a JSON source.
+                    <pre><code><span class="datatype">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)</code></pre>
+                </li>
+                <li><strong>Step 2:</strong> Repartition the data by the <code>date</code> column to distribute it efficiently.
+                    <pre><code><span class="datatype">raw_data</span> = <span class="datatype">raw_data</span>.<span class="function">repartition</span>(256, col(<span class="string">"date"</span>))</code></pre>
+                </li>
+                <li><strong>Step 3:</strong> Write the repartitioned data to the Bronze Delta table, partitioned by the <code>date</code> column.
+                    <pre><code><span class="datatype">raw_data</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="keyword">partitionBy</span>(<span class="string">"date"</span>).<span class="function">save</span>(<span class="keyword">bronze_path</span>)</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li><h3>Silver Layer (Filter Data by Date)</h3>
+            <ul>
+                <li><strong>Step 4:</strong> Read the data from the Bronze Delta table.
+                    <pre><code><span class="datatype">bronze_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">bronze_path</span>)</code></pre>
+                </li>
+                <li><strong>Step 5:</strong> Filter data for records within the last 7 days (between <code>today</code> and <code>today - 7 days</code>).
+                    <pre><code><span class="datatype">days</span> = 7
+<span class="datatype">silver_df</span> = <span class="datatype">bronze_df</span>.<span class="function">filter</span>(
+    (col(<span class="string">"date"</span>) >= date_sub(current_date(), <span class="datatype">days</span>)) & 
+    (col(<span class="string">"date"</span>) <= current_date())
+)</code></pre>
+                </li>
+                <li><strong>Step 6:</strong> Write the filtered data to the Silver Delta table.
+                    <pre><code><span class="datatype">silver_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">silver_path</span>)</code></pre>
+                </li>
+            </ul>
+        </li>
+
+        <li><h3>Gold Layer (Aggregation and Optimization)</h3>
+            <ul>
+                <li><strong>Step 7:</strong> Read the filtered data from the Silver Delta table.
+                    <pre><code><span class="datatype">silver_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">silver_path</span>)</code></pre>
+                </li>
+                <li><strong>Step 8:</strong> Perform aggregation (e.g., total orders and sales by category).
+                    <pre><code><span class="datatype">gold_df</span> = <span class="datatype">silver_df</span>.<span class="function">groupBy</span>(<span class="string">"category"</span>) \
+    .<span class="function">agg</span>(count(<span class="string">"order_id"</span>).<span class="keyword">alias</span>(<span class="string">"total_orders"</span>), \
+         sum(<span class="string">"sales_amount"</span>).<span class="keyword">alias</span>(<span class="string">"total_sales"</span>))</code></pre>
+                </li>
+                <li><strong>Step 9:</strong> Write the aggregated data to the Gold Delta table.
+                    <pre><code><span class="datatype">gold_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">gold_path</span>)</code></pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+
+  {% include footer.html %}
+
+  </body>
+</html>

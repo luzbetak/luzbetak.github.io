@@ -1,0 +1,63 @@
+---
+---
+{% include menu.html title="Medallion Architecture " % }
+
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic"># Import necessary libraries</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">pyspark.sql</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">SparkSession</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">pyspark.sql.functions</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">col,</span> <span style="color: #d0d0d0">current_date,</span> <span style="color: #d0d0d0">date_sub,</span> <span style="color: #24909d">sum</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">count</span>
+
+<span style="color: #999999; font-style: italic"># Initialize Spark session with Delta support</span>
+<span style="color: #d0d0d0">spark</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">SparkSession.builder</span> \
+    <span style="color: #d0d0d0">.appName(</span><span style="color: #ed9d13">&quot;Medallion Architecture Example with State and Date Partitioning&quot;</span><span style="color: #d0d0d0">)</span> \
+    <span style="color: #d0d0d0">.config(</span><span style="color: #ed9d13">&quot;spark.sql.extensions&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;io.delta.sql.DeltaSparkSessionExtension&quot;</span><span style="color: #d0d0d0">)</span> \
+    <span style="color: #d0d0d0">.config(</span><span style="color: #ed9d13">&quot;spark.sql.catalog.spark_catalog&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;org.apache.spark.sql.delta.catalog.DeltaCatalog&quot;</span><span style="color: #d0d0d0">)</span> \
+    <span style="color: #d0d0d0">.getOrCreate()</span>
+
+<span style="color: #999999; font-style: italic"># Define paths for Bronze, Silver, and Gold layers</span>
+<span style="color: #d0d0d0">bronze_path</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;/mnt/delta/bronze&quot;</span>
+<span style="color: #d0d0d0">silver_path</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;/mnt/delta/silver&quot;</span>
+<span style="color: #d0d0d0">gold_path</span>   <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;/mnt/delta/gold&quot;</span>
+
+<span style="color: #999999; font-style: italic"># ----------- Bronze Layer (Raw Data Ingestion) ------------------------------ #</span>
+<span style="color: #999999; font-style: italic"># Step 1: Load raw data (assuming the data contains &#39;state&#39; and &#39;date&#39; columns in &#39;json&#39; format)</span>
+<span style="color: #d0d0d0">raw_data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">spark.read().format(</span><span style="color: #ed9d13">&quot;json&quot;</span><span style="color: #d0d0d0">).load(</span><span style="color: #ed9d13">&quot;/mnt/raw_data/&quot;</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #999999; font-style: italic"># Step 2: Repartition the raw data by the &#39;state&#39; and &#39;date&#39; columns for optimized processing</span>
+<span style="color: #d0d0d0">raw_data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">raw_data.repartition(</span><span style="color: #3677a9">256</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">col(</span><span style="color: #ed9d13">&quot;state&quot;</span><span style="color: #d0d0d0">),</span> <span style="color: #d0d0d0">col(</span><span style="color: #ed9d13">&quot;date&quot;</span><span style="color: #d0d0d0">))</span>
+
+<span style="color: #999999; font-style: italic"># Step 3: Write the partitioned data to the Bronze layer with partitioning by both &#39;state&#39; and &#39;date&#39;</span>
+<span style="color: #d0d0d0">raw_data.write().format(</span><span style="color: #ed9d13">&quot;delta&quot;</span><span style="color: #d0d0d0">).mode(</span><span style="color: #ed9d13">&quot;overwrite&quot;</span><span style="color: #d0d0d0">).partitionBy(</span><span style="color: #ed9d13">&quot;state&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;date&quot;</span><span style="color: #d0d0d0">).save(bronze_path)</span>
+
+<span style="color: #999999; font-style: italic"># ----------- Silver Layer (Filter Data by State and Date) -------------------- #</span>
+<span style="color: #999999; font-style: italic"># Step 4: Read the data from the Bronze layer</span>
+<span style="color: #d0d0d0">bronze_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">spark.read().format(</span><span style="color: #ed9d13">&quot;delta&quot;</span><span style="color: #d0d0d0">).load(bronze_path)</span>
+
+<span style="color: #999999; font-style: italic"># Step 5: Filter data for today and the last 7 days</span>
+<span style="color: #d0d0d0">days</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">7</span>
+<span style="color: #d0d0d0">silver_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">bronze_df.filter(</span>
+    <span style="color: #d0d0d0">(col(</span><span style="color: #ed9d13">&quot;date&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&gt;=</span> <span style="color: #d0d0d0">date_sub(current_date(),</span> <span style="color: #d0d0d0">days))</span> <span style="color: #d0d0d0">&amp;</span> <span style="color: #d0d0d0">(col(</span><span style="color: #ed9d13">&quot;date&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&lt;=</span> <span style="color: #d0d0d0">current_date())</span>
+<span style="color: #d0d0d0">)</span>
+
+<span style="color: #999999; font-style: italic"># Step 6: Write the filtered data to the Silver layer, partitioned by &#39;state&#39; and &#39;date&#39;</span>
+<span style="color: #d0d0d0">silver_df.write().format(</span><span style="color: #ed9d13">&quot;delta&quot;</span><span style="color: #d0d0d0">).mode(</span><span style="color: #ed9d13">&quot;overwrite&quot;</span><span style="color: #d0d0d0">).partitionBy(</span><span style="color: #ed9d13">&quot;state&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;date&quot;</span><span style="color: #d0d0d0">).save(silver_path)</span>
+
+<span style="color: #999999; font-style: italic"># ----------- Gold Layer (Aggregation and Optimization) ---------------------- #</span>
+<span style="color: #999999; font-style: italic"># Step 7: Read the data from the Silver layer</span>
+<span style="color: #d0d0d0">silver_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">spark.read().format(</span><span style="color: #ed9d13">&quot;delta&quot;</span><span style="color: #d0d0d0">).load(silver_path)</span>
+
+<span style="color: #999999; font-style: italic"># Step 8: Perform aggregation (e.g., total sales and total orders by category)</span>
+<span style="color: #d0d0d0">gold_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">silver_df.groupBy(</span><span style="color: #ed9d13">&quot;category&quot;</span><span style="color: #d0d0d0">)</span> \
+                   <span style="color: #d0d0d0">.agg(count(</span><span style="color: #ed9d13">&quot;order_id&quot;</span><span style="color: #d0d0d0">).alias(</span><span style="color: #ed9d13">&quot;total_orders&quot;</span><span style="color: #d0d0d0">),</span>
+                   <span style="color: #24909d">sum</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;sales_amount&quot;</span><span style="color: #d0d0d0">).alias(</span><span style="color: #ed9d13">&quot;total_sales&quot;</span><span style="color: #d0d0d0">))</span>
+
+<span style="color: #999999; font-style: italic"># Step 9: Write the aggregated data to the Gold layer</span>
+<span style="color: #d0d0d0">gold_df.write().format(</span><span style="color: #ed9d13">&quot;delta&quot;</span><span style="color: #d0d0d0">).mode(</span><span style="color: #ed9d13">&quot;overwrite&quot;</span><span style="color: #d0d0d0">).save(gold_path)</span>
+
+<span style="color: #999999; font-style: italic"># Stop the Spark session</span>
+<span style="color: #d0d0d0">spark.stop()</span>
+</pre></div>
+
+  {% include footer.html %}
+
+  </body>
+</html>
