@@ -33,7 +33,7 @@ p { color: #ffffff; /* Set font color to white */ }
 /* Navigation Bar Styles */
 .navbar {
     overflow: hidden; /* Ensure elements inside are contained */
-    background-color: #333; /* Dark background for the navbar */
+    background-color: #222222; /* Dark background for the navbar */
 }
 
 .navbar a {
