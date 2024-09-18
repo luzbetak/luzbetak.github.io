@@ -10,9 +10,9 @@ body {
 }
 
 /* Heading Styles */
-h1 { color: #ffcc00; /* Bright yellow for main headings */ }
-h2 { color: #00ccff; /* Light blue for subheadings */ }
-h3 { color: lightgreen; /* Light green for tertiary headings */ }
+h1 { color: #ffcc00;     font-size: 28px;   /* Bright yellow for main headings */ }
+h2 { color: #00ccff;     font-size: 24px;   /* Light blue for subheadings */ }
+h3 { color: lightgreen;  font-size: 20px;   /* Light green for tertiary headings */ }
 
 /* List Styles */
 ul, ol {
