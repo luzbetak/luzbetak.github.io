@@ -43,7 +43,8 @@
         <span class="comment"># Group by name and count occurrences</span>
         group_by_count_df = spark.sql(<span class="string">
                        "SELECT name, COUNT(*) as name_count"
-                       "FROM people GROUP BY name"
+                       "FROM people"
+                       "GROUP BY name"
                        </span>)
 
         <span class="comment"># Show result</span>
@@ -61,7 +62,8 @@
         <span class="comment"># Group by name and sum salaries</span>
         sum_salaries_df = spark.sql(<span class="string">
                           "SELECT name, SUM(salary) as total_salary" 
-                          "FROM salaries GROUP BY name"
+                          "FROM salaries"
+                          "GROUP BY name"
                           </span>)
 
         <span class="comment"># Show result</span>
@@ -73,7 +75,8 @@
         <span class="comment"># Group by name and calculate average salary</span>
         avg_salaries_df = spark.sql(<span class="string">
                           "SELECT name, AVG(salary) as avg_salary"
-                          "FROM salaries GROUP BY name"
+                          "FROM salaries"
+                          "GROUP BY name"
                           </span>)
 
         <span class="comment"># Show result</span>
