@@ -5,7 +5,7 @@
 
 <h1>Medallion Architecture Example with Delta Lake</h1>
 
-<pre>
+<pre><code>
 <span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession
 <span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> col, current_date, date_sub, sum, count
 
@@ -41,7 +41,7 @@ gold_df = silver_df.groupBy(<span class="string">"category"</span>) \
 gold_df.write().format(<span class="string">"delta"</span>).mode(<span class="string">"overwrite"</span>).save(gold_path)
 
 spark.stop()
-</pre>
+</code></pre>
 
 
 <hr>
