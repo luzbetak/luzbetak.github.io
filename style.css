@@ -234,7 +234,7 @@ pre {
 .keyword  { color: #e6db74; /* Yellow */ font-weight: 700;       }
 .string   { color: #ff00ff; /* Yellow for strings             */ }
 .function { color: #66d9ef; /* Light Cyan                     */ }
-.datatype { color: #f92672; /* Pink/red for data types        */ }
+.datatype { color: white;   /* Pink/red for data types        */ }
 .comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
 
 .python .keyword  { color: #e6db74; /* Yellow */ font-weight: 700;       }
