@@ -35,7 +35,8 @@
     <h2>3. Group By and Count</h2>
     <pre class="python">
         <span class="comment"># Group by name and count occurrences</span>
-        group_by_count_df = spark.sql(<span class="string">"SELECT name, COUNT(*) as name_count FROM people GROUP BY name"</span>)
+        group_by_count_df = spark.sql(<span class="string">"SELECT name, COUNT(*) as name_count"
+                                                           "FROM people GROUP BY name"</span>)
 
         <span class="comment"># Show result</span>
         group_by_count_df.show()
