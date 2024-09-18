@@ -86,7 +86,11 @@
     <h2>6. Filter Records with WHERE Clause</h2>
     <pre class="python">
         <span class="comment"># Filter records where salary is greater than 1200</span>
-        filter_df = spark.sql(<span class="string">"SELECT * FROM salaries WHERE salary > 1200"</span>)
+        filter_df = spark.sql(<span class="string">
+                    "SELECT * "
+                    "FROM salaries"
+                    "WHERE salary > 1200"
+                    </span>)
 
         <span class="comment"># Show result</span>
         filter_df.show()
@@ -95,7 +99,11 @@
     <h2>7. Order Records by a Column</h2>
     <pre class="python">
         <span class="comment"># Order records by salary in descending order</span>
-        order_by_df = spark.sql(<span class="string">"SELECT * FROM salaries ORDER BY salary DESC"</span>)
+        order_by_df = spark.sql(<span class="string">
+                      "SELECT * "
+                      "FROM salaries"
+                      "ORDER BY salary DESC"
+                      </span>)
 
         <span class="comment"># Show result</span>
         order_by_df.show()
