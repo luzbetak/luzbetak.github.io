@@ -2,9 +2,12 @@
 ---
 {% include menu.html title="Kevin Luzbetak - Computer Science" %}
 
+<img src="Big-O-Time-Complexity.png" width=640>
 
 <h1>Big O Notation - Time Complexity</h1>
     <p>Big O notation is used to describe the efficiency of an algorithm, focusing on its time complexity (how the execution time grows with input size) and space complexity (how much extra memory is needed). It expresses the worst-case scenario performance of an algorithm.</p>
+
+    <p><hr width=900 align=left>
 
     <h2>Common Complexities</h2>
     <ul>
@@ -46,17 +49,29 @@
     </ul>
 
 
-    <p><hr>    
+    <p><hr width=900 align=left>
 
 
 <ol>
-    <h1>Data Structures and Their Time Complexities</h1>
+    <h2>Data Structures and Their Time Complexities</h2>
     <p>
     <li><strong>Hash Table</strong>
         <ul>
             <li>Access: O(1) (average case), O(n) (worst case due to collisions)</li>
             <li>Search: O(1) (average case)</li>
             <li>Insertion/Deletion: O(1) (average case)</li>
+        </ul>
+    </li>
+    <li><strong>Binary Search Tree (BST)</strong>
+        <ul>
+            <li>Access/Search: O(log n) (average), O(n) (worst case, unbalanced)</li>
+            <li>Insertion/Deletion: O(log n) (average), O(n) (worst case)</li>
+        </ul>
+    </li>
+    <li><strong>Balanced Binary Search Tree (e.g., AVL Tree, Red-Black Tree)</strong>
+        <ul>
+            <li>Access/Search: O(log n)</li>
+            <li>Insertion/Deletion: O(log n)</li>
         </ul>
     </li>
     <li><strong>B-Tree</strong>
@@ -66,6 +81,9 @@
             <li>Space Complexity: O(n)</li>
         </ul>
     </li>
+
+    <p><hr width=900 align=left>
+
     <li><strong>Array (Fixed size)</strong>
         <ul>
             <li>Access: O(1)</li>
@@ -79,18 +97,6 @@
             <li>Access: O(n)</li>
             <li>Search: O(n)</li>
             <li>Insertion/Deletion (at head): O(1)</li>
-        </ul>
-    </li>
-    <li><strong>Binary Search Tree (BST)</strong>
-        <ul>
-            <li>Access/Search: O(log n) (average), O(n) (worst case, unbalanced)</li>
-            <li>Insertion/Deletion: O(log n) (average), O(n) (worst case)</li>
-        </ul>
-    </li>
-    <li><strong>Balanced Binary Search Tree (e.g., AVL Tree, Red-Black Tree)</strong>
-        <ul>
-            <li>Access/Search: O(log n)</li>
-            <li>Insertion/Deletion: O(log n)</li>
         </ul>
     </li>
     <li><strong>Heap (Priority Queue)</strong>
@@ -111,7 +117,6 @@
         </ul>
     </li>
 </ol>
-
 
  
     <table width=900 border=0>
