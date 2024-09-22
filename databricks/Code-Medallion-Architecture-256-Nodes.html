@@ -23,6 +23,8 @@
 
 <span class="comment"># ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #</span>
 <span class="keyword">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)
+
+<span class="comment">raw_data = raw_data.repartition("state", "date")</span>
 <span class="keyword">raw_data</span> = <span class="keyword">raw_data</span>.<span class="function">repartition</span>(256)
 
 <span class="comment"># Filter data for today and the last 7 days
@@ -30,8 +32,6 @@ silver_df = bronze_df.filter(
     (col("date") >= date_sub(current_date(), 7)) & (col("date") <= current_date())
 )</span>
 
-<span class="comment"># Partitioned by 'state' and 'date'</span>
-<span class="comment">silver_df.write().format("delta").mode("overwrite").partitionBy("state", "date").save(silver_path)</span>
 
 <span class="keyword">raw_data</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">bronze_path</span>)
 
