@@ -37,9 +37,9 @@ silver_df = bronze_df.filter(
 )
 
 <span class="comment"># Drop Duplicates</span>
-<span class="datatype">silver_df</span> = <span class="datatype">bronze_df</span>.<span class="function">dropDuplicates</span>().<span class="function">filter</span>(col(<span class="string">"status"</span>).<span class="function">isNotNull</span>())
+<span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">dropDuplicates</span>().<span class="function">filter</span>(col(<span class="string">"status"</span>).<span class="function">isNotNull</span>())
 
-<span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">repartition</span>(256, col("state"), col("date"))
+<span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">repartition</span>(256, col("date"))
 <span class="datatype">silver_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">silver_path</span>)
 
 <span class="comment"># ----------- Gold Layer (Aggregated and Optimized Data) ------------------ #</span>
