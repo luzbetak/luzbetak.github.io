@@ -5,9 +5,7 @@
 
 <body>
         <h1>Medallion Architecture with 256 Node Cluster</h1>
-
     <pre><code>
-<span class="comment"># Initialize Spark session with Delta support</span>
 <span class="keyword">spark</span> = SparkSession.builder \
     .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
     .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
