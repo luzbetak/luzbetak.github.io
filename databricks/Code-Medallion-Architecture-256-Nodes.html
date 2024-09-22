@@ -24,6 +24,10 @@
 <span class="comment"># ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #</span>
 <span class="keyword">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)
 <span class="keyword">raw_data</span> = <span class="keyword">raw_data</span>.<span class="function">repartition</span>(256)
+
+<span class="comment"># Partitioned by 'state' and 'date'</span>
+<span class="comment">silver_df.write().format("delta").mode("overwrite").partitionBy("state", "date").save(silver_path)</span>
+
 <span class="keyword">raw_data</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">bronze_path</span>)
 
 <span class="comment"># ----------- Silver Layer (Data Cleaning and Transformation) --------------- #</span>
@@ -43,6 +47,9 @@ class="string">"category"</span>)
                          ) 
 <span class="datatype">gold_df</span> = <span class="datatype">gold_df</span>.<span class="function">repartition</span>(256)
 <span class="datatype">gold_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">gold_path</span>)
+
+
+
 
 <span class="keyword">spark.stop</span>()
     </code></pre>
