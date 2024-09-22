@@ -7,11 +7,11 @@
     <pre><code>
 <span class="keyword">spark</span> = SparkSession.builder \
     .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.executor.instances"</span>, <span class="string">"256"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"1024"</span>) \
-    .<span class="function">getOrCreate</span>()
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.executor.instances"</span>, <span class="string">"256"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"1024"</span>) \
+   .<span class="function">getOrCreate</span>()
 
 <span class="comment"># Paths for the Bronze, Silver, and Gold layers</span>
 <span class="keyword">bronze_path</span> = <span class="string">"/mnt/delta/bronze"</span>
