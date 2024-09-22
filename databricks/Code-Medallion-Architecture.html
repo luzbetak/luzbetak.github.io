@@ -33,7 +33,6 @@ silver_df = bronze_df.filter(
     (col(<span class="string">"date"</span>) >= date_sub(current_date(), 30)) & (col(<span class="string">"date"</span>) <= current_date())
 )
 
-<span class="comment"># Drop Duplicates</span>
 <span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">dropDuplicates</span>().<span class="function">filter</span>(col(<span class="string">"status"</span>).<span class="function">isNotNull</span>())
 
 <span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">repartition</span>(30, col("date"))
