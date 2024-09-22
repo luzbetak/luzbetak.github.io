@@ -51,7 +51,7 @@ class="string">"category"</span>)
                           <span class="function">count</span>(<span class="string">"order_id"</span>).<span class="keyword">alias</span>(<span class="string">"total_orders"</span>), 
                           <span class="function">sum</span>(<span class="string">"sales_amount"</span>).<span class="keyword">alias</span>(<span class="string">"total_sales"</span>) 
                          ) 
-<span class="datatype">gold_df</span> = <span class="datatype">gold_df</span>.<span class="function">repartition</span>(256)
+<span class="datatype">gold_df</span> = <span class="datatype">gold_df</span>.<span class="function">repartition</span>(365, col("date"), col("category"))
 <span class="datatype">gold_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">gold_path</span>)
 
 
