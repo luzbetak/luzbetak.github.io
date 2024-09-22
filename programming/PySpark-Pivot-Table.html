@@ -29,10 +29,8 @@ data = [
     {"employee": <span class="string">"Bob"</span>,   "region": <span class="string">"West"</span>,  "sales": 250}
 ]
 
-<span class="comment"># Create DataFrame from the data</span>
 df = spark.createDataFrame(data)
 
-<span class="comment"># Show the original DataFrame</span>
 df.show()
 
 <span class="comment"># Pivot the table to show sales by employee per region</span>
