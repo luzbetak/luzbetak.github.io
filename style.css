@@ -238,18 +238,18 @@ pre {
 .string   { color: #ff00ff; /* Yellow for strings             */ }
 .function { color: #66d9ef; /* Light Cyan                     */ }
 .datatype { color: white;   /* Pink/red for data types        */ }
-.comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
+.comment  { color: #6A8A87; /* Teal */ font-style: italic; }
 
 .python .keyword  { color: #e6db74; /* Yellow                         */ }
 .python .string   { color: #ff00ff; /* Purple color                   */ }
 .python .function { color: #66d9ef; /* Light Cyan                     */ }
 .python .datatype { color: #f92672; /* Pink/red for data types        */ }
-.python .comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
+.python .comment  { color: #6A8A87; /* Teal */ font-style: italic; }
 
 /* SQL-specific Syntax Highlighting */
 .sql .keyword  { color: #66d9ef; /* Light Cyan                     */ }
 .sql .string   { color: #e6db74; /* Yellow for string literals     */ }
 .sql .function { color: #a6e22e; /* Green for functions            */ }
 .sql .datatype { color: #f92672; /* Pink/red for SQL data types    */ }
-.sql .comment  { color: #66d9ef; /* Light Cyan */ font-style: italic; }
+.sql .comment  { color: #6A8A87; /* Teal */ font-style: italic; }
 
