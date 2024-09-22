@@ -31,6 +31,12 @@
 
 <span class="comment"># ----------- Silver Layer (Data Cleaning and Transformation) --------------- #</span>
 <span class="datatype">bronze_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">bronze_path</span>)
+
+<span class="comment"># Filter data for today and the last 7 days</span>
+silver_df = bronze_df.filter(
+    (col(<span class="string">"date"</span>) >= date_sub(current_date(), 7)) & (col(<span class="string">"date"</span>) <= current_date())
+)
+
 <span class="datatype">silver_df</span> = <span class="datatype">bronze_df</span>.<span class="function">dropDuplicates</span>().<span class="function">filter</span>(col(<span class="string">"status"</span>).<span class="function">isNotNull</span>())
 <span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">repartition</span>(256)
 <span class="datatype">silver_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">silver_path</span>)
