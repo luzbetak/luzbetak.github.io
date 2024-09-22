@@ -19,7 +19,7 @@
 <span class="comment"># Paths for the Bronze, Silver, and Gold layers</span>
 <span class="keyword">bronze_path</span> = <span class="string">"/mnt/delta/bronze"</span>
 <span class="keyword">silver_path</span> = <span class="string">"/mnt/delta/silver"</span>
-<span class="keyword">gold_path</span> = <span class="string">"/mnt/delta/gold"</span>
+<span class="keyword">gold_path</span>   = <span class="string">"/mnt/delta/gold"</span>
 
 <span class="comment"># ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #</span>
 <span class="keyword">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)
