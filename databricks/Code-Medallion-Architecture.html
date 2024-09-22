@@ -130,13 +130,13 @@ class="string">"category"</span>)
                 <li>Initialize the Spark session and configure it to distribute tasks across 256 nodes, setting appropriate executor cores and shuffle partitions.
                     <pre><code><span class="comment"># Initialize Spark session with Delta support, configured for 256 nodes</span>
 <span class="keyword">spark</span> = SparkSession.builder \
-    .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.executor.instances"</span>, <span class="string">"256"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.executor.cores"</span>, <span class="string">"4"</span>) \
-    .<span class="keyword">config</span>(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"1024"</span>) \
-    .<span class="function">getOrCreate</span>()</code></pre>
+   .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.executor.instances"</span>, <span class="string">"256"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.executor.cores"</span>, <span class="string">"4"</span>) \
+   .<span class="keyword">config</span>(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"1024"</span>) \
+   .<span class="function">getOrCreate</span>()</code></pre>
                 </li>
             </ul>
         </li>
