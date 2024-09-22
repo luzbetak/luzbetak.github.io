@@ -47,6 +47,69 @@ class="string">"category"</span>)
 <span class="keyword">spark.stop</span>()
     </code></pre>
 
+
+    <hr>
+
+<h1>PySpark Aggregation Tables</h1>
+
+<h2>Data Description</h2>
+<p>We have a sample dataset containing three columns: <strong>category</strong>, <strong>order_id</strong>, and <strong>sales_amount</strong>. The dataset is grouped by the <strong>category</strong> column, and we perform aggregation to count the total number of orders and sum up the sales amounts for each category.</p>
+
+<h3>Original Dataset</h3>
+<table class="comparison-table">
+    <tr>
+        <th>category</th>
+        <th>order_id</th>
+        <th>sales_amount</th>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>1</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>2</td>
+        <td>200</td>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>3</td>
+        <td>150</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>4</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>5</td>
+        <td>100</td>
+    </tr>
+</table>
+
+<h3>Aggregated Result</h3>
+<p>After performing the aggregation, the dataset is grouped by <strong>category</strong>, and we compute two new columns: <strong>total_orders</strong> and <strong>total_sales</strong>.</p>
+
+<table class="comparison-table">
+    <tr>
+        <th>category</th>
+        <th>total_orders</th>
+        <th>total_sales</th>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>3</td>
+        <td>350</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>2</td>
+        <td>500</td>
+    </tr>
+</table>
+
     <hr>
 
     <ol>
@@ -124,68 +187,6 @@ class="string">"category"</span>)
             </ul>
         </li>
     </ol>
-
-    <hr>
-
-<h1>PySpark Aggregation Tables</h1>
-
-<h2>Data Description</h2>
-<p>We have a sample dataset containing three columns: <strong>category</strong>, <strong>order_id</strong>, and <strong>sales_amount</strong>. The dataset is grouped by the <strong>category</strong> column, and we perform aggregation to count the total number of orders and sum up the sales amounts for each category.</p>
-
-<h3>Original Dataset</h3>
-<table class="comparison-table">
-    <tr>
-        <th>category</th>
-        <th>order_id</th>
-        <th>sales_amount</th>
-    </tr>
-    <tr>
-        <td>Grocery</td>
-        <td>1</td>
-        <td>100</td>
-    </tr>
-    <tr>
-        <td>Electronics</td>
-        <td>2</td>
-        <td>200</td>
-    </tr>
-    <tr>
-        <td>Grocery</td>
-        <td>3</td>
-        <td>150</td>
-    </tr>
-    <tr>
-        <td>Electronics</td>
-        <td>4</td>
-        <td>300</td>
-    </tr>
-    <tr>
-        <td>Grocery</td>
-        <td>5</td>
-        <td>100</td>
-    </tr>
-</table>
-
-<h3>Aggregated Result</h3>
-<p>After performing the aggregation, the dataset is grouped by <strong>category</strong>, and we compute two new columns: <strong>total_orders</strong> and <strong>total_sales</strong>.</p>
-
-<table class="comparison-table">
-    <tr>
-        <th>category</th>
-        <th>total_orders</th>
-        <th>total_sales</th>
-    </tr>
-    <tr>
-        <td>Grocery</td>
-        <td>3</td>
-        <td>350</td>
-    </tr>
-    <tr>
-        <td>Electronics</td>
-        <td>2</td>
-        <td>500</td>
-    </tr>
-</table>
 
 
   {% include footer.html %}
