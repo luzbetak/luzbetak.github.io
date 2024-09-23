@@ -9,37 +9,6 @@ body {
     padding-left: 5px; /* Additional padding on the left side */
 }
 
-/* Heading Styles */
-h1 {
-    color: #ffcc00;     /* Bright yellow for main headings */
-    font-size: 26px;
-}
-
-h2 {
-    color: #00ccff;     /* Light blue for subheadings */
-    font-size: 24px;
-}
-
-h3 {
-    color: #90ee90;     /* Light green for tertiary headings (using hex for consistency) */
-    font-size: 22px;
-}
-
-/* List Styles */
-ul, ol {
-    margin: 0 0 20px 20px; /* Spacing for unordered and ordered lists */
-    padding-left: 10px; /* Adds extra space between ul/ol and li start */
-    color: #ffffff; /* Set font color to white */
-    /* Keeping default bullet points for ul and numbering for ol */
-}
-
-li {
-    margin-bottom: 15px; /* Add space between list items */
-    color: #ffffff; /* Set font color to white */
-}
-
-/* Paragraph Styles */
-p { color: #ffffff; /* Set font color to white */ }
 
 /* Navigation Bar Styles */
 .navbar {
@@ -171,85 +140,36 @@ input[type="submit"]:hover {
   margin-top: 0px;
 }
 
-/* Black Color Shades
-#222222 (Darkest)
-#2b2b2b
-#333333
-#444444 (Lightest)
-1,  #000000 
-2,  #050505
-3,  #0a0a0a
-4,  #0f0f0f
-5,  #141414
-6,  #191919
-7,  #1e1e1e
-8,  #232323
-9,  #282828
-10, #2d2d2d
-11, #323232
-12, #373737
-13, #3c3c3c
-14, #414141
-15, #464646
-16, #4b4b4b
-17, #505050
-18, #555555
-19, #5a5a5a
-20, #5f5f5f
-21, #646464
-22, #696969
-23, #6e6e6e
-24, #737373
-25, #787878 
-*/
 
-/* Code Block Styles */
+h1 { color: #ffcc00; font-size: 26px; }
+h2 { color: #00ccff; font-size: 24px; }
+h3 { color: #90ee90; font-size: 22px; }
+
+ul, ol { margin: 0 0 20px 20px; padding-left: 10px; color: #ffffff; }
+li     { margin-bottom: 15px; color: #ffffff; }
+p      { color: #ffffff; }
+
 code {
-    background-color: #262626; /* Slightly lighter than black */
-    padding: 0px 0px;          /* Padding around inline code */
-    border-radius: 0px;        /* Rounded corners */
-    color: #f8f8f2;            /* Light font color for code */
-    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
+    background-color: #262626;
+    padding: 0px 0px;
+    border-radius: 0px;
+    color: #f8f8f2;
+    font-family: Consolas, "Courier New", monospace;
 }
 
 pre {
-    background-color: #262626; /* Slightly lighter than black */
-    padding: 10px;             /* Padding around preformatted text */
-    border-radius: 4px;        /* Rounded corners */
-    overflow-x: auto;          /* Allow horizontal scrolling if needed */
-    color: #f8f8f2;            /* Light font color for preformatted text */
-    font-family: Consolas, "Courier New", monospace; /* Use a monospace font */
-    line-height: 1.5;          /* Increase line spacing for better readability */
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    color: #f8f8f2;
+    font-family: Consolas, "Courier New", monospace; 
+    line-height: 1.5;
 }
 
-
-/* Python-specific Syntax Highlighting */
-/* color: #66d9ef;  Light Cyan */
-/* color: #e6db74;  Yellow     */ 
-/* color: #75715e;  Gray       */
-/* color: #a6e22e;  Green      */
-/* color: #75715e;  Gray       */ 
-
-/* Syntax Highlighting 
- * font-weight: bold; 
- * font-weight: 700; 
- * */
-.keyword  { color: #e6db74; /* Yellow                         */ }
-.string   { color: #ff00ff; /* Yellow for strings             */ }
-.function { color: #66d9ef; /* Light Cyan                     */ }
-.datatype { color: white;   /* Pink/red for data types        */ }
-.comment  { color: #6A8A87; /* Teal */ font-style: italic; }
-
-.python .keyword  { color: #e6db74; /* Yellow                         */ }
-.python .string   { color: #ff00ff; /* Purple color                   */ }
-.python .function { color: #66d9ef; /* Light Cyan                     */ }
-.python .datatype { color: #f92672; /* Pink/red for data types        */ }
-.python .comment  { color: #6A8A87; /* Teal */ font-style: italic; }
-
-/* SQL-specific Syntax Highlighting */
-.sql .keyword  { color: #66d9ef; /* Light Cyan                     */ }
-.sql .string   { color: #e6db74; /* Yellow for string literals     */ }
-.sql .function { color: #a6e22e; /* Green for functions            */ }
-.sql .datatype { color: #f92672; /* Pink/red for SQL data types    */ }
-.sql .comment  { color: #6A8A87; /* Teal */ font-style: italic; }
+.keyword  { color: #e6db74;  }
+.string   { color: #ff00ff;  }
+.function { color: #66d9ef;  }
+.datatype { color: white;    }
+.comment  { color: #6A8A87; font-style: italic; }
 
