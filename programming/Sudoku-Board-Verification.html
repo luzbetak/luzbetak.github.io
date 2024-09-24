@@ -1,0 +1,79 @@
+---
+---
+{% include menu.html title="Sudoku Board Verification" %}
+
+
+<h1>Sudoku Board Verification</h1>
+
+<pre><code><span class="comment">#!/usr/bin/env python</span>
+<span class="keyword">import</span> pprint
+
+<span class="comment"># ----------------------------------------------------------------------------#</span>
+<span class="comment"># Define a 9x9 matrix representing a Sudoku board</span>
+matrix1 = [
+    [7, 1, 8, 5, 3, 2, 9, 4, 6],
+    [5, 3, 2, 6, 9, 4, 1, 8, 7],
+    [6, 9, 4, 7, 1, 8, 3, 2, 5],
+    [1, 2, 7, 3, 4, 5, 8, 6, 9],
+    [9, 8, 6, 1, 2, 7, 4, 5, 3],
+    [3, 4, 5, 9, 8, 6, 2, 7, 1],
+    [4, 6, 3, 8, 7, 9, 5, 1, 2],
+    [8, 7, 9, 2, 5, 1, 6, 3, 4],
+    [2, 5, 1, 4, 6, 3, 7, 9, 8],
+]
+
+<span class="comment"># ----------------------------------------------------------------------------#</span>
+<span class="keyword">def</span> <span class="function">verify_sudoku_board</span>(board, value):
+    <span class="string">&quot;&quot;&quot;</span>
+    <span class="string">Verifies whether a given 9x9 Sudoku board is valid by checking that</span>
+    <span class="string">each row, column, and 3x3 sub-grid (window) sums to a specified value.</span>
+
+    <span class="string">Args:</span>
+        <span class="string">board (list of list of int): The 9x9 Sudoku board represented as a list of lists.</span>
+        <span class="string">value (int): The expected sum of each row, column, and 3x3 sub-grid.</span>
+
+    <span class="string">Returns:</span>
+        <span class="string">bool: True if the board is valid according to Sudoku rules, False otherwise.</span>
+    <span class="string">&quot;&quot;&quot;</span>
+    
+    <span class="comment"># Verify each row sums to the given value</span>
+    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
+        <span class="keyword">if</span> <span class="keyword">sum</span>(board[row]) != value:
+            <span class="keyword">return</span> <span class="keyword">False</span>
+
+    <span class="comment"># Verify each column sums to the given value</span>
+    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
+        total = 0
+        <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
+            total += board[row][col]
+            <span class="comment"># After finishing a column, check if the total sum matches the expected value</span>
+            <span class="keyword">if</span> row == 8:
+                <span class="keyword">if</span> total != value:
+                    <span class="keyword">return</span> <span class="keyword">False</span>
+
+    <span class="comment"># Verify each 3x3 sub-grid (window) sums to the given value</span>
+    <span class="keyword">for</span> start <span class="keyword">in</span> <span class="keyword">range</span>(0, 9, 3):
+        total = 0
+        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="keyword">range</span>(start, start + 3):
+            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(start, start + 3):
+                total += board[row][col]
+
+        <span class="keyword">if</span> total != value:
+            <span class="keyword">return</span> <span class="keyword">False</span>
+
+    <span class="keyword">return</span> <span class="keyword">True</span>
+
+<span class="comment"># ----------------------------------------------------------------------------#</span>
+<span class="keyword">if</span> <span class="keyword">__name__</span> == <span class="string">&quot;__main__&quot;</span>:
+    pp = pprint.PrettyPrinter()
+    pp.pprint(matrix1)
+    
+    result = verify_sudoku_board(matrix1, 45)
+    print(result)
+</code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>
+
