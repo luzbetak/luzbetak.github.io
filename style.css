@@ -140,7 +140,9 @@ input[type="submit"]:hover {
   margin-top: 0px;
 }
 
-
+/*------------------------------------------------------------------------------
+ * Use style.css for documentation and code highlighting 
+ * ----------------------------------------------------------------------------- */
 h1 { color: #ffcc00; font-size: 26px; }
 h2 { color: #00ccff; font-size: 24px; }
 h3 { color: #90ee90; font-size: 22px; }
@@ -172,4 +174,5 @@ pre {
 .function { color: #66d9ef;  }
 .datatype { color: white;    }
 .comment  { color: #6A8A87; font-style: italic; }
+/*---------------------------------------------------------------------------------*/
 
