@@ -72,6 +72,49 @@ matrix1 = [
     print(result)
 </code></pre>
 
+<p>
+<h1>Explanation</h1>
+
+<h2>Matrix Definition (<code>matrix1</code>):</h2>
+<p>This is a 9x9 matrix representing a completed Sudoku board. Each inner list represents a row in the Sudoku puzzle.</p>
+
+<h2>Function <code>verify_sudoku_board(board, value)</code>:</h2>
+<p><strong>Purpose:</strong> This function checks if a given 9x9 Sudoku board is valid. It verifies that:</p>
+<ul>
+    <li>The sum of numbers in each row equals the expected value.</li>
+    <li>The sum of numbers in each column equals the expected value.</li>
+    <li>The sum of numbers in each 3x3 sub-grid (also known as a "window") equals the expected value.</li>
+</ul>
+
+<h3>Parameters:</h3>
+<ul>
+    <li><strong>board:</strong> The 9x9 list of lists representing the Sudoku board.</li>
+    <li><strong>value:</strong> The expected sum for each row, column, and 3x3 sub-grid. For a standard Sudoku puzzle, where the numbers 1 through 9 are used, this value should be 45 (since the sum of 1 to 9 is 45).</li>
+</ul>
+
+<h3>Returns:</h3>
+<p>True if the board is valid according to the above conditions, otherwise False.</p>
+
+<h3>Logic:</h3>
+<ul>
+    <li><strong>Rows:</strong> The function sums the numbers in each row and checks if it matches the expected value.</li>
+    <li><strong>Columns:</strong> The function sums the numbers in each column and checks if it matches the expected value.</li>
+    <li><strong>3x3 Sub-Grids:</strong> The function sums the numbers in each 3x3 sub-grid and checks if it matches the expected value.</li>
+</ul>
+
+<h2>Main Block (<code>__main__</code>):</h2>
+<p><strong>Purpose:</strong> To execute the script and verify the given Sudoku board.</p>
+<p><strong>Steps:</strong></p>
+<ul>
+    <li>Pretty-prints the matrix <code>matrix1</code> using Python’s <code>pprint</code> module to make it easy to visualize.</li>
+    <li>Calls the <code>verify_sudoku_board</code> function with the matrix and the expected sum (45).</li>
+    <li>Prints the result, which will be <strong>True</strong> if the board is valid or <strong>False</strong> if it is not.</li>
+</ul>
+
+<h2>Example Output:</h2>
+<p>Given the provided Sudoku matrix, the function will check each row, column, and 3x3 sub-grid. If all checks pass (i.e., all sums equal 45), it will print <strong>True</strong>, indicating that the Sudoku board is valid.</p>
+
+
   {% include footer.html %}
 
   </body>
