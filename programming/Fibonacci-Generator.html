@@ -1,0 +1,26 @@
+---
+---
+{% include menu.html title="Kevin Luzbetak Github Pages" %}
+
+
+<h1>Fibonacci Generator</h1>
+
+<pre>
+<span class="keyword">def</span> <span class="function">fibonacci_generator</span>():
+    a, b = <span class="keyword">0</span>, <span class="keyword">1</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">yield</span> a
+        a, b = b, a + b
+
+<span class="comment"># Example usage:</span>
+fib_gen = <span class="function">fibonacci_generator</span>()
+
+<span class="comment"># Generate and print the first 10 Fibonacci numbers</span>
+<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="keyword">range</span>(<span class="keyword">10</span>):
+    <span class="function">print</span>(<span class="function">next</span>(fib_gen))
+</pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>
