@@ -20,6 +20,20 @@ fib_gen = <span class="function">fibonacci_generator</span>()
     <span class="function">print</span>(<span class="function">next</span>(fib_gen))
 </pre>
 
+<p><hr>
+
+<h1>Fibonacci Generator Explained</h1>
+
+<p>This Python code defines a generator function that produces Fibonacci numbers indefinitely:</p>
+
+<ol>
+    <li><b>Function Definition</b>: The function <code>fibonacci_generator()</code> is defined to yield an infinite sequence of Fibonacci numbers.</li>
+    <li><b>Yield Statement</b>: The <code>yield</code> statement produces the current value of <code>a</code> and pauses the function's execution, preserving its state for the next iteration.</li>
+    <li><b>Updating Values</b>: After yielding, <code>a</code> and <code>b</code> are updated to the next two values in the Fibonacci sequence: <code>a</code> takes the value of <code>b</code>, and <code>b</code> takes the sum of the old <code>a</code> and <code>b</code>.</li>
+    <li><b>Example Usage</b>: The generator is used to print the first 10 Fibonacci numbers by iterating over it with a <code>for</code> loop.</li>
+</ol>
+
+
   {% include footer.html %}
 
   </body>
