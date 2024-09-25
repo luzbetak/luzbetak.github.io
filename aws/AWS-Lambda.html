@@ -7,69 +7,69 @@
 
     <h2>Key Features of AWS Lambda:</h2>
     <ul>
-        <li><b>Event-Driven Execution:</b>
+        <li><strong>Event-Driven Execution:</strong>
             <p>Lambda functions are triggered by events, which can come from a wide variety of AWS services or custom event sources. Common triggers include HTTP requests through Amazon API Gateway, updates to data in Amazon S3 or DynamoDB, or messages in Amazon SQS.</p>
         </li>
-        <li><b>Automatic Scaling:</b>
+        <li><strong>Automatic Scaling:</strong>
             <p>Lambda automatically scales the number of function instances in response to incoming requests. This ensures that your application can handle varying levels of traffic without manual intervention.</p>
         </li>
-        <li><b>Pay-Per-Use Pricing:</b>
+        <li><strong>Pay-Per-Use Pricing:</strong>
             <p>With Lambda, you only pay for the compute time you consume. Charges are based on the number of requests to your functions and the time your code executes, measured in milliseconds.</p>
         </li>
-        <li><b>Stateless Functions:</b>
+        <li><strong>Stateless Functions:</strong>
             <p>Lambda functions are stateless by design, meaning they don't maintain any information between invocations. This makes them highly scalable and easy to parallelize, but requires you to use external storage (like S3 or DynamoDB) for persistent data.</p>
         </li>
-        <li><b>Support for Multiple Languages:</b>
+        <li><strong>Support for Multiple Languages:</strong>
             <p>AWS Lambda supports several programming languages, including Python, Java, Node.js, C#, Go, and Ruby. Additionally, you can bring your own runtime by packaging custom runtimes with your Lambda function.</p>
         </li>
-        <li><b>Integration with Other AWS Services:</b>
+        <li><strong>Integration with Other AWS Services:</strong>
             <p>Lambda integrates tightly with many AWS services, enabling you to easily build applications that connect to databases (like RDS or DynamoDB), message queues (like SQS or SNS), or even AI services (like AWS Rekognition or Comprehend).</p>
         </li>
-        <li><b>Execution Role and Permissions:</b>
+        <li><strong>Execution Role and Permissions:</strong>
             <p>Lambda functions run in a secure environment, and you control the permissions that your function has through AWS Identity and Access Management (IAM) roles. This ensures that your functions only have access to the resources they need.</p>
         </li>
-        <li><b>Environment Variables:</b>
+        <li><strong>Environment Variables:</strong>
             <p>You can configure Lambda functions with environment variables, which allows you to customize their behavior without modifying the code.</p>
         </li>
-        <li><b>Function Versioning and Aliases:</b>
+        <li><strong>Function Versioning and Aliases:</strong>
             <p>Lambda supports versioning, enabling you to manage and deploy multiple versions of your function. You can also use aliases to point to specific versions, making it easier to manage different environments (like development, staging, and production).</p>
         </li>
     </ul>
 
     <h2>Common Use Cases for AWS Lambda:</h2>
     <ul>
-        <li><b>Real-Time File Processing:</b>
+        <li><strong>Real-Time File Processing:</strong>
             <p>Automatically process files uploaded to S3, such as resizing images, transcoding videos, or generating thumbnails.</p>
         </li>
-        <li><b>Data Transformation and ETL:</b>
+        <li><strong>Data Transformation and ETL:</strong>
             <p>Extract, transform, and load (ETL) data from various sources into databases or data lakes, like aggregating log files or processing streams of events.</p>
         </li>
-        <li><b>API Backend:</b>
+        <li><strong>API Backend:</strong>
             <p>Create serverless APIs by combining Lambda with Amazon API Gateway, handling backend logic without managing servers.</p>
         </li>
-        <li><b>Automation and Orchestration:</b>
+        <li><strong>Automation and Orchestration:</strong>
             <p>Trigger automated workflows, like sending notifications, updating records in a database, or orchestrating complex tasks across multiple AWS services.</p>
         </li>
-        <li><b>Chatbots and Voice Assistants:</b>
+        <li><strong>Chatbots and Voice Assistants:</strong>
             <p>Power chatbots or voice assistants using Lambda functions to process user input and respond dynamically.</p>
         </li>
-        <li><b>IoT Data Processing:</b>
+        <li><strong>IoT Data Processing:</strong>
             <p>Handle data streams from IoT devices, processing and analyzing the data as it arrives.</p>
         </li>
     </ul>
 
     <h2>Benefits of AWS Lambda:</h2>
     <ul>
-        <li><b>No Server Management:</b>
+        <li><strong>No Server Management:</strong>
             <p>You don’t need to worry about provisioning, managing, or scaling servers.</p>
         </li>
-        <li><b>Cost Efficiency:</b>
+        <li><strong>Cost Efficiency:</strong>
             <p>Pay only for what you use, with fine-grained pricing based on function execution time and resource usage.</p>
         </li>
-        <li><b>Scalability:</b>
+        <li><strong>Scalability:</strong>
             <p>Lambda automatically scales your application in response to incoming requests, ensuring high availability and performance.</p>
         </li>
-        <li><b>Flexibility:</b>
+        <li><strong>Flexibility:</strong>
             <p>Supports multiple languages and integration with a wide range of AWS services, making it versatile for various use cases.</p>
         </li>
     </ul>
