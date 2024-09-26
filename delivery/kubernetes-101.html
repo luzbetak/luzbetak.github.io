@@ -1,5 +1,10 @@
+---
+---
+{% include menu.html title="Kubernetes Overview" %}
+
+
 <hr>
-    <h1>Kubernetes Interview Preparation</h1>
+    <h1>Kubernetes Overview</h1>
 
     <h2>What is Kubernetes?</h2>
     <p>Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF).</p>
@@ -261,4 +266,11 @@ spec:
     <p>Yes, a Kubernetes Pod can use more than 1 CPU, and it is configurable through the <code>resources</code> field in the Pod's specification. By setting appropriate <code>requests</code> and <code>limits</code>, you can control how much CPU a Pod can use, ensuring it gets the resources it needs while preventing it from overconsuming.</p>
 
 </body>
+
+  {% include footer.html %}
+
+  </body>
+</html>
+    
+
 

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apache Airflow Overview</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+---
+---
+{% include menu.html title="Apache Airflow Overview" %}
+
 <body>
     <h1>Apache Airflow</h1>
     <p>Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. It allows you to define your workflows as Directed Acyclic Graphs (DAGs) using Python, where each node in the graph represents a task.</p>
@@ -36,5 +32,8 @@
         <li><p><h3>Logging</h3> - Airflow logs task execution details, which can be accessed through the web UI for debugging and analysis.</li>
         <li><p><h3>Integrations</h3> - Airflow integrates with various databases, cloud platforms, and services, allowing seamless connection and data flow across systems.</li>
     </ul>
-</body>
+
+  {% include footer.html %}
+
+  </body>
 </html>
