@@ -9,8 +9,14 @@
 <pre><code class="language-python">def reverse_string(s: str) -> str:
         return s[::-1]
     
-    # Example usage
-    print(reverse_string("hello"))  # Output: "olleh"
+print(reverse_string("hello"))  # Output: "olleh"
+</code></pre>
+
+<p><h2>Find the Largest Number in a List</h2>
+<pre><code class="language-python">def find_largest(nums: list) -> int:
+        return max(nums)
+    
+    print(find_largest([1, 2, 3, 4, 5]))  # Output: 5
 </code></pre>
 
 
@@ -100,8 +106,11 @@ def merge(left, right):
 <p>The Fibonacci series algorithm works by defining a recursive function that takes an integer argument n. If n is 0 or 1, we return the value of n as the result. Otherwise, we add the values of fibonacci(n-1) and fibonacci(n-2).</p>
 
 <p><h2>Palindrome Check</h2>
-<pre><code class="language-python">def palindrome_check(str):
-    return str == str[::-1]
+<pre><code class="language-python">def is_palindrome(str):
+        return str == str[::-1]
+    
+    print(is_palindrome("121"))  # True
+    print(is_palindrome("122"))  # False
 </code></pre>
 <p>The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.</p>
 
