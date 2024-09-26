@@ -177,7 +177,9 @@ print(f"The Hamming distance between '{str1}' and '{str2}' is: {distance}")
 
 <p><hr align=left width=1000>
 <h2>Levenshtein distance between two strings</h2>
-<pre><code class="language-python">def levenshtein_distance(str1, str2):
+<pre><code class="language-python">import numpy as np
+
+def levenshtein_distance(str1, str2):
     """Calculate the Levenshtein distance between two strings.
 
     Args:
@@ -187,19 +189,49 @@ print(f"The Hamming distance between '{str1}' and '{str2}' is: {distance}")
     Returns: 
         int: The Levenshtein distance between the two strings.
     """
-    # Calculate the number of insertions, deletions, and substitutions needed to transform str1 into str2
-    # using dynamic programming
-    m = len(str1) + 1
-    n = len(str2) + 1
-    dp = np.zeros((m, n))
-    for i in range(1, m):
-        for j in range(1, n):
-            if str1[i-1] == str2[j-1]:
-                dp[i][j] = min(dp[i-1][j-1], dp[i-1][j] + 1, dp[i][j-1] + 1)
-            else:
-                dp[i][j] = min(dp[i-1][j-1] + 1, dp[i-1][j] + 1, dp[i][j-1] + 1)
+    m = len(str1)
+    n = len(str2)
+    
+    # Create a 2D array to store the distances
+    dp = np.zeros((m + 1, n + 1))
 
-    return dp[-1][-1]
+    # Initialize the base cases
+    for i in range(m + 1):
+        dp[i][0] = i  # Cost of deleting all characters from str1
+    for j in range(n + 1):
+        dp[0][j] = j  # Cost of inserting all characters into str1
+
+    # Fill the dp array
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]  # No operation needed
+            else:
+                dp[i][j] = min(dp[i - 1][j - 1] + 1,  # Substitution
+                               dp[i - 1][j] + 1,    # Deletion
+                               dp[i][j - 1] + 1)    # Insertion
+
+    return int(dp[m][n])
+# ---------------------------------------------------------------------------- #
+str1 = "kitten"
+str2 = "sitting"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'kitten' and 'sitting' is: 3
+# ---------------------------------------------------------------------------- #
+
+str1 = "flaw"
+str2 = "lawn"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'flaw' and 'lawn' is: 2
+# ---------------------------------------------------------------------------- #
 </code></pre>
 
   {% include footer.html %}
