@@ -93,10 +93,26 @@ The palindrome check algorithm works by returning a boolean value indicating whe
 
 <p><hr align=left width=1000>
 <h2>Anagram</h2>
-The anagram algorithm works by sorting both strings and comparing them lexicographically. If they are equal, we return True; otherwise, we return False.
-<pre>
-def anagram(str1, str2):
+<pre><code class="language-python">def anagram(str1, str2):
+    # Sort both strings and compare them
     return sorted(str1) == sorted(str2)
+
+str1a = "listen"
+str1b = "silent"
+
+result = anagram(str1a, str1b)
+print(f"Are '{str1a}' and '{str1b}' anagrams? {result}")
+
+# Another example with non-anagrams
+str2a = "hello"
+str2b = "world"
+
+result2 = anagram(str2a, str2b)
+print(f"Are '{str2a}' and '{str2b}' anagrams? {result2}")
+
+# OUTPUT
+# Are 'listen' and 'silent' anagrams? True
+# Are 'hello' and 'world' anagrams? False
 </code></pre>
 
 <p><hr align=left width=1000>
