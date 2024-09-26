@@ -92,7 +92,8 @@ The palindrome check algorithm works by returning a boolean value indicating whe
 </code></pre>
 
 <p><hr align=left width=1000>
-<h2>Anagram</h2>
+<h2>Anagram Algorithm</h2>
+The Anagram algorithm checks if two strings are anagrams by sorting the characters in both strings and then comparing the sorted versions. If the sorted strings are equal, the function returns True, indicating that the strings are anagrams. Otherwise, it returns False.
 <pre><code class="language-python">def anagram(str1, str2):
     # Sort both strings and compare them
     return sorted(str1) == sorted(str2)
