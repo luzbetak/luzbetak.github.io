@@ -4,7 +4,17 @@
 </script>
 
 <pre><code class="language-python">
-print("Hello, World!")
-</code></pre>
+def decorator_func(func):
+    def wrapper():
+        print('Before function call')
+        func()
+        print('After function call')
+    return wrapper
 
+@decorator_func
+def say_hello():
+    print('Hello!')
+
+say_hello()
+</code></pre>
 
