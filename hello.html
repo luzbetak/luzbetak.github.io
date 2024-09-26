@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Code Highlighting with Prism.js</title>
-    <!-- Include the Prism.js CSS for styling -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <title>Python Code Highlighting with Black Background</title>
+    <!-- Prism.js Tomorrow theme with a dark background -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <!-- Prism.js script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- Optional: Include the language support for Python -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </head>
 <body>
 
-<h1>Python Code Example with Syntax Highlighting</h1>
+<h1>Python Code Example with Dark Background and Syntax Highlighting</h1>
 
 <!-- Example Python code block -->
 <pre><code class="language-python">
@@ -24,11 +28,6 @@ if __name__ == "__main__":
     result = add(5, 3)
     print(f"5 + 3 = {result}")
 </code></pre>
-
-<!-- Include the Prism.js library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<!-- Optional: Include the language support for Python -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
 </body>
 </html>
