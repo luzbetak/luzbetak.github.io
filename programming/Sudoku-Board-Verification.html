@@ -5,11 +5,12 @@
 
 <h1>Sudoku Board Verification</h1>
 
-<pre><code><span class="comment">#!/usr/bin/env python</span>
-<span class="keyword">import</span> pprint
+<pre><code class="language-python">
+#!/usr/bin/env python
+import pprint
 
-<span class="comment"># ----------------------------------------------------------------------------#</span>
-<span class="comment"># Define a 9x9 matrix representing a Sudoku board</span>
+# ----------------------------------------------------------------------------#
+# Define a 9x9 matrix representing a Sudoku board
 matrix1 = [
     [7, 1, 8, 5, 3, 2, 9, 4, 6],
     [5, 3, 2, 6, 9, 4, 1, 8, 7],
@@ -22,49 +23,49 @@ matrix1 = [
     [2, 5, 1, 4, 6, 3, 7, 9, 8],
 ]
 
-<span class="comment"># ----------------------------------------------------------------------------#</span>
-<span class="keyword">def</span> <span class="function">verify_sudoku_board</span>(board, value):
-    <span class="string">&quot;&quot;&quot;</span>
-    <span class="string">Verifies whether a given 9x9 Sudoku board is valid by checking that</span>
-    <span class="string">each row, column, and 3x3 sub-grid (window) sums to a specified value.</span>
+# ----------------------------------------------------------------------------#
+def verify_sudoku_board(board, value):
+    """
+    Verifies whether a given 9x9 Sudoku board is valid by checking that
+    each row, column, and 3x3 sub-grid (window) sums to a specified value.
 
-    <span class="string">Args:</span>
-        <span class="string">board (list of list of int): The 9x9 Sudoku board represented as a list of lists.</span>
-        <span class="string">value (int): The expected sum of each row, column, and 3x3 sub-grid.</span>
+    Args:
+        board (list of list of int): The 9x9 Sudoku board represented as a list of lists.
+        value (int): The expected sum of each row, column, and 3x3 sub-grid.
 
-    <span class="string">Returns:</span>
-        <span class="string">bool: True if the board is valid according to Sudoku rules, False otherwise.</span>
-    <span class="string">&quot;&quot;&quot;</span>
+    Returns:
+        bool: True if the board is valid according to Sudoku rules, False otherwise.
+    """
     
-    <span class="comment"># Verify each row sums to the given value</span>
-    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
-        <span class="keyword">if</span> <span class="keyword">sum</span>(board[row]) != value:
-            <span class="keyword">return</span> <span class="keyword">False</span>
+    # Verify each row sums to the given value
+    for row in range(0, 9):
+        if sum(board[row]) != value:
+            return False
 
-    <span class="comment"># Verify each column sums to the given value</span>
-    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
+    # Verify each column sums to the given value
+    for col in range(0, 9):
         total = 0
-        <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(0, 9):
+        for row in range(0, 9):
             total += board[row][col]
-            <span class="comment"># After finishing a column, check if the total sum matches the expected value</span>
-            <span class="keyword">if</span> row == 8:
-                <span class="keyword">if</span> total != value:
-                    <span class="keyword">return</span> <span class="keyword">False</span>
+            # After finishing a column, check if the total sum matches the expected value
+            if row == 8:
+                if total != value:
+                    return False
 
-    <span class="comment"># Verify each 3x3 sub-grid (window) sums to the given value</span>
-    <span class="keyword">for</span> start <span class="keyword">in</span> <span class="keyword">range</span>(0, 9, 3):
+    # Verify each 3x3 sub-grid (window) sums to the given value
+    for start in range(0, 9, 3):
         total = 0
-        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="keyword">range</span>(start, start + 3):
-            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="keyword">range</span>(start, start + 3):
+        for col in range(start, start + 3):
+            for row in range(start, start + 3):
                 total += board[row][col]
 
-        <span class="keyword">if</span> total != value:
-            <span class="keyword">return</span> <span class="keyword">False</span>
+        if total != value:
+            return False
 
-    <span class="keyword">return</span> <span class="keyword">True</span>
+    return True
 
-<span class="comment"># ----------------------------------------------------------------------------#</span>
-<span class="keyword">if</span> <span class="keyword">__name__</span> == <span class="string">&quot;__main__&quot;</span>:
+# ----------------------------------------------------------------------------#
+if __name__ == "__main__":
     pp = pprint.PrettyPrinter()
     pp.pprint(matrix1)
     
