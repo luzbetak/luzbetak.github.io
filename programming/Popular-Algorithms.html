@@ -94,12 +94,7 @@ def fibonacci(n):
 </pre>
 <p>Explanation: The Fibonacci series algorithm works by defining a recursive function that takes an integer argument n. If n is 0 or 1, we return the value of n as the result. Otherwise, we add the values of fibonacci(n-1) and fibonacci(n-2).</p>
 <p>
-<h2>Palindrome Check</h2>
-<pre><code class="language-python">
-def palindrome_check(str):
-    return str == str[::-1]
-</code></pre>
-<p>Explanation: The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.</p>
+
 <p>
 <h2>Anagram</h2>
 <pre>
@@ -192,6 +187,14 @@ def levenshtein_distance(str1, str2):
 
     return dp[-1][-1]
 </code></pre>
+
+<p>
+<h2>Palindrome Check</h2>
+<pre><code class="language-python">
+def palindrome_check(str):
+    return str == str[::-1]
+</code></pre>
+<p>Explanation: The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.</p>
 
   {% include footer.html %}
 
