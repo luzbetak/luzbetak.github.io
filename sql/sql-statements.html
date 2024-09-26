@@ -1,5 +1,79 @@
-<body>
-    <h1>Snowflake: SQL Table Create, Alter, Drop, Truncate</h1>
+---
+---
+{% include menu.html title="SQL Statements" %}
+
+
+<h1>SQL Statements</h1>
+
+    <table width=900>
+        <tr>
+            <th align=left>SQL</th>
+            <th align=left>Description</th>
+        </tr>
+        <tr>
+            <td><span class="green-text">INSERT</span></td>
+            <td>Used to insert new rows into a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">UPDATE</span></td>
+            <td>Used to modify existing rows in a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DELETE</span></td>
+            <td>Used to remove rows from a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">ALTER TABLE</span></td>
+            <td>Used to modify the structure of an existing table, such as adding or dropping columns.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">TRUNCATE</span></td>
+            <td>Removes all rows from a table, but the table itself remains.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">UNION</span></td>
+            <td>Combines the result sets of two or more <code>SELECT</code> queries.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">INDEX</span></td>
+            <td>Creates an index to improve the speed of data retrieval.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DISTINCT</span></td>
+            <td>Used to remove duplicates from the result set.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">HAVING</span></td>
+            <td>Used to filter rows after the <code>GROUP BY</code> clause.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">LIMIT/OFFSET</span></td>
+            <td>Limits the number of rows returned by a query and allows for pagination.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">ORDER BY</span></td>
+            <td>Used to sort the result set in ascending or descending order.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">EXISTS</span></td>
+            <td>Used to test for the existence of any record in a subquery.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">RENAME</span></td>
+            <td>Changes the name of an existing table or column.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">CREATE VIEW</span></td>
+            <td>Creates a virtual table based on a <code>SELECT</code> query.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DROP VIEW</span></td>
+            <td>Deletes a view.</td>
+        </tr>
+    </table>
+
+     <p><hr align=left width=1000>
+    <h1>SQL Table Create, Alter, Drop, Truncate</h1>
     <p>Below are sample SQL queries for creating, altering, dropping, and truncating a table in Snowflake with a primary index.</p>
 
     <h2>CREATE Table</h2>
@@ -461,3 +535,7 @@ This query combines two different result sets: employees who earn more than $50,
 
 </td></tr><table>
 
+ {% include footer.html %}
+
+  </body>
+</html>
