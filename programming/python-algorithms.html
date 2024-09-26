@@ -1,0 +1,147 @@
+---
+---
+{% include menu.html title="Python Algorithms" %}
+
+
+<h1>Python Popular Algorithms</h1>
+<p>The following Python code implements the 12 most popular algorithms commonly asked in coding interviews:</p>
+<ol>
+<li><strong>Binary Search</strong>: Implement a binary search algorithm to find an element in a sorted array.</li>
+<li><strong>Two Sum</strong>: Given an array of integers, find two elements that add up to a specific target value.</li>
+<li><strong>Longest Common Subsequence</strong>: Find the longest common subsequence between two strings.</li>
+<li><strong>Merge Sort</strong>: Implement merge sort algorithm to sort an array of integers.</li>
+<li><strong>Quick Sort</strong>: Implement quick sort algorithm to sort an array of integers.</li>
+<li><strong>Fibonacci Series</strong>: Implement a function to return the nth Fibonacci number.</li>
+<li><strong>Palindrome Check</strong>: Check if a given string is a palindrome or not.</li>
+<li><strong>Anagram</strong>: Check if two strings are anagrams of each other.</li>
+<li><strong>FizzBuzz</strong>: Print numbers from 1 to 100, but for multiples of three print "Fizz" instead of the number and for multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".</li>
+<li><strong>Hamming Distance</strong>: Calculate the Hamming distance between two strings.</li>
+<li><strong>Levenshtein Distance</strong>: Calculate the Levenshtein distance between two strings.</li>
+</ol>
+<p>The code for each algorithm is provided below:</p>
+<h2>Binary Search</h2>
+<pre><code class="language-python">
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+</code></pre>
+<p>Explanation: The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element. If they are equal, we return the index of the middle element as the result. If the middle element is less than the target element, we discard the first half of the array and repeat the same process on the second half. Similarly, if the middle element is greater than the target element, we discard the second half of the array and repeat the same process on the first half.</p>
+<h2>Two Sum</h2>
+<pre><code class="language-python">
+def two_sum(arr, target):
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] + arr[j] == target:
+                return [i, j]
+    return [-1, -1]
+</code></pre>
+<p>Explanation: The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value). We use a nested loop to iterate through the remaining elements of the array and check if their sum is equal to the target value. If it is, we return the indices of both elements as the result.</p>
+<h2>Longest Common Subsequence</h2>
+<pre><code class="language-python">
+def longest_common_subsequence(str1, str2):
+    m = len(str1) + 1
+    n = len(str2) + 1
+    dp = [[0] * (n) for _ in range(m)]
+    for i in range(1, m):
+        for j in range(1, n):
+            if str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    return dp[-1][-1]
+</code></pre>
+<p>Explanation: The longest common subsequence algorithm works by defining a dynamic programming array dp of size m x n, where m is the length of string str1 and n is the length of string str2. We initialize all elements of dp to 0. Then, for each element in str1, we iterate through all elements in str2 and check if they are equal. If they are equal, we set the value of dp[i][j] to 1 + the value of dp[i-1][j-1]. Otherwise, we compare the values of dp[i-1][j] and dp[i][j-1] and take the maximum value. Finally, we return the last element of the last row of dp as the result.</p>
+<h2>Merge Sort</h2>
+<pre><code class="language-python">
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    while left and right:
+        if left[0] <= right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    if left:
+        result += left
+    if right:
+        result += right
+    return result
+</code></pre>
+<p>Explanation: The merge sort algorithm works by dividing the array into two halves, sorting each half recursively and then merging them back together. In the base case, an array of length 1 or less is considered sorted and returned as is.</p>
+<h2>Quick Sort</h2>
+<pre><code class="language-python">
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x <= pivot]
+    right = [x for x in arr[1:] if x > pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+</code></pre>
+<p>Explanation: The quick sort algorithm works by selecting a pivot element from the array and partitioning it into two halves, one containing elements less than or equal to the pivot and another containing elements greater than the pivot. We then recursively call the quick sort function on both halves.</p>
+<h2>Fibonacci Series</h2>
+<pre><code class="language-python">
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+</pre>
+<p>Explanation: The Fibonacci series algorithm works by defining a recursive function that takes an integer argument n. If n is 0 or 1, we return the value of n as the result. Otherwise, we add the values of fibonacci(n-1) and fibonacci(n-2).</p>
+<h2>Palindrome Check</h2>
+<pre><code class="language-python">
+def palindrome_check(str):
+    return str == str[::-1]
+</code></pre>
+<p>Explanation: The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.</p>
+<h2>Anagram</h2>
+<pre>
+def anagram(str1, str2):
+    return sorted(str1) == sorted(str2)
+</code></pre>
+<p>Explanation: The anagram algorithm works by sorting both strings and comparing them lexicographically. If they are equal, we return True; otherwise, we return False.</p>
+<h2>FizzBuzz</h2>
+<pre>
+def fizzbuzz(n):
+    if n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
+    else:
+        return str(n)
+</pre>
+<p>Explanation: The FizzBuzz algorithm works by defining a function that takes an integer argument n. If n is divisible by 3, we return the string "Fizz". If n is divisible by 5, we return the string "Buzz". Otherwise, we return the string representation of n.</p>
+<h2>Longest Common Subsequence</h2>
+<pre><code class="language-python">
+def longest_common_subsequence(str1, str2):
+    dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    return dp[-1][-1]
+</code></pre>
+<p>Explanation: The longest common subsequence algorithm works by defining a dynamic programming array dp of size m x n, where m is the length of string str1 and n is the length of string str2. We initialize all elements of dp to 0. Then, for each element in str1, we iterate through all elements in str2 and check if they are equal. If they are equal, we set the value of dp[i][j] to 1 + the value of dp[i-1][j-1]. Otherwise, we compare the values of dp[i-1][j] and dp[i][j-1] and take the maximum value. Finally, we return the last element of the last row of dp as the result.</p>
+
+  {% include footer.html %}
+
+  </body>
+</html>
