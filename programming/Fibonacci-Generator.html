@@ -3,25 +3,23 @@
 {% include menu.html title="Kevin Luzbetak Github Pages" %}
 
 
+<p><hr align=left width=1000>
 <h1>Fibonacci Generator</h1>
-
-<pre>
-<span class="keyword">def</span> <span class="function">fibonacci_generator</span>():
-    a, b = <span class="keyword">0</span>, <span class="keyword">1</span>
-    <span class="keyword">while</span> <span class="keyword">True</span>:
-        <span class="keyword">yield</span> a
+<pre><code class="language-python">def fibonacci_generator():
+    a, b = 0, 1
+    while True:
+        yield a
         a, b = b, a + b
 
-<span class="comment"># Example usage:</span>
-fib_gen = <span class="function">fibonacci_generator</span>()
+# Example usage:
+fib_gen = fibonacci_generator()
 
-<span class="comment"># Generate and print the first 10 Fibonacci numbers</span>
-<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="keyword">range</span>(<span class="keyword">10</span>):
-    <span class="function">print</span>(<span class="function">next</span>(fib_gen))
-</pre>
+# Generate and print the first 10 Fibonacci numbers
+for _ in range(10):
+    print(next(fib_gen))
+</code></pre>
 
-<p><hr>
-
+<p><hr align=left width=1000>
 <h1>Fibonacci Generator Explained</h1>
 
 <p>This Python code defines a generator function that produces Fibonacci numbers indefinitely:</p>
@@ -34,7 +32,7 @@ fib_gen = <span class="function">fibonacci_generator</span>()
 </ol>
 
 
-  {% include footer.html %}
+{% include footer.html %}
 
   </body>
 </html>
