@@ -15,92 +15,85 @@
 <p><hr align=left width=1000>
 <h2>2. Key Techniques for SQL Query Optimization</h2>
 <ol>
-    <li><h3>Indexing</h3>
-        <p>Indexes improve query performance by providing fast access to rows in a table, reducing the need for full table scans.</p>
-        <p>Example:</p>
-        <pre><code class="language-sql">
-        CREATE INDEX idx_customer_name ON customers (name);
-        </code></pre>
-    </li>
+<li><h3>Indexing</h3>
+<p>Indexes improve query performance by providing fast access to rows in a table, reducing the need for full table scans.</p>
+<pre><code class="language-sql">
+CREATE INDEX idx_customer_name ON customers (name);
+</code></pre>
+</li>
 <p><hr align=left width=1000>
 <li><h3>Query Execution Plan Analysis</h3>
-    <p>Tools like <code>EXPLAIN</code> help analyze how a query is executed and identify inefficiencies like full table scans or suboptimal joins.</p>
-    <p>Example:</p>
-    <pre><code class="language-sql">
-    EXPLAIN SELECT name, age 
-    FROM customers 
-    WHERE age > 30;
-    </code></pre>
+<p>Tools like <code>EXPLAIN</code> help analyze how a query is executed and identify inefficiencies like full table scans or suboptimal joins.</p>
+<pre><code class="language-sql">
+EXPLAIN SELECT name, age 
+FROM customers 
+WHERE age > 30;
+</code></pre>
 </li>
 <p><hr align=left width=1000>
 <li><h3>Optimizing Joins</h3>
-    <p>Ensure that join conditions are indexed and use efficient join types (e.g., hash joins, merge joins) to speed up queries on large datasets.</p>
-    <p>Example:</p>
-    <pre><code class="language-sql">
-    SELECT a.name, b.salary 
-    FROM employees a 
-    JOIN salaries b 
-    ON a.id = b.employee_id 
-    WHERE b.salary > 50000;
-    </code></pre>
+<p>Ensure that join conditions are indexed and use efficient join types (e.g., hash joins, merge joins) to speed up queries on large datasets.</p>
+<pre><code class="language-sql">
+SELECT a.name, b.salary 
+FROM employees a 
+JOIN salaries b 
+ON a.id = b.employee_id 
+WHERE b.salary > 50000;
+</code></pre>
 </li>
 <p><hr align=left width=1000>
 <li><h3>Reducing Data with WHERE Clauses</h3>
-    <p>Filtering data early in the query with <code>WHERE</code> clauses reduces the number of rows processed later.</p>
-    <p>Example:</p>
-    <pre><code class="language-sql">
-    SELECT name, age 
-    FROM customers 
-    WHERE age > 30;
-    </code></pre>
+<p>Filtering data early in the query with <code>WHERE</code> clauses reduces the number of rows processed later.</p>
+<pre><code class="language-sql">
+SELECT name, age 
+FROM customers 
+WHERE age > 30;
+</code></pre>
 </li>
 <p><hr align=left width=1000>
 <li><h3>Limiting Results with LIMIT or OFFSET</h3>
-    <p>Using <code>LIMIT</code> can restrict the number of rows returned by a query, which improves performance for queries that only need a subset of the data.</p>
-    <p>Example:</p>
-    <pre><code class="language-sql">
-    SELECT * 
-    FROM products 
-    ORDER BY price DESC 
-    LIMIT 10;
-    </code></pre>
+<p>Using <code>LIMIT</code> can restrict the number of rows returned by a query, which improves performance for queries that only need a subset of the data.</p>
+<pre><code class="language-sql">
+SELECT * 
+FROM products 
+ORDER BY price DESC 
+LIMIT 10;
+</code></pre>
 </li>
 <p><hr align=left width=1000>
     <li><h3>Use of GROUP BY and Aggregations</h3>
-        <p>Optimizing <code>GROUP BY</code> with proper indexing on grouped columns can reduce query times for large aggregations.</p>
-        <p>Example:</p>
-        <pre><code class="language-sql">
-        SELECT city, COUNT(*) 
-        FROM customers 
-        GROUP BY city;
-        </code></pre>
+<p>Optimizing <code>GROUP BY</code> with proper indexing on grouped columns can reduce query times for large aggregations.</p>
+<pre><code class="language-sql">
+SELECT city, COUNT(*) 
+FROM customers 
+GROUP BY city;
+</code></pre>
     </li>
 </ol>
 <p><hr align=left width=1000>
 <h2>3. Advanced SQL Optimization Techniques</h2>
 <ol>
-    <li><h3>Partitioning Large Tables</h3>
-        <p>Partitioning splits large tables into smaller segments, improving query performance when filtering on partitioned columns.</p>
-        <p>Example:</p>
-        <pre><code class="language-sql">
-        CREATE TABLE sales (
-            id INT,
-            sale_date DATE,
-            amount DECIMAL
-        )
-        PARTITION BY RANGE (sale_date);
-        </code></pre>
-    </li>
+<li><h3>Partitioning Large Tables</h3>
+<p>Partitioning splits large tables into smaller segments, improving query performance when filtering on partitioned columns.</p>
+<p>Example:</p>
+<pre><code class="language-sql">
+CREATE TABLE sales (
+    id INT,
+    sale_date DATE,
+    amount DECIMAL
+)
+PARTITION BY RANGE (sale_date);
+</code></pre>
+</li>
 <p><hr align=left width=1000>
 <li><h3>Materialized Views</h3>
-    <p>Materialized views store the result of a query physically, allowing faster access to precomputed results for frequently run queries.</p>
-    <p>Example:</p>
-    <pre><code class="language-sql">
-    CREATE MATERIALIZED VIEW mv_sales_summary AS 
-    SELECT product_id, SUM(sales) AS total_sales 
-    FROM sales 
-    GROUP BY product_id;
-    </code></pre>
+<p>Materialized views store the result of a query physically, allowing faster access to precomputed results for frequently run queries.</p>
+<pre><code class="language-sql">
+CREATE MATERIALIZED VIEW mv_sales_summary AS 
+SELECT product_id, SUM(sales) AS total_sales 
+FROM sales 
+GROUP BY product_id;
+</code></pre>
 </li>
 <p><hr align=left width=1000>
     <li><h3>Query Caching</h3>
