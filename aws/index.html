@@ -1,8 +1,8 @@
 ---
 ---
 {% include menu.html title="Amazon AWS" %}
-
 <hr align=left width=1100>
+
 <h1>Data Ingestion (Extract)</h1>
 <table width="1100" border="0">
     <tr>
@@ -29,15 +29,20 @@
     <tr>
         <td valign=top>
             <ul>
-                <li><a href="ETL-Pipeline-AWS.html">Building ETL Pipeline on AWS</a></li>
-                <li><a href="Amazon-S3.html">Amazon S3 (Simple Storage Service)</a></li>
-                <li><a href="AWS-Kinesis-Data-Streams.html">AWS Kinesis Data Streams</a></li>
+                <li><a href="AWS-Glue-ETL-Service.html">AWS Glue (ETL Service)</a></li>
+                <span class="comment">A fully managed ETL service that can run Apache Spark jobs to transform data. Create Glue jobs to clean, format, and enrich the data.</span>                
             </ul>
         </td>
         <td valign=top>
             <ul>
-                <li><a href="AWS-Glue-ETL-Service.html">AWS Glue (ETL Service)</a></li>
                 <li><a href="Lambda-Serverless-Computing.html">Lambda Serverless Computing</a></li>
+                <span class="comment"For simple transformations, use Lambda functions to process data in real-time or batch.</span>                
+            </ul>
+        </td>
+        <td valign=top>
+            <ul>
+                <li><a href="AWS-EMR.html">AWS EMR (Elastic MapReduce)</a></li>
+                <span class="comment">For more complex transformations requiring big data processing, use EMR to run large-scale data processing frameworks like Hadoop or Spark.</span>                
             </ul>
         </td>
     </tr>
@@ -142,11 +147,19 @@
                 <li><a href="AWS-Glue-ETL-Service.html">AWS Glue (ETL Service)</a></li>
                 <li><a href="Lambda-Serverless-Computing.html">Lambda Serverless Computing</a></li>
             </ul>
+
+            AWS-EMR.html
+        <td valign=top>
+            <ul>
+                <li><a href="AWS-EMR.html">AWS EMR (Elastic MapReduce)</a></li>
+For more complex transformations requiring big data processing, use EMR to run large-scale data processing frameworks like Hadoop or Spark.                
+            </ul>
+
+            AWS-EMR.html
+        </td>
         </td>
     </tr>
 </table>
-
-
 
 {% include footer.html %}
 
