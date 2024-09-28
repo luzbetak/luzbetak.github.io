@@ -143,7 +143,7 @@ input[type="submit"]:hover {
 /*----------------------------------------------------------------
  * Use style.css for documentation and code highlighting 
  * --------------------------------------------------------------- */
-strong { color: yellow !important; font-weight: 500; }
+strong { color: yellow !important; font-weight: 550; }
 h1 { color: #ffcc00; font-size: 26px; }
 h2 { color: #00ccff; font-size: 24px; }
 h3 { color: #90ee90; font-size: 22px; }
