@@ -6,20 +6,6 @@
 <p><hr align=left width=1000>
 <h1>Python Algorithms</h1>
 
-<h2>Two Sum Problem</h2>
-This Python function two_sum is designed to solve the "two-sum" problem. The problem is to find two numbers in a list (nums) that add up to a specific target value (target). The function returns the indices of these two numbers in the list.
-<pre><code class="language-python">def two_sum(nums: list, target: int) -> list:
-    num_map = {}
-    for i, num in enumerate(nums):
-        complement = target - num
-        if complement in num_map:
-            return [num_map[complement], i]
-        num_map[num] = i
-
-print(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1]
-</code></pre>
-
-
 <p><hr align=left width=1000>
 <h2>Remove Duplicates from a List</h2>
 <pre><code class="language-python">def remove_duplicates(nums: list) -> list:
