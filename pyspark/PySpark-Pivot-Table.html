@@ -1,14 +1,14 @@
 ---
 ---
 {% include menu.html title="Kevin Luzbetak Github Pages" %}
-
+<hr align=left width=1000>
     <h1>Pivot Table Overview</h1>
     <p>
         A <strong>pivot table</strong> is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns.
         In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like <code><span class="string">sum</span></code>, <code><span class="string">count</span></code>, <code><span class="string">average</span></code>, etc.
         This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes.
     </p>
-    
+<p><hr align=left width=1000>    
     <h2>PySpark Application Using Pivot Table</h2>
     <p>The following PySpark code demonstrates how to create a pivot table with the provided sample data:</p>
     <pre><code class="python">
@@ -48,6 +48,7 @@ spark.stop()
         <li><code class="python">agg(sum("sales"))</code> aggregates the sales data by summing the values for each combination of employee and region.</li>
     </ul>
 
+<p><hr align=left width=1000>    
 <h2>Output</h2>
 <p>The output would look something like this:</p>
 
