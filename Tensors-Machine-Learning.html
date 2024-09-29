@@ -1,0 +1,68 @@
+---
+---
+{% include menu.html title="Tensors Machine Learning" %}
+<hr align=left width=1100>
+
+<h2>Tensor in Machine Learning?</h2>
+
+<p><hr align=left width=1100>
+<p>In essence, a tensor is a multidimensional array used to represent data. Think of it as a generalization of vectors and matrices.</p>
+
+<ul>
+<li>A scalar (a single number) is a 0-dimensional tensor.</li>
+<li>A vector (a list of numbers) is a 1-dimensional tensor.</li>
+<li>A matrix (a table of numbers) is a 2-dimensional tensor.</li>
+<li>And we can have tensors with 3, 4, or even more dimensions!</li>
+</ul>
+
+<p>Tensors are the fundamental data structure in deep learning frameworks like TensorFlow and PyTorch. They allow us to efficiently represent and process complex data like images (3D tensors: height, width, color channels), videos (4D tensors: time, height, width, color channels), and even natural language (where words are embedded in high-dimensional spaces).</p>
+
+<h2>Simple Python Code with Tensors (using NumPy)</h2>
+
+<p>NumPy is a powerful library for numerical computations in Python and provides excellent support for working with tensors (which NumPy calls 'ndarrays').</p>
+
+<pre><code class="language-python"></code></pre>
+import numpy as np
+
+# Create a 2D tensor (a matrix)
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+
+# Create a 3D tensor
+tensor_3d = np.array([[[1, 2], [3, 4]],
+                      [[5, 6], [7, 8]]])
+
+# Access elements of the tensors
+print("Element at row 1, column 2 of the matrix:", matrix[1, 2])
+print("Element at depth 0, row 1, column 0 of the 3D tensor:", tensor_3d[0, 1, 0])
+
+# Perform operations on tensors
+sum_of_matrix = np.sum(matrix)
+print("Sum of all elements in the matrix:", sum_of_matrix)
+</code>
+</pre>
+
+<p><hr align=left width=1100>
+<p>In this code:</p>
+
+<ol>
+<li>We import the NumPy library.</li>
+<li>We create a 2D tensor (<code>matrix</code>) and a 3D tensor (<code>tensor_3d</code>) using <code>np.array</code>.</li>
+<li>We access specific elements using indexing (remember, indexing starts at 0).</li>
+<li>We perform an operation (summation) on the <code>matrix</code> using <code>np.sum</code>.</li>
+</ol>
+
+<p><hr align=left width=1100>
+<h2>Key Points</h2>
+
+<ul>
+<li>Tensors enable us to represent and manipulate data with any number of dimensions.</li>
+<li>Deep learning frameworks heavily rely on tensors for efficient computation on GPUs.</li>
+<li>NumPy provides a solid foundation for working with tensors in Python, even if you're not directly using deep learning libraries.</li>
+</ul>
+
+<p>Let me know if you'd like to explore more advanced tensor operations or their applications in machine learning!</p>
+
+{% include footer.html %}
+</body>
+</html>
