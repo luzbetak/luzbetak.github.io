@@ -21,6 +21,64 @@
 </div>
 
 
+<p><hr align=left width=1100>
+<pre><code class="language-python">
+# Import necessary libraries
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the dataset (Iris dataset)
+data = load_iris()
+X = data.data  # Features
+y = data.target  # Target labels
+
+# Split the dataset into training and testing sets (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize a Random Forest Classifier
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Train the classifier
+clf.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = clf.predict(X_test)
+
+# Calculate the accuracy of the model
+accuracy = accuracy_score(y_test, y_pred)
+
+# Print the accuracy
+print(f"Accuracy: {accuracy:.2f}")
+</code></pre>
+
+<p><hr align=left width=1100>
+<div>
+    <h2>Summary</h2>
+    <p>This code performs the following actions:</p>
+    <ul>
+        <li>Loads the Iris dataset.</li>
+        <li>Splits the dataset into training and test sets.</li>
+        <li>Initializes and trains a Random Forest classifier.</li>
+        <li>Predicts on the test set and calculates the accuracy of the model.</li>
+    </ul>
+
+    <h3>About the Iris Dataset</h3>
+    <p>The code will automatically load the Iris dataset using the <code>load_iris()</code> function provided by Scikit-learn. The Iris dataset is one of several built-in toy datasets included in Scikit-learn, so you don't need to manually download or load any external files.</p>
+
+    <h3>Overview of How it Works</h3>
+    <ul>
+        <li><code>load_iris()</code> fetches the Iris dataset, which contains data on 150 samples of iris flowers, with features like sepal length, sepal width, petal length, and petal width.</li>
+        <li>The dataset is structured in a <code>Bunch</code> object, which behaves like a dictionary and holds both the data (features) and the target (labels).</li>
+        <li>You can directly access the data and labels using <code>data.data</code> for the features and <code>data.target</code> for the labels.</li>
+    </ul>
+
+    <p>No external setup is needed to use this dataset—it's available right out of the box in Scikit-learn.</p>
+</div>
+
+
+
 {% include footer.html %}
 </body>
 </html>
