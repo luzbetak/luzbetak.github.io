@@ -24,6 +24,8 @@
 
 <p><hr align=left width=1100>
 <pre><code class="language-python">
+#!/usr/bin/env python
+
 # Import necessary libraries
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
@@ -52,30 +54,60 @@ accuracy = accuracy_score(y_test, y_pred)
 
 # Print the accuracy
 print(f"Accuracy: {accuracy:.2f}")
-</code></pre>
 
-<p><hr align=left width=1100>
-<div>
-    <h2>Summary</h2>
-    <p>This code performs the following actions:</p>
-    <ul>
-        <li>Loads the Iris dataset.</li>
-        <li>Splits the dataset into training and test sets.</li>
-        <li>Initializes and trains a Random Forest classifier.</li>
-        <li>Predicts on the test set and calculates the accuracy of the model.</li>
-    </ul>
+# Print a comparison of actual vs predicted values
+print("\nActual vs Predicted:")
+for actual, predicted in zip(y_test, y_pred):
+    print(f"Actual: {actual}, Predicted: {predicted}")
 
-    <h3>About the Iris Dataset</h3>
-    <p>The code will automatically load the Iris dataset using the <code>load_iris()</code> function provided by Scikit-learn. The Iris dataset is one of several built-in toy datasets included in Scikit-learn, so you don't need to manually download or load any external files.</p>
+# Print some sample data points from the test set to explain the results
+print("\nSample Data Points (Features) from the Test Set:")
+for i in range(5):
+    print(f"Test Sample {i+1}: {X_test[i]}, Predicted Label: {y_pred[i]}, Actual Label: {y_test[i]}")
 
-    <h3>Overview of How it Works</h3>
-    <ul>
-        <li><code>load_iris()</code> fetches the Iris dataset, which contains data on 150 samples of iris flowers, with features like sepal length, sepal width, petal length, and petal width.</li>
-        <li>The dataset is structured in a <code>Bunch</code> object, which behaves like a dictionary and holds both the data (features) and the target (labels).</li>
-        <li>You can directly access the data and labels using <code>data.data</code> for the features and <code>data.target</code> for the labels.</li>
-    </ul>
-
-    <p>No external setup is needed to use this dataset—it's available right out of the box in Scikit-learn.</p>
+#------------------------------------------------------------------------------------#
+# Output
+# Accuracy: 1.00
+# 
+# Actual vs Predicted:
+# Actual: 1, Predicted: 1
+# Actual: 0, Predicted: 0
+# Actual: 2, Predicted: 2
+# Actual: 1, Predicted: 1
+# Actual: 1, Predicted: 1
+# Actual: 0, Predicted: 0
+# Actual: 1, Predicted: 1
+# Actual: 2, Predicted: 2
+# Actual: 1, Predicted: 1
+# Actual: 1, Predicted: 1
+# Actual: 2, Predicted: 2
+# Actual: 0, Predicted: 0
+# Actual: 0, Predicted: 0
+# Actual: 0, Predicted: 0
+# Actual: 0, Predicted: 0
+# Actual: 1, Predicted: 1
+# Actual: 2, Predicted: 2
+# Actual: 1, Predicted: 1
+# Actual: 1, Predicted: 1
+# Actual: 2, Predicted: 2
+# Actual: 0, Predicted: 0
+# Actual: 2, Predicted: 2
+# Actual: 0, Predicted: 0
+# Actual: 2, Predicted: 2
+# Actual: 2, Predicted: 2
+# Actual: 2, Predicted: 2
+# Actual: 2, Predicted: 2
+# Actual: 2, Predicted: 2
+# Actual: 0, Predicted: 0
+# Actual: 0, Predicted: 0
+# 
+# Sample Data Points (Features) from the Test Set:
+# Test Sample 1: [6.1 2.8 4.7 1.2], Predicted Label: 1, Actual Label: 1
+# Test Sample 2: [5.7 3.8 1.7 0.3], Predicted Label: 0, Actual Label: 0
+# Test Sample 3: [7.7 2.6 6.9 2.3], Predicted Label: 2, Actual Label: 2
+# Test Sample 4: [6.  2.9 4.5 1.5], Predicted Label: 1, Actual Label: 1
+# Test Sample 5: [6.8 2.8 4.8 1.4], Predicted Label: 1, Actual Label: 1
+#------------------------------------------------------------------------------------#
 </div>
 
 
