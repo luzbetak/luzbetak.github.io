@@ -1,0 +1,118 @@
+---
+---
+{% include menu.html title="Keras (Training Neural Networks" %}
+<hr align=left width=1100>
+
+<div>
+    <h2>Keras Overview</h2>
+    <p>Keras is an open-source deep learning library that provides a high-level API for building and training neural networks. It is user-friendly, modular, and extensible, allowing developers to create complex models with minimal code. Keras runs on top of low-level deep learning frameworks such as TensorFlow, Theano, and CNTK, making it both versatile and powerful.</p>
+
+    <h3>Key Features:</h3>
+    <ul>
+        <li><strong>Ease of Use:</strong> Keras offers a simple and consistent API to build neural networks quickly.</li>
+        <li><strong>Modular:</strong> It allows you to build models by combining different building blocks (layers, optimizers, loss functions).</li>
+        <li><strong>Flexibility:</strong> Keras can be used for a variety of tasks including image classification, text generation, reinforcement learning, and more.</li>
+        <li><strong>Support for both CPU and GPU:</strong> Keras can run on both CPU and GPU hardware, enabling faster training when using GPUs.</li>
+        <li><strong>Backed by TensorFlow:</strong> Keras is now part of the TensorFlow core library, making it the default high-level API for TensorFlow.</li>
+    </ul>
+
+    <h3>Commonly Used Python Code with Keras</h3>
+    
+    <h4>1. Basic Feedforward Neural Network Example (Classification Task)</h4>
+    <pre><code>
+# Import necessary libraries
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Generate synthetic data for classification
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Normalize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Define the model
+model = Sequential()
+model.add(Dense(32, input_dim=20, activation='relu'))  # Input layer
+model.add(Dense(16, activation='relu'))  # Hidden layer
+model.add(Dense(1, activation='sigmoid'))  # Output layer for binary classification
+
+# Compile the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+# Train the model
+model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test))
+
+# Evaluate the model
+loss, accuracy = model.evaluate(X_test, y_test)
+print(f"Accuracy: {accuracy:.2f}")
+    </code></pre>
+
+    <h4>2. Convolutional Neural Network (CNN) Example for Image Classification</h4>
+    <pre><code>
+# Import necessary libraries
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+
+# Load the MNIST dataset (handwritten digits)
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+# Reshape the data to fit the model
+X_train = X_train.reshape(-1, 28, 28, 1)
+X_test = X_test.reshape(-1, 28, 28, 1)
+
+# Normalize the data
+X_train = X_train / 255.0
+X_test = X_test / 255.0
+
+# One-hot encode the labels
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# Define the CNN model
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dense(10, activation='softmax'))  # Output layer for 10 classes
+
+# Compile the model
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Train the model
+model.fit(X_train, y_train, epochs=5, batch_size=64, validation_data=(X_test, y_test))
+
+# Evaluate the model
+loss, accuracy = model.evaluate(X_test, y_test)
+print(f"Test Accuracy: {accuracy:.2f}")
+    </code></pre>
+
+    <h3>Key Components in Keras:</h3>
+    <ul>
+        <li><strong>Models:</strong> The core structure is either Sequential (a linear stack of layers) or Functional API (more flexible for complex models).</li>
+        <li><strong>Layers:</strong> Building blocks of neural networks such as Dense, Conv2D, LSTM, etc.</li>
+        <li><strong>Optimizers:</strong> Algorithms for adjusting weights during training (e.g., Adam, SGD).</li>
+        <li><strong>Loss Functions:</strong> Used to minimize the error in predictions (e.g., <code>binary_crossentropy</code>, <code>mean_squared_error</code>).</li>
+        <li><strong>Metrics:</strong> Metrics like accuracy used to evaluate model performance.</li>
+    </ul>
+
+    <p>Keras provides a highly accessible platform for building deep learning models quickly while abstracting many low-level complexities.</p>
+</div>
+
+
+{% include footer.html %}
+</body>
+</html>
