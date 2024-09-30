@@ -138,6 +138,10 @@ input[type="submit"]:hover {
   height: 300px; /* Adjust as needed */
   margin-top: 0px;
 }
+
+.question { font-weight: bold; color: #ffcc00; }
+.answer { margin-bottom: 20px; color: white; }
+
 /* .datatype { color: white; } */
 
 /*----------------------------------------------------------------
