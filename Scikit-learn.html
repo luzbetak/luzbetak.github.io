@@ -26,13 +26,12 @@
 <pre><code class="language-python">
 #!/usr/bin/env python
 
-# Import necessary libraries
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-# Load the dataset (Iris dataset)
+# Load the Iris dataset
 data = load_iris()
 X = data.data  # Features
 y = data.target  # Target labels
