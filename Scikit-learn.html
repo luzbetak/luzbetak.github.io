@@ -108,8 +108,41 @@ for i in range(5):
 # Test Sample 4: [6.  2.9 4.5 1.5], Predicted Label: 1, Actual Label: 1
 # Test Sample 5: [6.8 2.8 4.8 1.4], Predicted Label: 1, Actual Label: 1
 #------------------------------------------------------------------------------------#
-</div>
 
+<p><hr align=left width=1100>
+    <h2>Summary</h2>
+    <p>This code performs the following actions:</p>
+    <ul>
+        <li>Loads the Iris dataset.</li>
+        <li>Splits the dataset into training and test sets.</li>
+        <li>Initializes and trains a Random Forest classifier.</li>
+        <li>Predicts on the test set and calculates the accuracy of the model.</li>
+    </ul>
+
+    <h3>About the Iris Dataset</h3>
+    <p>Yes, the code will automatically load the Iris dataset using the <code>load_iris()</code> function provided by Scikit-learn. The Iris dataset is one of several built-in toy datasets included in Scikit-learn, so you don't need to manually download or load any external files.</p>
+
+    <h3>Overview of How it Works</h3>
+    <ul>
+        <li><code>load_iris()</code> fetches the Iris dataset, which contains data on 150 samples of iris flowers, with features like sepal length, sepal width, petal length, and petal width.</li>
+        <li>The dataset is structured in a <code>Bunch</code> object, which behaves like a dictionary and holds both the data (features) and the target (labels).</li>
+        <li>You can directly access the data and labels using <code>data.data</code> for the features and <code>data.target</code> for the labels.</li>
+    </ul>
+
+    <p>No external setup is needed to use this dataset—it's available right out of the box in Scikit-learn.</p>
+
+
+<p><hr align=left width=1100>
+    <h2>Key Additions</h2>
+    <ul>
+        <li><strong>Comparison of Actual vs Predicted Labels:</strong> This helps you see if the predictions match the actual labels, explaining the high accuracy.</li>
+        <li><strong>Sample Data Points:</strong> This will print a few data points from the test set (both features and corresponding predictions) to show you how well the model is performing on specific samples.</li>
+    </ul>
+
+    <p>If the accuracy is <strong>1.00</strong>, the actual labels and predicted labels should match perfectly for all test samples, and you will see identical values in the comparison output.</p>
+
+
+</div>
 
 
 {% include footer.html %}
