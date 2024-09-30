@@ -19,7 +19,28 @@
     </ul>
 
 <p><hr align=left width=1100>
-<h3>1. Feedforward Neural Network (Classification Task)</h3>
+<h2>1. Feedforward Neural Network (Classification Task)</h2>
+<p>A <strong>Feedforward Neural Network (FNN)</strong> is a type of artificial neural network where the connections between nodes do not form a cycle. It is called "feedforward" because the data flows only in one direction—from the input layer to the output layer—without any loops or feedback connections.</p>
+
+<h3>Structure:</h3>
+<ul>
+    <li><strong>Input Layer:</strong> This layer receives the input features. Each node in the input layer corresponds to one feature of the data.</li>
+    <li><strong>Hidden Layers:</strong> These are the layers where most of the computation occurs. The hidden layers use activation functions like ReLU (Rectified Linear Unit) to introduce non-linearity, allowing the network to learn complex patterns in the data.</li>
+    <li><strong>Output Layer:</strong> This layer produces the final prediction. For classification tasks, the output layer typically uses a sigmoid (binary classification) or softmax (multi-class classification) activation function to output probabilities for each class.</li>
+</ul>
+
+<h3>Example of a Classification Task:</h3>
+<p>In the example of classifying data with synthetic features:</p>
+<ul>
+    <li>The network learns to map the input features (e.g., 20 features) to the correct class labels (0 or 1) by adjusting the weights and biases during training.</li>
+    <li>The process involves forward propagation (calculating output) and backpropagation (adjusting weights based on the loss function and optimizer like Adam).</li>
+    <li>It is suitable for basic tasks like classifying tabular data.</li>
+</ul>
+
+<h3>Use Case:</h3>
+<p>Binary or multi-class classification on structured data such as customer churn prediction, medical diagnosis, or fraud detection.</p>
+
+<p><hr align=left width=1100>
 <pre><code class="language-python">
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -57,8 +78,29 @@ print(f"Accuracy: {accuracy:.2f}")
     </code></pre>
 
 <p><hr align=left width=1100>
-<h3>2. Convolutional Neural Network (CNN) for Image Classification</h3>
+<h2>2. Convolutional Neural Network (CNN) for Image Classification</h2>
+<p>A <strong>Convolutional Neural Network (CNN)</strong> is a specialized neural network primarily used for processing structured grid-like data such as images. CNNs are particularly effective at recognizing spatial hierarchies in data, making them ideal for tasks like image and video recognition.</p>
 
+<h3>Structure:</h3>
+<ul>
+    <li><strong>Input Layer:</strong> The input to a CNN is typically a multi-dimensional image (e.g., a grayscale image with a size of 28x28 pixels has one channel, while a colored image has 3 channels: RGB).</li>
+    <li><strong>Convolutional Layers:</strong> These layers apply convolution operations to the input, using filters (kernels) to detect features like edges, corners, and textures. The output of each convolutional layer is a feature map that highlights these patterns.</li>
+    <li><strong>Pooling Layers:</strong> These layers reduce the spatial dimensions of the feature maps (e.g., max pooling), helping to retain important information while reducing computational complexity.</li>
+    <li><strong>Flattening:</strong> After the convolutional and pooling layers, the 2D feature maps are flattened into a 1D vector that can be fed into a fully connected layer.</li>
+    <li><strong>Fully Connected Layers:</strong> These layers are similar to a feedforward network and are used to make the final classification decision. The output layer typically uses a softmax activation function for multi-class classification.</li>
+</ul>
+
+<h3>Example of Image Classification:</h3>
+<p>In the MNIST digit classification example:</p>
+<ul>
+    <li>The network takes a 28x28 pixel grayscale image as input, passes it through convolutional layers to detect edges and patterns, and eventually predicts the digit class (0-9) using fully connected layers.</li>
+    <li>CNNs are excellent at reducing the number of parameters by reusing the filters across the image, making them highly efficient for image processing tasks.</li>
+</ul>
+
+<h3>Use Case:</h3>
+<p>Image classification tasks such as handwriting recognition, object detection, medical image analysis, and facial recognition.</p>
+
+<p><hr align=left width=1100>
 <pre><code class="language-python">
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
@@ -100,6 +142,13 @@ model.fit(X_train, y_train, epochs=5, batch_size=64, validation_data=(X_test, y_
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f"Test Accuracy: {accuracy:.2f}")
     </code></pre>
+
+<p><hr align=left width=1100>
+<h3>Summary of Differences:</h3>
+<ul>
+    <li><strong>Feedforward Neural Network:</strong> Best for structured, tabular data where features are not spatially related.</li>
+    <li><strong>Convolutional Neural Network:</strong> Best for image or grid-like data where spatial hierarchies matter (e.g., recognizing objects or patterns in images).</li>
+</ul>
 
 <p><hr align=left width=1100>
 <h3>Key Components in Keras:</h3>
