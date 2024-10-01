@@ -1,39 +1,50 @@
----
----
-{% include menu.html title="Search" %}
-<hr align=left width=1100>
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div>
+      <input type="text" id="search" placeholder="Search...">
+      <ul id="results"></ul>
+    </div>
 
-<input type="text" id="searchBox" placeholder="Search...">
-<ul id="results"></ul>
+    <!-- Lunr.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
 
-<script>
-  const searchBox = document.getElementById('searchBox');
-  const resultsContainer = document.getElementById('results');
-  
-  let searchIndex;
+    <!-- Search Functionality -->
+    <script>
+      // Load the search index JSON
+      fetch('/search/search-index.json')
+        .then(response => response.json())
+        .then(data => {
+          // Initialize Lunr.js with the JSON data
+          const idx = lunr(function () {
+            this.ref('id');
+            this.field('title');
+            this.field('content');
 
-  // Fetch the search index (JSON)
-  fetch('/search/search.json')
-    .then(response => response.json())
-    .then(data => {
-      searchIndex = data;
-    });
+            data.forEach(function (doc) {
+              this.add(doc);
+            }, this);
+          });
 
-  // Search function
-  searchBox.addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    const filteredResults = searchIndex.filter(item => 
-      item.title.toLowerCase().includes(query) ||
-      item.content.toLowerCase().includes(query)
-    );
+          // Event listener for search input
+          document.getElementById('search').addEventListener('input', function () {
+            const query = this.value;
+            const results = idx.search(query);
+            const resultsContainer = document.getElementById('results');
 
-    resultsContainer.innerHTML = filteredResults.map(result => 
-      `<li><a href="${result.url}">${result.title}</a></li>`
-    ).join('');
-  });
-</script>
+            resultsContainer.innerHTML = '';
 
-
-{% include footer.html %}
-</body>
+            if (results.length) {
+              results.forEach(result => {
+                const item = data.find(d => d.id == result.ref);
+                resultsContainer.innerHTML += `<li><a href="${item.url}">${item.title}</a></li>`;
+              });
+            } else {
+              resultsContainer.innerHTML = '<li>No results found</li>';
+            }
+          });
+        });
+    </script>
+  </body>
 </html>
+

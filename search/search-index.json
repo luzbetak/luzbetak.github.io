@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "title": "First Page",
+        "content": "Content of the first page",
+        "url": "/first-page.html"
+    },
+    {
+        "id": 2,
+        "title": "Second Page",
+        "content": "Content of the second page",
+        "url": "/second-page.html"
+    }
+]
+
