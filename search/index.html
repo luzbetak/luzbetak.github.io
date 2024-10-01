@@ -13,7 +13,7 @@
   let searchIndex;
 
   // Fetch the search index (JSON)
-  fetch('/search.json')
+  fetch('/search/search.json')
     .then(response => response.json())
     .then(data => {
       searchIndex = data;
