@@ -40,9 +40,10 @@
 
     if (results.length > 0) {
       results.forEach(result => {
-        // Use the URL as is from search.json without any modification
+        // Correctly prepend the /search/ path to the URLs
         const resultItem = document.createElement('div');
-        resultItem.innerHTML = `<h3><a href="${result.url}">${result.title}</a></h3><p>${result.content}</p>`;
+        const correctUrl = `/search/${result.url}`; // Add /search/ prefix
+        resultItem.innerHTML = `<h3><a href="${correctUrl}">${result.title}</a></h3><p>${result.content}</p>`;
         resultsDiv.appendChild(resultItem);
       });
     } else {

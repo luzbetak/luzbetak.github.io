@@ -1,0 +1,39 @@
+---
+---
+{% include menu.html title="Search" %}
+<hr align=left width=1100>
+
+<input type="text" id="searchBox" placeholder="Search...">
+<ul id="results"></ul>
+
+<script>
+  const searchBox = document.getElementById('searchBox');
+  const resultsContainer = document.getElementById('results');
+  
+  let searchIndex;
+
+  // Fetch the search index (JSON)
+  fetch('/search/search.json')
+    .then(response => response.json())
+    .then(data => {
+      searchIndex = data;
+    });
+
+  // Search function
+  searchBox.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const filteredResults = searchIndex.filter(item => 
+      item.title.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query)
+    );
+
+    resultsContainer.innerHTML = filteredResults.map(result => 
+      `<li><a href="${result.url}">${result.title}</a></li>`
+    ).join('');
+  });
+</script>
+
+
+{% include footer.html %}
+</body>
+</html>
