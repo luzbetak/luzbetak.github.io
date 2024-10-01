@@ -3,61 +3,54 @@
 {% include menu.html title="Search" %}
 <hr align=left width=1100>
 
+<div>
+  <input type="text" id="searchInput" placeholder="Search...">
+  <button onclick="performSearch()">Search</button>
+</div>
+<div id="searchResults"></div>
+
 <script>
-  const searchBox = document.getElementById('searchBox');
-  const resultsContainer = document.getElementById('results');
-  
-  let searchIndex;
+  let searchData = [];
 
-  // Path to the search index (JSON)
-  const searchIndexPath = '/search/search.json';
-  console.log('Attempting to load search index from:', searchIndexPath);
-
-  // Fetch the search index (JSON)
-  fetch(searchIndexPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      console.log('Successfully loaded search index from:', searchIndexPath);
-      return response.json();
-    })
+  // Fetch search data from the search.json file
+  fetch('/search/search.json')
+    .then(response => response.json())
     .then(data => {
-      searchIndex = data;
-      console.log('Search index data:', searchIndex); // Log the search index data
+      searchData = data;
     })
     .catch(error => {
-      console.error('There was a problem loading the search index:', error);
-      resultsContainer.innerHTML = '<li>Error loading search index</li>';
+      console.error('Error fetching search data:', error);
     });
 
-  // Search function
-  searchBox.addEventListener('input', function() {
-    if (!searchIndex) {
-      resultsContainer.innerHTML = '<li>Search index is not loaded yet</li>';
+  function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const resultsDiv = document.getElementById('searchResults');
+    resultsDiv.innerHTML = '';
+
+    if (!query) {
+      resultsDiv.innerHTML = '<p>Please enter a search term.</p>';
       return;
     }
 
-    const query = this.value.toLowerCase();
-    console.log('Search query:', query);  // Log the search query
-
-    const filteredResults = searchIndex.filter(item => 
+    // Filter search results based on the query
+    const results = searchData.filter(item =>
       item.title.toLowerCase().includes(query) ||
       item.content.toLowerCase().includes(query)
     );
 
-    console.log('Filtered results:', filteredResults);  // Log the filtered results
-
-    if (filteredResults.length > 0) {
-      resultsContainer.innerHTML = filteredResults.map(result => 
-        `<li><a href="${result.url}">${result.title}</a></li>`
-      ).join('');
+    if (results.length > 0) {
+      results.forEach(result => {
+        const resultItem = document.createElement('div');
+        resultItem.innerHTML = `<h3><a href="${result.url}">${result.title}</a></h3><p>${result.content}</p>`;
+        resultsDiv.appendChild(resultItem);
+      });
     } else {
-      resultsContainer.innerHTML = '<li>No results found</li>';
+      resultsDiv.innerHTML = '<p>No results found.</p>';
     }
-  });
+  }
 </script>
-
 
 </body>
 </html>
+
+
