@@ -3,9 +3,6 @@
 {% include menu.html title="Search" %}
 <hr align=left width=1100>
 
-<input type="text" id="searchBox" placeholder="Search...">
-<ul id="results"></ul>
-
 <script>
   const searchBox = document.getElementById('searchBox');
   const resultsContainer = document.getElementById('results');
@@ -27,7 +24,7 @@
     })
     .then(data => {
       searchIndex = data;
-      console.log('Search index data:', searchIndex);
+      console.log('Search index data:', searchIndex); // Log the search index data
     })
     .catch(error => {
       console.error('There was a problem loading the search index:', error);
@@ -42,14 +39,22 @@
     }
 
     const query = this.value.toLowerCase();
+    console.log('Search query:', query);  // Log the search query
+
     const filteredResults = searchIndex.filter(item => 
       item.title.toLowerCase().includes(query) ||
       item.content.toLowerCase().includes(query)
     );
 
-    resultsContainer.innerHTML = filteredResults.map(result => 
-      `<li><a href="${result.url}">${result.title}</a></li>`
-    ).join('');
+    console.log('Filtered results:', filteredResults);  // Log the filtered results
+
+    if (filteredResults.length > 0) {
+      resultsContainer.innerHTML = filteredResults.map(result => 
+        `<li><a href="${result.url}">${result.title}</a></li>`
+      ).join('');
+    } else {
+      resultsContainer.innerHTML = '<li>No results found</li>';
+    }
   });
 </script>
 
