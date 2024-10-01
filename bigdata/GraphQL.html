@@ -1,0 +1,49 @@
+---
+---
+{% include menu.html title="GraphQL" %}
+<hr align=left width=1100>
+
+<div>
+    <h1>What is GraphQL?</h1>
+    <p>GraphQL is a query language for APIs, developed by Facebook in 2012, designed to make data fetching more efficient and flexible. It allows clients to request exactly the data they need, minimizing over-fetching or under-fetching common with REST APIs. Instead of multiple endpoints, GraphQL exposes a single endpoint where clients can define their queries, specifying the structure of the response.</p>
+    
+    <h2>Key Features:</h2>
+    <ul>
+        <li><strong>Single Endpoint:</strong> Unlike REST, where different endpoints provide different data, GraphQL uses one endpoint to serve all data.</li>
+        <li><strong>Flexible Queries:</strong> Clients can ask for exactly the data they want, specifying fields and their relationships. This makes it more efficient, especially for complex data structures.</li>
+        <li><strong>Strongly Typed Schema:</strong> GraphQL has a schema that defines types, queries, and relationships between them. This helps in validating queries and improving the API's predictability.</li>
+        <li><strong>Efficient Data Fetching:</strong> By allowing clients to request only the specific data they need, GraphQL reduces the amount of redundant data transfer.</li>
+        <li><strong>Real-Time with Subscriptions:</strong> GraphQL supports subscriptions, which enable real-time updates to clients by pushing changes to them when data is updated on the server.</li>
+    </ul>
+    
+    <p><hr align=left width=1100>
+    <h2>GraphQL Query:</h2>
+    <pre><code>
+{
+  user(id: "1") {
+    name
+    email
+    posts {
+      title
+      content
+    }
+  }
+}
+    </code></pre>
+    <p>This query asks for a user’s name and email and a list of their posts, including titles and content, all in one request.</p>
+
+    <p><hr align=left width=1100>
+    <h2>Benefits Over REST:</h2>
+    <ul>
+        <li><strong>Efficiency:</strong> Reduces multiple network requests by fetching all required data in a single query.</li>
+        <li><strong>Precise Control:</strong> Gives clients more control over the data they receive.</li>
+        <li><strong>Real-time Data:</strong> Built-in support for subscriptions, making it ideal for real-time apps.</li>
+    </ul>
+    
+    <p>GraphQL is often used in environments where front-end teams want to optimize data requests and where multiple microservices are in play. It provides a lot of flexibility and control over how data is consumed.</p>
+</div>
+
+
+{% include footer.html %}
+</body>
+</html>
