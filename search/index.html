@@ -1,9 +1,8 @@
----
----
-{% include menu.html title="Search" %}
-
+<!DOCTYPE html>
+<html lang="en">
+  <body>
     <div>
-      <input type="text" id="search" placeholder="Search 1">
+      <input type="text" id="search" placeholder="Search...">
       <ul id="results"></ul>
     </div>
 
@@ -13,7 +12,7 @@
     <!-- Search Functionality -->
     <script>
       // Load the search index JSON
-      fetch('/search/search-index.json')
+      fetch('/path/to/search-index.json')
         .then(response => response.json())
         .then(data => {
           // Initialize Lunr.js with the JSON data
@@ -46,7 +45,6 @@
           });
         });
     </script>
-
   </body>
 </html>
 
