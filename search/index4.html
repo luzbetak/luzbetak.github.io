@@ -8,8 +8,8 @@
     <link rel="icon" href="/static/linux2.png" type="image/png" sizes="32x32">
 
     <div class="navbar">
-      <a href="http://luzbetak.github.io/">Kevin Luzbetak</a>
-      <a href="http://luzbetak.github.io/search">Search</a>
+    <a href="http://luzbetak.github.io/">Kevin Luzbetak</a>
+    <a href="http://luzbetak.github.io/search">Search</a>
     </div>
 
     <style>
@@ -21,9 +21,11 @@
       }
       #results { font-size: 18px; margin-top: 20px; }
       #results li { margin-bottom: 10px; }
-      #results a { text-decoration: none; color: #007bff; }
+      #results a { text-decoration: none; color: #007bff; 
+      }
     </style>
   </head>
+
 
   <body>
 
@@ -39,12 +41,6 @@
 
     <!-- Search Functionality -->
     <script>
-      // Set focus on the search input when the page loads
-      window.onload = function() {
-        const searchInput = document.getElementById('search');
-        searchInput.focus();
-      };
-
       // Load the search index JSON
       fetch('/search/search-index.json')
         .then(response => response.json())
