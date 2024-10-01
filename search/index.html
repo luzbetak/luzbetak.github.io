@@ -12,15 +12,35 @@
   
   let searchIndex;
 
+  // Path to the search index (JSON)
+  const searchIndexPath = '/search/search.json';
+  console.log('Attempting to load search index from:', searchIndexPath);
+
   // Fetch the search index (JSON)
-  fetch('/search/search.json')
-    .then(response => response.json())
+  fetch(searchIndexPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      console.log('Successfully loaded search index from:', searchIndexPath);
+      return response.json();
+    })
     .then(data => {
       searchIndex = data;
+      console.log('Search index data:', searchIndex);
+    })
+    .catch(error => {
+      console.error('There was a problem loading the search index:', error);
+      resultsContainer.innerHTML = '<li>Error loading search index</li>';
     });
 
   // Search function
   searchBox.addEventListener('input', function() {
+    if (!searchIndex) {
+      resultsContainer.innerHTML = '<li>Search index is not loaded yet</li>';
+      return;
+    }
+
     const query = this.value.toLowerCase();
     const filteredResults = searchIndex.filter(item => 
       item.title.toLowerCase().includes(query) ||
