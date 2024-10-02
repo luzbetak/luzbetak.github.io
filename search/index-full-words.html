@@ -106,9 +106,9 @@
 
             let results = [];
 
-            // AND logic with fuzzy matching: search for partial words
+            // AND logic: all terms must be present in the result
             searchTerms.forEach(term => {
-              const termResults = idx.search(`${term}*`); // Add * to allow partial matches
+              const termResults = idx.search(term);
               if (results.length === 0) {
                 results = termResults;
               } else {
@@ -132,6 +132,5 @@
         });
     </script>
   </body>
-
 </html>
 
