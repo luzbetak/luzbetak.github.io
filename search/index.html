@@ -31,7 +31,15 @@
     <p><hr align=left width=1100>
 
     <div>
-      <input type="text" id="search" placeholder="Search .....">
+      <!-- Search input -->
+      <input type="text" id="search" placeholder="Search ..">
+      
+      <!-- Radio buttons for AND/OR logic -->
+      <div>
+        <label><input type="radio" name="logic" value="and" checked> AND </label>
+        <label><input type="radio" name="logic" value="or"> OR </label>
+      </div>
+      
       <ul id="results"></ul>
     </div>
 
@@ -99,15 +107,43 @@
 
           const searchInput = document.getElementById('search');
           const resultsContainer = document.getElementById('results');
+          const radioButtons = document.querySelectorAll('input[name="logic"]');
 
           // Event listener for search input
           searchInput.addEventListener('input', function () {
             const query = this.value;
+            const searchTerms = query.split(" ");
+            const selectedLogic = document.querySelector('input[name="logic"]:checked').value;
 
             // Save search term to localStorage
             localStorage.setItem('lastSearch', query);
 
-            const results = idx.search(query);
+            let results = [];
+
+            // AND logic: all terms must be present
+            if (selectedLogic === 'and') {
+              searchTerms.forEach(term => {
+                const termResults = idx.search(term);
+                if (results.length === 0) {
+                  results = termResults;
+                } else {
+                  results = results.filter(res => termResults.some(termRes => termRes.ref === res.ref));
+                }
+              });
+            }
+
+            // OR logic: any term must be present
+            if (selectedLogic === 'or') {
+              searchTerms.forEach(term => {
+                const termResults = idx.search(term);
+                termResults.forEach(termRes => {
+                  if (!results.some(res => res.ref === termRes.ref)) {
+                    results.push(termRes);
+                  }
+                });
+              });
+            }
+
             resultsContainer.innerHTML = '';
             currentIndex = -1; // Reset current index when input changes
 
@@ -120,6 +156,13 @@
             } else {
               resultsContainer.innerHTML = '<li>No results found</li>';
             }
+          });
+
+          // Add event listener to update search on radio button change
+          radioButtons.forEach(button => {
+            button.addEventListener('change', () => {
+              searchInput.dispatchEvent(new Event('input')); // Re-trigger search when logic changes
+            });
           });
         });
     </script>
