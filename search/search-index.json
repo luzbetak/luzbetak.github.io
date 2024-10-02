@@ -40,7 +40,7 @@
         "title": "GraphQL.html",
         "content": "GraphQL is a query language for APIs that allows clients to request precise data through a single endpoint, supports strongly typed schemas, and enables efficient data fetching with real-time updates through subscriptions.",
         "url": "/bigdata/GraphQL.html"
-    }search-index.json ,
+    },
     {
         "id": 8,
         "title": "index.html",
