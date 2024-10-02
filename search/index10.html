@@ -55,26 +55,18 @@
         if (items.length === 0) return;
 
         document.addEventListener('keydown', function(event) {
-          const searchInput = document.getElementById('search');
-          const isTextInputActive = searchInput === document.activeElement && 
-                                    (searchInput.selectionStart !== searchInput.selectionEnd); // Check if user is editing
-
-          if (!isTextInputActive) {
-            if (event.key === 'ArrowDown') {
-              // Move down the list
-              currentIndex = (currentIndex + 1) % items.length;
-              highlightItem(items, currentIndex);
-              event.preventDefault(); // Prevent cursor movement in input box
-            } else if (event.key === 'ArrowUp') {
-              // Move up the list
-              currentIndex = (currentIndex - 1 + items.length) % items.length;
-              highlightItem(items, currentIndex);
-              event.preventDefault(); // Prevent cursor movement in input box
-            } else if (event.key === 'Enter') {
-              // Open the selected link
-              if (currentIndex >= 0 && items[currentIndex]) {
-                window.location.href = items[currentIndex].querySelector('a').href;
-              }
+          if (event.key === 'ArrowDown') {
+            // Move down the list
+            currentIndex = (currentIndex + 1) % items.length;
+            highlightItem(items, currentIndex);
+          } else if (event.key === 'ArrowUp') {
+            // Move up the list
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            highlightItem(items, currentIndex);
+          } else if (event.key === 'Enter') {
+            // Open the selected link
+            if (currentIndex >= 0 && items[currentIndex]) {
+              window.location.href = items[currentIndex].querySelector('a').href;
             }
           }
         });
