@@ -112,5 +112,23 @@
         "title": "sql-statements.html",
         "content": "A list of SQL statements with descriptions, covering INSERT, UPDATE, DELETE, ALTER, TRUNCATE, UNION, INDEX, DISTINCT, HAVING, and more. Also includes examples of JOIN, GROUP BY, and subqueries.",
         "url": "/bigdata/sql-statements.html"
+    },
+    {
+        "id": 20,
+        "title": "data-warehouse-architecture.html",
+        "content": "Overview of Snowflake Data Warehouse Architecture. Discusses the Inmon (top-down) approach with centralized, normalized data warehouses, and the Kimball (bottom-up) approach using denormalized data marts optimized for fast querying.",
+        "url": "/bigdata/data-warehouse-architecture.html"
+    },
+    {
+        "id": 21,
+        "title": "Databricks-Delta-Lake.html",
+        "content": "Explains Databricks Delta Lake, focusing on unified data processing for both batch and streaming, ACID transactions, data versioning for 'time travel', scalable metadata handling, and integration with various data processing tools. Discusses Medallion Architecture.",
+        "url": "/bigdata/Databricks-Delta-Lake.html"
+    },
+    {
+        "id": 22,
+        "title": "Managed-External-Tables.html",
+        "content": "Covers managed and external tables in Delta Lake, highlighting the differences in storage location and lifecycle management. Managed tables are fully controlled by Delta Lake, while external tables are stored outside Delta Lake's control but managed via metadata.",
+        "url": "/bigdata/Managed-External-Tables.html"
     }
 ]
