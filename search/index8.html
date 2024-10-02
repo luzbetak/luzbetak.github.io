@@ -13,16 +13,11 @@
     </div>
 
     <style>
-      #search {
-        width: 800px; /* Increased width */
-        height: 30px; /* Increased height */
-        font-size: 20px; /* Larger font size */
-        padding: 10px;
-      }
+      #search { width: 800px; height: 30px; font-size: 20px; padding: 10px; }
       #results { font-size: 18px; margin-top: 20px; }
       #results li { margin-bottom: 10px; }
       #results a { text-decoration: none; color: #007bff; }
-      #results li.highlighted { background-color: #e0e0e0; } /* Highlight style */
+      #results li.highlighted { background-color: #e0e0e0; } 
     </style>
   </head>
 
@@ -31,7 +26,7 @@
     <p><hr align=left width=1100>
 
     <div>
-      <input type="text" id="search" placeholder="Search ..">
+      <input type="text" id="search" placeholder="Search ....">
       <ul id="results"></ul>
     </div>
 
@@ -40,15 +35,10 @@
 
     <!-- Search Functionality -->
     <script>
-      // Set focus on the search input when the page loads and restore last search term
+      // Set focus on the search input when the page loads
       window.onload = function() {
         const searchInput = document.getElementById('search');
-        const lastSearch = localStorage.getItem('lastSearch');
-        if (lastSearch) {
-          searchInput.value = lastSearch; // Restore the last search term
-          searchInput.dispatchEvent(new Event('input')); // Trigger input event to re-display results
-        }
-        searchInput.focus(); // Focus on the search input
+        searchInput.focus();
       };
 
       let currentIndex = -1;
@@ -103,10 +93,6 @@
           // Event listener for search input
           searchInput.addEventListener('input', function () {
             const query = this.value;
-
-            // Save search term to localStorage
-            localStorage.setItem('lastSearch', query);
-
             const results = idx.search(query);
             resultsContainer.innerHTML = '';
             currentIndex = -1; // Reset current index when input changes
@@ -114,7 +100,7 @@
             if (results.length) {
               results.forEach(result => {
                 const item = data.find(d => d.id == result.ref);
-                resultsContainer.innerHTML += `<li><a href="${item.url}">${item.title}</a></li>`;
+                resultsContainer.innerHTML += `<li><a href="${item.url}" target="_blank">${item.title}</a></li>`;
               });
               handleKeyNavigation(resultsContainer); // Add keyboard navigation
             } else {
