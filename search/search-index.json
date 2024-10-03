@@ -3,132 +3,132 @@
         "id": 1,
         "title": "Apache-Hudi2.html",
         "content": "Apache Hudi (Hadoop Upserts Deletes and Incrementals) is a data management framework providing ACID transactions, efficient data upserts and deletes, near real-time ingestion, indexing, compaction, time travel queries, and optimized storage for large data lakes.",
-        "url": "/bigdata/Apache-Hudi2.html"
+        "url": "/databricks/Apache-Hudi2.html"
     },
     {
         "id": 2,
         "title": "Apache-Iceberg2.html",
         "content": "Apache Iceberg is a scalable data management framework supporting ACID transactions, schema evolution, partition evolution, hidden partitioning, time travel queries, and efficient querying for large-scale data lakes.",
-        "url": "/bigdata/Apache-Iceberg2.html"
+        "url": "/databricks/Apache-Iceberg2.html"
     },
     {
         "id": 3,
         "title": "Apache-Kafka.html",
         "content": "Apache Kafka is a distributed publish-subscribe messaging system with high availability, scalability, fault tolerance, stream processing, exactly-once semantics, retention, and compaction for real-time data pipelines.",
-        "url": "/bigdata/Apache-Kafka.html"
+        "url": "/databricks/Apache-Kafka.html"
     },
     {
         "id": 4,
         "title": "Apache-Parquet2.html",
         "content": "Apache Parquet is a columnar storage format optimized for data processing systems like Hadoop and Spark. It supports schema evolution, efficient compression, optimized querying, interoperability, and scalability for large-scale analytics.",
-        "url": "/bigdata/Apache-Parquet2.html"
+        "url": "/databricks/Apache-Parquet2.html"
     },
     {
         "id": 5,
         "title": "data-warehouse-architecture.html",
         "content": "Data warehouse architectures: Inmon's top-down centralized design for data integration, Kimball's bottom-up dimensional modeling for fast querying using denormalized data marts.",
-        "url": "/bigdata/data-warehouse-architecture.html"
+        "url": "/databricks/data-warehouse-architecture.html"
     },
     {
         "id": 6,
         "title": "Graph-Databases-ArgoDB-Neo4j.html",
         "content": "ArgoDB is a distributed database for large-scale graph data, optimized for complex graph processing workloads like social networks and recommendation systems. It provides scalability, performance, ACID compliance, and integration with analytics platforms. Neo4j is a popular graph database used for similar purposes.",
-        "url": "/bigdata/Graph-Databases-ArgoDB-Neo4j.html"
+        "url": "/databricks/Graph-Databases-ArgoDB-Neo4j.html"
     },
     {
         "id": 7,
         "title": "GraphQL.html",
         "content": "GraphQL is a query language for APIs that allows clients to request precise data through a single endpoint, supports strongly typed schemas, and enables efficient data fetching with real-time updates through subscriptions.",
-        "url": "/bigdata/GraphQL.html"
+        "url": "/databricks/GraphQL.html"
     },
     {
         "id": 8,
         "title": "index.html",
         "content": "Big Data: Discusses various technologies for large-scale analytics, including SQL, RDBMS, Apache Kafka, Apache Hudi, Apache Iceberg, Apache Parquet, Snowflake, and graph databases such as ArgoDB and Neo4j.",
-        "url": "/bigdata/index.html"
+        "url": "/databricks/index.html"
     },
     {
         "id": 9,
         "title": "Kafka-Producer-Consumer.html",
         "content": "Apache Kafka Producer and Consumer: Demonstrates the use of Kafka for real-time data pipelines, highlighting producer initialization, message serialization, and consumer setup for efficient message processing.",
-        "url": "/bigdata/Kafka-Producer-Consumer.html"
+        "url": "/databricks/Kafka-Producer-Consumer.html"
     },
     {
         "id": 10,
         "title": "Large-Scale-Data-Ingestion2.html",
         "content": "Large-Scale Data Ingestion Tools: Overview of tools such as Apache Kafka, Apache Flink, Apache Nifi, Google Cloud Dataflow, and others for handling large-scale data ingestion and real-time stream processing.",
-        "url": "/bigdata/Large-Scale-Data-Ingestion2.html"
+        "url": "/databricks/Large-Scale-Data-Ingestion2.html"
     },
     {
         "id": 11,
         "title": "Optimizing-Join-Queries.html",
         "content": "Guide on optimizing multiple join queries in legacy data warehousing environments. Topics include query plan analysis, index optimization, data model adjustments, denormalization, partitioning, and hardware considerations.",
-        "url": "/bigdata/Optimizing-Join-Queries.html"
+        "url": "/databricks/Optimizing-Join-Queries.html"
     },
     {
         "id": 12,
         "title": "Query-Performance.html",
         "content": "SQL query optimization techniques for improving performance, cost efficiency, and scalability. Covers indexing, execution plan analysis, join optimization, filtering, partitioning, materialized views, and cloud-specific techniques for platforms like Snowflake, Redshift, and BigQuery.",
-        "url": "/bigdata/Query-Performance.html"
+        "url": "/databricks/Query-Performance.html"
     },
     {
         "id": 13,
         "title": "RDBMS-Schemas.html",
         "content": "Overview of common RDBMS schemas including Star, Snowflake, Galaxy, Hierarchical, and Network schemas. Explains the structure, use cases, and trade-offs of each schema in relational databases.",
-        "url": "/bigdata/RDBMS-Schemas.html"
+        "url": "/databricks/RDBMS-Schemas.html"
     },
     {
         "id": 14,
         "title": "RDBMS-Snowflake-Schema.html",
         "content": "Details the Snowflake Schema in data warehousing, which normalizes dimension tables to reduce redundancy, leading to more complex queries but enhanced data integrity and storage efficiency.",
-        "url": "/bigdata/RDBMS-Snowflake-Schema.html"
+        "url": "/databricks/RDBMS-Snowflake-Schema.html"
     },
     {
         "id": 15,
         "title": "RDBMS-Star-Schema.html",
         "content": "Explains the Star Schema, a simple and efficient database schema used in data warehousing. It consists of a central fact table surrounded by dimension tables, optimized for query performance but with potential data redundancy.",
-        "url": "/bigdata/RDBMS-Star-Schema.html"
+        "url": "/databricks/RDBMS-Star-Schema.html"
     },
     {
         "id": 16,
         "title": "Relational-Databases.html",
         "content": "Overview of relational databases and data warehousing, covering key concepts such as tables, keys, ACID compliance, SQL, and ETL processes. Discusses the differences between transactional databases (OLTP) and data warehouses (OLAP).",
-        "url": "/bigdata/Relational-Databases.html"
+        "url": "/databricks/Relational-Databases.html"
     }, 
     {
         "id": 17,
         "title": "sql_overview.html",
         "content": "An overview of SQL types including DDL (CREATE, ALTER, DROP), DML (SELECT, INSERT, UPDATE, DELETE), DCL (GRANT, REVOKE), TCL (COMMIT, ROLLBACK), and DQL (SELECT). Describes their purposes and common commands.",
-        "url": "/bigdata/sql_overview.html"
+        "url": "/databricks/sql_overview.html"
     },
     {
         "id": 18,
         "title": "sql-create-view.html",
         "content": "Explains how to create SQL views, including examples of simple views, views with joins, and views with conditions. Useful for abstracting complex queries into simpler virtual tables.",
-        "url": "/bigdata/sql-create-view.html"
+        "url": "/databricks/sql-create-view.html"
     },
     {
         "id": 19,
         "title": "sql-statements.html",
         "content": "A list of SQL statements with descriptions, covering INSERT, UPDATE, DELETE, ALTER, TRUNCATE, UNION, INDEX, DISTINCT, HAVING, and more. Also includes examples of JOIN, GROUP BY, and subqueries.",
-        "url": "/bigdata/sql-statements.html"
+        "url": "/databricks/sql-statements.html"
     },
     {
         "id": 20,
         "title": "data-warehouse-architecture.html",
         "content": "Overview of Snowflake Data Warehouse Architecture. Discusses the Inmon (top-down) approach with centralized, normalized data warehouses, and the Kimball (bottom-up) approach using denormalized data marts optimized for fast querying.",
-        "url": "/bigdata/data-warehouse-architecture.html"
+        "url": "/databricks/data-warehouse-architecture.html"
     },
     {
         "id": 21,
         "title": "Databricks-Delta-Lake.html",
         "content": "Explains Databricks Delta Lake, focusing on unified data processing for both batch and streaming, ACID transactions, data versioning for 'time travel', scalable metadata handling, and integration with various data processing tools. Discusses Medallion Architecture.",
-        "url": "/bigdata/Databricks-Delta-Lake.html"
+        "url": "/databricks/Databricks-Delta-Lake.html"
     },
     {
         "id": 22,
         "title": "Managed-External-Tables.html",
         "content": "Covers managed and external tables in Delta Lake, highlighting the differences in storage location and lifecycle management. Managed tables are fully controlled by Delta Lake, while external tables are stored outside Delta Lake's control but managed via metadata.",
-        "url": "/bigdata/Managed-External-Tables.html"
+        "url": "/databricks/Managed-External-Tables.html"
     }
 ]
