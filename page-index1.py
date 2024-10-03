@@ -9,16 +9,16 @@ from nltk.tokenize import sent_tokenize
 def extract_html_data(filepath):
     with open(filepath, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'html.parser')
-
+        
         # Extract the title
         title_tag = soup.find('title')
         title = title_tag.text if title_tag else os.path.basename(filepath)
-
+        
         # Extract and summarize the content
         body_text = soup.get_text(separator=' ', strip=True)
         sentences = sent_tokenize(body_text)
         summary = " ".join(sentences[:2])  # Take first 2 sentences as summary
-
+        
         return title, summary
 
 # Initialize variables
@@ -27,17 +27,14 @@ current_id = 1
 
 # Traverse current directory and subdirectories to find HTML files
 for root, dirs, files in os.walk('.'):
-    # Skip the /search directory
-    dirs[:] = [d for d in dirs if d != 'search']
-
     for file in files:
         if file.endswith('.html'):
             filepath = os.path.join(root, file)
             title, summary = extract_html_data(filepath)
-
+            
             # Prepare the URL path (removing the leading dot)
             url_path = filepath.lstrip('./')
-
+            
             # Append to the file index
             file_index.append({
                 "id": current_id,

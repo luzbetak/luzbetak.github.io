@@ -259,366 +259,300 @@
     },
     {
         "id": 44,
-        "title": "Search",
-        "content": "Search",
-        "url": "/search/index3.html"
-    },
-    {
-        "id": 45,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Programming Databricks AWS Data DevOps Search Github",
-        "url": "/search/index.html"
-    },
-    {
-        "id": 46,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index5.html"
-    },
-    {
-        "id": 47,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index8.html"
-    },
-    {
-        "id": 48,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index4.html"
-    },
-    {
-        "id": 49,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index7.html"
-    },
-    {
-        "id": 50,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index-full-words.html"
-    },
-    {
-        "id": 51,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index6.html"
-    },
-    {
-        "id": 52,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search",
-        "url": "/search/index10.html"
-    },
-    {
-        "id": 53,
-        "title": "search2.html",
-        "content": "---\n---\n{% include menu.html title=\"Search\" %}",
-        "url": "/search/search2.html"
-    },
-    {
-        "id": 54,
-        "title": "Search",
-        "content": "Search Kevin Luzbetak Search AND OR",
-        "url": "/search/index-and-or.html"
-    },
-    {
-        "id": 55,
         "title": "index.html",
         "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak's Links\" %} Kevin's Links Machine Learning Colab Research Google Naive Bayes Classifier Confusion Matrix Computer Vision Computer Vision Pipeline Otsu Binarization Method Reflection Transformations {% include footer.html %}",
         "url": "/links/index.html"
     },
     {
-        "id": 56,
+        "id": 45,
         "title": "Python-Search-Algorithms.html",
         "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Search Algorithms Find the Intersection of Two Lists def list_intersection(list1: list, list2: list) -> list:\n    return list(set(list1) & set(list2))\n\nprint(list_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [3, 4] Binary Search The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element.",
         "url": "/programming/Python-Search-Algorithms.html"
     },
     {
-        "id": 57,
+        "id": 46,
         "title": "Python-String-Algorithms.html",
         "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python String Algorithms Reverse a String def reverse_string(s: str) -> str:\n        return s[::-1]\n    \nprint(reverse_string(\"hello\"))  # Output: \"olleh\" Count the Number of Vowels in a String def count_vowels(s: str) -> int:\n    vowels = 'aeiouAEIOU'\n    return sum(1 for char in s if char in vowels)\n    \n print(count_vowels(\"hello world\"))  # Output: 3 Find the First Non-Repeated Character in a String def first_non_repeated_char(s: str) -> str:\n    counts = {}\n    for char in s:\n        counts[char] = counts.get(char, 0) + 1\n    for char in s:\n        if counts[char] == 1:\n            return char\n    return None\nprint(first_non_repeated_char(\"swiss\"))  # Output: \"w\" Longest Common Subsequence The longest_common_subsequence function calculates the length and the actual sequence of the longest common subsequence (LCS) between two input strings. It uses dynamic programming to build a 2D table (dp) that tracks the LCS length up to each pair of indices.",
         "url": "/programming/Python-String-Algorithms.html"
     },
     {
-        "id": 58,
+        "id": 47,
         "title": "Python-Coding-Exercise-Algorithms.html",
         "content": "---\n---\n{% include menu.html title=\"Python Coding Exercise Algorithms\" %} Python Coding Exercise Algorithms 1. Reverse a String def reverse_string(s: str ) -> str : return s[::-1] # Example usage print(reverse_string( \"hello\" )) # Output: \"olleh\" 2.",
         "url": "/programming/Python-Coding-Exercise-Algorithms.html"
     },
     {
-        "id": 59,
+        "id": 48,
         "title": "index.html",
         "content": "---\n---\n{% include menu.html title=\"Programming Algorithms\" %} Programming Algorithms Python Python Algorithms Python String Algorithms Python Search Algorithms Python Function OOP Data Structure Python Programming Language Code: Fibonacci Generator PySpark Notebooks Dataset Analysis for Training Model Aggregation Graph Plotting Golang: Query MySQL Python: Word Processor Application Golang: Query MySQL Python: Word Processor Application {% include footer.html %}",
         "url": "/programming/index.html"
     },
     {
-        "id": 60,
+        "id": 49,
         "title": "101.html",
         "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Two Sum Problem This Python function two_sum is designed to solve the \"two-sum\" problem. The problem is to find two numbers in a list (nums) that add up to a specific target value (target).",
         "url": "/programming/101.html"
     },
     {
-        "id": 61,
+        "id": 50,
         "title": "Python-Programming-Language.html",
         "content": "---\n---\n{% include menu.html title=\"Python Programming Language\" %} Python Programming Language 1. Data Structures Lists, Tuples, Sets, and Dictionaries: Understand the properties and use cases of each.",
         "url": "/programming/Python-Programming-Language.html"
     },
     {
-        "id": 62,
+        "id": 51,
         "title": "mysql-lag-function.html",
         "content": "---\n---\n{% include menu.html title=\"MySQL LAG Function\" %} MySQL LAG Function Explanation Overview The LAG function in MySQL is a window function that allows you to access data from a previous row within the same result set. It is particularly useful for calculating differences between sequential rows, such as in time series analysis.",
         "url": "/programming/mysql-lag-function.html"
     },
     {
-        "id": 63,
+        "id": 52,
         "title": "Python Functions Example",
         "content": "---\n---\n{% include menu.html title=\"Python CSV Data Structures\" %} Python CSV Data Structures Reading CSV Data into Different Data Structures import csv # Sample CSV data with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) # Skipping the header next (reader) # Reading into a list data_list = [row for row in reader] with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) next (reader) # Reading into a tuple data_tuple = tuple (reader) with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) next (reader) # Reading into a set data_set = { tuple (row) for row in reader} with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.DictReader(file) # Reading into a dictionary data_dict = [row for row in reader] print ( 'List:' , data_list) print ( 'Tuple:' , data_tuple) print ( 'Set:' , data_set) print ( 'Dictionary:' , data_dict) Explanation This Python program demonstrates how to read data from a CSV file and load it into different data structures like Lists, Tuples, Sets, and Dictionaries. List: A dynamic array that holds the rows of the CSV as individual list elements.",
         "url": "/programming/Python-Function-OOP-Data-Structure.html"
     },
     {
-        "id": 64,
+        "id": 53,
         "title": "Sudoku-Board-Verification.html",
         "content": "---\n---\n{% include menu.html title=\"Sudoku Board Verification\" %} Sudoku Board Verification #!/usr/bin/env python\nimport pprint\n\n# ----------------------------------------------------------------------------#\n# Define a 9x9 matrix representing a Sudoku board\nmatrix1 = [\n    [7, 1, 8, 5, 3, 2, 9, 4, 6],\n    [5, 3, 2, 6, 9, 4, 1, 8, 7],\n    [6, 9, 4, 7, 1, 8, 3, 2, 5],\n    [1, 2, 7, 3, 4, 5, 8, 6, 9],\n    [9, 8, 6, 1, 2, 7, 4, 5, 3],\n    [3, 4, 5, 9, 8, 6, 2, 7, 1],\n    [4, 6, 3, 8, 7, 9, 5, 1, 2],\n    [8, 7, 9, 2, 5, 1, 6, 3, 4],\n    [2, 5, 1, 4, 6, 3, 7, 9, 8],\n]\n\n# ----------------------------------------------------------------------------#\ndef verify_sudoku_board(board, value):\n    \"\"\"\n    Verifies whether a given 9x9 Sudoku board is valid by checking that\n    each row, column, and 3x3 sub-grid (window) sums to a specified value. Args:\n        board (list of list of int): The 9x9 Sudoku board represented as a list of lists.",
         "url": "/programming/Sudoku-Board-Verification.html"
     },
     {
-        "id": 65,
+        "id": 54,
         "title": "Python-Algorithms.html",
         "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Remove Duplicates from a List def remove_duplicates(nums: list) -> list:\n    return list(set(nums))\n    \nprint(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5] Two Sum The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value). We use a nested loop to iterate through the remaining elements of the array and check if their sum is equal to the target value.",
         "url": "/programming/Python-Algorithms.html"
     },
     {
-        "id": 66,
+        "id": 55,
         "title": " Hamming and Levenshtein distances ",
         "content": "Hamming and Levenshtein distances # Import the necessary libraries\nimport math\nfrom collections import Counter\nimport numpy as np\n\ndef hamming_distance(str1, str2):\n    \"\"\"Calculate the Hamming distance between two strings. Args:\n        str1 (string): The first string for comparison.",
         "url": "/programming/algorithms2.html"
     },
     {
-        "id": 67,
+        "id": 56,
         "title": "Python Code for 12 Popular Algorithms",
         "content": "Python Code for 12 Popular Algorithms Python Code for 12 Popular Algorithms in Coding Interviews The following Python code implements the 12 most popular algorithms commonly asked in coding interviews: Binary Search : Implement a binary search algorithm to find an element in a sorted array. Two Sum : Given an array of integers, find two elements that add up to a specific target value.",
         "url": "/programming/algorithms.html"
     },
     {
-        "id": 68,
+        "id": 57,
         "title": "Fibonacci-Generator.html",
         "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} Fibonacci Generator def fibonacci_generator():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n\nfib_gen = fibonacci_generator()\n\n# Generate and print the first 10 Fibonacci numbers\nfor _ in range(10):\n    print(next(fib_gen)) Fibonacci Generator Explained This Python code defines a generator function that produces Fibonacci numbers indefinitely: Function Definition : The function fibonacci_generator() is defined to yield an infinite sequence of Fibonacci numbers. Yield Statement : The yield statement produces the current value of a and pauses the function's execution, preserving its state for the next iteration.",
         "url": "/programming/Fibonacci-Generator.html"
     },
     {
-        "id": 69,
+        "id": 58,
         "title": "Amazon-RDS.html",
         "content": "---\n---\n{% include menu.html title=\"Amazon RDS\" %} Amazon RDS (Relational Database Service) Amazon RDS (Relational Database Service) is a managed relational database service provided by AWS that simplifies the setup, operation, and scaling of a relational database in the cloud. It supports several popular database engines, including Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server.",
         "url": "/aws/Amazon-RDS.html"
     },
     {
-        "id": 70,
+        "id": 59,
         "title": "AWS-CloudWatch.html",
         "content": "---\n---\n{% include menu.html title=\"AWS-CloudWatch\" %} AWS CloudWatch AWS CloudWatch is a comprehensive monitoring and observability service provided by Amazon Web Services (AWS). It is designed to help you monitor and track the performance of your applications, infrastructure, and services running on AWS and on-premises environments.",
         "url": "/aws/AWS-CloudWatch.html"
     },
     {
-        "id": 71,
+        "id": 60,
         "title": "Amazon-S3.html",
         "content": "---\n---\n{% include menu.html title=\"AWS S3\" %} Amazon S3 (Simple Storage Service) is a scalable object storage service provided by Amazon Web Services (AWS). It is designed for storing and retrieving any amount of data from anywhere on the internet, offering a range of features that make it suitable for a wide variety of use cases, from data backup to serving large-scale applications.",
         "url": "/aws/Amazon-S3.html"
     },
     {
-        "id": 72,
+        "id": 61,
         "title": "ETL-Pipeline-AWS.html",
         "content": "---\n---\n{% include menu.html title=\"Building an ETL Pipeline on AWS\" %} Building an ETL Pipeline on AWS 1. Data Ingestion (Extract) AWS S3 (Simple Storage Service): Store raw data in S3 buckets.",
         "url": "/aws/ETL-Pipeline-AWS.html"
     },
     {
-        "id": 73,
+        "id": 62,
         "title": "index.html",
         "content": "---\n---\n{% include menu.html title=\"Amazon AWS\" %} Building an ETL Pipeline on AWS Data Ingestion (Extract) AWS Glue Data Catalog Manage metadata and keep track of your data schema across the pipeline. AWS Kinesis Data Streams For real-time data ingestion, use Kinesis to collect and process data streams.",
         "url": "/aws/index.html"
     },
     {
-        "id": 74,
+        "id": 63,
         "title": "AWS-EMR.html",
         "content": "---\n---\n{% include menu.html title=\"AWS EMR (Elastic MapReduce)\" %} AWS EMR (Elastic MapReduce) AWS EMR (Elastic MapReduce) is a cloud-based big data platform that provides a managed Hadoop framework, enabling you to process and analyze vast amounts of data quickly and cost-effectively. It allows you to run big data frameworks like Apache Hadoop, Apache Spark, HBase, Presto, Flink, and others on the AWS cloud.",
         "url": "/aws/AWS-EMR.html"
     },
     {
-        "id": 75,
+        "id": 64,
         "title": "AWS-Glue-Workflow.html",
         "content": "---\n---\n{% include menu.html title=\"Amazon AWS\" %} AWS Glue Workflow AWS Glue Workflow is a feature of AWS Glue that allows you to create and manage complex ETL (Extract, Transform, Load) workflows. It helps you orchestrate multiple ETL jobs and crawlers in a sequence or in parallel, enabling you to automate and manage the flow of data through your ETL processes.",
         "url": "/aws/AWS-Glue-Workflow.html"
     },
     {
-        "id": 76,
+        "id": 65,
         "title": "AWS-Kinesis-Data-Streams.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Kinesis or AWS Data Streams\" %} AWS Kinesis or AWS Data Streams AWS Kinesis and AWS Data Streams refer to the same service, with \"AWS Kinesis Data Streams\" being the full name. It's a service designed for real-time data streaming, allowing you to collect, process, and analyze data as it arrives.",
         "url": "/aws/AWS-Kinesis-Data-Streams.html"
     },
     {
-        "id": 77,
+        "id": 66,
         "title": "AWS-Step-Functions.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Step Functions\" %} AWS Step Functions AWS Step Functions is a serverless orchestration service that allows you to sequence AWS services and automate business processes. It enables you to build and run complex workflows by defining a state machine in which each step (or state) performs a task, such as invoking an AWS Lambda function, making API calls, or waiting for human input.",
         "url": "/aws/AWS-Step-Functions.html"
     },
     {
-        "id": 78,
+        "id": 67,
         "title": "AWS.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes.",
         "url": "/aws/AWS.html"
     },
     {
-        "id": 79,
+        "id": 68,
         "title": "AWS-Config-Inspector.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Config Inspector\" %} AWS Config AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. It continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations.",
         "url": "/aws/AWS-Config-Inspector.html"
     },
     {
-        "id": 80,
+        "id": 69,
         "title": "KMS-Key-Management-Service.html",
         "content": "---\n---\n{% include menu.html title=\"KMS - Key Management Service\" %} AWS Key Management Service (KMS) AWS Key Management Service (KMS) is a managed service that enables you to create, control, and manage encryption keys used to secure your data across AWS services and applications. KMS integrates seamlessly with various AWS services to provide a unified and consistent approach to encryption, making it easier to protect sensitive data in the cloud.",
         "url": "/aws/KMS-Key-Management-Service.html"
     },
     {
-        "id": 81,
+        "id": 70,
         "title": "Lambda-Serverless-Computing.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Lambda\" %} AWS Lambda: AWS Lambda is a serverless computing service provided by Amazon Web Services (AWS). It allows you to run code without provisioning or managing servers, enabling you to build applications that respond quickly to new information.",
         "url": "/aws/Lambda-Serverless-Computing.html"
     },
     {
-        "id": 82,
+        "id": 71,
         "title": "Auto-Scaling-EC2-EMR.html",
         "content": "---\n---\n{% include menu.html title=\"Auto Scaling EC2 EMR\" %} Auto Scaling for EC2/EMR Auto Scaling for Amazon EC2 and EMR (Elastic MapReduce) is a service that automatically adjusts the number of EC2 instances or EMR cluster nodes in your application or data processing environment based on the current demand. This ensures that you have the right amount of resources to handle the load while optimizing cost efficiency by scaling down when demand is low.",
         "url": "/aws/Auto-Scaling-EC2-EMR.html"
     },
     {
-        "id": 83,
+        "id": 72,
         "title": "AWS-CloudWatch-Events.html",
         "content": "---\n---\n{% include menu.html title=\"AWS CloudWatch Events\" %} AWS CloudWatch Events AWS CloudWatch Events is a service that delivers a near real-time stream of system events that describe changes in AWS resources. It enables you to respond to these changes by triggering functions, running scripts, or making API calls, making it a powerful tool for automating your cloud infrastructure.",
         "url": "/aws/AWS-CloudWatch-Events.html"
     },
     {
-        "id": 84,
+        "id": 73,
         "title": "AWS-Glue-ETL-Service.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Glue\" %} AWS Glue AWS Glue is a fully managed extract, transform, and load (ETL) service provided by Amazon Web Services (AWS). It is designed to simplify the process of moving, transforming, and preparing data for analytics.",
         "url": "/aws/AWS-Glue-ETL-Service.html"
     },
     {
-        "id": 85,
+        "id": 74,
         "title": "S3-Transfer-Acceleration.html",
         "content": "---\n---\n{% include menu.html title=\"S3 Transfer Acceleration\" %} S3 Transfer Acceleration Amazon S3 Transfer Acceleration is a feature that enables fast, easy, and secure transfers of files over long distances between your clients and an S3 bucket. Transfer Acceleration leverages Amazon CloudFront's globally distributed edge locations to accelerate data transfer by routing your uploads to the closest edge location, which then routes the data to Amazon S3 over optimized network paths.",
         "url": "/aws/S3-Transfer-Acceleration.html"
     },
     {
-        "id": 86,
+        "id": 75,
         "title": "IAM-Identity-Access-Management.html",
         "content": "---\n---\n{% include menu.html title=\"IAM - Identity Access Management\" %} AWS Identity and Access Management (IAM) AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. IAM enables you to manage users, groups, and roles, and set permissions to allow or deny access to specific AWS services and resources.",
         "url": "/aws/IAM-Identity-Access-Management.html"
     },
     {
-        "id": 87,
+        "id": 76,
         "title": "AWS-Glue-Data-Catalog.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes.",
         "url": "/aws/AWS-Glue-Data-Catalog.html"
     },
     {
-        "id": 88,
+        "id": 77,
         "title": "AWS-CloudTrail.html",
         "content": "---\n---\n{% include menu.html title=\"AWS CloudTrail\" %} AWS CloudTrail AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure.",
         "url": "/aws/AWS-CloudTrail.html"
     },
     {
-        "id": 89,
+        "id": 78,
         "title": "AWS-Redshift.html",
         "content": "---\n---\n{% include menu.html title=\"AWS Redshift\" %} AWS Redshift AWS Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. It allows you to run complex analytical queries against structured and semi-structured data using standard SQL.",
         "url": "/aws/AWS-Redshift.html"
     },
     {
-        "id": 90,
+        "id": 79,
         "title": "Apache-Parquet.html",
         "content": "---\n---\n{% include menu.html title=\"Apache Parquet Format\" %} Apache Parquet Format Apache Parquet is a columnar storage file format optimized for use with data processing systems like Apache Hadoop, Apache Spark, and cloud-based data lakes. It is highly efficient for large-scale data storage and retrieval, especially for analytic workloads.",
         "url": "/data/Apache-Parquet.html"
     },
     {
-        "id": 91,
+        "id": 80,
         "title": "Apache-Iceberg.html",
         "content": "---\n---\n{% include menu.html title=\"Apache Iceberg\" %} Apache Iceberg Apache Iceberg is a modern data management framework built to support large-scale data lakes with ACID transactions and flexible partitioning, making it highly scalable and efficient for managing complex datasets. Key Features: ACID Transactions: Iceberg ensures atomic, consistent, isolated, and durable (ACID) operations on data lakes, enabling reliable updates, deletes, and upserts.",
         "url": "/data/Apache-Iceberg.html"
     },
     {
-        "id": 92,
+        "id": 81,
         "title": "Graph-Databases-ArgoDB-Neo4j.html",
         "content": "---\n---\n{% include menu.html title=\"ArgoDB\" %} ArgoDB ArgoDB is a specialized distributed database optimized for complex, large-scale graph data. It is designed to handle high-performance graph processing workloads, providing efficient querying and analysis of relationships within data, such as social networks, fraud detection, and recommendation systems.",
         "url": "/data/Graph-Databases-ArgoDB-Neo4j.html"
     },
     {
-        "id": 93,
+        "id": 82,
         "title": "GraphQL.html",
         "content": "---\n---\n{% include menu.html title=\"GraphQL\" %} GraphQL GraphQL is a query language for APIs, developed by Facebook in 2012, designed to make data fetching more efficient and flexible. It allows clients to request exactly the data they need, minimizing over-fetching or under-fetching common with REST APIs.",
         "url": "/data/GraphQL.html"
     },
     {
-        "id": 94,
+        "id": 83,
         "title": "Large-Scale-Data-Ingestion2.html",
         "content": "---\n---\n{% include menu.html title=\"Large-Scale Data Ingestion Tools\" %} Large-Scale Data Ingestion Tools Apache Kafka Kafka is a distributed streaming platform widely used for building real-time data pipelines and streaming applications. It supports both real-time and batch data ingestion, handling large amounts of event data from multiple sources.",
         "url": "/data/Large-Scale-Data-Ingestion2.html"
     },
     {
-        "id": 95,
+        "id": 84,
         "title": "index.html",
         "content": "---\n---\n{% include menu.html title=\"Big Data\" %} SQL Overview Query Performance SQL Statements SQL Overview SQL Create View MySQL LAG Function Snowflake Data Warehouse Architecture Apache Kafka Key Points of Apache Kafka Kafka Producer Consumer Large-scale data ingestion Apache Hudi Analytics Apache Iceberg Apache Parquet Large Scale Data Ingestion Graph Databases ArgoDB Neo4j GraphQL {% include footer.html %}",
         "url": "/data/index.html"
     },
     {
-        "id": 96,
+        "id": 85,
         "title": "Kafka-Producer-Consumer.html",
         "content": "---\n---\n{% include menu.html title=\"Apache Kafka Producer and Consumer\" %} Apache Kafka Producer and Consumer Kafka Producer from kafka import KafkaProducer\nimport json\n\n# Initialize the Kafka producer\nproducer = KafkaProducer(\n    bootstrap_servers=['localhost:9092'],\n    value_serializer=lambda v: json.dumps(v).encode('utf-8')\n)\n\n# Send a message to the Kafka topic 'test_topic'\nproducer.send('test_topic', {'key': 'value'})\n\n# Ensure all messages are sent before closing the producer\nproducer.flush()\nproducer.close() Description KafkaProducer: Initializes the producer with a list of Kafka brokers. Here, it connects to localhost:9092 .",
         "url": "/data/Kafka-Producer-Consumer.html"
     },
     {
-        "id": 97,
+        "id": 86,
         "title": "sql-statements.html",
         "content": "---\n---\n{% include menu.html title=\"SQL Statements\" %} SQL Statements SQL Description INSERT Used to insert new rows into a table. UPDATE Used to modify existing rows in a table.",
         "url": "/data/sql-statements.html"
     },
     {
-        "id": 98,
+        "id": 87,
         "title": "Apache-Hudi.html",
         "content": "---\n---\n{% include menu.html title=\"Apache Hudi\" %} Apache Hudi Apache Hudi (Hadoop Upserts Deletes and Incrementals) is an open-source data management framework that simplifies large-scale data ingestion and provides ACID transaction support on data lakes. It\u2019s designed for scenarios that require efficient data upserts (updates and inserts) and deletes in big data environments, while also enabling near real-time ingestion and querying of data.",
         "url": "/data/Apache-Hudi.html"
     },
     {
-        "id": 99,
+        "id": 88,
         "title": "sql-create-view.html",
         "content": "---\n---\n{% include menu.html title=\"SQL Overview\" %} SQL CREATE VIEW Statement SQL - Create a Simple View This query creates a view named employee_salaries that shows employee names and their salaries from the employees table. CREATE VIEW employee_salaries AS SELECT employee_name , salary FROM employees ; SQL - Create a View with Joins This query creates a view named department_salary_view that shows department names along with the total salaries for each department.",
         "url": "/data/sql-create-view.html"
     },
     {
-        "id": 100,
+        "id": 89,
         "title": "Query-Performance.html",
         "content": "---\n---\n{% include menu.html title=\"SQL Query Optimization\" %} SQL Query Optimization 1. Importance of SQL Query Optimization Performance Improvement - Optimized queries run faster, which is crucial when working with large datasets in data warehouses or operational databases.",
         "url": "/data/Query-Performance.html"
     },
     {
-        "id": 101,
+        "id": 90,
         "title": "sql_overview.html",
         "content": "Common Types of SQL The most common types of SQL (Structured Query Language) are used for managing and manipulating relational databases. SQL commands are broadly categorized based on their functionality: 1.",
         "url": "/data/sql_overview.html"
     },
     {
-        "id": 102,
+        "id": 91,
         "title": "Apache-Kafka.html",
         "content": "---\n---\n{% include menu.html title=\"Apache Kafka\" %} Apache Kafka Distributed Architecture: Kafka is designed to be distributed across multiple servers, offering high availability, fault tolerance, and scalability. Publish-Subscribe Messaging System: Kafka allows multiple producers to publish messages to topics, which consumers can subscribe to, enabling decoupled communication between different parts of an application Topics and Partitions: Data is organized into topics, which are further divided into partitions.",
         "url": "/data/Apache-Kafka.html"
     },
     {
-        "id": 103,
+        "id": 92,
         "title": "data-warehouse-architecture.html",
         "content": "---\n---\n{% include menu.html title=\"Snowflake Data Warehouse Architecture\" %} Data Warehouse Architecture: Inmon (Top-Down): Centralized, normalized enterprise data warehouse design for scalable and flexible data integration. Kimball (Bottom-Up): Dimensional modeling approach using denormalized data marts optimized for fast querying and reporting.",
         "url": "/data/data-warehouse-architecture.html"
     },
     {
-        "id": 104,
+        "id": 93,
         "title": "index.html",
         "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - My Teams\" %} Amazon AWS - Cloud Computing (2020) Kevin Luzbetak and Eric Ferreira Helping customers design and implement scalable, reliable, and cost-effective data solutions using AWS services. The Walt Disney - Entertainment (2017) Nexstar Media Group -  U.S. Television (2018) Skyworks - iPhone Radio Frequency Chips (2013) AT&T Interactive - Yellow Pages (2010) myspace.com - Social Network (2006) Caltech - Neurobiology Research (2001) Andersen Lab - California Institute of Technology Digital Insight - Internet Banking (1999) SCI Systems, Inc. -  Aerospace (1995) {% include footer.html %}",
         "url": "/smaet/index.html"
