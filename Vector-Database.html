@@ -3,32 +3,109 @@
 {% include menu.html title="Vector Database" %}
 <hr align=left width=1100>
 
-        <h1 style="color:#00ccff;">Vector Database</h1>
-        <p>A <strong>vector database</strong> is a specialized type of database designed to efficiently store, retrieve, and query data in vector format. Vectors, often representing numerical or feature embeddings from high-dimensional data (e.g., images, text, audio), are used extensively in machine learning models. These embeddings capture the essential characteristics of the data, such as its semantic meaning, by encoding it in vector space.</p>
-        
-        <h2 style="color:#ffcc00;">Usage of Vector Databases in Machine Learning</h2>
-        <p>Vector databases play a critical role in machine learning tasks where similarity search or clustering of high-dimensional data is needed. Common usage scenarios include:</p>
-        <ul>
-            <li><strong>Recommendation Systems:</strong> Retrieve similar items by finding nearest neighbors in vector space.</li>
-            <li><strong>Natural Language Processing (NLP):</strong> Retrieve similar documents based on text embeddings.</li>
-            <li><strong>Image Retrieval:</strong> Perform similarity search based on image embeddings.</li>
-            <li><strong>Anomaly Detection:</strong> Identify abnormal behavior by clustering event vectors.</li>
-        </ul>
+<h1 style="color:#00ccff;">Vector Database</h1>
+<p>A <strong>vector database</strong> is a specialized type of database designed to efficiently store, retrieve, and query data in vector format. Vectors, often representing numerical or feature embeddings from high-dimensional data (e.g., images, text, audio), are used extensively in machine learning models. These embeddings capture the essential characteristics of the data, such as its semantic meaning, by encoding it in vector space.</p>
 
-        <h3 style="color:#90ee90;">Common Machine Learning Techniques Using Vector Databases</h3>
-        <ul>
-            <li><strong>Nearest Neighbor Search (K-NN):</strong> Retrieve the nearest vectors for classification and regression tasks.</li>
-            <li><strong>Clustering (K-Means, DBSCAN):</strong> Store vectors for efficient clustering.</li>
-            <li><strong>Semantic Search:</strong> Search for semantically similar text using text embeddings.</li>
-        </ul>
+<h2 style="color:#ffcc00;">Usage of Vector Databases in Machine Learning</h2>
+<p>Vector databases play a critical role in machine learning tasks where similarity search or clustering of high-dimensional data is needed. Common usage scenarios include:</p>
+<ul>
+    <li><strong>Recommendation Systems:</strong> Retrieve similar items by finding nearest neighbors in vector space.</li>
+    <li><strong>Natural Language Processing (NLP):</strong> Retrieve similar documents based on text embeddings.</li>
+    <li><strong>Image Retrieval:</strong> Perform similarity search based on image embeddings.</li>
+    <li><strong>Anomaly Detection:</strong> Identify abnormal behavior by clustering event vectors.</li>
+</ul>
+
+<h3 style="color:#90ee90;">Common Machine Learning Techniques Using Vector Databases</h3>
+<ul>
+    <li><strong>Nearest Neighbor Search (K-NN):</strong> Retrieve the nearest vectors for classification and regression tasks.</li>
+    <li><strong>Clustering (K-Means, DBSCAN):</strong> Store vectors for efficient clustering.</li>
+    <li><strong>Semantic Search:</strong> Search for semantically similar text using text embeddings.</li>
+</ul>
+
+<p><hr align=left width=1100>
+<h2>FAISS (Facebook AI Similarity Search)</h2>
+<p><strong>FAISS</strong> is an open-source library developed by Facebook AI for efficient similarity search and clustering of dense vectors. It is highly optimized for handling very large datasets of high-dimensional vectors.</p>
+
+<h2>Key Features:</h2>
+<ul>
+    <li><strong>No API key</strong> required since it’s a local library.</li>
+    <li><strong>Scales</strong> to billions of vectors.</li>
+    <li><strong>Offers various index types</strong> such as Flat, HNSW, and IVF (Inverted File Index).</li>
+    <li><strong>Supports both GPU and CPU</strong> for faster performance.</li>
+</ul>
+
+<h2 style="color:#ffcc00;">Use Case:</h2>
+<p>FAISS can be used in scenarios like image search, recommendation systems, and NLP embedding retrieval.</p>
+<pre><code class="language-python">
+#-------------------------------------------------------------#
+# pip install faiss-cpu  # or 'faiss-gpu' for GPU version
+#-------------------------------------------------------------#
+import faiss
+import numpy as np
+
+# Create an index for L2 distance (Euclidean)
+d = 128  # dimension of vectors
+index = faiss.IndexFlatL2(d)  # create the index
+
+# Generate random data (vectors)
+vectors = np.random.random((1000, d)).astype('float32')
+
+# Add vectors to the index
+index.add(vectors)
+
+# Query for the nearest neighbors
+query_vector = np.random.random((1, d)).astype('float32')
+distances, indices = index.search(query_vector, k=5)  # retrieve top-5 nearest neighbors
+print("Nearest neighbors:", indices)
+</code></pre>
+
 
         <p><hr align=left width=1100>
-        <h2 style="color:#ffcc00;">Vector Database using Pinecone</h2>
+        <h2>Annoy (Approximate Nearest Neighbors)</h1>
+
+        <h2 style="color:#ffcc00;">Overview:</h2>
+        <p><strong>Annoy</strong> is an open-source library developed by Spotify for finding approximate nearest neighbors. It’s designed for situations where you want fast search with large datasets but are willing to trade some accuracy for performance.</p>
+
+        <h2 style="color:#ffcc00;">Key Features:</h2>
+        <ul>
+            <li><strong>No API key</strong> required.</li>
+            <li><strong>Optimized for in-memory storage</strong> and fast querying.</li>
+            <li><strong>Supports various distance metrics</strong> like Euclidean, Manhattan, and angular distance.</li>
+        </ul>
+        <p><hr align=left width=1100>
         <pre><code class="language-python">
+#-------------------------------------------------------------#
+pip install annoy
+#-------------------------------------------------------------#
+from annoy import AnnoyIndex
+import numpy as np
+
+# Create an index with 128-dimensional vectors and angular distance metric
+f = 128  # dimension of vectors
+index = AnnoyIndex(f, 'angular')
+
+# Add vectors to the index
+for i in range(1000):
+    vector = np.random.random(f).tolist()
+    index.add_item(i, vector)
+
+# Build the index (tree count affects speed/accuracy)
+index.build(10)
+
+# Query for the nearest neighbors
+nearest_neighbors = index.get_nns_by_item(0, 5)  # top-5 neighbors of the first vector
+print("Nearest neighbors:", nearest_neighbors)
+</code></pre>
+
+<p><hr align=left width=1100>
+<h2>Vector Database using Pinecone</h2>
+<pre><code class="language-python">
+#-------------------------------------------------------------#
+# pip install pinecone-client 
+#-------------------------------------------------------------#
 import pinecone
 import numpy as np
 
-# Initialize Pinecone client
 pinecone.init(api_key="your_api_key", environment="us-west1-gcp")
 
 # Create a vector index (assumes a vector dimensionality of 128)
@@ -58,23 +135,23 @@ for match in results['matches']:
 
 # Deleting the index when no longer needed
 pinecone.delete_index(index_name)
-        </code></pre>
+</code></pre>
 
-        <h3 style="color:#90ee90;">Key Steps in the Code:</h3>
-        <ul>
-            <li><strong>Initialization:</strong> Initialize the Pinecone client and create a vector index.</li>
-            <li><strong>Upserting Data:</strong> Feature embeddings are inserted into the vector index.</li>
-            <li><strong>Similarity Search:</strong> A query vector retrieves the most similar vectors.</li>
-            <li><strong>Index Management:</strong> The index is deleted when no longer needed.</li>
-        </ul>
+<h3 style="color:#90ee90;">Key Steps in the Code:</h3>
+<ul>
+    <li><strong>Initialization:</strong> Initialize the Pinecone client and create a vector index.</li>
+    <li><strong>Upserting Data:</strong> Feature embeddings are inserted into the vector index.</li>
+    <li><strong>Similarity Search:</strong> A query vector retrieves the most similar vectors.</li>
+    <li><strong>Index Management:</strong> The index is deleted when no longer needed.</li>
+</ul>
 
-        <h2 style="color:#ffcc00;">Common Machine Learning Scenarios with Vector Databases</h2>
-        <ul>
-            <li><strong>Text Embedding Search:</strong> Store embeddings from models like BERT or GPT to find similar documents.</li>
-            <li><strong>Image Search:</strong> Store image embeddings for visual search applications.</li>
-            <li><strong>Recommendation Systems:</strong> Recommend content based on similar user or item embeddings.</li>
-            <li><strong>Anomaly Detection:</strong> Identify outliers in behavior or transaction data by detecting anomalies in vector space.</li>
-        </ul>
+<h2 style="color:#ffcc00;">Common Machine Learning Scenarios with Vector Databases</h2>
+<ul>
+    <li><strong>Text Embedding Search:</strong> Store embeddings from models like BERT or GPT to find similar documents.</li>
+    <li><strong>Image Search:</strong> Store image embeddings for visual search applications.</li>
+    <li><strong>Recommendation Systems:</strong> Recommend content based on similar user or item embeddings.</li>
+    <li><strong>Anomaly Detection:</strong> Identify outliers in behavior or transaction data by detecting anomalies in vector space.</li>
+</ul>
 
 {% include footer.html %}
 </body>
