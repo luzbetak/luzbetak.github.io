@@ -42,8 +42,7 @@
 
 <h2 style="color:#ffcc00;">Use Case:</h2>
 <p>FAISS can be used in scenarios like image search, recommendation systems, and NLP embedding retrieval.</p>
-<pre><code class="language-python">
-#-------------------------------------------------------------#
+<pre><code class="language-python">#-------------------------------------------------------------#
 # pip install faiss-cpu  # or 'faiss-gpu' for GPU version
 #-------------------------------------------------------------#
 import faiss
@@ -66,21 +65,20 @@ print("Nearest neighbors:", indices)
 </code></pre>
 
 
-        <p><hr align=left width=1100>
-        <h2>Annoy (Approximate Nearest Neighbors)</h1>
+<p><hr align=left width=1100>
+<h2>Annoy (Approximate Nearest Neighbors)</h1>
 
-        <h2 style="color:#ffcc00;">Overview:</h2>
-        <p><strong>Annoy</strong> is an open-source library developed by Spotify for finding approximate nearest neighbors. It’s designed for situations where you want fast search with large datasets but are willing to trade some accuracy for performance.</p>
+<h2 style="color:#ffcc00;">Overview:</h2>
+<p><strong>Annoy</strong> is an open-source library developed by Spotify for finding approximate nearest neighbors. It’s designed for situations where you want fast search with large datasets but are willing to trade some accuracy for performance.</p>
 
-        <h2 style="color:#ffcc00;">Key Features:</h2>
-        <ul>
-            <li><strong>No API key</strong> required.</li>
-            <li><strong>Optimized for in-memory storage</strong> and fast querying.</li>
-            <li><strong>Supports various distance metrics</strong> like Euclidean, Manhattan, and angular distance.</li>
-        </ul>
-        <p><hr align=left width=1100>
-        <pre><code class="language-python">
-#-------------------------------------------------------------#
+<h2 style="color:#ffcc00;">Key Features:</h2>
+<ul>
+    <li><strong>No API key</strong> required.</li>
+    <li><strong>Optimized for in-memory storage</strong> and fast querying.</li>
+    <li><strong>Supports various distance metrics</strong> like Euclidean, Manhattan, and angular distance.</li>
+</ul>
+<p><hr align=left width=1100>
+<pre><code class="language-python">#-------------------------------------------------------------#
 pip install annoy
 #-------------------------------------------------------------#
 from annoy import AnnoyIndex
@@ -105,8 +103,7 @@ print("Nearest neighbors:", nearest_neighbors)
 
 <p><hr align=left width=1100>
 <h2>Vector Database using Pinecone</h2>
-<pre><code class="language-python">
-#-------------------------------------------------------------#
+<pre><code class="language-python">#-------------------------------------------------------------#
 # pip install pinecone-client 
 #-------------------------------------------------------------#
 import pinecone
@@ -153,5 +150,4 @@ pinecone.delete_index(index_name)
 
 
 {% include footer.html %}
-</body>
-</html>
+
