@@ -2,181 +2,181 @@
     {
         "id": 1,
         "title": "Tensors-Machine-Learning.html",
-        "content": "---\n---\n{% include menu.html title=\"Tensors (Multi-Dimensional Array)\" %} What Tensor in Machine Learning? In essence, a tensor is a multidimensional array used to represent data. Think of it as a generalization of vectors and matrices. A scalar (a single number) is a 0-dimensional tensor.",
+        "content": "{% include menu.html title=\"Tensors (Multi-Dimensional Array)\" %} What Tensor in Machine Learning? In essence, a tensor is a multidimensional array used to represent data.",
         "url": "/Tensors-Machine-Learning.html"
     },
     {
         "id": 2,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Explore Kevin's GitHub Pages Kevin Luzbetak's LinkedIn Profile Machine Learning Scikit-learn (Machine Learning) Tools for data analysis and modeling, Random Forest Classifier, Predictions Vector Database Random Forest Classifier K-Means Clustering Keras (Deep Learning) Library for building and training blocks of Neural Networks , Dense, Conv2D, LSTM etc. Learning Algorithms ID3 J48 Perceptron Learning Naive Bayes Classifier Tensors (Multi-Dimensional Arrays) Images (3D: Height, Width, Color) Videos (4D: Time, Height, Hidth, Color) NLP (Words in High-Dimensional Spaces) Cosine Similarity Confusion Matrix Euclidean Distance Computer Vision My Computer Vision Pipeline Median Filter Gaussian 2D Kernel Otsu Binarization Method Calculate Percentiles Reflection Transformations Sobel Edge Detection Filter Visualization Big O-Notation Time Complexity Identifying and Analyzing Outliers Normal Bivariate Distribution Mapping with GeoPandas Visualization Color_Palettes Natural Language Processing (NLP) Bloom Filter Spacy Tokenizer Tagger Gunning Fog Index Lingua Tagger Pipeline Vector Database {% include footer.html %}",
+        "content": "{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Explore Kevin's GitHub Pages Kevin Luzbetak's LinkedIn Profile Machine Learning Scikit-learn (Machine Learning) Tools for data analysis and modeling, Random Forest Classifier, Predictions Vector Database Random Forest Classifier K-Means Clustering Keras (Deep Learning) Library for building and training blocks of Neural Networks , Dense, Conv2D, LSTM etc. Learning Algorithms ID3 J48 Perceptron Learning Naive Bayes Classifier Tensors (Multi-Dimensional Arrays) Images (3D: Height, Width, Color) Videos (4D: Time, Height, Hidth, Color) NLP (Words in High-Dimensional Spaces) Cosine Similarity Confusion Matrix Euclidean Distance Computer Vision My Computer Vision Pipeline Median Filter Gaussian 2D Kernel Otsu Binarization Method Calculate Percentiles Reflection Transformations Sobel Edge Detection Filter Visualization Big O-Notation Time Complexity Identifying and Analyzing Outliers Normal Bivariate Distribution Mapping with GeoPandas Visualization Color_Palettes Natural Language Processing (NLP) Bloom Filter Spacy Tokenizer Tagger Gunning Fog Index Lingua Tagger Pipeline Vector Database {% include footer.html %}",
         "url": "/index.html"
     },
     {
         "id": 3,
         "title": "Scikit-learn.html",
-        "content": "---\n---\n{% include menu.html title=\"Scikit-learn\" %} Scikit-learn Overview Scikit-learn is a widely used open-source Python library for machine learning, providing simple and efficient tools for data analysis and\n    modeling. It is built on top of popular libraries like NumPy , SciPy , and Matplotlib , and offers\n    a wide range of algorithms for supervised and unsupervised learning. Key Features Preprocessing: Tools for scaling, normalization, encoding categorical variables, and handling missing data. Model Selection: Cross-validation, grid search, and hyperparameter tuning for selecting the best models.",
+        "content": "{% include menu.html title=\"Scikit-learn\" %} Scikit-learn Overview Scikit-learn is a widely used open-source Python library for machine learning, providing simple and efficient tools for data analysis and   modeling. It is built on top of popular libraries like NumPy , SciPy , and Matplotlib , and offers   a wide range of algorithms for supervised and unsupervised learning.",
         "url": "/Scikit-learn.html"
     },
     {
         "id": 4,
         "title": "Vector-Database.html",
-        "content": "---\n---\n{% include menu.html title=\"Vector Database\" %} Vector Database A vector database is a specialized type of database designed to efficiently store, retrieve, and query data in vector format. Vectors, often representing numerical or feature embeddings from high-dimensional data (e.g., images, text, audio), are used extensively in machine learning models. These embeddings capture the essential characteristics of the data, such as its semantic meaning, by encoding it in vector space. Usage of Vector Databases in Machine Learning Vector databases play a critical role in machine learning tasks where similarity search or clustering of high-dimensional data is needed.",
+        "content": "{% include menu.html title=\"Vector Database\" %} Vector Database A vector database is a specialized type of database designed to efficiently store, retrieve, and query data in vector format. Vectors, often representing numerical or feature embeddings from high-dimensional data (e.g., images, text, audio), are used extensively in machine learning models.",
         "url": "/Vector-Database.html"
     },
     {
         "id": 5,
         "title": "hello.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Python Syntax Highlighting def greet(name):\n    print(f\"Hello, {name}!\") def add(a, b):\n    return a + b\n\nif __name__ == \"__main__\":\n    greet(\"World\")\n    result = add(5, 3)\n    print(f\"5 + 3 = {result}\") SQL Syntax Highlighting SELECT name, age \nFROM users \nWHERE age > 18 \nORDER BY age DESC; Bash Syntax Highlighting #!/bin/bash\necho \"Hello, World!\" mkdir new_directory\ncd new_directory Golang Syntax Highlighting package main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello, World!\") }\n\nfunc add(a int, b int) int {\n    return a + b\n} {% include footer.html %}",
+        "content": "{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Python Syntax Highlighting def greet(name):   print(f\"Hello, {name}!\") def add(a, b):   return a + b if __name__ == \"__main__\":   greet(\"World\")   result = add(5, 3)   print(f\"5 + 3 = {result}\") SQL Syntax Highlighting SELECT name, age FROM users WHERE age > 18 ORDER BY age DESC; Bash Syntax Highlighting #!/bin/bash echo \"Hello, World!\"",
         "url": "/hello.html"
     },
     {
         "id": 6,
         "title": "Keras.html",
-        "content": "---\n---\n{% include menu.html title=\"Keras (Training Neural Networks\" %} Keras Overview Keras is an open-source deep learning library that provides a high-level API for building and training neural networks. It is user-friendly,\n    modular, and extensible, allowing developers to create complex models with minimal code. Keras runs on top of low-level deep learning frameworks\n    such as TensorFlow, Theano, and CNTK, making it both versatile and powerful. Key Features: Ease of Use: Keras offers a simple and consistent API to build neural networks quickly.",
+        "content": "{% include menu.html title=\"Keras (Training Neural Networks\" %} Keras Overview Keras is an open-source deep learning library that provides a high-level API for building and training neural networks. It is user-friendly,   modular, and extensible, allowing developers to create complex models with minimal code.",
         "url": "/Keras.html"
     },
     {
         "id": 7,
         "title": "Gunning-Fog-Index.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Gunning Fog Index The Gunning Fog Index is a readability test that estimates the years of formal education needed to understand a text on the first reading. It takes into account the number of words, the number of complex words (words with three or more syllables), and the number of sentences in a text. import re\n\ndef count_words(text):\n    \"\"\"Counts the number of words in a text.\"\"\" words = re.findall(r'\\w+', text)\n    return len(words)\n\ndef count_sentences(text):\n    \"\"\"Counts the number of sentences in a text.\"\"\"",
+        "content": "{% include menu.html title=\"Python Algorithms\" %} Gunning Fog Index The Gunning Fog Index is a readability test that estimates the years of formal education needed to understand a text on the first reading. It takes into account the number of words, the number of complex words (words with three or more syllables), and the number of sentences in a text.",
         "url": "/Gunning-Fog-Index.html"
     },
     {
         "id": 8,
         "title": "Time-Complexity-Big-O-Notation.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Big O Notation - Time Complexity Big O notation is used to describe the efficiency of an algorithm, focusing on its time complexity (how the execution time grows with input size) and space complexity (how much extra memory is needed). It expresses the worst-case scenario performance of an algorithm. Common Complexities O(1) \u2013 Constant time: The algorithm's runtime does not change with the input size. Example: Accessing an element in an array by index.",
+        "content": "{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} Big O Notation - Time Complexity Big O notation is used to describe the efficiency of an algorithm, focusing on its time complexity (how the execution time grows with input size) and space complexity (how much extra memory is needed). It expresses the worst-case scenario performance of an algorithm.",
         "url": "/Time-Complexity-Big-O-Notation.html"
     },
     {
         "id": 9,
         "title": "Managed-External-Live-Tables.html",
-        "content": "---\n---\n{% include menu.html title=\"Delta Live (DLT), Managed, External Tables\" %} Databricks Delta Live (DLT), Managed, External Tables Key Differences: Feature Delta Live Tables (DLT) Managed Tables External Tables Data Management Managed pipelines with automation for data ingestion, transformation, and output Fully managed by Databricks Data stored externally, metadata managed by Databricks Storage Location Can use managed or external storage Databricks File System (DBFS) or default cloud storage External storage (e.g., S3, Blob, HDFS) Data Lifecycle Lifecycle managed by DLT pipelines Data is deleted when the table is dropped Data remains after the table is dropped Use Case Automated ETL pipelines and real-time data processing Temporary or internal datasets managed by Databricks Persistent or shared datasets Automation & Monitoring Automated pipeline execution, monitoring, and quality checks No automation for tasks No automation for tasks 1. Delta Live Tables (DLT) Delta Live Tables (DLT) is a framework designed for building and managing ETL pipelines. It automates data processing, handling dependencies, and optimizing workflows in both batch and streaming data pipelines. Example of Delta Live Tables Pipeline: import dlt from pyspark.sql.functions import *\n\n@dlt.table def clean_data(): return spark.read( \"path/to/raw_data\" ).filter(col( \"age\" ) > 18) 2.",
+        "content": "{% include menu.html title=\"Delta Live (DLT), Managed, External Tables\" %} Databricks Delta Live (DLT), Managed, External Tables Key Differences: Feature Delta Live Tables (DLT) Managed Tables External Tables Data Management Managed pipelines with automation for data ingestion, transformation, and output Fully managed by Databricks Data stored externally, metadata managed by Databricks Storage Location Can use managed or external storage Databricks File System (DBFS) or default cloud storage External storage (e.g., S3, Blob, HDFS) Data Lifecycle Lifecycle managed by DLT pipelines Data is deleted when the table is dropped Data remains after the table is dropped Use Case Automated ETL pipelines and real-time data processing Temporary or internal datasets managed by Databricks Persistent or shared datasets Automation & Monitoring Automated pipeline execution, monitoring, and quality checks No automation for tasks No automation for tasks 1. Delta Live Tables (DLT) Delta Live Tables (DLT) is a framework designed for building and managing ETL pipelines.",
         "url": "/bricks/Managed-External-Live-Tables.html"
     },
     {
         "id": 10,
         "title": "PySpark-Coding-Examples.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} PySpark SQL Exercises 1. Select Unique Records from pyspark.sql import SparkSession # Sample data data = [(1, \"Alice\" , 25), (2, \"Bob\" , 30), (3, \"Alice\" , 25)]\n        df = spark.createDataFrame(data, [ \"id\" , \"name\" , \"age\" ])\n\n        df.createOrReplaceTempView( \"people\" ) # Select distinct names unique_names_df = spark.sql( \"SELECT DISTINCT name FROM people\" ) # Show result unique_names_df.show() 2. Count Records # Count the number of rows in the DataFrame count_df = spark.sql( \"SELECT COUNT(*) as total_count FROM people\" ) # Show result count_df.show() 3. Group By and Count # Group by name and count occurrences group_by_count_df = spark.sql( \"SELECT name, COUNT(*) as name_count FROM people GROUP BY name\" ) # Show result group_by_count_df.show() 4.",
+        "content": "{% include menu.html title=\"Kevin Luzbetak - Computer Science\" %} PySpark SQL Exercises 1. Select Unique Records from pyspark.sql import SparkSession # Sample data data = [(1, \"Alice\" , 25), (2, \"Bob\" , 30), (3, \"Alice\" , 25)]     df = spark.createDataFrame(data, [ \"id\" , \"name\" , \"age\" ])     df.createOrReplaceTempView( \"people\" ) # Select distinct names unique_names_df = spark.sql( \"SELECT DISTINCT name FROM people\" ) # Show result unique_names_df.show() 2.",
         "url": "/bricks/PySpark-Coding-Examples.html"
     },
     {
         "id": 11,
         "title": "RDBMS-Schemas.html",
-        "content": "---\n---\n{% include menu.html title=\"RDBMS Schemas\" %} The following are common database schemas used in relational database management systems (RDBMS), including the Star Schema, from which the Snowflake Schema is derived: Star Schema : The foundational schema that involves a central fact table connected directly to several dimension tables. Simpler structure with denormalized dimension tables. Offers faster query performance due to fewer joins. Snowflake Schema : Derived from the Star Schema.",
+        "content": "{% include menu.html title=\"RDBMS Schemas\" %} The following are common database schemas used in relational database management systems (RDBMS), including the Star Schema, from which the Snowflake Schema is derived: Star Schema : The foundational schema that involves a central fact table connected directly to several dimension tables. Simpler structure with denormalized dimension tables.",
         "url": "/bricks/RDBMS-Schemas.html"
     },
     {
         "id": 12,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Big Data\" %} Big Data: Massive Datasets for Advanced Analytics PySpark Databricks PySpark Questions Answers PySpark Coding Examples PySpark SQL Functions Parquet PySpark Data Streaming PySpark Databricks Databricks Delta Lake Column Shuffle Repartition PySpark Pivot Table Delta Live, Managed, External Tables in Databricks Managed and External Tables in Delta Lake Delta Live Tables (DLT) in Databricks Databricks Presentation Medallion Architecture Medallion Architecture Overview Code: Medallion and Partitioning {% include footer.html %}",
+        "content": "{% include menu.html title=\"Big Data\" %} Big Data: Massive Datasets for Advanced Analytics PySpark Databricks PySpark Questions Answers PySpark Coding Examples PySpark SQL Functions Parquet PySpark Data Streaming PySpark Databricks Databricks Delta Lake Column Shuffle Repartition PySpark Pivot Table Delta Live, Managed, External Tables in Databricks Managed and External Tables in Delta Lake Delta Live Tables (DLT) in Databricks Databricks Presentation Medallion Architecture Medallion Architecture Overview Code: Medallion and Partitioning {% include footer.html %}",
         "url": "/bricks/index.html"
     },
     {
         "id": 13,
         "title": "PySpark-Data-Streaming.html",
-        "content": "---\n---\n{% include menu.html title=\"PySpark Data Streaming\" %} PySpark Data Streaming Real-Time Data Processing: PySpark Streaming enables the processing of live data streams, allowing you to handle continuous data input, like logs, sensor data, or tweets. DStream (Discretized Stream): The core abstraction in PySpark Streaming is the DStream, which represents a continuous stream of data divided into small batches (micro-batches). Each batch is a Resilient Distributed Dataset (RDD). Window Operations: PySpark Streaming allows window-based operations on DStreams.",
+        "content": "{% include menu.html title=\"PySpark Data Streaming\" %} PySpark Data Streaming Real-Time Data Processing: PySpark Streaming enables the processing of live data streams, allowing you to handle continuous data input, like logs, sensor data, or tweets. DStream (Discretized Stream): The core abstraction in PySpark Streaming is the DStream, which represents a continuous stream of data divided into small batches (micro-batches).",
         "url": "/bricks/PySpark-Data-Streaming.html"
     },
     {
         "id": 14,
         "title": "Databricks-Delta-Lake.html",
-        "content": "---\n---\n{% include menu.html title=\"Databricks Delta Lake Design for Big Data\" %} Databricks Delta Lake Design for Big Data Unified Data Processing Delta Lake allows seamless support for both batch and streaming data processing using a single data copy. This provides flexibility in handling various types of workloads without the need to duplicate data. ACID Transactions It offers ACID (Atomicity, Consistency, Isolation, Durability) transaction capabilities, ensuring data consistency and reliability. This is crucial in scenarios involving concurrent data modifications or failures.",
+        "content": "{% include menu.html title=\"Databricks Delta Lake Design for Big Data\" %} Databricks Delta Lake Design for Big Data Unified Data Processing Delta Lake allows seamless support for both batch and streaming data processing using a single data copy. This provides flexibility in handling various types of workloads without the need to duplicate data.",
         "url": "/bricks/Databricks-Delta-Lake.html"
     },
     {
         "id": 15,
         "title": "RDBMS-Snowflake-Schema.html",
-        "content": "---\n---\n{% include menu.html title=\"Snowflake Schema\" %} Snowflake Schema The Snowflake Schema is a variation of the Star Schema in a relational database. It involves normalizing the dimension tables, which means breaking them down into multiple related tables to eliminate redundancy. This normalization leads to a more complex database structure with multiple levels of related tables. Key Characteristics: Normalization: In a Snowflake Schema, dimension tables are normalized into multiple related tables.",
+        "content": "{% include menu.html title=\"Snowflake Schema\" %} Snowflake Schema The Snowflake Schema is a variation of the Star Schema in a relational database. It involves normalizing the dimension tables, which means breaking them down into multiple related tables to eliminate redundancy.",
         "url": "/bricks/RDBMS-Snowflake-Schema.html"
     },
     {
         "id": 16,
         "title": "Databricks-PySpark.html",
-        "content": "---\n---\n{% include menu.html title=\"PySpark and Databricks Deep Dive\" %} PySpark and Databricks Deep Dive 1. PySpark Overview PySpark is the Python API for Apache Spark, an open-source distributed computing system. It enables scalable, big data processing through parallel computing. PySpark provides access to Spark\u2019s features, such as in-memory computation, fault tolerance, and distributed data processing.",
+        "content": "{% include menu.html title=\"PySpark and Databricks Deep Dive\" %} PySpark and Databricks Deep Dive 1. PySpark Overview PySpark is the Python API for Apache Spark, an open-source distributed computing system.",
         "url": "/bricks/Databricks-PySpark.html"
     },
     {
         "id": 17,
         "title": "PySpark-Pivot-Table.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} Pivot Table Overview A pivot table is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns. In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like sum , count , average , etc. This is useful for reshaping data into a more digestible format, especially for reporting or analytics purposes. PySpark Application Using Pivot Table The following PySpark code demonstrates how to create a pivot table with the provided sample data: from pyspark.sql import SparkSession from pyspark.sql.functions import sum\n\nspark = SparkSession.builder \\\n    .appName( \"Pivot Table Example\" ) \\\n    .getOrCreate() # Sample data as a list of dictionaries data = [\n    {\"employee\": \"Alice\" , \"region\": \"North\" , \"sales\": 100},\n    {\"employee\": \"Bob\" ,   \"region\": \"North\" , \"sales\": 200},\n    {\"employee\": \"Alice\" , \"region\": \"South\" , \"sales\": 300},\n    {\"employee\": \"Bob\" ,   \"region\": \"South\" , \"sales\": 400},\n    {\"employee\": \"Alice\" , \"region\": \"East\" ,  \"sales\": 150},\n    {\"employee\": \"Bob\" ,   \"region\": \"West\" ,  \"sales\": 250}\n]\n\ndf = spark.createDataFrame(data)\n\ndf.show() # Pivot the table to show sales by employee per region pivot_df = df.groupBy( \"employee\" ).pivot( \"region\" ).agg(sum( \"sales\" )) # Show the pivoted DataFrame pivot_df.show()\nspark.stop() Explanation groupBy(\"employee\") groups the data by employee.",
+        "content": "{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} Pivot Table Overview A pivot table is a tool used for summarizing data, allowing you to group and aggregate information based on categorical columns. In the context of PySpark, a pivot table transforms unique values from one column into multiple columns, aggregating values using functions like sum , count , average , etc.",
         "url": "/bricks/PySpark-Pivot-Table.html"
     },
     {
         "id": 18,
         "title": "RDBMS-Star-Schema.html",
-        "content": "---\n---\n{% include menu.html title=\"RDBMS Star Schema\" %} RDBMS Star Schema The Star Schema is a popular database schema design used in data warehousing. It is named for its resemblance to a star, where a central fact table is surrounded by dimension tables. Components of Star Schema Fact Table : Contains the quantitative data for analysis, such as sales amounts or quantities. The fact table links to dimension tables through foreign keys.",
+        "content": "{% include menu.html title=\"RDBMS Star Schema\" %} RDBMS Star Schema The Star Schema is a popular database schema design used in data warehousing. It is named for its resemblance to a star, where a central fact table is surrounded by dimension tables.",
         "url": "/bricks/RDBMS-Star-Schema.html"
     },
     {
         "id": 19,
         "title": "PySpark-SQL-Functions-Parquet.html",
-        "content": "---\n---\n{% include menu.html title=\"PySpark SQL Functions\" %} PySpark Spark SQL 1. Select Unique Records from pyspark.sql import SparkSession # Sample data data = [(1, \"Alice\" , 25), (2, \"Bob\" , 30), (3, \"Alice\" , 25)]\n        df = spark.createDataFrame(data, [ \"id\" , \"name\" , \"age\" ])\n\n        df.createOrReplaceTempView( \"people\" ) # Select distinct names unique_names_df = spark.sql( \"SELECT DISTINCT name\"\n                        \"FROM people\" ) # Show result unique_names_df.show() 2. Count Records # Count the number of rows in the DataFrame count_df = spark.sql( \"SELECT COUNT(*) as total_count\"\n                        \"FROM people\" ) # Show result count_df.show() 3. Group By and Count # Group by name and count occurrences group_by_count_df = spark.sql( \"SELECT name, COUNT(*) as name_count\"\n                       \"FROM people\"\n                       \"GROUP BY name\" ) # Show result group_by_count_df.show() 4.",
+        "content": "{% include menu.html title=\"PySpark SQL Functions\" %} PySpark Spark SQL 1. Select Unique Records from pyspark.sql import SparkSession # Sample data data = [(1, \"Alice\" , 25), (2, \"Bob\" , 30), (3, \"Alice\" , 25)]     df = spark.createDataFrame(data, [ \"id\" , \"name\" , \"age\" ])     df.createOrReplaceTempView( \"people\" ) # Select distinct names unique_names_df = spark.sql( \"SELECT DISTINCT name\"             \"FROM people\" ) # Show result unique_names_df.show() 2.",
         "url": "/bricks/PySpark-SQL-Functions-Parquet.html"
     },
     {
         "id": 20,
         "title": "Medallion-Architecture.html",
-        "content": "---\n---\n{% include menu.html title=\"Medallion Architecture in Delta Lake\" %} Medallion Architecture in Delta Lake Overview of Medallion Architecture The Medallion Architecture is a layered approach used in Delta Lake to optimize data quality and performance as data progresses through various stages. It divides the data into three primary layers, referred to as Bronze, Silver, Gold tiers, each representing different levels of data quality, transformation, and availability. This architecture is designed to ensure data consistency, facilitate complex analytics, and minimize the cost of managing big data. Bronze Layer: Raw Data Ingestion The Bronze layer is where raw, unprocessed data is stored directly from source systems.",
+        "content": "{% include menu.html title=\"Medallion Architecture in Delta Lake\" %} Medallion Architecture in Delta Lake Overview of Medallion Architecture The Medallion Architecture is a layered approach used in Delta Lake to optimize data quality and performance as data progresses through various stages. It divides the data into three primary layers, referred to as Bronze, Silver, Gold tiers, each representing different levels of data quality, transformation, and availability.",
         "url": "/bricks/Medallion-Architecture.html"
     },
     {
         "id": 21,
         "title": "Medallion-Architecture-Partitioning-Code.html",
-        "content": "---\n---\n{% include menu.html title=\"Medallion Architecture with 256 Node Cluster\" %} Medallion Architecture with Partitioning spark = SparkSession.builder \\\n  . appName ( \"Medallion Architecture\" ) \\\n  . config ( \"spark.sql.extensions\" , \"io.delta.sql.DeltaSparkSessionExtension\" ) \\\n  . config ( \"spark.sql.catalog.spark_catalog\" , \"org.apache.spark.sql.delta.catalog.DeltaCatalog\" ) \\\n  .",
+        "content": "{% include menu.html title=\"Medallion Architecture with 256 Node Cluster\" %} Medallion Architecture with Partitioning spark = SparkSession.builder \\  . appName ( \"Medallion Architecture\" ) \\  .",
         "url": "/bricks/Medallion-Architecture-Partitioning-Code.html"
     },
     {
         "id": 22,
         "title": "Managed-External-Tables.html",
-        "content": "---\n---\n{% include menu.html title=\"Managed and External Tables in Delta Lake\" %} Managed and External Tables in Delta Lake Managed Table Storage Location : Delta Lake automatically manages both the data and metadata. The data is stored in a location controlled by the Delta Lake system. Lifecycle Management : When you create a managed table, Delta Lake determines the storage location, typically inside the database directory. When the table is dropped, both the data and metadata are deleted automatically.",
+        "content": "{% include menu.html title=\"Managed and External Tables in Delta Lake\" %} Managed and External Tables in Delta Lake Managed Table Storage Location : Delta Lake automatically manages both the data and metadata. The data is stored in a location controlled by the Delta Lake system.",
         "url": "/bricks/Managed-External-Tables.html"
     },
     {
         "id": 23,
         "title": "Column-Shuffle-Repartition.html",
-        "content": "---\n---\n{% include menu.html title=\"Repartition in PySpark\" %} Repartition in PySpark How Repartitioning Works Shuffling Data: When you call repartition(256) , Spark performs a full shuffle of the data across the specified number of partitions. The goal is to redistribute the data evenly across all partitions, which allows parallel processing across multiple nodes. Default Repartitioning: If no column is specified, Spark randomly assigns rows to partitions. The intention is to balance the number of rows across the 256 partitions for efficiency.",
+        "content": "{% include menu.html title=\"Repartition in PySpark\" %} Repartition in PySpark How Repartitioning Works Shuffling Data: When you call repartition(256) , Spark performs a full shuffle of the data across the specified number of partitions. The goal is to redistribute the data evenly across all partitions, which allows parallel processing across multiple nodes.",
         "url": "/bricks/Column-Shuffle-Repartition.html"
     },
     {
         "id": 24,
         "title": "Optimizing-Join-Queries.html",
-        "content": "---\n---\n{% include menu.html title=\"Optimizing Multiple Join Queries in Legacy Data Warehousing\" %} Optimizing Multiple Join Queries in Legacy Data Warehousing When dealing with multiple join queries in a legacy data warehousing environment, performance optimization is crucial, especially given the constraints that might be present, such as older hardware, less flexible architectures, or limited scalability. Here are key considerations and steps to optimize performance: 1. Query Plan Analysis Check Execution Plan: Use the database's query execution plan tools (like EXPLAIN PLAN in Oracle, EXPLAIN in MySQL) to understand how the database is executing the query. Look for full table scans, nested loop joins, and other expensive operations.",
+        "content": "{% include menu.html title=\"Optimizing Multiple Join Queries in Legacy Data Warehousing\" %} Optimizing Multiple Join Queries in Legacy Data Warehousing When dealing with multiple join queries in a legacy data warehousing environment, performance optimization is crucial, especially given the constraints that might be present, such as older hardware, less flexible architectures, or limited scalability. Here are key considerations and steps to optimize performance: 1.",
         "url": "/bricks/Optimizing-Join-Queries.html"
     },
     {
         "id": 25,
         "title": "Relational-Databases.html",
-        "content": "---\n---\n{% include menu.html title=\"Relational Databases and Data Warehousing\" %} Relational Databases and Data Warehousing 1. Relational Databases Relational databases are structured to store data in tables (or relations) where rows represent records and columns represent attributes. They are based on relational algebra, a theory proposed by Edgar Codd in 1970. Key Features of Relational Databases Tables, Rows, and Columns : Data is organized into tables with predefined columns and rows.",
+        "content": "{% include menu.html title=\"Relational Databases and Data Warehousing\" %} Relational Databases and Data Warehousing 1. Relational Databases Relational databases are structured to store data in tables (or relations) where rows represent records and columns represent attributes.",
         "url": "/bricks/Relational-Databases.html"
     },
     {
         "id": 26,
         "title": "PySpark-Lazy-Evaluation.html",
-        "content": "---\n---\n{% include menu.html title=\"Lazy Evaluation in PySpark\" %} Lazy Evaluation in PySpark Lazy evaluation is a key concept in PySpark (and Spark in general) that refers to the deferred execution of operations until an action is triggered. This means that when you define transformations on your data, PySpark doesn\u2019t immediately execute them. Instead, it builds up a logical plan of transformations that are to be applied. The actual computation only occurs when an action is called.",
+        "content": "{% include menu.html title=\"Lazy Evaluation in PySpark\" %} Lazy Evaluation in PySpark Lazy evaluation is a key concept in PySpark (and Spark in general) that refers to the deferred execution of operations until an action is triggered. This means that when you define transformations on your data, PySpark doesn\u2019t immediately execute them.",
         "url": "/bricks/PySpark-Lazy-Evaluation.html"
     },
     {
         "id": 27,
         "title": "Delta-Live-Tables.html",
-        "content": "---\n---\n{% include menu.html title=\"Delta Live Tables (DLT) in Databricks\" %} Delta Live Tables (DLT) in Databricks Delta Live Tables (DLT) in Databricks is a framework for building reliable, scalable, and simple data pipelines. It is built on top of Delta Lake and simplifies creating, managing, and monitoring data pipelines. Key Features of Delta Live Tables Declarative Pipeline Development : Define transformations in a declarative way. Databricks manages dependencies and execution optimizations.",
+        "content": "{% include menu.html title=\"Delta Live Tables (DLT) in Databricks\" %} Delta Live Tables (DLT) in Databricks Delta Live Tables (DLT) in Databricks is a framework for building reliable, scalable, and simple data pipelines. It is built on top of Delta Lake and simplifies creating, managing, and monitoring data pipelines.",
         "url": "/bricks/Delta-Live-Tables.html"
     },
     {
         "id": 28,
         "title": "PySpark-Handling-Missing-Data.html",
-        "content": "--\n---\n{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} PySpark is the Python API for Apache Spark, an open-source, distributed computing system designed for processing large-scale data. PySpark enables Python developers to write Spark applications using the popular Python programming language, offering a powerful framework for big data processing and analytics. Key Features of PySpark: Distributed Data Processing: PySpark allows you to process large datasets across a cluster of machines, making it suitable for handling big data that exceeds the memory of a single computer. Resilient Distributed Datasets (RDDs): RDDs are the fundamental data structure in PySpark.",
+        "content": "-- --- {% include menu.html title=\"Kevin Luzbetak Github Pages\" %} PySpark is the Python API for Apache Spark, an open-source, distributed computing system designed for processing large-scale data. PySpark enables Python developers to write Spark applications using the popular Python programming language, offering a powerful framework for big data processing and analytics.",
         "url": "/bricks/PySpark-Handling-Missing-Data.html"
     },
     {
         "id": 29,
         "title": "PySpark-Questions-Answers.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} PySpark Questions and Answers What is PySpark? PySpark is the Python API for Apache Spark, an open-source distributed computing system. It enables scalable, big data processing through parallelized tasks across clusters. PySpark provides an interface for programming entire clusters with data parallelism and fault tolerance.",
+        "content": "{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} PySpark Questions and Answers What is PySpark? PySpark is the Python API for Apache Spark, an open-source distributed computing system.",
         "url": "/bricks/PySpark-Questions-Answers.html"
     },
     {
         "id": 30,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Presentation Databricks\" %} Image Gallery {% include footer.html %}",
+        "content": "{% include menu.html title=\"Presentation Databricks\" %} Image Gallery {% include footer.html %}",
         "url": "/bricks/101/index.html"
     },
     {
@@ -194,367 +194,367 @@
     {
         "id": 33,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"search.html\" %} {% include footer.html %}",
+        "content": "{% include menu.html title=\"search.html\" %} {% include footer.html %}",
         "url": "/search2/index.html"
     },
     {
         "id": 34,
         "title": "debugging-kubernetes-performance.html",
-        "content": "---\n---\n{% include menu.html title=\"Debugging Kubernetes Performance\" %} Debugging Kubernetes Performance Debugging performance issues in a Kubernetes environment can be complex due to the distributed nature of applications and the variety of components involved. Here are key steps and tools to help you identify and resolve performance problems in Kubernetes: 1. Identify the Symptoms High Latency: Applications are responding slowly. Resource Exhaustion: Nodes or Pods are running out of CPU, memory, or disk space.",
+        "content": "{% include menu.html title=\"Debugging Kubernetes Performance\" %} Debugging Kubernetes Performance Debugging performance issues in a Kubernetes environment can be complex due to the distributed nature of applications and the variety of components involved. Here are key steps and tools to help you identify and resolve performance problems in Kubernetes: 1.",
         "url": "/devops/debugging-kubernetes-performance.html"
     },
     {
         "id": 35,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Software Delivery - CI/CD\" %} Software Delivery Popular Software Delivery ETL (Extract, Transform, Load) Github Source Control Management Workflow Management Apache Airflow Apache NiFi Containerization Docker Platform to automate the deployment of applications inside  portable containers, ensuring consistency across different environments. Kubernetes Platform to automates the deployment, scaling, and management of containerized applications across clusters of machines. Links {% include footer.html %}",
+        "content": "{% include menu.html title=\"Software Delivery - CI/CD\" %} Software Delivery Popular Software Delivery ETL (Extract, Transform, Load) Github Source Control Management Workflow Management Apache Airflow Apache NiFi Containerization Docker Platform to automate the deployment of applications inside portable containers, ensuring consistency across different environments. Kubernetes Platform to automates the deployment, scaling, and management of containerized applications across clusters of machines.",
         "url": "/devops/index.html"
     },
     {
         "id": 36,
         "title": "github.html",
-        "content": "---\n---\n{% include menu.html title=\"GitHub Overview\" %} GitHub Overview What is GitHub? GitHub is a web-based platform that provides hosting for software development and version control using Git. It offers a wide range of collaboration features, including repositories, pull requests, issues, and wikis. GitHub has become one of the most popular platforms for developers and teams to collaborate on code, manage projects, and contribute to open-source software.",
+        "content": "{% include menu.html title=\"GitHub Overview\" %} GitHub Overview What is GitHub? GitHub is a web-based platform that provides hosting for software development and version control using Git.",
         "url": "/devops/github.html"
     },
     {
         "id": 37,
         "title": "general-101.html",
-        "content": "---\n---\n{% include menu.html title=\"PySpark and Databricks Deep Dive 101\" %} PySpark and Databricks Deep Dive 101 1. PySpark Overview PySpark is the Python API for Apache Spark, an open-source distributed computing system. It enables scalable, big data processing through parallel computing. PySpark provides access to Spark\u2019s features, such as in-memory computation, fault tolerance, and distributed data processing.",
+        "content": "{% include menu.html title=\"PySpark and Databricks Deep Dive 101\" %} PySpark and Databricks Deep Dive 101 1. PySpark Overview PySpark is the Python API for Apache Spark, an open-source distributed computing system.",
         "url": "/devops/general-101.html"
     },
     {
         "id": 38,
         "title": "apache-nifi.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache NiFi\" %} Apache NiFi Overview Apache NiFi is an open-source data integration tool designed to automate the flow of data between systems. It provides a user-friendly web-based interface that allows users to design, monitor, and control data flows through a visual programming approach. NiFi is particularly useful for organizations that need to move large volumes of data from diverse sources to various destinations in a scalable, reliable, and efficient manner. Key Features of Apache NiFi: Data Flow Automation: NiFi automates the transfer of data between systems, handling tasks such as data ingestion, routing, transformation, and delivery.",
+        "content": "{% include menu.html title=\"Apache NiFi\" %} Apache NiFi Overview Apache NiFi is an open-source data integration tool designed to automate the flow of data between systems. It provides a user-friendly web-based interface that allows users to design, monitor, and control data flows through a visual programming approach.",
         "url": "/devops/apache-nifi.html"
     },
     {
         "id": 39,
         "title": "etl-pipeline.html",
-        "content": "---\n---\n{% include menu.html title=\"Key Points of ETL (Extract, Transform, Load)\" %} ETL (Extract, Transform, Load) 1. Extract Data Sources - ETL begins with data extraction from various sources such as databases, APIs, files, or cloud services. Data Formats - Data can be in different formats (e.g., CSV, JSON, XML) and needs to be accurately extracted. Handling Errors - During extraction, it's crucial to handle errors like missing data, connectivity issues, and ensure data integrity.",
+        "content": "{% include menu.html title=\"Key Points of ETL (Extract, Transform, Load)\" %} ETL (Extract, Transform, Load) 1. Extract Data Sources - ETL begins with data extraction from various sources such as databases, APIs, files, or cloud services.",
         "url": "/devops/etl-pipeline.html"
     },
     {
         "id": 40,
         "title": "docker.html",
-        "content": "---\n---\n{% include menu.html title=\"Key Points about Docker\" %} Key Points about Docker Containerization : Docker enables the creation and management of containers, which are lightweight, portable, and isolated environments that bundle an application and its dependencies together. This ensures consistency across different environments, such as development, testing, and production. Images : Docker containers are created from images, which are read-only templates with instructions on how to create a container. Docker images are typically built using a Dockerfile, which contains a series of instructions to assemble the image.",
+        "content": "{% include menu.html title=\"Key Points about Docker\" %} Key Points about Docker Containerization : Docker enables the creation and management of containers, which are lightweight, portable, and isolated environments that bundle an application and its dependencies together. This ensures consistency across different environments, such as development, testing, and production.",
         "url": "/devops/docker.html"
     },
     {
         "id": 41,
         "title": "apache-airflow.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Airflow Overview\" %} Apache Airflow Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. It allows you to define your workflows as Directed Acyclic Graphs (DAGs) using Python, where each node in the graph represents a task. Key Features Dynamic Pipelines -  Workflows are defined as code, enabling dynamic pipeline generation. Scalability -  Airflow can scale to support complex workflows across a large number of tasks and workers.",
+        "content": "{% include menu.html title=\"Apache Airflow Overview\" %} Apache Airflow Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. It allows you to define your workflows as Directed Acyclic Graphs (DAGs) using Python, where each node in the graph represents a task.",
         "url": "/devops/apache-airflow.html"
     },
     {
         "id": 42,
         "title": "Kubernetes.html",
-        "content": "---\n---\n{% include menu.html title=\"Kubernetes Overview\" %} Kubernetes Overview What is Kubernetes? Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF). What is Kubernetes used for?",
+        "content": "{% include menu.html title=\"Kubernetes Overview\" %} Kubernetes Overview What is Kubernetes? Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.",
         "url": "/devops/Kubernetes.html"
     },
     {
         "id": 43,
         "title": "software-delivery.html",
-        "content": "---\n---\n{% include menu.html title=\"Software Delivery - CI/CD Tools\" %} Software Delivery Software delivery refers to the process of developing, testing, and deploying software applications to end-users or production environments. It encompasses the entire lifecycle, from initial development and coding through quality assurance, staging, and finally, deployment. Key aspects include: Development: Writing and building the software code. Testing: Ensuring the software functions as intended, including unit, integration, and performance testing.",
+        "content": "{% include menu.html title=\"Software Delivery - CI/CD Tools\" %} Software Delivery Software delivery refers to the process of developing, testing, and deploying software applications to end-users or production environments. It encompasses the entire lifecycle, from initial development and coding through quality assurance, staging, and finally, deployment.",
         "url": "/devops/software-delivery.html"
     },
     {
         "id": 44,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak's Links\" %} Kevin's Links Machine Learning Colab Research Google Naive Bayes Classifier Confusion Matrix Computer Vision Computer Vision Pipeline Otsu Binarization Method Reflection Transformations {% include footer.html %}",
+        "content": "{% include menu.html title=\"Kevin Luzbetak's Links\" %} Kevin's Links Machine Learning Colab Research Google Naive Bayes Classifier Confusion Matrix Computer Vision Computer Vision Pipeline Otsu Binarization Method Reflection Transformations {% include footer.html %}",
         "url": "/links/index.html"
     },
     {
         "id": 45,
         "title": "Python-Search-Algorithms.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Search Algorithms Find the Intersection of Two Lists def list_intersection(list1: list, list2: list) -> list:\n    return list(set(list1) & set(list2))\n\nprint(list_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [3, 4] Binary Search The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element. If they are equal, we return the index of the middle element as the result. If the middle element is less than the target element, we discard the first half of the array and repeat the same process on the second half.",
+        "content": "{% include menu.html title=\"Python Algorithms\" %} Python Search Algorithms Find the Intersection of Two Lists def list_intersection(list1: list, list2: list) -> list:   return list(set(list1) & set(list2)) print(list_intersection([1, 2, 3, 4], [3, 4, 5, 6])) # Output: [3, 4] Binary Search The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element.",
         "url": "/programming/Python-Search-Algorithms.html"
     },
     {
         "id": 46,
         "title": "Python-String-Algorithms.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python String Algorithms Reverse a String def reverse_string(s: str) -> str:\n        return s[::-1]\n    \nprint(reverse_string(\"hello\"))  # Output: \"olleh\" Count the Number of Vowels in a String def count_vowels(s: str) -> int:\n    vowels = 'aeiouAEIOU'\n    return sum(1 for char in s if char in vowels)\n    \n print(count_vowels(\"hello world\"))  # Output: 3 Find the First Non-Repeated Character in a String def first_non_repeated_char(s: str) -> str:\n    counts = {}\n    for char in s:\n        counts[char] = counts.get(char, 0) + 1\n    for char in s:\n        if counts[char] == 1:\n            return char\n    return None\nprint(first_non_repeated_char(\"swiss\"))  # Output: \"w\" Longest Common Subsequence The longest_common_subsequence function calculates the length and the actual sequence of the longest common subsequence (LCS) between two input strings. It uses dynamic programming to build a 2D table (dp) that tracks the LCS length up to each pair of indices. After filling the table, the function backtracks through it to reconstruct the LCS. The result is the length of the LCS and the sequence itself.",
+        "content": "{% include menu.html title=\"Python Algorithms\" %} Python String Algorithms Reverse a String def reverse_string(s: str) -> str:     return s[::-1]   print(reverse_string(\"hello\")) # Output: \"olleh\" Count the Number of Vowels in a String def count_vowels(s: str) -> int:   vowels = 'aeiouAEIOU'   return sum(1 for char in s if char in vowels)    print(count_vowels(\"hello world\")) # Output: 3 Find the First Non-Repeated Character in a String def first_non_repeated_char(s: str) -> str:   counts = {}   for char in s:     counts[char] = counts.get(char, 0) + 1   for char in s:     if counts[char] == 1:       return char   return None print(first_non_repeated_char(\"swiss\")) # Output: \"w\" Longest Common Subsequence The longest_common_subsequence function calculates the length and the actual sequence of the longest common subsequence (LCS) between two input strings. It uses dynamic programming to build a 2D table (dp) that tracks the LCS length up to each pair of indices.",
         "url": "/programming/Python-String-Algorithms.html"
     },
     {
         "id": 47,
         "title": "Python-Coding-Exercise-Algorithms.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Coding Exercise Algorithms\" %} Python Coding Exercise Algorithms 1. Reverse a String def reverse_string(s: str ) -> str : return s[::-1] # Example usage print(reverse_string( \"hello\" )) # Output: \"olleh\" 2. Find the Largest Number in a List def find_largest(nums: list ) -> int : return max(nums) # Example usage print(find_largest([1, 2, 3, 4, 5])) # Output: 5 3. Check if a Number is a Palindrome def is_palindrome(n: int ) -> bool : return str (n) == str (n)[::-1] # Example usage print(is_palindrome(121)) # Output: True print(is_palindrome(123)) # Output: False 4.",
+        "content": "{% include menu.html title=\"Python Coding Exercise Algorithms\" %} Python Coding Exercise Algorithms 1. Reverse a String def reverse_string(s: str ) -> str : return s[::-1] # Example usage print(reverse_string( \"hello\" )) # Output: \"olleh\" 2.",
         "url": "/programming/Python-Coding-Exercise-Algorithms.html"
     },
     {
         "id": 48,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Programming Algorithms\" %} Programming Algorithms Python Python Algorithms Python String Algorithms Python Search Algorithms Python Function OOP Data Structure Python Programming Language Code: Fibonacci Generator PySpark Notebooks Dataset Analysis for Training Model Aggregation Graph Plotting Golang: Query MySQL Python: Word Processor Application Golang: Query MySQL Python: Word Processor Application {% include footer.html %}",
+        "content": "{% include menu.html title=\"Programming Algorithms\" %} Programming Algorithms Python Python Algorithms Python String Algorithms Python Search Algorithms Python Function OOP Data Structure Python Programming Language Code: Fibonacci Generator PySpark Notebooks Dataset Analysis for Training Model Aggregation Graph Plotting Golang: Query MySQL Python: Word Processor Application Golang: Query MySQL Python: Word Processor Application {% include footer.html %}",
         "url": "/programming/index.html"
     },
     {
         "id": 49,
         "title": "101.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Two Sum Problem This Python function two_sum is designed to solve the \"two-sum\" problem. The problem is to find two numbers in a list (nums) that add up to a specific target value (target). The function returns the indices of these two numbers in the list. def two_sum(nums: list, target: int) -> list:\n    num_map = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_map:\n            return [num_map[complement], i]\n        num_map[num] = i\n\nprint(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1] Remove Duplicates from a List def remove_duplicates(nums: list) -> list:\n    return list(set(nums))\n    \nprint(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5] Two Sum The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value).",
+        "content": "{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Two Sum Problem This Python function two_sum is designed to solve the \"two-sum\" problem. The problem is to find two numbers in a list (nums) that add up to a specific target value (target).",
         "url": "/programming/101.html"
     },
     {
         "id": 50,
         "title": "Python-Programming-Language.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Programming Language\" %} Python Programming Language 1. Data Structures Lists, Tuples, Sets, and Dictionaries: Understand the properties and use cases of each. Comprehensions: Efficient ways to create lists, sets, and dictionaries. Immutable vs. Mutable Types: Differences and their implications on program behavior.",
+        "content": "{% include menu.html title=\"Python Programming Language\" %} Python Programming Language 1. Data Structures Lists, Tuples, Sets, and Dictionaries: Understand the properties and use cases of each.",
         "url": "/programming/Python-Programming-Language.html"
     },
     {
         "id": 51,
         "title": "mysql-lag-function.html",
-        "content": "---\n---\n{% include menu.html title=\"MySQL LAG Function\" %} MySQL LAG Function Explanation Overview The LAG function in MySQL is a window function that allows you to access data from a previous row within the same result set. It is particularly useful for calculating differences between sequential rows, such as in time series analysis. SQL Query Explanation SELECT ROUND( AVG (daily_increase), 4) AS avg_daily_increase FROM ( SELECT dt1, (price - LAG (price) OVER ( ORDER BY dt1)) AS daily_increase FROM binance.klines_1d WHERE dt1 >= CURDATE () - INTERVAL %d DAY ) AS price_changes WHERE daily_increase IS NOT NULL ; 1. Inner Query Purpose: To calculate the daily price increase by comparing the current day's price ( price ) with the previous day's price.",
+        "content": "{% include menu.html title=\"MySQL LAG Function\" %} MySQL LAG Function Explanation Overview The LAG function in MySQL is a window function that allows you to access data from a previous row within the same result set. It is particularly useful for calculating differences between sequential rows, such as in time series analysis.",
         "url": "/programming/mysql-lag-function.html"
     },
     {
         "id": 52,
         "title": "Python Functions Example",
-        "content": "---\n---\n{% include menu.html title=\"Python CSV Data Structures\" %} Python CSV Data Structures Reading CSV Data into Different Data Structures import csv # Sample CSV data with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) # Skipping the header next (reader) # Reading into a list data_list = [row for row in reader] with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) next (reader) # Reading into a tuple data_tuple = tuple (reader) with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.reader(file) next (reader) # Reading into a set data_set = { tuple (row) for row in reader} with open ( 'data.csv' , 'r' ) as file:\n    reader = csv.DictReader(file) # Reading into a dictionary data_dict = [row for row in reader] print ( 'List:' , data_list) print ( 'Tuple:' , data_tuple) print ( 'Set:' , data_set) print ( 'Dictionary:' , data_dict) Explanation This Python program demonstrates how to read data from a CSV file and load it into different data structures like Lists, Tuples, Sets, and Dictionaries. List: A dynamic array that holds the rows of the CSV as individual list elements. Tuple: An immutable sequence that holds the rows of the CSV as individual tuple elements. Set: An unordered collection of unique elements, with each row being a tuple.",
+        "content": "{% include menu.html title=\"Python CSV Data Structures\" %} Python CSV Data Structures Reading CSV Data into Different Data Structures import csv # Sample CSV data with open ( 'data.csv' , 'r' ) as file:   reader = csv.reader(file) # Skipping the header next (reader) # Reading into a list data_list = [row for row in reader] with open ( 'data.csv' , 'r' ) as file:   reader = csv.reader(file) next (reader) # Reading into a tuple data_tuple = tuple (reader) with open ( 'data.csv' , 'r' ) as file:   reader = csv.reader(file) next (reader) # Reading into a set data_set = { tuple (row) for row in reader} with open ( 'data.csv' , 'r' ) as file:   reader = csv.DictReader(file) # Reading into a dictionary data_dict = [row for row in reader] print ( 'List:' , data_list) print ( 'Tuple:' , data_tuple) print ( 'Set:' , data_set) print ( 'Dictionary:' , data_dict) Explanation This Python program demonstrates how to read data from a CSV file and load it into different data structures like Lists, Tuples, Sets, and Dictionaries. List: A dynamic array that holds the rows of the CSV as individual list elements.",
         "url": "/programming/Python-Function-OOP-Data-Structure.html"
     },
     {
         "id": 53,
         "title": "Sudoku-Board-Verification.html",
-        "content": "---\n---\n{% include menu.html title=\"Sudoku Board Verification\" %} Sudoku Board Verification #!/usr/bin/env python\nimport pprint\n\n# ----------------------------------------------------------------------------#\n# Define a 9x9 matrix representing a Sudoku board\nmatrix1 = [\n    [7, 1, 8, 5, 3, 2, 9, 4, 6],\n    [5, 3, 2, 6, 9, 4, 1, 8, 7],\n    [6, 9, 4, 7, 1, 8, 3, 2, 5],\n    [1, 2, 7, 3, 4, 5, 8, 6, 9],\n    [9, 8, 6, 1, 2, 7, 4, 5, 3],\n    [3, 4, 5, 9, 8, 6, 2, 7, 1],\n    [4, 6, 3, 8, 7, 9, 5, 1, 2],\n    [8, 7, 9, 2, 5, 1, 6, 3, 4],\n    [2, 5, 1, 4, 6, 3, 7, 9, 8],\n]\n\n# ----------------------------------------------------------------------------#\ndef verify_sudoku_board(board, value):\n    \"\"\"\n    Verifies whether a given 9x9 Sudoku board is valid by checking that\n    each row, column, and 3x3 sub-grid (window) sums to a specified value. Args:\n        board (list of list of int): The 9x9 Sudoku board represented as a list of lists. value (int): The expected sum of each row, column, and 3x3 sub-grid. Returns:\n        bool: True if the board is valid according to Sudoku rules, False otherwise.\n    \"\"\"",
+        "content": "{% include menu.html title=\"Sudoku Board Verification\" %} Sudoku Board Verification #!/usr/bin/env python import pprint # ----------------------------------------------------------------------------# # Define a 9x9 matrix representing a Sudoku board matrix1 = [   [7, 1, 8, 5, 3, 2, 9, 4, 6],   [5, 3, 2, 6, 9, 4, 1, 8, 7],   [6, 9, 4, 7, 1, 8, 3, 2, 5],   [1, 2, 7, 3, 4, 5, 8, 6, 9],   [9, 8, 6, 1, 2, 7, 4, 5, 3],   [3, 4, 5, 9, 8, 6, 2, 7, 1],   [4, 6, 3, 8, 7, 9, 5, 1, 2],   [8, 7, 9, 2, 5, 1, 6, 3, 4],   [2, 5, 1, 4, 6, 3, 7, 9, 8], ] # ----------------------------------------------------------------------------# def verify_sudoku_board(board, value):   \"\"\"   Verifies whether a given 9x9 Sudoku board is valid by checking that   each row, column, and 3x3 sub-grid (window) sums to a specified value. Args:     board (list of list of int): The 9x9 Sudoku board represented as a list of lists.",
         "url": "/programming/Sudoku-Board-Verification.html"
     },
     {
         "id": 54,
         "title": "Python-Algorithms.html",
-        "content": "---\n---\n{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Remove Duplicates from a List def remove_duplicates(nums: list) -> list:\n    return list(set(nums))\n    \nprint(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5] Two Sum The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value). We use a nested loop to iterate through the remaining elements of the array and check if their sum is equal to the target value. If it is, we return the indices of both elements as the result. def two_sum(arr, target):\n    for i in range(len(arr)):\n        for j in range(i+1, len(arr)):\n            if arr[i] + arr[j] == target:\n                return [i, j]\n    return [-1, -1]\n\nprint(two_sum([2, 7, 11, 15], 9))\n# Output: [0, 1] Merge Two Sorted Lists def merge_sorted_lists(list1: list, list2: list) -> list:\n    merged = []\n    i = j = 0\n    while i < len(list1) and j < len(list2):\n        if list1[i] < list2[j]:\n            merged.append(list1[i])\n            i += 1\n        else:\n            merged.append(list2[j])\n            j += 1\n    merged.extend(list1[i:])\n    merged.extend(list2[j:])\n    return merged\n\nprint(merge_sorted_lists([1, 3, 5], [2, 4, 6]))  # Output: [1, 2, 3, 4, 5, 6] Fibonacci Series The Fibonacci series algorithm works by defining a recursive function that takes an integer argument n. If n is 0 or 1, we return the value of n as the result.",
+        "content": "{% include menu.html title=\"Python Algorithms\" %} Python Algorithms Remove Duplicates from a List def remove_duplicates(nums: list) -> list:   return list(set(nums))   print(remove_duplicates([1, 2, 2, 3, 4, 4, 5])) # Output: [1, 2, 3, 4, 5] Two Sum The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value). We use a nested loop to iterate through the remaining elements of the array and check if their sum is equal to the target value.",
         "url": "/programming/Python-Algorithms.html"
     },
     {
         "id": 55,
         "title": " Hamming and Levenshtein distances ",
-        "content": "Hamming and Levenshtein distances # Import the necessary libraries\nimport math\nfrom collections import Counter\nimport numpy as np\n\ndef hamming_distance(str1, str2):\n    \"\"\"Calculate the Hamming distance between two strings. Args:\n        str1 (string): The first string for comparison. str2 (string): The second string for comparison. Returns:\n        int: The Hamming distance between the two strings.\n    \"\"\"",
+        "content": "Hamming and Levenshtein distances # Import the necessary libraries import math from collections import Counter import numpy as np def hamming_distance(str1, str2):   \"\"\"Calculate the Hamming distance between two strings. Args:     str1 (string): The first string for comparison.",
         "url": "/programming/algorithms2.html"
     },
     {
         "id": 56,
         "title": "Python Code for 12 Popular Algorithms",
-        "content": "Python Code for 12 Popular Algorithms Python Code for 12 Popular Algorithms in Coding Interviews The following Python code implements the 12 most popular algorithms commonly asked in coding interviews: Binary Search : Implement a binary search algorithm to find an element in a sorted array. Two Sum : Given an array of integers, find two elements that add up to a specific target value. Longest Common Subsequence : Find the longest common subsequence between two strings. Merge Sort : Implement merge sort algorithm to sort an array of integers.",
+        "content": "Python Code for 12 Popular Algorithms Python Code for 12 Popular Algorithms in Coding Interviews The following Python code implements the 12 most popular algorithms commonly asked in coding interviews: Binary Search : Implement a binary search algorithm to find an element in a sorted array. Two Sum : Given an array of integers, find two elements that add up to a specific target value.",
         "url": "/programming/algorithms.html"
     },
     {
         "id": 57,
         "title": "Fibonacci-Generator.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} Fibonacci Generator def fibonacci_generator():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n\nfib_gen = fibonacci_generator()\n\n# Generate and print the first 10 Fibonacci numbers\nfor _ in range(10):\n    print(next(fib_gen)) Fibonacci Generator Explained This Python code defines a generator function that produces Fibonacci numbers indefinitely: Function Definition : The function fibonacci_generator() is defined to yield an infinite sequence of Fibonacci numbers. Yield Statement : The yield statement produces the current value of a and pauses the function's execution, preserving its state for the next iteration. Updating Values : After yielding, a and b are updated to the next two values in the Fibonacci sequence: a takes the value of b , and b takes the sum of the old a and b . Example Usage : The generator is used to print the first 10 Fibonacci numbers by iterating over it with a for loop.",
+        "content": "{% include menu.html title=\"Kevin Luzbetak Github Pages\" %} Fibonacci Generator def fibonacci_generator():   a, b = 0, 1   while True:     yield a     a, b = b, a + b fib_gen = fibonacci_generator() # Generate and print the first 10 Fibonacci numbers for _ in range(10):   print(next(fib_gen)) Fibonacci Generator Explained This Python code defines a generator function that produces Fibonacci numbers indefinitely: Function Definition : The function fibonacci_generator() is defined to yield an infinite sequence of Fibonacci numbers. Yield Statement : The yield statement produces the current value of a and pauses the function's execution, preserving its state for the next iteration.",
         "url": "/programming/Fibonacci-Generator.html"
     },
     {
         "id": 58,
         "title": "Amazon-RDS.html",
-        "content": "---\n---\n{% include menu.html title=\"Amazon RDS\" %} Amazon RDS (Relational Database Service) Amazon RDS (Relational Database Service) is a managed relational database service provided by AWS that simplifies the setup, operation, and scaling of a relational database in the cloud. It supports several popular database engines, including Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server. Key Features: Automated Management: RDS automates time-consuming tasks such as hardware provisioning, database setup, patching, and backups, allowing you to focus on your application. Scalability: RDS allows you to easily scale your database\u2019s compute and storage resources with just a few clicks or API calls to meet your application's demands.",
+        "content": "{% include menu.html title=\"Amazon RDS\" %} Amazon RDS (Relational Database Service) Amazon RDS (Relational Database Service) is a managed relational database service provided by AWS that simplifies the setup, operation, and scaling of a relational database in the cloud. It supports several popular database engines, including Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server.",
         "url": "/aws/Amazon-RDS.html"
     },
     {
         "id": 59,
         "title": "AWS-CloudWatch.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS-CloudWatch\" %} AWS CloudWatch AWS CloudWatch is a comprehensive monitoring and observability service provided by Amazon Web Services (AWS). It is designed to help you monitor and track the performance of your applications, infrastructure, and services running on AWS and on-premises environments. CloudWatch collects and visualizes metrics, logs, and events, allowing you to gain insights into your system's performance and operational health. Key Features: Metrics Collection: CloudWatch collects metrics from AWS services such as EC2, RDS, Lambda, and more, as well as custom metrics from your applications.",
+        "content": "{% include menu.html title=\"AWS-CloudWatch\" %} AWS CloudWatch AWS CloudWatch is a comprehensive monitoring and observability service provided by Amazon Web Services (AWS). It is designed to help you monitor and track the performance of your applications, infrastructure, and services running on AWS and on-premises environments.",
         "url": "/aws/AWS-CloudWatch.html"
     },
     {
         "id": 60,
         "title": "Amazon-S3.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS S3\" %} Amazon S3 (Simple Storage Service) is a scalable object storage service provided by Amazon Web Services (AWS). It is designed for storing and retrieving any amount of data from anywhere on the internet, offering a range of features that make it suitable for a wide variety of use cases, from data backup to serving large-scale applications. Key Features of Amazon S3: Scalability: S3 is designed to handle virtually unlimited amounts of data, automatically scaling up or down based on your needs. Durability and Availability: S3 provides 99.99% durability by replicating data across multiple geographically dispersed data centers (AWS regions).",
+        "content": "{% include menu.html title=\"AWS S3\" %} Amazon S3 (Simple Storage Service) is a scalable object storage service provided by Amazon Web Services (AWS). It is designed for storing and retrieving any amount of data from anywhere on the internet, offering a range of features that make it suitable for a wide variety of use cases, from data backup to serving large-scale applications.",
         "url": "/aws/Amazon-S3.html"
     },
     {
         "id": 61,
         "title": "ETL-Pipeline-AWS.html",
-        "content": "---\n---\n{% include menu.html title=\"Building an ETL Pipeline on AWS\" %} Building an ETL Pipeline on AWS 1. Data Ingestion (Extract) AWS S3 (Simple Storage Service): Store raw data in S3 buckets. Data can come from various sources like logs, databases, or third-party APIs. AWS Kinesis or AWS Data Streams: For real-time data ingestion, use Kinesis to collect and process data streams.",
+        "content": "{% include menu.html title=\"Building an ETL Pipeline on AWS\" %} Building an ETL Pipeline on AWS 1. Data Ingestion (Extract) AWS S3 (Simple Storage Service): Store raw data in S3 buckets.",
         "url": "/aws/ETL-Pipeline-AWS.html"
     },
     {
         "id": 62,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Amazon AWS\" %} Building an ETL Pipeline on AWS Data Ingestion (Extract) AWS Glue Data Catalog Manage metadata and keep track of your data schema across the pipeline. AWS Kinesis Data Streams For real-time data ingestion, use Kinesis to collect and process data streams. Amazon S3 (Simple Storage Service) Store raw data in S3 buckets. Data can come from various sources like logs, databases, or third-party APIs.",
+        "content": "{% include menu.html title=\"Amazon AWS\" %} Building an ETL Pipeline on AWS Data Ingestion (Extract) AWS Glue Data Catalog Manage metadata and keep track of your data schema across the pipeline. AWS Kinesis Data Streams For real-time data ingestion, use Kinesis to collect and process data streams.",
         "url": "/aws/index.html"
     },
     {
         "id": 63,
         "title": "AWS-EMR.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS EMR (Elastic MapReduce)\" %} AWS EMR (Elastic MapReduce) AWS EMR (Elastic MapReduce) is a cloud-based big data platform that provides a managed Hadoop framework, enabling you to process and analyze vast amounts of data quickly and cost-effectively. It allows you to run big data frameworks like Apache Hadoop, Apache Spark, HBase, Presto, Flink, and others on the AWS cloud. Key Features: Managed Service: AWS EMR handles the provisioning, configuration, and tuning of the cluster, freeing you from managing the underlying infrastructure. Scalability: EMR can easily scale up or down based on your data processing needs, allowing you to adjust resources to optimize costs.",
+        "content": "{% include menu.html title=\"AWS EMR (Elastic MapReduce)\" %} AWS EMR (Elastic MapReduce) AWS EMR (Elastic MapReduce) is a cloud-based big data platform that provides a managed Hadoop framework, enabling you to process and analyze vast amounts of data quickly and cost-effectively. It allows you to run big data frameworks like Apache Hadoop, Apache Spark, HBase, Presto, Flink, and others on the AWS cloud.",
         "url": "/aws/AWS-EMR.html"
     },
     {
         "id": 64,
         "title": "AWS-Glue-Workflow.html",
-        "content": "---\n---\n{% include menu.html title=\"Amazon AWS\" %} AWS Glue Workflow AWS Glue Workflow is a feature of AWS Glue that allows you to create and manage complex ETL (Extract, Transform, Load) workflows. It helps you orchestrate multiple ETL jobs and crawlers in a sequence or in parallel, enabling you to automate and manage the flow of data through your ETL processes. Key Features: Orchestration of ETL Jobs: Glue Workflow allows you to sequence and organize multiple ETL jobs and crawlers, defining dependencies between them to ensure that they run in the correct order. Conditional Execution: You can set up conditional logic within your workflows to execute different paths based on the success or failure of previous jobs.",
+        "content": "{% include menu.html title=\"Amazon AWS\" %} AWS Glue Workflow AWS Glue Workflow is a feature of AWS Glue that allows you to create and manage complex ETL (Extract, Transform, Load) workflows. It helps you orchestrate multiple ETL jobs and crawlers in a sequence or in parallel, enabling you to automate and manage the flow of data through your ETL processes.",
         "url": "/aws/AWS-Glue-Workflow.html"
     },
     {
         "id": 65,
         "title": "AWS-Kinesis-Data-Streams.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Kinesis or AWS Data Streams\" %} AWS Kinesis or AWS Data Streams AWS Kinesis and AWS Data Streams refer to the same service, with \"AWS Kinesis Data Streams\" being the full name. It's a service designed for real-time data streaming, allowing you to collect, process, and analyze data as it arrives. Key Features: Real-Time Processing: Allows ingestion and processing of large streams of data in real-time. Scalability: Easily scales to handle any volume of streaming data.",
+        "content": "{% include menu.html title=\"AWS Kinesis or AWS Data Streams\" %} AWS Kinesis or AWS Data Streams AWS Kinesis and AWS Data Streams refer to the same service, with \"AWS Kinesis Data Streams\" being the full name. It's a service designed for real-time data streaming, allowing you to collect, process, and analyze data as it arrives.",
         "url": "/aws/AWS-Kinesis-Data-Streams.html"
     },
     {
         "id": 66,
         "title": "AWS-Step-Functions.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Step Functions\" %} AWS Step Functions AWS Step Functions is a serverless orchestration service that allows you to sequence AWS services and automate business processes. It enables you to build and run complex workflows by defining a state machine in which each step (or state) performs a task, such as invoking an AWS Lambda function, making API calls, or waiting for human input. Key Features: Visual Workflow Design: Step Functions provides a visual workflow editor where you can easily design and manage workflows by arranging states in a flowchart-like interface. Serverless Orchestration: It orchestrates the execution of tasks across multiple AWS services without requiring you to manage servers or infrastructure.",
+        "content": "{% include menu.html title=\"AWS Step Functions\" %} AWS Step Functions AWS Step Functions is a serverless orchestration service that allows you to sequence AWS services and automate business processes. It enables you to build and run complex workflows by defining a state machine in which each step (or state) performs a task, such as invoking an AWS Lambda function, making API calls, or waiting for human input.",
         "url": "/aws/AWS-Step-Functions.html"
     },
     {
         "id": 67,
         "title": "AWS.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes. The Glue Data Catalog serves as the metadata backbone for data lakes and data warehouses on AWS. Key Features: Centralized Metadata Storage: The Data Catalog stores metadata about all your data sources in a single place, making it easy to search and manage data assets across your AWS environment.",
+        "content": "{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes.",
         "url": "/aws/AWS.html"
     },
     {
         "id": 68,
         "title": "AWS-Config-Inspector.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Config Inspector\" %} AWS Config AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. It continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. This helps you maintain compliance with organizational policies and regulatory standards. Key Features: Continuous Monitoring: AWS Config continuously records changes to the configuration of your AWS resources, providing a detailed view of the current and historical state of each resource.",
+        "content": "{% include menu.html title=\"AWS Config Inspector\" %} AWS Config AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. It continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations.",
         "url": "/aws/AWS-Config-Inspector.html"
     },
     {
         "id": 69,
         "title": "KMS-Key-Management-Service.html",
-        "content": "---\n---\n{% include menu.html title=\"KMS - Key Management Service\" %} AWS Key Management Service (KMS) AWS Key Management Service (KMS) is a managed service that enables you to create, control, and manage encryption keys used to secure your data across AWS services and applications. KMS integrates seamlessly with various AWS services to provide a unified and consistent approach to encryption, making it easier to protect sensitive data in the cloud. Key Features: Centralized Key Management: KMS provides a centralized repository for creating, storing, and managing cryptographic keys, allowing you to control encryption across your AWS environment from a single service. Integration with AWS Services: KMS integrates with a wide range of AWS services, including S3, RDS, EBS, Lambda, and others, enabling you to encrypt data at rest and in transit with minimal configuration.",
+        "content": "{% include menu.html title=\"KMS - Key Management Service\" %} AWS Key Management Service (KMS) AWS Key Management Service (KMS) is a managed service that enables you to create, control, and manage encryption keys used to secure your data across AWS services and applications. KMS integrates seamlessly with various AWS services to provide a unified and consistent approach to encryption, making it easier to protect sensitive data in the cloud.",
         "url": "/aws/KMS-Key-Management-Service.html"
     },
     {
         "id": 70,
         "title": "Lambda-Serverless-Computing.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Lambda\" %} AWS Lambda: AWS Lambda is a serverless computing service provided by Amazon Web Services (AWS). It allows you to run code without provisioning or managing servers, enabling you to build applications that respond quickly to new information. Lambda automatically scales your applications by running code in response to events, such as changes in data, shifts in system state, or user actions, all without requiring you to manage the underlying infrastructure. Key Features of AWS Lambda: Event-Driven Execution: Lambda functions are triggered by events, which can come from a wide variety of AWS services or custom event sources.",
+        "content": "{% include menu.html title=\"AWS Lambda\" %} AWS Lambda: AWS Lambda is a serverless computing service provided by Amazon Web Services (AWS). It allows you to run code without provisioning or managing servers, enabling you to build applications that respond quickly to new information.",
         "url": "/aws/Lambda-Serverless-Computing.html"
     },
     {
         "id": 71,
         "title": "Auto-Scaling-EC2-EMR.html",
-        "content": "---\n---\n{% include menu.html title=\"Auto Scaling EC2 EMR\" %} Auto Scaling for EC2/EMR Auto Scaling for Amazon EC2 and EMR (Elastic MapReduce) is a service that automatically adjusts the number of EC2 instances or EMR cluster nodes in your application or data processing environment based on the current demand. This ensures that you have the right amount of resources to handle the load while optimizing cost efficiency by scaling down when demand is low. Key Features: Dynamic Scaling: Automatically increase or decrease the number of EC2 instances or EMR nodes in response to real-time changes in demand, ensuring that your application or data processing job always has the necessary resources. Scheduled Scaling: Define scaling schedules based on predictable patterns (e.g., time of day, day of the week) to automatically adjust the capacity of your resources at specific times.",
+        "content": "{% include menu.html title=\"Auto Scaling EC2 EMR\" %} Auto Scaling for EC2/EMR Auto Scaling for Amazon EC2 and EMR (Elastic MapReduce) is a service that automatically adjusts the number of EC2 instances or EMR cluster nodes in your application or data processing environment based on the current demand. This ensures that you have the right amount of resources to handle the load while optimizing cost efficiency by scaling down when demand is low.",
         "url": "/aws/Auto-Scaling-EC2-EMR.html"
     },
     {
         "id": 72,
         "title": "AWS-CloudWatch-Events.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS CloudWatch Events\" %} AWS CloudWatch Events AWS CloudWatch Events is a service that delivers a near real-time stream of system events that describe changes in AWS resources. It enables you to respond to these changes by triggering functions, running scripts, or making API calls, making it a powerful tool for automating your cloud infrastructure. Key Features: Event-Driven Automation: CloudWatch Events allows you to automate tasks by triggering actions in response to specific events or conditions within your AWS environment. Integration with AWS Services: It integrates seamlessly with other AWS services like Lambda, EC2, S3, Step Functions, and more, enabling automated responses to events across your AWS ecosystem.",
+        "content": "{% include menu.html title=\"AWS CloudWatch Events\" %} AWS CloudWatch Events AWS CloudWatch Events is a service that delivers a near real-time stream of system events that describe changes in AWS resources. It enables you to respond to these changes by triggering functions, running scripts, or making API calls, making it a powerful tool for automating your cloud infrastructure.",
         "url": "/aws/AWS-CloudWatch-Events.html"
     },
     {
         "id": 73,
         "title": "AWS-Glue-ETL-Service.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Glue\" %} AWS Glue AWS Glue is a fully managed extract, transform, and load (ETL) service provided by Amazon Web Services (AWS). It is designed to simplify the process of moving, transforming, and preparing data for analytics. AWS Glue automates much of the work involved in data preparation, making it easier to extract data from various sources, transform it into the desired format, and load it into data stores for querying and analysis. Key Features: Serverless: AWS Glue is a serverless service, meaning you don't have to manage any infrastructure.",
+        "content": "{% include menu.html title=\"AWS Glue\" %} AWS Glue AWS Glue is a fully managed extract, transform, and load (ETL) service provided by Amazon Web Services (AWS). It is designed to simplify the process of moving, transforming, and preparing data for analytics.",
         "url": "/aws/AWS-Glue-ETL-Service.html"
     },
     {
         "id": 74,
         "title": "S3-Transfer-Acceleration.html",
-        "content": "---\n---\n{% include menu.html title=\"S3 Transfer Acceleration\" %} S3 Transfer Acceleration Amazon S3 Transfer Acceleration is a feature that enables fast, easy, and secure transfers of files over long distances between your clients and an S3 bucket. Transfer Acceleration leverages Amazon CloudFront's globally distributed edge locations to accelerate data transfer by routing your uploads to the closest edge location, which then routes the data to Amazon S3 over optimized network paths. Key Features: Improved Transfer Speeds: S3 Transfer Acceleration can significantly improve upload speeds for long-distance transfers by using Amazon CloudFront's edge locations to reduce latency. Global Reach: Transfer Acceleration uses Amazon's global network of edge locations, ensuring that data can be uploaded from anywhere in the world with improved speed and reliability.",
+        "content": "{% include menu.html title=\"S3 Transfer Acceleration\" %} S3 Transfer Acceleration Amazon S3 Transfer Acceleration is a feature that enables fast, easy, and secure transfers of files over long distances between your clients and an S3 bucket. Transfer Acceleration leverages Amazon CloudFront's globally distributed edge locations to accelerate data transfer by routing your uploads to the closest edge location, which then routes the data to Amazon S3 over optimized network paths.",
         "url": "/aws/S3-Transfer-Acceleration.html"
     },
     {
         "id": 75,
         "title": "IAM-Identity-Access-Management.html",
-        "content": "---\n---\n{% include menu.html title=\"IAM - Identity Access Management\" %} AWS Identity and Access Management (IAM) AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. IAM enables you to manage users, groups, and roles, and set permissions to allow or deny access to specific AWS services and resources. It is a foundational security feature in AWS, allowing you to enforce the principle of least privilege across your cloud environment. Key Features: Fine-Grained Access Control: IAM allows you to define granular permissions, enabling you to specify exactly what actions a user, group, or role can perform on specific AWS resources.",
+        "content": "{% include menu.html title=\"IAM - Identity Access Management\" %} AWS Identity and Access Management (IAM) AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. IAM enables you to manage users, groups, and roles, and set permissions to allow or deny access to specific AWS services and resources.",
         "url": "/aws/IAM-Identity-Access-Management.html"
     },
     {
         "id": 76,
         "title": "AWS-Glue-Data-Catalog.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes. The Glue Data Catalog serves as the metadata backbone for data lakes and data warehouses on AWS. Key Features: Centralized Metadata Storage: The Data Catalog stores metadata about all your data sources in a single place, making it easy to search and manage data assets across your AWS environment.",
+        "content": "{% include menu.html title=\"AWS Glue Data Catalog\" %} AWS Glue Data Catalog The AWS Glue Data Catalog is a centralized metadata repository that stores information about data sources, such as databases, tables, and schemas, in your AWS environment. It is a core component of AWS Glue, designed to make it easier to organize, discover, and manage data for your ETL (Extract, Transform, Load) processes.",
         "url": "/aws/AWS-Glue-Data-Catalog.html"
     },
     {
         "id": 77,
         "title": "AWS-CloudTrail.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS CloudTrail\" %} AWS CloudTrail AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. CloudTrail provides a comprehensive record of all API calls made within your AWS environment, including those made via the AWS Management Console, AWS SDKs, command-line tools, and other AWS services. Key Features: Event Logging: CloudTrail records all API calls and actions taken by users, roles, or services, providing a complete history of activity within your AWS account.",
+        "content": "{% include menu.html title=\"AWS CloudTrail\" %} AWS CloudTrail AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure.",
         "url": "/aws/AWS-CloudTrail.html"
     },
     {
         "id": 78,
         "title": "AWS-Redshift.html",
-        "content": "---\n---\n{% include menu.html title=\"AWS Redshift\" %} AWS Redshift AWS Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. It allows you to run complex analytical queries against structured and semi-structured data using standard SQL. Redshift is designed for high-performance querying and can handle large-scale data analytics workloads. Key Features: Scalable: Redshift can scale from a single 160 GB node to a multi-node cluster with petabytes of data, allowing you to adjust resources based on your workload.",
+        "content": "{% include menu.html title=\"AWS Redshift\" %} AWS Redshift AWS Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. It allows you to run complex analytical queries against structured and semi-structured data using standard SQL.",
         "url": "/aws/AWS-Redshift.html"
     },
     {
         "id": 79,
         "title": "Apache-Parquet.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Parquet Format\" %} Apache Parquet Format Apache Parquet is a columnar storage file format optimized for use with data processing systems like Apache Hadoop, Apache Spark, and cloud-based data lakes. It is highly efficient for large-scale data storage and retrieval, especially for analytic workloads. Key Features of Parquet: Columnar Storage: Parquet stores data in a columnar format, which makes it ideal for analytical queries that only need to access specific columns of data. This reduces I/O by minimizing the amount of data read.",
+        "content": "{% include menu.html title=\"Apache Parquet Format\" %} Apache Parquet Format Apache Parquet is a columnar storage file format optimized for use with data processing systems like Apache Hadoop, Apache Spark, and cloud-based data lakes. It is highly efficient for large-scale data storage and retrieval, especially for analytic workloads.",
         "url": "/data/Apache-Parquet.html"
     },
     {
         "id": 80,
         "title": "Apache-Iceberg.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Iceberg\" %} Apache Iceberg Apache Iceberg is a modern data management framework built to support large-scale data lakes with ACID transactions and flexible partitioning, making it highly scalable and efficient for managing complex datasets. Key Features: ACID Transactions: Iceberg ensures atomic, consistent, isolated, and durable (ACID) operations on data lakes, enabling reliable updates, deletes, and upserts. Schema Evolution: Supports schema changes (adding/removing columns) without breaking existing queries, allowing the data model to evolve smoothly. Partition Evolution: Iceberg supports dynamic partitioning, allowing partitions to evolve over time without rewriting the entire dataset.",
+        "content": "{% include menu.html title=\"Apache Iceberg\" %} Apache Iceberg Apache Iceberg is a modern data management framework built to support large-scale data lakes with ACID transactions and flexible partitioning, making it highly scalable and efficient for managing complex datasets. Key Features: ACID Transactions: Iceberg ensures atomic, consistent, isolated, and durable (ACID) operations on data lakes, enabling reliable updates, deletes, and upserts.",
         "url": "/data/Apache-Iceberg.html"
     },
     {
         "id": 81,
         "title": "Graph-Databases-ArgoDB-Neo4j.html",
-        "content": "---\n---\n{% include menu.html title=\"ArgoDB\" %} ArgoDB ArgoDB is a specialized distributed database optimized for complex, large-scale graph data. It is designed to handle high-performance graph processing workloads, providing efficient querying and analysis of relationships within data, such as social networks, fraud detection, and recommendation systems. Key Features: Scalability: Handles massive graph datasets across distributed systems, ensuring efficient storage and querying even with billions of nodes and edges. Performance: Optimized for fast traversal and pattern matching, making it ideal for workloads requiring deep or complex graph analysis.",
+        "content": "{% include menu.html title=\"ArgoDB\" %} ArgoDB ArgoDB is a specialized distributed database optimized for complex, large-scale graph data. It is designed to handle high-performance graph processing workloads, providing efficient querying and analysis of relationships within data, such as social networks, fraud detection, and recommendation systems.",
         "url": "/data/Graph-Databases-ArgoDB-Neo4j.html"
     },
     {
         "id": 82,
         "title": "GraphQL.html",
-        "content": "---\n---\n{% include menu.html title=\"GraphQL\" %} GraphQL GraphQL is a query language for APIs, developed by Facebook in 2012, designed to make data fetching more efficient and flexible. It allows clients to request exactly the data they need, minimizing over-fetching or under-fetching common with REST APIs. Instead of multiple endpoints, GraphQL exposes a single endpoint where clients can define their queries, specifying the structure of the response. Key Features: Single Endpoint: Unlike REST, where different endpoints provide different data, GraphQL uses one endpoint to serve all data.",
+        "content": "{% include menu.html title=\"GraphQL\" %} GraphQL GraphQL is a query language for APIs, developed by Facebook in 2012, designed to make data fetching more efficient and flexible. It allows clients to request exactly the data they need, minimizing over-fetching or under-fetching common with REST APIs.",
         "url": "/data/GraphQL.html"
     },
     {
         "id": 83,
         "title": "Large-Scale-Data-Ingestion2.html",
-        "content": "---\n---\n{% include menu.html title=\"Large-Scale Data Ingestion Tools\" %} Large-Scale Data Ingestion Tools Apache Kafka Kafka is a distributed streaming platform widely used for building real-time data pipelines and streaming applications. It supports both real-time and batch data ingestion, handling large amounts of event data from multiple sources. Apache Flink Apache Flink is a stream processing framework with powerful real-time and batch processing capabilities. It\u2019s designed to handle high throughput and low-latency data streams.",
+        "content": "{% include menu.html title=\"Large-Scale Data Ingestion Tools\" %} Large-Scale Data Ingestion Tools Apache Kafka Kafka is a distributed streaming platform widely used for building real-time data pipelines and streaming applications. It supports both real-time and batch data ingestion, handling large amounts of event data from multiple sources.",
         "url": "/data/Large-Scale-Data-Ingestion2.html"
     },
     {
         "id": 84,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Big Data\" %} SQL Overview Query Performance SQL Statements SQL Overview SQL Create View MySQL LAG Function Snowflake Data Warehouse Architecture Apache Kafka Key Points of Apache Kafka Kafka Producer Consumer Large-scale data ingestion Apache Hudi Analytics Apache Iceberg Apache Parquet Large Scale Data Ingestion Graph Databases ArgoDB Neo4j GraphQL {% include footer.html %}",
+        "content": "{% include menu.html title=\"Big Data\" %} SQL Overview Query Performance SQL Statements SQL Overview SQL Create View MySQL LAG Function Snowflake Data Warehouse Architecture Apache Kafka Key Points of Apache Kafka Kafka Producer Consumer Large-scale data ingestion Apache Hudi Analytics Apache Iceberg Apache Parquet Large Scale Data Ingestion Graph Databases ArgoDB Neo4j GraphQL {% include footer.html %}",
         "url": "/data/index.html"
     },
     {
         "id": 85,
         "title": "Kafka-Producer-Consumer.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Kafka Producer and Consumer\" %} Apache Kafka Producer and Consumer Kafka Producer from kafka import KafkaProducer\nimport json\n\n# Initialize the Kafka producer\nproducer = KafkaProducer(\n    bootstrap_servers=['localhost:9092'],\n    value_serializer=lambda v: json.dumps(v).encode('utf-8')\n)\n\n# Send a message to the Kafka topic 'test_topic'\nproducer.send('test_topic', {'key': 'value'})\n\n# Ensure all messages are sent before closing the producer\nproducer.flush()\nproducer.close() Description KafkaProducer: Initializes the producer with a list of Kafka brokers. Here, it connects to localhost:9092 . value_serializer: Serializes the message to JSON format before sending it to Kafka. send: Sends the message to the specified topic ( test_topic ).",
+        "content": "{% include menu.html title=\"Apache Kafka Producer and Consumer\" %} Apache Kafka Producer and Consumer Kafka Producer from kafka import KafkaProducer import json # Initialize the Kafka producer producer = KafkaProducer(   bootstrap_servers=['localhost:9092'],   value_serializer=lambda v: json.dumps(v).encode('utf-8') ) # Send a message to the Kafka topic 'test_topic' producer.send('test_topic', {'key': 'value'}) # Ensure all messages are sent before closing the producer producer.flush() producer.close() Description KafkaProducer: Initializes the producer with a list of Kafka brokers. Here, it connects to localhost:9092 .",
         "url": "/data/Kafka-Producer-Consumer.html"
     },
     {
         "id": 86,
         "title": "sql-statements.html",
-        "content": "---\n---\n{% include menu.html title=\"SQL Statements\" %} SQL Statements SQL Description INSERT Used to insert new rows into a table. UPDATE Used to modify existing rows in a table. DELETE Used to remove rows from a table. ALTER TABLE Used to modify the structure of an existing table, such as adding or dropping columns.",
+        "content": "{% include menu.html title=\"SQL Statements\" %} SQL Statements SQL Description INSERT Used to insert new rows into a table. UPDATE Used to modify existing rows in a table.",
         "url": "/data/sql-statements.html"
     },
     {
         "id": 87,
         "title": "Apache-Hudi.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Hudi\" %} Apache Hudi Apache Hudi (Hadoop Upserts Deletes and Incrementals) is an open-source data management framework that simplifies large-scale data ingestion and provides ACID transaction support on data lakes. It\u2019s designed for scenarios that require efficient data upserts (updates and inserts) and deletes in big data environments, while also enabling near real-time ingestion and querying of data. Key Features of Apache Hudi: ACID Transactions: Hudi brings ACID transactions to data lakes, allowing users to perform updates, inserts, and deletes with transactional guarantees on large datasets. Efficient Storage: Hudi optimizes storage by managing file sizes and using efficient compression techniques, reducing the overall storage footprint while maintaining performance.",
+        "content": "{% include menu.html title=\"Apache Hudi\" %} Apache Hudi Apache Hudi (Hadoop Upserts Deletes and Incrementals) is an open-source data management framework that simplifies large-scale data ingestion and provides ACID transaction support on data lakes. It\u2019s designed for scenarios that require efficient data upserts (updates and inserts) and deletes in big data environments, while also enabling near real-time ingestion and querying of data.",
         "url": "/data/Apache-Hudi.html"
     },
     {
         "id": 88,
         "title": "sql-create-view.html",
-        "content": "---\n---\n{% include menu.html title=\"SQL Overview\" %} SQL CREATE VIEW Statement SQL - Create a Simple View This query creates a view named employee_salaries that shows employee names and their salaries from the employees table. CREATE VIEW employee_salaries AS SELECT employee_name , salary FROM employees ; SQL - Create a View with Joins This query creates a view named department_salary_view that shows department names along with the total salaries for each department. CREATE VIEW department_salary_view AS SELECT d.department_name , SUM ( e.salary ) AS total_salary FROM departments d JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name ; SQL - Create a View with Conditions This query creates a view named high_salary_employees that shows employees with salaries greater than $80,000. CREATE VIEW high_salary_employees AS SELECT employee_name , salary FROM employees WHERE salary > 80000 ; {% include footer.html %}",
+        "content": "{% include menu.html title=\"SQL Overview\" %} SQL CREATE VIEW Statement SQL - Create a Simple View This query creates a view named employee_salaries that shows employee names and their salaries from the employees table. CREATE VIEW employee_salaries AS SELECT employee_name , salary FROM employees ; SQL - Create a View with Joins This query creates a view named department_salary_view that shows department names along with the total salaries for each department.",
         "url": "/data/sql-create-view.html"
     },
     {
         "id": 89,
         "title": "Query-Performance.html",
-        "content": "---\n---\n{% include menu.html title=\"SQL Query Optimization\" %} SQL Query Optimization 1. Importance of SQL Query Optimization Performance Improvement - Optimized queries run faster, which is crucial when working with large datasets in data warehouses or operational databases. Cost Efficiency - Optimized queries reduce compute costs by minimizing resource consumption. Scalability - Well-optimized queries scale more efficiently with the dataset size.",
+        "content": "{% include menu.html title=\"SQL Query Optimization\" %} SQL Query Optimization 1. Importance of SQL Query Optimization Performance Improvement - Optimized queries run faster, which is crucial when working with large datasets in data warehouses or operational databases.",
         "url": "/data/Query-Performance.html"
     },
     {
         "id": 90,
         "title": "sql_overview.html",
-        "content": "Common Types of SQL The most common types of SQL (Structured Query Language) are used for managing and manipulating relational databases. SQL commands are broadly categorized based on their functionality: 1. Data Definition Language (DDL) Purpose: DDL commands are used to define and manage database structures such as tables, indexes, and schemas. Common Commands: CREATE - Creates a new table, database, index, or other objects.",
+        "content": "Common Types of SQL The most common types of SQL (Structured Query Language) are used for managing and manipulating relational databases. SQL commands are broadly categorized based on their functionality: 1.",
         "url": "/data/sql_overview.html"
     },
     {
         "id": 91,
         "title": "Apache-Kafka.html",
-        "content": "---\n---\n{% include menu.html title=\"Apache Kafka\" %} Apache Kafka Distributed Architecture: Kafka is designed to be distributed across multiple servers, offering high availability, fault tolerance, and scalability. Publish-Subscribe Messaging System: Kafka allows multiple producers to publish messages to topics, which consumers can subscribe to, enabling decoupled communication between different parts of an application Topics and Partitions: Data is organized into topics, which are further divided into partitions. Each partition is an ordered, immutable sequence of records that Kafka appends to in real-time. High Throughput and Low Latency: Kafka can handle large volumes of data with minimal latency, making it ideal for high-throughput use cases like log aggregation, real-time analytics, and event sourcing.",
+        "content": "{% include menu.html title=\"Apache Kafka\" %} Apache Kafka Distributed Architecture: Kafka is designed to be distributed across multiple servers, offering high availability, fault tolerance, and scalability. Publish-Subscribe Messaging System: Kafka allows multiple producers to publish messages to topics, which consumers can subscribe to, enabling decoupled communication between different parts of an application Topics and Partitions: Data is organized into topics, which are further divided into partitions.",
         "url": "/data/Apache-Kafka.html"
     },
     {
         "id": 92,
         "title": "data-warehouse-architecture.html",
-        "content": "---\n---\n{% include menu.html title=\"Snowflake Data Warehouse Architecture\" %} Data Warehouse Architecture: Inmon (Top-Down): Centralized, normalized enterprise data warehouse design for scalable and flexible data integration. Kimball (Bottom-Up): Dimensional modeling approach using denormalized data marts optimized for fast querying and reporting. {% include footer.html %}",
+        "content": "{% include menu.html title=\"Snowflake Data Warehouse Architecture\" %} Data Warehouse Architecture: Inmon (Top-Down): Centralized, normalized enterprise data warehouse design for scalable and flexible data integration. Kimball (Bottom-Up): Dimensional modeling approach using denormalized data marts optimized for fast querying and reporting.",
         "url": "/data/data-warehouse-architecture.html"
     },
     {
         "id": 93,
         "title": "index.html",
-        "content": "---\n---\n{% include menu.html title=\"Kevin Luzbetak - My Teams\" %} Amazon AWS - Cloud Computing (2020) Kevin Luzbetak and Eric Ferreira Helping customers design and implement scalable, reliable, and cost-effective data solutions using AWS services. The Walt Disney - Entertainment (2017) Nexstar Media Group -  U.S. Television (2018) Skyworks - iPhone Radio Frequency Chips (2013) AT&T Interactive - Yellow Pages (2010) myspace.com - Social Network (2006) Caltech - Neurobiology Research (2001) Andersen Lab - California Institute of Technology Digital Insight - Internet Banking (1999) SCI Systems, Inc. -  Aerospace (1995) {% include footer.html %}",
+        "content": "{% include menu.html title=\"Kevin Luzbetak - My Teams\" %} Amazon AWS - Cloud Computing (2020) Kevin Luzbetak and Eric Ferreira Helping customers design and implement scalable, reliable, and cost-effective data solutions using AWS services. The Walt Disney - Entertainment (2017) Nexstar Media Group - U.S. Television (2018) Skyworks - iPhone Radio Frequency Chips (2013) AT&T Interactive - Yellow Pages (2010) myspace.com - Social Network (2006) Caltech - Neurobiology Research (2001) Andersen Lab - California Institute of Technology Digital Insight - Internet Banking (1999) SCI Systems, Inc. - Aerospace (1995) {% include footer.html %}",
         "url": "/smaet/index.html"
     }
 ]

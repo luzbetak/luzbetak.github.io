@@ -5,6 +5,16 @@ import json
 from bs4 import BeautifulSoup
 from nltk.tokenize import sent_tokenize
 
+# Function to clean up text by replacing "---\n---\n" and multiple new lines
+def clean_text(text):
+    # Remove the "---\n---\n" pattern
+    text = text.replace('---\n---\n', '')
+
+    # Replace multiple newlines with a single space
+    text = text.replace('\n', ' ').replace('  ', ' ')  # Ensure no double spaces
+
+    return text.strip()
+
 # Function to extract title and summarized content from an HTML file
 def extract_html_data(filepath):
     with open(filepath, 'r', encoding='utf-8') as file:
@@ -14,10 +24,15 @@ def extract_html_data(filepath):
         title_tag = soup.find('title')
         title = title_tag.text if title_tag else os.path.basename(filepath)
 
-        # Extract and summarize the content
+        # Extract the body text
         body_text = soup.get_text(separator=' ', strip=True)
-        sentences = sent_tokenize(body_text)
-        summary = " ".join(sentences[:4])  # Take first 4 sentences as summary
+
+        # Clean the body text
+        clean_body_text = clean_text(body_text)
+
+        # Summarize the content
+        sentences = sent_tokenize(clean_body_text)
+        summary = " ".join(sentences[:2])  # Take first 2 sentences as summary
 
         return title, summary
 
@@ -48,7 +63,8 @@ for root, dirs, files in os.walk('.'):
             current_id += 1
 
 # Write the index to search-index.json
-with open('search-index.json', 'w', encoding='utf-8') as json_file:
+with open('search/search-index.json', 'w', encoding='utf-8') as json_file:
+
     json.dump(file_index, json_file, indent=4)
 
 print("search-index.json created successfully.")
