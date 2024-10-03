@@ -17,7 +17,7 @@ def extract_html_data(filepath):
         # Extract and summarize the content
         body_text = soup.get_text(separator=' ', strip=True)
         sentences = sent_tokenize(body_text)
-        summary = " ".join(sentences[:2])  # Take first 2 sentences as summary
+        summary = " ".join(sentences[:4])  # Take first 4 sentences as summary
 
         return title, summary
 
