@@ -59,59 +59,55 @@
 
 <p><hr width=1000 align=left>
         <h1>Medallion Architecture with Partitioning</h1>
-    <pre><code>
-<span class="keyword">spark</span> = SparkSession.builder \
-  .<span class="function">appName</span>(<span class="string">"Medallion Architecture"</span>) \
-  .<span class="keyword">config</span>(<span class="string">"spark.sql.extensions"</span>, <span class="string">"io.delta.sql.DeltaSparkSessionExtension"</span>) \
-  .<span class="keyword">config</span>(<span class="string">"spark.sql.catalog.spark_catalog"</span>, <span class="string">"org.apache.spark.sql.delta.catalog.DeltaCatalog"</span>) \
-  .<span class="keyword">config</span>(<span class="string">"spark.executor.instances"</span>, <span class="string">"256"</span>) \
-  .<span class="keyword">config</span>(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"1024"</span>) \
-  .<span class="function">getOrCreate</span>()
+    <pre><code class=language-python>
+spark = SparkSession.builder \
+  .appName("Medallion Architecture") \
+  .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+  .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+  .config("spark.executor.instances", "256") \
+  .config("spark.sql.shuffle.partitions", "1024") \
+  .getOrCreate()
 
-<span class="comment"># Paths for the Bronze, Silver, and Gold layers</span>
-<span class="keyword">bronze_path</span> = <span class="string">"/mnt/delta/bronze"</span>
-<span class="keyword">silver_path</span> = <span class="string">"/mnt/delta/silver"</span>
-<span class="keyword">gold_path</span>   = <span class="string">"/mnt/delta/gold"</span>
+# Paths for the Bronze, Silver, and Gold layers
+bronze_path = "/mnt/delta/bronze"
+silver_path = "/mnt/delta/silver"
+gold_path   = "/mnt/delta/gold"
 
-<span class="comment"># ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #</span>
-<span class="keyword">raw_data</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"json"</span>).<span class="function">load</span>(<span class="string">"/mnt/raw_data/"</span>)
-<span class="keyword">raw_data</span> = <span class="keyword">raw_data</span>.<span class="function">repartition</span>(1024)
-<span class="keyword">raw_data</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">bronze_path</span>)
+# ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #
+raw_data = spark.read().format("json").load("/mnt/raw_data/")
+raw_data = raw_data.repartition(1024)
+raw_data.write().format("delta").mode("overwrite").save(bronze_path)
 
 
-<span class="comment"># ----------- Silver Layer (Data Cleaning and Transformation) --------------- #</span>
-<span class="datatype">bronze_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">bronze_path</span>)
+# ----------- Silver Layer (Data Cleaning and Transformation) --------------- #
+bronze_df = spark.read().format("delta").load(bronze_path)
 
-<span class="comment"># Filter data for today and the last 365 days</span>
+# Filter data for today and the last 365 days
 silver_df = bronze_df.filter(
-    (col(<span class="string">"date"</span>) >= date_sub(current_date(), 365)) & (col(<span class="string">"date"</span>) <= current_date())
+    (col("date") >= date_sub(current_date(), 365)) & (col("date") <= current_date())
 )
 
-<span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">dropDuplicates</span>().<span class="function">filter</span>(col(<span class="string">"status"</span>).<span class="function">isNotNull</span>())
-<span class="datatype">silver_df</span> = <span class="datatype">silver_df</span>.<span class="function">repartition</span>(365, col("date"))
-<span class="datatype">silver_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">silver_path</span>)
+silver_df = silver_df.dropDuplicates().filter(col("status").isNotNull())
+silver_df = silver_df.repartition(365, col("date"))
+silver_df.write().format("delta").mode("overwrite").save(silver_path)
 
 
-<span class="comment"># ----------- Gold Layer (Aggregated and Optimized Data) ------------------ #</span>
-<span class="datatype">silver_df</span> = spark.<span class="function">read</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="function">load</span>(<span class="keyword">silver_path</span>)
+# ----------- Gold Layer (Aggregated and Optimized Data) ------------------ #
+silver_df = spark.read().format("delta").load(silver_path)
 
-<span class="comment"># Perform aggregations for reporting.</span>
-<span class="datatype">gold_df</span>   = <span
-class="datatype">silver_df</span>.<span class="function">groupBy</span>(<span
-class="string">"category"</span>) 
-                     .<span class="function">agg</span>( 
-                          <span class="function">count</span>(<span class="string">"order_id"</span>).<span class="keyword">alias</span>(<span class="string">"total_orders"</span>), 
-                          <span class="function">sum</span>(<span class="string">"sales_amount"</span>).<span class="keyword">alias</span>(<span class="string">"total_sales"</span>) 
+# Perform aggregations for reporting.
+gold_df   = silver_df.groupBy("category") 
+                     .agg( 
+                          count("order_id").alias("total_orders"), 
+                          sum("sales_amount").alias("total_sales") 
                          ) 
-<span class="datatype">gold_df</span> = <span class="datatype">gold_df</span>.<span class="function">repartition</span>(100, col("category"), col("date"))
-<span class="datatype">gold_df</span>.<span class="function">write</span>().<span class="keyword">format</span>(<span class="string">"delta"</span>).<span class="keyword">mode</span>(<span class="string">"overwrite"</span>).<span class="function">save</span>(<span class="keyword">gold_path</span>)
+gold_df = gold_df.repartition(100, col("category"), col("date"))
+gold_df.write().format("delta").mode("overwrite").save(gold_path)
 
-<span class="keyword">spark.stop</span>()
-    </code></pre>
+spark.stop()    
+</code></pre>
 
-
-    <hr>
-
+<p><hr width=1000 align=left>
 <h1>PySpark Aggregation Tables</h1>
 
 <h2>Data Description</h2>
