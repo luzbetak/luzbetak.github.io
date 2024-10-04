@@ -1,72 +1,63 @@
 ---
 ---
 {% include menu.html title="Medallion Architecture in Delta Lake" %}
+<p><hr width=1000 align=left>
 
+<table width="1000">
+    <tr>
+        <td>
+            <h1>Medallion Architecture in Delta Lake</h1>
 
-<body>
-    <table width="900">
-        <tr>
-            <td>
-                <h1>Medallion Architecture in Delta Lake</h1>
+            <h3>Overview of Medallion Architecture</h3>
+            <ul>
+                <li>The Medallion Architecture is a layered approach used in Delta Lake to optimize data quality and performance as data progresses through various stages.</li>
+                <li>It divides the data into three primary layers, referred to as <font color=red>Bronze, Silver, Gold</font> tiers, each representing different levels of data quality, transformation, and availability.</li>
+                <li>This architecture is designed to ensure data consistency, facilitate complex analytics, and minimize the cost of managing big data.</li>
+            </ul>
 
-                <h3>Overview of Medallion Architecture</h3>
-                <ul>
-                    <li>The Medallion Architecture is a layered approach used in Delta Lake to optimize data quality and performance as data progresses through various stages.</li>
-                    <li>It divides the data into three primary layers, referred to as <font color=red>Bronze, Silver, Gold</font> tiers, each representing different levels of data quality, transformation, and availability.</li>
-                    <li>This architecture is designed to ensure data consistency, facilitate complex analytics, and minimize the cost of managing big data.</li>
-                </ul>
+            <h3>Bronze Layer: Raw Data Ingestion</h3>
+            <ul>
+                <li>The <font color=red>Bronze layer</font> is where raw, unprocessed data is stored directly from source systems.</li>
+                <li>This data is ingested in its original form and might include duplicates, errors, or incomplete records.</li>
+                <li>In this layer, Delta Lake efficiently handles large-scale data ingestion from multiple formats like JSON, CSV, Parquet, or Avro.</li>
+                <li>The primary purpose of this layer is to store the raw, unfiltered data for future processing, ensuring data traceability.</li>
+            </ul>
 
-                <h3>Bronze Layer: Raw Data Ingestion</h3>
-                <ul>
-                    <li>The <font color=red>Bronze layer</font> is where raw, unprocessed data is stored directly from source systems.</li>
-                    <li>This data is ingested in its original form and might include duplicates, errors, or incomplete records.</li>
-                    <li>In this layer, Delta Lake efficiently handles large-scale data ingestion from multiple formats like JSON, CSV, Parquet, or Avro.</li>
-                    <li>The primary purpose of this layer is to store the raw, unfiltered data for future processing, ensuring data traceability.</li>
-                </ul>
+            <h3>Silver Layer: Cleaned and Refined Data</h3>
+            <ul>
+                <li>The <font color=red>Silver layer</font> involves refining, cleaning, and transforming the raw data into a more structured form.</li>
+                <li>At this stage, data undergoes transformations such as removing duplicates, handling missing values, and applying business logic to make the data more consistent and usable.</li>
+                <li>This layer is where data quality improvements are implemented, making it ready for analytics and reporting.</li>
+                <li>Common transformations include joining data from multiple sources and filtering or aggregating information.</li>
+            </ul>
 
-                <h3>Silver Layer: Cleaned and Refined Data</h3>
-                <ul>
-                    <li>The <font color=red>Silver layer</font> involves refining, cleaning, and transforming the raw data into a more structured form.</li>
-                    <li>At this stage, data undergoes transformations such as removing duplicates, handling missing values, and applying business logic to make the data more consistent and usable.</li>
-                    <li>This layer is where data quality improvements are implemented, making it ready for analytics and reporting.</li>
-                    <li>Common transformations include joining data from multiple sources and filtering or aggregating information.</li>
-                </ul>
+            <h3>Gold Layer: Aggregated and Optimized Data</h3>
+            <ul>
+                <li>The <font color=red>Gold layer</font> represents the final stage where the data is fully transformed, aggregated, and optimized for high-performance analytics.</li>
+                <li>In this layer, data is typically denormalized and pre-aggregated for specific business use cases such as reporting, machine learning models, or advanced analytics.</li>
+                <li>This layer often contains data that is used for dashboards, KPIs, and decision-making, providing insights based on the refined and validated data.</li>
+                <li>The focus here is on reducing query latency and improving performance for end-users by leveraging pre-processed and ready-to-use data.</li>
+            </ul>
 
-                <h3>Gold Layer: Aggregated and Optimized Data</h3>
-                <ul>
-                    <li>The <font color=red>Gold layer</font> represents the final stage where the data is fully transformed, aggregated, and optimized for high-performance analytics.</li>
-                    <li>In this layer, data is typically denormalized and pre-aggregated for specific business use cases such as reporting, machine learning models, or advanced analytics.</li>
-                    <li>This layer often contains data that is used for dashboards, KPIs, and decision-making, providing insights based on the refined and validated data.</li>
-                    <li>The focus here is on reducing query latency and improving performance for end-users by leveraging pre-processed and ready-to-use data.</li>
-                </ul>
+            <h3>Benefits of the Medallion Architecture</h3>
+            <ul>
+                <li><strong>Data Quality:</strong> As data moves from the Bronze to Gold layer, its quality improves, which helps to ensure accurate reporting and analytics.</li>
+                <li><strong>Data Governance:</strong> Each layer provides a clear separation of raw, intermediate, and final datasets, aiding in governance and lineage tracking.</li>
+                <li><strong>Scalability:</strong> The architecture is highly scalable, supporting a range of data sizes from terabytes to petabytes.</li>
+                <li><strong>Flexibility:</strong> The architecture can accommodate various data sources and formats, while allowing different teams to work on separate layers without conflicts.</li>
+            </ul>
 
-                <h3>Benefits of the Medallion Architecture</h3>
-                <ul>
-                    <li><strong>Data Quality:</strong> As data moves from the Bronze to Gold layer, its quality improves, which helps to ensure accurate reporting and analytics.</li>
-                    <li><strong>Data Governance:</strong> Each layer provides a clear separation of raw, intermediate, and final datasets, aiding in governance and lineage tracking.</li>
-                    <li><strong>Scalability:</strong> The architecture is highly scalable, supporting a range of data sizes from terabytes to petabytes.</li>
-                    <li><strong>Flexibility:</strong> The architecture can accommodate various data sources and formats, while allowing different teams to work on separate layers without conflicts.</li>
-                </ul>
+            <h3>Medallion Architecture in Practice</h3>
+            <ul>
+                <li>In real-world implementations, teams may have different sets of Bronze, Silver, and Gold layers for each business domain (e.g., sales, finance, operations).</li>
+                <li>Data engineers typically work on the Bronze and Silver layers, while analysts and data scientists use the Gold layer for insights and model training.</li>
+                <li>By adopting this architecture, organizations can ensure that data is ingested, processed, and made available for decision-making with minimal latency.</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
-                <h3>Medallion Architecture in Practice</h3>
-                <ul>
-                    <li>In real-world implementations, teams may have different sets of Bronze, Silver, and Gold layers for each business domain (e.g., sales, finance, operations).</li>
-                    <li>Data engineers typically work on the Bronze and Silver layers, while analysts and data scientists use the Gold layer for insights and model training.</li>
-                    <li>By adopting this architecture, organizations can ensure that data is ingested, processed, and made available for decision-making with minimal latency.</li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-
-  {% include footer.html %}
-
-  </body>
-</html>
----
----
-{% include menu.html title="Medallion Architecture with 256 Node Cluster" %}
-
-<body>
+<p><hr width=1000 align=left>
         <h1>Medallion Architecture with Partitioning</h1>
     <pre><code>
 <span class="keyword">spark</span> = SparkSession.builder \
