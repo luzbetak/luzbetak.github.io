@@ -42,7 +42,7 @@
 
   <h4>Step 2: Generate Embeddings</h4>
   <p>Use a model to create embeddings for your documents:</p>
-  <pre><code>
+  <pre><code class="language-python">
     from sentence_transformers import SentenceTransformer
     model = SentenceTransformer('all-MiniLM-L6-v2')
     
@@ -52,7 +52,7 @@
 
   <h4>Step 3: Store Embeddings in PostgreSQL</h4>
   <p>Create a table to store the embeddings:</p>
-  <pre><code>
+  <pre><code class="language-sql">
     CREATE TABLE documents (
         id SERIAL PRIMARY KEY,
         text TEXT,
