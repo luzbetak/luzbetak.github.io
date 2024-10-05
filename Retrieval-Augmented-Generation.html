@@ -35,7 +35,7 @@
 
   <h4>Step 1: Install PostgreSQL, pgvector, and Pgvectorscale</h4>
   <p>Install the necessary components:</p>
-  <pre><code>
+  <pre><code class="language-sql">
     CREATE EXTENSION vector;
     CREATE EXTENSION pgvectorscale;
   </code></pre>
@@ -60,7 +60,7 @@
     );
   </code></pre>
   <p>Insert documents and embeddings:</p>
-  <pre><code>
+  <pre><code class="language-python">
     import psycopg2
     conn = psycopg2.connect("dbname=test user=postgres")
     cur = conn.cursor()
@@ -72,7 +72,7 @@
 
   <h4>Step 4: Retrieve Relevant Documents</h4>
   <p>Query the vector database for the most relevant documents:</p>
-  <pre><code>
+  <pre><code class="language-sql">
     SELECT * FROM documents
     ORDER BY embedding <=> query_embedding
     LIMIT 5;
@@ -80,7 +80,7 @@
 
   <h4>Step 5: Generate Responses Using the Retrieved Documents</h4>
   <p>Use a generation model like GPT to create a response:</p>
-  <pre><code>
+  <pre><code class="language-python">
     from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
     model = GPT2LMHeadModel.from_pretrained('gpt2')
