@@ -68,8 +68,7 @@ LIMIT 10;
 <p><hr align=left width=1000>
 <li><h3>Use of GROUP BY and Aggregations</h3>
 <p>Optimizing <code>GROUP BY</code> with proper indexing on grouped columns can reduce query times for large aggregations.</p>
-<
-pre><code class="language-sql">SELECT city, COUNT(*) 
+<code class="language-sql">SELECT city, COUNT(*) 
 FROM customers 
 GROUP BY city;
 </code></pre>
