@@ -1,121 +1,112 @@
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">#----------------------------------------------------------------------------------------#</span>
-search<span style="color: #333333">()</span> <span style="color: #333333">{</span>
- grep -rnw . -e <span style="background-color: #fff0f0">&quot;${1}&quot;</span> --include <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\*</span>.py --exclude-dir<span style="color: #333333">=</span><span style="background-color: #fff0f0">&#39;anaconda3/&#39;</span> --exclude-dir<span style="color: #333333">=</span><span style="background-color: #fff0f0">&#39;.vim/&#39;</span>
-<span style="color: #333333">}</span>
-<span style="color: #888888">#----------------------------------------------------------------------------------------#</span>
-replace<span style="color: #333333">()</span> <span style="color: #333333">{</span>
-  find . -name <span style="background-color: #fff0f0">&quot;*.py&quot;</span> -not -path <span style="background-color: #fff0f0">&quot;*/anaconda3/*&quot;</span> -exec sed -i <span style="background-color: #fff0f0">&quot;s/${1}/${2}/g&quot;</span> <span style="color: #333333">{}</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\;</span>
-<span style="color: #333333">}</span>
-<span style="color: #888888">#----------------------------------------------------------------------------------------#</span>
-</pre></div>
+---
+---
+{% include menu.html title="bashrc" %}
+<hr align=left width=1100>
 
 <h2>Search Code</h2>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">#------------------------------------------------------------------#</span>
-<span style="color: #888888"># search one two</span>
-<span style="color: #888888"># search -tpy one two</span>
-<span style="color: #888888">#------------------------------------------------------------------#</span>
-function search<span style="color: #333333">()</span> <span style="color: #333333">{</span>
+<pre><code class=language-bash>
 
-  <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">[</span> <span style="color: #996633">$# </span>-eq 0 <span style="color: #333333">]</span>; <span style="color: #008800; font-weight: bold">then</span>
-<span style="color: #008800; font-weight: bold">    </span><span style="color: #007020">echo</span> <span style="background-color: #fff0f0">&quot;Please provide at least one keyword as an argument.&quot;</span>
-    <span style="color: #008800; font-weight: bold">return </span>1
-  <span style="color: #008800; font-weight: bold">fi</span>
+#------------------------------------------------------------------#
+# search one two
+# search -tpy one two
+#------------------------------------------------------------------#
+function search() {
 
-<span style="color: #008800; font-weight: bold">  if</span> <span style="color: #333333">[[</span> <span style="color: #996633">$1</span> <span style="color: #333333">==</span> -* <span style="color: #333333">]]</span>; <span style="color: #008800; font-weight: bold">then</span>
-<span style="color: #008800; font-weight: bold">    </span><span style="color: #007020">local </span><span style="color: #996633">cmd</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;rg ${1} -l &#39;${2}&#39;&quot;</span>
-  <span style="color: #008800; font-weight: bold">else</span>
-<span style="color: #008800; font-weight: bold">    </span><span style="color: #007020">local </span><span style="color: #996633">cmd</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;rg -l &#39;${1}&#39;&quot;</span>
-  <span style="color: #008800; font-weight: bold">fi</span>
+  if [ $# -eq 0 ]; then
+    echo "Please provide at least one keyword as an argument."
+    return 1
+  fi
 
-<span style="color: #008800; font-weight: bold">  </span><span style="color: #007020">shift</span>
+  if [[ $1 == -* ]]; then
+    local cmd="rg ${1} -l '${2}'"
+  else
+    local cmd="rg -l '${1}'"
+  fi
 
-<span style="color: #007020">  </span><span style="color: #008800; font-weight: bold">for </span>keyword in <span style="background-color: #fff0f0">&quot;$@&quot;</span>; <span style="color: #008800; font-weight: bold">do</span>
-<span style="color: #008800; font-weight: bold">    </span>cmd+<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot; | xargs -I{} rg -l &#39;${keyword}&#39; {}&quot;</span>
-  <span style="color: #008800; font-weight: bold">done</span>
+  shift
 
-<span style="color: #008800; font-weight: bold">  </span><span style="color: #007020">eval</span> <span style="color: #996633">$cmd</span>
-<span style="color: #333333">}</span>
-<span style="color: #888888">#------------------------------------------------------------------#</span>
-<span style="color: #888888"># Search all the python file for keyword open</span>
-<span style="color: #888888"># spy open py</span>
-<span style="color: #888888">#------------------------------------------------------------------#</span>
-function spy<span style="color: #333333">()</span> <span style="color: #333333">{</span>
-  <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">[</span> <span style="color: #996633">$# </span>-eq 0 <span style="color: #333333">]</span>; <span style="color: #008800; font-weight: bold">then</span>
-<span style="color: #008800; font-weight: bold">    </span><span style="color: #007020">echo</span> <span style="background-color: #fff0f0">&quot;Please provide a keyword as the first argument.&quot;</span>
-    <span style="color: #007020">echo</span> <span style="background-color: #fff0f0">&quot;Optionally, provide a file extension as the second argument.&quot;</span>
-    <span style="color: #008800; font-weight: bold">return </span>1
-  <span style="color: #008800; font-weight: bold">fi</span>
+  for keyword in "$@"; do
+    cmd+=" | xargs -I{} rg -l '${keyword}' {}"
+  done
 
-<span style="color: #008800; font-weight: bold">  if</span> <span style="color: #333333">[</span> <span style="color: #996633">$# </span>-eq 1 <span style="color: #333333">]</span>; <span style="color: #008800; font-weight: bold">then</span>
-<span style="color: #008800; font-weight: bold">      </span>clear
-      <span style="color: #007020">local </span><span style="color: #996633">cmd</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;rg -C3 ${1}&quot;</span>
-  <span style="color: #008800; font-weight: bold">else</span>
-<span style="color: #008800; font-weight: bold">      </span>clear
-      <span style="color: #007020">local </span><span style="color: #996633">cmd</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;rg -t${2} -C3 ${1}&quot;</span>
-  <span style="color: #008800; font-weight: bold">fi</span>
-<span style="color: #008800; font-weight: bold">  </span><span style="color: #007020">eval</span> <span style="color: #996633">$cmd</span>
+  eval $cmd
+}
+#------------------------------------------------------------------#
+# Search all the python file for keyword open
+# spy open py
+#------------------------------------------------------------------#
+function spy() {
+  if [ $# -eq 0 ]; then
+    echo "Please provide a keyword as the first argument."
+    echo "Optionally, provide a file extension as the second argument."
+    return 1
+  fi
 
-  <span style="color: #007020">printf</span> <span style="background-color: #fff0f0">&#39;%.0s-&#39;</span> <span style="color: #333333">{</span>1..80<span style="color: #333333">}</span>; <span style="color: #007020">echo</span>
-<span style="color: #007020">  echo</span> <span style="background-color: #fff0f0">&quot;               &quot;</span> <span style="color: #996633">$cmd</span>
-  <span style="color: #007020">printf</span> <span style="background-color: #fff0f0">&#39;%.0s-&#39;</span> <span style="color: #333333">{</span>1..80<span style="color: #333333">}</span>; <span style="color: #007020">echo</span>
+  if [ $# -eq 1 ]; then
+      clear
+      local cmd="rg -C3 ${1}"
+  else
+      clear
+      local cmd="rg -t${2} -C3 ${1}"
+  fi
+  eval $cmd
 
-<span style="color: #333333">}</span>
-<span style="color: #888888">#------------------------------------------------------------------#</span>
-</pre></div>
+  printf '%.0s-' {1..80}; echo
+  echo "               " $cmd
+  printf '%.0s-' {1..80}; echo
 
-<hr>
-
-<h2>CodeBeautify.org - An Old Hope</h2>
-<a href="http://hilite.me/">http://hilite.me</a>
-<a href="https://codebeautify.org/code-highlighter">https://codebeautify.org/code-highlighter</a>
+}
+#------------------------------------------------------------------#
+</code></pre>
 
 
-<h2>Archive File</h2>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">a<span style="color: #333333">()</span> <span style="color: #333333">{</span>
-    <span style="color: #007020">local </span><span style="color: #996633">filename</span><span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">$(</span>basename <span style="background-color: #fff0f0">&quot;$1&quot;</span><span style="color: #008800; font-weight: bold">)</span>
-    <span style="color: #007020">local </span><span style="color: #996633">date</span><span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">$(</span>date +<span style="background-color: #fff0f0">&quot;%Y%m%d-%H%M&quot;</span><span style="color: #008800; font-weight: bold">)</span>
-    <span style="color: #007020">local </span><span style="color: #996633">archive_dir</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;$HOME/.archive&quot;</span>
-    <span style="color: #007020">local </span><span style="color: #996633">target_file</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;$archive_dir/$date.$filename&quot;</span>
+<p><hr align=left width=1100>
+<h2>Replace</h2>
+<pre><code class=language-bash>
+#----------------------------------------------------------------------------------------#
+search() {
+ grep -rnw . -e "${1}" --include \*.py --exclude-dir='anaconda3/' --exclude-dir='.vim/'
+}
+#----------------------------------------------------------------------------------------#
+replace() {
+  find . -name "*.py" -not -path "*/anaconda3/*" -exec sed -i "s/${1}/${2}/g" {} \;
+}
+#----------------------------------------------------------------------------------------#
+</code></pre>
 
-    <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">[[</span> -e <span style="color: #996633">$1</span> <span style="color: #333333">]]</span>; <span style="color: #008800; font-weight: bold">then</span>
-<span style="color: #008800; font-weight: bold">        </span>mkdir -p <span style="background-color: #fff0f0">&quot;$archive_dir&quot;</span>
-        cp <span style="background-color: #fff0f0">&quot;$1&quot;</span> <span style="background-color: #fff0f0">&quot;$target_file&quot;</span>
-        <span style="color: #007020">echo</span> <span style="background-color: #fff0f0">&quot;Copied $1 to $target_file&quot;</span>
-    <span style="color: #008800; font-weight: bold">else</span>
-<span style="color: #008800; font-weight: bold">        </span><span style="color: #007020">echo</span> <span style="background-color: #fff0f0">&quot;Error: $1 does not exist.&quot;</span>
-    <span style="color: #008800; font-weight: bold">fi</span>
-<span style="color: #008800; font-weight: bold">    </span>ls -l <span style="color: #996633">$archive_dir</span>
-<span style="color: #333333">}</span>
-</pre></div>
-
-
+<p><hr align=left width=1100>
 <h2>Replace text with find and sed</h2>
-<pre>
+<pre><code class=language-bash>
+Replace text with find and sed
 # Linux
 find . -name "*.py" -type f -exec sed 's/kevinluzbetak\.com/luzbetak5739@gmail\.com/g' {} \;
 
 # Max OS
 find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak\.com/luzbetak5739@gmail\.com/g' {} \;
-</pre>
+</code></pre>
 
 
-<h2>Database Tools</h3>
-<ul>
-<li><a href="https://dbeaver.io/download/">dbeaver.io</a></li>
-</ul>
 
-<p><h2>Linux Videos</h3>
-<ul>
-<li><a href="https://www.youtube.com/channel/UCf8uu3IE42b6hRUusufEH8g">Linode</a>
-<li><a href="https://www.youtube.com/watch?v=AVXYq8aL47Q&t=7s">18 Commands That Will Change The Way You Use Linux Forever</a>
-</ul>
+<p><hr align=left width=1100>
+<h2>Archive File</h2>
+<pre><code class=language-bash>
+a() {
+    local filename=$(basename "$1")
+    local date=$(date +"%Y%m%d-%H%M")
+    local archive_dir="$HOME/.archive"
+    local target_file="$archive_dir/$date.$filename"
 
-<p><h2>Snowflake</h3>
-<ul>
-<li><a href="snowflake.pdf">Snowflake Architecture - snowflake.pdf</a></li>
-</ul>
+    if [[ -e $1 ]]; then
+        mkdir -p "$archive_dir"
+        cp "$1" "$target_file"
+        echo "Copied $1 to $target_file"
+    else
+        echo "Error: $1 does not exist."
+    fi
+    ls -l $archive_dir
+}
+</code></pre>
 
-<p><h2>Interviews</h3>
-<ul>
-<li><a href="coding-interview.pdf">Coding Interview - coding-interview.pdf</a></li>
-</ul>
+
+{% include footer.html %}
+
