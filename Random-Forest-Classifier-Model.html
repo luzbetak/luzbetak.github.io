@@ -4,13 +4,18 @@
 <hr align=left width=1100>
 
 <h2>RandomForestClassifier</h2>
-<p>This model consists of a collection of decision trees (the "forest"), where each tree is trained on a random subset of the data. The final prediction is made by averaging the predictions of all the individual trees, which helps reduce overfitting and improves generalization.</p>
+<p>This model consists of a collection of decision trees (the "forest"), where each tree is trained on a random subset
+of the data. The final prediction is made by averaging the predictions of all the individual trees, which helps reduce
+overfitting and improves generalization.</p>
 
 <h2>Input Features</h2>
-<p>The text data (customer questions) is vectorized using the <strong>TF-IDF Vectorizer</strong> (<code>TfidfVectorizer</code>) to convert the textual information into numerical features that the model can understand.</p>
+<p>The text data (customer questions) is vectorized using the <strong>TF-IDF Vectorizer</strong>
+(<code>TfidfVectorizer</code>) to convert the textual information into numerical features that the model can
+understand.</p>
 
 <h2>Task</h2>
-<p>The model is trained to classify customer support questions into various categories such as "Account", "Payment", "Order", etc. Given a new customer query, the model can predict which category it belongs to.</p>
+<p>The model is trained to classify customer support questions into various categories such as 
+"Product Support", "Billing", "Order", etc. Given a new customer query, the model can predict which category it belongs to.</p>
 
 
 <pre><code class="language-python">#!/usr/bin/env python
