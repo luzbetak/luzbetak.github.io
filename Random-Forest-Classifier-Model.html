@@ -5,7 +5,7 @@
 
 
 <pre><code class="language-python">#!/usr/bin/env python
-#------------------------------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from prettytable import PrettyTable
 
-#------------------------------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 1: Create Data Model 
 data = {
     'question': [
@@ -56,39 +56,42 @@ data = {
     ]
 }
 
-#------------------------------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Ensure the lists have the same length 
 assert len(data['question']) == len(data['category']), "Length mismatch between questions and categories."
 df = pd.DataFrame(data)
 
-#------------------------------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 2: Train-test split
-X_train, X_test, y_train, y_test = train_test_split(df['question'], df['category'], test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split( df['question'], 
+                                                     df['category'], 
+                                                     test_size=0.3, 
+                                                     random_state=42 )
 
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 3: Vectorize text data
 vectorizer  = TfidfVectorizer()
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec  = vectorizer.transform(X_test)
 
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 4: Build and train the model
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
 clf.fit(X_train_vec, y_train)
 
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 5: Make predictions
 y_pred = clf.predict(X_test_vec)
 
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Step 6: Evaluate the model
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy * 100:.2f}%")
 
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 # Example: Predict the category of a new customer question
 # new_question = ["How do I reset my account PIN?"]
-#---------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 new_question       = ["Reset my account PIN"]
 new_question_vec   = vectorizer.transform(new_question)
 predicted_category = clf.predict(new_question_vec)
@@ -98,7 +101,7 @@ table = PrettyTable()
 table.field_names = ["Customer Question", "Predicted Category"]
 table.add_row([new_question[0], predicted_category[0]])
 print(table)
-#------------------------------------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------------------#
 </code></pre>
 
 <h2>Output</h2>
