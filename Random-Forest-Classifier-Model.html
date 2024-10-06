@@ -1,4 +1,10 @@
-#!/usr/bin/env python
+---
+---
+{% include menu.html title="Random Forest Classifier Model" %}
+<hr align=left width=1100>
+
+
+<pre><code class="language-python">#!/usr/bin/env python
 #------------------------------------------------------------------------------------------------------------------------#
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -109,4 +115,16 @@ table.field_names = ["Customer Question", "Predicted Category"]
 table.add_row([new_question[0], predicted_category[0]])
 print(table)
 #------------------------------------------------------------------------------------------------------------------------#
+</code></pre>
 
+<h2>Output</h2>
+<pre><code class="language-markdown">
+Model Accuracy: 53.33%
++----------------------+--------------------+
+|  Customer Question   | Predicted Category |
++----------------------+--------------------+
+| Reset my account PIN |  Product Support   |
++----------------------+--------------------+
+</code></pre>
+
+{% include footer.html %}
