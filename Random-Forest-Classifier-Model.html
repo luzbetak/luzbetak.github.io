@@ -63,23 +63,6 @@ df = pd.DataFrame(data)
 
 #------------------------------------------------------------------------------------------------------------------------#
 # Step 2: Train-test split
-#
-# df['category']:
-# This is the feature set. In this case, it's the customer questions, which represent the input data that the model will
-# use to make predictions.
-# 
-# test_size=0.3:
-# This is the target set, or the labels. It's the category (either "Product Support" or "Billing") that corresponds to
-# each question. The model will be trained to predict these categories based on the input questions.
-# 
-# random_state=42:
-# This parameter specifies the proportion of the data that should be used for testing. In this case, 30% of the data will
-# be used as the test set, while the remaining 70% will be used for training.
-# 
-# This parameter ensures reproducibility. It sets the seed for the random number generator, so that every time you run the
-# code, the same split between training and testing data occurs. The value 42 is arbitrary; you can use any number. If you
-# omit this parameter, a different split will happen every time you run the code.
-#------------------------------------------------------------------------------------------------------------------------#
 X_train, X_test, y_train, y_test = train_test_split(df['question'], df['category'], test_size=0.3, random_state=42)
 
 #---------------------------------------------------------------#
@@ -148,5 +131,18 @@ Model Accuracy: 53.33%
 </ul>
 
 <p>This approach is useful for text classification, particularly for customer support automation, where you want to categorize incoming queries to route them accordingly.</p>
+
+<p><h2>Train Test Split</h2>
+<h3>df['category']:</h3>
+<p>This is the feature set. In this case, it's the customer questions, which represent the input data that the model will use to make predictions.</p>
+
+<h3>test_size=0.3:</h3>
+<p>This is the target set, or the labels. It's the category (either "Product Support" or "Billing") that corresponds to each question. The model will be trained to predict these categories based on the input questions.</p>
+
+<h3>random_state=42:</h3>
+<p>This parameter specifies the proportion of the data that should be used for testing. In this case, 30% of the data will be used as the test set, while the remaining 70% will be used for training.</p>
+
+<p>This parameter ensures reproducibility. It sets the seed for the random number generator, so that every time you run the code, the same split between training and testing data occurs. The value 42 is arbitrary; you can use any number. If you omit this parameter, a different split will happen every time you run the code.</p>
+
 
 {% include footer.html %}
