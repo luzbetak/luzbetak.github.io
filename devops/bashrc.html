@@ -4,9 +4,7 @@
 <hr align=left width=1100>
 
 <h2>Search Code</h2>
-<pre><code class=language-bash>
-
-#------------------------------------------------------------------#
+<pre><code class=language-bash>#------------------------------------------------------------------#
 # search one two
 # search -tpy one two
 #------------------------------------------------------------------#
@@ -62,8 +60,7 @@ function spy() {
 
 <p><hr align=left width=1100>
 <h2>Replace</h2>
-<pre><code class=language-bash>
-#----------------------------------------------------------------------------------------#
+<pre><code class=language-bash>#----------------------------------------------------------------------------------------#
 search() {
  grep -rnw . -e "${1}" --include \*.py --exclude-dir='anaconda3/' --exclude-dir='.vim/'
 }
@@ -76,20 +73,19 @@ replace() {
 
 <p><hr align=left width=1100>
 <h2>Replace text with find and sed</h2>
-<pre><code class=language-bash>
-Replace text with find and sed
+<pre><code class=language-bash>#--------------------------------------------------------------------------------------------------#
 # Linux
 find . -name "*.py" -type f -exec sed 's/kevinluzbetak\.com/luzbetak5739@gmail\.com/g' {} \;
 
+#--------------------------------------------------------------------------------------------------#
 # Max OS
 find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak\.com/luzbetak5739@gmail\.com/g' {} \;
+#--------------------------------------------------------------------------------------------------#
 </code></pre>
-
-
 
 <p><hr align=left width=1100>
 <h2>Archive File</h2>
-<pre><code class=language-bash>
+<pre><code class=language-bash>#--------------------------------------------------------#
 a() {
     local filename=$(basename "$1")
     local date=$(date +"%Y%m%d-%H%M")
@@ -105,6 +101,7 @@ a() {
     fi
     ls -l $archive_dir
 }
+#---------------------------------------------------------#
 </code></pre>
 
 
