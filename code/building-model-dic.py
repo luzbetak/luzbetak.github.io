@@ -1,24 +1,4 @@
----
----
-{% include menu.html title="Random Forest Classifier Model" %}
-<hr align=left width=1100>
-
-<h2>RandomForestClassifier</h2>
-<p>This model consists of a collection of decision trees (the "forest"), where each tree is trained on a random subset
-of the data. The final prediction is made by averaging the predictions of all the individual trees, which helps reduce
-overfitting and improves generalization.</p>
-
-<h2>Input Features</h2>
-<p>The text data (customer questions) is vectorized using the <strong>TF-IDF Vectorizer</strong>
-(<code>TfidfVectorizer</code>) to convert the textual information into numerical features that the model can
-understand.</p>
-
-<h2>Task</h2>
-<p>The model is trained to classify customer support questions into various categories such as 
-"Product Support", "Billing", "Order", etc. Given a new customer query, the model can predict which category it belongs to.</p>
-
-
-<pre><code class="language-python">#!/usr/bin/env python
+#!/usr/bin/env python
 #--------------------------------------------------------------------------------------------------------#
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -126,40 +106,3 @@ table.field_names = ["Customer Question", "Predicted Category"]
 table.add_row([new_question[0], predicted_category[0]])
 print(table)
 #--------------------------------------------------------------------------------------------------------#
-</code></pre>
-
-<h2>Output</h2>
-<pre><code class="language-markdown">Model Accuracy: 53.33%
-+----------------------+--------------------+
-|  Customer Question   | Predicted Category |
-+----------------------+--------------------+
-| Reset my account PIN |  Product Support   |
-+----------------------+--------------------+
-</code></pre>
-
-<p>
-<h2>Hyperparameters</h2>
-<p>The model’s hyperparameters have been adjusted as follows:</p>
-<ul>
-  <li><code>n_estimators=200</code>: The number of decision trees in the forest.</li>
-  <li><code>max_depth=20</code>: The maximum depth of each decision tree.</li>
-  <li><code>min_samples_split=5</code>: The minimum number of samples required to split an internal node.</li>
-  <li><code>min_samples_leaf=2</code>: The minimum number of samples required to be at a leaf node.</li>
-</ul>
-
-<p>This approach is useful for text classification, particularly for customer support automation, where you want to categorize incoming queries to route them accordingly.</p>
-
-<p><h2>Train Test Split</h2>
-<h3>df['category']:</h3>
-<p>This is the feature set. In this case, it's the customer questions, which represent the input data that the model will use to make predictions.</p>
-
-<h3>test_size=0.3:</h3>
-<p>This is the target set, or the labels. It's the category (either "Product Support" or "Billing") that corresponds to each question. The model will be trained to predict these categories based on the input questions.</p>
-
-<h3>random_state=42:</h3>
-<p>This parameter specifies the proportion of the data that should be used for testing. In this case, 30% of the data will be used as the test set, while the remaining 70% will be used for training.</p>
-
-<p>This parameter ensures reproducibility. It sets the seed for the random number generator, so that every time you run the code, the same split between training and testing data occurs. The value 42 is arbitrary; you can use any number. If you omit this parameter, a different split will happen every time you run the code.</p>
-
-
-{% include footer.html %}
