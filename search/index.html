@@ -70,12 +70,12 @@
               // Move down the list
               currentIndex = (currentIndex + 1) % items.length;
               highlightItem(items, currentIndex);
-              event.preventDefault(); // Prevent cursor movement in input box
+              // event.preventDefault(); // Prevent cursor movement in input box
             } else if (event.key === 'ArrowUp') {
               // Move up the list
               currentIndex = (currentIndex - 1 + items.length) % items.length;
               highlightItem(items, currentIndex);
-              event.preventDefault(); // Prevent cursor movement in input box
+              // event.preventDefault(); // Prevent cursor movement in input box
             } else if (event.key === 'Enter') {
               // Open the selected link
               if (currentIndex >= 0 && items[currentIndex]) {
