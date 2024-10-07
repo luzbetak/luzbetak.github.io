@@ -37,45 +37,45 @@
     },
     {
         "id": 7,
-        "title": "hello.html",
-        "content": "{% include menu.html title=\"Kevin Luzbetak  Computer Science\" %} Python Syntax Highlighting def greet(name):   print(f\"Hello, {name}!\") def add(a, b):   return a + b if __name__ == \"__main__\":   greet(\"World\")   result = add(5, 3)   print(f\"5 + 3 = {result}\") SQL Syntax Highlighting SELECT name, age FROM users WHERE age > 18 ORDER BY age DESC; Bash Syntax Highlighting #!/bin/bash echo \"Hello, World!\"",
-        "url": "/hello.html"
-    },
-    {
-        "id": 8,
         "title": "Medallion-Architecture.html",
         "content": "",
         "url": "/Medallion-Architecture.html"
     },
     {
-        "id": 9,
+        "id": 8,
         "title": "Keras.html",
         "content": "{% include menu.html title=\"Keras (Training Neural Networks\" %} Keras Overview Keras is an open source deep learning library that provides a high level API for building and training neural networks. It is user friendly,   modular, and extensible, allowing developers to create complex models with minimal code.",
         "url": "/Keras.html"
     },
     {
-        "id": 10,
+        "id": 9,
         "title": "Gunning-Fog-Index.html",
         "content": "{% include menu.html title=\"Python Algorithms\" %} Gunning Fog Index The Gunning Fog Index is a readability test that estimates the years of formal education needed to understand a text on the first reading. It takes into account the number of words, the number of complex words (words with three or more syllables), and the number of sentences in a text.",
         "url": "/Gunning-Fog-Index.html"
     },
     {
-        "id": 11,
+        "id": 10,
         "title": "PyTorch-Sentiment-Analysis-Model.html",
         "content": "{% include menu.html title=\"sentiment analysis model\" %} Build and Save Sentiment Model  python import torch from torch.utils.data import Dataset, DataLoader from torch import nn from transformers import BertTokenizer, BertModel from sklearn.metrics import accuracy_score, classification_report # Define the TextDataset class class TextDataset(Dataset):   def __init__(self, texts, labels):     self.texts   = texts     self.labels  = labels     self.tokenizer = BertTokenizer.from_pretrained('bert base uncased')     def __len__(self):     return len(self.texts)     def __getitem__(self, idx):     text  = self.texts[idx]     label = self.labels[idx]     tokens = self.tokenizer(       text,       padding='max_length',       max_length=128,       truncation=True,       return_tensors='pt'     )     input_ids = tokens['input_ids'].squeeze(0)     attention_mask = tokens['attention_mask'].squeeze(0)     return {       'input_ids': input_ids,       'attention_mask': attention_mask,       'labels': torch.tensor(label, dtype=torch.float)     } # Expanded dataset with both positive and negative examples text_data = [   \"This movie is amazing! \",        # positive   \"I really disliked the plot.",
         "url": "/PyTorch-Sentiment-Analysis-Model.html"
     },
     {
-        "id": 12,
+        "id": 11,
         "title": "Time-Complexity-Big-O-Notation.html",
         "content": "{% include menu.html title=\"Kevin Luzbetak  Computer Science\" %} Big O Notation  Time Complexity Big O notation is used to describe the efficiency of an algorithm, focusing on its time complexity (how the execution time grows with input size) and space complexity (how much extra memory is needed). It expresses the worst case scenario performance of an algorithm.",
         "url": "/Time-Complexity-Big-O-Notation.html"
     },
     {
-        "id": 13,
+        "id": 12,
         "title": "PyTorch.html",
         "content": "{% include menu.html title=\"PyTorch Neural Network\" %} PyTorch Machine Learning Library PyTorch is an open source machine learning library used for a wide variety of tasks such as deep learning, natural language processing (NLP), and computer vision. It provides a flexible platform to build machine learning models and comes with strong support for GPU acceleration, making it popular among researchers and developers.",
         "url": "/PyTorch.html"
+    },
+    {
+        "id": 13,
+        "title": "Python-Syntax-Highlighting.html",
+        "content": "{% include menu.html title=\"Kevin Luzbetak  Computer Science\" %} Python Syntax Highlighting def greet(name):   print(f\"Hello, {name}!\") def add(a, b):   return a + b if __name__ == \"__main__\":   greet(\"World\")   result = add(5, 3)   print(f\"5 + 3 = {result}\") SQL Syntax Highlighting SELECT name, age FROM users WHERE age > 18 ORDER BY age DESC; Bash Syntax Highlighting #!/bin/bash echo \"Hello, World!\"",
+        "url": "/Python-Syntax-Highlighting.html"
     },
     {
         "id": 14,
