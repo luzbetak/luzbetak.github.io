@@ -5,9 +5,15 @@ import json
 import re
 import spacy
 from bs4 import BeautifulSoup
+from nltk.corpus import stopwords
 
-# Load the spaCy English model
+# Load the spaCy English model and NLTK stopwords
 nlp = spacy.load("en_core_web_sm")
+import nltk
+nltk.download('stopwords')
+
+# Define stopwords list
+stop_words = set(stopwords.words('english'))
 
 # Function to clean up text by replacing sequences of "-" and "#!/usr/bin/env" with a single space
 def clean_text(text):
@@ -22,6 +28,13 @@ def clean_text(text):
 
     return text.strip()
 
+# Function to clean the title
+def clean_title(title):
+    # Replace '-', '_', and '.html' with spaces
+    cleaned_title = re.sub(r'[-_]', ' ', title)
+    cleaned_title = cleaned_title.replace('.html', '')
+    return cleaned_title.strip()
+
 # Function to extract technical terms using NLP (spaCy)
 def extract_technical_terms(text):
     # Process the text with spaCy to get POS tags and entities
@@ -32,7 +45,7 @@ def extract_technical_terms(text):
 
     for ent in doc.ents:
         # Keep only entities of type ORG, PRODUCT, or other relevant ones
-        if ent.label_ in {'ORG', 'PRODUCT', 'GPE', 'NORP', 'FAC'}: 
+        if ent.label_ in {'ORG', 'PRODUCT', 'GPE', 'NORP', 'FAC'}:
             technical_terms.add(ent.text.lower())
 
     # Also collect noun chunks (for broader technical terms)
@@ -91,7 +104,7 @@ with open('search/search-index.json', 'w', encoding='utf-8') as json_file:
 
 print("search-index.json created successfully.")
 
-# Second Pass: Make content unique
+# Second Pass: Make content unique and prepend cleaned title
 def make_content_unique():
     # Read the search-index.json file
     json_file_path = 'search/search-index.json'
@@ -99,23 +112,30 @@ def make_content_unique():
     with open(json_file_path, 'r', encoding='utf-8') as file:
         file_index = json.load(file)
 
-    # Process each entry in the dictionary to remove duplicate keywords
+    # Process each entry in the dictionary to clean title and remove duplicates
     for entry in file_index:
+        # Clean the title and add it to the beginning of the content
+        cleaned_title = clean_title(entry["title"])
+
         # Split the content into individual words
         keywords = entry["content"].split()
 
-        # Remove duplicates by converting the list to a set, then back to a sorted list
-        unique_keywords = sorted(set(keywords))
+        # Remove stopwords and non-alphabetic tokens
+        filtered_keywords = [word.lower() for word in keywords if word.isalpha() and word.lower() not in stop_words]
 
-        # Join the unique keywords back into a space-separated string
-        entry["content"] = " ".join(unique_keywords)
+        # Remove duplicates by converting the list to a set, then back to a sorted list
+        unique_keywords = sorted(set(filtered_keywords))
+
+        # Prepend the cleaned title (in lowercase) to the keywords
+        entry["content"] = f"{cleaned_title.lower()} " + " ".join(unique_keywords)
+
 
     # Write the updated dictionary back to the JSON file
     with open(json_file_path, 'w', encoding='utf-8') as file:
         json.dump(file_index, file, indent=4)
 
-    print("search-index.json updated with unique keywords.")
+    print("search-index.json updated with unique keywords and cleaned titles.")
 
-# Run the second pass to ensure uniqueness
+# Run the second pass to ensure uniqueness and clean titles
 make_content_unique()
 
