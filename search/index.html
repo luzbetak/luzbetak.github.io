@@ -72,12 +72,14 @@
       if (!isTextInputActive && items.length > 0) {
         if (event.key === 'ArrowDown') {
           // Move down the list
-          currentIndex = (currentIndex + 1) % items.length;
+          currentIndex = (currentIndex + 1) % items.length; // Ensure index cycles through
+          if (currentIndex < 0) currentIndex = 0; // Ensure the first press goes to the first item
           highlightItem(items, currentIndex);
           event.preventDefault(); // Prevent cursor movement in input box
         } else if (event.key === 'ArrowUp') {
           // Move up the list
           currentIndex = (currentIndex - 1 + items.length) % items.length;
+          if (currentIndex < 0) currentIndex = 0; // Ensure it doesn't go below the first item
           highlightItem(items, currentIndex);
           event.preventDefault(); // Prevent cursor movement in input box
         } else if (event.key === 'Enter') {
