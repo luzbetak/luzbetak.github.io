@@ -20,8 +20,8 @@
 
     <style>
        #search { width: 800px; height: 30px; font-size: 20px; padding: 10px; }
-       #results { font-size: 18px; margin-top: 20px; }
-       #results li { margin-bottom: 10px; }
+       #results { font-size: 16px; margin-top: 18px; }
+       #results li { margin-bottom: 5px; }
        #results a { text-decoration: none; color: #007bff; }
        #results li.highlighted { background-color: #e0e0e0; } /* Highlight style */
     </style>
@@ -135,7 +135,7 @@
           if (results.length) {
             results.forEach(result => {
               const item = data.find(d => d.id == result.ref);
-              resultsContainer.innerHTML += `<li><a href="${item.url}">${item.title}</a></li>`;
+              resultsContainer.innerHTML += `<li><a href="${item.url}" target="_blank">${item.title}</a></li>`;
             });
           } else {
             resultsContainer.innerHTML = '<li>No results found</li>';
