@@ -50,7 +50,8 @@ for root, dirs, files in os.walk('.'):
     dirs[:] = [d for d in dirs if d != 'search']
 
     for file in files:
-        if file.endswith('.html'):
+        # Exclude any "index.html" file
+        if file.endswith('.html') and file != 'index.html':
             filepath = os.path.join(root, file)
             title, summary = extract_html_data(filepath)
 
