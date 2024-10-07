@@ -4,11 +4,15 @@ import os
 import json
 from bs4 import BeautifulSoup
 from nltk.tokenize import sent_tokenize
+import re
 
-# Function to clean up text by replacing "---\n---\n" and multiple new lines
+# Function to clean up text by replacing sequences of "-" and "#!/usr/bin/env" with a single space
 def clean_text(text):
-    # Remove the "---\n---\n" pattern
-    text = text.replace('---\n---\n', '')
+    # Replace one or more hyphens with a single space
+    text = re.sub(r'-+', ' ', text)
+
+    # Replace "#!/usr/bin/env" with a single space
+    text = text.replace('#!/usr/bin/env', ' ')
 
     # Replace multiple newlines with a single space
     text = text.replace('\n', ' ').replace('  ', ' ')  # Ensure no double spaces
