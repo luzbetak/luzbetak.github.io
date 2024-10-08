@@ -59,11 +59,11 @@ optimizer = optim.SGD(net.parameters(), lr=0.01)
 for epoch in range(2):
     running_loss = 0.0
     for inputs, labels in trainloader:
-        optimizer.zero_grad()  # Zero the gradients
-        outputs = net(inputs)  # Forward pass
-        loss = criterion(outputs, labels)  # Compute the loss
-        loss.backward()  # Backward pass
-        optimizer.step()  # Optimize
+        optimizer.zero_grad()                   # Zero the gradients
+        outputs = net(inputs)                   # Forward pass
+        loss    = criterion(outputs, labels)    # Compute the loss
+        loss.backward()                         # Backward pass
+        optimizer.step()                        # Optimize
         running_loss += loss.item()
     print(f'Epoch {epoch+1}, Loss: {running_loss / len(trainloader)}')
 
@@ -75,8 +75,8 @@ print("Finished Training")
 <h2>Common PyTorch Libraries</h2>
 <ul>
     <li><code>torchvision</code>: Contains datasets, models, and transforms for computer vision.</li>
-    <li><code>torchtext</code>: For NLP models and datasets.</li>
-    <li><code>torchaudio</code>: For audio and speech processing.</li>
+    <li><code>torchtext</code>  : For NLP models and datasets.</li>
+    <li><code>torchaudio</code> : For Audio and Speech Processing.</li>
 </ul>
 
 {% include footer.html %}
