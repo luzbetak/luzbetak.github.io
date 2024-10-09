@@ -23,10 +23,10 @@ html_content = '''<!DOCTYPE html>
             flex-direction: column;
         }
         .filename {
-            font-size: 14px;
+            font-size: 22px;
             color: white;
             position: absolute;
-            top: 20px;
+            top: 10px;
             text-align: center;
             width: 100%;
         }
