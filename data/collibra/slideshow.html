@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+        }
+        .active {
+            display: block;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+        }
+        .prev {
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next {
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+    <img class="slides active" src="collibra-01.png" alt="collibra-01">
+    <img class="slides" src="collibra-02.png" alt="collibra-02">
+    <img class="slides" src="collibra-03.png" alt="collibra-03">
+    <img class="slides" src="collibra-04.png" alt="collibra-04">
+    <img class="slides" src="collibra-05.png" alt="collibra-05">
+    <!-- Add more images here if needed -->
+
+    <!-- Previous and next buttons -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName('slides');
+
+    function showSlide(index) {
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        // Ensure the slide index is within bounds
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function changeSlide(direction) {
+        showSlide(currentSlide + direction);
+    }
+</script>
+
+</body>
+</html>
+
