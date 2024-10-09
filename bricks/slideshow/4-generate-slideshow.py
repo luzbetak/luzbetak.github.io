@@ -58,6 +58,9 @@ html_content = '''<!DOCTYPE html>
         .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+        .disabled {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -73,7 +76,7 @@ for index, file in enumerate(png_files):
         html_content += f'    <img class="slides" src="{file}" alt="{file}">\n'
 
 # Add the navigation buttons and script for slideshow functionality
-html_content += '''
+html_content += f'''
     <!-- Previous and next buttons -->
     <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
     <a class="next" onclick="changeSlide(1)">&#10095;</a>
@@ -82,26 +85,43 @@ html_content += '''
 <script>
     let currentSlide = 0;
     const slides = document.getElementsByClassName('slides');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
 
-    function showSlide(index) {
-        for (let i = 0; i < slides.length; i++) {
+    function updateButtons() {{
+        prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
+        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+    }}
+
+    function showSlide(index) {{
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {{
             slides[i].classList.remove('active');
-        }
-        currentSlide = (index + slides.length) % slides.length;
+        }}
+        // Ensure the slide index is within bounds
+        currentSlide = index;
         slides[currentSlide].classList.add('active');
-    }
+        updateButtons();
+    }}
 
-    function changeSlide(direction) {
-        showSlide(currentSlide + direction);
-    }
+    function changeSlide(direction) {{
+        const newSlide = currentSlide + direction;
+        if (newSlide >= 0 && newSlide < slides.length) {{
+            showSlide(newSlide);
+        }}
+    }}
 
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowRight') {
+    // Add event listener for left and right arrow key presses
+    document.addEventListener('keydown', function(event) {{
+        if (event.key === 'ArrowRight' && currentSlide < slides.length - 1) {{
             changeSlide(1);
-        } else if (event.key === 'ArrowLeft') {
+        }} else if (event.key === 'ArrowLeft' && currentSlide > 0) {{
             changeSlide(-1);
-        }
-    });
+        }}
+    }});
+
+    // Initialize the buttons on page load
+    updateButtons();
 </script>
 
 </body>
