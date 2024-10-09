@@ -1,8 +1,13 @@
 #!/usr/bin/env python 
 import os
+import re
 
-# Get all .png files in the current directory and sort them
-png_files = sorted([f for f in os.listdir('.') if f.endswith('.png')])
+# Function to sort filenames in natural order (taking numbers into account)
+def natural_sort_key(s):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+
+# Get all .png files in the current directory and sort them naturally
+png_files = sorted([f for f in os.listdir('.') if f.endswith('.png')], key=natural_sort_key)
 
 # Start building the HTML content
 html_content = '''<!DOCTYPE html>
