@@ -1,13 +1,8 @@
 #!/usr/bin/env python 
 import os
-import re
 
-# Function to sort filenames in natural order (taking numbers into account)
-def natural_sort_key(s):
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
-
-# Get all .png files in the current directory and sort them naturally
-png_files = sorted([f for f in os.listdir('.') if f.endswith('.png')], key=natural_sort_key)
+# Get all .png files in the current directory and sort them
+png_files = sorted([f for f in os.listdir('.') if f.endswith('.png')])
 
 # Start building the HTML content
 html_content = '''<!DOCTYPE html>
@@ -63,9 +58,6 @@ html_content = '''<!DOCTYPE html>
         .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
-        .disabled {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -81,7 +73,7 @@ for index, file in enumerate(png_files):
         html_content += f'    <img class="slides" src="{file}" alt="{file}">\n'
 
 # Add the navigation buttons and script for slideshow functionality
-html_content += f'''
+html_content += '''
     <!-- Previous and next buttons -->
     <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
     <a class="next" onclick="changeSlide(1)">&#10095;</a>
@@ -90,51 +82,26 @@ html_content += f'''
 <script>
     let currentSlide = 0;
     const slides = document.getElementsByClassName('slides');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
 
-    function updateButtons() {{
-        // Hide the "previous" button if we're on the first slide, and the "next" button if we're on the last slide
-        prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
-        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
-    }}
-
-    function showSlide(index) {{
-        // Hide all slides
-        for (let i = 0; i < slides.length; i++) {{
+    function showSlide(index) {
+        for (let i = 0; i < slides.length; i++) {
             slides[i].classList.remove('active');
-        }}
-        // Show the current slide
-        slides[index].classList.add('active');
-        updateButtons();
-    }}
+        }
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
 
-    function changeSlide(direction) {{
-        const newSlide = currentSlide + direction;
-        // Ensure the newSlide index is within bounds (0 <= newSlide < slides.length)
-        if (newSlide >= 0 && newSlide < slides.length) {{
-            currentSlide = newSlide;
-            showSlide(currentSlide);
-        }}
-    }}
+    function changeSlide(direction) {
+        showSlide(currentSlide + direction);
+    }
 
-    // Add event listener for left and right arrow key presses
-    document.addEventListener('keydown', function(event) {{
-        if (event.key === 'ArrowRight') {{
-            // Only move to the next slide if it's not the last slide
-            if (currentSlide < slides.length - 1) {{
-                changeSlide(1);
-            }}
-        }} else if (event.key === 'ArrowLeft') {{
-            // Only move to the previous slide if it's not the first slide
-            if (currentSlide > 0) {{
-                changeSlide(-1);
-            }}
-        }}
-    }});
-
-    // Initialize the buttons on page load
-    updateButtons();
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            changeSlide(1);
+        } else if (event.key === 'ArrowLeft') {
+            changeSlide(-1);
+        }
+    });
 </script>
 
 </body>
