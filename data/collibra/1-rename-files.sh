@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Initialize the counter
 counter=1
