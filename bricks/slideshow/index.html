@@ -13,6 +13,15 @@
             justify-content: center;
             align-items: center;
             background-color: black;
+            flex-direction: column;
+        }
+        .filename {
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            width: 100%;
         }
         .slideshow-container {
             position: relative;
@@ -58,6 +67,8 @@
 </head>
 <body>
 
+<div class="filename" id="filename"></div>
+
 <div class="slideshow-container">
     <img class="slides active" src="databricks-01.png" alt="databricks-01.png">
     <img class="slides" src="databricks-02.png" alt="databricks-02.png">
@@ -97,12 +108,19 @@
 <script>
     let currentSlide = 0;
     const slides = document.getElementsByClassName('slides');
+    const filenameDisplay = document.getElementById('filename');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
+
+    const filenames = ['databricks-01.png', 'databricks-02.png', 'databricks-03.png', 'databricks-04.png', 'databricks-05.png', 'databricks-06.png', 'databricks-07.png', 'databricks-08.png', 'databricks-09.png', 'databricks-10.png', 'databricks-11.png', 'databricks-12.png', 'databricks-13.png', 'databricks-14.png', 'databricks-15.png', 'databricks-16.png', 'databricks-17.png', 'databricks-18.png', 'databricks-19.png', 'databricks-20.png', 'databricks-21.png', 'databricks-22.png', 'databricks-23.png', 'databricks-24.png', 'databricks-25.png', 'databricks-26.png', 'databricks-27.png', 'databricks-28.png', 'databricks-29.png'];  // Array of filenames
 
     function updateButtons() {
         prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
         nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+    }
+
+    function updateFilename() {
+        filenameDisplay.textContent = filenames[currentSlide];
     }
 
     function showSlide(index) {
@@ -114,6 +132,7 @@
         currentSlide = index;
         slides[currentSlide].classList.add('active');
         updateButtons();
+        updateFilename();
     }
 
     function changeSlide(direction) {
@@ -132,8 +151,9 @@
         }
     });
 
-    // Initialize the buttons on page load
+    // Initialize the buttons and filename on page load
     updateButtons();
+    updateFilename();
 </script>
 
 </body>

@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 import os
 
 # Get all .png files in the current directory and sort them
@@ -20,6 +20,15 @@ html_content = '''<!DOCTYPE html>
             justify-content: center;
             align-items: center;
             background-color: black;
+            flex-direction: column;
+        }
+        .filename {
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            width: 100%;
         }
         .slideshow-container {
             position: relative;
@@ -65,6 +74,8 @@ html_content = '''<!DOCTYPE html>
 </head>
 <body>
 
+<div class="filename" id="filename"></div>
+
 <div class="slideshow-container">
 '''
 
@@ -85,12 +96,19 @@ html_content += f'''
 <script>
     let currentSlide = 0;
     const slides = document.getElementsByClassName('slides');
+    const filenameDisplay = document.getElementById('filename');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
+
+    const filenames = {png_files};  // Array of filenames
 
     function updateButtons() {{
         prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
         nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+    }}
+
+    function updateFilename() {{
+        filenameDisplay.textContent = filenames[currentSlide];
     }}
 
     function showSlide(index) {{
@@ -102,6 +120,7 @@ html_content += f'''
         currentSlide = index;
         slides[currentSlide].classList.add('active');
         updateButtons();
+        updateFilename();
     }}
 
     function changeSlide(direction) {{
@@ -120,8 +139,9 @@ html_content += f'''
         }}
     }});
 
-    // Initialize the buttons on page load
+    // Initialize the buttons and filename on page load
     updateButtons();
+    updateFilename();
 </script>
 
 </body>
