@@ -7,15 +7,20 @@ import spacy
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 
+#-----------------------------------------------------------------------------------------------#
 # Load the spaCy English model and NLTK stopwords
+#-----------------------------------------------------------------------------------------------#
 nlp = spacy.load("en_core_web_sm")
 import nltk
 nltk.download('stopwords')
 
+#-----------------------------------------------------------------------------------------------#
 # Define stopwords list
 stop_words = set(stopwords.words('english'))
 
-# Function to clean up text by replacing sequences of "-" and "#!/usr/bin/env" with a single space
+#-----------------------------------------------------------------------------------------------#
+# Clean up text by replacing sequences of "-" and "#!/usr/bin/env" with a single space
+#-----------------------------------------------------------------------------------------------#
 def clean_text(text):
     # Replace one or more hyphens with a single space
     text = re.sub(r'-+', ' ', text)
@@ -28,14 +33,18 @@ def clean_text(text):
 
     return text.strip()
 
-# Function to clean the title
+#-----------------------------------------------------------------------------------------------#
+# Clean the title
+#-----------------------------------------------------------------------------------------------#
 def clean_title(title):
     # Replace '-', '_', and '.html' with spaces
     cleaned_title = re.sub(r'[-_]', ' ', title)
     cleaned_title = cleaned_title.replace('.html', '')
     return cleaned_title.strip()
 
-# Function to extract technical terms using NLP (spaCy)
+#-----------------------------------------------------------------------------------------------#
+# Extract technical terms using NLP (spaCy)
+#-----------------------------------------------------------------------------------------------#
 def extract_technical_terms(text):
     # Process the text with spaCy to get POS tags and entities
     doc = nlp(text)
@@ -54,7 +63,9 @@ def extract_technical_terms(text):
 
     return technical_terms
 
-# Function to extract technical keywords from an HTML file
+#-----------------------------------------------------------------------------------------------#
+# Extract technical keywords from an HTML file
+#-----------------------------------------------------------------------------------------------#
 def extract_technical_keywords_from_html(filepath):
     with open(filepath, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'html.parser')
@@ -75,7 +86,9 @@ def extract_technical_keywords_from_html(filepath):
 file_index = []
 current_id = 1
 
+#-----------------------------------------------------------------------------------------------#
 # Traverse current directory and subdirectories to find HTML files
+#-----------------------------------------------------------------------------------------------#
 for root, dirs, files in os.walk('.'):
     # Skip the /search directory
     dirs[:] = [d for d in dirs if d != 'search']
@@ -104,7 +117,9 @@ with open('search/search-index.json', 'w', encoding='utf-8') as json_file:
 
 print("search-index.json created successfully.")
 
+#-----------------------------------------------------------------------------------------------#
 # Second Pass: Make content unique and prepend cleaned title
+#-----------------------------------------------------------------------------------------------#
 def make_content_unique():
     # Read the search-index.json file
     json_file_path = 'search/search-index.json'
@@ -136,6 +151,8 @@ def make_content_unique():
 
     print("search-index.json updated with unique keywords and cleaned titles.")
 
+#-----------------------------------------------------------------------------------------------#
 # Run the second pass to ensure uniqueness and clean titles
+#-----------------------------------------------------------------------------------------------#
 make_content_unique()
 
