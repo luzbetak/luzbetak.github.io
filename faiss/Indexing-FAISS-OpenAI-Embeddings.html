@@ -43,7 +43,8 @@ embeddings = OpenAIEmbeddings()
 def clean_content(text):
     text = re.sub(r'http\S+', '', text)  # Remove URLs
     text = re.sub(r'-{2,}', '-', text)  # Replace sequences of dashes with one dash
-    text = re.sub(r'(unsubscribe.*|learn why we included.*|you are receiving.*)', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'(unsubscribe.*|learn why we included.*|you are receiving.*)', ''
+                                                    , text, flags=re.IGNORECASE)
     text = re.sub(r'\[image:.*?\]|\&\w+;', '', text)  # Remove HTML entities
     return re.sub(r'\s+', ' ', text).strip()  # Remove extra spaces
 
