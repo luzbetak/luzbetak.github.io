@@ -3,6 +3,17 @@
 {% include menu.html title="FAISS Retrieval QA with OpenAI GPT-4" %}
 <hr align=left width=1100>
 
+<h1>RetrievalQA?</h1>
+
+<p><strong>RetrievalQA</strong> is a specialized question-answering framework that leverages <strong>retrievers</strong> (like FAISS or vector databases) to find relevant documents or text snippets based on a query and then uses <strong>language models (LLMs)</strong> to generate answers based on the retrieved content. This architecture improves the LLM's ability to answer questions accurately by limiting the scope to relevant data instead of relying on the model's general knowledge.</p>
+
+<h2>In this framework:</h2>
+<ul>
+    <li><strong>Retriever:</strong> Quickly fetches relevant documents or information from a knowledge base (e.g., a FAISS index).</li>
+    <li><strong>Language Model (LLM):</strong> Uses retrieved content as context to generate precise answers to user questions.</li>
+</ul>
+
+<p><hr align=left width=1100>
 <h1>FAISS Retrieval QA with OpenAI GPT-4</h1>
 
 <h2>Description</h2>
