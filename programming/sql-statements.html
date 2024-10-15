@@ -207,7 +207,9 @@ WHERE e.salary > d.avg_salary;</code></pre>
     SELECT employee_id, name, manager_id, 1 AS level
     FROM employees
     WHERE manager_id IS NULL
+
     UNION ALL
+
     SELECT e.employee_id, e.name, e.manager_id, eh.level + 1
     FROM employees e
     JOIN emp_hierarchy eh
