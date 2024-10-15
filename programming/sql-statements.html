@@ -76,31 +76,25 @@
 <ol>
   <li><h2>Basic SELECT Query:</h2>
     <p>Write a query to retrieve all columns from the <code>employees</code> table.</p>
-    <pre><code class="language-sql">
-SELECT * FROM employees;
-    </code></pre>
+    <pre><code class="language-sql">SELECT * FROM employees;</code></pre>
   </li>
 
   <li><h2>Filtering Data with WHERE:</h2>
     <p>Retrieve all employees with a salary greater than 50,000.</p>
-    <pre><code class="language-sql">
-SELECT * FROM employees WHERE salary > 50000;
-    </code></pre>
+    <pre><code class="language-sql">SELECT * FROM employees WHERE salary > 50000;</code></pre>
   </li>
 
   <li><h2>Sorting Data:</h2>
     <p>Retrieve the top 5 highest-paid employees in descending order.</p>
     <pre><code class="language-sql">SELECT * FROM employees 
 ORDER BY salary DESC 
-LIMIT 5;
-    </code></pre>
+LIMIT 5;</code></pre>
   </li>
 
   <li><h2>Using Aliases:</h2>
     <p>Write a query to retrieve the employee name and their salary, renaming them as <code>Employee</code> and <code>Salary</code>.</p>
     <pre><code class="language-sql">SELECT name AS Employee, salary AS Salary 
-FROM employees;
-    </code></pre>
+FROM employees;</code></pre>
   </li>
 
   <li><h2>Using JOIN:</h2>
@@ -108,16 +102,14 @@ FROM employees;
     <pre><code class="language-sql">SELECT e.name, d.department_name
 FROM employees e
 JOIN departments d 
-  ON e.department_id = d.department_id;
-    </code></pre>
+  ON e.department_id = d.department_id;</code></pre>
   </li>
 
   <li><h2>GROUP BY and Aggregate Functions:</h2>
     <p>Find the total salary paid in each department.</p>
     <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
 FROM employees
-GROUP BY department_id;
-    </code></pre>
+GROUP BY department_id;</code></pre>
   </li>
 
   <li><h2>HAVING Clause:</h2>
@@ -125,8 +117,7 @@ GROUP BY department_id;
     <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
 FROM employees
 GROUP BY department_id
-HAVING total_salary > 100000;
-    </code></pre>
+HAVING total_salary > 100000;</code></pre>
   </li>
 
   <li><h2>CASE Statement:</h2>
@@ -138,8 +129,7 @@ HAVING total_salary > 100000;
            WHEN salary >= 50000 THEN 'Medium'
            ELSE 'Low'
        END AS salary_category
-FROM employees;
-    </code></pre>
+FROM employees;</code></pre>
   </li>
 
   <li><h2>Self-JOIN:</h2>
@@ -156,8 +146,7 @@ JOIN employees e2
     <pre><code class="language-sql">SELECT name, department_id, salary, 
        RANK() OVER (PARTITION BY department_id 
                     ORDER BY salary DESC) AS rank
-FROM employees;
-    </code></pre>
+FROM employees;</code></pre>
   </li>
 
   <li><h2>CTE (Common Table Expression):</h2>
@@ -171,8 +160,7 @@ SELECT e.name, e.salary, d.avg_salary
 FROM employees e
 JOIN dept_avg d 
   ON e.department_id = d.department_id
-WHERE e.salary > d.avg_salary;
-    </code></pre>
+WHERE e.salary > d.avg_salary;</code></pre>
   </li>
 
   <li><h2>Recursive CTE:</h2>
@@ -188,8 +176,7 @@ WHERE e.salary > d.avg_salary;
       ON e.manager_id = eh.employee_id
 )
 SELECT * FROM emp_hierarchy 
-ORDER BY level;
-    </code></pre>
+ORDER BY level;</code></pre>
   </li>
 
   <li><h2>Subquery:</h2>
@@ -203,8 +190,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
   <li><h2>Handling NULLs:</h2>
     <p>Write a query to list employees and replace NULL values in the <code>bonus</code> column with 0.</p>
     <pre><code class="language-sql">SELECT name, COALESCE(bonus, 0) AS bonus 
-FROM employees;
-    </code></pre>
+FROM employees;</code></pre>
   </li>
 </ol>
    
