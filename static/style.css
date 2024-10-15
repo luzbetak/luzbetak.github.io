@@ -51,10 +51,30 @@ a:hover {
 
 .green-text { color: green; }
 
-table, th, td { border: 1px solid #ddd; padding: 8px; }
-th { background-color: #444; /* Slightly lighter than table body */ color: #fff; }
-td { background-color: #333; /* Make the table rows darker to contrast with body */ color: #fff; }
-tr:hover td { background-color: #555; /* Lighter background on hover for better visibility */ }
+/* Styling the comparison table as a separate class */
+.table {
+    width: 1000;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #222; /* Darker background to stand out against black body */
+}
+.table,
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.table th {
+    background-color: #444; /* Slightly lighter than table body */
+    color: #fff;
+}
+.table td {
+    background-color: #333; /* Make the table rows darker to contrast with body */
+    color: #fff;
+}
+.table tr:hover {
+    background-color: #555; /* Lighter background on hover for better visibility */
+}
 
 
 /* Styling the comparison table as a separate class */
