@@ -74,29 +74,6 @@
 
 <p><hr align=left width=1000>
 <ol>
-  <li><h2>Basic SELECT Query:</h2>
-    <p>Write a query to retrieve all columns from the <code>employees</code> table.</p>
-    <pre><code class="language-sql">SELECT * FROM employees;</code></pre>
-  </li>
-
-  <li><h2>Filtering Data with WHERE:</h2>
-    <p>Retrieve all employees with a salary greater than 50,000.</p>
-    <pre><code class="language-sql">SELECT * FROM employees WHERE salary > 50000;</code></pre>
-  </li>
-
-  <li><h2>Sorting Data:</h2>
-    <p>Retrieve the top 5 highest-paid employees in descending order.</p>
-    <pre><code class="language-sql">SELECT * FROM employees 
-ORDER BY salary DESC 
-LIMIT 5;</code></pre>
-  </li>
-
-  <li><h2>Using Aliases:</h2>
-    <p>Write a query to retrieve the employee name and their salary, renaming them as <code>Employee</code> and <code>Salary</code>.</p>
-    <pre><code class="language-sql">SELECT name AS Employee, salary AS Salary 
-FROM employees;</code></pre>
-  </li>
-
   <li><h2>Using JOIN:</h2>
     <p>Write a query to retrieve employee names along with their department names from <code>employees</code> and <code>departments</code> tables.</p>
     <pre><code class="language-sql">SELECT e.name, d.department_name
