@@ -72,470 +72,153 @@
         </tr>
     </table>
 
-     <p><hr align=left width=1000>
-    <h1>SQL Table Create, Alter, Drop, Truncate</h1>
-    <p>Below are sample SQL queries for creating, altering, dropping, and truncating a table in Snowflake with a primary index.</p>
-
-    <h2>CREATE Table</h2>
-    <pre><code><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">my_table</span> (
-    <span class="string">id</span> <span class="datatype">INTEGER</span> <span class="keyword">AUTOINCREMENT</span> <span class="keyword">PRIMARY KEY</span>,
-    <span class="string">name</span> <span class="datatype">VARCHAR</span>(<span class="string">255</span>),
-    <span class="string">created_at</span> <span class="datatype">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="function">CURRENT_TIMESTAMP</span>
-);
+<p><hr align=left width=1000>
+<ul>
+  <li><strong>Basic SELECT Query:</strong>
+    <p>Write a query to retrieve all columns from the <code>employees</code> table.</p>
+    <pre><code class="language-sql">
+SELECT * FROM employees;
     </code></pre>
+  </li>
 
-    <h2>ALTER Table</h2>
-    <pre><code><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">my_table</span>
-<span class="keyword">ADD</span> <span class="string">email</span> <span class="datatype">VARCHAR</span>(<span class="string">255</span>);
+  <li><strong>Filtering Data with WHERE:</strong>
+    <p>Retrieve all employees with a salary greater than 50,000.</p>
+    <pre><code class="language-sql">
+SELECT * FROM employees WHERE salary > 50000;
     </code></pre>
+  </li>
 
-    <h2>DROP Table</h2>
-    <pre><code><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="string">my_table</span>;
+  <li><strong>Sorting Data:</strong>
+    <p>Retrieve the top 5 highest-paid employees in descending order.</p>
+    <pre><code class="language-sql">
+SELECT * FROM employees 
+ORDER BY salary DESC 
+LIMIT 5;
     </code></pre>
+  </li>
 
-    <h2>TRUNCATE Table</h2>
-    <pre><code><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> <span class="string">my_table</span>;
+  <li><strong>Using Aliases:</strong>
+    <p>Write a query to retrieve the employee name and their salary, renaming them as <code>Employee</code> and <code>Salary</code>.</p>
+    <pre><code class="language-sql">
+SELECT name AS Employee, salary AS Salary 
+FROM employees;
     </code></pre>
+  </li>
 
-    <p><hr>
-<table width="900" border="0"><tr><td>
-<h1>SQL DISTINCT Clause</h1>
-
-<h3>SQL - Retrieve Unique Values from a Column</h3>
-This query retrieves unique departments from the <code>employees</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="string">department</span>
-<span class="keyword">FROM</span> <span class="string">employees</span>;
-</code></pre>
-
-<h3>SQL - Retrieve Unique Email Addresses</h3>
-This query retrieves unique email addresses from the <code>student</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="string">email</span>
-<span class="keyword">FROM</span> <span class="string">student</span>;
-</code></pre>
-
-<h3>SQL - Count Unique Products</h3>
-This query counts the number of unique products in the <code>sales</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="function">COUNT</span>(<span class="keyword">DISTINCT</span> <span class="string">product</span>) <span class="keyword">AS</span> unique_products
-<span class="keyword">FROM</span> <span class="string">sales</span>;
-</code></pre>
-
-</td></tr><table>
-
-<body>
-    <h1>SQL JOIN Types</h1>
-
-    <h2>SQL INNER JOIN</h2>
-    <p>This example demonstrates an <code>INNER JOIN</code> which returns records that have matching values in both tables.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">INNER JOIN</span> 
-    <span class="string">departments</span> <span class="keyword">AS</span> d
-<span class="keyword">ON</span> 
-    e.<span class="string">department_id</span> = d.<span class="string">department_id</span>;
+  <li><strong>Using JOIN:</strong>
+    <p>Write a query to retrieve employee names along with their department names from <code>employees</code> and <code>departments</code> tables.</p>
+    <pre><code class="language-sql">
+SELECT e.name, d.department_name
+FROM employees e
+JOIN departments d 
+  ON e.department_id = d.department_id;
     </code></pre>
+  </li>
 
-    <h2>SQL LEFT JOIN</h2>
-    <p>This example demonstrates a <code>LEFT JOIN</code> which returns all records from the left table and the matched records from the right table. The result is <code>NULL</code> from the right side, if there is no match.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">LEFT JOIN</span> 
-    <span class="string">departments</span> <span class="keyword">AS</span> d
-<span class="keyword">ON</span> 
-    e.<span class="string">department_id</span> = d.<span class="string">department_id</span>;
+  <li><strong>GROUP BY and Aggregate Functions:</strong>
+    <p>Find the total salary paid in each department.</p>
+    <pre><code class="language-sql">
+SELECT department_id, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department_id;
     </code></pre>
+  </li>
 
-    <h2>SQL RIGHT JOIN</h2>
-    <p>This example demonstrates a <code>RIGHT JOIN</code> which returns all records from the right table and the matched records from the left table. The result is <code>NULL</code> from the left side, when there is no match.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">RIGHT JOIN</span> 
-    <span class="string">departments</span> <span class="keyword">AS</span> d
-<span class="keyword">ON</span> 
-    e.<span class="string">department_id</span> = d.<span class="string">department_id</span>;
+  <li><strong>HAVING Clause:</strong>
+    <p>Retrieve departments that have a total salary greater than 100,000.</p>
+    <pre><code class="language-sql">
+SELECT department_id, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department_id
+HAVING total_salary > 100000;
     </code></pre>
+  </li>
 
-    <h2>SQL FULL OUTER JOIN</h2>
-    <p>This example demonstrates a <code>FULL OUTER JOIN</code> which returns all records when there is a match in either left or right table records. If there is no match, the result is <code>NULL</code>.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">FULL OUTER JOIN</span> 
-    <span class="string">departments</span> <span class="keyword">AS</span> d
-<span class="keyword">ON</span> 
-    e.<span class="string">department_id</span> = d.<span class="string">department_id</span>;
+  <li><strong>CASE Statement:</strong>
+    <p>Write a query to categorize employees as <code>High</code>, <code>Medium</code>, or <code>Low</code> salary based on their salary values.</p>
+    <pre><code class="language-sql">
+SELECT name, 
+       salary,
+       CASE 
+           WHEN salary >= 80000 THEN 'High'
+           WHEN salary >= 50000 THEN 'Medium'
+           ELSE 'Low'
+       END AS salary_category
+FROM employees;
     </code></pre>
+  </li>
 
-    <h2>SQL CROSS JOIN</h2>
-    <p>This example demonstrates a <code>CROSS JOIN</code> which returns the Cartesian product of the two tables. Each row from the first table is joined to all rows from the second table.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">CROSS JOIN</span> 
-    <span class="string">departments</span> <span class="keyword">AS</span> d;
+  <li><strong>Self-JOIN:</strong>
+    <p>Find all employees who share the same manager.</p>
+    <pre><code class="language-sql">
+SELECT e1.name AS Employee, e2.name AS Manager
+FROM employees e1
+JOIN employees e2 
+  ON e1.manager_id = e2.employee_id;
     </code></pre>
+  </li>
 
-    <h2>SQL SELF JOIN</h2>
-    <p>This example demonstrates a <code>SELF JOIN</code> which is used to join a table to itself. This is useful for hierarchical data.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e1.<span class="string">first_name</span> <span class="keyword">AS</span> employee_name,
-    e2.<span class="string">first_name</span> <span class="keyword">AS</span> manager_name
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e1
-<span class="keyword">JOIN</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e2
-<span class="keyword">ON</span> 
-    e1.<span class="string">manager_id</span> = e2.<span class="string">employee_id</span>;
+  <li><strong>Window Functions:</strong>
+    <p>Rank employees based on their salaries within each department.</p>
+    <pre><code class="language-sql">
+SELECT name, department_id, salary, 
+       RANK() OVER (PARTITION BY department_id 
+                    ORDER BY salary DESC) AS rank
+FROM employees;
     </code></pre>
+  </li>
 
-    <p><hr>
-    <h1>SQL Group By</h1>
-
-    <h3>SQL - Group By Date</h3>
-    This query calculates the sum of prices for each date from the <code>sales</code> table.
-    <pre><code>
-<span class="keyword">SELECT</span> <span class="string">date</span>, <span class="function">SUM</span>(<span class="string">price</span>) <span class="keyword">AS</span> sum_price
-<span class="keyword">FROM</span> <span class="string">sales</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">date</span>
-<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="string">date</span>;
+  <li><strong>CTE (Common Table Expression):</strong>
+    <p>Use a CTE to find employees who earn above the department’s average salary.</p>
+    <pre><code class="language-sql">
+WITH dept_avg AS (
+    SELECT department_id, AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT e.name, e.salary, d.avg_salary
+FROM employees e
+JOIN dept_avg d 
+  ON e.department_id = d.department_id
+WHERE e.salary > d.avg_salary;
     </code></pre>
+  </li>
 
-    <h3>SQL - Find Duplicate Emails</h3>
-    This query finds duplicate emails in the <code>student</code> table.
-    <pre><code>
-<span class="keyword">SELECT</span> <span class="string">email</span>, <span class="function">COUNT</span>(<span class="string">email</span>) <span class="keyword">AS</span> total
-<span class="keyword">FROM</span> <span class="string">student</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">email</span>
-<span class="keyword">HAVING</span> total <span class="string">&gt;</span> <span class="string">1</span>;
+  <li><strong>Recursive CTE:</strong>
+    <p>Write a query to generate a hierarchical list of employees and their managers.</p>
+    <pre><code class="language-sql">
+WITH RECURSIVE emp_hierarchy AS (
+    SELECT employee_id, name, manager_id, 1 AS level
+    FROM employees
+    WHERE manager_id IS NULL
+    UNION ALL
+    SELECT e.employee_id, e.name, e.manager_id, eh.level + 1
+    FROM employees e
+    JOIN emp_hierarchy eh 
+      ON e.manager_id = eh.employee_id
+)
+SELECT * FROM emp_hierarchy 
+ORDER BY level;
     </code></pre>
+  </li>
 
-    <h3>SQL - Top IP Addresses</h3>
-    This query retrieves the top IP addresses from the <code>keywords</code> table where the IP address starts with '192'.
-    <pre><code>
-<span class="keyword">SELECT</span> <span class="string">ip</span>, <span class="function">COUNT</span>(<span class="string">ip</span>) total
-<span class="keyword">FROM</span> <span class="string">keywords</span>
-<span class="keyword">WHERE</span> <span class="string">ip</span> <span class="keyword">LIKE</span> <span class="string">"192%"</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">ip</span>
-<span class="keyword">HAVING</span> total <span class="string">&gt;</span> <span class="string">100</span>
-<span class="keyword">ORDER</span> <span class="keyword">BY</span> total <span class="keyword">DESC</span>;
+  <li><strong>Subquery:</strong>
+    <p>Retrieve employees whose salary is above the average salary in the company.</p>
+    <pre><code class="language-sql">
+SELECT name, salary 
+FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees);
     </code></pre>
+  </li>
 
-</body>
-</html>
-<table width="900" border="0"><tr><td>
-<h1>SQL HAVING Clause</h1>
-
-<h3>SQL - Filter Groups by Count</h3>
-This query retrieves departments from the <code>employees</code> table where the number of employees in each department is greater than 5.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">department</span>, <span class="function">COUNT</span>(<span class="string">employee_id</span>) <span class="keyword">AS</span> employee_count
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">department</span>
-<span class="keyword">HAVING</span> employee_count <span class="string">&gt;</span> <span class="string">5</span>;
-</code></pre>
-
-<h3>SQL - Filter Groups by Average Salary</h3>
-This query retrieves departments from the <code>employees</code> table where the average salary exceeds $50,000.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">department</span>, <span class="function">AVG</span>(<span class="string">salary</span>) <span class="keyword">AS</span> avg_salary
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">department</span>
-<span class="keyword">HAVING</span> avg_salary <span class="string">&gt;</span> <span class="string">50000</span>;
-</code></pre>
-
-<h3>SQL - Filter Groups by Minimum Sales</h3>
-This query retrieves products from the <code>sales</code> table where the total sales are more than $1,000.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">product</span>, <span class="function">SUM</span>(<span class="string">sales_amount</span>) <span class="keyword">AS</span> total_sales
-<span class="keyword">FROM</span> <span class="string">sales</span>
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">product</span>
-<span class="keyword">HAVING</span> total_sales <span class="string">&gt;</span> <span class="string">1000</span>;
-</code></pre>
-
-</td></tr><table>
-<body>
-    <h1>SQL Subquery Examples</h1>
-
-    <h2>SQL Subquery - FROM</h2>
-    <p>This example demonstrates a subquery used in the <code>FROM</code> clause.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    subquery_table.<span class="string">department</span>,
-    <span class="function">SUM</span>(subquery_table.<span class="string">salary</span>) <span class="keyword">AS</span> total_salary
-<span class="keyword">FROM</span> 
-    (<span class="keyword">SELECT</span> 
-        <span class="string">department</span>, 
-        <span class="string">salary</span>
-    <span class="keyword">FROM</span> 
-        <span class="string">employees</span>
-    ) <span class="keyword">AS</span> subquery_table
-<span class="keyword">GROUP</span> <span class="keyword">BY</span> subquery_table.<span class="string">department</span>;
+  <li><strong>Handling NULLs:</strong>
+    <p>Write a query to list employees and replace NULL values in the <code>bonus</code> column with 0.</p>
+    <pre><code class="language-sql">
+SELECT name, COALESCE(bonus, 0) AS bonus 
+FROM employees;
     </code></pre>
+  </li>
+</ul>
+   
 
-    <h2>SQL Subquery - IN</h2>
-    <p>This example demonstrates a subquery used in the <code>IN</code> clause.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    <span class="string">first_name</span>, 
-    <span class="string">last_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span>
-<span class="keyword">WHERE</span> 
-    <span class="string">department</span> <span class="keyword">IN</span> 
-    (<span class="keyword">SELECT</span> 
-        <span class="string">department</span>
-    <span class="keyword">FROM</span> 
-        <span class="string">departments</span>
-    <span class="keyword">WHERE</span> 
-        <span class="string">location</span> = <span class="string">'New York'</span>);
-    </code></pre>
-
-    <h2>SQL Subquery - WHERE</h2>
-    <p>This example demonstrates a subquery used in the <code>WHERE</code> clause.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    <span class="string">first_name</span>, 
-    <span class="string">last_name</span>, 
-    <span class="string">salary</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span>
-<span class="keyword">WHERE</span> 
-    <span class="string">salary</span> > 
-    (<span class="keyword">SELECT</span> 
-        <span class="function">AVG</span>(<span class="string">salary</span>)
-    <span class="keyword">FROM</span> 
-        <span class="string">employees</span>);
-    </code></pre>
-
-    <h2>SQL Subquery - JOIN Alias</h2>
-    <p>This example demonstrates a subquery used with a <code>JOIN</code> and an alias.</p>
-    <pre><code><span class="keyword">SELECT</span> 
-    e.<span class="string">first_name</span>, 
-    e.<span class="string">last_name</span>, 
-    d.<span class="string">department_name</span>
-<span class="keyword">FROM</span> 
-    <span class="string">employees</span> <span class="keyword">AS</span> e
-<span class="keyword">JOIN</span> 
-    (<span class="keyword">SELECT</span> 
-        <span class="string">department_id</span>, 
-        <span class="string">department_name</span>
-    <span class="keyword">FROM</span> 
-        <span class="string">departments</span>
-    ) <span class="keyword">AS</span> d
-<span class="keyword">ON</span> 
-    e.<span class="string">department_id</span> = d.<span class="string">department_id</span>;
-    </code></pre>
-    <p><hr>
-<table width="900" border="0"><tr><td>
-<h1>SQL EXISTS Clause</h1>
-
-<h3>SQL - Check if Subquery Returns Results</h3>
-This query retrieves employees from the <code>employees</code> table who belong to a department that has at least one manager in the <code>managers</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">employees</span> <span class="keyword">e</span>
-<span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (
-  <span class="keyword">SELECT</span> <span class="string">*</span>
-  <span class="keyword">FROM</span> <span class="string">managers</span> <span class="keyword">m</span>
-  <span class="keyword">WHERE</span> <span class="string">m.department_id</span> = <span class="string">e.department_id</span>
-);
-</code></pre>
-
-<h3>SQL - Check if Related Data Exists</h3>
-This query retrieves all products from the <code>products</code> table that have sales in the <code>sales</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">product_name</span>
-<span class="keyword">FROM</span> <span class="string">products</span> <span class="keyword">p</span>
-<span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (
-  <span class="keyword">SELECT</span> <span class="string">*</span>
-  <span class="keyword">FROM</span> <span class="string">sales</span> <span class="keyword">s</span>
-  <span class="keyword">WHERE</span> <span class="string">s.product_id</span> = <span class="string">p.product_id</span>
-);
-</code></pre>
-
-<h3>SQL - Check if Email Exists</h3>
-This query retrieves a list of students from the <code>students</code> table only if their email already exists in the <code>alumni</code> table.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">student_name</span>
-<span class="keyword">FROM</span> <span class="string">students</span> <span class="keyword">s</span>
-<span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (
-  <span class="keyword">SELECT</span> <span class="string">*</span>
-  <span class="keyword">FROM</span> <span class="string">alumni</span> <span class="keyword">a</span>
-  <span class="keyword">WHERE</span> <span class="string">a.email</span> = <span class="string">s.email</span>
-);
-</code></pre>
-
-</td></tr><table>
-
-    <p><hr>
-    <h1>SQL WITH Statement Example</h1>
-
-    <h2>SQL WITH Statement</h2>
-    <p>The SQL <code>WITH</code> statement, also known as a Common Table Expression (CTE), allows you to define a temporary result set that can be referenced within a <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code> statement.</p>
-    <pre><code><span class="keyword">WITH</span> 
-    DepartmentTotals <span class="keyword">AS</span> 
-    (
-        <span class="keyword">SELECT</span> 
-            <span class="string">department</span>, 
-            <span class="function">SUM</span>(<span class="string">salary</span>) <span class="keyword">AS</span> total_salary
-        <span class="keyword">FROM</span> 
-            <span class="string">employees</span>
-        <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="string">department</span>
-    )
-<span class="keyword">SELECT</span> 
-    <span class="string">department</span>, 
-    total_salary
-<span class="keyword">FROM</span> 
-    DepartmentTotals
-<span class="keyword">WHERE</span> 
-    total_salary > 100000;
-    </code></pre>
-
-    <h2>Explanation</h2>
-    <p>
-        In this example, the <code>WITH</code> statement is used to define a CTE named <code>DepartmentTotals</code>. 
-        The CTE calculates the total salary for each department in the <code>employees</code> table. 
-        The main query then selects the departments where the total salary is greater than 100,000.
-    </p>
-
-
-    <p><hr>    
-    <h1>SQL CASE Statement Example</h1>
-
-    <h2>Example Query</h2>
-    <pre><code><span class="keyword">SELECT</span> 
-    employee_id,
-    first_name,
-    last_name,
-    salary,
-    <span class="keyword">CASE</span> 
-        <span class="keyword">WHEN</span> salary &lt; 30000 <span class="keyword">THEN</span> <span class="string">'Low'</span>
-        <span class="keyword">WHEN</span> salary &gt;= 30000 <span class="keyword">AND</span> salary &lt; 70000 <span class="keyword">THEN</span> <span class="string">'Medium'</span>
-        <span class="keyword">WHEN</span> salary &gt;= 70000 <span class="keyword">THEN</span> <span class="string">'High'</span>
-        <span class="keyword">ELSE</span> <span class="string">'Not Specified'</span>
-    <span class="keyword">END</span> <span class="keyword">AS</span> salary_level
-<span class="keyword">FROM</span> 
-    employees;
-    </code></pre>
-
-    <h2>Explanation</h2>
-    <p>
-        The SQL CASE statement is a conditional expression that allows you to test data for equality with a specified value, 
-        partition data into ranges, or perform any other conditional check against the data. It's similar to an if-then-else statement 
-        in standard programming languages. The CASE expression includes the keywords CASE, WHEN, THEN, ELSE, and END. The ELSE part is optional, 
-        and if omitted, the CASE expression will return a null value if none of the conditions are met.
-    </p>
-
-    <h2>Example Output</h2>
-    <p>Assuming the <code>employees</code> table has the following data:</p>
-    <pre><code>
-| employee_id | first_name | last_name | salary |
-|-------------|------------|-----------|--------|
-| 1           | John       | Doe       | 25000  |
-| 2           | Jane       | Smith     | 50000  |
-| 3           | Michael    | Brown     | 75000  |
-    </code></pre>
-
-    <p>The output of the query will be:</p>
-    <pre><code>
-| employee_id | first_name | last_name | salary | salary_level |
-|-------------|------------|-----------|--------|--------------|
-| 1           | John       | Doe       | 25000  | Low          |
-| 2           | Jane       | Smith     | 50000  | Medium       |
-| 3           | Michael    | Brown     | 75000  | High         |
-    </code></pre>
-
-
-    <p><hr>    
-<table width="900" border="0"><tr><td>
-<h1>SQL UNION Clause</h1>
-
-<h3>SQL - Combine Results from Two Tables</h3>
-This query retrieves a list of all customers from the <code>online_customers</code> and <code>store_customers</code> tables without duplicates.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">customer_name</span> 
-<span class="keyword">FROM</span> <span class="string">online_customers</span>
-<span class="keyword">UNION</span>
-<span class="keyword">SELECT</span> <span class="string">customer_name</span> 
-<span class="keyword">FROM</span> <span class="string">store_customers</span>;
-</code></pre>
-
-<h3>SQL - Combine Employee Lists</h3>
-This query combines employee names from two departments, <code>department_a</code> and <code>department_b</code>, into one list.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">department_a</span>
-<span class="keyword">UNION</span>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">department_b</span>;
-</code></pre>
-
-<h3>SQL - Combine Two Different Queries</h3>
-This query combines two different result sets: employees who earn more than $50,000 and employees who are part of the <code>sales</code> department.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">WHERE</span> <span class="string">salary</span> <span class="keyword">&gt;</span> <span class="string">50000</span>
-<span class="keyword">UNION</span>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">WHERE</span> <span class="string">department</span> <span class="keyword">=</span> <span class="string">'Sales'</span>;
-</code></pre>
-
-<h1>SQL UNION ALL Clauses</h1>
-
-<h3>SQL - Combine Results with Duplicates (Using UNION ALL)</h3>
-This query retrieves a list of all customers from the <code>online_customers</code> and <code>store_customers</code> tables, including duplicates.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">customer_name</span>
-<span class="keyword">FROM</span> <span class="string">online_customers</span>
-<span class="keyword">UNION ALL</span>
-<span class="keyword">SELECT</span> <span class="string">customer_name</span>
-<span class="keyword">FROM</span> <span class="string">store_customers</span>;
-</code></pre>
-
-<h3>SQL - Combine Employee Lists (Using UNION ALL)</h3>
-This query combines employee names from two departments, <code>department_a</code> and <code>department_b</code>, and retains any duplicates.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">department_a</span>
-<span class="keyword">UNION ALL</span>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">department_b</span>;
-</code></pre>
-
-<h3>SQL - Combine Two Different Queries (Using UNION)</h3>
-This query combines two different result sets: employees who earn more than $50,000 and employees who are part of the <code>sales</code> department, eliminating duplicates.
-<pre><code>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">WHERE</span> <span class="string">salary</span> <span class="keyword">&gt;</span> <span class="string">50000</span>
-<span class="keyword">UNION</span>
-<span class="keyword">SELECT</span> <span class="string">employee_name</span>
-<span class="keyword">FROM</span> <span class="string">employees</span>
-<span class="keyword">WHERE</span> <span class="string">department</span>
-
-
-</td></tr><table>
-
- {% include footer.html %}
-
-  </body>
-</html>
+{% include footer.html %}
