@@ -290,7 +290,9 @@ negative_samples AS (
 -- Combine positive and negative samples and order by image_id --
 SELECT image_id, weak_label
 FROM positive_samples
+
 UNION ALL
+
 SELECT image_id, weak_label
 FROM negative_samples
 ORDER BY image_id;
