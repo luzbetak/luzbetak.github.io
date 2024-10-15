@@ -259,6 +259,93 @@ FROM employees;</code></pre>
   </li>
 </ol>
 
+<p><hr width=1100 align=left>
+<h2>WITH: Common Table Expressions</h2>
+
+<p><h3>Select Positive and Negative Image Samples</h3></p>
+
+<h3>SQL Query</h3>
+<pre><code class="language-sql">
+WITH ordered_images AS (
+    -- Order images by score descending and ascending, assigning row numbers --
+    SELECT image_id, score,
+           ROW_NUMBER() OVER (ORDER BY score DESC) AS row_num_desc,
+           ROW_NUMBER() OVER (ORDER BY score ASC) AS row_num_asc
+    FROM unlabeled_image_predictions
+),
+positive_samples AS (
+    -- Select every 3rd image from the highest scores, starting from the first row --
+    SELECT image_id, 1 AS weak_label
+    FROM ordered_images
+    WHERE row_num_desc % 3 = 1
+    ORDER BY row_num_desc
+    LIMIT 10000
+),
+negative_samples AS (
+    -- Select every 3rd image from the lowest scores, starting from the first row --
+    SELECT image_id, 0 AS weak_label
+    FROM ordered_images
+    WHERE row_num_asc % 3 = 1
+    ORDER BY row_num_asc
+    LIMIT 10000
+)
+-- Combine positive and negative samples and order by image_id --
+SELECT image_id, weak_label
+FROM positive_samples
+UNION ALL
+SELECT image_id, weak_label
+FROM negative_samples
+ORDER BY image_id;
+</code></pre>
+
+<h3>Query Description</h3>
+<table>
+    <tr>
+        <th>Step</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>1. Common Table Expression - <code>ordered_images</code></td>
+        <td>
+            Orders the images by score both descending and ascending, assigning row numbers using 
+            <code>ROW_NUMBER()</code>. These row numbers help select specific samples from the top and bottom images.
+        </td>
+    </tr>
+    <tr>
+        <td>2. Common Table Expression - <code>positive_samples</code></td>
+        <td>
+            Selects every 3rd image from the highest-scoring images, starting with the first image.
+            Assigns a <code>weak_label</code> of 1 to these samples. The result is limited to 10,000 samples.
+        </td>
+    </tr>
+    <tr>
+        <td>3. Common Table Expression - <code>negative_samples</code></td>
+        <td>
+            Selects every 3rd image from the lowest-scoring images, starting with the first image.
+            Assigns a <code>weak_label</code> of 0 to these samples. The result is limited to 10,000 samples.
+        </td>
+    </tr>
+    <tr>
+        <td>4. Final Selection</td>
+        <td>
+            Combines the positive and negative samples using <code>UNION ALL</code>, preserving all records. 
+            Orders the combined result by <code>image_id</code> in ascending order.
+        </td>
+    </tr>
+</table>
+
+<h3>Sample Output</h3>
+<pre><code class="language-markdown">
++----------+------------+
+| image_id | weak_label |
++----------+------------+
+|    1001  |      1     |
+|    1003  |      0     |
+|    1005  |      1     |
+|    1007  |      0     |
+|    1009  |      1     |
++----------+------------+
+</code></pre>
 
 {% include footer.html %}
 
