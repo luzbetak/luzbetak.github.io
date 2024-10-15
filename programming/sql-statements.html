@@ -263,8 +263,7 @@ FROM employees;</code></pre>
 <h2>WITH: Common Table Expressions</h2>
 
 <p><h3>Select Positive and Negative Image Samples</h3></p>
-<pre><code class="language-sql">
-WITH ordered_images AS (
+<pre><code class="language-sql">WITH ordered_images AS (
     -- Order images by score descending and ascending, assigning row numbers --
     SELECT image_id, score,
            ROW_NUMBER() OVER (ORDER BY score DESC) AS row_num_desc,
