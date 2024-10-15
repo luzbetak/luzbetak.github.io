@@ -90,8 +90,7 @@ SELECT * FROM employees WHERE salary > 50000;
 
   <li><h2>Sorting Data:</h2>
     <p>Retrieve the top 5 highest-paid employees in descending order.</p>
-    <pre><code class="language-sql">
-SELECT * FROM employees 
+    <pre><code class="language-sql">SELECT * FROM employees 
 ORDER BY salary DESC 
 LIMIT 5;
     </code></pre>
@@ -99,16 +98,14 @@ LIMIT 5;
 
   <li><h2>Using Aliases:</h2>
     <p>Write a query to retrieve the employee name and their salary, renaming them as <code>Employee</code> and <code>Salary</code>.</p>
-    <pre><code class="language-sql">
-SELECT name AS Employee, salary AS Salary 
+    <pre><code class="language-sql">SELECT name AS Employee, salary AS Salary 
 FROM employees;
     </code></pre>
   </li>
 
   <li><h2>Using JOIN:</h2>
     <p>Write a query to retrieve employee names along with their department names from <code>employees</code> and <code>departments</code> tables.</p>
-    <pre><code class="language-sql">
-SELECT e.name, d.department_name
+    <pre><code class="language-sql">SELECT e.name, d.department_name
 FROM employees e
 JOIN departments d 
   ON e.department_id = d.department_id;
@@ -117,8 +114,7 @@ JOIN departments d
 
   <li><h2>GROUP BY and Aggregate Functions:</h2>
     <p>Find the total salary paid in each department.</p>
-    <pre><code class="language-sql">
-SELECT department_id, SUM(salary) AS total_salary
+    <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
 FROM employees
 GROUP BY department_id;
     </code></pre>
@@ -126,8 +122,7 @@ GROUP BY department_id;
 
   <li><h2>HAVING Clause:</h2>
     <p>Retrieve departments that have a total salary greater than 100,000.</p>
-    <pre><code class="language-sql">
-SELECT department_id, SUM(salary) AS total_salary
+    <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
 FROM employees
 GROUP BY department_id
 HAVING total_salary > 100000;
@@ -136,8 +131,7 @@ HAVING total_salary > 100000;
 
   <li><h2>CASE Statement:</h2>
     <p>Write a query to categorize employees as <code>High</code>, <code>Medium</code>, or <code>Low</code> salary based on their salary values.</p>
-    <pre><code class="language-sql">
-SELECT name, 
+    <pre><code class="language-sql">SELECT name, 
        salary,
        CASE 
            WHEN salary >= 80000 THEN 'High'
@@ -150,8 +144,7 @@ FROM employees;
 
   <li><h2>Self-JOIN:</h2>
     <p>Find all employees who share the same manager.</p>
-    <pre><code class="language-sql">
-SELECT e1.name AS Employee, e2.name AS Manager
+    <pre><code class="language-sql">SELECT e1.name AS Employee, e2.name AS Manager
 FROM employees e1
 JOIN employees e2 
   ON e1.manager_id = e2.employee_id;
@@ -160,8 +153,7 @@ JOIN employees e2
 
   <li><h2>Window Functions:</h2>
     <p>Rank employees based on their salaries within each department.</p>
-    <pre><code class="language-sql">
-SELECT name, department_id, salary, 
+    <pre><code class="language-sql">SELECT name, department_id, salary, 
        RANK() OVER (PARTITION BY department_id 
                     ORDER BY salary DESC) AS rank
 FROM employees;
@@ -170,8 +162,7 @@ FROM employees;
 
   <li><h2>CTE (Common Table Expression):</h2>
     <p>Use a CTE to find employees who earn above the department’s average salary.</p>
-    <pre><code class="language-sql">
-WITH dept_avg AS (
+    <pre><code class="language-sql">WITH dept_avg AS (
     SELECT department_id, AVG(salary) AS avg_salary
     FROM employees
     GROUP BY department_id
@@ -186,8 +177,7 @@ WHERE e.salary > d.avg_salary;
 
   <li><h2>Recursive CTE:</h2>
     <p>Write a query to generate a hierarchical list of employees and their managers.</p>
-    <pre><code class="language-sql">
-WITH RECURSIVE emp_hierarchy AS (
+    <pre><code class="language-sql">WITH RECURSIVE emp_hierarchy AS (
     SELECT employee_id, name, manager_id, 1 AS level
     FROM employees
     WHERE manager_id IS NULL
@@ -204,8 +194,7 @@ ORDER BY level;
 
   <li><h2>Subquery:</h2>
     <p>Retrieve employees whose salary is above the average salary in the company.</p>
-    <pre><code class="language-sql">
-SELECT name, salary 
+    <pre><code class="language-sql">SELECT name, salary 
 FROM employees 
 WHERE salary > (SELECT AVG(salary) FROM employees);
     </code></pre>
@@ -213,8 +202,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 
   <li><h2>Handling NULLs:</h2>
     <p>Write a query to list employees and replace NULL values in the <code>bonus</code> column with 0.</p>
-    <pre><code class="language-sql">
-SELECT name, COALESCE(bonus, 0) AS bonus 
+    <pre><code class="language-sql">SELECT name, COALESCE(bonus, 0) AS bonus 
 FROM employees;
     </code></pre>
   </li>
