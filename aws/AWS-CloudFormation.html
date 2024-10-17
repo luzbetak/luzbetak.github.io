@@ -17,7 +17,9 @@
         <li>Use the <strong>AWS CloudFormation Designer</strong> for a visual drag-and-drop interface, or create the template manually.</li>
     </ul>
 
-    <h4>Sample YAML CloudFormation Template (EC2 Instance and Security Group):</h4>
+    <p>AWS CloudFormation simplifies infrastructure management, enabling automation and ensuring consistency across environments.</p>
+
+    <h4>YAML CloudFormation Template (EC2 Instance and Security Group):</h4>
     <pre><code class="language-yaml">
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CloudFormation template for EC2 and Security Group.
@@ -92,21 +94,8 @@ Resources:
         <li>Check the <strong>Outputs</strong> tab if your template defines outputs, which might include information like resource IDs, URLs, or ARNs.</li>
     </ul>
 
-    <h3>8. Update the Stack (if needed):</h3>
-    <ul>
-        <li>When you need to modify infrastructure, you can update an existing stack by changing the CloudFormation template.</li>
-        <li>Use <strong>Change Sets</strong> to preview the changes before applying them to the stack.</li>
-        <li>Submit the updated template to CloudFormation, and the stack will update in a controlled and automated way, only modifying resources affected by the changes.</li>
-    </ul>
-
-    <h3>9. Delete the Stack:</h3>
-    <ul>
-        <li>When resources are no longer needed, you can delete the entire stack to avoid incurring unnecessary costs.</li>
-        <li>In the CloudFormation Console, select the stack and click <strong>Delete</strong>.</li>
-        <li>CloudFormation automatically deletes all resources that were created by the stack.</li>
-    </ul>
-
-    <h2>Key Concepts:</h2>
+    <p><hr align=left width=1100>
+    <h2>AWS CloudFormation Key Concepts:</h2>
     <ul>
         <li><strong>Templates:</strong> Describe the AWS resources and configurations. You can reuse templates for consistent environments.</li>
         <li><strong>Stacks:</strong> A collection of AWS resources created and managed as a single unit.</li>
@@ -114,7 +103,23 @@ Resources:
         <li><strong>Drift Detection:</strong> Identify when stack resources differ from the expected configuration.</li>
     </ul>
 
-    <p>AWS CloudFormation simplifies infrastructure management, enabling automation and ensuring consistency across environments.</p>
+    <p><hr align=left width=1100>
+    <h3>Optional</h3>
+    <h3>Update the Stack:</h3>
+    <ul>
+        <li>When you need to modify infrastructure, you can update an existing stack by changing the CloudFormation template.</li>
+        <li>Use <strong>Change Sets</strong> to preview the changes before applying them to the stack.</li>
+        <li>Submit the updated template to CloudFormation, and the stack will update in a controlled and automated way, only modifying resources affected by the changes.</li>
+    </ul>
+
+    <h3>Delete the Stack:</h3>
+    <ul>
+        <li>When resources are no longer needed, you can delete the entire stack to avoid incurring unnecessary costs.</li>
+        <li>In the CloudFormation Console, select the stack and click <strong>Delete</strong>.</li>
+        <li>CloudFormation automatically deletes all resources that were created by the stack.</li>
+    </ul>
+
+
 
 
 {% include footer.html %}
