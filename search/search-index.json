@@ -547,27 +547,27 @@
     },
     {
         "id": 92,
-        "title": "AWS-CloudFormation.html",
-        "content": "aws cloudformation access additional advanced amazon ami arns automated automation aws awstemplateformatversion behalf buckets change changes cidrip cli cloudformation code collection concepts conditions configuration configurations configure consistency consistent console controlled costs create created creation databases define delete deployments description designer detailed detection drag drift drop entire environments error events existing expected failure file format fromport group groupdescription http iac iam ids individual information infrastructure instance instances instancetype interface ipprotocol json key keyname management meaningful monitor mykeypair name necessary notification optional options organization outputs pairs parameters permissions process properties protection provisioning rds real repeatability resource resources role rollback safe sdks security securitygroupingress securitygroups service services set sets settings setup simplifies single ssh stack stacks status steps tab tags tcp template templates termination time toport tracking type types unit unnecessary update updated url urls use users verify visual vpc vpcs way write yaml",
-        "url": "/aws/AWS-CloudFormation.html"
-    },
-    {
-        "id": 93,
         "title": "AWS-Glue-Data-Catalog.html",
         "content": "aws glue data catalog access accurate ad amazon analytics assets athena auditability automatic aws backbone cases catalog cataloged centralized changes common component configuration core crawlers data databases date define different discovery emr environment etl evolution example fast features flow glue governance history hoc iam identity infer information job jobs key lake lakes landscape lineage manage management manual metadata monitor partitions pipelines place policies powerful process processes queries query redshift reference repository schema schemas services single sources spectrum storage stores strategy structures tables time tool track tracking transformations transforming transparency updates use users various versioning warehouse warehouses workflow",
         "url": "/aws/AWS-Glue-Data-Catalog.html"
     },
     {
-        "id": 94,
+        "id": 93,
         "title": "AWS-CloudTrail.html",
         "content": "aws cloudtrail access account actions activate activity alarms amazon analysis analyze anomalies api athena audit auditing automated aws bucket call calls cases change changes cloud cloudtrail cloudwatch command common complete compliance comprehensive configurations configure conjunction console dashboards data detailed detecting durable environment essential event events example external files forensic governance historical history incident industry infrastructure insights internal investigate issues key line log logging logs long management monitor monitoring notifications operational party patterns potential problem record recording regions regulations relevant requirements resources responses retention risk roles sdks secure security sequence service services specific standards storage store term third threats time tools track trail troubleshooting unauthorized unusual use user users visibility workflow",
         "url": "/aws/AWS-CloudTrail.html"
     },
     {
-        "id": 95,
+        "id": 94,
         "title": "AWS-Redshift.html",
         "content": "aws redshift access amazon analysis analytical analytics aws bi big businesses central cloud cluster clusters columnar commands complex compression control copy cost costs data databases datasets decision demand destination destinations driven dynamodb ecosystem effective emr encryption etl example export fast fine fully gb glue grained iam ideal ingestion insights instances integration isolation jobs language large load looker making multi network new node organizations parallel performance petabyte petabytes pricing processed processing purposes queries query quicksight real redshift reporting reports reserved resources rest results run scale security semi service services single solution sources sql standard storage structured tableau time tools transformation transit use users various visualizations vpc warehouse warehousing workflow workload workloads",
         "url": "/aws/AWS-Redshift.html"
+    },
+    {
+        "id": 95,
+        "title": "AWS-Cloud-Formation.html",
+        "content": "aws cloud formation access additional advanced amazon ami arns automated automation aws awstemplateformatversion behalf buckets change changes cidrip cli cloudformation code collection concepts conditions configuration configurations configure consistency consistent console controlled costs create created creation databases define delete deployments description designer detailed detection drag drift drop entire environments error events existing expected failure file format fromport group groupdescription http iac iam ids individual information infrastructure instance instances instancetype interface ipprotocol json key keyname management meaningful monitor mykeypair name necessary notification optional options organization outputs pairs parameters permissions process properties protection provisioning rds real repeatability resource resources role rollback safe sdks security securitygroupingress securitygroups service services set sets settings setup simplifies single ssh stack stacks status steps tab tags tcp template templates termination time toport tracking type types unit unnecessary update updated url urls use users verify visual vpc vpcs way write yaml",
+        "url": "/aws/AWS-Cloud-Formation.html"
     },
     {
         "id": 96,
