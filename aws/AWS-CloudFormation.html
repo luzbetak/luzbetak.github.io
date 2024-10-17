@@ -3,6 +3,7 @@
 {% include menu.html title="AWS CloudFormation" %}
 <hr align=left width=1100>
 
+
     <h1>AWS CloudFormation: Detailed Steps</h1>
     <p>AWS CloudFormation is an <strong>Infrastructure-as-Code (IaC)</strong> service that allows users to define and provision AWS resources using JSON or YAML templates. It automates the setup of AWS services such as EC2 instances, S3 buckets, VPCs, RDS databases, and more. This helps ensure consistency, repeatability, and control over infrastructure provisioning.</p>
 
@@ -15,6 +16,36 @@
         <li>Define <strong>resources</strong>, <strong>outputs</strong>, <strong>parameters</strong>, and <strong>conditions</strong> (optional) to customize deployments.</li>
         <li>Use the <strong>AWS CloudFormation Designer</strong> for a visual drag-and-drop interface, or create the template manually.</li>
     </ul>
+
+    <h4>Sample YAML CloudFormation Template (EC2 Instance and Security Group):</h4>
+    <pre><code class="language-yaml">
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template for EC2 and Security Group.
+
+Resources:
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0abcdef1234567890
+      KeyName: MyKeyPair
+      SecurityGroups:
+        - Ref: MySecurityGroup
+
+  MySecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH and HTTP access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+    </code></pre>
 
     <h3>2. Upload the Template to CloudFormation:</h3>
     <ul>
