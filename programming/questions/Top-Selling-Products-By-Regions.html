@@ -58,7 +58,8 @@ conn.commit()
 
 # SQL query to find the top-selling product in each region for the year 2023
 query = '''
-WITH sales_2023 AS (
+WITH 
+sales_2023 AS (
     SELECT 
         product_id,
         region_id,
