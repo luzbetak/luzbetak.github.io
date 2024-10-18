@@ -170,7 +170,7 @@
     }
 
     function updateFilename() {
-        filenameDisplay.textContent = filenames[currentSlide];
+        filenameDisplay.innerHTML = '<a href="' + filenames[currentSlide] + '" target="_blank" style="color:white; text-decoration:none;">' + filenames[currentSlide] + '</a>';
     }
 
     function showSlide(index) {
