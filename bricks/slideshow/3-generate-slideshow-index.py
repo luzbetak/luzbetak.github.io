@@ -82,9 +82,9 @@ html_content = '''<!DOCTYPE html>
 # Add each PNG file to the slideshow
 for index, file in enumerate(png_files):
     if index == 0:
-        html_content += f'    <img class="slides active" src="{file}" alt="{file}">\n'
+        html_content += f'   <a href="{file}" target="_blank"><img class="slides active" src="{file}" alt="{file}"></a>\n'
     else:
-        html_content += f'    <img class="slides" src="{file}" alt="{file}">\n'
+        html_content += f'   <a href="{file}" target="_blank"><img class="slides" src="{file}" alt="{file}"></a>\n'
 
 # Add the navigation buttons and script for slideshow functionality
 html_content += f'''
@@ -108,7 +108,7 @@ html_content += f'''
     }}
 
     function updateFilename() {{
-        filenameDisplay.innerHTML = '<a href="' + filenames[currentSlide] + '" target="_blank" style="color:white; text-decoration:none;">' + filenames[currentSlide] + '</a>';
+        filenameDisplay.textContent = filenames[currentSlide];
     }}
 
     function showSlide(index) {{
@@ -148,7 +148,7 @@ html_content += f'''
 </html>
 '''
 
-# Write the HTML content to index.html
+# Write the HTML content to slideshow.html
 with open('index.html', 'w') as file:
     file.write(html_content)
 
