@@ -178,8 +178,7 @@ h1 { color: #00ccff; font-size: 26px; }
 h2 { color: #ffcc00; font-size: 24px; }
 h3 { color: #90ee90; font-size: 22px; }
 
-/* ul, ol { margin: 0 0 20px 20px; padding-left: 10px; color: #ffffff; } */
-ul, ol { margin: 0 0 1px 1px; padding-left: 1px; color: #ffffff; }
+ul, ol { margin: 0 0 10px 10px; padding-left: 10px; color: #ffffff; } 
 li     { margin-bottom: 15px; color: #ffffff; }
 p      { color: #ffffff; }
 
