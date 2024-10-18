@@ -83,7 +83,6 @@
     <img class="slides" src="databricks-11.png" alt="databricks-11.png">
     <img class="slides" src="databricks-12.png" alt="databricks-12.png">
     <img class="slides" src="databricks-13.png" alt="databricks-13.png">
-    <img class="slides" src="databricks-15.png" alt="databricks-15.png">
     <img class="slides" src="databricks-16.png" alt="databricks-16.png">
     <img class="slides" src="databricks-17.png" alt="databricks-17.png">
     <img class="slides" src="databricks-18.png" alt="databricks-18.png">
@@ -149,6 +148,7 @@
     <img class="slides" src="databricks-85.png" alt="databricks-85.png">
     <img class="slides" src="databricks-86.png" alt="databricks-86.png">
     <img class="slides" src="databricks-87.png" alt="databricks-87.png">
+    <img class="slides" src="databricks-88.png" alt="databricks-88.png">
 
     <!-- Previous and next buttons -->
     <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
@@ -162,7 +162,7 @@
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
 
-    const filenames = ['databricks-01.png', 'databricks-02.png', 'databricks-03.png', 'databricks-04.png', 'databricks-05.png', 'databricks-06.png', 'databricks-07.png', 'databricks-08.png', 'databricks-09.png', 'databricks-10.png', 'databricks-11.png', 'databricks-12.png', 'databricks-13.png', 'databricks-15.png', 'databricks-16.png', 'databricks-17.png', 'databricks-18.png', 'databricks-19.png', 'databricks-21.png', 'databricks-22.png', 'databricks-24.png', 'databricks-25.png', 'databricks-26.png', 'databricks-27.png', 'databricks-28.png', 'databricks-29.png', 'databricks-30.png', 'databricks-32.png', 'databricks-33.png', 'databricks-34.png', 'databricks-35.png', 'databricks-37.png', 'databricks-38.png', 'databricks-39.png', 'databricks-40.png', 'databricks-41.png', 'databricks-42.png', 'databricks-43.png', 'databricks-44.png', 'databricks-45.png', 'databricks-46.png', 'databricks-47.png', 'databricks-48.png', 'databricks-49.png', 'databricks-50.png', 'databricks-51.png', 'databricks-52.png', 'databricks-53.png', 'databricks-54.png', 'databricks-55.png', 'databricks-56.png', 'databricks-57.png', 'databricks-58.png', 'databricks-60.png', 'databricks-61.png', 'databricks-62.png', 'databricks-63.png', 'databricks-64.png', 'databricks-65.png', 'databricks-66.png', 'databricks-67.png', 'databricks-69.png', 'databricks-70.png', 'databricks-71.png', 'databricks-72.png', 'databricks-73.png', 'databricks-74.png', 'databricks-76.png', 'databricks-77.png', 'databricks-78.png', 'databricks-79.png', 'databricks-80.png', 'databricks-81.png', 'databricks-82.png', 'databricks-83.png', 'databricks-84.png', 'databricks-85.png', 'databricks-86.png', 'databricks-87.png'];  // Array of filenames
+    const filenames = ['databricks-01.png', 'databricks-02.png', 'databricks-03.png', 'databricks-04.png', 'databricks-05.png', 'databricks-06.png', 'databricks-07.png', 'databricks-08.png', 'databricks-09.png', 'databricks-10.png', 'databricks-11.png', 'databricks-12.png', 'databricks-13.png', 'databricks-16.png', 'databricks-17.png', 'databricks-18.png', 'databricks-19.png', 'databricks-21.png', 'databricks-22.png', 'databricks-24.png', 'databricks-25.png', 'databricks-26.png', 'databricks-27.png', 'databricks-28.png', 'databricks-29.png', 'databricks-30.png', 'databricks-32.png', 'databricks-33.png', 'databricks-34.png', 'databricks-35.png', 'databricks-37.png', 'databricks-38.png', 'databricks-39.png', 'databricks-40.png', 'databricks-41.png', 'databricks-42.png', 'databricks-43.png', 'databricks-44.png', 'databricks-45.png', 'databricks-46.png', 'databricks-47.png', 'databricks-48.png', 'databricks-49.png', 'databricks-50.png', 'databricks-51.png', 'databricks-52.png', 'databricks-53.png', 'databricks-54.png', 'databricks-55.png', 'databricks-56.png', 'databricks-57.png', 'databricks-58.png', 'databricks-60.png', 'databricks-61.png', 'databricks-62.png', 'databricks-63.png', 'databricks-64.png', 'databricks-65.png', 'databricks-66.png', 'databricks-67.png', 'databricks-69.png', 'databricks-70.png', 'databricks-71.png', 'databricks-72.png', 'databricks-73.png', 'databricks-74.png', 'databricks-76.png', 'databricks-77.png', 'databricks-78.png', 'databricks-79.png', 'databricks-80.png', 'databricks-81.png', 'databricks-82.png', 'databricks-83.png', 'databricks-84.png', 'databricks-85.png', 'databricks-86.png', 'databricks-87.png', 'databricks-88.png'];  // Array of filenames
 
     function updateButtons() {
         prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
