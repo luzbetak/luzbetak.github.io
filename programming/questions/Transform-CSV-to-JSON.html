@@ -1,9 +1,10 @@
 ---
 ---
 {% include menu.html title="Transform-CSV-to-JSON" %}
-
+<hr>
 
     <h1>Python Transformation CSV to JSON</h1>
+<hr>
 
     <h2>CSV Input</h2>
     <pre><code class="language-markdown">Name,Age,Location
@@ -11,6 +12,7 @@
     Bob,     25, San Francisco
     Charlie, 35, Los Angeles</code></pre>
 
+<hr>
     <h2>JSON Output</h2>
     <pre><code class="language-json">[
         {"name": "Alice",   "age": 30, "location": "New York"},
@@ -18,6 +20,7 @@
         {"name": "Charlie", "age": 35, "location": "Los Angeles"}
     ]</code></pre>
 
+<hr>
     <pre><code class="language-python">#!/usr/bin/env python
 
     import pandas as pd
