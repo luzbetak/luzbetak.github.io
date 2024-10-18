@@ -149,8 +149,8 @@ html_content += f'''
 '''
 
 # Write the HTML content to slideshow.html
-with open('slideshow.html', 'w') as file:
+with open('index.html', 'w') as file:
     file.write(html_content)
 
-print("Slideshow HTML has been generated as 'slideshow.html'.")
+print("Slideshow HTML has been generated as 'index.html'.")
 
