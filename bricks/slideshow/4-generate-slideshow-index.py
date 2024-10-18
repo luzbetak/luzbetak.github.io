@@ -108,7 +108,7 @@ html_content += f'''
     }}
 
     function updateFilename() {{
-        filenameDisplay.innerHTML = '<a href="' + filenames[currentSlide] + '" target="_blank" style="color:white; text-decoration:none;">' + filenames[currentSlide] + '</a>';
+        filenameDisplay.textContent = filenames[currentSlide];
     }}
 
     function showSlide(index) {{
@@ -148,7 +148,7 @@ html_content += f'''
 </html>
 '''
 
-# Write the HTML content to index.html
+# Write the HTML content to slideshow.html
 with open('index.html', 'w') as file:
     file.write(html_content)
 
