@@ -1,0 +1,120 @@
+---
+---
+{% include menu.html title="generate ascii numbers" %}
+<hr align=left width=1100>
+
+
+    <h1>Policy Number Generator</h1>
+    <p>This Python script generates random 9-digit policy numbers and writes their ASCII representation to a file.</p>
+
+    <h2>Code Explanation</h2>
+
+    <pre><code class="language-python">
+#!/usr/bin/env python
+
+import random
+import sys
+import pprint
+
+# ------------------------------------------------------------------------------------------------ #
+# ASCII patterns for numbers 0-9
+# ------------------------------------------------------------------------------------------------ #
+digit_to_ascii = {
+    "0": (" _ ", "| |", "|_|"),
+    "1": ("   ", "  |", "  |"),
+    "2": (" _ ", " _|", "|_ "),
+    "3": (" _ ", " _|", " _|"),
+    "4": ("   ", "|_|", "  |"),
+    "5": (" _ ", "|_ ", " _|"),
+    "6": (" _ ", "|_ ", "|_|"),
+    "7": (" _ ", "  |", "  |"),
+    "8": (" _ ", "|_|", "|_|"),
+    "9": (" _ ", "|_|", " _|"),
+}
+
+# ------------------------------------------------------------------------------------------------ #
+# Create a reverse mapping from ASCII tuples to digits
+# This mapping helps to decode ASCII representation back to digits.
+# ------------------------------------------------------------------------------------------------ #
+ascii_to_digit = {v: k for k, v in digit_to_ascii.items()}
+# pprint.pprint(ascii_to_digit, width=40)
+
+# ------------------------------------------------------------------------------------------------ #
+def generate_random_policy_number():
+    """
+    Generates a random 9-digit policy number.
+    
+    Returns:
+        A string containing 9 randomly generated digits separated by spaces.
+    """
+    return " ".join(str(random.randint(0, 9)) for _ in range(9))
+
+# ------------------------------------------------------------------------------------------------ #
+def write_policy_number(policy_number, file_path, append=False):
+    """
+    Writes the ASCII representation of a policy number to a file.
+    
+    Args:
+        policy_number (str): The policy number to be converted into ASCII representation.
+        file_path (str): The path to the file where the output will be written.
+        append (bool): Whether to append to the file (True) or overwrite it (False).
+    """
+    lines = ["", "", ""]
+
+    # Convert each digit into its ASCII format and append to the corresponding lines
+    for digit in policy_number.split():
+        ascii_digit = digit_to_ascii[digit]
+        for i in range(3):
+            # Introduce a 1% failure and write an invalid character
+            if random.random() < 0.01:
+                lines[i] += "???"  # Simulate an invalid character
+            else:
+                lines[i] += ascii_digit[i]
+
+    # Join the lines to form the final ASCII output with two blank lines after
+    ascii_output = "\n".join(lines) + "\n\n"
+
+    # Open the file in append or write mode
+    mode = "a" if append else "w"
+    with open(file_path, mode) as f:
+        f.write(ascii_output)
+
+# ------------------------------------------------------------------------------------------------ #
+def main(num_policies=5):
+    """
+    Generates and writes multiple policy numbers to the file.
+    
+    Args:
+        num_policies (int): The number of policy numbers to generate and write. Defaults to 5.
+    """
+    file_path = "policy_numbers_bronze.txt"
+
+    # Generate and write the specified number of policy numbers
+    for i in range(num_policies):
+        policy_number = generate_random_policy_number()
+        write_policy_number(policy_number, file_path, append=(i > 0))
+
+    print(f"Wrote {num_policies} policy numbers to {file_path}")
+
+# ------------------------------------------------------------------------------------------------ #
+if __name__ == "__main__":
+    # The number of policies is taken from command-line arguments, defaults to 5 if not provided
+    num_policies = int(sys.argv[1]) if len(sys.argv) > 1 else 5
+    main(num_policies)
+    </code></pre>
+
+    <h2>How to Run the Script</h2>
+    <p>To execute this script, run the following command in your terminal:</p>
+
+    <pre><code>
+    python3 policy_number_generator.py [num_policies]
+    </code></pre>
+
+    <p>If <code>num_policies</code> is not specified, it defaults to generating 5 policy numbers.</p>
+    
+    <h2>Output</h2>
+    <p>The generated ASCII representation of the policy numbers will be written to <code>policy_numbers_bronze.txt</code>.</p>
+
+
+{% include footer.html %}
+
