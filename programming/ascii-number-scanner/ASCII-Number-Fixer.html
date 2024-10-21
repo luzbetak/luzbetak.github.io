@@ -3,70 +3,70 @@
 {% include menu.html title="ASCII Number Fixer" %}
 <hr align=left width=1100>
 
-    <h1>Policy Number Fixer</h1>
-    <p>This Python script attempts to fix policy numbers that are either marked as "ILL" (illegal) or "ERR" (error due to checksum failure) by performing corrections based on character replacements or checksum validation.</p>
+    <h1>ASCII Number Fixer</h1>
+    <p>This Python script attempts to fix ascii numbers that are either marked as "ILL" (illegal) or "ERR" (error due to checksum failure) by performing corrections based on character replacements or checksum validation.</p>
 
     <h2>Code Explanation</h2>
 
     <pre><code class="language-python">
 #!/usr/bin/env python
 import re
-from checksum import calculate_checksum, read_policy_numbers, write_policy_numbers
+from checksum import calculate_checksum, read_ascii_numbers, write_ascii_numbers
 
 # ------------------------------------------------------------------------------------------------ #
-# Function to fix a policy number marked as ILL by attempting possible corrections
+# Function to fix a ascii number marked as ILL by attempting possible corrections
 # ------------------------------------------------------------------------------------------------ #
-def fix_policy_number_ill():
+def fix_ascii_number_ill():
     """
-    Fixes policy numbers marked as 'ILL' by attempting to replace the '?' character with 
-    a valid digit. If a valid checksum is found, the policy is corrected and marked as 'ILL FIX'.
+    Fixes ascii numbers marked as 'ILL' by attempting to replace the '?' character with 
+    a valid digit. If a valid checksum is found, the ascii is corrected and marked as 'ILL FIX'.
     """
-    input_file  = 'policy_numbers_silver.txt'
-    output_file = 'policy_numbers_gold.txt'
+    input_file  = 'ascii_numbers_silver.txt'
+    output_file = 'ascii_numbers_gold.txt'
 
-    policy_numbers = read_policy_numbers(input_file)  # Read policy numbers from the input file
+    ascii_numbers = read_ascii_numbers(input_file)  # Read ascii numbers from the input file
     corrected_policies = []
 
-    for policy in policy_numbers:
-        if policy.endswith("ILL"):
-            policy = policy[:-4].strip()  # Remove the ' ILL' marker
-            question_indices = [i for i, char in enumerate(policy) if char == '?']
+    for ascii in ascii_numbers:
+        if ascii.endswith("ILL"):
+            ascii = ascii[:-4].strip()  # Remove the ' ILL' marker
+            question_indices = [i for i, char in enumerate(ascii) if char == '?']
 
             # Skip policies with more than one '?' as they are harder to fix
             if len(question_indices) > 1:
-                corrected_policies.append(policy)
+                corrected_policies.append(ascii)
                 continue
 
-            # Try to fix the policy by replacing '?' with valid digits
+            # Try to fix the ascii by replacing '?' with valid digits
             for replacement in range(10 ** len(question_indices)):
                 replacement_str = str(replacement).zfill(len(question_indices))
-                new_policy = list(policy)
+                new_ascii = list(ascii)
                 for idx, char in zip(question_indices, replacement_str):
-                    new_policy[idx] = char
-                new_policy_str = "".join(new_policy)
-                if calculate_checksum(new_policy_str):  # Check if the checksum is valid
-                    corrected_policies.append(new_policy_str + " ILL FIX")
+                    new_ascii[idx] = char
+                new_ascii_str = "".join(new_ascii)
+                if calculate_checksum(new_ascii_str):  # Check if the checksum is valid
+                    corrected_policies.append(new_ascii_str + " ILL FIX")
                     break
             else:
-                corrected_policies.append(policy)  # No valid fix found, keep the original
+                corrected_policies.append(ascii)  # No valid fix found, keep the original
 
         else:
-            corrected_policies.append(policy)  # Valid policy number, keep it
+            corrected_policies.append(ascii)  # Valid ascii number, keep it
 
-    write_policy_numbers(output_file, corrected_policies)  # Write the corrected policies to the output file
+    write_ascii_numbers(output_file, corrected_policies)  # Write the corrected policies to the output file
 
 # ------------------------------------------------------------------------------------------------ #
-# Function to fix a policy number marked as ERR by attempting possible corrections
+# Function to fix a ascii number marked as ERR by attempting possible corrections
 # ------------------------------------------------------------------------------------------------ #
-def fix_policy_number_err():
+def fix_ascii_number_err():
     """
-    Fixes policy numbers marked as 'ERR' by attempting digit corrections based on common 
-    misread characters. If a valid checksum is found, the policy is corrected and marked as 'ERR FIX'.
+    Fixes ascii numbers marked as 'ERR' by attempting digit corrections based on common 
+    misread characters. If a valid checksum is found, the ascii is corrected and marked as 'ERR FIX'.
     """
-    input_file  = 'policy_numbers_gold.txt'
-    output_file = 'policy_numbers_platinum.txt'
+    input_file  = 'ascii_numbers_gold.txt'
+    output_file = 'ascii_numbers_platinum.txt'
 
-    policy_numbers = read_policy_numbers(input_file)  # Read policy numbers from the input file
+    ascii_numbers = read_ascii_numbers(input_file)  # Read ascii numbers from the input file
     corrected_policies = []
 
     # Define common digit misread corrections
@@ -77,38 +77,38 @@ def fix_policy_number_err():
         '5': ['9', '6']
     }
 
-    for policy in policy_numbers:
-        if policy.endswith("ERR"):
-            policy = policy[:-4].strip()  # Remove the ' ERR' marker
-            # Iterate over each character in the policy number
-            for i, char in enumerate(policy):
+    for ascii in ascii_numbers:
+        if ascii.endswith("ERR"):
+            ascii = ascii[:-4].strip()  # Remove the ' ERR' marker
+            # Iterate over each character in the ascii number
+            for i, char in enumerate(ascii):
                 if char in corrections:
                     # Attempt to replace the character with possible correct digits
                     for replacement in corrections[char]:
-                        new_policy = list(policy)
-                        new_policy[i] = replacement
-                        new_policy_str = "".join(new_policy)
-                        if calculate_checksum(new_policy_str):  # Check if the checksum is valid
-                            corrected_policies.append(new_policy_str + " ERR FIX")
+                        new_ascii = list(ascii)
+                        new_ascii[i] = replacement
+                        new_ascii_str = "".join(new_ascii)
+                        if calculate_checksum(new_ascii_str):  # Check if the checksum is valid
+                            corrected_policies.append(new_ascii_str + " ERR FIX")
                             break
                     else:
                         continue
                     break
             else:
-                corrected_policies.append(policy + " ERR")  # No valid fix found, keep the original
+                corrected_policies.append(ascii + " ERR")  # No valid fix found, keep the original
         else:
-            corrected_policies.append(policy)  # Valid policy number, keep it
+            corrected_policies.append(ascii)  # Valid ascii number, keep it
 
-    write_policy_numbers(output_file, corrected_policies)  # Write the corrected policies to the output file
+    write_ascii_numbers(output_file, corrected_policies)  # Write the corrected policies to the output file
 
 # ------------------------------------------------------------------------------------------------ #
 def main():
     """
-    Main function that attempts to fix both 'ILL' and 'ERR' policy numbers by calling the respective
+    Main function that attempts to fix both 'ILL' and 'ERR' ascii numbers by calling the respective
     fix functions.
     """
-    fix_policy_number_ill()
-    fix_policy_number_err()
+    fix_ascii_number_ill()
+    fix_ascii_number_err()
 
 # ------------------------------------------------------------------------------------------------ #
 if __name__ == "__main__":
@@ -116,23 +116,23 @@ if __name__ == "__main__":
     </code></pre>
 
     <h2>How to Run the Script</h2>
-    <p>This script reads policy numbers from a file <code>policy_numbers_silver.txt</code> and applies corrections for policies marked as "ILL" and "ERR." The corrected policies are written to <code>policy_numbers_gold.txt</code> and <code>policy_numbers_platinum.txt</code> respectively.</p>
+    <p>This script reads ascii numbers from a file <code>ascii_numbers_silver.txt</code> and applies corrections for policies marked as "ILL" and "ERR." The corrected policies are written to <code>ascii_numbers_gold.txt</code> and <code>ascii_numbers_platinum.txt</code> respectively.</p>
 
     <h3>Steps to Run:</h3>
     <ol>
-        <li>Ensure that you have implemented the <code>calculate_checksum</code>, <code>read_policy_numbers</code>, and <code>write_policy_numbers</code> functions in a separate file (e.g., <code>checksum.py</code>).</li>
-        <li>Prepare the <code>policy_numbers_silver.txt</code> file with the ASCII-formatted policy numbers.</li>
+        <li>Ensure that you have implemented the <code>calculate_checksum</code>, <code>read_ascii_numbers</code>, and <code>write_ascii_numbers</code> functions in a separate file (e.g., <code>checksum.py</code>).</li>
+        <li>Prepare the <code>ascii_numbers_silver.txt</code> file with the ASCII-formatted ascii numbers.</li>
         <li>Run the script using the command:</li>
     </ol>
     <pre><code>
-    python3 fix_policy_numbers.py
+    python3 fix_ascii_numbers.py
     </code></pre>
 
     <h3>Expected Output:</h3>
     <ul>
         <li>For policies marked as "ILL," the script will attempt to fix them and append "ILL FIX" to valid corrections.</li>
         <li>For policies marked as "ERR," the script will apply character replacements based on common errors and append "ERR FIX" to valid corrections.</li>
-        <li>The corrected policy numbers are written to <code>policy_numbers_gold.txt</code> and <code>policy_numbers_platinum.txt</code> respectively.</li>
+        <li>The corrected ascii numbers are written to <code>ascii_numbers_gold.txt</code> and <code>ascii_numbers_platinum.txt</code> respectively.</li>
     </ul>
 
 
