@@ -15,6 +15,30 @@
   <script src="/static/prism-markdown.min.js"></script>
   <script src="/static/prism-bash.min.js"></script>
   <script src="/static/prism-go.min.js"></script>
+
+  <style>
+    /* Ensure that breadcrumb stays in a single line */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      font-size: 14px;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb > a::after {
+      content: " > "; /* Add separator between breadcrumb items */
+      padding: 0 5px;
+    }
+    .breadcrumb > a:last-child::after {
+      content: ""; /* Remove the separator for the last item */
+    }
+  </style>
 </head>
 
 <body>
@@ -45,7 +69,7 @@
     let accumulatedPath = "";
     pathParts.forEach((part, index) => {
       accumulatedPath += `/${part}`;
-      breadcrumbHtml += ` &gt; <a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
+      breadcrumbHtml += `<a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
     });
 
     // Insert the generated breadcrumb links into the div
@@ -92,6 +116,4 @@
       }
     });
   </script>
-</body>
-</html>
 
