@@ -32,13 +32,15 @@
       text-decoration: underline;
     }
     .breadcrumb > a::after {
-      content: " > "; /* Add separator between breadcrumb items */
-      padding: 0 5px;
+      content: " >"; /* Adjusted space and separator */
+      margin-left: 2px; /* Reduced space after the link */
+      margin-right: 2px; /* Reduced space before the next link */
     }
     .breadcrumb > a:last-child::after {
       content: ""; /* Remove the separator for the last item */
     }
   </style>
+
 </head>
 
 <body>

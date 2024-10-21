@@ -15,6 +15,30 @@
   <script src="/static/prism-markdown.min.js"></script>
   <script src="/static/prism-bash.min.js"></script>
   <script src="/static/prism-go.min.js"></script>
+
+  <style>
+    /* Ensure that breadcrumb stays in a single line */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      font-size: 14px;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb > a::after {
+      content: " > "; /* Add separator between breadcrumb items */
+      padding: 0 5px;
+    }
+    .breadcrumb > a:last-child::after {
+      content: ""; /* Remove the separator for the last item */
+    }
+  </style>
 </head>
 
 <body>
@@ -30,15 +54,44 @@
     <a href="https://github.com/luzbetak" target="_blank">Github</a>
   </div>
 
+  <!-- Breadcrumb -->
+  <div id="breadcrumb" class="breadcrumb"></div>
+
   <script>
+    // Generate breadcrumbs based on the current URL path
+    const breadcrumbDiv = document.getElementById('breadcrumb');
+    const baseUrl = "https://luzbetak.github.io";
+    const pathParts = window.location.pathname.split('/').filter(Boolean); // Split the URL path and remove empty values
+
+    let breadcrumbHtml = `<a href="${baseUrl}">Home</a>`;
+
+    // Loop through the path parts to create links
+    let accumulatedPath = "";
+    pathParts.forEach((part, index) => {
+      accumulatedPath += `/${part}`;
+      breadcrumbHtml += `<a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
+    });
+
+    // Insert the generated breadcrumb links into the div
+    breadcrumbDiv.innerHTML = breadcrumbHtml;
+
+    // Highlight the active section in the navbar
     const currentPath = window.location.pathname;
-    if (currentPath === '/' || currentPath === '/index.html') { document.getElementById('home').style.backgroundColor = '#555'; } 
-    else if (currentPath.includes('search'))      { document.getElementById('search').style.backgroundColor           = '#555'; }
-    else if (currentPath.includes('bricks'))      { document.getElementById('bricks').style.backgroundColor           = '#555'; }
-    else if (currentPath.includes('aws'))         { document.getElementById('aws').style.backgroundColor              = '#555'; }
-    else if (currentPath.includes('data'))        { document.getElementById('data').style.backgroundColor             = '#555'; }
-    else if (currentPath.includes('programming')) { document.getElementById('programming').style.backgroundColor      = '#555'; }
-    else if (currentPath.includes('devops'))      { document.getElementById('devops').style.backgroundColor           = '#555'; }
+    if (currentPath === '/' || currentPath === '/index.html') { 
+      document.getElementById('home').style.backgroundColor = '#555'; 
+    } else if (currentPath.includes('search')) {
+      document.getElementById('search').style.backgroundColor = '#555';
+    } else if (currentPath.includes('bricks')) {
+      document.getElementById('bricks').style.backgroundColor = '#555';
+    } else if (currentPath.includes('aws')) {
+      document.getElementById('aws').style.backgroundColor = '#555';
+    } else if (currentPath.includes('data')) {
+      document.getElementById('data').style.backgroundColor = '#555';
+    } else if (currentPath.includes('programming')) {
+      document.getElementById('programming').style.backgroundColor = '#555';
+    } else if (currentPath.includes('devops')) {
+      document.getElementById('devops').style.backgroundColor = '#555';
+    }
 
     // Navigation using left and right arrow keys
     document.addEventListener('keydown', function(event) {
