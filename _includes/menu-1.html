@@ -31,6 +31,14 @@
     .breadcrumb a:hover {
       text-decoration: underline;
     }
+    .breadcrumb > a::after {
+      /* content: ">"; /* Adjusted space and separator */
+      /* margin-left: 2px; /* Reduced space after the link */
+      /* margin-right: 2px; /* Reduced space before the next link */
+    }
+    .breadcrumb > a:last-child::after {
+      content: ""; /* Remove the separator for the last item */
+    }
   </style>
 
 </head>
@@ -63,18 +71,7 @@
     let accumulatedPath = "";
     pathParts.forEach((part, index) => {
       accumulatedPath += `/${part}`;
-      
-      // Remove ".html" from the last breadcrumb part if it exists
-      if (index === pathParts.length - 1 && part.endsWith(".html")) {
-        part = part.replace(".html", "");
-      }
-      
       breadcrumbHtml += `<a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
-      
-      // Add '>' separator, but not after the last item
-      if (index < pathParts.length - 1) {
-        breadcrumbHtml += " > ";
-      }
     });
 
     // Insert the generated breadcrumb links into the div
