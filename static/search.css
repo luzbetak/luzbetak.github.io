@@ -15,6 +15,17 @@ body {
     background-color: #222222;
 }
 
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
 /* Search results styling */
 .search-results {
     width: 100%;
