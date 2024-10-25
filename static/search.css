@@ -25,6 +25,11 @@ body {
     text-decoration: none;
 }
 
+.navbar a:hover {
+    background-color: #444444;
+}
+
+
 
 /* Search results styling */
 .search-results {
