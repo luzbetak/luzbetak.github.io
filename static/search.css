@@ -1,89 +1,18 @@
-/* search.css - Combined search functionality with main styling */
+/* search.css - Dedicated stylesheet for search functionality only */
 
-/* Base Styles */
-body {
-    width: 1100px;
-    font-family: Verdana, sans-serif;
-    background-color: #000000;
-    color: #ffffff;
-    margin: 0;
-    padding: 5px;
-    padding-left: 5px;
-}
-
-/* Navigation Bar Styles */
-.navbar {
-    overflow: hidden;
-    background-color: #222222;
-}
-
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    background-color: #444444;
-}
-
-.navbar a.active {
-    background-color: #444444;
-}
-
-/* Search Box Styling */
-.search-box {
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    width: 750px;
-    height: 40px;
-    padding: 10px;
-    font-size: 24px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding-left: 15px;
-}
-
-input[type="submit"] {
-    height: 40px;
-    font-size: 24px;
-    padding: 10px 30px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-input[type="submit"]:hover {
-    background-color: #218838;
-}
-
-/* Search Results Styling */
+/* Search results styling */
 .search-results {
+    width: 100%;
     margin: 20px 0;
 }
 
 .search-results a {
     display: block;
     padding: 8px 0;
-    margin: 5px 0;
+    margin: 0;
     color: #0066ff;
     text-decoration: none;
     font-size: 16px;
-    /* Override any conflicting styles */
-    float: none !important;
-    clear: both !important;
-    text-align: left !important;
-    line-height: 1.5 !important;
 }
 
 .search-results a:hover {
@@ -91,48 +20,22 @@ input[type="submit"]:hover {
     background-color: transparent;
 }
 
-/* Ordered List Styling for Search Results */
-ol {
-    margin: 0 0 20px 20px;
-    padding-left: 10px;
-    color: #ffffff;
+/* Override any conflicting styles */
+.search-results a {
+    float: none !important;
+    clear: both !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
 }
 
-li {
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-
-/* Footer Styling */
-.footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    background-color: black;
-    color: white;
-    font-size: 12px;
-}
-
-/* Heading Styles */
-h1 { color: #00ccff; font-size: 26px; }
-h2 { color: #ffcc00; font-size: 24px; }
-h3 { color: #90ee90; font-size: 22px; }
-
-/* Code Highlighting */
-code {
-    background-color: #262626;
-    padding: 0px 0px;
-    border-radius: 0px;
-    color: #f8f8f2;
-    font-family: Consolas, "Courier New", monospace;
-}
-
-pre {
-    background-color: #262626;
+/* Search input styling */
+.search-input {
+    width: 750px;
+    height: 40px;
     padding: 10px;
+    font-size: 24px;
+    border: none;
     border-radius: 4px;
-    overflow-x: auto;
-    color: #f8f8f2;
-    font-family: Consolas, "Courier New", monospace;
-    line-height: 1.5;
+    margin-right: 10px;
+    padding-left: 15px;
 }
