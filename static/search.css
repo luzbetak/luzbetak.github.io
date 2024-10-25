@@ -1,5 +1,10 @@
 /* search.css - Dedicated stylesheet for search functionality only */
 
+/* Base background style */
+body {
+    background-color: #000000;
+}
+
 /* Search results styling */
 .search-results {
     width: 100%;
