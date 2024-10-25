@@ -9,6 +9,12 @@ body {
     padding: 5px;
 }
 
+/* Navigation Bar Styles */
+.navbar {
+    overflow: hidden;
+    background-color: #222222;
+}
+
 /* Search results styling */
 .search-results {
     width: 100%;
