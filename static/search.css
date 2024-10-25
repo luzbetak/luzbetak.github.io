@@ -1,0 +1,41 @@
+/* search.css - Dedicated stylesheet for search functionality only */
+
+/* Search results styling */
+.search-results {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.search-results a {
+    display: block;
+    padding: 8px 0;
+    margin: 0;
+    color: #0066ff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.search-results a:hover {
+    color: #ffcc00;
+    background-color: transparent;
+}
+
+/* Override any conflicting styles from the main stylesheet */
+.search-results a {
+    float: none !important;
+    clear: both !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+}
+
+/* Search input styling */
+.search-input {
+    width: 750px;
+    height: 40px;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    padding-left: 15px;
+}
