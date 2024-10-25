@@ -39,13 +39,14 @@
   <!-- Navigation Menu -->
   <div class="navbar">
     <a id="home"        href="http://luzbetak.github.io/">Kevin Luzbetak</a>
-    <a id="search"      href="http://luzbetak.github.io/search">Search</a>
+    <a id="ai"          href="http://luzbetak.github.io/ai">AI</a>
     <a id="databricks"  href="http://luzbetak.github.io/databricks">Databricks</a>
     <a id="aws"         href="http://luzbetak.github.io/aws">AWS</a>
     <a id="big-data"    href="http://luzbetak.github.io/big-data">Big Data</a>
     <a id="programming" href="http://luzbetak.github.io/programming">Programming</a>
     <a id="platform"    href="http://luzbetak.github.io/platform">Platform</a>
     <a href="https://github.com/luzbetak" target="_blank">Github</a>
+    <a id="search"      href="http://luzbetak.github.io/search">Search</a>
   </div>
 
   <!-- Breadcrumb -->
@@ -83,6 +84,7 @@
     // Highlight the active section in the navbar
     const currentPath = window.location.pathname;
     if (currentPath === '/' || currentPath === '/index.html') { document.getElementById('home').style.backgroundColor = '#555'; } 
+    else if (currentPath.includes('ai'))          { document.getElementById('ai').style.backgroundColor          = '#555'; }
     else if (currentPath.includes('databricks'))  { document.getElementById('databricks').style.backgroundColor  = '#555'; }
     else if (currentPath.includes('aws'))         { document.getElementById('aws').style.backgroundColor         = '#555'; }
     else if (currentPath.includes('big-data'))    { document.getElementById('big-data').style.backgroundColor    = '#555'; }
