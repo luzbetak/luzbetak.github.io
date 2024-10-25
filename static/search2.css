@@ -9,6 +9,30 @@ body {
     padding: 5px;
 }
 
+/* Navigation Bar Styles */
+.navbar {
+    overflow: hidden;
+    background-color: #222222;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #444444;
+}
+
+.navbar a.active {
+    background-color: #444444;
+}
+
 /* Search results styling */
 .search-results {
     width: 100%;
