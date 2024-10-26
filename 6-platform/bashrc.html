@@ -5,9 +5,27 @@
 
 <h2>Search Code</h2>
 <pre><code class=language-bash>#------------------------------------------------------------------#
+# Archive File
+#----------------------------------------------------------------------------------------#
+a() {
+    local filename=$(basename "$1")
+    local date=$(date +"%Y%m%d-%H%M")
+    local archive_dir="$HOME/.archive"
+    local target_file="$archive_dir/$date.$filename"
+
+    if [[ -e $1 ]]; then
+        mkdir -p "$archive_dir"
+        cp "$1" "$target_file"
+        echo "Copied $1 to $target_file"
+    else
+        echo "Error: $1 does not exist."
+    fi
+    ls -l $archive_dir
+}
+#----------------------------------------------------------------------------------------#
 # search one two
 # search -tpy one two
-#------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
 function search() {
 
   if [ $# -eq 0 ]; then
@@ -29,10 +47,10 @@ function search() {
 
   eval $cmd
 }
-#------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
 # Search all the python file for keyword open
 # spy open py
-#------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
 function spy() {
   if [ $# -eq 0 ]; then
     echo "Please provide a keyword as the first argument."
@@ -54,13 +72,9 @@ function spy() {
   printf '%.0s-' {1..80}; echo
 
 }
-#------------------------------------------------------------------#
-</code></pre>
-
-
-<p>
-<h2>Search Edit Python Files</h2>
-<pre><code class=language-bash>#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
+# Search Edit Python Files</h2>
+#----------------------------------------------------------------------------------------#
 search() {
  grep -rnw . -e "${1}" --include \*.py --exclude-dir='anaconda3/' --exclude-dir='.vim/'
 }
@@ -69,39 +83,15 @@ replace() {
   find . -name "*.py" -not -path "*/anaconda3/*" -exec sed -i "s/${1}/${2}/g" {} \;
 }
 #----------------------------------------------------------------------------------------#
-</code></pre>
-
-<p>
-<h2>Replace text with find and sed</h2>
-<pre><code class=language-bash>#--------------------------------------------------------------------------------------------------#
+# Replace text with find and sed</h2>
 # Linux
+#----------------------------------------------------------------------------------------#
 find . -name "*.py" -type f -exec sed 's/kevinluzbetak/kluzbetak/g' {} \;
 
-#--------------------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
 # Max OS
+#----------------------------------------------------------------------------------------#
 find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
-#--------------------------------------------------------------------------------------------------#
-</code></pre>
-
-<p>
-<h2>Archive File</h2>
-<pre><code class=language-bash>#--------------------------------------------------------#
-a() {
-    local filename=$(basename "$1")
-    local date=$(date +"%Y%m%d-%H%M")
-    local archive_dir="$HOME/.archive"
-    local target_file="$archive_dir/$date.$filename"
-
-    if [[ -e $1 ]]; then
-        mkdir -p "$archive_dir"
-        cp "$1" "$target_file"
-        echo "Copied $1 to $target_file"
-    else
-        echo "Error: $1 does not exist."
-    fi
-    ls -l $archive_dir
-}
-#---------------------------------------------------------#
 </code></pre>
 
 
