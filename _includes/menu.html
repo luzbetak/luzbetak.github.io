@@ -38,15 +38,15 @@
 <body>
   <!-- Navigation Menu -->
   <div class="navbar">
-    <a id="home"        href="http://luzbetak.github.io/">Kevin Luzbetak</a>
-    <a id="ai"          href="http://luzbetak.github.io/ai">AI</a>
-    <a id="databricks"  href="http://luzbetak.github.io/databricks">Databricks</a>
-    <a id="aws"         href="http://luzbetak.github.io/aws">AWS</a>
-    <a id="big-data"    href="http://luzbetak.github.io/big-data">Big Data</a>
-    <a id="programming" href="http://luzbetak.github.io/programming">Programming</a>
-    <a id="platform"    href="http://luzbetak.github.io/platform">Platform</a>
-    <a id="github"      href="http://luzbetak.github.io/github">Github</a>
-    <a id="search"      href="http://luzbetak.github.io/search">Search</a>
+    <a id="home"       href="http://luzbetak.github.io/">Kevin Luzbetak</a>
+    <a id="ai"         href="http://luzbetak.github.io/ai">AI</a>
+    <a id="software"   href="http://luzbetak.github.io/software">Software</a>
+    <a id="data-mesh"  href="http://luzbetak.github.io/data-mesh">Data Mesh</a>
+    <a id="databricks" href="http://luzbetak.github.io/databricks">Databricks</a>
+    <a id="aws"        href="http://luzbetak.github.io/aws">AWS</a>
+    <a id="platform"   href="http://luzbetak.github.io/platform">Platform</a>
+    <a id="github"     href="http://luzbetak.github.io/github">Github</a>
+    <a id="search"     href="http://luzbetak.github.io/search">Search</a>
   </div>
 
   <!-- Breadcrumb -->
@@ -55,8 +55,8 @@
   <script>
     // Generate breadcrumbs based on the current URL path
     const breadcrumbDiv = document.getElementById('breadcrumb');
-    const baseUrl = "https://luzbetak.github.io";
-    const pathParts = window.location.pathname.split('/').filter(Boolean); // Split the URL path and remove empty values
+    const baseUrl       = "https://luzbetak.github.io";
+    const pathParts     = window.location.pathname.split('/').filter(Boolean); // Split the URL path and remove empty values
 
     let breadcrumbHtml = `<a href="${baseUrl}">Home</a>`;
 
@@ -85,10 +85,10 @@
     const currentPath = window.location.pathname;
     if (currentPath === '/' || currentPath === '/index.html') { document.getElementById('home').style.backgroundColor = '#555'; } 
     else if (currentPath.includes('ai'))          { document.getElementById('ai').style.backgroundColor          = '#555'; }
+    else if (currentPath.includes('software'))    { document.getElementById('software').style.backgroundColor = '#555'; }
     else if (currentPath.includes('databricks'))  { document.getElementById('databricks').style.backgroundColor  = '#555'; }
     else if (currentPath.includes('aws'))         { document.getElementById('aws').style.backgroundColor         = '#555'; }
-    else if (currentPath.includes('big-data'))    { document.getElementById('big-data').style.backgroundColor    = '#555'; }
-    else if (currentPath.includes('programming')) { document.getElementById('programming').style.backgroundColor = '#555'; }
+    else if (currentPath.includes('data-mesh'))   { document.getElementById('data-mesh').style.backgroundColor   = '#555'; }
     else if (currentPath.includes('platform'))    { document.getElementById('platform').style.backgroundColor    = '#555'; }
     else if (currentPath.includes('github'))      { document.getElementById('github').style.backgroundColor      = '#555'; }
     else if (currentPath.includes('search'))      { document.getElementById('search').style.backgroundColor      = '#555'; }
