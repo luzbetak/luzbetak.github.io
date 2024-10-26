@@ -189,7 +189,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate search index from HTML files")
     parser.add_argument(
         "--output-dir",
-        default="search",
+        default="8-search",
         help="Output directory for search index (default: search)"
     )
     parser.add_argument(
