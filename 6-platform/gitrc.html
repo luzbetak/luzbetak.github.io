@@ -37,7 +37,7 @@ function next() {
         echo "Created new branch: $new_branch"
     fi
 }
-#----------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
 git_checkout_latest_version() {
     # Fetch the latest branches from the remote
     git fetch
@@ -60,6 +60,35 @@ git_checkout_latest_version() {
     git checkout "$latest_branch_name"
     echo "Checked out latest version branch: $latest_branch_name"
 }
-#----------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+com () {
+    # Get the current branch name
+    BRANCH=$(git branch --show-current)
+
+    # Stage all changes
+    git add --all -v .
+
+    # Commit with a custom message if provided, or use the current date/time as the message
+    if [ "$1" ]; then
+        git commit -m "${1}"
+    else
+        DATE=$(date "+%Y-%m-%d %H:%M")
+        git commit -m "${DATE}"
+    fi
+
+    # Check if the branch has an upstream
+    UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+
+    # If no upstream is set, push and set upstream to origin/BRANCH
+    if [ -z "$UPSTREAM" ]; then
+        echo "Setting upstream for branch $BRANCH to origin/$BRANCH"
+        git push --set-upstream origin "$BRANCH"
+    else
+        # If upstream is set, just push to the remote
+        git push origin "$BRANCH"
+    fi
+}
+#-------------------------------------------------------------------------------------------#
+
 {% include footer.html %}
 
