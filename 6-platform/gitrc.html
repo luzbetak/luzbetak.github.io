@@ -38,5 +38,28 @@ function next() {
     fi
 }
 #----------------------------------------------------------------------------#
+git_checkout_latest_version() {
+    # Fetch the latest branches from the remote
+    git fetch
+
+    # Find the latest branch in the format 'vx.xx'
+    latest_branch=$(git branch -r | grep -o 'origin/v[0-9]\+\.[0-9]\+' | sort -V | tail -n 1)
+
+    if [ -z "$latest_branch" ]; then
+        echo "No versioned branch (vx.xx) found in remote branches."
+        return 1
+    fi
+
+    # Extract the branch name without 'origin/'
+    latest_branch_name=${latest_branch#origin/}
+
+    # Stash any local changes
+    git stash
+
+    # Check out the latest version branch
+    git checkout "$latest_branch_name"
+    echo "Checked out latest version branch: $latest_branch_name"
+}
+#----------------------------------------------------------------------------#
 {% include footer.html %}
 
