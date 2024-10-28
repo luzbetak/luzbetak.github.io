@@ -1,0 +1,42 @@
+---
+---
+{% include menu.html title="gitrc" %}
+<hr align=left width=1000>
+
+<h2>Create the next branch</h2>
+<pre><code class=language-bash>#----------------------------------------------------------------------------#
+function next() {
+    # Get the latest branch with the format v0.xx
+    latest_branch=$(git branch --all --sort=-committerdate | grep -E 'v[0-9]+\.[0-9]+' | sort -r | head -n 1 | sed 's/.*\///')
+
+    # Extract the numeric part and increment it
+    if [[ $latest_branch =~ ^v([0-9]+)\.([0-9]+)$ ]]; then
+        major=${BASH_REMATCH[1]}
+        minor=${BASH_REMATCH[2]}
+        new_minor=$(printf "%02d" $((10#$minor + 1)))
+        new_branch="v$major.$new_minor"
+
+        # Create the new branch if it doesn't already exist
+        if git rev-parse --verify $new_branch >/dev/null 2>&1; then
+            echo "Branch $new_branch already exists. Incrementing further."
+            next
+        else
+            git checkout -b $new_branch
+            echo "New branch created: $new_branch"
+        fi
+    else
+        # If no valid branch is found, create the first branch
+        new_branch="v0.01"
+        while git rev-parse --verify $new_branch >/dev/null 2>&1; do
+            major=$(echo $new_branch | cut -d '.' -f 1 | sed 's/v//')
+            minor=$(echo $new_branch | cut -d '.' -f 2)
+            new_minor=$(printf "%02d" $((10#$minor + 1)))
+            new_branch="v$major.$new_minor"
+        done
+        git checkout -b $new_branch
+        echo "Created new branch: $new_branch"
+    fi
+}
+#----------------------------------------------------------------------------#
+{% include footer.html %}
+
