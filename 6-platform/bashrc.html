@@ -5,6 +5,26 @@
 
 <h2>Search Code</h2>
 <pre><code class=language-bash>#------------------------------------------------------------------#
+# Write the template content into the file
+#-------------------------------------------------------------------------------#
+t() {
+    local filename="$(echo "$*" | sed 's/ /-/g' | sed 's/-\+/-/g')"
+    filename="${filename}.html"
+
+    cat <<EOF > "$filename"
+---
+---
+{% include menu.html title="$*" %}
+
+<h1>$*</h1>
+
+
+{% include footer.html %}
+EOF
+    vim "$filename"
+}
+
+#----------------------------------------------------------------------------------------#
 # Archive File
 #----------------------------------------------------------------------------------------#
 a() {
@@ -86,12 +106,12 @@ replace() {
 # Replace text with find and sed</h2>
 # Linux
 #----------------------------------------------------------------------------------------#
-find . -name "*.py" -type f -exec sed 's/kevinluzbetak/kluzbetak/g' {} \;
+# find . -name "*.py" -type f -exec sed 's/kevinluzbetak/kluzbetak/g' {} \;
 
 #----------------------------------------------------------------------------------------#
 # Max OS
 #----------------------------------------------------------------------------------------#
-find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
+# find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
 </code></pre>
 
 
