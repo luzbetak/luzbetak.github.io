@@ -70,7 +70,9 @@ com () {
 
     # Commit with a custom message if provided, or use the current date/time as the message
     if [ "$1" ]; then
-        git commit -m "${1}"
+        # Join all arguments with spaces to create the full commit message
+        commit_message="$*"
+        git commit -m "${commit_message}"
     else
         DATE=$(date "+%Y-%m-%d %H:%M")
         git commit -m "${DATE}"
