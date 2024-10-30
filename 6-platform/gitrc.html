@@ -1,10 +1,117 @@
 ---
 ---
 {% include menu.html title="gitrc" %}
-<hr align=left width=1000>
+<hr align=left width=1100>
 
 <h2>Create the next branch</h2>
 <pre><code class=language-bash>#----------------------------------------------------------------------------#
+force_merge() {
+    # Get current branch name
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+    
+    # Check for uncommitted changes in current branch
+    if ! git diff-index --quiet HEAD --; then
+        echo "Uncommitted changes detected in current branch: $current_branch"
+        echo "Committing changes before merge..."
+        
+        # Commit all changes with timestamp
+        current_date=$(date +"%Y-%m-%d %H:%M")
+        git add .
+        if ! git commit -m "$current_date"; then
+            echo "Error: Failed to commit changes in current branch"
+            return 1
+        fi
+        
+        # Push changes to current branch
+        echo "Pushing changes to $current_branch..."
+        if ! git push origin "$current_branch"; then
+            echo "Error: Failed to push changes to $current_branch"
+            return 1
+        fi
+    fi
+    
+    # Determine if main or master is the default branch
+    local default_branch=""
+    if git ls-remote --heads origin main | grep -q main; then
+        default_branch="main"
+    elif git ls-remote --heads origin master | grep -q master; then
+        default_branch="master"
+    else
+        # Check local branches if remote check fails
+        if git show-ref --verify --quiet refs/heads/main; then
+            default_branch="main"
+        elif git show-ref --verify --quiet refs/heads/master; then
+            default_branch="master"
+        else
+            echo "Error: Neither main nor master branch found"
+            return 1
+        fi
+    fi
+    
+    # Verify we're not already on the default branch
+    if [ "$current_branch" == "$default_branch" ]; then
+        echo "Error: Already on $default_branch branch. Please checkout the branch you want to merge first."
+        return 1
+    fi
+    
+    echo "Current branch: $current_branch"
+    echo "Target branch: $default_branch"
+    echo "Starting force merge..."
+    
+    # Fetch latest changes from remote
+    echo "Fetching latest changes..."
+    if ! git fetch origin; then
+        echo "Error: Failed to fetch from remote"
+        return 1
+    fi
+    
+    # Checkout default branch and pull latest changes
+    echo "Checking out $default_branch branch..."
+    if ! git checkout "$default_branch"; then
+        echo "Error: Failed to checkout $default_branch branch"
+        return 1
+    fi
+    
+    if ! git pull origin "$default_branch"; then
+        echo "Error: Failed to pull $default_branch branch"
+        return 1
+    fi
+    
+    # Merge the current branch with -X theirs strategy and explicit commit message
+    echo "Merging $current_branch into $default_branch with force overwrite..."
+    if ! git merge -X theirs "$current_branch" --no-ff -m "Merged $current_branch into $default_branch (forced)"; then
+        # If there are conflicts, resolve them by taking all changes from the current branch
+        echo "Resolving conflicts by taking changes from $current_branch..."
+        git checkout --ours .
+        git add .
+        git commit -m "Force merged $current_branch into $default_branch (resolved conflicts)" --no-edit
+    fi
+    
+    # Force push to remote default branch
+    echo "Force pushing to remote $default_branch..."
+    if ! git push origin "$default_branch" --force; then
+        echo "Error: Failed to force push to $default_branch"
+        return 1
+    fi
+    
+    # Check for any remaining changes and commit them
+    if ! git diff-index --quiet HEAD --; then
+        echo "Committing remaining changes..."
+        current_date=$(date +"%Y-%m-%d %H:%M")
+        git add .
+        git commit -m "$current_date" --no-edit
+        
+        echo "Pushing final changes to remote $default_branch..."
+        if ! git push origin "$default_branch"; then
+            echo "Error: Failed to push final changes"
+            return 1
+        fi
+    fi
+    
+    echo "Force merge completed successfully!"
+    return 0
+}
+#-------------------------------------------------------------------------------------------#
 function next() {
     # Get the latest branch with the format v0.xx
     latest_branch=$(git branch --all --sort=-committerdate | grep -E 'v[0-9]+\.[0-9]+' | sort -r | head -n 1 | sed 's/.*\///')
