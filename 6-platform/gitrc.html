@@ -3,8 +3,13 @@
 {% include menu.html title="gitrc" %}
 <hr align=left width=1100>
 
+
 <h2>Create the next branch</h2>
 <pre><code class=language-bash>#----------------------------------------------------------------------------#
+nopage() {
+    git config --global core.pager ""
+}
+#-------------------------------------------------------------------------------------------#
 force_merge() {
     # Get current branch name
     local current_branch=$(git rev-parse --abbrev-ref HEAD)
