@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------#
- python page-index.py --output-dir search --debug
+ python page_index.py --output-dir search --debug
 
 #-------------------------------------------------------------------------------#
 # Validate JSON 
