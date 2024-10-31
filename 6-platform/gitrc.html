@@ -218,6 +218,22 @@ com () {
     fi
 }
 #-------------------------------------------------------------------------------------------#
+# Git function to pull the latest code and overwrite local changes
+pull() {
+    echo "Fetching the latest code from remote and resetting the local branch..."
+
+    # Fetch the latest changes from the remote
+    git fetch --all
+
+    # Hard reset the local branch to match the latest remote branch, overwriting local changes
+    git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+
+    # Clean untracked files and directories
+    git clean -fd
+
+    echo "Pull complete. Local code now matches the remote."
+}
+#-------------------------------------------------------------------------------------------#
 </code></pre>
 {% include footer.html %}
 
