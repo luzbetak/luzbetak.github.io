@@ -10,21 +10,6 @@ nopage() {
     git config --global core.pager ""
 }
 #-------------------------------------------------------------------------------------------#
-reset() {
-    if [ -z "$1" ]; then
-        echo "Error: Please provide a commit hash."
-        return 1
-    fi
-
-    # Reset to the specified commit locally
-    git reset --hard "$1"
-    echo "Reset to commit $1 locally."
-
-    # Push the reset commit to the remote branch, overwriting remote history
-    git push origin HEAD --force
-    echo "Forced push: Remote branch is now aligned with commit $1."
-}
-#-------------------------------------------------------------------------------------------#
 force_merge() {
     # Get current branch name
     local current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -232,6 +217,23 @@ pull() {
     git clean -fd
 
     echo "Pull complete. Local code now matches the remote."
+}
+#-------------------------------------------------------------------------------------------#
+# Reset HEAD to previous branch based on hash
+#-------------------------------------------------------------------------------------------#
+reset() {
+    if [ -z "$1" ]; then
+        echo "Error: Please provide a commit hash."
+        return 1
+    fi
+
+    # Reset to the specified commit locally
+    git reset --hard "$1"
+    echo "Reset to commit $1 locally."
+
+    # Push the reset commit to the remote branch, overwriting remote history
+    git push origin HEAD --force
+    echo "Forced push: Remote branch is now aligned with commit $1."
 }
 #-------------------------------------------------------------------------------------------#
 </code></pre>
