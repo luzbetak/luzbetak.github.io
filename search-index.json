@@ -631,108 +631,120 @@
   },
   {
     "id": 106,
+    "title": "index-full-words.html",
+    "content": "index full words kevin luzbetak search",
+    "url": "/8-search/index-full-words.html"
+  },
+  {
+    "id": 107,
+    "title": "index-and-or.html",
+    "content": "index and or kevin luzbetak search",
+    "url": "/8-search/index-and-or.html"
+  },
+  {
+    "id": 108,
     "title": "Apache-Parquet.html",
     "content": "apache parquet access amount analytic analytical analytics apache architectures aws azure based benefits big bigquery cases changes cloud columnar columns common compatibility compression costs data datasets dictionary distributed easy efficient encoding engines environments etl evolution existing expenses fast faster features file files format frameworks google hadoop hive impala improved integration key lakes large length lower many massive modern multiple necessary new olap operations optimized parallel parallelism parquet parts performance pipelines platforms processing queries query read redshift reduced retrieval rle scalability scale schema services size spark specific splitting storage stored stores support synapse system systems techniques time use warehousing wide workloads",
     "url": "/3-data-mesh/Apache-Parquet.html"
   },
   {
-    "id": 107,
+    "id": 109,
     "title": "Apache-Iceberg.html",
     "content": "apache iceberg access acid analytics apache cases changes cloud columns complex data dataset datasets deletes durable dynamic efficiency enables entire evolution existing features flexible framework frequent hidden historical iceberg key lakes large management manual metadata model models modern need needs object operations partition partitioning partitions petabyte previous queries query reliable removing scale schema storage supports time transactions travel updates upserts use users versions",
     "url": "/3-data-mesh/Apache-Iceberg.html"
   },
   {
-    "id": 108,
+    "id": 110,
     "title": "Graph-Databases-ArgoDB-Neo4j.html",
     "content": "graph databases argodb neo4j acid alice analysis analytics apis arangodb argodb argodbexample billions breakdown case cases class code complex compliance concept connection consistency create cypher data database databases datasets db deep def detection different distributed document driver edges efficient ensures example excels explanation fast features fraud friend friends function given graph graphdatabase handles high import insights integrates integration key language languages large massive match matching method methods model multi name networks new node nodes password pattern people performance person platforms popular processing python queries query querying rapid recommendation record related relation relationship relationships reliability result return scalability scale session sessions setup social specialized storage syntax systems transactions traversal two usage use user value way workloads",
     "url": "/3-data-mesh/Graph-Databases-ArgoDB-Neo4j.html"
   },
   {
-    "id": 109,
+    "id": 111,
     "title": "GraphQL.html",
     "content": "graphql access accessing accounts acquisition ad administrators ads advertisers amount analytics api apis applications apps audiences authentication automated based benefits budgets business businesses campaigns changes chatbots clients comments communication complex content control conversational creator credentials customer data description developers different direct ecosystem efficiency efficient email end endpoint endpoints engagement environments event events exactly facebook features fetching fields flexibility flexible friends front functionality graph graphql group groups info information insights instagram interactions interfaces key language likes list lot managing marketers marketing media members messages messaging messenger metrics microservices multiple name names network notifications one page pages part party performance permissions photos platform platforms play posts precise predictability primary professional profile profiles programmatic queries query reach real redundant relationships replies reports request requests required response rest schema server service sets single specific structure structures subscriptions support teams third time title titles transfer types usage user users validating videos way websites whatsapp",
     "url": "/3-data-mesh/GraphQL.html"
   },
   {
-    "id": 110,
+    "id": 112,
     "title": "MongoDB-Document-Based-NoSQL-Database.html",
     "content": "mongodb document based nosql database account aggregation ascending author based binary bson cli collection command consumer content context contexts corresponding data database default descending document documents either embedding examples existence expressions field fields filter find first fog form format gunning host id implicit index instance json key keys limit limits localhost match mongodb mongosh multiple names next nosql number one operator order pagination pair pairs pipeline port pretty primary prints project random range regular rest result retrieves score shell size skip sort specific store text tf title total traditional unique url using value values vector viewing word works",
     "url": "/3-data-mesh/MongoDB-Document-Based-NoSQL-Database.html"
   },
   {
-    "id": 111,
+    "id": 113,
     "title": "RDBMS-Schemas.html",
     "content": "rdbms schemas central charts child clear common complex complexity connections constellation data database databases denormalized dimension dimensions fact faster fewer flat foundational galaxy hierarchical integrity joins management many marts multiple needs network non organizational organizes parent performance queries query rdbms redundancy related relational relationship relationships schema schemas several simple simpler single snowflake specific star structure systems table tables tree warehouses",
     "url": "/3-data-mesh/RDBMS-Schemas.html"
   },
   {
-    "id": 112,
+    "id": 114,
     "title": "Large-Scale-Data-Ingestion2.html",
     "content": "large scale data ingestion2 acid additional advanced amazon amounts analytics apache application applications automation aws azure based batch beam big capabilities cloud cluster compliance computation confluent connectors data databricks dataflow delta distributed end engineering enterprise event events extension features flink flow framework fully google grade high hubs ingestion iot kafka key kinesis lake large latency logs low managed management manner massive message messaging millions movement multi multiple nifi parallel pipelines platform powerful processing pulsar ready real registry role scalability scale schema second security service sources spark storm stream streaming streams structured system systems telemetry tenancy throughput time tool tools transformation variety wide",
     "url": "/3-data-mesh/Large-Scale-Data-Ingestion2.html"
   },
   {
-    "id": 113,
+    "id": 115,
     "title": "Kafka-Multiple-Cosumers-In-Group-Offset.html",
     "content": "kafka multiple cosumers in group offset consumer kafka producer",
     "url": "/3-data-mesh/Kafka-Multiple-Cosumers-In-Group-Offset.html"
   },
   {
-    "id": 114,
+    "id": 116,
     "title": "RDBMS-Snowflake-Schema.html",
     "content": "rdbms snowflake schema additional advanced approach attributes central characteristics complex complexity cost costs data database date design difference differences dimension dimensions duplicated environments example extension fact fewer higher increased indexing integrity joins key layers level levels minimizing modeling multiple need normalization normalized normalizing performance piece priority process queries query reduced redundancy related relational relationships scenarios schema separate several shape single slower snowflake space star storage structure structured sub table tables techniques usage variation warehouses warehousing year",
     "url": "/3-data-mesh/RDBMS-Snowflake-Schema.html"
   },
   {
-    "id": 115,
+    "id": 117,
     "title": "Kafka-Producer-Consumer.html",
     "content": "kafka producer consumer apache brokers consumer description earliest format import initializes json kafka kafkaconsumer kafkaproducer lambda list message messages offset producer specified topic x",
     "url": "/3-data-mesh/Kafka-Producer-Consumer.html"
   },
   {
-    "id": 116,
+    "id": 118,
     "title": "etl-pipeline.html",
     "content": "etl pipeline accuracy additional aggregation analysis apis application applying averages business calculations cleaning cloud common connectivity consistency context conversion convert counts csv currencies data database databases date destination different downtime duplicates enhancing enrichment ensuring errors etl extract extraction failures files format formats incremental information integrity irrelevant issues lake large load loading logic missing needs optimization organization performance process reference resource retries rules services sources specific structure summarizing sums system tables target transform transformed usage values various volumes warehouse xml",
     "url": "/3-data-mesh/etl-pipeline.html"
   },
   {
-    "id": 117,
+    "id": 119,
     "title": "RDBMS-Star-Schema.html",
     "content": "rdbms star schema advantages agegroup amounts analysis attributes central commerce components customer customerid customername data database date dateid dates de descriptive design details dimension e efficient example fact facts flexibility foreign increased joins keys limited links location month names normalization number popular product productid quantitative quantities quarter queries query rdbms region requirements resemblance sales schema simple simplicity star storage store storename table tables warehouse warehousing year",
     "url": "/3-data-mesh/RDBMS-Star-Schema.html"
   },
   {
-    "id": 118,
+    "id": 120,
     "title": "Data-Mesh-Decentralized-Architecture.html",
     "content": "data mesh decentralized architecture access accessibility accuracy additional agility analysis approach architecture architectures aspect authorized autonomous autonomy balance benefits best better big bottlenecks building business capabilities capability central centralization centralized challenge changes clear cloud collaboration complexities complexity compliance computing consistent consumers coordination core data datasets decentralization decentralized design differences domain domains driven federated flexibility global governance high idea improved increased independent infrastructure key large limitations location main management managing mesh model models needs often organization organizations oriented ownership pipelines platform policies principles processes processing product products quality recent reliability repository requests requirements resources response responsibilities rigid scalability scales scaling security self service several skillset solutions specific standards strong system systems team teams technical technologies tools traditional traffic training unit units usability users volumes",
     "url": "/3-data-mesh/Data-Mesh-Decentralized-Architecture.html"
   },
   {
-    "id": 119,
+    "id": 121,
     "title": "Data-Fabric-vs-Data-Mesh.html",
     "content": "data fabric vs data mesh access analytics approach architecture aspect automation autonomy capabilities central centralized challenges cloud comprehensive connectivity consistency consistent control controls core data decentralized decision departments different discovery disparate domain domains ensures enterprises entire environments fabric fabrics federated flexibility governance handling heavy high individual infrastructure integration interoperability large lineage making management many mesh metadata multiple needs one organization organizations others ownership platform platforms policies premises preparation privacy processes product products real related responsibility rest scalability scales seamless security self service single size smooth sources specific standards strong systems tasks team teams time unified use various view vs",
     "url": "/3-data-mesh/Data-Fabric-vs-Data-Mesh.html"
   },
   {
-    "id": 120,
+    "id": 122,
     "title": "Apache-Hudi.html",
     "content": "apache hudi acid analytics apache architectures background batch big capabilities cases changed compaction compression conclusion cost data datasets deletes effective efficient environments features file footprint framework fresh gap guarantees hadoop historical hudi incremental incrementals indexes indexing ingestion inserts key lake lakes large latency low management modern older open overall performance pipelines previous processing queries query querying real scalable scale scenarios sizes source storage support systems techniques time top traditional transaction transactional transactions travel updates upserts use users versions",
     "url": "/3-data-mesh/Apache-Hudi.html"
   },
   {
-    "id": 121,
+    "id": 123,
     "title": "Collibra-Data-Quality.html",
     "content": "collibra data quality acceptable accuracy actionable allows analytics anomalies automated aws azure benefits broken business capabilities catalog checks cloud collaboration collibra completeness compliance conducts consistency continuous creation custom dashboard dashboards data decision depth detailed detects different discovery duplicates efforts enables enhance enriched enterprise errors experience failed features finance glance governance health healthcare high impact improved improvement inaccuracies industries insights integrates integration interactive issues key large learning lineage machine making management metrics mitigates models monitoring multi needs observability operational operations organizations overall owners performance pipelines platform platforms poor potential predefined proactive processes profiling progress quality real reduced regulatory remediation reporting reports requirements retail risks rules scalable standardization standards stewards stewardship support surfaces systems teams telecommunications thresholds time timeliness tool transformation trust trustworthiness types user users uses validation visibility volumes workflows",
     "url": "/3-data-mesh/Collibra-Data-Quality.html"
   },
   {
-    "id": 122,
+    "id": 124,
     "title": "Apache-Kafka.html",
     "content": "apache kafka aggregation application architecture availability brokers cases cluster communication compaction confluent connect consumers data decoupled delivery different easy ecosystem external fault hardware high immutable integration integrations kafka key large latency latest library load log long low messages messaging minimal multiple options partition partitions parts policies processing producers range real records regist requirements retention scalability scaling schema semantics sequence servers sinks sources storage stream streams subscribe system systems throughput time tolerance tools topics use value volumes wide",
     "url": "/3-data-mesh/Apache-Kafka.html"
   },
   {
-    "id": 123,
+    "id": 125,
     "title": "Snowflake-Architecture.html",
     "content": "snowflake architecture allows analysis approach architecture auditing auto avro aws azure based bottom centralized cloning cloud clusters compressed compute consistency context copy cost data databases days denormalized departments dimensional edw efficiency efficient elasticity enterprise environments fast flexibility flexible format gcp high historical ideal individual inmon integration json kimball large layer marts modeling modern native normalized optimizations organization organizations parquet performance platform premise processing providers queries query querying quick recovery reporting resources retention scalability scalable scale scaling schemas semi snowflake sources space star storage stores structure structured supports tables time top travel various virtual volumes warehouse warehouses warehousing wins workloads zero",
     "url": "/3-data-mesh/Snowflake-Architecture.html"
