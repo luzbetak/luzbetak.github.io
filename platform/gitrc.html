@@ -55,7 +55,7 @@ force_merge() {
     
     # Verify we're not already on the default branch
     if [ "$current_branch" == "$default_branch" ]; then
-        echo "Error: Already on $default_branch branch. Please checkout the branch you want to merge first."
+        echo "Error: Please checkout the branch you want to merge first."
         return 1
     fi
     
