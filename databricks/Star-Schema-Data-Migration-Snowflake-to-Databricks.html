@@ -10,42 +10,40 @@
     <h2>Star Schema Design</h2>
 
     <h3>Dimension Tables</h3>
-    <ul>
-        <li><strong>Products (Dimension)</strong>
-            <ul>
-                <li>product_id (PK)</li>
-                <li>product_name</li>
-                <li>category</li>
-                <li>price</li>
-                <li>created_at</li>
-            </ul>
-        </li>
-        <li><strong>Customers (Dimension)</strong>
-            <ul>
-                <li>customer_id (PK)</li>
-                <li>first_name</li>
-                <li>last_name</li>
-                <li>email</li>
-                <li>country</li>
-                <li>created_at</li>
-            </ul>
-        </li>
-    </ul>
+    <pre><code class="language-sql">
+-- Products Dimension Table
+CREATE TABLE retail_db.products (
+    product_id INT NOT NULL PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    price DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+-- Customers Dimension Table
+CREATE TABLE retail_db.customers (
+    customer_id INT NOT NULL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    country VARCHAR(100),
+    created_at TIMESTAMP NOT NULL
+);
+    </code></pre>
 
     <h3>Fact Table</h3>
-    <ul>
-        <li><strong>Sales (Fact)</strong>
-            <ul>
-                <li>sale_id (PK)</li>
-                <li>customer_id (FK)</li>
-                <li>product_id (FK)</li>
-                <li>quantity</li>
-                <li>unit_price</li>
-                <li>total_amount</li>
-                <li>sale_date</li>
-            </ul>
-        </li>
-    </ul>
+    <pre><code class="language-sql">
+-- Sales Fact Table
+CREATE TABLE retail_db.sales (
+    sale_id INT NOT NULL PRIMARY KEY,
+    customer_id INT NOT NULL REFERENCES retail_db.customers(customer_id),
+    product_id INT NOT NULL REFERENCES retail_db.products(product_id),
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    sale_date TIMESTAMP NOT NULL
+);
+    </code></pre>
 
     <h2>Schema Definitions</h2>
     <pre><code class="language-python">
