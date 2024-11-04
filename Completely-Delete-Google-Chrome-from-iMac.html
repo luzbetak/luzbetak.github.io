@@ -1,0 +1,69 @@
+---
+---
+{% include menu.html title="Completely Delete Google Chrome from iMac" %}
+
+<h1>Completely Delete Google Chrome from iMac</h1>
+<p>This Bash script is designed to remove Google Chrome and all associated data from an iMac, including application files, user data, cache, and preferences. Be cautious when using this script, as it will delete all Chrome-related information, including browsing history and saved settings.</p>
+
+<h3>Usage Instructions:</h3>
+<ul>
+    <li>Save the script as <code>remove_chrome.sh</code>.</li>
+    <li>Run it with <code>sudo</code> to ensure all permissions are granted:</li>
+</ul>
+<pre><code class="language-bash">sudo bash remove_chrome.sh</code></pre>
+
+<h3>Bash Script:</h3>
+<pre><code class="language-bash">
+#!/bin/bash
+
+# Ensure the script is run with sudo
+if [[ "$EUID" -ne 0 ]]; then
+    echo "Please run as root (sudo)"
+    exit 1
+fi
+
+# Function to delete a directory and handle errors
+delete_dir() {
+    if [ -d "$1" ]; then
+        rm -rf "$1"
+        echo "Deleted: $1"
+    else
+        echo "Directory not found: $1"
+    fi
+}
+
+echo "Deleting Google Chrome and all associated directories..."
+
+# Kill Chrome processes
+pkill -f "Google Chrome" || echo "No running Chrome processes found."
+
+# Remove Chrome application
+delete_dir "/Applications/Google Chrome.app"
+
+# Remove user-specific Chrome data
+delete_dir "$HOME/Library/Application Support/Google/Chrome"
+delete_dir "$HOME/Library/Caches/Google/Chrome"
+delete_dir "$HOME/Library/Preferences/com.google.Chrome.plist"
+delete_dir "$HOME/Library/Saved Application State/com.google.Chrome.savedState"
+
+# Remove other possible Chrome-related files
+delete_dir "$HOME/Library/Google/Google Chrome Brand.plist"
+delete_dir "$HOME/Library/Google/GoogleSoftwareUpdate"
+delete_dir "/Library/Google/Google Chrome Brand.plist"
+delete_dir "/Library/Google/GoogleSoftwareUpdate"
+
+echo "Google Chrome and its directories have been completely removed."
+</code></pre>
+
+<h3>Description of the Script:</h3>
+<ul>
+    <li><strong>Check for root privileges:</strong> The script begins by checking if it’s run with <code>sudo</code> to ensure it has the required permissions.</li>
+    <li><strong>Define a directory deletion function:</strong> The <code>delete_dir</code> function removes a specified directory if it exists, otherwise, it displays a message.</li>
+    <li><strong>Terminate Chrome processes:</strong> Attempts to kill any running Chrome processes to ensure no files are in use during deletion.</li>
+    <li><strong>Delete Chrome application and data:</strong> Removes Chrome’s application file and all related user data, caches, preferences, and saved states.</li>
+    <li><strong>Remove additional Google files:</strong> Deletes other possible Chrome-related files stored in <code>Library</code> directories.</li>
+    <li><strong>Output message:</strong> Provides confirmation once Chrome and its directories have been completely removed.</li>
+</ul>
+
+
+{% include footer.html %}
