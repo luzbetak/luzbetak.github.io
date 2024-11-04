@@ -20,38 +20,6 @@
         <li>Snowflake connector for Spark</li>
     </ul>
 
-    <h3>Snowflake Connection Setup</h3>
-    <pre><code class="language-python">
-snowflake_options = {
-    "sfURL": "your_snowflake_account.snowflakecomputing.com",
-    "sfUser": "your_username",
-    "sfPassword": "your_password",
-    "sfDatabase": "RETAIL_DB",
-    "sfSchema": "PUBLIC",
-    "sfWarehouse": "COMPUTE_WH"
-}
-    </code></pre>
-
-    <h3>Table Schemas</h3>
-    <pre><code class="language-python">
-product_schema = StructType([
-    StructField("product_id", IntegerType(), False),
-    StructField("product_name", StringType(), False),
-    StructField("category", StringType(), True),
-    StructField("price", DecimalType(10,2), False),
-    StructField("created_at", TimestampType(), False)
-])
-
-customer_schema = StructType([
-    StructField("customer_id", IntegerType(), False),
-    StructField("first_name", StringType(), False),
-    StructField("last_name", StringType(), False),
-    StructField("email", StringType(), False),
-    StructField("country", StringType(), True),
-    StructField("created_at", TimestampType(), False)
-])
-    </code></pre>
-
     <h3>Example Queries</h3>
     <h4>Snowflake Source Query</h4>
     <pre><code class="language-sql">
