@@ -1,0 +1,96 @@
+---
+---
+{% include menu.html title="Data Migration from Snowflake to Databricks" %}
+
+    <h1>Data Migration from Snowflake to Databricks</h1>
+    
+    <h2>Overview</h2>
+    <ul>
+        <li>Migrates data from Snowflake to Databricks using PySpark</li>
+        <li>Handles product and customer data tables</li>
+        <li>Uses Delta format for target tables</li>
+        <li>Includes verification and error handling</li>
+    </ul>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Snowflake credentials and access</li>
+        <li>Databricks workspace</li>
+        <li>PySpark environment</li>
+        <li>Snowflake connector for Spark</li>
+    </ul>
+
+    <h3>Snowflake Connection Setup</h3>
+    <pre><code class="language-python">
+snowflake_options = {
+    "sfURL": "your_snowflake_account.snowflakecomputing.com",
+    "sfUser": "your_username",
+    "sfPassword": "your_password",
+    "sfDatabase": "RETAIL_DB",
+    "sfSchema": "PUBLIC",
+    "sfWarehouse": "COMPUTE_WH"
+}
+    </code></pre>
+
+    <h3>Table Schemas</h3>
+    <pre><code class="language-python">
+product_schema = StructType([
+    StructField("product_id", IntegerType(), False),
+    StructField("product_name", StringType(), False),
+    StructField("category", StringType(), True),
+    StructField("price", DecimalType(10,2), False),
+    StructField("created_at", TimestampType(), False)
+])
+
+customer_schema = StructType([
+    StructField("customer_id", IntegerType(), False),
+    StructField("first_name", StringType(), False),
+    StructField("last_name", StringType(), False),
+    StructField("email", StringType(), False),
+    StructField("country", StringType(), True),
+    StructField("created_at", TimestampType(), False)
+])
+    </code></pre>
+
+    <h3>Example Queries</h3>
+    <h4>Snowflake Source Query</h4>
+    <pre><code class="language-sql">
+SELECT 
+    product_id,
+    product_name,
+    category,
+    price,
+    created_at
+FROM RETAIL_DB.PUBLIC.products;
+    </code></pre>
+
+    <h4>Databricks Target Query</h4>
+    <pre><code class="language-sql">
+SELECT COUNT(*) as record_count
+FROM retail_db.products;
+    </code></pre>
+
+    <h3>Sample Output</h3>
+    <pre><code class="language-markdown">
+Starting migration for table: products
+Records read from Snowflake: 1000
+Records written to Databricks: 1000
+Successfully migrated table: products
+
+Starting migration for table: customers
+Records read from Snowflake: 5000
+Records written to Databricks: 5000
+Successfully migrated table: customers
+    </code></pre>
+
+    <h2>Important Notes</h2>
+    <ul>
+        <li>Always verify source and target record counts match</li>
+        <li>Ensure sufficient compute resources are allocated</li>
+        <li>Monitor Spark UI for performance metrics</li>
+        <li>Consider implementing incremental loads for large tables</li>
+    </ul>
+</body>
+
+{% include footer.html %}
+
