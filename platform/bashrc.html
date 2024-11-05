@@ -115,8 +115,9 @@ replace() {
 # find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
 #----------------------------------------------------------------------------------------#
 # Easy directory navigation complement to bashrc
+# vi ~/.oh-my-bash/plugins/bashmarks/bashmarks.plugin.sh alias=d
 #----------------------------------------------------------------------------------------#
-alias d1='dirs -v'
+alias d='dirs -v'
 alias +='pushd'
 alias _='popd'
 alias cd-='popd'
@@ -128,7 +129,7 @@ alias cd--='popd -2'
 alias cd---='popd -3'
 #----------------------------------------------------------------------------------------#
 cd() {
-   MAX=9
+   MAX=10
    LEN=${#DIRSTACK[@]}
 
    if [ $# -eq 0 ] || [ "$1" = "-" ]; then
