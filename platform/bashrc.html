@@ -114,9 +114,11 @@ replace() {
 #----------------------------------------------------------------------------------------#
 # find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
 #----------------------------------------------------------------------------------------#
+
+
+#---------------------------------------------------------------------#
 # Easy directory navigation complement to bashrc
-# vi ~/.oh-my-bash/plugins/bashmarks/bashmarks.plugin.sh alias=d
-#----------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------#
 alias d='dirs -v'
 alias +='pushd'
 alias _='popd'
@@ -124,12 +126,8 @@ alias cd-='popd'
 alias cd--='popd -2'
 alias cd---='popd -3'
 alias r='pushd +1'
-alias cd-='popd'
-alias cd--='popd -2'
-alias cd---='popd -3'
-#----------------------------------------------------------------------------------------#
 cd() {
-   MAX=10
+   MAX=9  # Changed from 10 to 9
    LEN=${#DIRSTACK[@]}
 
    if [ $# -eq 0 ] || [ "$1" = "-" ]; then
@@ -153,11 +151,12 @@ cd() {
       popd -n -0 > /dev/null
    fi
 }
-for num in {0..16}; do
-     alias $num="pushd  +$num  > /dev/null ; dirs -v";
-done
-#----------------------------------------------------------------------------------------#</code></pre>
 
+# Modified to use 1-9 instead of 0-10
+for num in {1..9}; do
+     alias $num="pushd +$num > /dev/null ; dirs -v"
+done
+#---------------------------------------------------------------------#</code></pre>
 
 {% include footer.html %}
 
