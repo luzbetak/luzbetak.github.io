@@ -113,7 +113,49 @@ replace() {
 # Max OS
 #----------------------------------------------------------------------------------------#
 # find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
-</code></pre>
+#----------------------------------------------------------------------------------------#
+# Easy directory navigation complement to bashrc
+#----------------------------------------------------------------------------------------#
+alias d1='dirs -v'
+alias +='pushd'
+alias _='popd'
+alias cd-='popd'
+alias cd--='popd -2'
+alias cd---='popd -3'
+alias r='pushd +1'
+alias cd-='popd'
+alias cd--='popd -2'
+alias cd---='popd -3'
+#----------------------------------------------------------------------------------------#
+cd() {
+   MAX=9
+   LEN=${#DIRSTACK[@]}
+
+   if [ $# -eq 0 ] || [ "$1" = "-" ]; then
+      builtin cd "$@"
+      pushd -n $OLDPWD > /dev/null
+   else
+      pushd "$@" > /dev/null || return 1
+   fi
+
+   if [ $LEN -gt 1 ]; then
+      for i in `seq 1 $LEN`; do
+         eval p=~$i
+         if [ "$p" = "$PWD" ]; then
+            popd -n +$i > /dev/null
+            break
+         fi
+      done
+   fi
+
+   if [ $LEN -ge $MAX ]; then
+      popd -n -0 > /dev/null
+   fi
+}
+for num in {0..16}; do
+     alias $num="pushd  +$num  > /dev/null ; dirs -v";
+done
+#----------------------------------------------------------------------------------------#</code></pre>
 
 
 {% include footer.html %}
