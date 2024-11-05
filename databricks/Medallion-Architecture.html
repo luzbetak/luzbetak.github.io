@@ -2,9 +2,13 @@
 ---
 {% include menu.html title="Medallion Architecture in Delta Lake" %}
 
-<h1>Benefits of Databricks Medallion Architecture</h1>
-
-<h1>Benefits of Databricks Medallion Architecture</h1>
+<h1>Medallion Architecture</h1>
+<h2>Cost Savings</h2>
+<ul>
+    <li><strong>Reduced Storage Costs:</strong> Storing data incrementally (Bronze, Silver, Gold) minimizes storage costs by reducing the need to retain multiple versions or raw data copies. Only essential transformations are stored in the Gold layer, conserving storage space.</li>
+    <li><strong>Optimized Resource Usage:</strong> Data processing tasks can be tailored to each layer, allowing for efficient resource allocation. For instance, resource-intensive tasks can be confined to specific layers, reducing cloud costs for computing and storage.</li>
+    <li><strong>Lower Maintenance Costs:</strong> By standardizing data processing and quality checks across layers, maintenance overhead is reduced. This decreases the need for frequent data reconciliations and error correction, cutting down operational expenses.</li>
+</ul>
 
 <h2>Overview of Layers</h2>
 <ul>
@@ -21,12 +25,6 @@
     <li><strong>Enhanced Data Governance:</strong> By having distinct layers, the architecture supports robust data governance practices, including access controls, data lineage tracking, and compliance measures. This approach reduces costs associated with regulatory compliance and minimizes the risk of expensive data breaches.</li>
 </ul>
 
-<h2>Cost Savings</h2>
-<ul>
-    <li><strong>Reduced Storage Costs:</strong> Storing data incrementally (Bronze, Silver, Gold) minimizes storage costs by reducing the need to retain multiple versions or raw data copies. Only essential transformations are stored in the Gold layer, conserving storage space.</li>
-    <li><strong>Optimized Resource Usage:</strong> Data processing tasks can be tailored to each layer, allowing for efficient resource allocation. For instance, resource-intensive tasks can be confined to specific layers, reducing cloud costs for computing and storage.</li>
-    <li><strong>Lower Maintenance Costs:</strong> By standardizing data processing and quality checks across layers, maintenance overhead is reduced. This decreases the need for frequent data reconciliations and error correction, cutting down operational expenses.</li>
-</ul>
 
 <p>In summary, the Medallion Architecture not only enhances data quality, scalability, and governance but also results in considerable cost savings by optimizing data storage, processing, and resource allocation across the entire data pipeline.</p>
 
