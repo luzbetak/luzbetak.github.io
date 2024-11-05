@@ -1,0 +1,25 @@
+---
+---
+{% include menu.html title="Benefits of Databricks Medallion Architecture" %}
+
+<h1>Benefits of Databricks Medallion Architecture</h1>
+
+<h2>Overview of Layers</h2>
+<ul>
+    <li><strong>Bronze Layer (Raw Data):</strong> Stores unprocessed data from various sources in its original state, ensuring data fidelity and providing a source of truth for reprocessing and auditing.</li>
+    <li><strong>Silver Layer (Cleansed Data):</strong> Processes data from the Bronze layer by cleaning, validating, and transforming it, improving data quality for more efficient downstream processing.</li>
+    <li><strong>Gold Layer (Curated Data):</strong> Contains refined, aggregated data tailored to specific business needs, such as analytics and reporting. This layer aligns data with business logic and optimizes it for performance in queries and dashboards.</li>
+</ul>
+
+<h2>Key Benefits</h2>
+<ul>
+    <li><strong>Improved Data Quality:</strong> Incremental processing through each layer enhances data reliability, making it more suitable for analytics and machine learning applications.</li>
+    <li><strong>Scalability:</strong> The layered approach efficiently handles large data volumes, allowing for scalable growth without compromising performance.</li>
+    <li><strong>Flexibility:</strong> Different teams can work on separate layers simultaneously, enabling parallel processing and faster data pipelines. Updates and modifications are easy to manage.</li>
+    <li><strong>Enhanced Data Governance:</strong> Distinct layers support robust data governance practices, including access controls, data lineage tracking, and compliance measures.</li>
+</ul>
+
+<p>By organizing data into these layers, organizations streamline workflows, improve data quality, and derive meaningful insights more efficiently.</p>
+
+
+{% include footer.html %}
