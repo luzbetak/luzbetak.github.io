@@ -46,8 +46,7 @@
 
 <hr>    
     <h2>Example Code for Data Ingestion in Python</h2>
-    <pre><code class="language-python">
-# Example: Ingesting raw data into the Bronze layer
+    <pre><code class="language-python"># Ingesting raw data into the Bronze layer
 import pyspark
 from pyspark.sql import SparkSession
 
@@ -71,16 +70,15 @@ excel_df.write.format("delta").mode("append").save("/path/to/bronze/excel")
 -- Verify data ingestion in the Bronze layer
 SELECT COUNT(*) AS record_count, source_format
 FROM bronze_layer_table
-GROUP BY source_format;
-    </code></pre>
+GROUP BY source_format;</code></pre>
 
     <h2>Expected Output</h2>
     <pre><code class="language-markdown">
 | record_count | source_format |
 |--------------|---------------|
-| 5000         | JSON          |
+|  5000        | JSON          |
 | 12000        | Parquet       |
-| 800          | Excel         |
+|   800        | Excel         |
     </code></pre>
 
 
