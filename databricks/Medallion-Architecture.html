@@ -58,9 +58,9 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("BronzeLayerIngestion").getOrCreate()
 
 # Read data from different formats
-json_df = spark.read.json("/path/to/source/data.json")
+json_df    = spark.read.json("/path/to/source/data.json")
 parquet_df = spark.read.parquet("/path/to/source/data.parquet")
-excel_df = spark.read.format("com.crealytics.spark.excel") \\
+excel_df   = spark.read.format("com.crealytics.spark.excel") \\
     .option("useHeader", "true") \\
     .load("/path/to/source/data.xlsx")
 
@@ -80,9 +80,9 @@ GROUP BY source_format;</code></pre>
     <pre>
 | record_count | source_format |
 |--------------|---------------|
-|  5000        | JSON          |
-| 12000        | Parquet       |
-|   800        | Excel         |
+|    5000      |   JSON        |
+|   12000      |   Parquet     |
+|     800      |   Excel       |
 </pre>
 
 
