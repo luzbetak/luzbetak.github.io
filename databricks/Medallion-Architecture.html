@@ -73,13 +73,13 @@ FROM bronze_layer_table
 GROUP BY source_format;</code></pre>
 
     <h2>Expected Output</h2>
-    <pre><code class="language-markdown">
+    <pre>
 | record_count | source_format |
 |--------------|---------------|
 |  5000        | JSON          |
 | 12000        | Parquet       |
 |   800        | Excel         |
-    </code></pre>
+</pre>
 
 
 {% include footer.html %}
