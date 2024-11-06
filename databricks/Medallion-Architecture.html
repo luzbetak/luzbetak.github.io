@@ -3,6 +3,22 @@
 {% include menu.html title="Medallion Architecture in Delta Lake" %}
 
 <h1>Medallion Architecture</h1>
+
+<p><hr>
+    <h2>Storing Data in the Bronze Layer</h2>
+    <h3>Medallion Architecture Best Practices</h3>
+    <ul>
+        <li>Maintain the data in its <strong>original format</strong> (e.g., JSON, Parquet, Excel) to ensure traceability and auditability.</li>
+        <li>Storing data as-is ensures data completeness and prevents potential data loss from premature transformations.</li>
+        <li>Provides flexibility for data adjustments and future transformations without the need for re-ingestion.</li>
+    </ul>
+
+    <h3>Benefits of Keeping Original Format:</h3>
+    <ul>
+        <li><strong>Traceability and Auditability</strong>: Original data offers a clear audit trail for data integrity checks.</li>
+        <li><strong>Flexibility</strong>: Allows for modifications to data processing logic without re-ingesting data.</li>
+        <li><strong>Data Completeness</strong>: Preserves all variations and details from source systems.</li>
+    </ul>
 <h2>Cost Savings</h2>
 <ul>
     <li><strong>Reduced Storage Costs:</strong> Storing data incrementally (Bronze, Silver, Gold) minimizes storage costs by reducing the need to retain multiple versions or raw data copies. Only essential transformations are stored in the Gold layer, conserving storage space.</li>
@@ -28,21 +44,6 @@
 
 <p>In summary, the Medallion Architecture not only enhances data quality, scalability, and governance but also results in considerable cost savings by optimizing data storage, processing, and resource allocation across the entire data pipeline.</p>
 
-<p><hr>
-    <h1>Storing Data in the Bronze Layer</h1>
-    <h3>Medallion Architecture Best Practices</h3>
-    <ul>
-        <li>Maintain the data in its <strong>original format</strong> (e.g., JSON, Parquet, Excel) to ensure traceability and auditability.</li>
-        <li>Storing data as-is ensures data completeness and prevents potential data loss from premature transformations.</li>
-        <li>Provides flexibility for data adjustments and future transformations without the need for re-ingestion.</li>
-    </ul>
-
-    <h3>Benefits of Keeping Original Format:</h3>
-    <ul>
-        <li><strong>Traceability and Auditability</strong>: Original data offers a clear audit trail for data integrity checks.</li>
-        <li><strong>Flexibility</strong>: Allows for modifications to data processing logic without re-ingesting data.</li>
-        <li><strong>Data Completeness</strong>: Preserves all variations and details from source systems.</li>
-    </ul>
 
 <hr>    
     <h2>Example Code for Data Ingestion in Python</h2>
