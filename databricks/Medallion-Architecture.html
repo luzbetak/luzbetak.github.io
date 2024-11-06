@@ -28,4 +28,62 @@
 
 <p>In summary, the Medallion Architecture not only enhances data quality, scalability, and governance but also results in considerable cost savings by optimizing data storage, processing, and resource allocation across the entire data pipeline.</p>
 
+<body>
+    <h1>Medallion Architecture Best Practices</h1>
+
+    <h2>Storing Data in the Bronze Layer</h2>
+    <h3>Key Considerations:</h3>
+    <ul>
+        <li>Maintain the data in its <strong>original format</strong> (e.g., JSON, Parquet, Excel) to ensure traceability and auditability.</li>
+        <li>Storing data as-is ensures data completeness and prevents potential data loss from premature transformations.</li>
+        <li>Provides flexibility for data adjustments and future transformations without the need for re-ingestion.</li>
+    </ul>
+
+    <h3>Benefits of Keeping Original Format:</h3>
+    <ul>
+        <li><strong>Traceability and Auditability</strong>: Original data offers a clear audit trail for data integrity checks.</li>
+        <li><strong>Flexibility</strong>: Allows for modifications to data processing logic without re-ingesting data.</li>
+        <li><strong>Data Completeness</strong>: Preserves all variations and details from source systems.</li>
+    </ul>
+
+<hr>    
+    <h2>Example Code for Data Ingestion in Python</h2>
+    <pre><code class="language-python">
+# Example: Ingesting raw data into the Bronze layer
+import pyspark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("BronzeLayerIngestion").getOrCreate()
+
+# Read data from different formats
+json_df = spark.read.json("/path/to/source/data.json")
+parquet_df = spark.read.parquet("/path/to/source/data.parquet")
+excel_df = spark.read.format("com.crealytics.spark.excel") \\
+    .option("useHeader", "true") \\
+    .load("/path/to/source/data.xlsx")
+
+# Write data to Bronze layer
+json_df.write.format("delta").mode("append").save("/path/to/bronze/json")
+parquet_df.write.format("delta").mode("append").save("/path/to/bronze/parquet")
+excel_df.write.format("delta").mode("append").save("/path/to/bronze/excel")
+    </code></pre>
+
+    <h2>SQL Query for Verifying Bronze Data</h2>
+    <pre><code class="language-sql">
+-- Verify data ingestion in the Bronze layer
+SELECT COUNT(*) AS record_count, source_format
+FROM bronze_layer_table
+GROUP BY source_format;
+    </code></pre>
+
+    <h2>Expected Output</h2>
+    <pre><code class="language-markdown">
+| record_count | source_format |
+|--------------|---------------|
+| 5000         | JSON          |
+| 12000        | Parquet       |
+| 800          | Excel         |
+    </code></pre>
+
+
 {% include footer.html %}
