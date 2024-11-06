@@ -22,25 +22,21 @@
 
     <h3>Example Queries</h3>
     <h4>Snowflake Source Query</h4>
-    <pre><code class="language-sql">
-SELECT 
+    <pre><code class="language-sql">SELECT 
     product_id,
     product_name,
     category,
     price,
     created_at
-FROM RETAIL_DB.PUBLIC.products;
-    </code></pre>
+FROM RETAIL_DB.PUBLIC.products;</code></pre>
 
     <h4>Databricks Target Query</h4>
-    <pre><code class="language-sql">
-SELECT COUNT(*) as record_count
+    <pre><code class="language-sql">SELECT COUNT(*) as record_count
 FROM retail_db.products;
     </code></pre>
 
     <h3>Sample Output</h3>
-    <pre><code class="language-markdown">
-Starting migration for table: products
+    <pre><code class="language-markdown">Starting migration for table: products
 Records read from Snowflake: 1000
 Records written to Databricks: 1000
 Successfully migrated table: products
@@ -48,8 +44,7 @@ Successfully migrated table: products
 Starting migration for table: customers
 Records read from Snowflake: 5000
 Records written to Databricks: 5000
-Successfully migrated table: customers
-    </code></pre>
+Successfully migrated table: customers</code></pre>
 
     <h2>Important Notes</h2>
     <ul>
@@ -61,8 +56,7 @@ Successfully migrated table: customers
 
     <p><hr>
 
-<pre><code class="language-python">
-from pyspark.sql import SparkSession
+<pre><code class="language-python">from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DecimalType, TimestampType
 import os
 from decimal import Decimal
