@@ -7,9 +7,9 @@
 <pre><code class="language-python">import os
 from pathlib import Path
 from docling.backend.msword_backend import MsWordDocumentBackend
-from docling.datamodel.base_models import InputFormat
-from docling.datamodel.document import InputDocument
-from docling.document_converter import DocumentConverter
+from docling.datamodel.base_models  import InputFormat
+from docling.datamodel.document     import InputDocument
+from docling.document_converter     import DocumentConverter
 
 def process_word_document(input_file: str, output_dir: str = "output") -> None:
     """
@@ -37,7 +37,7 @@ def process_word_document(input_file: str, output_dir: str = "output") -> None:
         
         # Setup backend and convert
         backend = MsWordDocumentBackend(in_doc=in_doc, path_or_stream=in_path)
-        doc = backend.convert()
+        doc     = backend.convert()
         
         # Extract and save text content
         text_output = Path(output_dir) / f"{in_path.stem}_content.txt"
