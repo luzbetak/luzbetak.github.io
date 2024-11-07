@@ -186,7 +186,13 @@ model            = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 # Each text input will be converted into a vector with exactly 384 numbers
 # ANY text - single word, a sentence, a paragraph, or a chunk of text will 
 # be converted into exactly 384 numbers by the model.
-VECTOR_DIMENSION = 384</code></pre>
+VECTOR_DIMENSION = 384
+
+# Models and their dimensions
+# "all-MiniLM-L6-v2"                      -> 384 dimensions
+# "all-mpnet-base-v2"                     -> 768 dimensions
+# "all-MiniLM-L12-v2"                     -> 384 dimensions
+# "paraphrase-multilingual-MiniLM-L12-v2" -> 384 dimensions</code></pre>
 
 <img src="/images/cosine_similarity_heatmap.png" width=1100>
 {% include footer.html %}
