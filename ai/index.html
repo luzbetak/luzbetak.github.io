@@ -180,7 +180,13 @@
 <h3>Cosine Similarity Calculation</h3>
 <pre><code class='language-python'>similarity       = 1 - cosine_distance
 MODEL_NAME       = "sentence-transformers/all-MiniLM-L6-v2"
+
+# VECTOR_DIMENSION = 384 is fixed property of the "all-MiniLM-L6-v2" model
+# Each text input will be converted into a vector with exactly 384 numbers
+# ANY text - single word, a sentence, a paragraph, or a chunk of text will 
+# be converted into exactly 384 numbers by the model.
 VECTOR_DIMENSION = 384
+
 model            = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')</code></pre>
 <img src="/images/cosine_similarity_heatmap.png" width=1100>
 {% include footer.html %}
