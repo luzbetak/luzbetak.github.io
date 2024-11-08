@@ -140,26 +140,5 @@ for num in {1..9}; do
 done
 #---------------------------------------------------------------------#</code></pre>
 
-<h1>Template</h1>
-<plaintext>
-t() {
-    local filename="$(echo "$*" | sed 's/ /-/g' | sed 's/-\+/-/g')"
-    filename="${filename}.html"
-
-    cat <<EOF > "$filename"
----
----
-{% include menu.html title="$*" %}
-
-<h1>$*</h1>
-
-
-{% include footer.html %}
-EOF
-    vim "$filename"
-    echo "$filename"
-}
-</plaintext>
-
 {% include footer.html %}
 
