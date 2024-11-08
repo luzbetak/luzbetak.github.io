@@ -337,267 +337,267 @@
   },
   {
     "id": 57,
+    "title": "Stable-Diffusion-Web-UI.html",
+    "content": "stable diffusion web ui acceleration browser cd chip clone command cuda dependencies diffusion error export following git gpu index install local mac message mps optional pip press python repository run server skip stable terminal test torch torchaudio torchvision ui url users web webui",
+    "url": "/vision/Stable-Diffusion-Web-UI.html"
+  },
+  {
+    "id": 58,
+    "title": "Hugging-Face-Machine-Learning.html",
+    "content": "hugging face machine learning access account api approval cli command dev download ensure face forest hfapi hugging huggingface import issues learning line login machine maintainers model necessary note owners page permissions read repository restricted retry script token verify",
+    "url": "/vision/Hugging-Face-Machine-Learning.html"
+  },
+  {
+    "id": 59,
+    "title": "Time-Complexity-Big-O-Notation.html",
+    "content": "time complexity big o notation access addition adjacency algorithm array average avl b balance balanced bfs big binary black brute bst bubble case cases certain children collisions common complexities complexity computer constant data databases deletion deletions design division double e edges efficiency efficient element elements example execution extra factor file force hash head height index indexing input insertion insertions keys leaf least level linear linearithmic list logarithmic loop luzbetak max memory merge merging min minimum much n nature nested new nodes notation number operations performance permutations priority problem process properties queue rebalancing red resizing retrieval root runtime salesman scenario science search selection set size sort sorted space splitting step storage structure structures systems table time traveling tree trees use v vertices way worst",
+    "url": "/vision/Time-Complexity-Big-O-Notation.html"
+  },
+  {
+    "id": 60,
     "title": "Python-Search-Algorithms.html",
     "content": "python search algorithms algorithm another arr array base binary case containing current def element elements elif first function half halves index intersection iteration length list lists merge mid middle output pivot process quick result return right search second single sort target two x",
     "url": "/software/Python-Search-Algorithms.html"
   },
   {
-    "id": 58,
+    "id": 61,
     "title": "Python-String-Algorithms.html",
     "content": "python string algorithms actual algorithm algorithms anagram anagrams analysis another args argument array base binary boolean buzz calculate cases char character characters check checking common comparison correction corresponding cost counts def deletions detection distance distances dna dp dynamic edits element elements elif equal error example false fill first fizz fizzbuzz function hamming import indices input insertion insertions int integer j karolin language last lcs length levenshtein list longest maximum measure metric minimum n natural non none np number numpy one operation order original output pair palindrome positions processing programming python repeated representation result return returns reverse row second sequence sequences similarity single size sort sorted spell str string strings subsequence substitution substitutions table true two value values versions vowels world x",
     "url": "/software/Python-String-Algorithms.html"
   },
   {
-    "id": 59,
+    "id": 62,
     "title": "Python-Coding-Exercise-Algorithms.html",
     "content": "python coding exercise algorithms algorithms bool char character coding complement counts def duplicates enumerate example exercise first int intersection j largest list lists merged non none num number nums olleh output palindrome problem python range repeated return str string sum true two usage vowels world",
     "url": "/software/Python-Coding-Exercise-Algorithms.html"
   },
   {
-    "id": 60,
+    "id": 63,
     "title": "FastAPI.html",
     "content": "fastapi api apis app application async asynchronous authentication authorization auto automatic background basemodel class combines communication concurrency cycle data def description development documentation endpoint endpoints errors example explanation fast fastapi field float function generate high hints httpexception import integrity intensive interactive item json jwts main model modern name none openapi overview performance post power price processes protocols pydantic python real redoc reliable request rest return schema secure security simple simplicity str support supports swagger tasks tax time tools type types ui utilizes validation websockets",
     "url": "/software/FastAPI.html"
   },
   {
-    "id": 61,
+    "id": 64,
     "title": "101.html",
     "content": "101 actual algorithm algorithms anagram anagrams analysis another args argument arr array base binary boolean buzz calculate case cases char character characters check checking common comparison complement containing correction corresponding cost counts current def deletions detection distance distances dna dp duplicates dynamic edits element elements elif equal error example false fibonacci fill first fizz fizzbuzz function half halves hamming import index indices input insertion insertions int integer intersection iteration j karolin language last lcs length levenshtein list lists longest loop maximum measure merge metric mid middle minimum n natural nested non none np num number numbers numpy nums one operation order original output pair palindrome pivot positions problem process processing programming python quick recursive remaining repeated representation result return returns reverse right row search second sequence sequences series similarity single size sort sorted specific spell str string strings subsequence substitution substitutions sum table target true two value values versions vowels world x",
     "url": "/software/101.html"
   },
   {
-    "id": 62,
+    "id": 65,
     "title": "Python-Programming-Language.html",
     "content": "python programming language access algorithms analyzing anonymous arguments async asynchronous asyncio attributes behavior break cases classes closures code collection complexity comprehensions concurrency conditional context control counting cprofile csv custom data debugging decorators def default defining dependencies designing development dictionaries differences different django dunder efficient encapsulation environments error exceptions explicitness expressions file files flask flexible flow fly frameworks functions garbage generator generators gil guide handling higher idiomatic immutable implications importing inheritance init inline iter iterators itertools json key lambda language libraries library list lists loops management managers managing math matplotlib memory methods mock mocking modules multiprocessing multithreading mutable numpy object objects optimization order oriented packages pandas parameters pdb pep performance polymorphism popular practices principles private profiling program programming properties public python pythonic readability readable reading reference requests results scikit sequence sets simplicity special standard statements str structures style sys systems test testing text time timeit tools tuples types understand understanding unit use values venv virtual ways web writing yield zen",
     "url": "/software/Python-Programming-Language.html"
   },
   {
-    "id": 63,
+    "id": 66,
     "title": "mysql-lag-function.html",
     "content": "mysql lag function analysis average avg chronological clause column curdate current daily data date dates day days decimal difference differences explanation filtering four function increase increases interval lag last mysql null order outer overview places previous price purpose query result round row rows select sequential series sql time valid value values window",
     "url": "/software/mysql-lag-function.html"
   },
   {
-    "id": 64,
+    "id": 67,
     "title": "Python-Function-OOP-Data-Structure.html",
     "content": "python function oop data structure age alice animal anonymous another argument array async asynchronous asyncio attribute attributeerror author await basic bob book buddy c call cat class classes closures code collection common concurrency csv data decorators def defining dictionaries dictionary different dog dunder dynamic element elements encapsulation example expression file func function functions generator generators george header headers hi higher immutable import individual inheritance init item iterator iterators key keys lambda line list lists main memory meow methods msg multiple multiplier multiprocessing multithreading name next numbers object objects order oriented orwell output pair person polymorphism print private process processes program programming python r range reader reading return row rows sample self separate sequence set sets simple single spaces square str structures target thread threading threads tuple tuples unique unordered value woof wrapper x yield yields",
     "url": "/software/Python-Function-OOP-Data-Structure.html"
   },
   {
-    "id": 65,
+    "id": 68,
     "title": "sql-statements.html",
     "content": "sql statements alice alter asc average avg bob bonus bottom case category charlie clause column columns combined combines common company create cte data dave delete department departments desc descending description distinct drop dropping duplicates e else employee employees end every existence existing exists expression expressions final first group hierarchical high highest id image images index insert join level limit limits list low lowest manager managers medium name names negative new null number numbers order orders output pagination positive queries query rank record records recursive removes rename result retrieval retrieve row rows salaries salary samples score scores scoring select selection selects self set sets specific speed sql statements step structure subquery table tables top total truncate two union update values view virtual whose window",
     "url": "/software/sql-statements.html"
   },
   {
-    "id": 66,
+    "id": 69,
     "title": "Sudoku-Board-Verification.html",
     "content": "sudoku board verification args board bool checks col column columns completed conditions example expected false function given grid grids import inner int list lists logic matrix module name numbers output parameters pp pprint pretty prints provided puzzle python result return returns row rows rules script specified standard start steps sub sudoku sum sums total true value verification verifies window",
     "url": "/software/Sudoku-Board-Verification.html"
   },
   {
-    "id": 67,
+    "id": 70,
     "title": "Python-Algorithms.html",
     "content": "python algorithms algorithm argument array complement def element elements fibonacci function indices integer j list lists loop merge n nested number output recursive remaining result series sorted sum target two value values",
     "url": "/software/Python-Algorithms.html"
   },
   {
-    "id": 68,
+    "id": 71,
     "title": "algorithms2.html",
     "content": "algorithms2 args calculate character collections comparison convert counter def deletions distance dp dynamic first hamming import insertions int j levenshtein libraries math n necessary number numpy programming return returns second string strings substitutions two",
     "url": "/software/algorithms2.html"
   },
   {
-    "id": 69,
+    "id": 72,
     "title": "algorithms.html",
     "content": "algorithms algorithm algorithms anagram anagrams another applications argument arr array article backtracker backtracking base bellman binary bits bitwise boolean breadth bubble buzz case characters check code coding coins combinatorics common complement computational computer conclusion containing cryptography current data def desired different dijkstra distance dp dynamic edges element elements elif engineering examples explanation factorial false fibonacci first five fizz fizzbuzz following ford formula function gcd given graph half halves hamming hash high implement important index indices information insertion integer integers interviews iteration j key knapsack last length levenshtein linear list longest loop matrices matrix maximum merge mid middle multiples multiplication n negative nested networks neural nth number numbers operations optimization order original pair palindrome parts passwords paths pivot popular possibilities powerful print problem problems process programming python queens quick range real recursion recursive regression remaining representation result return reverse right row salesman science search second selection series set shortest single size smaller solution sort sorted sorting specific stairs steps str string strings subproblem subproblems subsequence sudoku sum tables target tasks term three tools traveling trees two types user value values various ways weight wide world x",
     "url": "/software/algorithms.html"
   },
   {
-    "id": 70,
+    "id": 73,
     "title": "test.html",
     "content": "test ",
     "url": "/software/test.html"
   },
   {
-    "id": 71,
+    "id": 74,
     "title": "Query-Performance.html",
     "content": "query performance access advanced age aggregations amount analysis analyze automatic aws batch benefit best better bigquery bottlenecks caching city clauses cloud clustering clusters column columns complex compute conditions consumption cost costs count create customers data database databases dataset datasets date decimal decisions denormalization desc disk distribution efficiency efficient employees ensure executed execution explain explicit fast faster filtering frequently full group grouped hash help id importance improvement index indexes indexing inefficiencies inserts int join joins key keys large leverage limit limiting maintenance materialized memory merge multiple name names need nodes number offset olap operational optimization optimized optimizer optimizing order partitioned partitioning performance plan practices precomputed price products proper queries query range redshift reducing regular resource result results rows run salaries sales scalable scan scans segments select single size smaller snowflake space specific sql statistics stores suboptimal subset systems table tables tasks techniques times tools types update updates use using utilize vacuum view views virtual warehouses writes",
     "url": "/software/Query-Performance.html"
   },
   {
-    "id": 72,
+    "id": 75,
     "title": "Fibonacci-Generator.html",
     "content": "fibonacci generator b current def example execution fibonacci first function generator github infinite iteration loop luzbetak next numbers pages sequence state statement sum two usage value values yield",
     "url": "/software/Fibonacci-Generator.html"
   },
   {
-    "id": 73,
+    "id": 76,
     "title": "sql-overview.html",
     "content": "sql overview ability access additional alter analysis analytical category changes characteristics columns command commands common commonly complex conditionals control create cube current data database databases dcl ddl delete deleting dml dql drop elements existing extensions functionality functions grant group index indexes insert inserting integrity isolation language level loops managing manipulating modifies new object objects one oracle part point privileges procedural query records relational removes retrieval roles rollback rollup rows schemas select server set significance specific specifies sql structure structured structures table tables tcl technically transaction transactions types undoes update used users variants window",
     "url": "/software/sql-overview.html"
   },
   {
-    "id": 74,
+    "id": 77,
     "title": "New-Project-Design.html",
     "content": "new project design agile allocate analysis architectural architecture assign best boundaries choose codebase competitive compliance components conduct databases define deliverables deployment design determine develop development diagram document documentation end error expectations feature feedback final frameworks functionality goal growth handoff high ideas inputs integration integrations interactions interface interviews key languages launch level main maintenance methodologies metrics milestones monitoring navigation needs new objective objectives operations optimization outputs performance pick plan planning post practices primary problem production progress project projects requirements research resources responsibilities roles scalability scope screens security select serverless services set similar sketch smaller smooth solution specific sprints stack stakeholder success system task tasks team teams technical technologies technology testing tests tools tracking train training troubleshooting type ui understand unit usage user users waterfall wireframe",
     "url": "/software/New-Project-Design.html"
   },
   {
-    "id": 75,
+    "id": 78,
     "title": "Top-Selling-Products-By-Regions.html",
     "content": "top selling products by regions columns conn connection cursor data database date desc description exists explanation function group highest id import insert int library price product products python quantity query rank ranking region regions result results revenue row sales sample script select selling specified sql sqlite table top total transaction values window year",
     "url": "/software/transformation/Top-Selling-Products-By-Regions.html"
   },
   {
-    "id": 76,
+    "id": 79,
     "title": "Transform-CSV-to-JSON.html",
     "content": "transform csv to json age alice angeles bob charlie convert csv dataframe df file format francisco import input json lines location los name new output pandas path pd pprint python resulting san transformation york",
     "url": "/software/transformation/Transform-CSV-to-JSON.html"
   },
   {
-    "id": 77,
+    "id": 80,
     "title": "ASCII-Generator-Numbers.html",
     "content": "ascii generator numbers append args arguments ascii blank bool character code command convert corresponding def defaults digit digits else explanation failure false file final following format generate generated generates generator import invalid k line lines mapping mode multiple name number numbers output path patterns policies pprint python random randomly representation return returns reverse script spaces specified string sys terminal tuples two v",
     "url": "/software/ascii-number-scanner/ASCII-Generator-Numbers.html"
   },
   {
-    "id": 78,
+    "id": 81,
     "title": "ASCII-Number-Fixer.html",
     "content": "ascii number fixer ascii break char character characters check checksum code command common correct corrected corrections def digit digits err error errors expected explanation failure file fix fixer fixes formatted function functions idx ill import input iterate main marker misread name number numbers output policies possible python replacement replacements respective script separate skip steps valid validation",
     "url": "/software/ascii-number-scanner/ASCII-Number-Fixer.html"
   },
   {
-    "id": 79,
+    "id": 82,
     "title": "ASCII-Number-Parser.html",
     "content": "ascii number parser actual args ascii blank block blocks boolean character characters check checksum code combine command console def define dictionary digit digits entry err execution expected explanation extract false file format formatted function given ill import incomplete indicating input invalid j line lines list main mappings maps mark name new newline number numbers output parsed parser path print process python read representation representations result results return returns script steps string track true tuple tuples unrecognized valid values",
     "url": "/software/ascii-number-scanner/ASCII-Number-Parser.html"
   },
   {
-    "id": 80,
+    "id": 83,
     "title": "TF-IDF.html",
     "content": "tf idf another breakdown column content convert corpus data decimals doc docs document documents entire example feature frequency high higher highest idf import importance important inverse learning limit low lower machine many matrix model multiple names particular practice prettytable python range ranking relevant result row rows sample score scores specific summary table term terms text tf tfidfvectorizer theory uniqueness upper value values vectorizer word words",
     "url": "/ai/TF-IDF.html"
   },
   {
-    "id": 81,
+    "id": 84,
     "title": "Retrieval-Augmented-Generation.html",
     "content": "retrieval augmented generation accurate algorithm another augment augmented base bert build chatbot components conn contextual create cur database datasets dimensional document documents embeddings engines extension external generate generated generation generator gpt high id import indexing information informed insert install key knowledge large limit management model models multiple necessary nodes optimization parallel performance pgvector pgvectorscale postgres postgresql primary process python queries query question rag references relevant repositories response responses retrieval retrieved scale search searches sentencetransformer serial similarity solution step storage store systems table tasks text transformers tutorial user values vector vectors",
     "url": "/ai/Retrieval-Augmented-Generation.html"
   },
   {
-    "id": 82,
+    "id": 85,
     "title": "Tensors-Machine-Learning.html",
     "content": "tensors machine learning access additional array average building channels code color column complex computation computations compute data deep depth dimensional dimensions efficient element elements essence even example excellent foundation frameworks function functionality functions fundamental generalization gpus high images import index indexing key learning library list machine matrices matrix mean models multi multidimensional ndarrays np number numbers numerical numpy operation operations output points powerful print python pytorch row simple single solid spaces specific structure sum support syntax table tensor tensorflow tensors total training us value values vector vectors words",
     "url": "/ai/Tensors-Machine-Learning.html"
   },
   {
-    "id": 83,
+    "id": 86,
     "title": "bm25-probabilistic-information-retrieval-model.html",
     "content": "bm25 probabilistic information retrieval model account algorithm algorithms application average b based best called cases collection components content controlling corpus customization databases default differences document documents dynamic effective engine engines entire family fewer formula frequency fully function given handling high higher highly idf impact importance influence information inverse key keyword known length less library long longer many matching measures model models modern needs normalization normalizes nt number often overemphasis parameter parameters powerful probabilistic q query ranking rarity real relevance repetition retrieval saturated saturation score search shorter size specific standard systems tasks term terms text tf total traditional tuning use value variant weight well world xapian",
     "url": "/ai/bm25-probabilistic-information-retrieval-model.html"
   },
   {
-    "id": 84,
+    "id": 87,
     "title": "Random-Forest-Classifier-Model.html",
     "content": "random forest classifier model account accuracy address approach authentication automation balance billing card case categories category charge classification classifier classifieri clf code collection create credentials cryptocurrency customer damaged data date decision delivery depth details device df dictionary different discount either email factor feature features final forest generalization generator gift history hyperparameters idf import incoming individual information input internal invoice item labels leaf length lists login manual maximum method methods minimum missing model nearest new node notifications number numerical options order output outstanding overfitting pandas parameter password payment pd pin plan policy predicted prediction predictions prettytable product proportion purchase python queries query question questions random refund remaining reproducibility return samples seed set shipping split step store subscription subset support supported table target task technical test testing text textual tf tfidfvectorizer train training tree trees two user value various vectorize vectorizer warranty",
     "url": "/ai/Random-Forest-Classifier-Model.html"
   },
   {
-    "id": 85,
+    "id": 88,
     "title": "Scikit-learn.html",
     "content": "scikit learn accuracy actions actual algorithms allows analysis apis auc beginners best box bunch categorical classifier clf code comparison corresponding data dataset datasets dbscan decision dictionary dimensionality documented efficient external features files flowers following forest forests function good grid high identical import initializes integration iris joblib k key label labels later learning length libraries library linear load loads machine machines matplotlib metrics missing model modeling models normalization numpy object open output overview pandas pca performance persistence petal pickle points popular precision predicted predictions predicts preprocessing print professionals python random range reduction regression results roc sample samples scaling science scikit scipy search selection sepal set sets setup simple sne source specific split summary supervised support svm target test testing tools top toy train trained training trees unsupervised use used validation values variables variety vector vs well wide widely width yes",
     "url": "/ai/Scikit-learn.html"
   },
   {
-    "id": 86,
+    "id": 89,
     "title": "FAISS-Vector-Database.html",
     "content": "faiss vector database ai api billions clustering cpu data dataset dense dimension dimensional distance efficient facebook faiss faster features file flat gpu high hnsw image import index indices ivf key large library local nearest neighbors nlp np numpy open performance pip query random recommendation retrieval scales scenarios search similarity source systems top types various vectors version",
     "url": "/ai/FAISS-Vector-Database.html"
   },
   {
-    "id": 87,
-    "title": "Stable-Diffusion-Web-UI.html",
-    "content": "stable diffusion web ui acceleration browser cd chip clone command cuda dependencies diffusion error export following git gpu index install local mac message mps optional pip press python repository run server skip stable terminal test torch torchaudio torchvision ui url users web webui",
-    "url": "/ai/Stable-Diffusion-Web-UI.html"
-  },
-  {
-    "id": 88,
+    "id": 90,
     "title": "LanceDB-Vector-Database.html",
     "content": "lancedb vector database abnormal accuracy ai angular annoy annoyindex anomalies anomaly api apis applications approximate associated audio behavior bert cases characteristics classification client clustering code collection common connect connection content control count critical data database databases datasets dbscan detection dimension dimensional dimensionality display distance distances documents driven ecosystem efficiency efficient embedding embeddings environments essential euclidean event example explanation external f fast feature features first focuses format friendly full function gcp generated gpt high hosting id identify ids image images import index initialization insert inserts install integration item items k key keywords labels lancedb language large latency learning library local low machine management manhattan match meaning means memory metadata metric metrics ml models modern natural nearest need needs neighbor neighbors new nlp nn np numerical numpy open outliers overview path performance pinecone pip pipelines points processing production products python queries query querying random randomly range real recommend recommendation regression result results retrieval retrieve role scalability scale scenarios search searches semantic semantically services similar similarity situations small source space specialized specified spotify steps storage store systems table tasks text throughput time top traditional transaction tree type types unusual upserting usage use user users using various vec vector vectors visual wide workloads world",
     "url": "/ai/LanceDB-Vector-Database.html"
   },
   {
-    "id": 89,
+    "id": 91,
     "title": "Streamlit-app.html",
     "content": "streamlit app age app b box c chart data dataframe display import input kevin line name np numpy pandas pd python sample slider st streamlit text title user",
     "url": "/ai/Streamlit-app.html"
   },
   {
-    "id": 90,
+    "id": 92,
     "title": "Keras.html",
     "content": "keras accessible accuracy activation adam algorithms analysis api artificial backpropagation basic best biases binary blocks building calculating case channel channels churn class classes classification cnn cnns cntk code colored compile complex complexities complexity components computation computational connected connections consistent convolution convolutional core corners correct cpu customer cycle data decision deep dense detection developers diagnosis differences different digit digits dimensional dimensions direction ease edges either error example facial faster feature features feedback feedforward filters final flatten flattening fnn forward frameworks fraud fully function functional functions generation gpu gpus grayscale grid handwriting hardware hidden hierarchies high highly image images import important information input keras kernels key labels layer layers learning level library linear linearity load loops loss low lstm many map maps max medical metrics minimal mnist model models multi network networks neural node nodes non normalize number numpy object one open operations optimizer optimizers output overview parameters part patterns performance pixel pixels platform pooling prediction predictions probabilities process processing propagation recognition rectified reinforcement relu reshape rgb scaler sequential sets simple size softmax source spatial specialized stack standardscaler structure structured summary support synthetic tabular task tasks tensorflow testing text textures theano top training type unit use variety vector video weights x",
     "url": "/ai/Keras.html"
   },
   {
-    "id": 91,
+    "id": 93,
     "title": "Unstructured-Data-Indexing.html",
     "content": "unstructured data indexing abstractive accuracy advanced advertisements analysis analytics annotation answering applications audio author based bert characters cleaning collection common content contractions control convert creation data databases date dimensionality documents efficiency efficient elements eliminate embedding end ensure entities entity essential extraction faiss fast feeds fidelity files format frequency gather generation html identify idf importance index indexed indexing information ingestion inverted irrelevant key keyword keywords label learning locations machine main major meaning meaningful media metadata methods models names ner new noise non normalization noun numerical operations optional organizations original pages part parts pca performance phrases plain points previously process processed processing quality query question recognition reduction redundant relationships relevant removal representations respective result retrieval search searches semantic sentence sentences similar similarity sne social sources special speech speed storage store structure structuring summaries summarization system tagging tags techniques testing text textual tf tokenization tools topics units unnecessary unstructured use validation various vector vectorization vectors verb verification web words xapian",
     "url": "/ai/Unstructured-Data-Indexing.html"
   },
   {
-    "id": 92,
+    "id": 94,
     "title": "Gunning-Fog-Index.html",
     "content": "gunning fog index account algorithms analysis average avoid calculates calculation code complex content count creation def division document education english example explanation expressions first fog following formal formula function general given gunning higher implementation import index language length levels marks natural nlp number output patterns percentage period processing punctuation readability readership reading regular return score sentence sentences steps syllables test text texts three usage vowel vowels way word words writing years zero",
     "url": "/ai/Gunning-Fog-Index.html"
   },
   {
-    "id": 93,
+    "id": 95,
     "title": "PDF-Split-File.html",
     "content": "pdf split file arguments base cat check command commands correct desired document example exit extension extract fi file files following grep input install installation name number numberofpages output page pages part parts path pdf pdftk print range requirements script separate specified split steps sudo total ubuntu usage z",
     "url": "/ai/PDF-Split-File.html"
   },
   {
-    "id": 94,
+    "id": 96,
     "title": "Ms-Word-Document-Processing.html",
     "content": "ms word document processing args backend batch checks console content custom def directory docling document documentconverter documents docx e enhancements error exception extracted extracts f features file files format formats formatting full function future handling import information informative input inputdocument inputformat install instructions key library ms msworddocumentbackend multiple name none options output outputs path pathlib pip place print process processed processing processor proper python raise reusable save saves script setup steps str structure support tables text usage w word",
     "url": "/ai/Ms-Word-Document-Processing.html"
   },
   {
-    "id": 95,
+    "id": 97,
     "title": "Kevin_Luzbetak_Portfolio.html",
     "content": "kevin luzbetak portfolio ai airflow alto amazon ambari analytics angeles apache apis apple architecture architectures athena aug augmented aws azure bachelor bases bash beaverton brighthouse bronze ca california capabilities catalog charlotte chatbots ci citizen clients cloud cluster clusters computer concept conducted consumer content critical cupertino customer dashboards data database databricks datadog datasets decentralized degree delta deployment design devops dictionaries disney disqo dlt docker docs east education effective efficiency emr engineer engineering etl experience expertise external facebook financial flask full gcp generation glendale golang gold google grafana hands high iii information infrastructure insights integrated integration integrity interaction interactive internal issues java jenkins july kafka keras kevin knowledge lake lambda langchain languages large learn learning led lifecycle live llama llms los lutheran machine managed management march marketing massive may medallion mesh microsoft migration models monica monitoring nagios nc netezza nike nlp nov numpy openai optimized orchestration ownership palo pandas party pay performance phoenix pipelines platforms predictive premise process processed processing products professional proof provisioning pyspark python pytorch real redshift response retrieval santa scala scalable scaling science scikit seamless search senior services silver skills snowflake software solutions sql streaming streamlit summary systems tableau tables technical technologies technology tensorflow teradata terraform text third time tools tracking university user utilized visualizations wallet web workflows workloads years",
     "url": "/ai/Kevin_Luzbetak_Portfolio.html"
   },
   {
-    "id": 96,
+    "id": 98,
     "title": "PyTorch-Sentiment-Analysis-Model.html",
     "content": "pytorch sentiment analysis model accuracy acting amazing analysis apply base batch bcewithlogitsloss bertmodel berttokenizer book build class classification complete compute connected convert criterion dataloader dataset decent define dimension direction epoch evaluation every examples existing experience extra false film fully function great horrible import inference input labels layers linearity load logits loop loss masterpiece minute mode model movie negative nn non optimizer optional output outputs performance performances plot positive prediction predictions preds prettytable print python raw report save saved second sentiment sentimentclassifier sets sigmoid split statement statements story storytelling table terrible test testing text textdataset threshold time tokenizer tokens torch train trained training transformers truncation two values waste watch worst year",
     "url": "/ai/PyTorch-Sentiment-Analysis-Model.html"
   },
   {
-    "id": 97,
+    "id": 99,
     "title": "Recompile-FAISS-GPU-Installation.html",
     "content": "recompile faiss gpu installation b bindings c clone cmake commands configuration cuda cxx dependencies dev dimension distance editing environment export faiss file following git gpu import index install installation issues languages libopenblas line lines modify nearest necessary neighbors np number numpy optional path proper python pythonpath random repository script search step steps sudo support swig test top variables vectors version xb",
     "url": "/ai/Recompile-FAISS-GPU-Installation.html"
   },
   {
-    "id": 98,
+    "id": 100,
     "title": "python-whoosh.html",
     "content": "python whoosh better brown changes content create def define directory doc document documents dog example fast fox id import index indexing lazy library output path print pure python query queryparser quick result results schema search stemminganalyzer text title whoosh writer",
     "url": "/ai/python-whoosh.html"
-  },
-  {
-    "id": 99,
-    "title": "Hugging-Face-Machine-Learning.html",
-    "content": "hugging face machine learning access account api approval cli command dev download ensure face forest hfapi hugging huggingface import issues learning line login machine maintainers model necessary note owners page permissions read repository restricted retry script token verify",
-    "url": "/ai/Hugging-Face-Machine-Learning.html"
-  },
-  {
-    "id": 100,
-    "title": "Time-Complexity-Big-O-Notation.html",
-    "content": "time complexity big o notation access addition adjacency algorithm array average avl b balance balanced bfs big binary black brute bst bubble case cases certain children collisions common complexities complexity computer constant data databases deletion deletions design division double e edges efficiency efficient element elements example execution extra factor file force hash head height index indexing input insertion insertions keys leaf least level linear linearithmic list logarithmic loop luzbetak max memory merge merging min minimum much n nature nested new nodes notation number operations performance permutations priority problem process properties queue rebalancing red resizing retrieval root runtime salesman scenario science search selection set size sort sorted space splitting step storage structure structures systems table time traveling tree trees use v vertices way worst",
-    "url": "/ai/Time-Complexity-Big-O-Notation.html"
   },
   {
     "id": 101,
