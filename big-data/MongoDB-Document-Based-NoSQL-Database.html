@@ -42,105 +42,59 @@
 
     <h1>MongoDB CLI Command Examples for Viewing Specific Documents</h1>
 
-    <h2>1. Log in to MongoDB</h2>
+    <h2>Log in to MongoDB</h2>
     <pre><code class="language-bash">
 # Log in to the MongoDB shell locally (default host and port)
 mongosh
 
 # Default port on localhost rag_database:
 mongosh mongodb://localhost:27017/rag_database
-    </code></pre>
-    <p>This command starts the MongoDB shell, allowing you to interact with the MongoDB instance.</p>
-
-    <h2>2. View All Documents</h2>
-    <pre><code class="language-bash">
+# View All Documents
 db.documents.find().pretty()
-    </code></pre>
-    <p>This command retrieves and pretty prints all documents in the collection.</p>
 
-    <h2>3. View a Document by ID</h2>
-    <pre><code class="language-bash">
+# View a Document by ID
 db.documents.find({ _id: ObjectId("671f110807e141d70ebe59d8") }).pretty()
-    </code></pre>
-    <p>Finds a document by its unique <code>_id</code> field.</p>
 
-    <h2>4. Filter Documents by a Field</h2>
-    <pre><code class="language-bash">
+# Filter Documents by a Field
 db.documents.find({ url: "https://kevinluzbetak.com/1-ai/Gunning-Fog-Index.html" }).pretty()
-    </code></pre>
-    <p>Filters documents based on the <code>url</code> field.</p>
 
-    <h2>5. Limit the Number of Documents</h2>
-    <pre><code class="language-bash">
+# Limit the Number of Documents
 db.documents.find().limit(5).pretty()
-    </code></pre>
-    <p>Limits the result to 5 documents.</p>
 
-    <h2>6. Skip Documents and Limit</h2>
-    <pre><code class="language-bash">
+# Skip Documents and Limit
 db.documents.find().skip(5).limit(5).pretty()
-    </code></pre>
-    <p>Skips the first 5 documents and then retrieves the next 5 documents.</p>
 
-    <h2>7. Sort Documents</h2>
-    <pre><code class="language-bash">
+# Sort Documents
 db.documents.find().sort({ title: 1 }).pretty()
-    </code></pre>
-    <p>Sorts documents by the <code>title</code> field in ascending order (1 for ascending, -1 for descending).</p>
 
-    <h2>8. Project Specific Fields</h2>
-    <pre><code class="language-bash">
+# Project Specific Fields
 db.documents.find({}, { url: 1, title: 1, content: 1, _id: 0 }).pretty()
-    </code></pre>
-    <p>Includes only the <code>url</code>, <code>title</code>, and <code>content</code> fields, excluding <code>_id</code>.</p>
 
-    <h2>9. Exclude a Specific Field</h2>
-    <pre><code class="language-bash">
+# Exclude a Specific Field
 db.documents.find({}, { embedding: 0 }).pretty()
-    </code></pre>
-    <p>Excludes the <code>embedding</code> field and retrieves the rest of the document.</p>
 
-    <h2>10. Find Random Document</h2>
-    <pre><code class="language-bash">
+# Find Random Document
 db.documents.aggregate([{ $sample: { size: 1 } }]).pretty()
-    </code></pre>
-    <p>Retrieves one random document from the collection using the <code>$sample</code> aggregation pipeline.</p>
 
-    <h2>11. Count the Number of Documents</h2>
-    <pre><code class="language-bash">
+# Count the Number of Documents
 db.documents.countDocuments()
-    </code></pre>
-    <p>Counts the total number of documents in the collection.</p>
 
-    <h2>12. Find Documents Matching a Range</h2>
-    <pre><code class="language-bash">
+# Find Documents Matching a Range
 db.documents.find({ "score": { $gte: 50, $lte: 100 } }).pretty()
-    </code></pre>
-    <p>Finds documents where the <code>score</code> field is between 50 and 100.</p>
 
-    <h2>13. Find Documents Using Regular Expressions</h2>
-    <pre><code class="language-bash">
+# Find Documents Using Regular Expressions
 db.documents.find({ "title": { $regex: "Index", $options: "i" } }).pretty()
-    </code></pre>
-    <p>Finds documents where the <code>title</code> contains the word "Index", case-insensitive.</p>
 
-    <h2>14. Use $in Operator to Match Multiple Values</h2>
-    <pre><code class="language-bash">
+# Use $in Operator to Match Multiple Values
 db.documents.find({ "title": { $in: ["Gunning-Fog-Index.html", "TF-IDF.html"] } }).pretty()
-    </code></pre>
-    <p>Finds documents where the <code>title</code> is either "Gunning-Fog-Index.html" or "TF-IDF.html".</p>
 
-    <h2>15. Find Documents Based on Field Existence</h2>
-    <pre><code class="language-bash">
+# Find Documents Based on Field Existence
 db.documents.find({ "author": { $exists: true } }).pretty()
-    </code></pre>
-    <p>Finds documents that have an <code>author</code> field.</p>
 
-    <h2>16. Retrieve and Sort Documents with Pagination</h2>
-    <pre><code class="language-bash">
+# Retrieve and Sort Documents with Pagination
 db.documents.find().sort({ _id: 1 }).skip(10).limit(10).pretty()
-    </code></pre>
-    <p>Retrieves documents sorted by <code>_id</code> in ascending order, skipping the first 10, and limiting the result to 10 documents (useful for pagination).</p>
+
+</code></pre>
 
 
 {% include footer.html %}
