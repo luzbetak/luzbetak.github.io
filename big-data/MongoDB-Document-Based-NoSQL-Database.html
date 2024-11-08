@@ -1,46 +1,8 @@
 ---
 ---
 {% include menu.html title="Apache Kafka Producer and Consumer" %}
-<hr>
-    <h2>MongoDB as a Document-Based Database</h2>
-    <p>
-        MongoDB is not a traditional key-value store, but it can function similarly in some contexts. 
-        MongoDB is a document-based NoSQL database, where each document (typically represented in BSON format, 
-        a binary form of JSON) can have multiple key-value pairs. The keys in a MongoDB document are the field names, 
-        and the values are the corresponding data.
-    </p>
 
-    <h3>In this context, the key-value pairs are:</h3>
-    <ul>
-        <li><strong>Key</strong>: <code>url</code>, <strong>Value</strong>: <code>'https://kevinluzbetak.com/1-ai/Gunning-Fog-Index.html'</code></li>
-        <li><strong>Key</strong>: <code>title</code>, <strong>Value</strong>: <code>'Gunning-Fog-Index.html'</code></li>
-        <li><strong>Key</strong>: <code>content</code>, <strong>Value</strong>: <code>'gunning fog index account ...'</code></li>
-        <li><strong>Key</strong>: <code>embedding</code>, <strong>Value</strong>: <code>[-0.01926298439502716, 0.03058304823935032, ...]</code></li>
-    </ul>
-
-    <p>
-        Each document in MongoDB also has an implicit key-value pair for the <code>_id</code> field:
-    </p>
-    <ul>
-        <li><strong>Key</strong>: <code>_id</code>, <strong>Value</strong>: <code>ObjectId('671f110807e141d70ebe59d8')</code></li>
-    </ul>
-
-    <h3>Key in MongoDB:</h3>
-    <p>
-        The <code>_id</code> field is the primary key in each MongoDB document. It uniquely identifies the document within a collection, 
-        much like how a key works in a key-value database.
-    </p>
-
-    <h3>Example:</h3>
-    <p>
-        In the document you retrieved, the "keys" are the field names (<code>_id</code>, <code>url</code>, 
-        <code>title</code>, <code>content</code>, and <code>embedding</code>), and their "values" are the corresponding 
-        data (e.g., the URL, title, content text, and embedding vector).
-    </p>
-
-    <hr>
-
-    <h1>MongoDB CLI Command Examples for Viewing Specific Documents</h1>
+    <h1>MongoDB CLI Command</h1>
 
     <h2>Log in to MongoDB</h2>
     <pre><code class="language-bash">
@@ -95,6 +57,45 @@ db.documents.find({ "author": { $exists: true } }).pretty()
 db.documents.find().sort({ _id: 1 }).skip(10).limit(10).pretty()
 
 </code></pre>
+
+<hr>
+    <h2>MongoDB as a Document-Based Database</h2>
+    <p>
+        MongoDB is not a traditional key-value store, but it can function similarly in some contexts. 
+        MongoDB is a document-based NoSQL database, where each document (typically represented in BSON format, 
+        a binary form of JSON) can have multiple key-value pairs. The keys in a MongoDB document are the field names, 
+        and the values are the corresponding data.
+    </p>
+
+    <h3>In this context, the key-value pairs are:</h3>
+    <ul>
+        <li><strong>Key</strong>: <code>url</code>, <strong>Value</strong>: <code>'https://kevinluzbetak.com/1-ai/Gunning-Fog-Index.html'</code></li>
+        <li><strong>Key</strong>: <code>title</code>, <strong>Value</strong>: <code>'Gunning-Fog-Index.html'</code></li>
+        <li><strong>Key</strong>: <code>content</code>, <strong>Value</strong>: <code>'gunning fog index account ...'</code></li>
+        <li><strong>Key</strong>: <code>embedding</code>, <strong>Value</strong>: <code>[-0.01926298439502716, 0.03058304823935032, ...]</code></li>
+    </ul>
+
+    <p>
+        Each document in MongoDB also has an implicit key-value pair for the <code>_id</code> field:
+    </p>
+    <ul>
+        <li><strong>Key</strong>: <code>_id</code>, <strong>Value</strong>: <code>ObjectId('671f110807e141d70ebe59d8')</code></li>
+    </ul>
+
+    <h3>Key in MongoDB:</h3>
+    <p>
+        The <code>_id</code> field is the primary key in each MongoDB document. It uniquely identifies the document within a collection, 
+        much like how a key works in a key-value database.
+    </p>
+
+    <h3>Example:</h3>
+    <p>
+        In the document you retrieved, the "keys" are the field names (<code>_id</code>, <code>url</code>, 
+        <code>title</code>, <code>content</code>, and <code>embedding</code>), and their "values" are the corresponding 
+        data (e.g., the URL, title, content text, and embedding vector).
+    </p>
+
+    <hr>
 
 
 {% include footer.html %}
