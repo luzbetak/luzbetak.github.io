@@ -173,7 +173,7 @@ input[type="submit"]:hover {
 /*----------------------------------------------------------------
  * Use style.css for documentation and code highlighting 
  * --------------------------------------------------------------- */
-strong { color: yellow !important; font-weight: 550; }
+strong { color: yellow !important; font-weight: 500; }
 h1 { color: #00ccff; font-size: 24px; } /* Azure  */
 h2 { color: #90ee90; font-size: 22px; } /* Green  */
 h3 { color: #9b59b6; font-size: 20px; } /* Purple */
