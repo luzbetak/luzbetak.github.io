@@ -79,7 +79,7 @@ a:hover {
 
 /* Styling the comparison table as a separate class */
 .comparison-table {
-    width: 1000;
+    width: 950px;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: #222; /* Darker background to stand out against black body */
