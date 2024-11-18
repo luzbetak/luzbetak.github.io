@@ -1,0 +1,123 @@
+<h1>Block ALL Non US Traffic</h1>
+
+<pre><code class="language-bash">
+#!/bin/bash
+
+# Enable error checking
+set -e
+
+echo "Starting firewall configuration..."
+
+# Create temporary file for US IPs
+US_IPS_FILE=$(mktemp)
+
+# Add known US IP ranges
+cat > "$US_IPS_FILE" << 'EOL'
+8.0.0.0/8
+11.0.0.0/8
+12.0.0.0/8
+13.0.0.0/8
+15.0.0.0/8
+16.0.0.0/8
+17.0.0.0/8
+18.0.0.0/8
+23.0.0.0/8
+24.0.0.0/8
+26.0.0.0/8
+28.0.0.0/8
+29.0.0.0/8
+32.0.0.0/8
+35.0.0.0/8
+40.0.0.0/8
+44.0.0.0/8
+45.0.0.0/8
+47.0.0.0/8
+50.0.0.0/8
+52.0.0.0/8
+54.0.0.0/8
+56.0.0.0/8
+63.0.0.0/8
+64.0.0.0/8
+65.0.0.0/8
+66.0.0.0/8
+67.0.0.0/8
+68.0.0.0/8
+69.0.0.0/8
+70.0.0.0/8
+71.0.0.0/8
+72.0.0.0/8
+73.0.0.0/8
+74.0.0.0/8
+75.0.0.0/8
+76.0.0.0/8
+96.0.0.0/8
+97.0.0.0/8
+98.0.0.0/8
+99.0.0.0/8
+100.0.0.0/8
+104.0.0.0/8
+108.0.0.0/8
+173.0.0.0/8
+174.0.0.0/8
+184.0.0.0/8
+192.0.0.0/8
+198.0.0.0/8
+199.0.0.0/8
+204.0.0.0/8
+205.0.0.0/8
+206.0.0.0/8
+207.0.0.0/8
+208.0.0.0/8
+209.0.0.0/8
+216.0.0.0/8
+EOL
+
+echo "Backing up current rules..."
+iptables-save > iptables-backup-$(date +%Y%m%d-%H%M%S).rules
+
+echo "Clearing existing rules..."
+iptables -F
+iptables -X
+
+echo "Setting default policies..."
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+echo "Setting up basic rules..."
+# Allow loopback
+iptables -A INPUT -i lo -j ACCEPT
+
+# Allow internal network without state tracking
+iptables -A INPUT -s 192.168.0.0/16 -j ACCEPT
+iptables -A OUTPUT -d 192.168.0.0/16 -j ACCEPT
+
+# Add explicit rule to block 1.1.1.1
+iptables -A INPUT -s 1.1.1.1 -j DROP
+iptables -A OUTPUT -d 1.1.1.1 -j DROP
+
+# Allow US IP ranges
+echo "Adding US IP ranges..."
+while IFS= read -r ip_range; do
+    echo "Adding rule for $ip_range"
+    iptables -A INPUT -s $ip_range -j ACCEPT
+done < "$US_IPS_FILE"
+
+# Block everything else
+iptables -A INPUT -j DROP
+
+# Clean up
+rm -f "$US_IPS_FILE"
+
+echo "Saving rules..."
+iptables-save > /etc/iptables/rules.v4
+
+echo "Verifying rules..."
+echo "Current rules:"
+iptables -L INPUT -n -v
+
+echo -e "\nFirewall configuration complete."
+echo "Try these commands to verify:"
+echo "ping 8.8.8.8    # Should work (US IP)"
+echo "ping 1.1.1.1    # Should NOT work (explicitly blocked)"
+</code></pre>
