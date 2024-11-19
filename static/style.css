@@ -20,7 +20,7 @@ body {
     float: left;           /* Align links to the left */
     font-size: 16px;       /* Set font size for links */
     color: red;            /* Text color for links */
-    font-weight: 600;      /* Bold text for emphasis */
+    font-weight: 500;      /* Bold text for emphasis */
     text-align: center;    /* Center text inside the links */
     padding: 14px 16px;    /* Padding inside links */
     text-decoration: none; /* Remove underline from links */
