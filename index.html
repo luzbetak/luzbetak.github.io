@@ -117,19 +117,34 @@
       mouseY = e.clientY - rect.top;
     });
 
-    // Generate new pulses periodically
-    setInterval(() => {
-      // Select random start node from first layer
-      const startNode = nodes[Math.floor(Math.random() * layers[0])];
+    // Generate multiple concurrent pulses
+    function generatePulses() {
+      // Number of simultaneous paths (2-3 paths)
+      const numPaths = Math.floor(Math.random() * 2) + 2;
       
-      // Create path through network
-      let currentNode = startNode;
-      while (currentNode.connections.length > 0) {
-        const nextNode = currentNode.connections[Math.floor(Math.random() * currentNode.connections.length)];
-        pulses.push(new Pulse(currentNode, nextNode));
-        currentNode = nextNode;
+      // Keep track of used start nodes to avoid duplicates
+      const usedStartNodes = new Set();
+      
+      for (let i = 0; i < numPaths; i++) {
+        // Select random unused start node from first layer
+        let availableStartNodes = nodes.slice(0, layers[0]).filter(node => !usedStartNodes.has(node));
+        if (availableStartNodes.length === 0) break;
+        
+        const startNode = availableStartNodes[Math.floor(Math.random() * availableStartNodes.length)];
+        usedStartNodes.add(startNode);
+        
+        // Create path through network
+        let currentNode = startNode;
+        while (currentNode.connections.length > 0) {
+          const nextNode = currentNode.connections[Math.floor(Math.random() * currentNode.connections.length)];
+          pulses.push(new Pulse(currentNode, nextNode));
+          currentNode = nextNode;
+        }
       }
-    }, 2000);
+    }
+
+    // Generate new pulses periodically
+    setInterval(generatePulses, 2000);
 
     function animate(time) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -164,7 +179,6 @@
 
     animate(0);
   </script>
-
 <!-- h1 align=center>Explore Kevin's GitHub Pages</h1 -->
 <!-- p><hr align=left width=1100 -->
 
