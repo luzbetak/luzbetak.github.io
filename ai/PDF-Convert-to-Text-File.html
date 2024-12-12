@@ -20,14 +20,16 @@
     <h2>Python Script</h2>
     <p>Use the following Python script to convert a PDF file to text using OCR:</p>
     
-    <pre><code class="language-python">
-#!/usr/bin/env python
+    <pre><code class="language-python">#!/usr/bin/env python
+
 from pdf2image import convert_from_path
 import pytesseract
 
+#-----------------------------------------------------------------#
 # Specify the path to the Tesseract executable
 pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
 
+#-----------------------------------------------------------------#
 def pdf_to_text_with_ocr(pdf_file, text_file):
     # Convert PDF pages to images
     images = convert_from_path(pdf_file)
@@ -45,7 +47,8 @@ def pdf_to_text_with_ocr(pdf_file, text_file):
 
     print(f"Text extracted and saved to {text_file}")
 
-# Example usage
+#-----------------------------------------------------------------#
+
 pdf_to_text_with_ocr('Abram-Hoffer-Orthomolecular-Medicine.pdf', 
                      'Abram-Hoffer-Orthomolecular-Medicine.txt')
     </code></pre>
