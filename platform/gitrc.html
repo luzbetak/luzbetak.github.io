@@ -1,9 +1,4 @@
----
----
-{% include menu.html title="gitrc" %}
-<hr align=left width=1100>
-
-<pre><code class=language-bash>#----------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
 function next() {
     # Get all branches and extract version numbers
     latest_version=$(git branch --all | grep -Eo 'v[0-9]+\.[0-9]+' | sort -t. -k1,1n -k2,2n | tail -n 1)
@@ -230,6 +225,3 @@ reset() {
     echo "Forced push: Remote branch is now aligned with commit $1."
 }
 #-------------------------------------------------------------------------------------------#
-</code></pre>
-{% include footer.html %}
-
