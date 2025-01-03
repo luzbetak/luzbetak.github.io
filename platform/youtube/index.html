@@ -1,90 +1,89 @@
 ---
 ---
-{% include menu.html title="DevOps" %}
-<hr>
-    <h3>Linux Admin Tools</h3>
-    <table width="1000" border="0">
-        <tr>
-            <td valign=top width=50%>
-                <ul>
-                    <li><a href="systemd-services.html">System Daemon Services</a></li>
-                    <li><a href="block-all-non-us-traffic.html">Firewall: Block All Non US Traffic</a></li>
-                </ul>
-            </td>
-            <td valign=top width=50%>
-                <ul>
-                    <li><a href="bashrc.txt">.bashrc</a></li>
-                    <li><a href="gitrc.txt">.gitrc</a></li>
-                    <li><a href="vimrc.txt">.vimrc</a></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-<hr>
-    <h3>Software Delivey and Containerization</h3>
-    <table width="1000" border="0">
-        <tr>
-            <td valign=top width=33%>
-                <ul>
-                    <li><a href="software-delivery.html">Popular Software Delivery</a></li>
-                    <li><a href="github.html">Github Source Control Management</a></li>
-                </ul>
-            </td>
-            <td valign=top width=33%>
-                <ul>
-                    <li><a href="docker.html">Docker</a>
-                        <span class="comment">Platform to automate the deployment of applications inside  portable containers, ensuring consistency across different environments.</span> 
-                    </li>
-                </ul>
-            </td>
-            <td valign=top width=33%>
-                <ul>
-                    <li><a href="Kubernetes.html">Kubernetes</a>
-                        <span class="comment">Platform to automates the deployment, scaling, and management of containerized applications across clusters of machines.</span> 
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+{% include menu.html title="Machine Learning - YouTube" %}
 
-<hr>
-    <h3>Workflow Management</h3>
-    <table width="1000" border="0">
-        <tr>
-            <td valign=top>
-                <ul>
-                    <li><a href="apache-airflow.html">Apache Airflow</a></li>
-                </ul>
-            </td>
-            <td valign=top>
-                <ul>
-                    <li><a href="apache-nifi.html">Apache NiFi</a></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+<style>
+    .video-container {
+        display: flex;
+        flex-wrap: nowrap; /* Ensures videos stay in one row */
+        gap: 20px;
+        justify-content: center; /* Centers the videos horizontally */
+    }
+    .video-item {
+        width: 300px;
+        text-align: center;
+    }
+    .video-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        margin: initial; /* Resets global margin */
+        padding: initial; /* Resets global padding */
+    }
+    .video-description {
+        margin: 0; /* Explicitly removes space */
+        padding: 0; /* Ensures no internal padding */
+        font-size: 0.8rem;
+        color: gray;
+        line-height: 1; /* Compact spacing */
+    }
+    .video-item a {
+        text-decoration: none;
+        color: #0073e6;
+        font-weight: bold;
+    }
+    .video-item a:hover {
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <div class="video-container">
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=fCFkN5ZAVzc" target="_blank">
+                <img src="https://img.youtube.com/vi/fCFkN5ZAVzc/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Satoshi Ōmura - Nobel Lecture: The origins & impact of Ivermectin (Avermectin)</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=Ur2eJuAcFtU" target="_blank">
+                <img src="https://img.youtube.com/vi/Ur2eJuAcFtU/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Signs of Nutrient Deficiencies You Shouldn't Ignore</p>
+        </div>
+        <div class="video-item">
+            <a href="https://youtu.be/bY-4SVYdlEo?si=PZK_dLgGwerezr7H" target="_blank">
+                <img src="https://img.youtube.com/vi/bY-4SVYdlEo/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">10 TOP early warning signs of PARASITES</p>
+        </div>
+    </div>
 
-<hr>
-    <h3>Mac OS Platform</h3>
-    <table width="1000" border="0">
-        <tr>
-            <td valign=top width=33%> 
-                <ul>
-                    <li><a href="https://brew.sh/">Brew: Package Manager for macOS </a></li>
-                    <li><a href="Uninstall-Google-Chrome-on-macOS.html">Uninstall Google Chrome on macOS</a></li>
-                </ul>
-            </td>
-            <td valign=top width=33%>
-                <ul>
-                    <li><a href="https://github.com/ohmybash/oh-my-bash">Oh MyBash</a></li>
-                </ul>
-            </td>
-            <td valign=top width=33%>
-                <ul>
-                    <li><a href="Completely-Delete-Google-Chrome-from-iMac.html">Delete Google Chrome from iMac</a></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+    <div class="video-container">
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=KBAJzcVOJvw" target="_blank">
+                <img src="https://img.youtube.com/vi/KBAJzcVOJvw/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">You Might Have PARASITES</p>
+        </div>
+        <div class="video-item">
+            <a href="https://youtu.be/bY-4SVYdlEo?si=oCDnomEOfIE" target="_blank">
+                <img src="https://img.youtube.com/vi/oCDnomEOfIE/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Tapeworm Infection Signs & Symptoms, Nutrient Deficiencies, & Complications</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=Nt9nDOpoB0s" target="_blank">
+                <img src="https://img.youtube.com/vi/Nt9nDOpoB0s/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">What Happens If You Don't Drink Water?</p>
+        </div>
+    </div>
+</body>
 
 {% include footer.html %}
