@@ -2,8 +2,7 @@
 ---
 {% include menu.html title="WITH 2 Tables JOIN" %}
 
-<pre><code class="language-sql">SELECT 
-WITH 
+<pre><code class="language-sql">WITH 
 -- ----------------------------------------------------------- --
 Student_Table AS (
     SELECT * FROM students 
@@ -21,6 +20,7 @@ FROM Student_Table JOIN Curriculum_Table
   ON Student_Table.student_id = Curriculum_Table.student_id
 
 ORDER BY RAND() LIMIT 100;
+-- ----------------------------------------------------------- --
 </code></pre>
 
   {% include footer.html %}
