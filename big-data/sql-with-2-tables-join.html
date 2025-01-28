@@ -1,0 +1,22 @@
+<pre><code class="language-sql">SELECT 
+WITH 
+-- ----------------------------------------------------------- --
+Student_Table AS (
+    SELECT * FROM students 
+    WHERE LOWER(subject) LIKE LOWER('%Artificial Intelligence%') 
+       OR LOWER(subject) LIKE LOWER('%Large Lnaguage Model%') 
+),
+-- ----------------------------------------------------------- --
+Curriculum_Table AS (
+    SELECT * FROM curriculum 
+    WHERE LOWER(body) LIKE LOWER('%Graduated%')
+)
+-- ----------------------------------------------------------- --
+SELECT * 
+FROM Student_Table
+JOIN Curriculum_Table 
+  ON Student_Table.student_id = Curriculum_Table.student_id
+
+ORDER BY RAND() LIMIT 100;
+</code></pre>
+
