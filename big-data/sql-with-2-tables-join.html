@@ -2,7 +2,7 @@
 ---
 {% include menu.html title="WITH 2 Tables JOIN" %}
 
-<pre><code class="language-sql">CREATE TABLE Filter_Students AS
+<pre><code class="language-sql">CREATE TABLE tmp_Filter_Students AS
 SELECT 
     student_id, first_name, last_name, email, major 
 FROM students 
