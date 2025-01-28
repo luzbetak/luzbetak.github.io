@@ -2,6 +2,16 @@
 ---
 {% include menu.html title="WITH 2 Tables JOIN" %}
 
+<pre><code class="language-sql">CREATE TABLE Filter_Students AS
+SELECT 
+    student_id, first_name, last_name, email, major 
+FROM students 
+WHERE 
+    LOWER(major) LIKE LOWER('%Artificial Intelligence%') 
+    OR LOWER(major) LIKE LOWER('%Large Language Model%');
+
+</code></pre>
+<hr>
 <pre><code class="language-sql">WITH 
 -- ---------------------------------------------------------------------------- --
 Filter_Students AS (
