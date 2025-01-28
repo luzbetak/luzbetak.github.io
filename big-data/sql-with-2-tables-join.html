@@ -1,6 +1,6 @@
 ---
 ---
-{% include menu.html title="Apache Hudi" %}
+{% include menu.html title="WITH 2 Tables JOIN" %}
 
 <pre><code class="language-sql">SELECT 
 WITH 
@@ -17,8 +17,7 @@ Curriculum_Table AS (
 )
 -- ----------------------------------------------------------- --
 SELECT * 
-FROM Student_Table
-JOIN Curriculum_Table 
+FROM Student_Table JOIN Curriculum_Table 
   ON Student_Table.student_id = Curriculum_Table.student_id
 
 ORDER BY RAND() LIMIT 100;
