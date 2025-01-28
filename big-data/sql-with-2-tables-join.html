@@ -57,7 +57,7 @@ Joined_Results AS (
            g.grade, g.semester, 
            cr.course_name, cr.instructor
 
-    FROM Filter_Students AS s
+    FROM Filter_Students   AS s
     JOIN Filter_Curriculum AS c  ON s.student_id = c.student_id
     JOIN Grades_Table      AS g  ON s.student_id = g.student_id
     JOIN Courses_Table     AS cr ON g.course_id  = cr.course_id
@@ -65,8 +65,7 @@ Joined_Results AS (
 -- ---------------------------------------------------------------------------- --
 SELECT * 
 FROM Joined_Results
-ORDER BY RAND() 
-LIMIT 100;
+ORDER BY RAND() LIMIT 100;
 -- ---------------------------------------------------------------------------- --
 </code></pre>
 
