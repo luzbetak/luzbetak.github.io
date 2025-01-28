@@ -4,20 +4,20 @@
 
 <pre><code class="language-sql">WITH 
 -- ---------------------------------------------------------------------------- --
-Student_Table AS (
+Filter_Students AS (
     SELECT * FROM students
     WHERE LOWER(subject) LIKE LOWER('%Artificial Intelligence%')
        OR LOWER(subject) LIKE LOWER('%Large Lnaguage Model%')
 ),
 -- ---------------------------------------------------------------------------- --
-Curriculum_Table AS (
+Filter_Curriculum AS (
     SELECT * FROM curriculum
     WHERE LOWER(body) LIKE LOWER('%Graduated%')
 )
 -- ---------------------------------------------------------------------------- --
 SELECT *
-FROM Student_Table 
-JOIN Curriculum_Table ON Student_Table.student_id = Curriculum_Table.student_id
+FROM Filter_Students 
+JOIN Filter_Curriculum ON Filter_Students.student_id = Filter_Curriculum.student_id
 
 ORDER BY RAND() LIMIT 100;
 -- ---------------------------------------------------------------------------- --
@@ -25,7 +25,7 @@ ORDER BY RAND() LIMIT 100;
 <hr>
 <pre><code class="language-sql">WITH 
 -- ---------------------------------------------------------------------------- --
-Filtered_Students AS (
+Filter_Students AS (
     SELECT student_id, first_name, last_name, email, major 
     FROM students 
     WHERE 
@@ -33,7 +33,7 @@ Filtered_Students AS (
         OR LOWER(major) LIKE LOWER('%Large Language Model%')
 ),
 -- ---------------------------------------------------------------------------- --
-Filtered_Curriculum AS (
+Filter_Curriculum AS (
     SELECT curriculum_id, student_id, curriculum_name, program_type 
     FROM curriculum 
     WHERE 
@@ -57,8 +57,8 @@ Joined_Results AS (
            g.grade, g.semester, 
            cr.course_name, cr.instructor
 
-    FROM Filtered_Students AS s
-    JOIN Filtered_Curriculum AS c ON s.student_id = c.student_id
+    FROM Filter_Students AS s
+    JOIN Filter_Curriculum AS c ON s.student_id = c.student_id
     JOIN Grades_Table AS g        ON s.student_id = g.student_id
     JOIN Courses_Table AS cr      ON g.course_id  = cr.course_id
 )
