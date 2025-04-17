@@ -72,33 +72,21 @@ function spy() {
 
 }
 #----------------------------------------------------------------------------------------#
+# MacOS: replace_text "java programming" "python programming"
+#----------------------------------------------------------------------------------------#
 replace_text() {
+
   if [ "$#" -ne 2 ]; then
     echo "Usage: replace_text <from> <to>"
     return 1
   fi
 
-  find . -type f -exec sh -c '
-    for file; do
-      if file -b --mime-encoding "$file" | grep -q text; then
-        LC_ALL=C sed -i "" "s/$1/$2/g" "$file"
-      fi
-    done
-  ' _ "$@" 
+  find . -type f -name '*' | while IFS= read -r file; do
+    if grep -q "$1" "$file"; then
+      sed -i '' "s/$1/$2/g" "$file"
+    fi
+  done
 }
-#----------------------------------------------------------------------------------------#
-# Replace text with find and sed</h2>
-# Linux
-#----------------------------------------------------------------------------------------#
-# find . -name "*.py" -type f -exec sed 's/kevinluzbetak/kluzbetak/g' {} \;
-
-#----------------------------------------------------------------------------------------#
-# Max OS
-#----------------------------------------------------------------------------------------#
-# find . -name "*.py" -type f -exec sed -i '' 's/kevinluzbetak/kluzbetak/g' {} \;
-#----------------------------------------------------------------------------------------#
-
-
 #----------------------------------------------------------------------------------------#
 # Easy directory navigation complement to bashrc
 # vi ~/.oh-my-bash/plugins/bashmarks/bashmarks.plugin.sh alias=d
