@@ -21,10 +21,10 @@ a() {
     fi
     ls -l $archive_dir
 }
-#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------#
 # search one two
 # search -tpy one two
-#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------#
 function search() {
 
   if [ $# -eq 0 ]; then
@@ -33,9 +33,9 @@ function search() {
   fi
 
   if [[ $1 == -* ]]; then
-    local cmd="rg ${1} -l '${2}'"
+    local cmd="rg ${1} -l --hidden --no-ignore --max-columns=100 '${2}' 2>/dev/null"
   else
-    local cmd="rg -l '${1}'"
+    local cmd="rg -l --hidden --no-ignore --max-columns=100 '${1}' 2>/dev/null"
   fi
 
   shift
@@ -46,10 +46,10 @@ function search() {
 
   eval $cmd
 }
-#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------#
 # Search all the python file for keyword open
 # spy open py
-#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------#
 function spy() {
   if [ $# -eq 0 ]; then
     echo "Please provide a keyword as the first argument."
@@ -59,10 +59,10 @@ function spy() {
 
   if [ $# -eq 1 ]; then
       clear
-      local cmd="rg -C3 ${1}"
+      local cmd="rg -C3 --hidden --no-ignore --max-columns=100 ${1} 2>/dev/null"
   else
       clear
-      local cmd="rg -t${2} -C3 ${1}"
+      local cmd="rg -t${2} -C3 --hidden --no-ignore --max-columns=100 ${1} 2>/dev/null"
   fi
   eval $cmd
 
@@ -70,12 +70,6 @@ function spy() {
   echo "               " $cmd
   printf '%.0s-' {1..80}; echo
 
-}
-#----------------------------------------------------------------------------------------#
-# Search Edit Python Files</h2>
-#----------------------------------------------------------------------------------------#
-search() {
- grep -rnw . -e "${1}" --include \*.py --exclude-dir='anaconda3/' --exclude-dir='.vim/'
 }
 #----------------------------------------------------------------------------------------#
 replace() {
