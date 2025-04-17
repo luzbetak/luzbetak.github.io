@@ -72,8 +72,19 @@ function spy() {
 
 }
 #----------------------------------------------------------------------------------------#
-replace() {
-  find . -name "*.py" -not -path "*/anaconda3/*" -exec sed -i "s/${1}/${2}/g" {} \;
+replace_text() {
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: replace_text <from> <to>"
+    return 1
+  fi
+
+  find . -type f -exec sh -c '
+    for file; do
+      if file -b --mime-encoding "$file" | grep -q text; then
+        LC_ALL=C sed -i "" "s/$1/$2/g" "$file"
+      fi
+    done
+  ' _ "$@" 
 }
 #----------------------------------------------------------------------------------------#
 # Replace text with find and sed</h2>
