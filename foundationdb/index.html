@@ -3,79 +3,62 @@
 {% include menu.html title="Databricks" %}
 
 <hr>
-<h2>Medallion Architecture</h2>
-<table width="1100" border="0">
-    <tr>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Medallion-Architecture.html">Medallion Architecture</a></li>
-            </ul>
-        </td>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Medallion-Architecture-Partitioning-Code.html">Code: Partitioning</a></li>
-            </ul>
-        </td>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="slideshow">Databricks Lakehouse Slideshow</a></li>
-            </ul>
-        </td>
-    </tr>
-</table>
+<h1>FoundationDB</h1>
+<h2>Functions to insert, retrieve all, and retrieve a specific key</h2>
 
-<hr><h2>Apache Spark</h2>
-<table width="1100" border="0">
-    <tr>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Apache-Spark.html">Apache Spark</a></li>
-                <li><a href="PySpark-S3-Small-Files-Compaction.html">PySpark S3 Small Files Compaction</a></li>
-            </ul>
-        </td>            
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Star-Schema-Data-Migration-Snowflake-to-Databricks.html">Star-Schema Data Migration: Snowflake to Databricks</a></li>
-            </ul>
-        </td>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Data-Migration-from-Snowflake-to-Databricks.html">Data-Migration from Snowflake to Databricks</a></li>
-            </ul>
-        </td>
-    </tr>
-</table>
+<pre><code class="language-python">
+import foundationdb
+import json
 
-<hr><h2>Databricks PySpark</h2>
-<table width="1100" border="0">
-    <tr>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Apache-Spark.html">Apache Spark</a></li>
-                <li><a href="PySpark-Questions-Answers.html">PySpark Questions Answers</a></li>
-                <li><a href="PySpark-Coding-Examples.html ">PySpark Coding Examples</a></li>
-                <li><a href="PySpark-SQL-Functions-Parquet.html">PySpark SQL Functions Parquet</a></li>
-                <li><a href="PySpark-Data-Streaming.html">PySpark Data Streaming</a></li>
-            </ul>
-        </td>            
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Databricks-PySpark.html">PySpark Databricks</a></li>
-                <li><a href="Databricks-Delta-Lake.html">Databricks Delta Lake</a></li>
-                <li><a href="Column-Shuffle-Repartition.html">Column Shuffle Repartition</a></li>
-                <li><a href="PySpark-Pivot-Table.html">PySpark Pivot Table</a></li>
-            </ul>
-        </td>
-        <td valign=top width=33%>
-            <ul>
-                <li><a href="Managed-External-Live-Tables.html">Delta Live, Managed, External Tables</a></li>
-                <li><a href="Managed-External-Tables.html">Managed and External Tables</a></li>
-                <li><a href="Delta-Live-Tables.html">Delta Live Tables (DLT)</a></li>
-                <li><a href="/bricks/slideshow">Delta Lake Slideshow</a></li>
-            </ul>
-        </td>
-    </tr>
-</table>
+foundationdb.api_version(630)
+db = foundationdb.open()
+
+# Helper: Convert integer ID to bytes
+def id_to_key(student_id: int) -> bytes:
+    return str(student_id).encode()
+
+# Insert multiple students
+@foundationdb.transactional
+def insert_students(tr):
+    students = {
+        1001: {"first": "Alice", "last": "Smith", "email": "alice@example.com", "city": "Seattle", "state": "WA"},
+        1002: {"first": "Bob", "last": "Johnson", "email": "bob@example.com", "city": "Portland", "state": "OR"},
+        1003: {"first": "Charlie", "last": "Lee", "email": "charlie@example.com", "city": "San Jose", "state": "CA"}
+    }
+    for student_id, info in students.items():
+        key = id_to_key(student_id)
+        tr[key] = json.dumps(info).encode()
+
+# Read all students
+@foundationdb.transactional
+def read_all_students(tr):
+    print("All student records:")
+    for key, value in tr.get_range(b'', b'\xff'):
+        student_id = key.decode()
+        info = json.loads(value.decode())
+        print(f"ID: {student_id}, Name: {info['first']} {info['last']}, Email: {info['email']}, City: {info['city']}, State: {info['state']}")
+
+# Retrieve a specific student by ID
+@foundationdb.transactional
+def get_student_by_id(tr, student_id: int):
+    key = id_to_key(student_id)
+    value = tr.get(key).wait()
+    if value:
+        info = json.loads(value.decode())
+        print(f"Record for ID {student_id}: {info['first']} {info['last']}, {info['email']}, {info['city']}, {info['state']}")
+    else:
+        print(f"No record found for ID {student_id}")
+
+# Main entry
+def main():
+    insert_students(db)
+    read_all_students(db)
+    get_student_by_id(db, 1002)  # Retrieve Bob's record
+
+if __name__ == '__main__':
+    main()
 
 
-{% include footer.html %}
+</code></pre>
+
+
