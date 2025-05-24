@@ -21,9 +21,9 @@ def id_to_key(student_id: int) -> bytes:
 @foundationdb.transactional
 def insert_students(tr):
     students = {
-        1001: {"first": "Alice", "last": "Smith", "email": "alice@example.com", "city": "Seattle", "state": "WA"},
-        1002: {"first": "Bob", "last": "Johnson", "email": "bob@example.com", "city": "Portland", "state": "OR"},
-        1003: {"first": "Charlie", "last": "Lee", "email": "charlie@example.com", "city": "San Jose", "state": "CA"}
+        1001: {"first": "Alice",   "last": "Smith",   "email": "alice@example.com",   "city": "Seattle",  "state": "WA"},
+        1002: {"first": "Bob",     "last": "Johnson", "email": "bob@example.com",     "city": "Portland", "state": "OR"},
+        1003: {"first": "Charlie", "last": "Lee",     "email": "charlie@example.com", "city": "San Jose", "state": "CA"}
     }
     for student_id, info in students.items():
         key = id_to_key(student_id)
