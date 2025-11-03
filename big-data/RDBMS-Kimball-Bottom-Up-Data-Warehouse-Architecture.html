@@ -1,0 +1,32 @@
+---
+---
+{% include menu.html title="Kimball Bottom-Up Data Warehouse Architecture" %}
+
+<body>
+    <h1>Kimball Bottom-Up Data Warehouse Architecture</h1>
+
+    <h2>Dimensional Modeling:</h2>
+    <ul>
+        <li>This approach employs a <strong>star schema</strong> or <strong>snowflake schema</strong> to structure the data in each data mart.</li> 
+        <li><strong>Fact tables</strong> store quantitative data (e.g., sales revenue, quantity sold), while dimension tables store descriptive data (e.g., product details, time, customer information).</li>
+    </ul>
+
+    <h2>Key Characteristics</h2>
+    <ul>
+        <li><strong>Data Marts First:</strong> Develops small, focused data marts for individual business functions, such as sales, marketing, and finance, addressing specific analytical needs.</li>
+        <li><strong>Dimensional Modeling:</strong> Each data mart is structured using dimensional modeling (e.g., star schema), with fact tables for quantitative data and dimension tables for descriptive details, optimizing query efficiency.</li>
+        <li><strong>Conformed Dimensions for Integration:</strong> Standardized dimensions like time, geography, and product enable seamless integration and consistent reporting across departments.</li>
+        <li><strong>Enterprise Data Warehouse (EDW):</strong> As data marts are integrated, they form a central EDW, providing a unified source for cross-functional analytics and consolidated insights.</li>
+        <li><strong>Business Intelligence (BI) and Analytics:</strong> The EDW supports various BI and analytics tools, allowing departments to leverage dashboards, reports, and insights to make informed decisions.</li>
+    </ul>
+
+    <h2>Advantages</h2>
+    <ul>
+        <li><strong>Incremental Implementation:</strong> Enables rapid deployment of data marts, providing immediate value without waiting for a fully developed data warehouse.</li>
+        <li><strong>Flexibility and Adaptability:</strong> New data marts can be added and integrated as needed, allowing for scalable growth and adaptation to evolving business requirements.</li>
+        <li><strong>Focused Optimization:</strong> Each data mart is optimized for specific business functions, ensuring efficient, targeted insights for departments.</li>
+    </ul>
+</body>
+
+
+{% include footer.html %}

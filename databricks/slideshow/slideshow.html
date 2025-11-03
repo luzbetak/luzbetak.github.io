@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Image Slideshow</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            flex-direction: column;
+        }
+        .filename {
+            font-size: 22px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .active {
+            display: block;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+        }
+        .prev {
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next {
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .disabled {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="filename" id="filename"></div>
+
+<div class="slideshow-container">
+    <img class="slides active" src="databricks-01.png" alt="databricks-01.png">
+    <img class="slides" src="databricks-02.png" alt="databricks-02.png">
+    <img class="slides" src="databricks-03.png" alt="databricks-03.png">
+    <img class="slides" src="databricks-04.png" alt="databricks-04.png">
+    <img class="slides" src="databricks-05.png" alt="databricks-05.png">
+    <img class="slides" src="databricks-06.png" alt="databricks-06.png">
+    <img class="slides" src="databricks-07.png" alt="databricks-07.png">
+    <img class="slides" src="databricks-08.png" alt="databricks-08.png">
+    <img class="slides" src="databricks-09.png" alt="databricks-09.png">
+    <img class="slides" src="databricks-10.png" alt="databricks-10.png">
+    <img class="slides" src="databricks-11.png" alt="databricks-11.png">
+    <img class="slides" src="databricks-12.png" alt="databricks-12.png">
+    <img class="slides" src="databricks-13.png" alt="databricks-13.png">
+    <img class="slides" src="databricks-14.png" alt="databricks-14.png">
+    <img class="slides" src="databricks-15.png" alt="databricks-15.png">
+    <img class="slides" src="databricks-16.png" alt="databricks-16.png">
+    <img class="slides" src="databricks-17.png" alt="databricks-17.png">
+    <img class="slides" src="databricks-18.png" alt="databricks-18.png">
+    <img class="slides" src="databricks-19.png" alt="databricks-19.png">
+    <img class="slides" src="databricks-20.png" alt="databricks-20.png">
+    <img class="slides" src="databricks-21.png" alt="databricks-21.png">
+    <img class="slides" src="databricks-22.png" alt="databricks-22.png">
+    <img class="slides" src="databricks-23.png" alt="databricks-23.png">
+    <img class="slides" src="databricks-24.png" alt="databricks-24.png">
+    <img class="slides" src="databricks-25.png" alt="databricks-25.png">
+    <img class="slides" src="databricks-26.png" alt="databricks-26.png">
+    <img class="slides" src="databricks-27.png" alt="databricks-27.png">
+    <img class="slides" src="databricks-28.png" alt="databricks-28.png">
+    <img class="slides" src="databricks-29.png" alt="databricks-29.png">
+    <img class="slides" src="databricks-30.png" alt="databricks-30.png">
+    <img class="slides" src="databricks-31.png" alt="databricks-31.png">
+    <img class="slides" src="databricks-32.png" alt="databricks-32.png">
+    <img class="slides" src="databricks-33.png" alt="databricks-33.png">
+    <img class="slides" src="databricks-34.png" alt="databricks-34.png">
+    <img class="slides" src="databricks-35.png" alt="databricks-35.png">
+    <img class="slides" src="databricks-37.png" alt="databricks-37.png">
+    <img class="slides" src="databricks-38.png" alt="databricks-38.png">
+    <img class="slides" src="databricks-39.png" alt="databricks-39.png">
+    <img class="slides" src="databricks-40.png" alt="databricks-40.png">
+    <img class="slides" src="databricks-41.png" alt="databricks-41.png">
+    <img class="slides" src="databricks-42.png" alt="databricks-42.png">
+    <img class="slides" src="databricks-43.png" alt="databricks-43.png">
+    <img class="slides" src="databricks-44.png" alt="databricks-44.png">
+    <img class="slides" src="databricks-45.png" alt="databricks-45.png">
+    <img class="slides" src="databricks-46.png" alt="databricks-46.png">
+    <img class="slides" src="databricks-47.png" alt="databricks-47.png">
+    <img class="slides" src="databricks-48.png" alt="databricks-48.png">
+    <img class="slides" src="databricks-49.png" alt="databricks-49.png">
+    <img class="slides" src="databricks-50.png" alt="databricks-50.png">
+    <img class="slides" src="databricks-51.png" alt="databricks-51.png">
+    <img class="slides" src="databricks-52.png" alt="databricks-52.png">
+    <img class="slides" src="databricks-53.png" alt="databricks-53.png">
+    <img class="slides" src="databricks-54.png" alt="databricks-54.png">
+    <img class="slides" src="databricks-55.png" alt="databricks-55.png">
+    <img class="slides" src="databricks-56.png" alt="databricks-56.png">
+    <img class="slides" src="databricks-57.png" alt="databricks-57.png">
+    <img class="slides" src="databricks-58.png" alt="databricks-58.png">
+    <img class="slides" src="databricks-59.png" alt="databricks-59.png">
+    <img class="slides" src="databricks-60.png" alt="databricks-60.png">
+    <img class="slides" src="databricks-61.png" alt="databricks-61.png">
+    <img class="slides" src="databricks-62.png" alt="databricks-62.png">
+    <img class="slides" src="databricks-63.png" alt="databricks-63.png">
+    <img class="slides" src="databricks-64.png" alt="databricks-64.png">
+    <img class="slides" src="databricks-65.png" alt="databricks-65.png">
+    <img class="slides" src="databricks-66.png" alt="databricks-66.png">
+    <img class="slides" src="databricks-67.png" alt="databricks-67.png">
+    <img class="slides" src="databricks-68.png" alt="databricks-68.png">
+    <img class="slides" src="databricks-69.png" alt="databricks-69.png">
+    <img class="slides" src="databricks-70.png" alt="databricks-70.png">
+    <img class="slides" src="databricks-71.png" alt="databricks-71.png">
+    <img class="slides" src="databricks-72.png" alt="databricks-72.png">
+    <img class="slides" src="databricks-73.png" alt="databricks-73.png">
+    <img class="slides" src="databricks-74.png" alt="databricks-74.png">
+    <img class="slides" src="databricks-75.png" alt="databricks-75.png">
+    <img class="slides" src="databricks-76.png" alt="databricks-76.png">
+    <img class="slides" src="databricks-77.png" alt="databricks-77.png">
+    <img class="slides" src="databricks-78.png" alt="databricks-78.png">
+    <img class="slides" src="databricks-79.png" alt="databricks-79.png">
+    <img class="slides" src="databricks-80.png" alt="databricks-80.png">
+    <img class="slides" src="databricks-81.png" alt="databricks-81.png">
+    <img class="slides" src="databricks-82.png" alt="databricks-82.png">
+    <img class="slides" src="databricks-83.png" alt="databricks-83.png">
+    <img class="slides" src="databricks-84.png" alt="databricks-84.png">
+    <img class="slides" src="databricks-85.png" alt="databricks-85.png">
+
+    <!-- Previous and next buttons -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName('slides');
+    const filenameDisplay = document.getElementById('filename');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    const filenames = ['databricks-01.png', 'databricks-02.png', 'databricks-03.png', 'databricks-04.png', 'databricks-05.png', 'databricks-06.png', 'databricks-07.png', 'databricks-08.png', 'databricks-09.png', 'databricks-10.png', 'databricks-11.png', 'databricks-12.png', 'databricks-13.png', 'databricks-14.png', 'databricks-15.png', 'databricks-16.png', 'databricks-17.png', 'databricks-18.png', 'databricks-19.png', 'databricks-20.png', 'databricks-21.png', 'databricks-22.png', 'databricks-23.png', 'databricks-24.png', 'databricks-25.png', 'databricks-26.png', 'databricks-27.png', 'databricks-28.png', 'databricks-29.png', 'databricks-30.png', 'databricks-31.png', 'databricks-32.png', 'databricks-33.png', 'databricks-34.png', 'databricks-35.png', 'databricks-37.png', 'databricks-38.png', 'databricks-39.png', 'databricks-40.png', 'databricks-41.png', 'databricks-42.png', 'databricks-43.png', 'databricks-44.png', 'databricks-45.png', 'databricks-46.png', 'databricks-47.png', 'databricks-48.png', 'databricks-49.png', 'databricks-50.png', 'databricks-51.png', 'databricks-52.png', 'databricks-53.png', 'databricks-54.png', 'databricks-55.png', 'databricks-56.png', 'databricks-57.png', 'databricks-58.png', 'databricks-59.png', 'databricks-60.png', 'databricks-61.png', 'databricks-62.png', 'databricks-63.png', 'databricks-64.png', 'databricks-65.png', 'databricks-66.png', 'databricks-67.png', 'databricks-68.png', 'databricks-69.png', 'databricks-70.png', 'databricks-71.png', 'databricks-72.png', 'databricks-73.png', 'databricks-74.png', 'databricks-75.png', 'databricks-76.png', 'databricks-77.png', 'databricks-78.png', 'databricks-79.png', 'databricks-80.png', 'databricks-81.png', 'databricks-82.png', 'databricks-83.png', 'databricks-84.png', 'databricks-85.png'];  // Array of filenames
+
+    function updateButtons() {
+        prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
+        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+    }
+
+    function updateFilename() {
+        filenameDisplay.textContent = filenames[currentSlide];
+    }
+
+    function showSlide(index) {
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        // Ensure the slide index is within bounds
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        updateButtons();
+        updateFilename();
+    }
+
+    function changeSlide(direction) {
+        const newSlide = currentSlide + direction;
+        if (newSlide >= 0 && newSlide < slides.length) {
+            showSlide(newSlide);
+        }
+    }
+
+    // Add event listener for left and right arrow key presses
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+            changeSlide(1);
+        } else if (event.key === 'ArrowLeft' && currentSlide > 0) {
+            changeSlide(-1);
+        }
+    });
+
+    // Initialize the buttons and filename on page load
+    updateButtons();
+    updateFilename();
+</script>
+
+</body>
+</html>

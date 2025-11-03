@@ -1,0 +1,292 @@
+---
+---
+{% include menu.html title="Kevin Luzbetak - Computer Science" %}
+<hr align=left width=1000>
+<h1 align=center>Kevin Luzbetak - Artificial Intelligence - Machine Learning (LLMs)</h1>
+<!-- p align=center>Software engineering is not based on people's appearances,<br>
+but on individuals spending more time with computer science and less time on appearances.</p-->
+  <canvas id="networkCanvas" style="width: 100%; height: 400px; background: #1a1a1a;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    function setupCanvas() {
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * devicePixelRatio;
+      canvas.height = canvas.offsetHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+    setupCanvas();
+    window.addEventListener('resize', setupCanvas);
+
+    class Pulse {
+      constructor(startNode, endNode) {
+        this.startNode = startNode;
+        this.endNode = endNode;
+        this.progress = 0;
+        this.speed = 0.02;
+        this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        this.alive = true;
+      }
+
+      update() {
+        this.progress += this.speed;
+        if (this.progress >= 1) {
+          this.alive = false;
+        }
+      }
+
+      draw() {
+        const x = this.startNode.x + (this.endNode.x - this.startNode.x) * this.progress;
+        const y = this.startNode.y + (this.endNode.y - this.startNode.y) * this.progress;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+
+        // Light up the start node
+        ctx.beginPath();
+        ctx.arc(this.startNode.x, this.startNode.y, this.startNode.radius + 2, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+
+        // Light up the end node when pulse is close
+        if (this.progress > 0.8) {
+          const endNodeGlow = (this.progress - 0.8) * 5;
+          ctx.beginPath();
+          ctx.arc(this.endNode.x, this.endNode.y, this.endNode.radius + 2 * endNodeGlow, 0, Math.PI * 2);
+          ctx.fillStyle = `${this.color}${Math.floor(endNodeGlow * 255).toString(16).padStart(2, '0')}`;
+          ctx.fill();
+        }
+      }
+    }
+
+    class Node {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 4;
+        this.connections = [];
+        this.speed = Math.random() * 0.5 + 0.2;
+        this.offset = Math.random() * Math.PI * 2;
+      }
+
+      update(time) {
+        this.y += Math.sin(time * this.speed + this.offset) * 0.3;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#4a9eff';
+        ctx.fill();
+      }
+    }
+
+    const nodes = [];
+    const layers = [4, 6, 6, 4];
+    const margin = 100;
+    const spacing = 50;
+    let pulses = [];
+
+    layers.forEach((nodeCount, layerIndex) => {
+      const layerX = margin + (canvas.offsetWidth - 2 * margin) * (layerIndex / (layers.length - 1));
+      for (let i = 0; i < nodeCount; i++) {
+        const layerY = (canvas.offsetHeight - (nodeCount - 1) * spacing) / 2 + i * spacing;
+        nodes.push(new Node(layerX, layerY));
+      }
+    });
+
+    let currentIndex = 0;
+    for (let i = 0; i < layers.length - 1; i++) {
+      for (let j = 0; j < layers[i]; j++) {
+        for (let k = 0; k < layers[i + 1]; k++) {
+          const startNode = nodes[currentIndex + j];
+          const endNode = nodes[currentIndex + layers[i] + k];
+          startNode.connections.push(endNode);
+        }
+      }
+      currentIndex += layers[i];
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    // Generate multiple concurrent pulses
+    function generatePulses() {
+      // Number of simultaneous paths (2-3 paths)
+      const numPaths = Math.floor(Math.random() * 2) + 2;
+      
+      // Keep track of used start nodes to avoid duplicates
+      const usedStartNodes = new Set();
+      
+      for (let i = 0; i < numPaths; i++) {
+        // Select random unused start node from first layer
+        let availableStartNodes = nodes.slice(0, layers[0]).filter(node => !usedStartNodes.has(node));
+        if (availableStartNodes.length === 0) break;
+        
+        const startNode = availableStartNodes[Math.floor(Math.random() * availableStartNodes.length)];
+        usedStartNodes.add(startNode);
+        
+        // Create path through network
+        let currentNode = startNode;
+        while (currentNode.connections.length > 0) {
+          const nextNode = currentNode.connections[Math.floor(Math.random() * currentNode.connections.length)];
+          pulses.push(new Pulse(currentNode, nextNode));
+          currentNode = nextNode;
+        }
+      }
+    }
+
+    // Generate new pulses periodically
+    setInterval(generatePulses, 2000);
+
+    function animate(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connections
+      nodes.forEach(node => {
+        node.connections.forEach(connectedNode => {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(connectedNode.x, connectedNode.y);
+          ctx.strokeStyle = 'rgba(74, 158, 255, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+      });
+      
+      // Update and draw nodes
+      nodes.forEach(node => {
+        node.update(time / 1000);
+        node.draw();
+      });
+
+      // Update and draw pulses
+      pulses = pulses.filter(pulse => pulse.alive);
+      pulses.forEach(pulse => {
+        pulse.update();
+        pulse.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    animate(0);
+  </script>
+<!-- h1 align=center>Explore Kevin's GitHub Pages</h1 -->
+<!-- p><hr align=left width=1100 -->
+
+<table width="1000" border="0">
+    <tr>
+        <td><img src="artificial-intelligence-distributed-computing-2008.jpg"></td>
+    </tr>
+    <tr>
+        <td width=1000>
+    <h1>What is an AI Model?</h1>
+    
+    <p>An AI model, or Artificial Intelligence model, refers to a mathematical representation of a system or process designed to perform intelligent tasks. It is essentially a machine learning algorithm trained on data to make predictions, decisions, or classifications.</p>
+
+    <h2>Key Characteristics of AI Models</h2>
+    <ul>
+        <li><strong>Learning from Data:</strong> AI models are trained using large datasets to recognize patterns and relationships.</li>
+        <li><strong>Task-Specific:</strong> Different models are designed for specific tasks, such as image recognition, natural language processing, or predictive analytics.</li>
+        <li><strong>Performance Metrics:</strong> Models are evaluated based on their accuracy, precision, recall, and other performance metrics.</li>
+        <li><strong>Scalability:</strong> Many AI models can scale to handle large amounts of data and complex computations.</li>
+    </ul>
+
+    <h2>Types of AI Models</h2>
+    <ul>
+        <li><strong>Neural Networks:</strong> Inspired by the human brain, these include deep learning models like CNNs (Convolutional Neural Networks) for images and RNNs (Recurrent Neural Networks) for sequences.</li>
+        <li><strong>Decision Trees:</strong> Used for classification and regression tasks, these models are easy to interpret but can be complex with large datasets.</li>
+        <li><strong>Support Vector Machines (SVM):</strong> Effective for classification and regression, SVMs work by finding the best boundary between classes.</li>
+        <li><strong>Random Forests:</strong> An ensemble method that combines multiple decision trees to improve accuracy and reduce overfitting.</li>
+    </ul>
+
+    <h2>Training Process of AI Models</h2>
+    <ul>
+        <li><strong>Data Collection:</strong> Gathering relevant data from various sources.</li>
+        <li><strong>Preprocessing:</strong> Cleaning, normalizing, and transforming the data into a suitable format for training.</li>
+        <li><strong>Model Selection:</strong> Choosing an appropriate algorithm based on the task requirements.</li>
+        <li><strong>Training:</strong> Feeding the data into the model to optimize its internal parameters for accurate predictions.</li>
+        <li><strong>Evaluation:</strong> Testing the model's performance using validation or test datasets.</li>
+        <li><strong>Tuning:</strong> Adjusting hyperparameters to improve performance and prevent overfitting.</li>
+    </ul>
+
+    <h2>Applications of AI Models</h2>
+    <ul>
+        <li>Natural Language Processing (NLP)</li>
+        <li>Computer Vision</li>
+        <li>Predictive Analytics</li>
+        <li>Recommendation Systems</li>
+        <li>Autonomous Vehicles</li>
+        <li>Healthcare Diagnostics</li>
+    </ul>
+
+    <h2>Advantages of AI Models</h2>
+    <ul>
+        <li><strong>Automation:</strong> Perform tasks without human intervention.</li>
+        <li><strong>Efficiency:</strong> Process large amounts of data quickly and accurately.</li>
+        <li><strong>Scalability:</strong> Handle increasing workloads effectively.</li>
+        <li><strong>Continuous Improvement:</strong> Models can be retrained with new data to improve performance over time.</li>
+    </ul>
+
+    <h2>Disadvantages of AI Models</h2>
+    <ul>
+        <li><strong>Data Dependency:</strong> Relies on large datasets for training and accuracy.</li>
+        <li><strong>Complexity:</strong> Some models are difficult to interpret and explain.</li>
+        <li><strong>Bias:</strong> Models can reflect biases present in the training data, leading to unfair or inaccurate conclusions.</li>
+        <li><strong>Computational Resources:</strong> Training and running complex models requires significant computational power.</li>
+    </ul>
+        </td>
+    </tr>
+    <tr><td valign="top">
+    <h1>AI-Powered Solutions Tailored to Your Business</h1>
+    <p>
+        I specialize in delivering custom artificial intelligence solutions
+        designed to create real business value. From predictive analytics to
+        intelligent chatbots, my expertise in machine learning and advanced AI
+        systems can help your organization unlock new insights and streamline
+        decision-making processes.
+        <p>
+        My offerings include custom machine learning software,
+        Retrieval-Augmented Generation (RAG) systems leveraging large language
+        models like Llama, and interactive AI dashboards built with tools like
+        Streamlit. These solutions integrate seamlessly with your existing
+        workflows, enabling efficient visualization, analysis, and
+        communication of data.
+        <p>
+        With a strong background in IT software development and a Master’s
+        degree in Machine Learning from California Lutheran University (2014),
+        I’m ready to consult on your AI projects. Send me text directly
+        <b>(805) 416-0949</b> (Los Angeles, CA) for a prompt response. Let’s
+        work together to bring your AI vision to life.
+        <p>
+        Kevin Luzbetak<br>
+        MSc in Machine Learning (2014)<br>
+        California Lutheran University<br>
+    </td></tr>            
+    <tr><td valign="top">
+    <hr>    
+    <h2>Contract AI-Powered Development</h2>
+    <ul>
+        <li><a href="https://pacific-design.com">Pacific-Design.com</a></li>
+    </ul>
+    </td>            
+    </tr>
+    <tr><td>
+        <p>
+        <img src="RAG-Overview-1.png" width=1000><br>
+        <img src="RAG-Overview-2.png" width=1000>
+    </td></tr>            
+</table>
+
+{% include footer.html %}
+
