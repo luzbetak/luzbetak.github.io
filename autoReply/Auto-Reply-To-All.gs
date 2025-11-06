@@ -24,7 +24,7 @@ const MAX_SEND        = 10;         // safety cap per run (50) emails
 const SCAN_BODY_CHARS = 3000;       // analyze first N chars of body
 const PROCESSED_LABEL = 'AutoReplied';
 const SLEEP_MS        = 300;        // small pause between sends
-const DAYS_LOOKBACK   = 3;          // Gmail query window (365) days
+const DAYS_LOOKBACK   = 7;          // Gmail query window (365) days
 // Build a broad Gmail query; content filtering happens in-script too.
 const BASE_QUERY =
   `-in:chats -in:drafts -in:spam -in:trash newer_than:${DAYS_LOOKBACK}d`;
@@ -42,7 +42,7 @@ const COMP_REQUIRE_CONTRACT = '$90+/hour (W-2 contract or hire)';
 const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
 
 // Engines / job boards to never reply to
-const BLOCKED_DOMAIN_RE = /\b(indeed\.com|linkedin\.com|dice\.com|bybit\.com)\b/i;
+const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|bybit\.com)\b/i;
 
 
 //////////////////////////////
@@ -78,7 +78,7 @@ const CITY_GROUPS = {
   ],
   REMOTE: [
     'Remote', 'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
-    'Redwood City', 'Philadelphia', 'Boston', 'Chicago'
+    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale'
   ]
 };
 
@@ -108,7 +108,7 @@ function buildLocalReply(city) {
     `Hi,`,
     ``,
     `I’m based in Agoura Hills, California. For roles in or near ${city || 'the listed city'}, I can support on-site or remote as the client prefers.`,
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} (contract) or ${COMP_REQUIRE_FULLTIME} (full-time).`,
+    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `Please share the job ID, client, location, rate, interview process, and whether on-site/remote is acceptable.`,
     ``,
@@ -122,7 +122,7 @@ function buildHybridReply(city) {
     `Hi,`,
     ``,
     `I’m based in Agoura Hills, California. Due to commute/time, I can be on-site in ${c} up to one day per week, with the remainder remote.`,
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} (contract) or ${COMP_REQUIRE_FULLTIME} (full-time).`,
+    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `Please share the job ID, client, location, rate, interview process, and confirm the one-day-onsite hybrid setup.`,
     ``,
@@ -135,7 +135,7 @@ function buildRemoteReply(city) {
     `Hi,`,
     ``,
     `I’m based in Agoura Hills, California. For roles in ${city || 'this location'}, I’m open to fully remote work.`,
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} (contract) or ${COMP_REQUIRE_FULLTIME} (full-time).`,
+    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `If this position is fully remote, please share the job ID, client, location, rate, and interview process.`,
     ``,
@@ -148,7 +148,7 @@ function buildElseReply() {
     `Hi,`,
     ``,
     `I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.`,
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} (contract) or ${COMP_REQUIRE_FULLTIME} (full-time).`,
+    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `Please include the job ID, client, location, rate, and interview process in your reply.`,
     ``,
@@ -219,7 +219,7 @@ function autoReplyJobs() {
   if (!label) label = GmailApp.createLabel(PROCESSED_LABEL);
 
   // We keep the Gmail query broad and filter by content ourselves.
-  const threads = GmailApp.search(`${BASE_QUERY} -label:"${PROCESSED_LABEL}"`, 0, 100);
+  const threads = GmailApp.search(`${BASE_QUERY} -label:"${PROCESSED_LABEL}"`, 0, 500);
 
   console.log(`Found ${threads.length} threads. DRY_RUN=${DRY_RUN}, MAX_SEND=${MAX_SEND}`);
   let sent = 0, considered = 0, skipped = 0, errors = 0;
