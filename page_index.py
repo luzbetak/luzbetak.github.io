@@ -25,7 +25,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Hard-coded excluded directory patterns (excluding output directory pattern)
-EXCLUDED_DIRS = ['*includes', 'custom*dir', 'animation', 'images', 'search']
+EXCLUDED_DIRS = ['*includes', 'custom*dir', 'animation', 'images', 'search', 'autoReply']
 
 @dataclass
 class IndexEntry:
