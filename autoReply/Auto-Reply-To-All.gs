@@ -35,12 +35,11 @@ const SIGNATURE = [
   'Thanks,',
   'Kevin Luzbetak',
   'Phone  : (747) 388-0422',
-  'Email  : eznvgqx@gmail.com',
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
 const COMP_REQUIRE_CONTRACT = '$90+/hour (W-2 contract or hire)';
-const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
+const COMP_REQUIRE_FULLTIME = '$185,000+ base (full-time)';
 
 // Engines / job boards to never reply to
 const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|jobdivamail\.com|bybit\.com)\b/i;
