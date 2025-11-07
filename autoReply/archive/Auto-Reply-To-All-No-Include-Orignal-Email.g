@@ -1,5 +1,5 @@
 /**
- * Google Auto Reply Email Script (Unified) — with quoted original email
+ * Google Auto Reply Email Script (Unified) — Remote phrasing fixed
  *
  * Organization:
  * 1) CONFIG (edit here)
@@ -10,7 +10,7 @@
  * 6) MAIN: autoReplyJobs()
  *
  * Notes:
- * - We can include the original email below our reply (HTML-quoted).
+ * - Add/delete keywords or cities in one place (sections 2 & 3).
  * - We match emails that (a) look like job opportunities via KEYWORDS and
  *   (b) classify by city/group or fall into ELSE.
  * - We skip job engines (indeed/linkedin/dice), noreply/list/bulk mails.
@@ -34,7 +34,7 @@ const BASE_QUERY =
 const SIGNATURE = [
   'Thanks,',
   'Kevin Luzbetak',
-  'Phone  : (747) 221-3264',
+  'Phone  : (747) 388-0422',
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
@@ -44,14 +44,10 @@ const COMP_REQUIRE_FULLTIME = '$185,000+ base (full-time)';
 // Engines / job boards to never reply to
 const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|jobdivamail\.com|bybit\.com)\b/i;
 
-// === Quoting controls ===
-const INCLUDE_ORIGINAL  = true;     // set false to disable quoting original message
-const MAX_QUOTED_CHARS  = 20000;    // trim oversized original HTML
-const QUOTE_HEADER_HTML = '<br><br>—– Original message —–<br>';
-
 
 //////////////////////////////
 // 2) KEYWORDS (Global job/opportunity identifiers)
+//    -> Easy to add more. Case-insensitive, word/phrase matching.
 //////////////////////////////
 const JOB_KEYWORDS = [
   'Position', 'engineer', 'opportunity', 'urgent', 'requirement',
@@ -70,6 +66,8 @@ const JOB_KEYWORDS_RE = new RegExp(
 
 //////////////////////////////
 // 3) CITY GROUPS (LOCAL / HYBRID / REMOTE)
+//    Add or remove cities by editing the arrays.
+//    Matching is case-insensitive and uses word boundaries where reasonable.
 //////////////////////////////
 const CITY_GROUPS = {
   LOCAL: [
@@ -79,7 +77,8 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    // Keep 'Remote' to classify correctly, but do NOT treat it as a city in replies.
+    // Keep 'Remote' here so we can classify Remote roles correctly,
+    // but we will *not* treat it as a city in replies.
     'Remote',
     'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
     'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale', 'Irving'
@@ -103,7 +102,10 @@ const GROUP_REGEX = Object.fromEntries(
 
 //////////////////////////////
 // 4) REPLY BUILDERS
+//    You can freely edit the text below to tune tone/wording.
+//    City is injected dynamically where relevant.
 //////////////////////////////
+
 function buildLocalReply(city) {
   return [
     `Hi,`,
@@ -131,7 +133,7 @@ function buildHybridReply(city) {
   ].join('\n');
 }
 
-// Do not treat "Remote" as a city.
+// Updated to *not* say "For roles in Remote," or treat Remote like a city.
 function buildRemoteReply() {
   return [
     `Hi,`,
@@ -162,6 +164,7 @@ function buildElseReply() {
 //////////////////////////////
 // 5) ENGINE / LIST GUARDS & HELPERS
 //////////////////////////////
+
 function isFromBlockedEngine(lastMsg) {
   const fromStr = (lastMsg.getFrom() || '').toLowerCase();
   let replyToStr = '';
@@ -195,7 +198,7 @@ function getHaystack(lastMsg) {
 }
 
 // Return {group: 'LOCAL'|'HYBRID'|'REMOTE'|null, city: '...'|null}
-// Ensures a literal "Remote" match is NOT treated as a city value.
+// Ensures that a literal "Remote" match is *not* treated as a city value.
 function classifyByCity(haystack) {
   for (const group of ['LOCAL','HYBRID','REMOTE']) {
     const re = GROUP_REGEX[group];
@@ -213,54 +216,6 @@ function looksLikeJob(haystack) {
   return JOB_KEYWORDS_RE.test(haystack);
 }
 
-// === Quoting helpers ===
-function escapeHtml_(s) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function textToHtml_(s) {
-  return escapeHtml_(s).replace(/\n/g, '<br>');
-}
-
-/**
- * Build the final HTML we’ll send:
- * - Top: your reply (converted to HTML)
- * - Bottom: quoted original email (as HTML inside a blockquote)
- */
-function buildReplyHtml_(replyText, lastMsg) {
-  const replyTop = textToHtml_(replyText);
-  if (!INCLUDE_ORIGINAL) return replyTop;
-
-  // Prefer original HTML body; fall back to plain text if needed.
-  let originalHtml = '';
-  try {
-    originalHtml = (lastMsg.getBody && lastMsg.getBody()) || '';
-  } catch (e) { originalHtml = ''; }
-
-  if (!originalHtml) {
-    try {
-      const plain = (lastMsg.getPlainBody && lastMsg.getPlainBody()) || '';
-      originalHtml = textToHtml_(plain);
-    } catch (e) { originalHtml = ''; }
-  }
-
-  // Trim to keep replies lightweight (avoid Gmail clipping).
-  if (originalHtml && originalHtml.length > MAX_QUOTED_CHARS) {
-    originalHtml = originalHtml.slice(0, MAX_QUOTED_CHARS) + '<br><em>(truncated)</em>';
-  }
-
-  const quoted = originalHtml
-    ? `${QUOTE_HEADER_HTML}<blockquote style="margin:0 0 0 .8em;border-left:3px solid #ccc;padding-left:.8em">${originalHtml}</blockquote>`
-    : '';
-
-  return replyTop + quoted;
-}
-
 
 //////////////////////////////
 // 6) MAIN
@@ -270,7 +225,7 @@ function autoReplyJobs() {
   let label = GmailApp.getUserLabelByName(PROCESSED_LABEL);
   if (!label) label = GmailApp.createLabel(PROCESSED_LABEL);
 
-  // Broad query; content filtering happens below.
+  // We keep the Gmail query broad and filter by content ourselves.
   const threads = GmailApp.search(`${BASE_QUERY} -label:"${PROCESSED_LABEL}"`, 0, 500);
 
   console.log(`Found ${threads.length} threads. DRY_RUN=${DRY_RUN}, MAX_SEND=${MAX_SEND}`);
@@ -319,9 +274,7 @@ function autoReplyJobs() {
         thread.addLabel(label);
         console.log(`WOULD reply (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}"`);
       } else {
-        // Build HTML that includes your reply + quoted original
-        const htmlBody = buildReplyHtml_(replyText, last);
-        last.reply(replyText, { htmlBody });
+        last.reply(replyText);
         thread.addLabel(label);
         sent++;
         console.log(`Replied (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}"`);
