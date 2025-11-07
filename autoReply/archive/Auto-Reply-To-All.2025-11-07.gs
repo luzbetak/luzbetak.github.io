@@ -1,8 +1,14 @@
 /**
- * Google Auto Reply Email Script (Unified)
+ * Google Auto Reply Email Script (Unified) — Remote phrasing fixed
+ * Version: 1.0.1 — 2025-11-07
  *
  * MAIN: autoReplyJobs()
  *
+ * Notes:
+ * - Add/delete keywords or cities in one place (sections 2 & 3).
+ * - We match emails that (a) look like job opportunities via KEYWORDS and
+ *   (b) classify by city/group or fall into ELSE.
+ * - We skip job engines (indeed/linkedin/dice), noreply/list/bulk mails.
  */
 
 //////////////////////////////
@@ -10,10 +16,10 @@
 //////////////////////////////
 const PROCESSED_LABEL = 'AutoReplied';
 const DRY_RUN         = false;     // set to true to test without sending
-const MAX_SEND        = 1;         // safety cap per run (50) emails
+const MAX_SEND        = 3;         // safety cap per run (Max: 50) emails
 const SCAN_BODY_CHARS = 5000;      // analyze first N chars of body
 const SLEEP_MS        = 150;       // small pause between sends
-const DAYS_LOOKBACK   = 30;        // Gmail query window (365) days
+const DAYS_LOOKBACK   = 30;        // Gmail query window (Max: 365) days
 
 // Build a broad Gmail query; content filtering happens in-script too.
 const BASE_QUERY =
@@ -23,13 +29,12 @@ const BASE_QUERY =
 const SIGNATURE = [
   'Thanks,',
   'Kevin Luzbetak',
-  'Phone  : (747) 388-0422',
-  'Email  : eznvgqx@gmail.com',
+  'Phone  : (747) 221-3264',
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
 const COMP_REQUIRE_CONTRACT = '$90+/hour (W-2 contract or hire)';
-const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
+const COMP_REQUIRE_FULLTIME = '$185,000+ base (full-time)';
 
 // Engines / job boards to never reply to
 const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|jobdivamail\.com|bybit\.com)\b/i;
@@ -67,8 +72,11 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    'Remote', 'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
-    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale'
+    // Keep 'Remote' here so we can classify Remote roles correctly,
+    // but we will *not* treat it as a city in replies.
+    'Remote',
+    'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
+    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale', 'Irving'
   ]
 };
 
@@ -111,7 +119,7 @@ function buildHybridReply(city) {
   return [
     `Hi,`,
     ``,
-    `I’m based in Agoura Hills, California. Due to commute/time, I can be on-site in ${c} up to one day per week, with the remainder remote.`,
+    `I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ${c} one day per week and work remotely the remaining four days.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `Please share the job ID, client, location, rate, interview process, and confirm the one-day-onsite hybrid setup.`,
@@ -120,11 +128,12 @@ function buildHybridReply(city) {
   ].join('\n');
 }
 
-function buildRemoteReply(city) {
+// Updated to *not* say "For roles in Remote," or treat Remote like a city.
+function buildRemoteReply() {
   return [
     `Hi,`,
     ``,
-    `I’m based in Agoura Hills, California. For roles in ${city || 'this location'}, I’m open to fully remote work.`,
+    `I’m based in Agoura Hills, California. I’m open to fully remote work.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `If this position is fully remote, please share the job ID, client, location, rate, and interview process.`,
@@ -184,12 +193,15 @@ function getHaystack(lastMsg) {
 }
 
 // Return {group: 'LOCAL'|'HYBRID'|'REMOTE'|null, city: '...'|null}
+// Ensures that a literal "Remote" match is *not* treated as a city value.
 function classifyByCity(haystack) {
   for (const group of ['LOCAL','HYBRID','REMOTE']) {
     const re = GROUP_REGEX[group];
     const m = re.exec(haystack);
     if (m) {
-      return { group, city: m[0] };
+      const hit = m[0];
+      const city = (group === 'REMOTE' && /^remote$/i.test(hit)) ? null : hit;
+      return { group, city };
     }
   }
   return { group: null, city: null };
@@ -246,7 +258,8 @@ function autoReplyJobs() {
     } else if (group === 'HYBRID') {
       replyText = buildHybridReply(city);
     } else if (group === 'REMOTE') {
-      replyText = buildRemoteReply(city);
+      // Do *not* use city in remote reply; avoids "For roles in Remote,"
+      replyText = buildRemoteReply();
     } else {
       replyText = buildElseReply();
     }

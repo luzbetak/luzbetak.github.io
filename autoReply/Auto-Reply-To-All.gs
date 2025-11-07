@@ -1,6 +1,6 @@
 /**
- * Google Auto Reply Email Script (Unified) — Remote phrasing fixed
- * Version: 1.0.1 — 2025-11-07
+ * Google Auto Reply Email Script (Unified) — adds greeting with sender's name
+ * Version: 1.0.2 — 2025-11-07
  *
  * MAIN: autoReplyJobs()
  *
@@ -9,6 +9,7 @@
  * - We match emails that (a) look like job opportunities via KEYWORDS and
  *   (b) classify by city/group or fall into ELSE.
  * - We skip job engines (indeed/linkedin/dice), noreply/list/bulk mails.
+ * - NEW: Greets the sender by extracted name: "Hi Priya Tiwari,".
  */
 
 //////////////////////////////
@@ -42,7 +43,6 @@ const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\
 
 //////////////////////////////
 // 2) KEYWORDS (Global job/opportunity identifiers)
-//    -> Easy to add more. Case-insensitive, word/phrase matching.
 //////////////////////////////
 const JOB_KEYWORDS = [
   'Position', 'engineer', 'opportunity', 'urgent', 'requirement',
@@ -50,7 +50,6 @@ const JOB_KEYWORDS = [
   'Scientist', 'Cloud', 'Role'
 ];
 
-// Precompile regex for faster checks
 const JOB_KEYWORDS_RE = new RegExp(
   JOB_KEYWORDS
     .map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
@@ -61,8 +60,6 @@ const JOB_KEYWORDS_RE = new RegExp(
 
 //////////////////////////////
 // 3) CITY GROUPS (LOCAL / HYBRID / REMOTE)
-//    Add or remove cities by editing the arrays.
-//    Matching is case-insensitive and uses word boundaries where reasonable.
 //////////////////////////////
 const CITY_GROUPS = {
   LOCAL: [
@@ -72,15 +69,13 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    // Keep 'Remote' here so we can classify Remote roles correctly,
-    // but we will *not* treat it as a city in replies.
+    // Include 'Remote' for classification but never treat as a city in replies.
     'Remote',
     'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
     'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale', 'Irving'
   ]
 };
 
-// Build quick regex maps for each group
 const GROUP_REGEX = Object.fromEntries(
   Object.entries(CITY_GROUPS).map(([group, cities]) => {
     const re = new RegExp(
@@ -96,61 +91,62 @@ const GROUP_REGEX = Object.fromEntries(
 
 
 //////////////////////////////
-// 4) REPLY BUILDERS
-//    You can freely edit the text below to tune tone/wording.
-//    City is injected dynamically where relevant.
+// 4) REPLY BUILDERS (now accept senderName)
 //////////////////////////////
+function greetLine(senderName) {
+  return senderName ? `Hi ${senderName},` : 'Hi,';
+}
 
-function buildLocalReply(city) {
+function buildLocalReply(city, senderName) {
   return [
-    `Hi,`,
-    ``,
+    greetLine(senderName),
+    '',
     `I’m based in Agoura Hills, California. For roles in or near ${city || 'the listed city'}, I can support on-site or remote as the client prefers.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    ``,
+    '',
     `Please share the job ID, client, location, rate, interview process, and whether on-site/remote is acceptable.`,
-    ``,
+    '',
     SIGNATURE
   ].join('\n');
 }
 
-function buildHybridReply(city) {
+function buildHybridReply(city, senderName) {
   const c = city || 'the listed city';
   return [
-    `Hi,`,
-    ``,
+    greetLine(senderName),
+    '',
     `I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ${c} one day per week and work remotely the remaining four days.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    ``,
+    '',
     `Please share the job ID, client, location, rate, interview process, and confirm the one-day-onsite hybrid setup.`,
-    ``,
+    '',
     SIGNATURE
   ].join('\n');
 }
 
-// Updated to *not* say "For roles in Remote," or treat Remote like a city.
-function buildRemoteReply() {
+// Intentionally does not say "For roles in Remote," nor inject a 'city'.
+function buildRemoteReply(senderName) {
   return [
-    `Hi,`,
-    ``,
+    greetLine(senderName),
+    '',
     `I’m based in Agoura Hills, California. I’m open to fully remote work.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    ``,
+    '',
     `If this position is fully remote, please share the job ID, client, location, rate, and interview process.`,
-    ``,
+    '',
     SIGNATURE
   ].join('\n');
 }
 
-function buildElseReply() {
+function buildElseReply(senderName) {
   return [
-    `Hi,`,
-    ``,
+    greetLine(senderName),
+    '',
     `I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    ``,
+    '',
     `Please include the job ID, client, location, rate, and interview process in your reply.`,
-    ``,
+    '',
     SIGNATURE
   ].join('\n');
 }
@@ -159,7 +155,6 @@ function buildElseReply() {
 //////////////////////////////
 // 5) ENGINE / LIST GUARDS & HELPERS
 //////////////////////////////
-
 function isFromBlockedEngine(lastMsg) {
   const fromStr = (lastMsg.getFrom() || '').toLowerCase();
   let replyToStr = '';
@@ -192,8 +187,73 @@ function getHaystack(lastMsg) {
   return `${subject}\n${body}`;
 }
 
+// Extract a friendly sender name from "From" (or Reply-To as fallback)
+function getSenderName(lastMsg) {
+  // Prefer display name from From header if present
+  const rawFrom = (lastMsg.getFrom() || '').trim();
+  let display = '';
+  let email = '';
+
+  // Patterns like: Name <email@domain>
+  const mAngle = rawFrom.match(/^(?:"?([^"]+)"?\s*)?<([^>]+)>$/);
+  if (mAngle) {
+    display = (mAngle[1] || '').trim();
+    email = (mAngle[2] || '').trim();
+  } else {
+    // Might be just an email or "Name (Company) <email>" already flattened
+    // Try to separate if there's a space + angle anyway
+    const angleIdx = rawFrom.indexOf('<');
+    if (angleIdx > -1) {
+      display = rawFrom.slice(0, angleIdx).trim().replace(/["]/g, '');
+      const inner = rawFrom.slice(angleIdx).match(/<([^>]+)>/);
+      email = inner ? inner[1].trim() : '';
+    } else if (/\S+@\S+/.test(rawFrom)) {
+      email = rawFrom;
+    } else {
+      display = rawFrom.replace(/["]/g, '').trim();
+    }
+  }
+
+  // If no display name, try Reply-To
+  if (!display) {
+    try {
+      const rt = (lastMsg.getReplyTo && lastMsg.getReplyTo()) || '';
+      const mRT = rt.match(/^(?:"?([^"]+)"?\s*)?<([^>]+)>$/);
+      if (mRT) {
+        display = (mRT[1] || '').trim();
+        email = email || (mRT[2] || '').trim();
+      }
+    } catch (e) {}
+  }
+
+  // Clean up display like: remove trailing orgs in parens, excessive spaces
+  display = display.replace(/\s*\([^)]*\)\s*$/, '').replace(/\s+/g, ' ').trim();
+
+  // If still empty, infer from local part of the email
+  if (!display && email) {
+    const local = email.split('@')[0] || '';
+    // Split on common separators and title-case
+    const parts = local.split(/[._\-+]/).filter(Boolean);
+    if (parts.length) {
+      display = parts
+        .map(p => p.length ? (p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()) : '')
+        .join(' ');
+    }
+  }
+
+  // Guard against oddities like "Recruiter", "Team", or long strings; trim to 40 chars
+  if (display && display.length > 40) display = display.slice(0, 40).trim();
+
+  // Return null if we ended up with nothing useful or just the domain
+  if (!display || /@/.test(display)) return null;
+
+  // Avoid generic list-y names
+  if (/^(team|recruiting|recruitment|talent|hr|careers?)$/i.test(display)) return null;
+
+  return display;
+}
+
 // Return {group: 'LOCAL'|'HYBRID'|'REMOTE'|null, city: '...'|null}
-// Ensures that a literal "Remote" match is *not* treated as a city value.
 function classifyByCity(haystack) {
   for (const group of ['LOCAL','HYBRID','REMOTE']) {
     const re = GROUP_REGEX[group];
@@ -251,28 +311,30 @@ function autoReplyJobs() {
     // Classify by city groups
     const { group, city } = classifyByCity(haystack);
 
+    // Extract a polite sender name for greeting
+    const senderName = getSenderName(last);
+
     // Choose reply text by group
     let replyText = '';
     if (group === 'LOCAL') {
-      replyText = buildLocalReply(city);
+      replyText = buildLocalReply(city, senderName);
     } else if (group === 'HYBRID') {
-      replyText = buildHybridReply(city);
+      replyText = buildHybridReply(city, senderName);
     } else if (group === 'REMOTE') {
-      // Do *not* use city in remote reply; avoids "For roles in Remote,"
-      replyText = buildRemoteReply();
+      replyText = buildRemoteReply(senderName);
     } else {
-      replyText = buildElseReply();
+      replyText = buildElseReply(senderName);
     }
 
     try {
       if (DRY_RUN) {
         thread.addLabel(label);
-        console.log(`WOULD reply (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}"`);
+        console.log(`WOULD reply (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}" | Greet="${senderName || ''}"`);
       } else {
         last.reply(replyText);
         thread.addLabel(label);
         sent++;
-        console.log(`Replied (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}"`);
+        console.log(`Replied (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${fromStr} | "${last.getSubject()}" | Greet="${senderName || ''}"`);
         Utilities.sleep(SLEEP_MS);
       }
     } catch (err) {
