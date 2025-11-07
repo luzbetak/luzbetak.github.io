@@ -1,5 +1,5 @@
 /**
- * Google Auto Reply Email Script (Unified) — Remote phrasing fixed
+ * Google Auto Reply Email Script (Unified)
  *
  * Organization:
  * 1) CONFIG (edit here)
@@ -78,10 +78,7 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    // Keep 'Remote' here so we can classify Remote roles correctly,
-    // but we will *not* treat it as a city in replies.
-    'Remote',
-    'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
+    'Remote', 'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
     'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale'
   ]
 };
@@ -134,12 +131,11 @@ function buildHybridReply(city) {
   ].join('\n');
 }
 
-// Updated to *not* say "For roles in Remote," or treat Remote like a city.
-function buildRemoteReply() {
+function buildRemoteReply(city) {
   return [
     `Hi,`,
     ``,
-    `I’m based in Agoura Hills, California. I’m open to fully remote work.`,
+    `I’m based in Agoura Hills, California. For roles in ${city || 'this location'}, I’m open to fully remote work.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     ``,
     `If this position is fully remote, please share the job ID, client, location, rate, and interview process.`,
@@ -199,15 +195,12 @@ function getHaystack(lastMsg) {
 }
 
 // Return {group: 'LOCAL'|'HYBRID'|'REMOTE'|null, city: '...'|null}
-// Ensures that a literal "Remote" match is *not* treated as a city value.
 function classifyByCity(haystack) {
   for (const group of ['LOCAL','HYBRID','REMOTE']) {
     const re = GROUP_REGEX[group];
     const m = re.exec(haystack);
     if (m) {
-      const hit = m[0];
-      const city = (group === 'REMOTE' && /^remote$/i.test(hit)) ? null : hit;
-      return { group, city };
+      return { group, city: m[0] };
     }
   }
   return { group: null, city: null };
@@ -264,8 +257,7 @@ function autoReplyJobs() {
     } else if (group === 'HYBRID') {
       replyText = buildHybridReply(city);
     } else if (group === 'REMOTE') {
-      // Do *not* use city in remote reply; avoids "For roles in Remote,"
-      replyText = buildRemoteReply();
+      replyText = buildRemoteReply(city);
     } else {
       replyText = buildElseReply();
     }

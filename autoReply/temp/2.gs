@@ -1,5 +1,5 @@
 /**
- * Google Auto Reply Email Script (Unified) — Remote phrasing fixed
+ * Google Auto Reply Email Script (Unified, Remote phrasing fixed)
  *
  * Organization:
  * 1) CONFIG (edit here)
@@ -14,6 +14,10 @@
  * - We match emails that (a) look like job opportunities via KEYWORDS and
  *   (b) classify by city/group or fall into ELSE.
  * - We skip job engines (indeed/linkedin/dice), noreply/list/bulk mails.
+ *
+ * Change requested:
+ * - The Remote template no longer says “For roles in Remote,” and we also
+ *   avoid treating the literal word "Remote" as a city when injecting.
  */
 
 //////////////////////////////
@@ -21,10 +25,10 @@
 //////////////////////////////
 const PROCESSED_LABEL = 'AutoReplied';
 const DRY_RUN         = false;     // set to true to test without sending
-const MAX_SEND        = 1;         // safety cap per run (50) emails
+const MAX_SEND        = 1;         // safety cap per run (e.g., 50)
 const SCAN_BODY_CHARS = 5000;      // analyze first N chars of body
 const SLEEP_MS        = 150;       // small pause between sends
-const DAYS_LOOKBACK   = 30;        // Gmail query window (365) days
+const DAYS_LOOKBACK   = 30;        // Gmail query window (e.g., 365)
 
 // Build a broad Gmail query; content filtering happens in-script too.
 const BASE_QUERY =
@@ -78,10 +82,8 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    // Keep 'Remote' here so we can classify Remote roles correctly,
-    // but we will *not* treat it as a city in replies.
-    'Remote',
-    'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
+    // Keep "Remote" here for classification purposes, but we won't inject it as a city.
+    'Remote', 'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
     'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale'
   ]
 };
@@ -134,7 +136,7 @@ function buildHybridReply(city) {
   ].join('\n');
 }
 
-// Updated to *not* say "For roles in Remote," or treat Remote like a city.
+// *** Updated per request: no "For roles in Remote," phrasing ***
 function buildRemoteReply() {
   return [
     `Hi,`,
@@ -199,7 +201,7 @@ function getHaystack(lastMsg) {
 }
 
 // Return {group: 'LOCAL'|'HYBRID'|'REMOTE'|null, city: '...'|null}
-// Ensures that a literal "Remote" match is *not* treated as a city value.
+// Also: if the literal hit is "Remote", do not inject it as a city.
 function classifyByCity(haystack) {
   for (const group of ['LOCAL','HYBRID','REMOTE']) {
     const re = GROUP_REGEX[group];
@@ -264,7 +266,7 @@ function autoReplyJobs() {
     } else if (group === 'HYBRID') {
       replyText = buildHybridReply(city);
     } else if (group === 'REMOTE') {
-      // Do *not* use city in remote reply; avoids "For roles in Remote,"
+      // Remote path ignores city name entirely (and "Remote" is not injected as a city).
       replyText = buildRemoteReply();
     } else {
       replyText = buildElseReply();
