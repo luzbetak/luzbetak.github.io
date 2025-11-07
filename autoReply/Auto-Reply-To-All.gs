@@ -21,10 +21,10 @@
 //////////////////////////////
 const PROCESSED_LABEL = 'AutoReplied';
 const DRY_RUN         = false;     // set to true to test without sending
-const MAX_SEND        = 1;         // safety cap per run (50) emails
+const MAX_SEND        = 3;         // safety cap per run (Max: 50) emails
 const SCAN_BODY_CHARS = 5000;      // analyze first N chars of body
 const SLEEP_MS        = 150;       // small pause between sends
-const DAYS_LOOKBACK   = 30;        // Gmail query window (365) days
+const DAYS_LOOKBACK   = 30;        // Gmail query window (Max: 365) days
 
 // Build a broad Gmail query; content filtering happens in-script too.
 const BASE_QUERY =
@@ -82,7 +82,7 @@ const CITY_GROUPS = {
     // but we will *not* treat it as a city in replies.
     'Remote',
     'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
-    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale'
+    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale', 'Irving'
   ]
 };
 
