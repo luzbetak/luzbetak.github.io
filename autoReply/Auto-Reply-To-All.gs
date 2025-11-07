@@ -19,12 +19,13 @@
 //////////////////////////////
 // 1) CONFIG
 //////////////////////////////
-const DRY_RUN         = false;      // set to true to test without sending
-const MAX_SEND        = 10;         // safety cap per run (50) emails
-const SCAN_BODY_CHARS = 3000;       // analyze first N chars of body
 const PROCESSED_LABEL = 'AutoReplied';
-const SLEEP_MS        = 300;        // small pause between sends
-const DAYS_LOOKBACK   = 7;          // Gmail query window (365) days
+const DRY_RUN         = false;     // set to true to test without sending
+const MAX_SEND        = 1;         // safety cap per run (50) emails
+const SCAN_BODY_CHARS = 5000;      // analyze first N chars of body
+const SLEEP_MS        = 150;       // small pause between sends
+const DAYS_LOOKBACK   = 30;        // Gmail query window (365) days
+
 // Build a broad Gmail query; content filtering happens in-script too.
 const BASE_QUERY =
   `-in:chats -in:drafts -in:spam -in:trash newer_than:${DAYS_LOOKBACK}d`;
@@ -33,16 +34,16 @@ const BASE_QUERY =
 const SIGNATURE = [
   'Thanks,',
   'Kevin Luzbetak',
-  '(747) 388-0422',
-  'eznvgqx@gmail.com',
-  'https://kevinluzbetak.com/resume.pdf'
+  'Phone  : (747) 388-0422',
+  'Email  : eznvgqx@gmail.com',
+  'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
 const COMP_REQUIRE_CONTRACT = '$90+/hour (W-2 contract or hire)';
 const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
 
 // Engines / job boards to never reply to
-const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|bybit\.com)\b/i;
+const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|dice\.com|jobdivamail\.com|bybit\.com)\b/i;
 
 
 //////////////////////////////
@@ -74,7 +75,7 @@ const CITY_GROUPS = {
     'Agoura Hills', 'Calabasas', 'Santa Monica', 'Burbank', 'Glendale'
   ],
   HYBRID: [
-    'Torrance', 'Irvine', 'Santa Barbara', "San Diego", "Pasadena"
+    'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
     'Remote', 'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
