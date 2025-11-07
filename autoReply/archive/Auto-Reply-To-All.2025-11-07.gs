@@ -1,19 +1,8 @@
 /**
  * Google Auto Reply Email Script (Unified)
  *
- * Organization:
- * 1) CONFIG (edit here)
- * 2) KEYWORDS section  — global "job/opportunity" detectors
- * 3) CITY GROUPS       — LOCAL / HYBRID / REMOTE city keywords
- * 4) REPLY BUILDERS    — section-specific messages (editable)
- * 5) ENGINE / LIST GUARDS, HELPERS
- * 6) MAIN: autoReplyJobs()
+ * MAIN: autoReplyJobs()
  *
- * Notes:
- * - Add/delete keywords or cities in one place (sections 2 & 3).
- * - We match emails that (a) look like job opportunities via KEYWORDS and
- *   (b) classify by city/group or fall into ELSE.
- * - We skip job engines (indeed/linkedin/dice), noreply/list/bulk mails.
  */
 
 //////////////////////////////
