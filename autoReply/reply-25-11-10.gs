@@ -74,10 +74,9 @@ const CITY_GROUPS = {
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-    // Include 'Remote' for classification but never treat as a city in replies.
-    'Remote',
-    'Dallas', 'New York', 'Louisville', 'Kentucky', 'Texas', 'San Francisco', 'Florida',
-    'Redwood City', 'Philadelphia', 'Boston', 'Chicago', 'Sunnyvale', 'Irving'
+  'Remote',        'Boston',     'Chicago',  'Dallas',       'Florida',      'Irving',
+  'Kentucky',      'Louisville', 'New York', 'Philadelphia', 'Redwood City', 'Richland',
+  'San Francisco', 'Sunnyvale',  'Texas'
   ]
 };
 
