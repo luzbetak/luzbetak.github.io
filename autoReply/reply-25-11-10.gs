@@ -149,7 +149,7 @@ function buildElseReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`
+    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`,
     `I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     '',
