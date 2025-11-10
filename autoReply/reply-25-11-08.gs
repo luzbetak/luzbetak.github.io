@@ -45,9 +45,14 @@ const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|jobdi
 // 2) KEYWORDS (Global job/opportunity identifiers)
 //////////////////////////////
 const JOB_KEYWORDS = [
-  'Position', 'engineer', 'opportunity', 'urgent', 'requirement',
-  'job', 'Machine Learning', 'Contract', 'Snowflake', 'Databricks',
-  'Scientist', 'Cloud', 'Role'
+  'Airflow',     'Analytics', 'AWS',       'Azure',      'Candidate',
+  'Career',      'Catalog',   'Cloud',     'Cloud',      'Collaboration',
+  'Contract',    'Contract',  'DAG',       'Databricks', 'Delta',
+  'Engineer',    'ETL',       'GCP',       'Governance', 'Integration',
+  'Job',         'Kafka',     'Machine',   'Modeling',   'Opportunity',
+  'Pipeline',    'Position',  'PySpark',   'Python',     'Redshift',
+  'Requirement', 'Role',      'Scientist', 'Skill',      'Snowflake',
+  'Snowflake',   'SQL',       'Urgent'
 ];
 
 const JOB_KEYWORDS_RE = new RegExp(
@@ -63,7 +68,7 @@ const JOB_KEYWORDS_RE = new RegExp(
 //////////////////////////////
 const CITY_GROUPS = {
   LOCAL: [
-    'Agoura Hills', 'Calabasas', 'Santa Monica', 'Burbank', 'Glendale'
+    'Agoura Hills', 'Calabasas', 'Thousand Oaks', 'Santa Monica', 'Burbank', 'Glendale'
   ],
   HYBRID: [
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
