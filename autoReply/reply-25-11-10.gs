@@ -68,16 +68,17 @@ const JOB_KEYWORDS_RE = new RegExp(
 //////////////////////////////
 const CITY_GROUPS = {
   LOCAL: [
-    'Agoura Hills', 'Calabasas', 'Thousand Oaks', 'Santa Monica', 'Burbank', 'Glendale'
+    'Agoura', 'Calabasas', 'Thousand Oaks', 'Santa Monica', 'Burbank', 'Glendale', 'Moorpark'
   ],
   HYBRID: [
     'Torrance', 'Irvine', 'Santa Barbara', 'San Diego', 'Pasadena', 'Culver City'
   ],
   REMOTE: [
-  'Remote',        'Boston',     'Chicago',  'Dallas',       'Florida',      'Irving',
-  'Kentucky',      'Louisville', 'New York', 'Philadelphia', 'Redwood City', 'Richland',
-  'San Francisco', 'Sunnyvale',  'Texas'
-  ]
+    'Remote',   'Boston',     'Chicago',   'Dallas', 'Florida',      'Francisco', 'Irving',
+    'Kentucky', 'Louisville', 'New York',  'Oregon', 'Philadelphia', 'Portland',  'Redwood',
+    'Richland', 'Seattle',    'Sunnyvale', 'Texas'
+  ];
+
 };
 
 const GROUP_REGEX = Object.fromEntries(
