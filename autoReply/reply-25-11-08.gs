@@ -1,6 +1,6 @@
 /**
  * Google Auto Reply Email Script (Unified) — adds greeting with sender's name
- * Version: 1.0.2 — 2025-11-07
+ * Version: 1.0.3 — 2025-11-09
  *
  * MAIN: autoReplyJobs()
  *
@@ -34,8 +34,8 @@ const SIGNATURE = [
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
-const COMP_REQUIRE_CONTRACT = '$90+/hour (W-2 contract or hire)';
-const COMP_REQUIRE_FULLTIME = '$185,000+ base (full-time)';
+const COMP_REQUIRE_CONTRACT = '$87+/hour (W-2 contract or hire)';
+const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
 
 // Engines / job boards to never reply to
 const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|jobdivamail\.com|bybit\.com)\b/i;
@@ -345,4 +345,5 @@ function autoReplyJobs() {
 
   console.log(`Summary => Considered: ${considered}, Sent: ${sent}, Skipped: ${skipped}, Errors: ${errors}`);
 }
+
 
