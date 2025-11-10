@@ -77,8 +77,7 @@ const CITY_GROUPS = {
     'Remote',   'Boston',     'Chicago',   'Dallas', 'Florida',      'Francisco', 'Irving',
     'Kentucky', 'Louisville', 'New York',  'Oregon', 'Philadelphia', 'Portland',  'Redwood',
     'Richland', 'Seattle',    'Sunnyvale', 'Texas'
-  ];
-
+  ]
 };
 
 const GROUP_REGEX = Object.fromEntries(
@@ -106,8 +105,8 @@ function buildLocalReply(city, senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.` 
-    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`
+    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.`, 
+    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`,
     `I’m based in Agoura Hills, California. For roles in or near ${city || 'the listed city'}, I can support on-site or remote as the client prefers.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     '',
@@ -122,8 +121,8 @@ function buildHybridReply(city, senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.` 
-    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`
+    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.`,
+    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`,
     `I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ${c} one day per week and work remotely the remaining four days.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     '',
@@ -138,8 +137,8 @@ function buildRemoteReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.` 
-    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`
+    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university.`,
+    `I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`,
     `I’m based in Agoura Hills, California. I’m open to fully remote work.`,
     `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
     '',
@@ -358,5 +357,6 @@ function autoReplyJobs() {
 
   console.log(`Summary => Considered: ${considered}, Sent: ${sent}, Skipped: ${skipped}, Errors: ${errors}`);
 }
+
 
 
