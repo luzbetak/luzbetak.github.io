@@ -1,6 +1,6 @@
 /**
  * Google Auto Reply Email Script (Unified)
- * Version: 1.2.0 — 2025-11-11
+ * Version: 1.0.1 — 2025-11-12
  *
  * Behavior:
  * 1) Reply-per-sender with TTL: reply again to the same sender after 7 days.
@@ -23,14 +23,13 @@ const SENDER_DB_MAX     = 5000;      // soft cap to prevent unbounded growth
 const TTL_DAYS          = 7;         // << Reply again to same sender after 7 days
 
 // Broad query; content filtering happens in-script.
-const BASE_QUERY =
-  `-in:chats -in:drafts -in:spam -in:trash newer_than:${DAYS_LOOKBACK}d`;
+const BASE_QUERY = `in:inbox newer_than:${DAYS_LOOKBACK}d`;
 
 // Contact/signature & preferences
 const SIGNATURE = [
   'Thanks,',
   'Kevin Luzbetak',
-  'Phone  : (747) 221-3264',
+  'Phone  : (818) 288-7357',
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
@@ -94,25 +93,25 @@ function buildLocalReply(city, senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.`,
-    `I’m based in Agoura Hills, California. For roles in or near ${city || 'the listed city'}, I can support on-site or remote as the client prefers.`,
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.',
+    'I’m based in Agoura Hills, California. For roles in or near ' + (city || 'the listed city') + ', I can support on-site or remote as the client prefers.',
     '',
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    `Please share the job ID, client, location, and confirm salary in your reply.`,
+    'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
+    'Please share the job ID, client, location, and confirm salary in your reply.',
     '',
     SIGNATURE
   ].join('\n');
 }
 
 function buildHybridReply(city, senderName) {
-  const c = city || 'the listed city';
+  var c = city || 'the listed city';
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ${c} one day per week and work remotely the remaining four days.`,
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ' + c + ' one day per week and work remotely the remaining four days.',
     '',
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    `Please share the job ID, client, location, confirm salary and the one-day-onsite hybrid setup in your reply.`,
+    'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
+    'Please share the job ID, client, location, confirm salary and the one-day-onsite hybrid setup in your reply.',
     '',
     SIGNATURE
   ].join('\n');
@@ -122,10 +121,10 @@ function buildRemoteReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. I’m open to fully remote work.`,
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. I’m open to fully remote work.',
     '',
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    `If this position is fully remote, please share the job ID, client, and confirm salary in your reply.`,
+    'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
+    'If this position is fully remote, please share the job ID, client, and confirm salary in your reply.',
     '',
     SIGNATURE
   ].join('\n');
@@ -135,14 +134,15 @@ function buildElseReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    `I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.`,
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.',
     '',
-    `My compensation requirements are ${COMP_REQUIRE_CONTRACT} or ${COMP_REQUIRE_FULLTIME} .`,
-    `Please include the job ID, client, location, and confirm salary in your reply.`,
+    'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
+    'Please include the job ID, client, location, and confirm salary in your reply.',
     '',
     SIGNATURE
   ].join('\n');
 }
+
 
 //////////////////////////////
 // 5) ENGINE / LIST GUARDS & HELPERS
