@@ -67,7 +67,7 @@ const CITY_GROUPS = {
   HYBRID: ['Torrance','Irvine','Santa Barbara','San Diego','Pasadena','Culver City'],
   REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving',
            'Kentucky','Louisville','New York','Oregon','Philadelphia','Portland','Redwood',
-           'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis']
+           'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis', 'Mountain View']
 };
 
 const GROUP_REGEX = Object.fromEntries(
