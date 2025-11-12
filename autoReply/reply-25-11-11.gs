@@ -1,9 +1,9 @@
 /**
  * Google Auto Reply Email Script (Unified)
- * Version: 1.1.1 — 2025-11-11
+ * Version: 1.2.0 — 2025-11-11
  *
  * Behavior:
- * 1) Reply once per sender email across all threads (never again to that email).
+ * 1) Reply-per-sender with TTL: reply again to the same sender after 7 days.
  * 2) Never reply in a thread that already has any message from me.
  *
  * MAIN: autoReplyJobs()
@@ -18,8 +18,9 @@ const MAX_SEND          = 50;        // safety cap per run
 const SCAN_BODY_CHARS   = 5000;      // analyze first N chars of body
 const SLEEP_MS          = 150;       // pause between sends (ms)
 const DAYS_LOOKBACK     = 30;        // Gmail query window (days)
-const SENDER_DB_KEY     = 'AutoReply_SendOnceBySender_v1'; // UserProperties key
+const SENDER_DB_KEY     = 'AutoReply_SendOnceBySender_v1'; // UserProperties key (kept same)
 const SENDER_DB_MAX     = 5000;      // soft cap to prevent unbounded growth
+const TTL_DAYS          = 7;         // << Reply again to same sender after 7 days
 
 // Broad query; content filtering happens in-script.
 const BASE_QUERY =
@@ -66,7 +67,7 @@ const CITY_GROUPS = {
   HYBRID: ['Torrance','Irvine','Santa Barbara','San Diego','Pasadena','Culver City'],
   REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving',
            'Kentucky','Louisville','New York','Oregon','Philadelphia','Portland','Redwood',
-           'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis','Cupertino', 'Austin']
+           'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis']
 };
 
 const GROUP_REGEX = Object.fromEntries(
@@ -272,7 +273,7 @@ function looksLikeJob(haystack) {
 }
 
 //////////////////////////////
-// 5.5) PER-SENDER “REPLY ONCE” DB
+// 5.5) PER-SENDER DB with TTL
 //////////////////////////////
 function loadSenderDB() {
   const props = PropertiesService.getUserProperties();
@@ -297,9 +298,15 @@ function markSenderReplied(db, email) {
   db[email] = new Date().toISOString();
 }
 
-function alreadyRepliedToSender(db, email) {
+// TTL-aware check: returns true if we replied within the last TTL_DAYS
+function alreadyRepliedToSender(db, email, ttlDays) {
   if (!email) return false;
-  return !!db[email];
+  const iso = db[email];
+  if (!iso) return false;
+  if (!ttlDays || ttlDays <= 0) return true; // no TTL => block forever
+  const then = new Date(iso).getTime();
+  const now  = Date.now();
+  return (now - then) < (ttlDays * 24 * 60 * 60 * 1000);
 }
 
 //////////////////////////////
@@ -310,7 +317,7 @@ function autoReplyJobs() {
   let label = GmailApp.getUserLabelByName(PROCESSED_LABEL);
   if (!label) label = GmailApp.createLabel(PROCESSED_LABEL);
 
-  // Per-sender DB (reply-once per email)
+  // Per-sender DB (reply-once per email with TTL)
   const senderDB = loadSenderDB();
 
   const threads = GmailApp.search(`${BASE_QUERY} -label:"${PROCESSED_LABEL}"`, 0, 500);
@@ -329,7 +336,7 @@ function autoReplyJobs() {
     const lastFromStr = (last.getFrom() || '').toLowerCase();
     if (lastFromStr.includes(me)) { skipped++; continue; }
 
-    // **Rule 2**: Skip if *any* message in this thread is from me
+    // Rule 2: Skip if *any* message in this thread is from me
     if (msgs.some(m => (m.getFrom() || '').toLowerCase().includes(me))) { skipped++; continue; }
 
     // Engines and bulk/list mail
@@ -340,10 +347,10 @@ function autoReplyJobs() {
     // Must look like a job/opportunity
     if (!looksLikeJob(haystack)) { skipped++; continue; }
 
-    // **Rule 1**: Per-sender guard — reply only if we haven't replied to this email before
+    // TTL guard — reply only if we haven't replied to this sender in the last TTL_DAYS
     const senderEmail = getSenderEmail(last);
     if (!senderEmail) { skipped++; continue; }
-    if (alreadyRepliedToSender(senderDB, senderEmail)) {
+    if (alreadyRepliedToSender(senderDB, senderEmail, TTL_DAYS)) {
       try { thread.addLabel(label); } catch (_e) {}
       skipped++; continue;
     }
@@ -374,7 +381,7 @@ function autoReplyJobs() {
       } else {
         last.reply(replyText);
         thread.addLabel(label);
-        markSenderReplied(senderDB, senderEmail); // remember so we don't reply to this sender again
+        markSenderReplied(senderDB, senderEmail); // remember timestamp for TTL
         sent++;
         console.log(`Replied (${group || 'ELSE'}${city ? `/${city}` : ''}) -> ${senderEmail} | "${last.getSubject()}" | Greet="${senderName || ''}"`);
         Utilities.sleep(SLEEP_MS);
