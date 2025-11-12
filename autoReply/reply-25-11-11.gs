@@ -34,8 +34,8 @@ const SIGNATURE = [
   'Resume : https://kevinluzbetak.com/resume.pdf'
 ].join('\n');
 
-const COMP_REQUIRE_CONTRACT = '$87+/hour (W-2 contract or hire)';
-const COMP_REQUIRE_FULLTIME = '$180,000+ base (full-time)';
+const COMP_REQUIRE_CONTRACT = '$80+/hour (W-2 contract or hire)';
+const COMP_REQUIRE_FULLTIME = '$165,000+ base (full-time)';
 
 // Engines / job boards to never reply to
 const BLOCKED_DOMAIN_RE = /\b(indeed\.com|match\.indeed\.com|linkedin\.com|jobdivamail\.com|bybit\.com)\b/i;
