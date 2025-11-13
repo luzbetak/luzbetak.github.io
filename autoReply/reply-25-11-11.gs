@@ -93,8 +93,7 @@ function buildLocalReply(city, senderName) {
   return [
     greetLine(senderName),
     '',
-    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities.',
-    'I’m based in Agoura Hills, California. For roles in or near ' + (city || 'the listed city') + ', I can support on-site or remote as the client prefers.',
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Machine Learning from a U.S.-accredited university. I bring 25+ years of experience as a Software Engineer and Data Engineer, with deep expertise in large-scale systems, data processing, and advanced programming. I’m based in Agoura Hills, California. For roles in or near ' + (city || 'the listed city') + ', I can support on-site or remote as the client prefers.',
     '',
     'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
     'Please share the job ID, client, location, and confirm salary in your reply.',
@@ -108,7 +107,7 @@ function buildHybridReply(city, senderName) {
   return [
     greetLine(senderName),
     '',
-    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ' + c + ' one day per week and work remotely the remaining four days.',
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Machine Learning from a U.S.-accredited university. I bring 25+ years of experience as a Software Engineer and Data Engineer, with deep expertise in large-scale systems, data processing, and advanced programming. I’m based in Agoura Hills, California. Due to commute time, I can be on-site in ' + c + ' one day per week and work remotely the remaining four days.',
     '',
     'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
     'Please share the job ID, client, location, confirm salary and the one-day-onsite hybrid setup in your reply.',
@@ -121,7 +120,7 @@ function buildRemoteReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. I’m open to fully remote work.',
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Machine Learning from a U.S.-accredited university. I bring 25+ years of experience as a Software Engineer and Data Engineer, with deep expertise in large-scale systems, data processing, and advanced programming. I’m based in Agoura Hills, California. I’m open to fully remote work.',
     '',
     'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
     'If this position is fully remote, please share the job ID, client, and confirm salary in your reply.',
@@ -134,7 +133,7 @@ function buildElseReply(senderName) {
   return [
     greetLine(senderName),
     '',
-    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California. Please let me know if the role can be remote, hybrid, or on-site and where.',
+    'I am a U.S. citizen with a Master’s degree in Computer Science, with a focus on Artificial Intelligence and Machine Learning from a U.S.-accredited university. I bring 25+ years of programming experience and am open to contract or contract-to-hire opportunities. I’m based in Agoura Hills, California.  I’m open to fully remote work.', 
     '',
     'My compensation requirements are ' + COMP_REQUIRE_CONTRACT + ' or ' + COMP_REQUIRE_FULLTIME + '.',
     'Please include the job ID, client, location, and confirm salary in your reply.',
