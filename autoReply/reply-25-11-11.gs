@@ -64,7 +64,7 @@ const JOB_KEYWORDS_RE = new RegExp(
 const CITY_GROUPS = {
   LOCAL:  ['Agoura','Calabasas','Thousand Oaks','Santa Monica','Burbank','Glendale','Moorpark'],
   HYBRID: ['Torrance','Irvine','Santa Barbara','San Diego','Pasadena','Culver City'],
-  REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving','Pittsburgh','McLean',
+  REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving','Pittsburgh','McLean','Indianapolis',
            'Kentucky','Louisville','New York','Oregon','Philadelphia','Portland','Redwood','Houston',
            'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis', 'Mountain View']
 };
