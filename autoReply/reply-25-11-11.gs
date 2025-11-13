@@ -12,15 +12,15 @@
 //////////////////////////////
 // 1) CONFIG
 //////////////////////////////
-const PROCESSED_LABEL   = 'AutoReplied';
-const DRY_RUN           = false;     // true = simulate without sending
-const MAX_SEND          = 50;        // safety cap per run
-const SCAN_BODY_CHARS   = 5000;      // analyze first N chars of body
-const SLEEP_MS          = 150;       // pause between sends (ms)
-const DAYS_LOOKBACK     = 30;        // Gmail query window (days)
-const SENDER_DB_KEY     = 'AutoReply_SendOnceBySender_v1'; // UserProperties key (kept same)
-const SENDER_DB_MAX     = 5000;      // soft cap to prevent unbounded growth
-const TTL_DAYS          = 7;         // << Reply again to same sender after 7 days
+const PROCESSED_LABEL = 'AutoReplied';
+const DRY_RUN         = false;     // true = simulate without sending
+const MAX_SEND        = 50;        // safety cap per run
+const SCAN_BODY_CHARS = 5000;      // analyze first N chars of body
+const SLEEP_MS        = 150;       // pause between sends (ms)
+const DAYS_LOOKBACK   = 30;        // Gmail query window (days)
+const SENDER_DB_KEY   = 'AutoReply_SendOnceBySender_v1'; // UserProperties key (kept same)
+const SENDER_DB_MAX   = 5000;      // soft cap to prevent unbounded growth
+const TTL_DAYS        = 7;         // << Reply again to same sender after 7 days
 
 // Broad query; content filtering happens in-script.
 const BASE_QUERY = `in:inbox newer_than:${DAYS_LOOKBACK}d`;
@@ -64,8 +64,8 @@ const JOB_KEYWORDS_RE = new RegExp(
 const CITY_GROUPS = {
   LOCAL:  ['Agoura','Calabasas','Thousand Oaks','Santa Monica','Burbank','Glendale','Moorpark'],
   HYBRID: ['Torrance','Irvine','Santa Barbara','San Diego','Pasadena','Culver City'],
-  REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving',
-           'Kentucky','Louisville','New York','Oregon','Philadelphia','Portland','Redwood',
+  REMOTE: ['Remote','Boston','Chicago','Dallas','Florida','Francisco','Irving','Pittsburgh','McLean',
+           'Kentucky','Louisville','New York','Oregon','Philadelphia','Portland','Redwood','Houston',
            'Richland','Seattle','Sunnyvale','Texas', 'Raleigh', 'Phoenix', 'Indianapolis', 'Mountain View']
 };
 
