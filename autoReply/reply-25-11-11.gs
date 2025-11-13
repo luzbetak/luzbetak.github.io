@@ -1,6 +1,6 @@
 /**
  * Google Auto Reply Email Script (Unified)
- * Version: 1.0.1 — 2025-11-12
+ * Version: 1.0.2 — 2025-11-13
  *
  * Behavior:
  * 1) Reply-per-sender with TTL: reply again to the same sender after 7 days.
