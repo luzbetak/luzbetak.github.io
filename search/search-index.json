@@ -79,39 +79,39 @@
   },
   {
     "id": 14,
-    "title": "apache-nifi.html",
-    "content": "apache nifi ability aggregation analysis apache apis approach audit authentication automation based cases cloud complex compliance csv custom data databases debugging delivery destinations detailed detection developers devices different diverse drag drop efficient encryption enrichment environments extensibility external features filtering finance flow formats formatting fraud friendly ftp government healthcare high http industries ingestion integration interface iot json kafka key lakes large lineage log logs manner mechanisms monitoring nifi non open organizations overview pipelines plugins premises privacy processing processors programming protocols provenance range real routing scalability scenarios seamless services source sources ssl system systems tasks technical telecommunications throughput time tool trails transfer transformation transformations use user users various visual volumes warehouses web wide xml",
-    "url": "/platform/apache-nifi.html"
-  },
-  {
-    "id": 15,
     "title": "docker.html",
     "content": "docker access application applications base cloud commands compose consistency container containerization containerized containers control creation dependencies developers development different docker dockerfile ecosystem efficiency environment environments faster features file filesystem host hub image images increased instructions isolated isolation kernel key load local machine machines management multi multiple networking orchestration os points portability previous problem process processes production repository reproducibility scalability scope security series startup swarm system templates testing text tools variables vast version versions virtual vms vulnerabilities",
     "url": "/platform/docker.html"
   },
   {
-    "id": 16,
+    "id": 15,
     "title": "block-all-non-us-traffic.html",
     "content": "block all non us traffic accept allow arin basic block checking cleanup cmd command complete configuration connections curl debugging default directory dns download downloading dport drop e echo enable error established existing exit f fi files firewall forward function grep http https icmp input internal ip iptables j l level lo log loopback messages n network non output p policies ports private process r rdp reply request required rf rule rules save services set sort specific ssh state tcp temporary tools traffic trap type u udp us v x",
     "url": "/platform/block-all-non-us-traffic.html"
   },
   {
-    "id": 17,
-    "title": "apache-airflow.html",
-    "content": "apache airflow acyclic airflow amounts analysis apache architecture author based bashoperator celery changes cloud code communication complex configurable connection correct custom dag dags data databases debugging delays dependencies details devops different directed distributed dynamic engineering errors etl execution extensibility external failure features flow generation graph graphs hooks integration integrations interface intervals key kubernetes large learning limits logging machine managing mechanism mechanisms modular monitor monitoring multiple needs node notifications number open operators orchestrate order overview pipeline pipelines platform platforms plugins points processes programmatically progress python pythonoperator relationships retry rich scalability schedule scheduling science seamless sensors services set small source specific specified sql step systems task tasks technologies triggers troubleshooting types ui user various versioning web workers workflow workflows xcoms",
-    "url": "/platform/apache-airflow.html"
-  },
-  {
-    "id": 18,
+    "id": 16,
     "title": "Kubernetes.html",
     "content": "kubernetes access active actual address amount answer answers api apiversion app application applications approach appropriate apps architecture asked automate automated autoscalers autoscaling availability balancing based basic capabilities capacity case cases certificates changes charts claims cloud cluster clusters cncf command communication community complex component components computational computing conclusion conditions configmaps configuration conflicts constraints container containerized containerport containers control controller controllers core count coupled cpu cpus creation custom data databases declarative default definition dependencies deployable deployment deployments desired dev difference different distributed docker downtime easy ecosystem efficiency elk environment environments etcd example execution experience extensibility external f failed features field file foundation fractional functionality given google granular half hand handles healing health healthy helm hierarchy high highest horizontal host hosting hpa http https hub identity image images impact individual information infrastructure ingress inside instance integrations interview interviews ip isolated isolation issues job kernel key kind kube kubectl kubelet kubernetes labels least level levels libraries lifecycle lightweight limit limits load loads logging logs lowest machines main management manager master matchlabels maximum mechanism memory metadata metrics microservices millicores minimal monitoring much multi multiple name namespace namespaces native nature necessary network new nginx node nodes number object observed old one ones open operations operators orchestrate orchestration overview package parts passwords performance persistent physical place plane platform pod pods points policies port portable ports powerful previous private process processes production progress proxy pv pvc questions rate rbac registries reliable replicas replicaset replicasets request requests resource resources restarts reusable revision rich risk role rollback rollbacks rolling rollout rollouts routing running runtime scalability scalable scale scaling scheduler scheduling secrets secure security select selector self sensitive server services set settings share shared simple simplest single smallest snapshots source spec specific specification specifications specified ssl stack staging standards state stateful statefulset statefulsets stateless status storage store strategy sufficient summary system systems tasks template termination three tightly time tls tokens tool tools traditional traffic turn two types typically undo unhealthy unique unit units update updated updates usage use users utilization value varying vcpu version versions virtual volume volumes vulnerabilities way worker workloads yaml",
     "url": "/platform/Kubernetes.html"
   },
   {
-    "id": 19,
+    "id": 17,
     "title": "software-delivery.html",
     "content": "software delivery actions another ansible application applications artifact artifactory artifacts aspects assurance automation aws binaries bitbucket building categories centralized chef ci cloud cloudformation code configuration containerization containerized containers continuous control data delivery deploying deployment development different distributed docker elasticsearch elk entire environment environments formats frequent functionality functions git github gitlab grafana hosted industry infrastructure initial integration jenkins key kibana kubernetes legacy lifecycle logging logs logstash management manager metrics modern monitoring multiple nexus open orchestration package performance pipelines platform platforms popular practices process production projects prometheus providers puppet quality recipes reliability reliable repositories repository running scalability scaling server service shipping software source sources stack staging stores subversion svn system task tasks terraform testing tool tools top travis unit universal updates use users various version writing",
     "url": "/platform/software-delivery.html"
+  },
+  {
+    "id": 18,
+    "title": "Nifi.html",
+    "content": "nifi ability aggregation analysis apache apis approach audit authentication automation based cases cloud complex compliance csv custom data databases debugging delivery destinations detailed detection developers devices different diverse drag drop efficient encryption enrichment environments extensibility external features filtering finance flow formats formatting fraud friendly ftp government healthcare high http industries ingestion integration interface iot json kafka key lakes large lineage log logs manner mechanisms monitoring nifi non open organizations overview pipelines plugins premises privacy processing processors programming protocols provenance range real routing scalability scenarios seamless services source sources ssl system systems tasks technical telecommunications throughput time tool trails transfer transformation transformations use user users various visual volumes warehouses web wide xml",
+    "url": "/platform/apache/Nifi.html"
+  },
+  {
+    "id": 19,
+    "title": "AirFlow.html",
+    "content": "airflow acyclic airflow amounts analysis apache architecture author based bashoperator celery changes cloud code communication complex configurable connection correct custom dag dags data databases debugging delays dependencies details devops different directed distributed dynamic engineering errors etl execution extensibility external failure features flow generation graph graphs hooks integration integrations interface intervals key kubernetes large learning limits logging machine managing mechanism mechanisms modular monitor monitoring multiple needs node notifications number open operators orchestrate order overview pipeline pipelines platform platforms plugins points processes programmatically progress python pythonoperator relationships retry rich scalability schedule scheduling science seamless sensors services set small source specific specified sql step systems task tasks technologies triggers troubleshooting types ui user various versioning web workers workflow workflows xcoms",
+    "url": "/platform/apache/AirFlow.html"
   },
   {
     "id": 20,
