@@ -49,16 +49,11 @@ body {
 }
 */
 
-/*
 .navbar a:hover {
-    background-color: darkblue;
-}*/
-
-/* hover on top-level items */
-.navbar > ul > li:hover > a {
-  background-color: darkblue; /* Darker blue on hover #004499; */
-  color: #ffffff; /* White text on hover */
+  background-color: darkblue;
+  color: #ffffff;
 }
+
 
 /* Search results styling */
 .search-results {
