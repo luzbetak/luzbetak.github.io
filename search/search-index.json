@@ -417,175 +417,175 @@
     "id": 70,
     "title": "TF-IDF.html",
     "content": "tf idf another breakdown column content convert corpus data decimals doc docs document documents entire example feature frequency high higher highest idf import importance important inverse learning limit low lower machine many matrix model multiple names particular practice prettytable python range ranking relevant result row rows sample score scores specific summary table term terms text tf tfidfvectorizer theory uniqueness upper value values vectorizer word words",
-    "url": "/ai/TF-IDF.html"
+    "url": "/ai-ml/TF-IDF.html"
   },
   {
     "id": 71,
     "title": "Retrieval-Augmented-Generation.html",
     "content": "retrieval augmented generation accurate algorithm another augment augmented base bert build chatbot components conn contextual create cur database datasets dimensional document documents embeddings engines extension external generate generated generation generator gpt high id import indexing information informed insert install key knowledge large limit management model models multiple necessary nodes optimization parallel performance pgvector pgvectorscale postgres postgresql primary process python queries query question rag references relevant repositories response responses retrieval retrieved scale search searches sentencetransformer serial similarity solution step storage store systems table tasks text transformers tutorial user values vector vectors",
-    "url": "/ai/Retrieval-Augmented-Generation.html"
+    "url": "/ai-ml/Retrieval-Augmented-Generation.html"
   },
   {
     "id": 72,
     "title": "Tensors-Machine-Learning.html",
     "content": "tensors machine learning access additional array average building channels code color column complex computation computations compute data deep depth dimensional dimensions efficient element elements essence even example excellent foundation frameworks function functionality functions fundamental generalization gpus high images import index indexing key learning library list machine matrices matrix mean models multi multidimensional ndarrays np number numbers numerical numpy operation operations output points powerful print python pytorch row simple single solid spaces specific structure sum support syntax table tensor tensorflow tensors total training us value values vector vectors words",
-    "url": "/ai/Tensors-Machine-Learning.html"
+    "url": "/ai-ml/Tensors-Machine-Learning.html"
   },
   {
     "id": 73,
     "title": "BM25_Probabilistic_Model.html",
     "content": "bm25 probabilistic model account algorithm algorithms application average b based best called cases collection components content controlling corpus customization databases default differences document documents dynamic effective engine engines entire family fewer formula frequency fully function given handling high higher highly idf impact importance influence information inverse key keyword known length less library long longer many matching measures model models modern needs normalization normalizes nt number often overemphasis parameter parameters powerful probabilistic q query ranking rarity real relevance repetition retrieval saturated saturation score search shorter size specific standard systems tasks term terms text tf total traditional tuning use value variant weight well world xapian",
-    "url": "/ai/BM25_Probabilistic_Model.html"
+    "url": "/ai-ml/BM25_Probabilistic_Model.html"
   },
   {
     "id": 74,
     "title": "Random-Forest-Classifier-Model.html",
     "content": "random forest classifier model account accuracy address approach authentication automation balance billing card case categories category charge classification classifier classifieri clf code collection create credentials cryptocurrency customer damaged data date decision delivery depth details device df dictionary different discount either email factor feature features final forest generalization generator gift history hyperparameters idf import incoming individual information input internal invoice item labels leaf length lists login manual maximum method methods minimum missing model nearest new node notifications number numerical options order output outstanding overfitting pandas parameter password payment pd pin plan policy predicted prediction predictions prettytable product proportion purchase python queries query question questions random refund remaining reproducibility return samples seed set shipping split step store subscription subset support supported table target task technical test testing text textual tf tfidfvectorizer train training tree trees two user value various vectorize vectorizer warranty",
-    "url": "/ai/Random-Forest-Classifier-Model.html"
+    "url": "/ai-ml/Random-Forest-Classifier-Model.html"
   },
   {
     "id": 75,
     "title": "Scikit-learn.html",
     "content": "scikit learn accuracy actions actual algorithms allows analysis apis auc beginners best box bunch categorical classifier clf code comparison corresponding data dataset datasets dbscan decision dictionary dimensionality documented efficient external features files flowers following forest forests function good grid high identical import initializes integration iris joblib k key label labels later learning length libraries library linear load loads machine machines matplotlib metrics missing model modeling models normalization numpy object open output overview pandas pca performance persistence petal pickle points popular precision predicted predictions predicts preprocessing print professionals python random range reduction regression results roc sample samples scaling science scikit scipy search selection sepal set sets setup simple sne source specific split summary supervised support svm target test testing tools top toy train trained training trees unsupervised use used validation values variables variety vector vs well wide widely width yes",
-    "url": "/ai/Scikit-learn.html"
+    "url": "/ai-ml/Scikit-learn.html"
   },
   {
     "id": 76,
     "title": "FAISS-Vector-Database.html",
     "content": "faiss vector database ai api billions clustering cpu data dataset dense dimension dimensional distance efficient facebook faiss faster features file flat gpu high hnsw image import index indices ivf key large library local nearest neighbors nlp np numpy open performance pip query random recommendation retrieval scales scenarios search similarity source systems top types various vectors version",
-    "url": "/ai/FAISS-Vector-Database.html"
+    "url": "/ai-ml/FAISS-Vector-Database.html"
   },
   {
     "id": 77,
     "title": "Stable-Diffusion-Web-UI.html",
     "content": "stable diffusion web ui acceleration browser cd chip clone command cuda dependencies diffusion error export following git gpu index install local mac message mps optional pip press python repository run server skip stable terminal test torch torchaudio torchvision ui url users web webui",
-    "url": "/ai/Stable-Diffusion-Web-UI.html"
+    "url": "/ai-ml/Stable-Diffusion-Web-UI.html"
   },
   {
     "id": 78,
     "title": "LanceDB-Vector-Database.html",
     "content": "lancedb vector database abnormal accuracy ai angular annoy annoyindex anomalies anomaly api apis applications approximate associated audio behavior bert cases characteristics classification client clustering code collection common connect connection content control count critical data database databases datasets dbscan detection dimension dimensional dimensionality display distance distances documents driven ecosystem efficiency efficient embedding embeddings environments essential euclidean event example explanation external f fast feature features first focuses format friendly full function gcp generated gpt high hosting id identify ids image images import index initialization insert inserts install integration item items k key keywords labels lancedb language large latency learning library local low machine management manhattan match meaning means memory metadata metric metrics ml models modern natural nearest need needs neighbor neighbors new nlp nn np numerical numpy open outliers overview path performance pinecone pip pipelines points processing production products python queries query querying random randomly range real recommend recommendation regression result results retrieval retrieve role scalability scale scenarios search searches semantic semantically services similar similarity situations small source space specialized specified spotify steps storage store systems table tasks text throughput time top traditional transaction tree type types unusual upserting usage use user users using various vec vector vectors visual wide workloads world",
-    "url": "/ai/LanceDB-Vector-Database.html"
+    "url": "/ai-ml/LanceDB-Vector-Database.html"
   },
   {
     "id": 79,
     "title": "Streamlit-app.html",
     "content": "streamlit app age app b box c chart data dataframe display import input kevin line name np numpy pandas pd python sample slider st streamlit text title user",
-    "url": "/ai/Streamlit-app.html"
+    "url": "/ai-ml/Streamlit-app.html"
   },
   {
     "id": 80,
     "title": "Keras.html",
     "content": "keras accessible accuracy activation adam algorithms analysis api artificial backpropagation basic best biases binary blocks building calculating case channel channels churn class classes classification cnn cnns cntk code colored compile complex complexities complexity components computation computational connected connections consistent convolution convolutional core corners correct cpu customer cycle data decision deep dense detection developers diagnosis differences different digit digits dimensional dimensions direction ease edges either error example facial faster feature features feedback feedforward filters final flatten flattening fnn forward frameworks fraud fully function functional functions generation gpu gpus grayscale grid handwriting hardware hidden hierarchies high highly image images import important information input keras kernels key labels layer layers learning level library linear linearity load loops loss low lstm many map maps max medical metrics minimal mnist model models multi network networks neural node nodes non normalize number numpy object one open operations optimizer optimizers output overview parameters part patterns performance pixel pixels platform pooling prediction predictions probabilities process processing propagation recognition rectified reinforcement relu reshape rgb scaler sequential sets simple size softmax source spatial specialized stack standardscaler structure structured summary support synthetic tabular task tasks tensorflow testing text textures theano top training type unit use variety vector video weights x",
-    "url": "/ai/Keras.html"
+    "url": "/ai-ml/Keras.html"
   },
   {
     "id": 81,
     "title": "Unstructured-Data-Indexing.html",
     "content": "unstructured data indexing abstractive accuracy advanced advertisements analysis analytics annotation answering applications audio author based bert characters cleaning collection common content contractions control convert creation data databases date dimensionality documents efficiency efficient elements eliminate embedding end ensure entities entity essential extraction faiss fast feeds fidelity files format frequency gather generation html identify idf importance index indexed indexing information ingestion inverted irrelevant key keyword keywords label learning locations machine main major meaning meaningful media metadata methods models names ner new noise non normalization noun numerical operations optional organizations original pages part parts pca performance phrases plain points previously process processed processing quality query question recognition reduction redundant relationships relevant removal representations respective result retrieval search searches semantic sentence sentences similar similarity sne social sources special speech speed storage store structure structuring summaries summarization system tagging tags techniques testing text textual tf tokenization tools topics units unnecessary unstructured use validation various vector vectorization vectors verb verification web words xapian",
-    "url": "/ai/Unstructured-Data-Indexing.html"
+    "url": "/ai-ml/Unstructured-Data-Indexing.html"
   },
   {
     "id": 82,
     "title": "Gunning-Fog-Index.html",
     "content": "gunning fog index account algorithms analysis average avoid calculates calculation code complex content count creation def division document education english example explanation expressions first fog following formal formula function general given gunning higher implementation import index language length levels marks natural nlp number output patterns percentage period processing punctuation readability readership reading regular return score sentence sentences steps syllables test text texts three usage vowel vowels way word words writing years zero",
-    "url": "/ai/Gunning-Fog-Index.html"
+    "url": "/ai-ml/Gunning-Fog-Index.html"
   },
   {
     "id": 83,
     "title": "PDF-Split-File.html",
     "content": "pdf split file arguments base cat check command commands correct desired document example exit extension extract fi file files following grep input install installation name number numberofpages output page pages part parts path pdf pdftk print range requirements script separate specified split steps sudo total ubuntu usage z",
-    "url": "/ai/PDF-Split-File.html"
+    "url": "/ai-ml/PDF-Split-File.html"
   },
   {
     "id": 84,
     "title": "Ms-Word-Document-Processing.html",
     "content": "ms word document processing args backend batch checks console content custom def directory docling document documentconverter documents docx e enhancements error exception extracted extracts f features file files format formats formatting full function future handling import information informative input inputdocument inputformat install instructions key library ms msworddocumentbackend multiple name none options output outputs path pathlib pip place print process processed processing processor proper python raise reusable save saves script setup steps str structure support tables text usage w word",
-    "url": "/ai/Ms-Word-Document-Processing.html"
+    "url": "/ai-ml/Ms-Word-Document-Processing.html"
   },
   {
     "id": 85,
     "title": "Retrieval-Augmented-Generation-Workflow.html",
     "content": "retrieval augmented generation workflow augmented balance based bert combined combines complementary complex conditions content contextual corresponding cosine data database datasets distance document documents efficiency elasticsearch embedding encoder euclidean external faiss fed filtering filters final first full generation generative gpt hybrid ids index initial input keywords large lexical matching meaning model models n original output processing prompt quality query rag raw refines relevant representation response results retrieval retrieved scores search semantic semantically sentence set similar similarity smaller specific standard step store stored strategies supplementary system text top transformer user vector vectors workflow",
-    "url": "/ai/Retrieval-Augmented-Generation-Workflow.html"
+    "url": "/ai-ml/Retrieval-Augmented-Generation-Workflow.html"
   },
   {
     "id": 86,
     "title": "PyTorch-Sentiment-Analysis-Model.html",
     "content": "pytorch sentiment analysis model accuracy acting amazing analysis apply base batch bcewithlogitsloss bertmodel berttokenizer book build class classification complete compute connected convert criterion dataloader dataset decent define dimension direction epoch evaluation every examples existing experience extra false film fully function great horrible import inference input labels layers linearity load logits loop loss masterpiece minute mode model movie negative nn non optimizer optional output outputs performance performances plot positive prediction predictions preds prettytable print python raw report save saved second sentiment sentimentclassifier sets sigmoid split statement statements story storytelling table terrible test testing text textdataset threshold time tokenizer tokens torch train trained training transformers truncation two values waste watch worst year",
-    "url": "/ai/PyTorch-Sentiment-Analysis-Model.html"
+    "url": "/ai-ml/PyTorch-Sentiment-Analysis-Model.html"
   },
   {
     "id": 87,
     "title": "Recompile-FAISS-GPU-Installation.html",
     "content": "recompile faiss gpu installation b bindings c clone cmake commands configuration cuda cxx dependencies dev dimension distance editing environment export faiss file following git gpu import index install installation issues languages libopenblas line lines modify nearest necessary neighbors np number numpy optional path proper python pythonpath random repository script search step steps sudo support swig test top variables vectors version xb",
-    "url": "/ai/Recompile-FAISS-GPU-Installation.html"
+    "url": "/ai-ml/Recompile-FAISS-GPU-Installation.html"
   },
   {
     "id": 88,
     "title": "python-whoosh.html",
     "content": "python whoosh better brown changes content create def define directory doc document documents dog example fast fox id import index indexing lazy library output path print pure python query queryparser quick result results schema search stemminganalyzer text title whoosh writer",
-    "url": "/ai/python-whoosh.html"
+    "url": "/ai-ml/python-whoosh.html"
   },
   {
     "id": 89,
     "title": "Hugging-Face-Machine-Learning.html",
     "content": "hugging face machine learning access account api approval cli command dev download ensure face forest hfapi hugging huggingface import issues learning line login machine maintainers model necessary note owners page permissions read repository restricted retry script token verify",
-    "url": "/ai/Hugging-Face-Machine-Learning.html"
+    "url": "/ai-ml/Hugging-Face-Machine-Learning.html"
   },
   {
     "id": 90,
     "title": "Time-Complexity-Big-O-Notation.html",
     "content": "time complexity big o notation access addition adjacency algorithm array average avl b balance balanced bfs big binary black brute bst bubble case cases certain children collisions common complexities complexity computer constant data databases deletion deletions design division double e edges efficiency efficient element elements example execution extra factor file force hash head height index indexing input insertion insertions keys leaf least level linear linearithmic list logarithmic loop luzbetak max memory merge merging min minimum much n nature nested new nodes notation number operations performance permutations priority problem process properties queue rebalancing red resizing retrieval root runtime salesman scenario science search selection set size sort sorted space splitting step storage structure structures systems table time traveling tree trees use v vertices way worst",
-    "url": "/ai/Time-Complexity-Big-O-Notation.html"
+    "url": "/ai-ml/Time-Complexity-Big-O-Notation.html"
   },
   {
     "id": 91,
     "title": "NVIDIA-GeForce-RTX-3060-Installation.html",
     "content": "nvidia geforce rtx 3060 installation alias apt best build changes chrome command computing cuda details driver drivers essential example following geforce gpu graphics headers identify insecure install installation installed latest learning linux machine microphone necessary nvidia official optional origins output packages ppa recommended repository rtx smi step sudo system toolkit tools ubuntu update upgrade version xxx",
-    "url": "/ai/NVIDIA-GeForce-RTX-3060-Installation.html"
+    "url": "/ai-ml/NVIDIA-GeForce-RTX-3060-Installation.html"
   },
   {
     "id": 92,
     "title": "PDF-Convert-to-Text-File.html",
     "content": "pdf convert to text file abram apt conversion convert def dependencies empty extract extracted file following hoffer image images import input install installation instructions libraries list ocr orthomolecular package pages path pdf pillow pip poppler pytesseract python required script string tesseract text ubuntu update usage use utils",
-    "url": "/ai/PDF-Convert-to-Text-File.html"
+    "url": "/ai-ml/PDF-Convert-to-Text-File.html"
   },
   {
     "id": 93,
     "title": "PyTorch.html",
     "content": "pytorch acceleration apply arrays audio autograd automatic backward built class classes common computation computational compute computer connected criterion crossentropyloss custom dataset datasets debug deep developers differentiation digits dimensional dynamic epoch extensibility faster features final flexible fully function gpu gradients graphs image import inputs key labels language layer layers learning libraries library load loop loss machine mnist models module multi natural network networks neural nlp nn numpy open optim optimization optimize output platform pre preprocess processing pytorch relu researchers return simple source speech strong support tasks techniques tensors torch torchaudio torchtext torchvision totensor training trainloader trainset transform variety various vision wide",
-    "url": "/ai/PyTorch.html"
+    "url": "/ai-ml/PyTorch.html"
   },
   {
     "id": 94,
     "title": "Python-Syntax-Highlighting.html",
     "content": "python syntax highlighting age b bash cd computer def desc echo golang highlighting int luzbetak mkdir name order python result return science select sql syntax users world",
-    "url": "/ai/Python-Syntax-Highlighting.html"
+    "url": "/ai-ml/Python-Syntax-Highlighting.html"
   },
   {
     "id": 95,
     "title": "neural-network-code.html",
     "content": "neural network code acc accuracy array backprop backpropagation bag binary cache characters class code connected converts dataset def demo descent dict dl educational entropy epoch epochs eps example experience float food forward freq fully gradient gradients grads great idx import index initialization input int intermediate items label labeled labels layer letter letters level list loss lowercase lr matrix movie n name negative network neural new non np number numpy order output p parameter positive predicted preds print prints probabilities probs product purposes python relu remove reserve return returns rng scratch seed self sentence sentences sentiment shape sigmoid simple size small spaces str terrible test tests text threshold tiny tok tokenizer tokens toy train training tuple unk unknown update values vec vector vocab vocabulary whitespace wonderful word words x z",
-    "url": "/ai/neural-network/neural-network-code.html"
+    "url": "/ai-ml/neural-network/neural-network-code.html"
   },
   {
     "id": 96,
     "title": "Gmail-Email-Fetch.html",
     "content": "gmail email fetch access account analysis another api archival authentication breakdown build complete content credentials creds data date def define description details email emails example f fetch fetched file formatting future gmail google id import important installedappflow internal json key last local login messages msg new none oauth os output payload process prompt purposes python read readable retrieval runs saving scope scopes script service simple snippet system user uses valid w way",
-    "url": "/ai/faiss/Gmail-Email-Fetch.html"
+    "url": "/ai-ml/faiss/Gmail-Email-Fetch.html"
   },
   {
     "id": 97,
     "title": "Indexing-FAISS-OpenAI-Embeddings.html",
     "content": "indexing faiss openai embeddings advanced boilerplate cases class cleaned code conclusion content convert converts create dash dashes data database date datetime define description doc document documents e efficient elements else email emails embeddings entities explanation extra faiss fast fields file flags following function future html id ignorecase import index jq json jsondecodeerror jsonloader learning loads machine message metadata models object objects one openai openaiembeddings parse processing provided python relevant remove retrieval schema script search searches searching set setup similarity spaces store stores tasks text timestamp types unnecessary unwanted urls use various vector",
-    "url": "/ai/faiss/Indexing-FAISS-OpenAI-Embeddings.html"
+    "url": "/ai-ml/faiss/Indexing-FAISS-OpenAI-Embeddings.html"
   },
   {
     "id": 98,
     "title": "RetrievalQA-FAISS-with-OpenAI-GPT-4.html",
     "content": "retrievalqa faiss with openai gpt 4 ability answer answering answers anything api applications architecture base break breakdown chain chatbots chatopenai code conclusion construction content context conversational data databases description deserialization disk document documents e embeddings empty end ensure environment error errors exception exit explanation faiss fast filenotfounderror following framework functionality general goodbye gpt handling import imports index indexed information key knowledge language llm llms loop manual model models natural openai openaiembeddings output parameters powerful precise purpose python qa query question questions relevant responses result results retrieval retrievalqa retrieved retriever retrievers safe scenarios scope script setting setup simple snippets specialized step stores system systems text try type unsupported updated user users valueerror variable various vector yet",
-    "url": "/ai/faiss/RetrievalQA-FAISS-with-OpenAI-GPT-4.html"
+    "url": "/ai-ml/faiss/RetrievalQA-FAISS-with-OpenAI-GPT-4.html"
   },
   {
     "id": 99,
