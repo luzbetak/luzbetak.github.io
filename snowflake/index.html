@@ -1,0 +1,339 @@
+---
+---
+{% include menu.html title="Big Data" %}
+
+<hr>
+<body>
+  <h1>Snowflake Experience and Modern Data Experience</h1>
+  
+  <h2>Snowflake Experience</h2>
+  <p>
+    <strong>Snowflake</strong> hands-on skills with the Snowflake Data Cloud platform: building, operating, and optimizing a data warehouse in Snowflake.
+  </p>
+
+   
+  <h3>Core Snowflake Skills</h3>
+  <ul>
+    <li>
+      <strong>Data warehousing concepts in Snowflake</strong>
+      <ul>
+        <li>Designing schemas (star, snowflake, 3NF)</li>
+        <li>Understanding micro-partitions and pruning</li>
+        <li>Working with columnar storage and compression</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Snowflake SQL</strong>
+      <ul>
+        <li>Complex joins and aggregations</li>
+        <li>Window functions</li>
+        <li>Using <strong>MERGE</strong> for upserts</li>
+        <li>Using <strong>COPY INTO</strong> for loading and unloading data</li>
+        <li>Multi-table INSERT patterns</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Virtual warehouse management</strong>
+      <ul>
+        <li>Choosing appropriate warehouse sizes</li>
+        <li>Configuring auto-suspend and auto-resume</li>
+        <li>Scaling up vs. scaling out</li>
+        <li>Cost-control practices (separate warehouses by workload, etc.)</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Data loading and unloading</strong>
+      <ul>
+        <li>Using internal stages</li>
+        <li>Using external stages (S3, Azure Blob, GCS)</li>
+        <li>Defining file formats (CSV, JSON, Parquet, ORC)</li>
+        <li>Bulk loads and incremental loads</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Semi-structured data handling</strong>
+      <ul>
+        <li>Using the <strong>VARIANT</strong> data type</li>
+        <li>Storing and querying JSON, Parquet, Avro, XML</li>
+        <li>Using <strong>FLATTEN</strong> and LATERAL joins to normalize nested data</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Performance optimization</strong>
+      <ul>
+        <li>Reading and interpreting query profiles</li>
+        <li>Choosing and managing clustering keys</li>
+        <li>Leveraging result cache, metadata cache, and data cache</li>
+        <li>Refactoring queries for better performance and lower cost</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Security and governance in Snowflake</strong>
+      <ul>
+        <li>Role-based access control (RBAC) and role hierarchy</li>
+        <li>Grants on databases, schemas, tables, and views</li>
+        <li>Network policies and secure data sharing</li>
+        <li>Masking and row access policies</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Advanced Snowflake features</strong>
+      <ul>
+        <li><strong>Zero-copy cloning</strong> of databases, schemas, and tables</li>
+        <li><strong>Time Travel</strong> for querying historical data</li>
+        <li><strong>Fail-Safe</strong> for recovery</li>
+        <li><strong>Streams &amp; Tasks</strong> for change data capture and scheduling</li>
+        <li><strong>Snowpipe</strong> for continuous data ingestion</li>
+        <li><strong>Materialized views</strong> for performance</li>
+        <li><strong>Snowpark</strong> (Python/Java/Scala) for data engineering in-code</li>
+        <li>Data sharing and Snowflake Marketplace</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Modern Data Experience (Modern Data Stack)</h2>
+  <p>
+    <strong>Modern data experience</strong> (or modern data stack experience) usually means working
+    with a cloud-native ecosystem of tools around storage, compute, transformation, orchestration,
+    and BI, not just Snowflake itself.
+  </p>
+
+  <h3>Key Components of the Modern Data Stack</h3>
+  <ol>
+    <li>
+      <strong>Cloud data warehouses and lakehouses</strong>
+      <ul>
+        <li>Snowflake</li>
+        <li>Google BigQuery</li>
+        <li>Databricks SQL Warehouse</li>
+        <li>Amazon Redshift</li>
+      </ul>
+    </li>
+    <li>
+      <strong>ETL / ELT and transformation tools</strong>
+      <ul>
+        <li>dbt / dbt Cloud</li>
+        <li>Airflow-based ETL / ELT</li>
+        <li>Dataform</li>
+        <li>Fivetran, Stitch, Matillion, Informatica Cloud</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Orchestration and workflow management</strong>
+      <ul>
+        <li>Apache Airflow (including MWAA / Cloud Composer)</li>
+        <li>Dagster</li>
+        <li>Prefect</li>
+        <li>AWS Step Functions</li>
+        <li>Azure Data Factory pipelines</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Data lake and storage layers</strong>
+      <ul>
+        <li>Amazon S3</li>
+        <li>Google Cloud Storage (GCS)</li>
+        <li>Azure Data Lake Storage (ADLS)</li>
+        <li>Table formats: Delta Lake, Apache Iceberg</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Data engineering computation frameworks</strong>
+      <ul>
+        <li>Apache Spark</li>
+        <li>PySpark</li>
+        <li>Databricks environment (Jobs, Notebooks, Workflows)</li>
+        <li>Snowpark for Snowflake-native compute</li>
+      </ul>
+    </li>
+    <li>
+      <strong>BI and analytics tools</strong>
+      <ul>
+        <li>Looker</li>
+        <li>Tableau</li>
+        <li>Power BI</li>
+        <li>Mode Analytics</li>
+        <li>Sigma Computing</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Real-time and streaming technologies</strong>
+      <ul>
+        <li>Apache Kafka</li>
+        <li>Amazon Kinesis</li>
+        <li>Google Pub/Sub</li>
+        <li>Apache Flink</li>
+        <li>Streaming ETL tools like StreamSets</li>
+      </ul>
+    </li>
+    <li>
+      <strong>DevOps / DataOps practices</strong>
+      <ul>
+        <li>CI/CD for SQL, dbt projects, and pipelines</li>
+        <li>Git-based workflows (branching, PRs, code review)</li>
+        <li>Infrastructure as Code (e.g., Terraform for Snowflake and cloud resources)</li>
+        <li>Monitoring and observability (Datadog, Monte Carlo, BigEye, etc.)</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>How Snowflake Experience Relates to Modern Data Experience</h2>
+  <h3>Comparison Overview</h3>
+  <table border="1" cellpadding="4" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Area</th>
+        <th>Snowflake Experience</th>
+        <th>Modern Data Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Data warehouse</strong></td>
+        <td>Deep, platform-specific skills in Snowflake</td>
+        <td>Familiarity with several cloud warehouses and lakehouses</td>
+      </tr>
+      <tr>
+        <td><strong>Data modeling &amp; SQL</strong></td>
+        <td>Warehouse modeling, performance-tuned Snowflake SQL</td>
+        <td>dbt, ELT patterns, analytics engineering across platforms</td>
+      </tr>
+      <tr>
+        <td><strong>Pipelines</strong></td>
+        <td>Snowpipe, Streams &amp; Tasks, COPY INTO flows</td>
+        <td>Orchestrated pipelines via Airflow, Dagster, Prefect, etc.</td>
+      </tr>
+      <tr>
+        <td><strong>Compute</strong></td>
+        <td>Managing virtual warehouses and resource monitors</td>
+        <td>Spark/Databricks clusters, Kubernetes, serverless compute</td>
+      </tr>
+      <tr>
+        <td><strong>Data formats</strong></td>
+        <td>VARIANT, semi-structured data in Snowflake</td>
+        <td>Parquet/Delta/Iceberg and lakehouse patterns</td>
+      </tr>
+      <tr>
+        <td><strong>Governance</strong></td>
+        <td>Snowflake roles, grants, masking, secure shares</td>
+        <td>Broader governance platforms and data quality tools</td>
+      </tr>
+      <tr>
+        <td><strong>Ecosystem</strong></td>
+        <td>Snowflake-native features and integrations</td>
+        <td>End-to-end modern data stack across multiple vendors</td>
+      </tr>
+    </tbody>
+  </table>
+
+<hr>
+
+<h2>Data Mesh Decentralized Architecture</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=30%>
+            <ul>
+                <li>
+                    <a href="Data-Mesh-Decentralized-Architecture.html">Data Mesh</font></a>
+                    <span class="comment">Decentralized approach to managing data, distributing data ownership to domain teams while ensuring strong governance and accessibility across the organization.</span></li>
+                </li>
+                <li>
+                    <a href="Data-Fabric-vs-Data-Mesh.html">Data Fabric vs Data Mesh</font></a>
+                    <span class="comment"> 
+                        <strong>Data Fabric</strong> - Centralized Approach<br>
+                        <strong>Data Mesh</strong> - Decentralized Ownership<br><br>
+                    </span>  
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=70%>
+            <img src="/images/data-mesh.png" width="800" alt="Data Mesh" style="display: block; margin: 0 auto;">
+        </td>
+    </tr>
+</table>
+
+<hr>
+<h2>Apache Kafka</h2>
+<table width="1100" border="0">
+    <tr>
+        <td>
+            <ul>
+                <li><a href="Apache-Kafka.html">Key Points of Apache Kafka</a></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><a href="Kafka-Producer-Consumer.html">Kafka Producer Consumer</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<hr>
+<h2>Large-scale data ingestion</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top>
+            <ul>
+                <li><a href="Large-Scale-Data-Ingestion.html">Large Scale Data Ingestion</a></li>
+                <li><a href="etl-pipeline.html">ETL Pipeline</a></li>
+            </ul>
+        </td>
+        <td valign=top>
+            <ul>
+                <li><a href="Apache-Parquet.html">Apache Parquet</a></li>
+                <li><a href="MongoDB-Document-Based-NoSQL-Database.html">MongoDB Document-Based NoSQL</a></li>
+            </ul>
+        </td>
+        <td valign=top>
+            <ul>
+                <li><a href="Apache-Hudi.html">Apache Hudi - ACID Transaction</a></li>
+                <li><a href="Apache-Iceberg.html">Apache Iceberg - Analytics</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+
+
+<h2>Graph Databases</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Graph-Databases-ArgoDB-Neo4j.html">ArgoDB Neo4j</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="GraphQL.html">GraphQL</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Marketing-Data-Overview.html">Marketing Data Overview</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<h2>SQL Statements</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="sql-with-2-tables-join.html">WITH 2 Tables JOIN</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+        </td>
+        <td valign=top width=33%>
+        </td>
+    </tr>
+</table>
+
+
+{% include footer.html %}
+
+
