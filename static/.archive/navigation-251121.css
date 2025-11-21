@@ -34,7 +34,7 @@
     /* Top navigation bar with dropdowns
        (overrides base .navbar styles from style.css) */
     .navbar {
-      background-color: darkblue; /* Blue background #0066cc; */
+      background-color: #0066cc; /* Blue background */
       border-bottom: 1px solid #004499; /* Darker blue border */
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       position: sticky;
