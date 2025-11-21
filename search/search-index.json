@@ -115,303 +115,303 @@
   },
   {
     "id": 20,
-    "title": "github.html",
-    "content": "github access account actions admin another answer answers applications asked authentication authorization automate automated based best blogs board branch bugs building changes ci cloud code codebase collaboration comment common community conclusion conflicts content contributions contributor contributors control copy core deployment developer developers development directory documentation environments experience feature features files followers forked forks git github global group history interview interviews issue issues job kanban level lines local machine main maintainer management members merge method model modern modifications oauth open organization organizations original others overview owner pages party permissions personal pipelines platform platforms popular powerful practices process production project projects providers pull quality questions range rbac remote repositories repository request requests resources review reviews revisions role roles saml separate services site sites social software source stars static style target tasks team teams testing tests third tool tools tracking users version web websites wide wikis workflow workflows yaml",
-    "url": "/platform/github.html"
-  },
-  {
-    "id": 21,
     "title": "docker.html",
     "content": "docker access application applications base cloud commands compose consistency container containerization containerized containers control creation dependencies developers development different docker dockerfile ecosystem efficiency environment environments faster features file filesystem host hub image images increased instructions isolated isolation kernel key load local machine machines management multi multiple networking orchestration os points portability previous problem process processes production repository reproducibility scalability scope security series startup swarm system templates testing text tools variables vast version versions virtual vms vulnerabilities",
     "url": "/platform/docker.html"
   },
   {
-    "id": 22,
+    "id": 21,
     "title": "block-all-non-us-traffic.html",
     "content": "block all non us traffic accept allow arin basic block checking cleanup cmd command complete configuration connections curl debugging default directory dns download downloading dport drop e echo enable error established existing exit f fi files firewall forward function grep http https icmp input internal ip iptables j l level lo log loopback messages n network non output p policies ports private process r rdp reply request required rf rule rules save services set sort specific ssh state tcp temporary tools traffic trap type u udp us v x",
     "url": "/platform/block-all-non-us-traffic.html"
   },
   {
-    "id": 23,
+    "id": 22,
     "title": "Kubernetes.html",
     "content": "kubernetes access active actual address amount answer answers api apiversion app application applications approach appropriate apps architecture asked automate automated autoscalers autoscaling availability balancing based basic capabilities capacity case cases certificates changes charts claims cloud cluster clusters cncf command communication community complex component components computational computing conclusion conditions configmaps configuration conflicts constraints container containerized containerport containers control controller controllers core count coupled cpu cpus creation custom data databases declarative default definition dependencies deployable deployment deployments desired dev difference different distributed docker downtime easy ecosystem efficiency elk environment environments etcd example execution experience extensibility external f failed features field file foundation fractional functionality given google granular half hand handles healing health healthy helm hierarchy high highest horizontal host hosting hpa http https hub identity image images impact individual information infrastructure ingress inside instance integrations interview interviews ip isolated isolation issues job kernel key kind kube kubectl kubelet kubernetes labels least level levels libraries lifecycle lightweight limit limits load loads logging logs lowest machines main management manager master matchlabels maximum mechanism memory metadata metrics microservices millicores minimal monitoring much multi multiple name namespace namespaces native nature necessary network new nginx node nodes number object observed old one ones open operations operators orchestrate orchestration overview package parts passwords performance persistent physical place plane platform pod pods points policies port portable ports powerful previous private process processes production progress proxy pv pvc questions rate rbac registries reliable replicas replicaset replicasets request requests resource resources restarts reusable revision rich risk role rollback rollbacks rolling rollout rollouts routing running runtime scalability scalable scale scaling scheduler scheduling secrets secure security select selector self sensitive server services set settings share shared simple simplest single smallest snapshots source spec specific specification specifications specified ssl stack staging standards state stateful statefulset statefulsets stateless status storage store strategy sufficient summary system systems tasks template termination three tightly time tls tokens tool tools traditional traffic turn two types typically undo unhealthy unique unit units update updated updates usage use users utilization value varying vcpu version versions virtual volume volumes vulnerabilities way worker workloads yaml",
     "url": "/platform/Kubernetes.html"
   },
   {
-    "id": 24,
+    "id": 23,
     "title": "software-delivery.html",
     "content": "software delivery actions another ansible application applications artifact artifactory artifacts aspects assurance automation aws binaries bitbucket building categories centralized chef ci cloud cloudformation code configuration containerization containerized containers continuous control data delivery deploying deployment development different distributed docker elasticsearch elk entire environment environments formats frequent functionality functions git github gitlab grafana hosted industry infrastructure initial integration jenkins key kibana kubernetes legacy lifecycle logging logs logstash management manager metrics modern monitoring multiple nexus open orchestration package performance pipelines platform platforms popular practices process production projects prometheus providers puppet quality recipes reliability reliable repositories repository running scalability scaling server service shipping software source sources stack staging stores subversion svn system task tasks terraform testing tool tools top travis unit universal updates use users various version writing",
     "url": "/platform/software-delivery.html"
   },
   {
-    "id": 25,
+    "id": 24,
     "title": "Nifi.html",
     "content": "nifi ability aggregation analysis apache apis approach audit authentication automation based cases cloud complex compliance csv custom data databases debugging delivery destinations detailed detection developers devices different diverse drag drop efficient encryption enrichment environments extensibility external features filtering finance flow formats formatting fraud friendly ftp government healthcare high http industries ingestion integration interface iot json kafka key lakes large lineage log logs manner mechanisms monitoring nifi non open organizations overview pipelines plugins premises privacy processing processors programming protocols provenance range real routing scalability scenarios seamless services source sources ssl system systems tasks technical telecommunications throughput time tool trails transfer transformation transformations use user users various visual volumes warehouses web wide xml",
     "url": "/platform/apache/Nifi.html"
   },
   {
-    "id": 26,
+    "id": 25,
     "title": "Apache_Hudi.html",
     "content": "apache hudi acid analytics apache architectures background batch big capabilities cases changed compaction compression conclusion cost data datasets deletes effective efficient environments features file footprint framework fresh gap guarantees hadoop historical hudi incremental incrementals indexes indexing ingestion inserts key lake lakes large latency low management modern older open overall performance pipelines previous processing queries query querying real scalable scale scenarios sizes source storage support systems techniques time top traditional transaction transactional transactions travel updates upserts use users versions",
     "url": "/platform/apache/Apache_Hudi.html"
   },
   {
-    "id": 27,
+    "id": 26,
     "title": "AirFlow.html",
     "content": "airflow acyclic airflow amounts analysis apache architecture author based bashoperator celery changes cloud code communication complex configurable connection correct custom dag dags data databases debugging delays dependencies details devops different directed distributed dynamic engineering errors etl execution extensibility external failure features flow generation graph graphs hooks integration integrations interface intervals key kubernetes large learning limits logging machine managing mechanism mechanisms modular monitor monitoring multiple needs node notifications number open operators orchestrate order overview pipeline pipelines platform platforms plugins points processes programmatically progress python pythonoperator relationships retry rich scalability schedule scheduling science seamless sensors services set small source specific specified sql step systems task tasks technologies triggers troubleshooting types ui user various versioning web workers workflow workflows xcoms",
     "url": "/platform/apache/AirFlow.html"
   },
   {
-    "id": 28,
+    "id": 27,
     "title": "Managed-External-Live-Tables.html",
     "content": "managed external live tables actual automated automation aws azure batch blob case checks cloud create data databricks datasets dbfs def default delta dependencies differences dlt etl example execution external feature file files framework fully hdfs id import ingestion int internal key lifecycle live location managed managing metadata monitoring name output persistent pipeline pipelines processing quality real return shared storage streaming string system table tables tasks temporary time transformation underlying use users workflows",
     "url": "/databricks/Managed-External-Live-Tables.html"
   },
   {
-    "id": 29,
+    "id": 28,
     "title": "PySpark_Deep_Dive.html",
     "content": "pyspark deep dive ability abstractions acceptable access accuracy acid action acyclic adheres advantages aggregation airflow alerts algebra algorithms aligns allocation amazon amounts analysis analysts analytical analytics another apache api apis applications atomicity attribute attributes automated automatic automating automation aws azure based basis batch benefits best better big branch branches branching bug build building business capabilities capacity cases category cd central centralized certain chance change changes checks ci clear cloud cloudformation cloudwatch cluster clustering clusters codd code codebase collaboration collaborative collect collection collections column columns commit commits common complex complexity compliance comprehensive computation compute computing concepts conditions configuration configurations conflicting conflicts considerations consistency consistent constraints container containerized continuous control count cross csv current custom cyclic dag dags data database databases databricks datadog dataframe dataframes dataset datasets date dates decision deep delay deleted delta demand denormalized dependencies deploying deployment design developers development df differences different dimension directed distributed dive docker documentation downstream driven duplicated duplication durability edgar efficiency elastic elt encryption end enforced engineering engineers ensure ensures entire entities environment environments error errors etl evaluation event events every example execution expectations expected experiment extract fact failed failure failures fast fault feature features field fields file files finance fixes flat flexibility focus foreign formal formats fosters full functions fundamental gcp general git github gitlab graceful graphs great handling heavy high historical hotfix iac iam idempotency idempotent identifier identifiers identity implement import improved incoming inconsistent indexing infrastructure insights instances integration integrity intelligence intervals intervention isolation issue issues iteration iterative jenkins key keys kubernetes lake lambda language large layer lazy learning level leverage load location logging logic long luigi machine machines main making managed management managing manipulation manner manual marts mechanisms members memory merge merging metadata mlflow mllib model models modern monitor monitoring mr multidimensional multiple mysql new normalized notebook notebooks nothing null numbers numeric object olap oltp one online open operational operations optimization orchestrated orchestration orchestrator orchestrators order others outcome overview pandas parallel parallelism part parts performance pipeline pipelines platform platforms point popular postgresql pr practices predefined prefect previous prices primary process processes processing product production proper protection provisioning purposes pyspark python quality queries query querying range ranges rapid rdds rds reads real record records recovery redundancy reference refers regular relational relations relationships reliability repeatability reporting repositories repository request requests resilient resizable resource resources response result results retries retry reviews row rows rules running sales scalability scalable scale scaling scheduled scheduling schema scientists secure security semi sensitive separation sequence server serverless servers service services session set setup shared sharing simple simplicity single slice small snapshot snowflake source sources spark sparksession specific specified sql stable stages standards star start state states step storage stores strategies stream streaming structure structured subsets system systems table tables target task tasks team teams techniques technologies temporary terraform test testing tests theory thresholds time tolerance tool tools top traceability track tracking transaction transactional transactions transformation transformations transformed travel trend trigger triggering troubleshooting true truth two types unique uniqueness unit updates upstream use user users valid validated validates validation value values various version versions view virtual visualizations volumes warehouse warehouses warehousing way web workflows workload workloads writes",
     "url": "/databricks/PySpark_Deep_Dive.html"
   },
   {
-    "id": 30,
+    "id": 29,
     "title": "PySpark-Coding-Examples.html",
     "content": "pyspark coding examples age aggregate aggregation alice average avg back based bob categories category cathy centralized clause code col column commands computer condition count csv customers data databricks dataframe dataframes def default defined delta department desc df distinct duplicate email example exercises explode false file fill filter format formats function greater group guide handling import introduction lake lakes let limit loading luzbetak missing name names none number occurrences operation order orderby parquet people prefix price pyspark queries read records repository result rows salaries salary sales sample scale science select show spark sparksession specific split sql stringtype structured sum text top total transformation transformations two udf unique unstructured user value values various word words world write writing",
     "url": "/databricks/PySpark-Coding-Examples.html"
   },
   {
-    "id": 31,
+    "id": 30,
     "title": "DLT-SCD-Type2.html",
     "content": "dlt scd type2 audit automated automates automatic batch bronze business cdc changes complete complex configuration customer data databricks declarative def defines delta detects dimension dimensions dlt employee etl event events example framework friendly full fully function handles historical history indicators key keys lineage live logic maintenance managed means merge mode monitoring new old ones options orchestration order pipeline pipelines previous product quality record result return roles row rows scd seed silver simplifies source sources stream streaming structure summary supports table tables target type updated use values version versions",
     "url": "/databricks/DLT-SCD-Type2.html"
   },
   {
-    "id": 32,
+    "id": 31,
     "title": "Data_Migration_From_Snowflake.html",
     "content": "data migration from snowflake access compute connection connector counts create credentials customer customers data database databricks dataframe decimal decimaltype def define delta df e environment error example exception false format handles import important incremental initialize integertype large loads managed match metrics migrate migrated migrates migrating migration monitor name notes output overview parameters performance prerequisites price print product products pyspark queries query record records resources sample schema schemas select session single snowflake source spark sparksession statistics stringtype structfield structtype successfully sufficient table tables target timestamptype ui uses verification workspace write",
     "url": "/databricks/Data_Migration_From_Snowflake.html"
   },
   {
-    "id": 33,
+    "id": 32,
     "title": "PySpark-Data-Streaming.html",
     "content": "pyspark data streaming abstraction api application averages backpressure based batch batches capabilities checkpointing checkpoints cluster code computation consistent continuous core counts data dataframes dataset datasets declarative development different distributed dstream dstreams ease ecosystems evolution failures fault flexibility flume frames handles handling hardware hdfs information input integration kafka kinesis larger live logs loss lost metrics micro network node nodes operations original overwhelming patterns period process processing pyspark rate rdd rdds real resilience resilient resources running scalability sensor sliding small sockets source sources spark specific sql state stateful stream streaming streams structured support system tcp time tolerance transformations trends tweets various volumes window",
     "url": "/databricks/PySpark-Data-Streaming.html"
   },
   {
-    "id": 34,
+    "id": 33,
     "title": "Databricks-Delta-Lake.html",
     "content": "databricks delta lake acid aggregated analysis approach architecture audits availability batch big broad bronze cleaned collaboration concurrent connector consistency controlled copy data databricks datasets debugging delta design durability ecosystem efficient external failures fast feature flexibility flink given handling historical isolation lake large management massive medallion metadata modifications need open optimized organizations partners platforms point presto processing protocol quality queries raw refined reliability scalable scale scenarios seamless secure sharing single streaming support tiers time tools transactions travel trino types unified users various versioning versions workloads",
     "url": "/databricks/Databricks-Delta-Lake.html"
   },
   {
-    "id": 35,
+    "id": 34,
     "title": "Databricks-Tableau-Performance.html",
     "content": "databricks tableau performance adaptive aggregate alerts aqe auto autoscaling best bottlenecks broadcast bronze build cache cardinality checkpoints checks clusters code columns compact complex composite concise context dashboard dashboards data databricks datasets delta efficient etl execution extracts fewer files filters fix full gold handling high hot hyper incremental ingestion ins job joins keys large layers loader lods marks monitor order partitions performance photon pipelines plans points practices pre priority process prune quality query quick ready recording refresh reloads repartition retries runtime salting shuffle shuffles silver skew slow small spark speed steps store tableau tables tasks tune udfs ui uneven uniform use view worksheets z",
     "url": "/databricks/Databricks-Tableau-Performance.html"
   },
   {
-    "id": 36,
+    "id": 35,
     "title": "Databricks-PySpark.html",
     "content": "databricks pyspark abstractions access acid action aggregation algorithms allocation analysis analysts analytics apache api applications aws azure based big business capabilities cases cloud cluster clusters code collaboration collaborative collect collections complexity computation computing count csv data databases databricks dataframe dataframes datasets deep delta deployment df distributed dive efficiency engineers environment etl evaluation example execution experiment extract fault features file fosters full fundamental gcp handling high import insights intelligence iterative key lake large layer lazy learning level leverage load machine machines management manipulation manner members memory metadata mlflow mllib model models multiple notebook notebooks open operations optimization overview pandas parallel performance pipelines platform process processing pyspark python queries rdds real resilient resource resources results scalability scalable scale scientists services session sharing source spark sparksession storage stream streaming structure structured system tasks team time tolerance top tracking transactions transformation true use user users visualizations workload workloads",
     "url": "/databricks/Databricks-PySpark.html"
   },
   {
-    "id": 37,
+    "id": 36,
     "title": "PySpark-Pivot-Table.html",
     "content": "pyspark pivot table alice analytics application categorical code column columns combination context data dataframe df dictionaries digestible east employee example explanation following format functions github import information list luzbetak multiple new one original output overview pages pivot pivoted provided purposes pyspark region reporting sales sample something south spark sparksession sum table tool unique using value values",
     "url": "/databricks/PySpark-Pivot-Table.html"
   },
   {
-    "id": 38,
+    "id": 37,
     "title": "PySpark-S3-Small-Files-Compaction.html",
     "content": "pyspark s3 small files compaction args bucket calculate columns compaction configuration configurations contents creates data datetime def df e exception false files function given import info initialize input list main many mb name none number obj optimize optimized output page pages partitions path prefix processed processing pyspark session size small spark sparksession specific success target timestamp x",
     "url": "/databricks/PySpark-S3-Small-Files-Compaction.html"
   },
   {
-    "id": 39,
+    "id": 38,
     "title": "PySpark-SQL-Functions-Parquet.html",
     "content": "pyspark sql functions parquet age aggregate aggregation alice average avg back based bob categories category cathy centralized clause code col column commands condition count csv customers data databricks dataframe dataframes def default defined delta department desc df distinct duplicate email example explode false file fill filter format formats function functions greater group guide handling import introduction lake lakes let limit loading missing name names none number occurrences operation order orderby parquet people prefix price pyspark queries read records repository result rows salaries salary sales sample scale select show spark sparksession specific split sql stringtype structured sum text top total transformation transformations two udf unique unstructured user value values various word words world write writing",
     "url": "/databricks/PySpark-SQL-Functions-Parquet.html"
   },
   {
-    "id": 40,
+    "id": 39,
     "title": "Star-Schema-Data-Migration.html",
     "content": "star schema data migration analysis analyzing better books canada category check clothing col connection count country create customers data database databricks dataframe date decimaltype def define definitions delta design df dimension e electronics email example exception fact false first foreign found group import important incremental initialize int integertype integrity invalid join key large last left loads memory migrate migrated migration monitor name notes null orphaned output p parameters performance primary print process production products quantity query records references referential relationships return sales sample schema schemas select session single snowflake spark sparksession star starting statistics stringtype structfield structtype successfully table tables timestamp timestamptype uk usage valid validate validation write",
     "url": "/databricks/Star-Schema-Data-Migration.html"
   },
   {
-    "id": 41,
+    "id": 40,
     "title": "Medallion-Architecture.html",
     "content": "medallion architecture access accurate adjustments aggregated allocation allows analytics applications approach architecture audit auditability auditing benefits best breaches bronze business checks cleansed cleansing clear cloud completeness compliance computing considerable contains controls copies correction cost costly costs count curated dashboards data delta dependencies details development different distinct efficient enhanced entire error essential excel expected expenses expensive extensive faster fidelity flexibility format formats frequent future gold governance group high import incremental infrastructure ingestion instance integrity intensive intermediate investment json keeping key lake large later layer layers learning lineage logic loss lower machine maintain maintenance management measures medallion modifications multiple need needs operational operations optimized original output overall overhead parallel parquet performance pipeline pipelines potential practices premature processing pyspark python quality queries query raw reconciliations reduced regulatory reliability reliable reporting resource rework risk robust savings scalability select separate significant silver single source sources space spark sparksession specific sql stages state storage storing structured summary systems tasks teams time traceability tracking trail transformations truth usage variations various verify verifying versions volumes workflow",
     "url": "/databricks/Medallion-Architecture.html"
   },
   {
-    "id": 42,
+    "id": 41,
     "title": "Managed-External-Tables.html",
     "content": "managed external tables case cases control data database delta directory external ideal lake lifecycle location managed management metadata physical specified storage system systems table tables unmanaged use user",
     "url": "/databricks/Managed-External-Tables.html"
   },
   {
-    "id": 43,
+    "id": 42,
     "title": "Column-Shuffle-Repartition.html",
     "content": "column shuffle repartition aggregations alternatives balance balancing case category cluster col column data default efficiency efficient equal example filtering following full goal grouping intention joins large later load logic multiple nodes number operations optimized oversized parallel partition partitions perfectly processing pyspark reasonable repartition repartitioning rows share shuffle shuffling smaller spark specific specified splits syntax value values works",
     "url": "/databricks/Column-Shuffle-Repartition.html"
   },
   {
-    "id": 44,
+    "id": 43,
     "title": "Optimizing-Join-Queries.html",
     "content": "optimizing join queries accessed active adequate allocation amount analysis anomalies architectures batch batches bottlenecks buffer cache check clause columns common complex composite condition conditions considerations constraints correct cost costly criterion ctes data database datasets date defragmentation denormalization design different dimension disk disks efficient enable environment example excessive execution expensive explain expressions fact faster files filter filtering filters flexible foreign fragmentation frequently full functions hardware histograms incorrect increased index indexed indexes indexing infrastructure inner insights insufficient join joins key large left legacy less limited loop maintenance management materialized memory merge method methods model monitoring multiple mysql need nested old older ones operation operations optimization optimize optimizing oracle order parallel partition partitioning parts performance plan pools potential processing processors proper pruning queried queries query redundancy redundant region regular regularly repeated resources results retrieval rewrite rewriting scalability scans schema selective separate simpler size smaller solutions specific ssds star statistics steps storage subqueries sufficient summary system table tables tasks techniques time tools type types unnecessary usage use views volume warehouse warehousing write",
     "url": "/databricks/Optimizing-Join-Queries.html"
   },
   {
-    "id": 45,
+    "id": 44,
     "title": "PySpark-Lazy-Evaluation.html",
     "content": "pyspark lazy evaluation ability action actions actual acyclic amount benefits calculations cluster collect complex computation concept count dag data dataframe deferred directed distributed driver efficient entire environments evaluation example examples execution external fewer filter filtering final graph intermediate jobs key lambda large lazy logical manner map mapping memory necessary new operations optimization optimizations performance pipelines plan point points print processing program pyspark rdd resource resources result results saveastextfile scalable scale sequence several small spark steps storage subset transformations trigger unnecessary usage x",
     "url": "/databricks/PySpark-Lazy-Evaluation.html"
   },
   {
-    "id": 46,
+    "id": 45,
     "title": "Delta-Live-Tables.html",
     "content": "delta live tables acid analytics automate automatic cases checks clean cleaned col complex constraints creation data databricks declarative def define delta dependencies dependency development dlt ease efficiency enforce enforcement entire etl example execution failure features flexibility framework handling health immediate import incremental ingest ingestion key lake learning lifecycle lineage live machine managed management manual monitoring new observability operational optimizations orchestration output overhead performance pipeline pipelines processing quality raw real return schema simplified simplifies sources streaming supports syntax tables time tools top tracking transactions transformation transformations travel use valid visibility way workflow workloads",
     "url": "/databricks/Delta-Live-Tables.html"
   },
   {
-    "id": 47,
+    "id": 46,
     "title": "Howto-Use-Delta-Live-Tables.html",
     "content": "howto use delta live tables auditing auto automated automatic bad best choice code complex compliance consistent continuous coordination correct counts current custom dags data databricks declarative delta dependency dlt drop engineering ensures error errors etl expectations expertise fewer flags framework full gold grade graphical handles handling heavy historical ideal incremental ingestion job jobs latency lineage live loader logic long low maintenance manual merge minimal monitoring need observability operational ops optimization orchestration ordering overhead performance pipelines practices primary production project quality records reliable retries row rules scd scenarios silver spark statements streaming summary table tables tasks teams tracking type use vacuum validation view",
     "url": "/databricks/Howto-Use-Delta-Live-Tables.html"
   },
   {
-    "id": 48,
+    "id": 47,
     "title": "Apache-Spark.html",
     "content": "apache spark action actions acyclic algorithms allocates allocation analytics apache api applications architecture based basic batching benefits catalyst cluster clusters collect collections common components computations concepts core dag data dataframes dataset datasets directed distributed driver efficient enables engine examples execution executors files filter flatmap graph groupbykey high immutable interface job key kubernetes languages large lazy learning level libraries library lineage machine management manager manages map memory mesos micro ml mllib model new nodes object objects operations optimization optimizations optimizer oriented parallelism partition partitions performance plans processing program programming python query querying rdd rdds real resilient resource resources results rule scala scalable scale scheduler scheduling series shuffle spark sparkcontext sql stages streaming structure structured submit task tasks time tolerance transformations type unified union units uses work worker workflow yarn",
     "url": "/databricks/Apache-Spark.html"
   },
   {
-    "id": 49,
+    "id": 48,
     "title": "Change_Data_Capture_CDC.html",
     "content": "change data capture cdc acid aggregates analytics apply architecture architectures audit auditability auto aware based better bronze bus business capture cardinality cdc cdf change changed changes changing cloud columns common compute consumers continuous cost current data database databricks dates de debezium declarative define delete delivery delta dependencies design differences dimensional dimensions dlt downstream drift duplicated efficiency efficient error etl event events expectations exposes faster feature feed files fivetran flag framework fresh freshness full given gold handles health high historical history immutable implementations incremental ingestion insert inserts jobs kafka key lag lake lakehouse large last latency latest layering layers less level leverage live loader logic logs lower managing marts merge message metadata models modes monitor new normalize old operation operations optionally ordering overwrite partition pattern patterns performance pipeline pipelines plan previous processing proper pseudo quality queues rates raw read reads ready real records refreshes reloads requirements results retention row rows rules run scalability scd schema separate silver simpler slowly snapshot snapshots source state storage streaming structured summary supports system systems table tables target time timestamp timestamps tolerance tool top type typical update updates upserts use using values version views volumes",
     "url": "/databricks/Change_Data_Capture_CDC.html"
   },
   {
-    "id": 50,
+    "id": 49,
     "title": "PySpark-Handling-Missing-Data.html",
     "content": "pyspark handling missing data action algorithms analysis analytics apache api applications backward big binary building cluster col collections column columns common computer computing constant data database dataframes datasets developers different distributed downstream drop evaluation execution fault features fill filling filter flag flagging forward framework function functions fundamental github handling import imputation indicator instance key language large last lazy learning library lost luzbetak machine machines memory method methods missing missingness mllib mode model modeling models named nature null numeric objects observation open operations optimizations pages parallel performance plan planning popular powerful predict preprocessing processing programming pyspark python queries query rdds regression relational remove requirements resilient rows scale several single source spark specific specified sql string structure structured subset system table task techniques tolerance tools transformations valid value values various window",
     "url": "/databricks/PySpark-Handling-Missing-Data.html"
   },
   {
-    "id": 51,
+    "id": 50,
     "title": "Medallion-Partitioning-Code.html",
     "content": "medallion partitioning code aggregated aggregation aggregations architecture bronze category cleaning column columns data dataset days description electronics gold grocery ingestion last layer layers medallion new node number optimized orders partitioning paths pyspark raw reporting result silver spark tables three today total transformation two",
     "url": "/databricks/Medallion-Partitioning-Code.html"
   },
   {
-    "id": 52,
+    "id": 51,
     "title": "PySpark-Questions-Answers.html",
     "content": "pyspark questions answers action actions algorithms answers apache api apis big catalyst cluster clusters collection columns computation computing concept control count data database databases dataframe dataframes dataset datasets difference distributed driver easier efficient element elements entire evaluation example execution existing external fault features filter flatmap flow function fundamental github high higher inner input interface iterative join joins key large lazy level lineage list logical low luzbetak machines manipulation map memory multiple named new objects open operations optimizer pages pandas parallel parallelism parallelized physical plan plans processing program pyspark python questions rdd rdds relational resilient results rules scale semi single source spark storage structure structured system table tables tasks tolerance transformation transformations two various ways",
     "url": "/databricks/PySpark-Questions-Answers.html"
   },
   {
-    "id": 53,
+    "id": 52,
     "title": "Databricks_Slideshow.html",
     "content": "databricks slideshow full image screen slideshow",
     "url": "/databricks/slideshow/Databricks_Slideshow.html"
   },
   {
-    "id": 54,
+    "id": 53,
     "title": "Marketing-Data-Overview.html",
     "content": "marketing data overview acquisition activities actual advertising aggregators analysis analytics app approach attribution audience audiences behavioral brand campaign campaigns channel channels click competitive competitor comprehensive content conversion cost cpa ctr customer customers dashboards data decisions demographic demographics digital direct driven effectiveness email engagement external feedback financial firms focus forms google groups history income industry information input insights interaction interactions interests investment level lifestyle listening loyalty market marketing media metrics optimize overview party performance ppc preferences profiles program proprietary providers psychographic purchase qualitative rates reputation research return revenue roi sales segment segmentation sentiment share social sources specific survey surveys tailor third tools traffic trends usage user values visibility voice web website",
     "url": "/snowflake/Marketing-Data-Overview.html"
   },
   {
-    "id": 55,
+    "id": 54,
     "title": "sql-with-2-tables-join.html",
     "content": "sql with 2 tables join courses cr create curriculum drop email exists g grade grades join language limit lnaguage order rand replace select semester students table tables",
     "url": "/snowflake/sql-with-2-tables-join.html"
   },
   {
-    "id": 56,
+    "id": 55,
     "title": "Collibra-Data-Quality.html",
     "content": "collibra data quality acceptable accuracy actionable allows analytics anomalies automated aws azure benefits broken business capabilities catalog checks cloud collaboration collibra completeness compliance conducts consistency continuous creation custom dashboard dashboards data decision depth detailed detects different discovery duplicates efforts enables enhance enriched enterprise errors experience failed features finance glance governance health healthcare high impact improved improvement inaccuracies industries insights integrates integration interactive issues key large learning lineage machine making management metrics mitigates models monitoring multi needs observability operational operations organizations overall owners performance pipelines platform platforms poor potential predefined proactive processes profiling progress quality real reduced regulatory remediation reporting reports requirements retail risks rules scalable standardization standards stewards stewardship support surfaces systems teams telecommunications thresholds time timeliness tool transformation trust trustworthiness types user users uses validation visibility volumes workflows",
     "url": "/snowflake/Collibra-Data-Quality.html"
   },
   {
-    "id": 57,
+    "id": 56,
     "title": "FastAPI.html",
     "content": "fastapi api apis app application async asynchronous authentication authorization auto automatic background basemodel class combines communication concurrency cycle data def description development documentation endpoint endpoints errors example explanation fast fastapi field float function generate high hints httpexception import integrity intensive interactive item json jwts main model modern name none openapi overview performance post power price processes protocols pydantic python real redoc reliable request rest return schema secure security simple simplicity str support supports swagger tasks tax time tools type types ui utilizes validation websockets",
     "url": "/software/FastAPI.html"
   },
   {
-    "id": 58,
+    "id": 57,
     "title": "Implementing-API.html",
     "content": "implementing api access allow api apis application applications appropriate apps architecture attacks authentication authorization backward based best clear client clients codes communication compatibility consistent control conventions cors cross data datasets ddos definition design development different documentation domain easier efficiency efficient endpoints environments error evolution feature flexibility handling headers high http https implement implementing importance independent information injection input integration interaction interface interfaces jwt key keys language large layered layers limiting messages method methods microservices middleware multiple naming oauth object origin pagination paths performance postman practices principles programming protocol query rate relevant representational request requests resource resources responses rest restful scalability seamless security separation server sharing side simple soap software solution specific standard standardized standards state statelessness status strategies strict structured success supports swagger system systems tools topics transfer transit troubleshooting types understanding unified uniform use uses validate web",
     "url": "/software/Implementing-API.html"
   },
   {
-    "id": 59,
+    "id": 58,
     "title": "Sudoku-Board-Verification.html",
     "content": "sudoku board verification args board bool checks col column columns completed conditions example expected false function given grid grids import inner int list lists logic matrix module name numbers output parameters pp pprint pretty prints provided puzzle python result return returns row rows rules script specified standard start steps sub sudoku sum sums total true value verification verifies window",
     "url": "/software/Sudoku-Board-Verification.html"
   },
   {
-    "id": 60,
+    "id": 59,
     "title": "New-Project-Design.html",
     "content": "new project design agile allocate analysis architectural architecture assign best boundaries choose codebase competitive compliance components conduct databases define deliverables deployment design determine develop development diagram document documentation end error expectations feature feedback final frameworks functionality goal growth handoff high ideas inputs integration integrations interactions interface interviews key languages launch level main maintenance methodologies metrics milestones monitoring navigation needs new objective objectives operations optimization outputs performance pick plan planning post practices primary problem production progress project projects requirements research resources responsibilities roles scalability scope screens security select serverless services set similar sketch smaller smooth solution specific sprints stack stakeholder success system task tasks team teams technical technologies technology testing tests tools tracking train training troubleshooting type ui understand unit usage user users waterfall wireframe",
     "url": "/software/New-Project-Design.html"
   },
   {
-    "id": 61,
+    "id": 60,
     "title": "Python-Search-Algorithms.html",
     "content": "python search algorithms algorithm another arr array base binary case containing current def element elements elif first function half halves index intersection iteration length list lists merge mid middle output pivot process quick result return right search second single sort target two x",
     "url": "/software/python/Python-Search-Algorithms.html"
   },
   {
-    "id": 62,
+    "id": 61,
     "title": "Python-String-Algorithms.html",
     "content": "python string algorithms actual algorithm algorithms anagram anagrams analysis another args argument array base binary boolean buzz calculate cases char character characters check checking common comparison correction corresponding cost counts def deletions detection distance distances dna dp dynamic edits element elements elif equal error example false fill first fizz fizzbuzz function hamming import indices input insertion insertions int integer j karolin language last lcs length levenshtein list longest maximum measure metric minimum n natural non none np number numpy one operation order original output pair palindrome positions processing programming python repeated representation result return returns reverse row second sequence sequences similarity single size sort sorted spell str string strings subsequence substitution substitutions table true two value values versions vowels world x",
     "url": "/software/python/Python-String-Algorithms.html"
   },
   {
-    "id": 63,
+    "id": 62,
     "title": "Python-Coding-Exercise-Algorithms.html",
     "content": "python coding exercise algorithms algorithms bool char character coding complement counts def duplicates enumerate example exercise first int intersection j largest list lists merged non none num number nums olleh output palindrome problem python range repeated return str string sum true two usage vowels world",
     "url": "/software/python/Python-Coding-Exercise-Algorithms.html"
   },
   {
-    "id": 64,
+    "id": 63,
     "title": "Python_Algorithms_Solutions.html",
     "content": "python algorithms solutions actual algorithm algorithms anagram anagrams analysis another args argument arr array b base binary boolean buzz calculate case cases char character characters check checking common comparison complement containing correction corresponding cost counts current def deletions detection distance distances dna dp duplicates dynamic edits element elements elif equal error example execution false fibonacci fill first fizz fizzbuzz function generator half halves hamming import index indices infinite input insertion insertions int integer intersection iteration j karolin language last lcs length levenshtein list lists longest loop maximum measure merge metric mid middle minimum n natural nested next non none np num number numbers numpy nums one operation order original output pair palindrome pivot positions problem process processing programming python quick recursive remaining repeated representation result return returns reverse right row search second sequence sequences series similarity single size sort sorted specific spell state statement str string strings subsequence substitution substitutions sum table target true two usage value values versions vowels world x yield",
     "url": "/software/python/Python_Algorithms_Solutions.html"
   },
   {
-    "id": 65,
+    "id": 64,
     "title": "Python-Function-OOP-Data-Structure.html",
     "content": "python function oop data structure age alice animal anonymous another argument array async asynchronous asyncio attribute attributeerror author await basic bob book buddy c call cat class classes closures code collection common concurrency csv data decorators def defining dictionaries dictionary different dog dunder dynamic element elements encapsulation example expression file func function functions generator generators george header headers hi higher immutable import individual inheritance init item iterator iterators key keys lambda line list lists main memory meow methods msg multiple multiplier multiprocessing multithreading name next numbers object objects order oriented orwell output pair person polymorphism print private process processes program programming python r range reader reading return row rows sample self separate sequence set sets simple single spaces square str structures target thread threading threads tuple tuples unique unordered value woof wrapper x yield yields",
     "url": "/software/python/Python-Function-OOP-Data-Structure.html"
   },
   {
-    "id": 66,
+    "id": 65,
     "title": "Products-By-Regions.html",
     "content": "products by regions columns conn connection cursor data database date desc description exists explanation function group highest id import insert int library price product products python quantity query rank ranking region regions result results revenue row sales sample script select selling specified sql sqlite table top total transaction values window year",
     "url": "/software/transformation/Products-By-Regions.html"
   },
   {
-    "id": 67,
+    "id": 66,
     "title": "CSV_To_JSON.html",
     "content": "csv to json age alice angeles bob charlie convert csv dataframe df file format francisco import input json lines location los name new output pandas path pd pprint python resulting san transformation york",
     "url": "/software/transformation/CSV_To_JSON.html"
   },
   {
-    "id": 68,
+    "id": 67,
     "title": "Data-Mesh-Architecture.html",
     "content": "data mesh architecture access accessibility accuracy additional agility analysis approach architecture architectures aspect authorized autonomous autonomy balance benefits best better big bottlenecks building business capabilities capability central centralization centralized challenge changes clear cloud collaboration complexities complexity compliance computing consistent consumers coordination core data datasets decentralization decentralized design differences domain domains driven federated flexibility global governance high idea improved increased independent infrastructure key large limitations location main management managing mesh model models needs often organization organizations oriented ownership pipelines platform policies principles processes processing product products quality recent reliability repository requests requirements resources response responsibilities rigid scalability scales scaling security self service several skillset solutions specific standards strong system systems team teams technical technologies tools traditional traffic training unit units usability users volumes",
     "url": "/redshift/Data-Mesh-Architecture.html"
   },
   {
-    "id": 69,
+    "id": 68,
     "title": "Data-Fabric-vs-Data-Mesh.html",
     "content": "data fabric vs data mesh access analytics approach architecture aspect automation autonomy capabilities central centralized challenges cloud comprehensive connectivity consistency consistent control controls core data decentralized decision departments different discovery disparate domain domains ensures enterprises entire environments fabric fabrics federated flexibility governance handling heavy high individual infrastructure integration interoperability large lineage making management many mesh metadata multiple needs one organization organizations others ownership platform platforms policies premises preparation privacy processes product products real related responsibility rest scalability scales seamless security self service single size smooth sources specific standards strong systems tasks team teams time unified use various view vs",
     "url": "/redshift/Data-Fabric-vs-Data-Mesh.html"
+  },
+  {
+    "id": 69,
+    "title": "My_Github_Code.html",
+    "content": "my github code aggregation algorithms analysis application augmented bayes bloom classifier cluster clustering computer confusion cosine data dataset distance euclidean filter forest generate generation github golang graph k language learning lingua luzbetak machine matrix means model mysql naive natural nlp notebooks perceptron pipeline plotting processing processor pyspark python query rag random redshift retrieval science similarity spacy spark tagger test tokenizer training word",
+    "url": "/github/My_Github_Code.html"
   },
   {
     "id": 70,
