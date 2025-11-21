@@ -271,29 +271,31 @@
     // Highlight the active section in the navbar
     const currentPath = window.location.pathname;
     if (currentPath === '/' || currentPath === '/index.html') {
-      document.getElementById('home').style.backgroundColor = '#004499';
+      document.getElementById('home').style.backgroundColor         = '#004499';
     } else if (currentPath.includes('/ai')) {
-      document.getElementById('ai').style.backgroundColor = '#004499';
+      document.getElementById('ai').style.backgroundColor           = '#004499';
+    } else if (currentPath.includes('/database')) {
+      document.getElementById('database').style.backgroundColor     = '#004499';
     } else if (currentPath.includes('/snowflake')) {
-      document.getElementById('snowflake').style.backgroundColor = '#004499';
+      document.getElementById('snowflake').style.backgroundColor    = '#004499';
     } else if (currentPath.includes('/databricks')) {
-      document.getElementById('databricks').style.backgroundColor = '#004499';
+      document.getElementById('databricks').style.backgroundColor   = '#004499';
     } else if (currentPath.includes('/redshift')) {
-      document.getElementById('redshift').style.backgroundColor = '#004499';
+      document.getElementById('redshift').style.backgroundColor     = '#004499';
     } else if (currentPath.includes('/aws')) {
-      document.getElementById('aws').style.backgroundColor = '#004499';
+      document.getElementById('aws').style.backgroundColor          = '#004499';
     } else if (currentPath.includes('/software')) {
-      document.getElementById('software').style.backgroundColor = '#004499';
+      document.getElementById('software').style.backgroundColor     = '#004499';
     } else if (currentPath.includes('/platform')) {
-      document.getElementById('platform').style.backgroundColor = '#004499';
+      document.getElementById('platform').style.backgroundColor     = '#004499';
     } else if (currentPath.includes('/animation')) {
-      document.getElementById('animation').style.backgroundColor = '#004499';
+      document.getElementById('animation').style.backgroundColor    = '#004499';
     } else if (currentPath.includes('/foundationdb')) {
       document.getElementById('foundationdb').style.backgroundColor = '#004499';
     } else if (currentPath.includes('/github')) {
-      document.getElementById('github').style.backgroundColor = '#004499';
+      document.getElementById('github').style.backgroundColor       = '#004499';
     } else if (currentPath.includes('/search')) {
-      document.getElementById('search').style.backgroundColor = '#004499';
+      document.getElementById('search').style.backgroundColor       = '#004499';
     }
 
     // Navigation using left and right arrow keys
