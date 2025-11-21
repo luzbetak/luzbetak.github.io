@@ -18,7 +18,7 @@ body {
 .navbar a {
     float: left;
     font-size: 16px;
-    color: red;
+    color: blue;
     font-weight: bold;
     text-align: center;
     padding: 14px 16px;
@@ -28,7 +28,6 @@ body {
 .navbar a:hover {
     background-color: #444444;
 }
-
 
 
 /* Search results styling */
