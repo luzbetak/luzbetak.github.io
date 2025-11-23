@@ -316,6 +316,68 @@
       tutorial for understanding how Amazon Redshift is structured and how data
       flows through the system.
     </p>
+
+    <h2>Data Ingestion Pipeline</h2>
+    
+    <p>
+      The Redshift ingestion pipeline represents the flow of data from operational
+      systems and external data sources into Amazon Redshift. This process typically
+      involves extraction from sources, transformation into optimized formats, and 
+      loading into Amazon S3 before final ingestion into Redshift.
+    </p>
+    
+    <p>
+      <img src="redshift-ingestion-pipeline.png" 
+           alt="Redshift ingestion pipeline showing data sources flowing through ETL into S3 and then into Amazon Redshift" />
+    </p>
+    
+    <ul>
+      <li><strong>Data Sources</strong> – Operational databases, application logs,
+          third-party APIs, event streams, and files.</li>
+    
+      <li><strong>ETL / ELT Layer</strong> – AWS Glue, Lambda, EMR, or third-party
+          tools perform transformations and cleaning.</li>
+    
+      <li><strong>Amazon S3</strong> – The primary ingestion landing zone used for
+          staging raw and transformed data.</li>
+    
+      <li><strong>Amazon Redshift</strong> – Final destination for structured
+          analytics workloads. Data is typically loaded using the COPY command for
+          maximum throughput.</li>
+    </ul>
+    
+    
+    <h2>End-to-End Architecture</h2>
+    
+    <p>
+      The end-to-end Redshift architecture shows the complete lifecycle of data –
+      from initial collection, through ingestion and transformation, into Amazon 
+      Redshift, and finally consumed by analytics and BI tools.
+    </p>
+    
+    <p>
+      <img src="redshift-end-to-end-architecture.png" 
+           alt="Redshift end-to-end architecture diagram showing data sources, ingestion, AWS Glue transformations, Redshift warehouse, and analytics outputs" />
+    </p>
+    
+    <ul>
+      <li><strong>Data Sources</strong> – Databases, applications, IoT, streaming 
+          services, and file-based inputs.</li>
+    
+      <li><strong>Ingestion Pipeline</strong> – Data flows into S3 or streams 
+          through Kinesis before entering Redshift.</li>
+    
+      <li><strong>AWS Glue</strong> – Optional transformation stage to clean,
+          normalize, or enrich data before SQL analytics.</li>
+    
+      <li><strong>Amazon Redshift</strong> – Central data warehouse storing curated 
+          datasets, fact tables, and dimensional models.</li>
+    
+      <li><strong>Analytics & Business Intelligence</strong> – Tools such as 
+          QuickSight, Tableau, Looker, and Jupyter notebooks read from Redshift 
+          for dashboards, reporting, and ML workloads.</li>
+    </ul>
+
   </body>
 
 {% include footer.html %}
