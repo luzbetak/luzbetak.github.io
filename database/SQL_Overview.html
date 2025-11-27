@@ -1,0 +1,55 @@
+<body>
+    <h1>Common Types of SQL</h1>
+    <p>The most common types of SQL (Structured Query Language) are used for managing and manipulating relational databases. SQL commands are broadly categorized based on their functionality:</p>
+
+    <h2>1. Data Definition Language (DDL)</h2>
+    <p><h3>Purpose:</h3> DDL commands are used to define and manage database structures such as tables, indexes, and schemas.</p>
+    <p><h3>Common Commands:</h3></p>
+    <ul>
+        <li><h3>CREATE</h3> - Creates a new table, database, index, or other objects.</li>
+        <li><h3>ALTER</h3> - Modifies the structure of an existing database object (e.g., adding or modifying columns in a table).</li>
+        <li><h3>DROP</h3> - Deletes an existing database object such as a table or index.</li>
+        <li><h3>TRUNCATE</h3> - Removes all records from a table, but the table structure remains.</li>
+    </ul>
+
+    <h2>2. Data Manipulation Language (DML)</h2>
+    <p><h3>Purpose:</h3> DML commands are used for inserting, updating, deleting, and retrieving data within the database.</p>
+    <p><h3>Common Commands:</h3></p>
+    <ul>
+        <li><h3>SELECT</h3> - Retrieves data from one or more tables. It is the most commonly used SQL command.</li>
+        <li><h3>INSERT</h3> - Adds new rows of data to a table.</li>
+        <li><h3>UPDATE</h3> - Modifies existing data in a table.</li>
+        <li><h3>DELETE</h3> - Removes existing data from a table.</li>
+    </ul>
+
+    <h2>3. Data Control Language (DCL)</h2>
+    <p><h3>Purpose:</h3> DCL commands are used to control access to data in the database.</p>
+    <p><h3>Common Commands:</h3></p>
+    <ul>
+        <li><h3>GRANT</h3> - Provides specific privileges to users or roles (e.g., the ability to query or modify tables).</li>
+        <li><h3>REVOKE</h3> - Removes previously granted privileges from users or roles.</li>
+    </ul>
+
+    <h2>4. Transaction Control Language (TCL)</h2>
+    <p><h3>Purpose:</h3> TCL commands are used to manage transactions in the database, ensuring the integrity of data.</p>
+    <p><h3>Common Commands:</h3></p>
+    <ul>
+        <li><h3>COMMIT</h3> - Saves the current transaction's changes permanently in the database.</li>
+        <li><h3>ROLLBACK</h3> - Undoes the changes made in the current transaction.</li>
+        <li><h3>SAVEPOINT</h3> - Sets a point within a transaction to which you can later roll back.</li>
+        <li><h3>SET TRANSACTION</h3> - Specifies characteristics for the transaction, such as isolation level.</li>
+    </ul>
+
+    <h2>5. Data Query Language (DQL)</h2>
+    <p><h3>Purpose:</h3> DQL is primarily concerned with the retrieval of data from the database.</p>
+    <p><h3>Common Commands:</h3></p>
+    <ul>
+        <li><h3>SELECT</h3> - While technically part of DML, <code>SELECT</code> is often considered its own category (DQL) due to its significance in querying data.</li>
+    </ul>
+
+    <h2>Additional SQL Variants and Extensions</h2>
+    <ul>
+        <li><h3>Procedural SQL (PL/SQL, T-SQL, etc.):</h3> SQL extensions that introduce procedural elements (e.g., loops, conditionals) to SQL. Common in Oracle (PL/SQL) and SQL Server (T-SQL).</li>
+        <li><h3>Analytical SQL:</h3> Includes commands for complex data analysis, like <code>WINDOW FUNCTIONS</code> (e.g., <code>ROW_NUMBER</code>, <code>RANK</code>), <code>GROUP BY CUBE</code>, and <code>ROLLUP</code>.</li>
+    </ul>
+</body>

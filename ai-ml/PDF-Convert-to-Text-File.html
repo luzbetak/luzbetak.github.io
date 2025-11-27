@@ -1,0 +1,71 @@
+---
+---
+{% include menu.html title="PDF Convert to Text File" %}
+<hr align=left width=1100>
+
+    <h1>PDF to Text Conversion Script</h1>
+    
+    <h2>Installation Instructions</h2>
+    <p>To use this script on Ubuntu, you need to install the following dependencies:</p>
+    
+    <h3>Step 1: Update the package list</h3>
+    <pre><code class="language-bash">sudo apt update</code></pre>
+    
+    <h3>Step 2: Install Poppler and Tesseract OCR</h3>
+    <pre><code class="language-bash">sudo apt install poppler-utils tesseract-ocr</code></pre>
+    
+    <h3>Step 3: Install Required Python Libraries</h3>
+    <pre><code class="language-bash">pip install pdf2image pytesseract Pillow</code></pre>
+    
+    <h2>Python Script</h2>
+    <p>Use the following Python script to convert a PDF file to text using OCR:</p>
+    
+    <pre><code class="language-python">#!/usr/bin/env python
+
+from pdf2image import convert_from_path
+import pytesseract
+
+#-----------------------------------------------------------------#
+# Specify the path to the Tesseract executable
+pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+
+#-----------------------------------------------------------------#
+def pdf_to_text_with_ocr(pdf_file, text_file):
+    # Convert PDF pages to images
+    images = convert_from_path(pdf_file)
+
+    # Initialize empty string to store the text
+    text_content = ""
+
+    # Extract text from each image using OCR
+    for image in images:
+        text_content += pytesseract.image_to_string(image)
+
+    # Save the extracted text to a file
+    with open(text_file, 'w') as output_file:
+        output_file.write(text_content)
+
+    print(f"Text extracted and saved to {text_file}")
+
+#-----------------------------------------------------------------#
+
+pdf_to_text_with_ocr('Abram-Hoffer-Orthomolecular-Medicine.pdf', 
+                     'Abram-Hoffer-Orthomolecular-Medicine.txt')
+    </code></pre>
+
+    <h2>Usage</h2>
+    <p>To use this script:</p>
+    <ol>
+        <li>Place the Python script in a file (e.g., <code>pdf_to_text.py</code>).</li>
+        <li>Make sure you have installed the required dependencies mentioned above.</li>
+        <li>Run the script with a PDF file as the input.</li>
+    </ol>
+
+    <h3>Run the script:</h3>
+    <pre><code class="language-bash">python3 pdf_to_text.py</code></pre>
+    
+    <p>This will convert the PDF to a text file using OCR.</p>
+
+
+{% include footer.html %}
+

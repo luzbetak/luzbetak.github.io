@@ -1,0 +1,33 @@
+---
+---
+{% include menu.html title="Key Points of ETL (Extract, Transform, Load)" %}
+
+<body>
+    <h1>ETL (Extract, Transform, Load)</h1>
+    <h2>1. Extract</h2>
+    <ul>
+        <li><h3>Data Sources</h3> - ETL begins with data extraction from various sources such as databases, APIs, files, or cloud services.</li>
+        <li><h3>Data Formats</h3> - Data can be in different formats (e.g., CSV, JSON, XML) and needs to be accurately extracted.</li>
+        <li><h3>Handling Errors</h3> - During extraction, it's crucial to handle errors like missing data, connectivity issues, and ensure data integrity.</li>
+    </ul>
+    <h2>2. Transform</h2>
+    <ul>
+        <li><h3>Data Cleaning</h3> - This involves removing duplicates, handling missing values, and filtering out irrelevant data.</li>
+        <li><h3>Data Conversion</h3> - Convert data into a common format or structure, standardizing date formats, currencies, etc.</li>
+        <li><h3>Data Aggregation</h3> - Summarizing or grouping data to prepare it for analysis, such as calculating averages, sums, or counts.</li>
+        <li><h3>Data Enrichment</h3> - Enhancing data by adding additional information or context, such as joining with reference tables.</li>
+        <li><h3>Business Logic Application</h3> - Applying specific business rules or calculations to transform the data according to the needs of the organization.</li>
+    </ul>
+    <h2>3. Load</h2>
+    <ul>
+        <li><h3>Data Destination</h3> - Loading the transformed data into a target system, such as a data warehouse, database, or data lake.</li>
+        <li><h3>Data Integrity</h3> - Ensuring data consistency and accuracy during the load process.</li>
+        <li><h3>Incremental Load vs. Full Load</h3> - Choosing between loading only new/changed data (incremental load) or reloading all data (full load).</li>
+        <li><h3>Error Handling</h3> - Monitoring the load process for failures, retries, and managing any errors that occur.</li>
+        <li><h3>Performance Optimization</h3> - Efficiently loading large volumes of data to minimize downtime and resource usage.</li>
+    </ul>
+
+  {% include footer.html %}
+
+  </body>
+</html>
