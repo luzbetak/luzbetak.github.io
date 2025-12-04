@@ -1,0 +1,197 @@
+---
+---
+{% include menu.html title="Kevin Luzbetak - Computer Science" %}
+
+<hr align=left width=1100>
+<p>
+<h2>Natural Language Processing (NLP): LLMs, RAG, FAISS, Embeddings</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Retrieval-Augmented-Generation.html">Retrieval-Augmented Generation (RAG)</a>
+                <li><a href="Retrieval-Augmented-Generation-Workflow.html">Retrieval-Augmented Generation Workflow (RAG)</a>
+                <li><a href="faiss">FAISS: Semantic Query Parsing and Meaning</a></li>
+                <li><a href="https://tokenvisualizer.netlify.app/">Text Tokens Embeddings</a>
+                <li><a href="PyTorch-Sentiment-Analysis-Model.html"><font color=red>PyTorch</font> Sentiment Analysis Model</a></li>
+                <li><a href="Gunning-Fog-Index.html">Gunning Fog Index</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="NVIDIA-GeForce-RTX-3060-Installation.html">NVIDIA GeForce RTX 3060 Installation</a></li>
+                <li><a href="Recompile-FAISS-GPU-Installation.html">Recompile FAISS GPU Installation</a></li>
+                <li><a href="Unstructured-Data-Indexing.html">Unstructured Data Indexing</a>
+                    <li><a href="Streamlit-app.html">Streamlit</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="TF-IDF.html">TF-IDF</a>
+                <span class="comment">(Term Frequency-Inverse Document Frequency)</span></li>
+                <li><a href="bm25-probabilistic-information-retrieval-model.html">BM25 (Best Matching 25)</a>
+                <span class="comment">BM25 (Best Matching 25) probabilistic information retrieval model.</span></li>
+                <li><a href="python-whoosh.html">Whoosh BM25</a>
+                <span class="comment">Python B-Tree Index using BM25</span></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<p><hr>
+<h2>Machine Learning</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="PyTorch.html"><font color=red>PyTorch</font> Library</a>
+                <span class="comment">Machine Learning, Deep Learning, Natural Language Processing (NLP), and Computer Vision.</span></li>
+                <li><a href="Keras.html" taget="_blank"><font color=red>Keras</font> - Deep Learning</a>
+                    <span class="comment">Training Neural Networks</span></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Scikit-learn.html" taget="_blank"><font color=red>Scikit-learn</font></a>
+                <span class="comment">Supervised and Unsupervised Learning</span></li>
+                <li><a href="Random-Forest-Classifier-Model.html">Random Forest Classifier</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Tensors-Machine-Learning.html" taget="_blank"><font color=red>Tensors</font> Multi-Dimensional Arrays</a>
+                    <span class="comment"> Images (3D), Videos (4D), NLP, (High-Dimensional)</span></li>
+                <li><a href="LanceDB-Vector-Database.html">LanceDB Vector Database</a></li>
+                <li><a href="FAISS-Vector-Database.html ">FAISS Vector Database</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+
+<p><hr>
+<h2>Processing Data Files for Large Language Models (LLMs)</h3>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="PDF-Split-File.html">PDF File Split</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="PDF-Convert-to-Text-File.html">PDF Convertion to Text File</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Ms-Word-Document-Processing.html">MS Word Processing for RAG</a>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<p><hr>
+
+<h2>Text Embeddings - Cosine Similarity Calculation</h2>
+<pre><code class='language-python'>similarity       = 1 - cosine_distance
+MODEL_NAME       = "sentence-transformers/all-MiniLM-L6-v2"
+model            = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+
+# VECTOR_DIMENSION = 384 is fixed property of the "all-MiniLM-L6-v2" model
+# Each text input will be converted into a vector with exactly 384 numbers
+# ANY text - single word, a sentence, a paragraph, or a chunk of text will 
+# be converted into exactly 384 numbers by the model.
+VECTOR_DIMENSION = 384
+
+# Models and their dimensions
+# "all-MiniLM-L6-v2"                      -> 384 dimensions
+# "all-mpnet-base-v2"                     -> 768 dimensions
+# "all-MiniLM-L12-v2"                     -> 384 dimensions
+# "paraphrase-multilingual-MiniLM-L12-v2" -> 384 dimensions</code></pre>
+
+<p><hr>
+<img src="/images/cosine_similarity_heatmap.png" width=1100>
+<p><hr><h2>Natural Language Understanding (NLU)</h2>
+<img src="/images/nlp-nlu.png" width=1100>
+
+<hr align=left width=1100>
+<h1>Computer Vision</h1>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li>
+                    <a href="https://github.com/luzbetak/computer-vision-pipeline" target="_blank"><strong>Computer Vision Pipeline</strong></a>
+                    <span class="comment">Written as part of my Master's Degree in Computer Science at California Lutheran University (2014)</span>
+                </li>
+
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/MedianFilter.java" taget="_blank">Median Filter</a></li>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/Gaussian2D.java" taget="_blank">Gaussian 2D Kernel</a></li>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/OtsuBinarize.java" taget="_blank">Otsu Binarization Method</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/Percentile.java" taget="_blank">Calculate Percentiles</a></li>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/Reflection.java" taget="_blank">Reflection Transformations</a></li>
+                <li><a href="https://github.com/luzbetak/computer-vision-pipeline/blob/master/src/processingpipeline/Sobel.java" taget="_blank">Sobel Edge Detection Filter</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<p><hr>
+<h2>Visualization</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="https://github.com/luzbetak/visualizations/blob/master/visualizing_bivariate_distribution.ipynb" taget="_blank">Normal Bivariate Distribution</a></li>
+                <li><a href="https://github.com/luzbetak/visualizations/blob/master/color_palettes_seaborn.ipynb" taget="_blank">matplotlib</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="https://github.com/luzbetak/visualizations/blob/master/mapping/Plotting_GeoPandas.ipynb" taget="_blank">Mapping with GeoPandas</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="https://github.com/luzbetak/visualizations/blob/master/color_palettes_seaborn.ipynb" taget="_blank">Visualization Color_Palettes</a></li>
+                <li><a href="https://github.com/luzbetak/visualizations/blob/master/Outliers_d3.js.ipynb" taget="_blank">Identifying and Analyzing Outliers</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<p><hr>
+
+<h2>Tools, Models and Algorithms</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Hugging-Face-Machine-Learning.html" taget="_blank">Hugging Face Machine Learning</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Stable-Diffusion-Web-UI.html" taget="_blank">Stable Diffusion</a></li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Time-Complexity-Big-O-Notation.html" taget="_blank">Big O-Notation Time Complexity</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+{% include footer.html %}
+

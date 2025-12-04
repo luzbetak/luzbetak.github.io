@@ -1,0 +1,55 @@
+---
+---
+{% include menu.html title="RDBMS Schemas" %}
+
+<p>The following are common database schemas used in relational database management systems (RDBMS), including the Star Schema, from which the Snowflake Schema is derived:</p>
+
+<ol>
+    <li><strong>Star Schema</strong>:
+        <ul>
+            <li>The foundational schema that involves a central fact table connected directly to several dimension tables.</li>
+            <li>Simpler structure with denormalized dimension tables.</li>
+            <li>Offers faster query performance due to fewer joins.</li>
+        </ul>
+    </li>
+    <li><strong>Snowflake Schema</strong>:
+        <ul>
+            <li>Derived from the Star Schema.</li>
+            <li>Normalizes dimensions into multiple related tables.</li>
+            <li>Reduces redundancy but can make queries more complex.</li>
+        </ul>
+    </li>
+    <li><strong>Galaxy Schema (Fact Constellation Schema)</strong>:
+        <ul>
+            <li>Contains multiple fact tables that share dimension tables.</li>
+            <li>Used for more complex data warehouses with multiple data marts.</li>
+        </ul>
+    </li>
+    <li><strong>Hierarchical Schema</strong>:
+        <ul>
+            <li>Organizes data in a tree-like structure.</li>
+            <li>Used for databases that require a clear parent-child relationship, like organizational charts.</li>
+        </ul>
+    </li>
+    <li><strong>Network Schema</strong>:
+        <ul>
+            <li>Similar to the Hierarchical Schema but allows more complex relationships with many-to-many connections.</li>
+            <li>Often used for more complex, non-hierarchical relationships.</li>
+        </ul>
+    </li>
+    <li><strong>Flat Schema</strong>:
+        <ul>
+            <li>A single table or a simple structure without hierarchical relationships.</li>
+            <li>Typically used for small, simple databases.</li>
+        </ul>
+    </li>
+</ol>
+
+<p>These schemas are utilized based on the specific needs of the database structure, data integrity, and query complexity.</p>
+
+
+
+{% include footer.html %}
+
+  </body>
+</html>

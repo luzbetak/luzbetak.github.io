@@ -1,0 +1,158 @@
+---
+---
+{% include menu.html title="Data Migration from Snowflake to Databricks" %}
+
+    <h1>Data Migration from Snowflake to Databricks</h1>
+    
+    <h2>Overview</h2>
+    <ul>
+        <li>Migrates data from Snowflake to Databricks using PySpark</li>
+        <li>Handles product and customer data tables</li>
+        <li>Uses Delta format for target tables</li>
+        <li>Includes verification and error handling</li>
+    </ul>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Snowflake credentials and access</li>
+        <li>Databricks workspace</li>
+        <li>PySpark environment</li>
+        <li>Snowflake connector for Spark</li>
+    </ul>
+
+    <h3>Example Queries</h3>
+    <h4>Snowflake Source Query</h4>
+    <pre><code class="language-sql">SELECT 
+    product_id,
+    product_name,
+    category,
+    price,
+    created_at
+FROM RETAIL_DB.PUBLIC.products;</code></pre>
+
+    <h4>Databricks Target Query</h4>
+    <pre><code class="language-sql">SELECT COUNT(*) as record_count
+FROM retail_db.products;
+    </code></pre>
+
+    <h3>Sample Output</h3>
+    <pre><code class="language-markdown">Starting migration for table: products
+Records read from Snowflake: 1000
+Records written to Databricks: 1000
+Successfully migrated table: products
+
+Starting migration for table: customers
+Records read from Snowflake: 5000
+Records written to Databricks: 5000
+Successfully migrated table: customers</code></pre>
+
+    <h2>Important Notes</h2>
+    <ul>
+        <li>Always verify source and target record counts match</li>
+        <li>Ensure sufficient compute resources are allocated</li>
+        <li>Monitor Spark UI for performance metrics</li>
+        <li>Consider implementing incremental loads for large tables</li>
+    </ul>
+
+    <p><hr>
+
+<pre><code class="language-python">from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DecimalType, TimestampType
+import os
+from decimal import Decimal
+
+# Initialize Spark Session
+spark = SparkSession.builder \
+    .appName("Snowflake to Databricks Migration") \
+    .getOrCreate()
+
+# Snowflake connection parameters
+snowflake_options = {
+    "sfURL":       "snowflake_account.snowflakecomputing.com",
+    "sfUser":      "username",
+    "sfPassword":  "password",
+    "sfDatabase":  "RETAIL_DB",
+    "sfSchema":    "PUBLIC",
+    "sfWarehouse": "COMPUTE_WH"
+}
+
+# Define schemas for our tables
+product_schema = StructType([
+    StructField("product_id",   IntegerType(),     False),
+    StructField("product_name", StringType(),      False),
+    StructField("category",     StringType(),      True),
+    StructField("price",        DecimalType(10,2), False),
+    StructField("created_at",   TimestampType(),   False)
+])
+
+customer_schema = StructType([
+    StructField("customer_id", IntegerType(),   False),
+    StructField("first_name",  StringType(),    False),
+    StructField("last_name",   StringType(),    False),
+    StructField("email",       StringType(),    False),
+    StructField("country",     StringType(),    True),
+    StructField("created_at",  TimestampType(), False)
+])
+
+def read_from_snowflake(table_name, schema):
+    """Read data from Snowflake table"""
+    return spark.read \
+        .format("snowflake") \
+        .options(**snowflake_options) \
+        .option("dbtable", table_name) \
+        .schema(schema) \
+        .load()
+
+def write_to_databricks(df, table_name):
+    """Write DataFrame to Databricks Delta table"""
+    # Write as managed delta table
+    df.write \
+        .format("delta") \
+        .mode("overwrite") \
+        .saveAsTable(f"retail_db.{table_name}")
+
+def migrate_table(table_name, schema):
+    """Migrate a single table from Snowflake to Databricks"""
+    print(f"Starting migration for table: {table_name}")
+    
+    try:
+        # Read from Snowflake
+        df = read_from_snowflake(table_name, schema)
+        
+        # Print some statistics
+        print(f"Records read from Snowflake: {df.count()}")
+        
+        # Write to Databricks
+        write_to_databricks(df, table_name)
+        
+        # Verify the write
+        verification_df = spark.sql(f"SELECT COUNT(*) as count FROM retail_db.{table_name}")
+        print(f"Records written to Databricks: {verification_df.collect()[0]['count']}")
+        
+        print(f"Successfully migrated table: {table_name}")
+        
+    except Exception as e:
+        print(f"Error migrating table {table_name}: {str(e)}")
+        raise
+
+def main():
+    # Create database if it doesn't exist
+    spark.sql("CREATE DATABASE IF NOT EXISTS retail_db")
+    
+    # Define tables to migrate with their schemas
+    tables = {
+        "products": product_schema,
+        "customers": customer_schema
+    }
+    
+    # Migrate each table
+    for table_name, schema in tables.items():
+        migrate_table(table_name, schema)
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+
+
+{% include footer.html %}
+
