@@ -1,0 +1,119 @@
+---
+---
+{% include menu.html title="Ms Word Document Processing" %}
+
+<h1>Ms Word Document Processing</h1>
+
+<pre><code class="language-python">import os
+from pathlib import Path
+from docling.backend.msword_backend import MsWordDocumentBackend
+from docling.datamodel.base_models  import InputFormat
+from docling.datamodel.document     import InputDocument
+from docling.document_converter     import DocumentConverter
+
+def process_word_document(input_file: str, output_dir: str = "output") -> None:
+    """
+    Process a Word document and extract its content and structure.
+    
+    Args:
+        input_file (str): Path to the input Word document
+        output_dir (str): Directory to save processed outputs
+    """
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Setup input path
+    in_path = Path(input_file)
+    if not in_path.exists():
+        raise FileNotFoundError(f"Input file not found: {input_file}")
+    
+    try:
+        # Initialize input document
+        in_doc = InputDocument(
+            path_or_stream=in_path,
+            format=InputFormat.DOCX,
+            backend=MsWordDocumentBackend
+        )
+        
+        # Setup backend and convert
+        backend = MsWordDocumentBackend(in_doc=in_doc, path_or_stream=in_path)
+        doc     = backend.convert()
+        
+        # Extract and save text content
+        text_output = Path(output_dir) / f"{in_path.stem}_content.txt"
+        with open(text_output, 'w', encoding='utf-8') as f:
+            f.write(doc.get_text())
+        
+        # Extract document structure
+        print(f"\nDocument Structure:")
+        print("-" * 20)
+        print(f"Title: {doc.title}")
+        print(f"Sections: {len(doc.sections)}")
+        print(f"Paragraphs: {len(doc.paragraphs)}")
+        
+        # Process tables if any
+        if doc.tables:
+            print(f"\nTables found: {len(doc.tables)}")
+            tables_output = Path(output_dir) / f"{in_path.stem}_tables.txt"
+            with open(tables_output, 'w', encoding='utf-8') as f:
+                for i, table in enumerate(doc.tables, 1):
+                    f.write(f"\nTable {i}:\n")
+                    f.write(str(table))
+                    f.write("\n" + "-"*50 + "\n")
+        
+        print(f"\nProcessing complete! Outputs saved in: {output_dir}")
+        
+    except Exception as e:
+        print(f"Error processing document: {str(e)}")
+
+def main():
+    # Example usage
+    sample_doc = "word_sample.docx"
+    process_word_document(sample_doc)
+
+if __name__ == "__main__":
+    main() </code></pre>
+
+<p><hr>
+    <h1>Word Document Processor</h1>
+    
+    <h2>Key Features</h2>
+    <ul>
+        <li>Creates a reusable function process_word_document() that handles Word document processing</li>
+        <li>Includes proper error handling and file checks</li>
+        <li>Creates an output directory for processed files</li>
+        <li>Extracts and saves:
+            <ul>
+                <li>Document text content</li>
+                <li>Document structure information</li>
+                <li>Tables (if present)</li>
+            </ul>
+        </li>
+        <li>Provides informative console output about the document structure</li>
+    </ul>
+
+    <h2>Usage Instructions</h2>
+    <h3>Setup Steps</h3>
+    <ul>
+        <li>Save it to a file (e.g., word_processor.py)</li>
+        <li>Make sure you have the docling library installed: pip install docling</li>
+        <li>Place your Word document in the same directory (or provide the full path)</li>
+        <li>Run the script: python word_processor.py</li>
+    </ul>
+
+    <h3>Output Files</h3>
+    <h4>The script creates an output directory containing:</h4>
+    <ul>
+        <li>{filename}_content.txt: The extracted text content</li>
+        <li>{filename}_tables.txt: Extracted tables (if any exist in the document)</li>
+    </ul>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+        <li>Support for other document formats</li>
+        <li>More detailed content extraction</li>
+        <li>Custom output formatting options</li>
+        <li>Batch processing of multiple documents</li>
+    </ul>
+
+{% include footer.html %}

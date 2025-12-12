@@ -1,0 +1,164 @@
+#----------------------------------------------------------------------------------------#
+if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
+if [ -f ~/.gitrc ];        then . ~/.gitrc;        fi  
+export PYTHONUNBUFFERED=1
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+#----------------------------------------------------------------------------------------#
+# Archive File
+#----------------------------------------------------------------------------------------#
+a() {
+    local filename=$(basename "$1")
+    local date=$(date +"%Y%m%d-%H%M")
+    local archive_dir="$HOME/.archive"
+    local target_file="$archive_dir/$date.$filename"
+
+    if [[ -e $1 ]]; then
+        mkdir -p "$archive_dir"
+        cp "$1" "$target_file"
+        echo "Copied $1 to $target_file"
+    else
+        echo "Error: $1 does not exist."
+    fi
+    ls -l $archive_dir
+}
+#----------------------------------------------------------------------------------#
+# search one two
+# search -tpy one two
+#----------------------------------------------------------------------------------#
+function search() {
+
+  if [ $# -eq 0 ]; then
+    echo "Please provide at least one keyword as an argument."
+    return 1
+  fi
+
+  if [[ $1 == -* ]]; then
+    local cmd="rg ${1} -l --hidden --no-ignore --max-columns=100 '${2}' 2>/dev/null"
+  else
+    local cmd="rg -l --hidden --no-ignore --max-columns=100 '${1}' 2>/dev/null"
+  fi
+
+  shift
+
+  for keyword in "$@"; do
+    cmd+=" | xargs -I{} rg -l '${keyword}' {}"
+  done
+
+  eval $cmd
+}
+#----------------------------------------------------------------------------------#
+# Search all the python file for keyword open
+# spy open py
+#----------------------------------------------------------------------------------#
+function spy() {
+  if [ $# -eq 0 ]; then
+    echo "Please provide a keyword as the first argument."
+    echo "Optionally, provide a file extension as the second argument."
+    return 1
+  fi
+
+  if [ $# -eq 1 ]; then
+      clear
+      local cmd="rg -C3 --hidden --no-ignore --max-columns=100 ${1} 2>/dev/null"
+  else
+      clear
+      local cmd="rg -t${2} -C3 --hidden --no-ignore --max-columns=100 ${1} 2>/dev/null"
+  fi
+  eval $cmd
+
+  printf '%.0s-' {1..80}; echo
+  echo "               " $cmd
+  printf '%.0s-' {1..80}; echo
+
+}
+#----------------------------------------------------------------------------------------#
+# MacOS: replace_text "java programming" "python programming"
+#----------------------------------------------------------------------------------------#
+replace_text() {
+
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: replace_text <from> <to>"
+    return 1
+  fi
+
+  find . -type f -name '*' | while IFS= read -r file; do
+    if grep -q "$1" "$file"; then
+      sed -i '' "s/$1/$2/g" "$file"
+    fi
+  done
+}
+#----------------------------------------------------------------------------------------#
+# Easy directory navigation complement to bashrc
+# vi ~/.oh-my-bash/plugins/bashmarks/bashmarks.plugin.sh alias=d
+#----------------------------------------------------------------------------------------#
+alias d='dirs -v'
+alias +='pushd'
+alias _='popd'
+alias cd-='popd'
+alias cd--='popd -2'
+alias cd---='popd -3'
+alias r='pushd +1'
+cd() {
+   MAX=9  # Changed from 10 to 9
+   LEN=${#DIRSTACK[@]}
+
+   if [ $# -eq 0 ] || [ "$1" = "-" ]; then
+      builtin cd "$@"
+      pushd -n $OLDPWD > /dev/null
+   else
+      pushd "$@" > /dev/null || return 1
+   fi
+
+   if [ $LEN -gt 1 ]; then
+      for i in `seq 1 $LEN`; do
+         eval p=~$i
+         if [ "$p" = "$PWD" ]; then
+            popd -n +$i > /dev/null
+            break
+         fi
+      done
+   fi
+
+   if [ $LEN -ge $MAX ]; then
+      popd -n -0 > /dev/null
+   fi
+}
+
+# Modified to use 1-9 instead of 0-10
+for num in {1..9}; do
+     alias $num="pushd +$num > /dev/null ; dirs -v"
+done
+
+
+#----------------------------------------------------------------------------------------#
+#!/usr/bin/env bash
+#
+# Array of branch names to be deleted
+#----------------------------------------------------------------------------------------#
+branches=(
+  "remotes/origin/v0.01"
+  "remotes/origin/v0.02"
+  "remotes/origin/v0.03"
+)
+
+# Iterate over each branch and delete it both remotely and locally
+for branch in "${branches[@]}"; do
+  # Extract the branch name without the 'remotes/origin/' prefix
+  local_branch="${branch#remotes/origin/}"
+
+  # Delete the remote branch
+  git push origin --delete "$local_branch"
+  echo "Deleted remote branch: $local_branch"
+
+  # Delete the local branch if it exists
+  if git show-ref --verify --quiet "refs/heads/$local_branch"; then
+    git branch -D "$local_branch"
+    echo "Deleted local branch: $local_branch"
+  else
+    echo "Local branch $local_branch does not exist, skipping."
+  fi
+done
+
+echo "All specified branches have been deleted both locally and remotely."
+
+#----------------------------------------------------------------------------------------#

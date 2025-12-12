@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/linux2.png" type="image/png" sizes="32x32">
+
+    <div class="navbar">
+      <a href="http://luzbetak.github.io/">Kevin Luzbetak</a>
+      <a href="http://luzbetak.github.io/search">Search</a>
+    </div>
+
+    <style>
+      #search {
+        width: 800px; /* Increased width */
+        height: 30px; /* Increased height */
+        font-size: 20px; /* Larger font size */
+        padding: 10px;
+      }
+      #results { font-size: 18px; margin-top: 20px; }
+      #results li { margin-bottom: 10px; }
+      #results a { text-decoration: none; color: #007bff; }
+      #results li.highlighted { background-color: #e0e0e0; } /* Highlight style */
+    </style>
+  </head>
+
+  <body>
+
+    <p><hr align=left width=1100>
+
+    <div>
+      <!-- Search input -->
+      <input type="text" id="search" placeholder="Search ..">
+     
+      <p>
+      <!-- Radio buttons for AND/OR logic -->
+      <div>
+        <label><input type="radio" name="logic" value="and" checked> AND </label>
+        <label><input type="radio" name="logic" value="or"> OR </label>
+      </div>
+      
+      <ul id="results"></ul>
+    </div>
+
+    <!-- Lunr.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+
+    <!-- Search Functionality -->
+    <script>
+      // Set focus on the search input when the page loads and restore last search term
+      window.onload = function() {
+        const searchInput = document.getElementById('search');
+        const lastSearch = localStorage.getItem('lastSearch');
+        if (lastSearch) {
+          searchInput.value = lastSearch; // Restore the last search term
+          searchInput.dispatchEvent(new Event('input')); // Trigger input event to re-display results
+        }
+        searchInput.focus(); // Focus on the search input
+      };
+
+      let currentIndex = -1;
+
+      // Function to handle keyboard navigation
+      function handleKeyNavigation(resultsContainer) {
+        const items = resultsContainer.querySelectorAll('li');
+        if (items.length === 0) return;
+
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'ArrowDown') {
+            // Move down the list
+            currentIndex = (currentIndex + 1) % items.length;
+            highlightItem(items, currentIndex);
+          } else if (event.key === 'ArrowUp') {
+            // Move up the list
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            highlightItem(items, currentIndex);
+          } else if (event.key === 'Enter') {
+            // Open the selected link
+            if (currentIndex >= 0 && items[currentIndex]) {
+              window.location.href = items[currentIndex].querySelector('a').href;
+            }
+          }
+        });
+      }
+
+      // Function to highlight the selected item
+      function highlightItem(items, index) {
+        items.forEach(item => item.classList.remove('highlighted')); // Remove previous highlight
+        items[index].classList.add('highlighted'); // Add highlight to current item
+      }
+
+      // Load the search index JSON
+      fetch('/search/search-index.json')
+        .then(response => response.json())
+        .then(data => {
+          // Initialize Lunr.js with the JSON data
+          const idx = lunr(function () {
+            this.ref('id');
+            this.field('title');
+            this.field('content');
+
+            data.forEach(function (doc) {
+              this.add(doc);
+            }, this);
+          });
+
+          const searchInput = document.getElementById('search');
+          const resultsContainer = document.getElementById('results');
+          const radioButtons = document.querySelectorAll('input[name="logic"]');
+
+          // Event listener for search input
+          searchInput.addEventListener('input', function () {
+            const query = this.value;
+            const searchTerms = query.split(" ");
+            const selectedLogic = document.querySelector('input[name="logic"]:checked').value;
+
+            // Save search term to localStorage
+            localStorage.setItem('lastSearch', query);
+
+            let results = [];
+
+            // AND logic: all terms must be present
+            if (selectedLogic === 'and') {
+              searchTerms.forEach(term => {
+                const termResults = idx.search(term);
+                if (results.length === 0) {
+                  results = termResults;
+                } else {
+                  results = results.filter(res => termResults.some(termRes => termRes.ref === res.ref));
+                }
+              });
+            }
+
+            // OR logic: any term must be present
+            if (selectedLogic === 'or') {
+              searchTerms.forEach(term => {
+                const termResults = idx.search(term);
+                termResults.forEach(termRes => {
+                  if (!results.some(res => res.ref === termRes.ref)) {
+                    results.push(termRes);
+                  }
+                });
+              });
+            }
+
+            resultsContainer.innerHTML = '';
+            currentIndex = -1; // Reset current index when input changes
+
+            if (results.length) {
+              results.forEach(result => {
+                const item = data.find(d => d.id == result.ref);
+                resultsContainer.innerHTML += `<li><a href="${item.url}">${item.title}</a></li>`;
+              });
+              handleKeyNavigation(resultsContainer); // Add keyboard navigation
+            } else {
+              resultsContainer.innerHTML = '<li>No results found</li>';
+            }
+          });
+
+          // Add event listener to update search on radio button change
+          radioButtons.forEach(button => {
+            button.addEventListener('change', () => {
+              searchInput.dispatchEvent(new Event('input')); // Re-trigger search when logic changes
+            });
+          });
+        });
+    </script>
+  </body>
+</html>
+

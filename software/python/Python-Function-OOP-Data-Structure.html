@@ -1,0 +1,263 @@
+---
+---
+{% include menu.html title="Python CSV Data Structures" %}
+
+    <h1>Python CSV Data Structures</h1>
+
+    <h3>Reading CSV Data into Different Data Structures</h3>
+    <pre><code><span class="keyword">import</span> csv
+
+<span class="comment"># Sample CSV data</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+    reader = csv.reader(file)
+    <span class="comment"># Skipping the header</span>
+    <span class="function">next</span>(reader)
+    <span class="comment"># Reading into a list</span>
+    data_list = [row <span class="keyword">for</span> row <span class="keyword">in</span> reader]
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+    reader = csv.reader(file)
+    <span class="function">next</span>(reader)
+    <span class="comment"># Reading into a tuple</span>
+    data_tuple = <span class="function">tuple</span>(reader)
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+    reader = csv.reader(file)
+    <span class="function">next</span>(reader)
+    <span class="comment"># Reading into a set</span>
+    data_set = {<span class="function">tuple</span>(row) <span class="keyword">for</span> row <span class="keyword">in</span> reader}
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.csv'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+    reader = csv.DictReader(file)
+    <span class="comment"># Reading into a dictionary</span>
+    data_dict = [row <span class="keyword">for</span> row <span class="keyword">in</span> reader]
+
+<span class="function">print</span>(<span class="string">'List:'</span>, data_list)
+<span class="function">print</span>(<span class="string">'Tuple:'</span>, data_tuple)
+<span class="function">print</span>(<span class="string">'Set:'</span>, data_set)
+<span class="function">print</span>(<span class="string">'Dictionary:'</span>, data_dict)
+    </code></pre>
+
+    <h3>Explanation</h3>
+    <p>This Python program demonstrates how to read data from a CSV file and load it into different data structures like Lists, Tuples, Sets, and Dictionaries.</p>
+    <ul>
+        <li><strong>List:</strong> A dynamic array that holds the rows of the CSV as individual list elements.</li>
+        <li><strong>Tuple:</strong> An immutable sequence that holds the rows of the CSV as individual tuple elements.</li>
+        <li><strong>Set:</strong> An unordered collection of unique elements, with each row being a tuple.</li>
+        <li><strong>Dictionary:</strong> A list of dictionaries, where each dictionary represents a row in the CSV with the headers as keys.</li>
+    </ul>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Python Functions Example</title>
+</head>
+<body>
+    <h1>Python Functions Example</h1>
+
+    <h3>Defining Functions</h3>
+    <pre><code><span class="keyword">def</span> <span class="function">greet</span>(<span class="keyword">name</span>, <span class="keyword">msg</span>=<span class="string">'Hello'</span>):
+    <span class="keyword">return</span> <span class="string">{msg}, {name}!</span>
+
+<span class="keyword">print</span>(greet(<span class="string">'Alice'</span>))  <span class="comment"># Output: Hello, Alice!</span>
+<span class="keyword">print</span>(greet(<span class="string">'Bob'</span>, <span class="string">'Hi'</span>))  <span class="comment"># Output: Hi, Bob!</span>
+    </code></pre>
+
+    <h3>Lambda Functions</h3>
+    <pre><code><span class="comment"># Inline anonymous function</span>
+<span class="keyword">square</span> = <span class="keyword">lambda</span> x: x * x
+<span class="keyword">print</span>(square(5))  <span class="comment"># Output: 25</span>
+    </code></pre>
+
+    <h3>Decorators</h3>
+    <pre><code><span class="keyword">def</span> <span class="function">decorator_func</span>(<span class="keyword">func</span>):
+    <span class="keyword">def</span> <span class="function">wrapper</span>():
+        <span class="keyword">print</span>(<span class="string">'Before function call'</span>)
+        func()
+        <span class="keyword">print</span>(<span class="string">'After function call'</span>)
+    <span class="keyword">return</span> <span class="function">wrapper</span>
+
+@decorator_func
+<span class="keyword">def</span> <span class="function">say_hello</span>():
+    <span class="keyword">print</span>(<span class="string">'Hello!'</span>)
+
+say_hello()
+    </code></pre>
+
+    <h3>Closures and Higher-Order Functions</h3>
+    <pre><code><span class="comment"># Function that returns another function</span>
+<span class="keyword">def</span> <span class="function">make_multiplier</span>(<span class="keyword">n</span>):
+    <span class="keyword">def</span> <span class="function">multiplier</span>(<span class="keyword">x</span>):
+        <span class="keyword">return</span> x * n
+    <span class="keyword">return</span> multiplier
+
+<span class="keyword">times_two</span> = <span class="keyword">make_multiplier</span>(2)
+<span class="keyword">print</span>(times_two(5))  <span class="comment"># Output: 10</span>
+
+<span class="comment"># Passing a function as an argument</span>
+<span class="keyword">def</span> <span class="function">apply_func</span>(<span class="keyword">func</span>, <span class="keyword">value</span>):
+    <span class="keyword">return</span> func(value)
+
+<span class="keyword">print</span>(apply_func(square, 4))  <span class="comment"># Output: 16</span>
+    </code></pre>
+
+</body>
+</html>
+<body>
+    <h1>Python Object-Oriented Programming</h1>
+
+    <h2>Classes and Objects</h2>
+    <pre><code><span class="keyword">class</span> <span class="datatype">Dog</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, <span class="keyword">name</span>, <span class="keyword">age</span>):
+        <span class="keyword">self</span>.name = name
+        <span class="keyword">self</span>.age = age
+
+    <span class="keyword">def</span> <span class="function">bark</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">'Woof!'</span>
+
+<span class="keyword">my_dog</span> = Dog(<span class="string">'Buddy'</span>, 5)
+<span class="keyword">print</span>(my_dog.name)  <span class="comment"># Output: Buddy</span>
+<span class="keyword">print</span>(my_dog.bark())  <span class="comment"># Output: Woof!</span>
+    </code></pre>
+
+    <h2>Inheritance and Polymorphism</h2>
+    <pre><code><span class="keyword">class</span> <span class="datatype">Animal</span>:
+    <span class="keyword">def</span> <span class="function">speak</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">'Some sound'</span>
+
+<span class="keyword">class</span> <span class="datatype">Cat</span>(<span class="datatype">Animal</span>):
+    <span class="keyword">def</span> <span class="function">speak</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">'Meow'</span>
+
+<span class="keyword">my_cat</span> = Cat()
+<span class="keyword">print</span>(my_cat.speak())  <span class="comment"># Output: Meow</span>
+    </code></pre>
+
+    <h2>Encapsulation</h2>
+    <pre><code><span class="keyword">class</span> <span class="datatype">Person</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, <span class="keyword">name</span>, <span class="keyword">age</span>):
+        <span class="keyword">self</span>.<span class="datatype">__name</span> = name  <span class="comment"># Private attribute</span>
+        <span class="keyword">self</span>.age = age
+
+    <span class="keyword">def</span> <span class="function">get_name</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="keyword">self</span>.<span class="datatype">__name</span>
+
+<span class="keyword">person</span> = Person(<span class="string">'Alice'</span>, 30)
+<span class="keyword">print</span>(person.get_name())  <span class="comment"># Output: Alice</span>
+<span class="comment"># print(person.__name)  # This would raise an AttributeError</span>
+    </code></pre>
+
+    <h2>Dunder Methods</h2>
+    <pre><code><span class="keyword">class</span> <span class="datatype">Book</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, <span class="keyword">title</span>, <span class="keyword">author</span>):
+        <span class="keyword">self</span>.title = title
+        <span class="keyword">self</span>.author = author
+
+    <span class="keyword">def</span> <span class="function">__str__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">f'{self.title} by {self.author}'</span>
+
+<span class="keyword">book</span> = Book(<span class="string">'1984'</span>, <span class="string">'George Orwell'</span>)
+<span class="keyword">print</span>(book)  <span class="comment"># Output: 1984 by George Orwell</span>
+    </code></pre>
+
+</body>
+    <h1>Python Iterators and Generators Example</h1>
+    <h3>Using Iterators and Generators</h3>
+    <pre><code>
+<span class="keyword">my_list</span> = [1, 2, 3, 4, 5]
+<span class="keyword">my_tuple</span> = (1, 2, 3, 4, 5)
+<span class="keyword">my_set</span> = {1, 2, 3, 4, 5}
+<span class="keyword">my_dict</span> = {'a': 1, 'b': 2, 'c': 3}
+
+<span class="comment"># Iterating over a list</span>
+<span class="keyword">for</span> <span class="keyword">item</span> <span class="keyword">in</span> <span class="keyword">my_list</span>:
+    <span class="keyword">print</span>(item)
+
+<span class="comment"># Iterating over a tuple</span>
+<span class="keyword">for</span> <span class="keyword">item</span> <span class="keyword">in</span> <span class="keyword">my_tuple</span>:
+    <span class="keyword">print</span>(item)
+
+<span class="comment"># Iterating over a set</span>
+<span class="keyword">for</span> <span class="keyword">item</span> <span class="keyword">in</span> <span class="keyword">my_set</span>:
+    <span class="keyword">print</span>(item)
+
+<span class="comment"># Iterating over a dictionary</span>
+<span class="keyword">for</span> <span class="keyword">key</span>, <span class="keyword">value</span> <span class="keyword">in</span> <span class="keyword">my_dict</span>.items():
+    <span class="keyword">print</span>(key, value)
+</code></pre>
+
+    <h3>Using Generators</h3>
+    <pre><code><span class="comment"># Basic generator function</span>
+<span class="keyword">def</span> <span class="function">my_generator</span>():
+    <span class="keyword">yield</span> 1
+    <span class="keyword">yield</span> 2
+    <span class="keyword">yield</span> 3
+
+<span class="keyword">for</span> <span class="keyword">value</span> <span class="keyword">in</span> <span class="function">my_generator</span>():
+    <span class="keyword">print</span>(value)
+
+<span class="comment"># Generator expression</span>
+<span class="keyword">gen_exp</span> = (<span class="keyword">x</span> <span class="keyword">for</span> <span class="keyword">x</span> <span class="keyword">in</span> range(4))
+<span class="keyword">for</span> <span class="keyword">value</span> <span class="keyword">in</span> <span class="keyword">gen_exp</span>:
+    <span class="keyword">print</span>(value)
+</code></pre>
+
+    <h3>Explanation</h3>
+    <p>This Python program demonstrates how to iterate over different data structures i
+    <br>(Lists, Tuples, Sets, and Dictionaries) and how to use generators.</p>
+    <ul>
+        <li><strong>List, Tuple, Set, and Dictionary:</strong> 
+            <br>The program iterates over these common data structures, printing each element or key-value pair.</li>
+        <li><strong>Basic Generator:</strong> 
+            <br>A simple generator function yields values one by one when iterated over.</li>
+        <li><strong>Generator Expression:</strong> 
+            <br>A generator expression creates an iterator in a single line, iterating over a range of numbers.</li>
+    </ul>
+<body>
+    <h1>Python Concurrency</h1>
+
+    <h3>Multithreading vs. Multiprocessing</h3>
+    <pre><code><span class="comment"># Multithreading: Multiple threads within the same process</span>
+<span class="keyword">import</span> <span class="function">threading</span>
+
+<span class="keyword">def</span> <span class="function">print_numbers</span>():
+    <span class="keyword">for</span> <span class="keyword">i</span> <span class="keyword">in</span> range(5):
+        <span class="keyword">print</span>(i)
+
+<span class="keyword">thread</span> = threading.Thread(<span class="keyword">target</span>=<span class="function">print_numbers</span>)
+thread.start()
+
+<span class="comment"># Multiprocessing: Multiple processes with separate memory spaces</span>
+<span class="keyword">import</span> <span class="function">multiprocessing</span>
+
+<span class="keyword">def</span> <span class="function">print_numbers_mp</span>():
+    <span class="keyword">for</span> <span class="keyword">i</span> <span class="keyword">in</span> range(5):
+        <span class="keyword">print</span>(i)
+
+<span class="keyword">process</span> = multiprocessing.Process(<span class="keyword">target</span>=<span class="function">print_numbers_mp</span>)
+process.start()
+process.join()
+    </code></pre>
+
+    <h3>Asyncio</h3>
+    <pre><code><span class="comment"># Asyncio: Writing asynchronous code with async and await</span>
+<span class="keyword">import</span> <span class="function">asyncio</span>
+
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">async_print_numbers</span>():
+    <span class="keyword">for</span> <span class="keyword">i</span> <span class="keyword">in</span> range(5):
+        <span class="keyword">print</span>(i)
+        <span class="keyword">await</span> asyncio.sleep(1)
+
+<span class="keyword">async</span> <span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">await</span> <span class="function">async_print_numbers</span>()
+
+<span class="function">asyncio.run</span>(<span class="function">main</span>())
+    </code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>
