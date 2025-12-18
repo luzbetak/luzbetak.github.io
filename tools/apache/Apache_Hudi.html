@@ -1,0 +1,31 @@
+---
+---
+{% include menu.html title="Apache Hudi" %}
+
+    <h1>Apache Hudi</h1>
+    <p><strong>Apache Hudi (Hadoop Upserts Deletes and Incrementals)</strong> is an open-source data management framework that simplifies large-scale data ingestion and provides ACID transaction support on data lakes. It’s designed for scenarios that require efficient data upserts (updates and inserts) and deletes in big data environments, while also enabling near real-time ingestion and querying of data.</p>
+    
+    <h2>Key Features of Apache Hudi:</h2>
+    <ul>
+        <li><strong>ACID Transactions:</strong> Hudi brings ACID transactions to data lakes, allowing users to perform updates, inserts, and deletes with transactional guarantees on large datasets.</li>
+        <li><strong>Efficient Storage:</strong> Hudi optimizes storage by managing file sizes and using efficient compression techniques, reducing the overall storage footprint while maintaining performance.</li>
+        <li><strong>Near Real-Time Data Processing:</strong> With Hudi, you can perform incremental data ingestion, which ensures that only changed data is processed, reducing the latency in making fresh data available for analytics.</li>
+        <li><strong>Indexing and Compaction:</strong> Hudi maintains indexes on data to accelerate query performance and also supports background compaction to clean up older versions of data, improving performance over time.</li>
+        <li><strong>Time Travel Queries:</strong> Hudi allows users to perform queries on historical data by maintaining versions of data, enabling "time travel" queries to access previous versions of datasets.</li>
+    </ul>
+
+    <h2>Use Cases:</h2>
+    <ul>
+        <li>Data lakes that require efficient upserts and deletes at scale.</li>
+        <li>Building near real-time data pipelines with low latency.</li>
+        <li>Historical data querying and analytics with time-travel capabilities.</li>
+        <li>Optimizing large-scale data lakes for cost-effective storage and performance.</li>
+    </ul>
+
+    <h2>Conclusion:</h2>
+    <p>Apache Hudi is ideal for environments where frequent updates, incremental processing, and ACID guarantees are necessary on top of a scalable data lake. It bridges the gap between traditional batch processing systems and real-time analytics by enabling near real-time ingestion and querying, making it a powerful tool for modern data architectures.</p>
+
+  {% include footer.html %}
+
+  </body>
+</html>

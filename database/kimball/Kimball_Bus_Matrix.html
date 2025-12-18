@@ -1,0 +1,110 @@
+---
+---
+{% include menu.html title="Kimball Bus Matrix" %}
+
+<img src="Kimball_Bus_Matrix.png">
+<img src="Kimball_Bus_Matrix_text.png">
+<br>
+
+<h1>Kimball Bus Matrix</h1>
+
+<h2>1. What Is the Kimball Bus Matrix</h2>
+<p>
+The <strong>Kimball Bus Matrix</strong> is a <strong>planning and governance artifact</strong> used in
+<strong>Kimball Dimensional Architecture</strong>. It defines how <strong>business processes</strong>
+relate to <strong>conformed dimensions</strong> across the enterprise.
+</p>
+
+<p>
+It serves as the <strong>architectural blueprint</strong> for building a scalable,
+integrated dimensional data warehouse.
+</p>
+
+<h2>2. Visual Example of a Kimball Bus Matrix</h2>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Bus_matrix_example.png"
+     alt="Kimball Bus Matrix example">
+
+<h2>3. Structure of the Bus Matrix</h2>
+
+<h3>3.1 Rows: Business Processes</h3>
+<ul>
+  <li>Each row represents a <strong>business process</strong></li>
+  <li>Each process typically maps to <strong>one fact table</strong></li>
+</ul>
+
+<strong>Examples:</strong>
+<ul>
+  <li>Sales</li>
+  <li>Orders</li>
+  <li>Shipments</li>
+  <li>Inventory</li>
+  <li>Returns</li>
+</ul>
+
+<h3>3.2 Columns: Conformed Dimensions</h3>
+<ul>
+  <li>Each column represents a <strong>shared dimension</strong></li>
+  <li>Used consistently across multiple fact tables</li>
+</ul>
+
+<strong>Examples:</strong>
+<ul>
+  <li>Date</li>
+  <li>Product</li>
+  <li>Customer</li>
+  <li>Store</li>
+  <li>Promotion</li>
+</ul>
+
+<h3>3.3 Intersections</h3>
+<ul>
+  <li>An <strong>X</strong> indicates the dimension is used by that process</li>
+  <li>Defines required dimension keys for each fact table</li>
+</ul>
+
+<h2>4. Textual Representation of a Bus Matrix</h2>
+
+<pre>
+Business Process | Date | Product | Customer | Store | Promotion
+---------------------------------------------------------------
+Sales            |  X   |   X     |    X     |   X   |     X
+Orders           |  X   |   X     |    X     |   X   |
+Shipments        |  X   |   X     |          |   X   |
+Inventory        |  X   |   X     |          |   X   |
+Returns          |  X   |   X     |    X     |   X   |
+</pre>
+
+<h2>5. Why the Bus Matrix Is Critical</h2>
+<ul>
+  <li>Prevents <strong>data mart silos</strong></li>
+  <li>Enforces <strong>conformed dimensions</strong></li>
+  <li>Ensures <strong>enterprise-wide consistency</strong></li>
+  <li>Supports <strong>incremental development</strong></li>
+  <li>Acts as a long-term <strong>architecture contract</strong></li>
+</ul>
+
+<h2>6. How It Drives Dimensional Design</h2>
+<ol>
+  <li>Select a business process (row)</li>
+  <li>Declare the grain of the fact table</li>
+  <li>Attach all marked conformed dimensions</li>
+  <li>Design the star schema</li>
+</ol>
+
+<h2>7. Relationship to Kimball Architecture</h2>
+<ul>
+  <li>Each row becomes a <strong>fact table</strong></li>
+  <li>Each column becomes a <strong>dimension table</strong></li>
+  <li>The full matrix forms the <strong>enterprise data warehouse</strong></li>
+</ul>
+
+<h2>8. One-Sentence Summary</h2>
+<p>
+<strong>The Kimball Bus Matrix defines which conformed dimensions apply to each business process,
+ensuring scalable, consistent, and integrated dimensional analytics.</strong>
+</p>
+
+
+
+{% include footer.html %}

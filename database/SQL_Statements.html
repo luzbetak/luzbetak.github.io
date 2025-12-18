@@ -1,0 +1,329 @@
+---
+---
+{% include menu.html title="SQL Statements" %}
+
+
+<h1>SQL Statements</h1>
+
+    <table width=900>
+        <tr>
+            <th align=left>SQL</th>
+            <th align=left>Description</th>
+        </tr>
+        <tr>
+            <td><span class="green-text">INSERT</span></td>
+            <td>Used to insert new rows into a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">UPDATE</span></td>
+            <td>Used to modify existing rows in a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DELETE</span></td>
+            <td>Used to remove rows from a table.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">ALTER TABLE</span></td>
+            <td>Used to modify the structure of an existing table, such as adding or dropping columns.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">TRUNCATE</span></td>
+            <td>Removes all rows from a table, but the table itself remains.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">UNION</span></td>
+            <td>Combines the result sets of two or more <code>SELECT</code> queries.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">INDEX</span></td>
+            <td>Creates an index to improve the speed of data retrieval.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DISTINCT</span></td>
+            <td>Used to remove duplicates from the result set.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">HAVING</span></td>
+            <td>Used to filter rows after the <code>GROUP BY</code> clause.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">LIMIT/OFFSET</span></td>
+            <td>Limits the number of rows returned by a query and allows for pagination.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">ORDER BY</span></td>
+            <td>Used to sort the result set in ascending or descending order.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">EXISTS</span></td>
+            <td>Used to test for the existence of any record in a subquery.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">RENAME</span></td>
+            <td>Changes the name of an existing table or column.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">CREATE VIEW</span></td>
+            <td>Creates a virtual table based on a <code>SELECT</code> query.</td>
+        </tr>
+        <tr>
+            <td><span class="green-text">DROP VIEW</span></td>
+            <td>Deletes a view.</td>
+        </tr>
+    </table>
+
+
+<p><hr align=left width=1000></p>
+<ol>
+  <li><h2>Using JOIN:</h2>
+    <p>Write a query to retrieve employee names along with their department names from <code>employees</code> and <code>departments</code> tables.</p>
+    <pre><code class="language-sql">SELECT e.name, d.department_name
+FROM employees e
+JOIN departments d
+  ON e.department_id = d.department_id;</code></pre>
+    <pre><code class="language-markdown">+-------------+------------------+
+| Name        | Department Name  |
++-------------+------------------+
+| Alice       | Engineering      |
+| Bob         | Marketing        |
+| Charlie     | HR               |
++-------------+------------------+</code></pre>
+  </li>
+
+  <li><h2>GROUP BY and Aggregate Functions:</h2>
+    <p>Find the total salary paid in each department.</p>
+    <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department_id;</code></pre>
+    <pre><code class="language-markdown">+---------------+---------------+
+| Department ID | Total Salary  |
++---------------+---------------+
+| 1             | 150000        |
+| 2             | 220000        |
+| 3             | 180000        |
++---------------+---------------+</code></pre>
+  </li>
+
+  <li><h2>HAVING Clause:</h2>
+    <p>Retrieve departments that have a total salary greater than 100,000.</p>
+    <pre><code class="language-sql">SELECT department_id, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department_id
+HAVING total_salary > 100000;</code></pre>
+    <pre><code class="language-markdown">+--------------+--------------+
+| Department ID | Total Salary |
++--------------+--------------+
+| 2            | 220000       |
+| 3            | 180000       |
++--------------+--------------+</code></pre>
+  </li>
+
+  <li><h2>CASE Statement:</h2>
+    <p>Write a query to categorize employees as <code>High</code>, <code>Medium</code>, or <code>Low</code> salary based on their salary values.</p>
+    <pre><code class="language-sql">SELECT name,
+       salary,
+       CASE
+           WHEN salary >= 80000 THEN 'High'
+           WHEN salary >= 50000 THEN 'Medium'
+           ELSE 'Low'
+       END AS salary_category
+FROM employees;</code></pre>
+    <pre><code class="language-markdown">+---------+--------+------------------+
+| Name    | Salary | Salary Category  |
++---------+--------+------------------+
+| Alice   | 85000  | High             |
+| Bob     | 60000  | Medium           |
+| Charlie | 40000  | Low              |
++---------+--------+------------------+</code></pre>
+  </li>
+
+  <li><h2>Self-JOIN:</h2>
+    <p>Find all employees who share the same manager.</p>
+    <pre><code class="language-sql">SELECT e1.name AS Employee, e2.name AS Manager
+FROM employees e1
+JOIN employees e2
+  ON e1.manager_id = e2.employee_id;</code></pre>
+    <pre><code class="language-markdown">+----------+----------+
+| Employee | Manager  |
++----------+----------+
+| Alice    | Bob      |
+| Charlie  | Bob      |
+| Dave     | Alice    |
++----------+----------+</code></pre>
+  </li>
+
+  <li><h2>Window Functions:</h2>
+    <p>Rank employees based on their salaries within each department.</p>
+    <pre><code class="language-sql">SELECT name, department_id, salary,
+       RANK() OVER (PARTITION BY department_id
+                    ORDER BY salary DESC) AS rank
+FROM employees;</code></pre>
+    <pre><code class="language-markdown">+---------+--------------+--------+------+
+| Name    | Department ID| Salary | Rank |
++---------+--------------+--------+------+
+| Alice   | 1            | 85000  | 1    |
+| Bob     | 1            | 60000  | 2    |
+| Charlie | 2            | 90000  | 1    |
++---------+--------------+--------+------+</code></pre>
+  </li>
+
+  <li><h2>CTE (Common Table Expression):</h2>
+    <p>Use a CTE to find employees who earn above the department’s average salary.</p>
+    <pre><code class="language-sql">WITH dept_avg AS (
+    SELECT department_id, AVG(salary) AS avg_salary
+    FROM employees
+    GROUP BY department_id
+)
+SELECT e.name, e.salary, d.avg_salary
+FROM employees e
+JOIN dept_avg d
+  ON e.department_id = d.department_id
+WHERE e.salary > d.avg_salary;</code></pre>
+    <pre><code class="language-markdown">+---------+--------+------------+
+| Name    | Salary | Avg Salary |
++---------+--------+------------+
+| Alice   | 85000  | 70000      |
+| Charlie | 90000  | 60000      |
++---------+--------+------------+</code></pre>
+  </li>
+
+  <li><h2>Recursive CTE:</h2>
+    <p>Write a query to generate a hierarchical list of employees and their managers.</p>
+    <pre><code class="language-sql">WITH RECURSIVE emp_hierarchy AS (
+    SELECT employee_id, name, manager_id, 1 AS level
+    FROM employees
+    WHERE manager_id IS NULL
+
+    UNION ALL
+
+    SELECT e.employee_id, e.name, e.manager_id, eh.level + 1
+    FROM employees e
+    JOIN emp_hierarchy eh
+      ON e.manager_id = eh.employee_id
+)
+SELECT * FROM emp_hierarchy
+ORDER BY level;</code></pre>
+    <pre><code class="language-markdown">+-------------+--------+------------+-------+
+| Employee ID | Name   | Manager ID | Level |
++-------------+--------+------------+-------+
+| 1           | Alice  | NULL       | 1     |
+| 2           | Bob    | 1          | 2     |
+| 3           | Charlie| 2          | 3     |
++-------------+--------+------------+-------+</code></pre>
+  </li>
+
+  <li><h2>Subquery:</h2>
+    <p>Retrieve employees whose salary is above the average salary in the company.</p>
+    <pre><code class="language-sql">SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);</code></pre>
+    <pre><code class="language-markdown">+---------+--------+
+| Name    | Salary |
++---------+--------+
+| Alice   | 85000  |
+| Charlie | 90000  |
++---------+--------+</code></pre>
+  </li>
+
+  <li><h2>Handling NULLs:</h2>
+    <p>Write a query to list employees and replace NULL values in the <code>bonus</code> column with 0.</p>
+    <pre><code class="language-sql">SELECT name, COALESCE(bonus, 0) AS bonus
+FROM employees;</code></pre>
+    <pre><code class="language-markdown">+---------+-------+
+| Name    | Bonus |
++---------+-------+
+| Alice   | 1000  |
+| Bob     | 0     |
+| Charlie | 500   |
++---------+-------+</code></pre>
+  </li>
+</ol>
+
+<p><hr width=1100 align=left>
+<h2>WITH: Common Table Expressions</h2>
+
+<p><h3>Select Positive and Negative Image Samples</h3></p>
+<pre><code class="language-sql">WITH ordered_images AS (
+    -- Order images by score descending and ascending, assigning row numbers --
+    SELECT image_id, score,
+           ROW_NUMBER() OVER (ORDER BY score DESC) AS row_num_desc,
+           ROW_NUMBER() OVER (ORDER BY score ASC) AS row_num_asc
+    FROM unlabeled_image_predictions
+),
+positive_samples AS (
+    -- Select every 3rd image from the highest scores, starting from the first row --
+    SELECT image_id, 1 AS weak_label
+    FROM ordered_images
+    WHERE row_num_desc % 3 = 1
+    ORDER BY row_num_desc
+    LIMIT 10000
+),
+negative_samples AS (
+    -- Select every 3rd image from the lowest scores, starting from the first row --
+    SELECT image_id, 0 AS weak_label
+    FROM ordered_images
+    WHERE row_num_asc % 3 = 1
+    ORDER BY row_num_asc
+    LIMIT 10000
+)
+-- Combine positive and negative samples and order by image_id --
+SELECT image_id, weak_label
+FROM positive_samples
+
+UNION ALL
+
+SELECT image_id, weak_label
+FROM negative_samples
+
+ORDER BY image_id;
+</code></pre>
+
+<table class=table>
+    <tr>
+        <th>Step</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>1. Common Table Expression - <code>ordered_images</code></td>
+        <td>
+            Orders the images by score both descending and ascending, assigning row numbers using 
+            <code>ROW_NUMBER()</code>. These row numbers help select specific samples from the top and bottom images.
+        </td>
+    </tr>
+    <tr>
+        <td>2. Common Table Expression - <code>positive_samples</code></td>
+        <td>
+            Selects every 3rd image from the highest-scoring images, starting with the first image.
+            Assigns a <code>weak_label</code> of 1 to these samples. The result is limited to 10,000 samples.
+        </td>
+    </tr>
+    <tr>
+        <td>3. Common Table Expression - <code>negative_samples</code></td>
+        <td>
+            Selects every 3rd image from the lowest-scoring images, starting with the first image.
+            Assigns a <code>weak_label</code> of 0 to these samples. The result is limited to 10,000 samples.
+        </td>
+    </tr>
+    <tr>
+        <td>4. Final Selection</td>
+        <td>
+            Combines the positive and negative samples using <code>UNION ALL</code>, preserving all records. 
+            Orders the combined result by <code>image_id</code> in ascending order.
+        </td>
+    </tr>
+</table>
+
+<h3>Output</h3>
+<pre><code class="language-markdown">+----------+------------+
+| image_id | weak_label |
++----------+------------+
+|    1001  |      1     |
+|    1003  |      0     |
+|    1005  |      1     |
+|    1007  |      0     |
+|    1009  |      1     |
++----------+------------+
+</code></pre>
+
+{% include footer.html %}
+

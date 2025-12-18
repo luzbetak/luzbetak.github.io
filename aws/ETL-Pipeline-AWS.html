@@ -1,0 +1,117 @@
+---
+---
+{% include menu.html title="Building an ETL Pipeline on AWS" %}
+
+<p><hr align=left width=1000>
+
+<section>
+  <h2 align=center>Building an ETL Pipeline on AWS</h2>
+
+  <p><hr align=left width=1000>
+  <h3>1. Data Ingestion (Extract)</h3>
+  <ul>
+    <li>
+      <strong>AWS S3 (Simple Storage Service):</strong> Store raw data in S3 buckets. Data can come from various sources like logs, databases, or third-party APIs.
+    </li>
+    <li>
+      <strong>AWS Kinesis or AWS Data Streams:</strong> For real-time data ingestion, use Kinesis to collect and process data streams.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>2. Data Transformation</h3>
+  <ul>
+    <li>
+      <strong>AWS Glue:</strong> A fully managed ETL service that can run Apache Spark jobs to transform data. Create Glue jobs to clean, format, and enrich the data.
+    </li>
+    <li>
+      <strong>AWS Lambda:</strong> For simple transformations, use Lambda functions to process data in real-time or batch.
+    </li>
+    <li>
+      <strong>AWS EMR (Elastic MapReduce):</strong> For more complex transformations requiring big data processing, use EMR to run large-scale data processing frameworks like Hadoop or Spark.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>3. Data Loading</h3>
+  <ul>
+    <li>
+      <strong>AWS Redshift:</strong> Load transformed data into a Redshift data warehouse for analytical queries and reporting.
+    </li>
+    <li>
+      <strong>Amazon RDS or DynamoDB:</strong> For relational or NoSQL database needs, load data into RDS or DynamoDB.
+    </li>
+    <li>
+      <strong>AWS S3:</strong> Store transformed data back in S3 for further use, archival, or as a data lake.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>4. Orchestration and Automation</h3>
+  <ul>
+    <li>
+      <strong>AWS Step Functions:</strong> Orchestrate the workflow by defining the sequence of AWS services to be executed.
+    </li>
+    <li>
+      <strong>AWS Glue Workflow:</strong> Another orchestration option within Glue, allowing you to manage ETL job dependencies.
+    </li>
+    <li>
+      <strong>AWS CloudWatch Events:</strong> Trigger ETL jobs based on schedules or specific events.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>5. Monitoring and Logging</h3>
+  <ul>
+    <li>
+      <strong>AWS CloudWatch:</strong> Monitor your ETL jobs and the overall health of the pipeline. Set up alarms for failures or performance issues.
+    </li>
+    <li>
+      <strong>AWS CloudTrail:</strong> Log API calls and track the pipeline's activity for auditing purposes.
+    </li>
+    <li>
+      <strong>AWS Glue Data Catalog:</strong> Manage metadata and keep track of your data schema across the pipeline.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>6. Security and Compliance</h3>
+  <ul>
+    <li>
+      <strong>IAM (Identity and Access Management):</strong> Define roles and policies to control access to resources.
+    </li>
+    <li>
+      <strong>AWS KMS (Key Management Service):</strong> Encrypt data at rest and in transit to ensure security.
+    </li>
+    <li>
+      <strong>AWS Config &amp; AWS Inspector:</strong> Ensure compliance with internal policies and external regulations.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>7. Scaling and Performance</h3>
+  <ul>
+    <li>
+      <strong>Auto Scaling for EC2/EMR:</strong> Scale your processing resources up or down based on load.
+    </li>
+    <li>
+      <strong>S3 Transfer Acceleration:</strong> Speed up data transfer to S3 for large datasets.
+    </li>
+  </ul>
+
+  <p><hr align=left width=1000>
+  <h3>Example Workflow</h3>
+  <ol>
+    <li><strong>Extract:</strong> Data arrives in S3 (or through Kinesis for real-time data).</li>
+    <li><strong>Transform:</strong> AWS Glue jobs clean and aggregate the data.</li>
+    <li><strong>Load:</strong> The cleaned data is loaded into Redshift for analysis or back into S3 for storage.</li>
+    <li><strong>Orchestrate:</strong> AWS Step Functions manage the flow, triggering each step automatically.</li>
+    <li><strong>Monitor:</strong> CloudWatch alerts you if any job fails or if performance degrades.</li>
+  </ol>
+</section>
+
+{% include footer.html %}
+
+  </body>
+</html>
+    

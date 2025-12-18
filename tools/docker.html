@@ -1,0 +1,23 @@
+---
+---
+{% include menu.html title="Key Points about Docker" %}
+
+<body>
+    <h1>Key Points about Docker</h1>
+    <ul>
+        <li><p><strong>Containerization</strong>: Docker enables the creation and management of containers, which are lightweight, portable, and isolated environments that bundle an application and its dependencies together. This ensures consistency across different environments, such as development, testing, and production.</li>
+        <li><p><strong>Images</strong>: Docker containers are created from images, which are read-only templates with instructions on how to create a container. Docker images are typically built using a Dockerfile, which contains a series of instructions to assemble the image.</li>
+        <li><p><strong>Dockerfile</strong>: A text file that contains all the commands to build a Docker image. It specifies the base image, environment variables, files to be included, and the commands to run within the container.</li>
+        <li><p><strong>Portability</strong>: Docker containers can run consistently across any system that supports Docker, whether it's a local machine, a data center, or in the cloud. This eliminates the "it works on my machine" problem.</li>
+        <li><p><strong>Isolation</strong>: Each Docker container runs in its own isolated environment, with its own filesystem, networking, and processes, which ensures that the containerized application doesn't interfere with other applications on the host system.</li>
+        <li><p><strong>Efficiency</strong>: Containers are more lightweight compared to virtual machines (VMs) because they share the host system's OS kernel, which results in lower overhead and faster startup times.</li>
+        <li><p><strong>Version Control</strong>: Docker images are versioned, allowing developers to roll back to previous versions if needed. This is particularly useful for maintaining consistency and reproducibility in development and production environments.</li>
+        <li><p><strong>Scalability</strong>: Docker simplifies the process of scaling applications. By using tools like Docker Compose and Docker Swarm, multiple containers can be managed, orchestrated, and scaled to handle increased load.</li>
+        <li><p><strong>Security</strong>: Containers run in isolated environments, which enhances security by limiting the scope of access to the host system. Additionally, Docker provides security features like image scanning to detect vulnerabilities in Docker images.</li>
+        <li><p><strong>Ecosystem</strong>: Docker has a vast ecosystem, including Docker Hub (a repository for Docker images), Docker Compose (for defining and running multi-container Docker applications), and Docker Swarm/Kubernetes (for container orchestration).</li>
+    </ul>
+
+  {% include footer.html %}
+
+  </body>
+</html>

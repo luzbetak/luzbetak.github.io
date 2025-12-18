@@ -1,0 +1,75 @@
+---
+---
+{% include menu.html title="Repartition in PySpark" %}
+
+<body>
+    <table width=900><tr><td>    
+    <h1>Repartition in PySpark</h1>
+
+    <ol>
+        <li><h3>How Repartitioning Works</h3>
+            <ul>
+                <li><strong>Shuffling Data:</strong> When you call 
+                    <code><span class="keyword">repartition(256)</span></code>, Spark performs a 
+                    <strong>full shuffle</strong> of the data across the specified number of partitions. 
+                    The goal is to redistribute the data evenly across all partitions, which allows parallel processing across multiple nodes.
+                </li>
+                <li><strong>Default Repartitioning:</strong> If no column is specified, Spark randomly assigns rows to partitions. 
+                    The intention is to balance the number of rows across the 256 partitions for efficiency.
+                </li>
+                <li><strong>Even Distribution:</strong> Spark attempts to distribute the data as evenly as possible among the partitions. 
+                    While it doesn't guarantee perfectly equal splits, it ensures a reasonable balance.
+                </li>
+            </ul>
+        </li>
+
+        <li><h3>Column-based Repartitioning</h3>
+            <ul>
+                <li>To repartition based on a specific column, you can use the following syntax:
+                    <pre><code><span class="datatype">raw_data</span> = <span class="datatype">raw_data</span>.<span class="function">repartition</span>(256, col(<span class="string">"category"</span>))</code></pre>
+                </li>
+                <li>In this case, Spark redistributes the data based on the values in the <code>category</code> column. 
+                    Rows with the same value in the <code>category</code> column will be placed in the same partition. 
+                    This is especially useful for operations like joins or aggregations that depend on column-based grouping.
+                </li>
+            </ul>
+        </li>
+
+        <li><h3>Key Points</h3>
+            <ul>
+                <li><strong>Without a Column:</strong> When using <code>repartition(256)</code> without specifying a column, Spark redistributes the data across 256 partitions without specific logic, balancing the rows across partitions.</li>
+                <li><strong>With a Column:</strong> Using <code>repartition(256, col(<span class="string">"some_column"</span>))</code>, Spark repartitions the data based on the column values, optimizing for operations like grouping or joins.</li>
+            </ul>
+        </li>
+
+        <li><h3>When to Use Repartition</h3>
+            <ul>
+                <li><strong>Load Balancing:</strong> Repartitioning helps balance data across partitions when the data is skewed, ensuring that no partition has an oversized share of the data.</li>
+                <li><strong>Parallel Processing:</strong> By redistributing the data across more partitions, repartitioning ensures efficient parallel processing, especially when working with a large cluster.</li>
+            </ul>
+        </li>
+
+        <li><h3>Alternatives</h3>
+            <ul>
+                <li><strong>coalesce(n):</strong> Unlike <code>repartition()</code>, 
+                    <code>coalesce(n)</code> reduces the number of partitions without a full shuffle. 
+                    It's typically used after filtering operations or when you're writing out smaller data.
+                </li>
+            </ul>
+        </li>
+
+        <li><h3>Example</h3>
+            <pre><code><span class="datatype"># Repartition based on a specific column for optimized grouping</span>
+<span class="datatype">repartitioned_data</span> = <span class="datatype">raw_data</span>.<span class="function">repartition</span>(256, col(<span class="string">"customer_id"</span>))</code></pre>
+            <ul>
+                <li>In this example, Spark repartitions the data so that rows with the same <code>customer_id</code> are placed in the same partition, which can be useful for later operations like grouping or joining on that column.</li>
+            </ul>
+        </li>
+    </ol>
+            </td></tr></table>
+
+
+  {% include footer.html %}
+
+  </body>
+</html>

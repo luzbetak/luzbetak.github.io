@@ -1,0 +1,33 @@
+---
+---
+{% include menu.html title="Managed and External Tables in Delta Lake" %}
+
+
+<body>
+
+    <h1>Managed and External Tables in Delta Lake</h1>
+
+    <h2>Managed Table</h2>
+    <ul>
+        <li><strong>Storage Location</strong>: Delta Lake automatically manages both the data and metadata. The data is stored in a location controlled by the Delta Lake system.</li>
+        <li><strong>Lifecycle Management</strong>: When you create a managed table, Delta Lake determines the storage location, typically inside the database directory. When the table is dropped, both the data and metadata are deleted automatically.</li>
+        <li><strong>Use Case</strong>: Suitable for cases where you want Delta Lake to manage the lifecycle of the data, including cleaning up when the table is no longer needed.</li>
+    </ul>
+
+    <h2>External Table</h2>
+    <ul>
+        <li><strong>Storage Location</strong>: The data resides in a location outside of Delta Lake's control, often specified by the user (e.g., an S3 or HDFS path). Delta Lake only manages the metadata, not the physical storage of the data.</li>
+        <li><strong>Lifecycle Management</strong>: When an unmanaged table is dropped, only the metadata is removed, but the data remains intact at its specified storage location.</li>
+        <li><strong>Use Case</strong>: Ideal when you want to retain control over the data storage location, or the data is shared with other systems.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p><strong>Managed Table</strong>: Delta Lake controls both the data and metadata, and automatically cleans up data when the table is dropped.</p>
+    <p><strong>External Table</strong>: Delta Lake only controls the metadata, and the user manages the data location. Dropping the table doesn't remove the data itself.</p>
+
+</body>
+
+  {% include footer.html %}
+
+  </body>
+</html>

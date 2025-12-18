@@ -1,0 +1,326 @@
+---
+---
+{% include menu.html title="Snowflake Table Types" %}
+
+<body>
+<h1>Snowflake Table Types</h1>
+
+<p>Snowflake provides various table types to meet different data storage and processing requirements. Each table type has specific characteristics regarding persistence, performance, cost, and Time Travel capabilities.</p>
+
+<h2>Overview of Table Types</h2>
+<pre style="line-height: 1.2; font-family: monospace;">
+┌───────────────────────────────────────────────────────────────────────┐
+│                         <strong>SNOWFLAKE TABLE TYPES</strong>                         │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │    <strong>PERMANENT</strong>     │  │    <strong>TEMPORARY</strong>      │  │    <strong>TRANSIENT</strong>      │   │
+│  │     TABLES       │  │     TABLES        │  │     TABLES        │   │
+│  │                  │  │                   │  │                   │   │
+│  │   ✓ Fail-safe    │  │   ✗ Fail-safe     │  │   ✗ Fail-safe     │   │
+│  │   ✓ Time Travel  │  │   ✓ Time Travel   │  │   ✓ Time Travel   │   │
+│  │     (90 days)    │  │      (1 day)      │  │     (1 day)       │   │
+│  │                  │  |  Current Session  │  │  Between Sessions │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │     <strong>EXTERNAL</strong>     │  │     <strong>DYNAMIC</strong>       │  │      <strong>HYBRID</strong>       │   │
+│  │     TABLES       │  │     TABLES        │  │      TABLES       │   │
+│  │                  │  │                   │  │                   │   │
+│  │   Data Outside   │  │   Auto-refresh    │  │    OLTP + OLAP    │   │
+│  │    Snowflake     │  │   Materialized    │  │    Unistore       │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │     <strong>ICEBERG</strong>      │  │      <strong>EVENT</strong>        │  │    <strong>DIRECTORY</strong>      │   │
+│  │     TABLES       │  │      TABLES       │  │     TABLES        │   │
+│  │                  │  │                   │  │                   │   │
+│  │   Apache Format  │  │   Log/Telemetry   │  │   Stage Files     │   │
+│  │    Open Table    │  │     Storage       │  │     Catalog       │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+└───────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<h2>1. Permanent Tables</h2>
+<p>Permanent tables are the default table type in Snowflake, designed for storing critical business data that requires maximum data protection.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Time Travel:</strong> Up to 90 days (Enterprise Edition and higher)</li>
+    <li><strong>Fail-safe:</strong> Additional 7 days of data recovery after Time Travel expires</li>
+    <li><strong>Data Protection:</strong> Highest level of data protection and recovery options</li>
+    <li><strong>Storage Costs:</strong> Higher due to Time Travel and Fail-safe storage</li>
+    <li><strong>Persistence:</strong> Data persists until explicitly dropped</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Production data warehouses</li>
+    <li>Critical business data</li>
+    <li>Regulatory compliance data</li>
+    <li>Financial records</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE TABLE customer_data (
+    customer_id INTEGER,
+    customer_name VARCHAR,
+    created_date DATE
+);
+</pre>
+
+<h2>2. Temporary Tables</h2>
+<p>Temporary tables exist only within a session and are automatically dropped when the session ends.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Scope:</strong> Session-specific (visible only within the session)</li>
+    <li><strong>Time Travel:</strong> Limited to 1 day (24 hours)</li>
+    <li><strong>Fail-safe:</strong> Not available</li>
+    <li><strong>Auto-cleanup:</strong> Automatically dropped at session end</li>
+    <li><strong>Storage Costs:</strong> Lower due to no Fail-safe period</li>
+    <li><strong>Naming:</strong> Can have the same name as permanent tables</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>ETL intermediate staging</li>
+    <li>Session-specific calculations</li>
+    <li>Temporary data transformations</li>
+    <li>Development and testing</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE TEMPORARY TABLE temp_staging (
+    id INTEGER,
+    data VARCHAR
+);
+</pre>
+
+<h2>3. Transient Tables</h2>
+<p>Transient tables are a middle ground between permanent and temporary tables, offering persistence without Fail-safe protection.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Time Travel:</strong> Limited to 1 day (0 or 1 day configurable)</li>
+    <li><strong>Fail-safe:</strong> Not available</li>
+    <li><strong>Persistence:</strong> Persists until explicitly dropped</li>
+    <li><strong>Storage Costs:</strong> Lower than permanent tables</li>
+    <li><strong>Cloning:</strong> Can be cloned like permanent tables</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>ETL staging tables that need to persist across sessions</li>
+    <li>Non-critical derived data</li>
+    <li>Development and testing environments</li>
+    <li>Temporary reporting tables</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE TRANSIENT TABLE staging_data (
+    record_id INTEGER,
+    processed_flag BOOLEAN
+);
+</pre>
+
+<h2>4. External Tables</h2>
+<p>External tables allow querying data stored outside of Snowflake, in external cloud storage locations.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Data Location:</strong> Data remains in external storage (S3, Azure Blob, GCS)</li>
+    <li><strong>Read-only:</strong> Cannot perform DML operations (INSERT, UPDATE, DELETE)</li>
+    <li><strong>Metadata:</strong> Only metadata is stored in Snowflake</li>
+    <li><strong>Time Travel:</strong> Not supported</li>
+    <li><strong>Performance:</strong> Slower than native tables</li>
+    <li><strong>File Formats:</strong> Supports various formats (Parquet, ORC, Avro, JSON, CSV)</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Data lake integration</li>
+    <li>Querying archived data</li>
+    <li>Cross-platform data sharing</li>
+    <li>Cost-effective storage for infrequently accessed data</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE EXTERNAL TABLE ext_customer_data
+WITH LOCATION = @my_external_stage/data/
+FILE_FORMAT = (TYPE = PARQUET);
+</pre>
+
+<h2>5. Dynamic Tables</h2>
+<p>Dynamic tables are continuously updated materialized views that automatically refresh as underlying data changes.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Automated Refresh:</strong> Automatically updates based on defined lag</li>
+    <li><strong>Declarative:</strong> Define the desired state, Snowflake handles updates</li>
+    <li><strong>Incremental Processing:</strong> Only processes changed data</li>
+    <li><strong>Target Lag:</strong> Configurable freshness requirements</li>
+    <li><strong>Cost:</strong> Consumes compute resources for refresh operations</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Real-time analytics</li>
+    <li>Data pipeline automation</li>
+    <li>Continuous data transformation</li>
+    <li>Materialized aggregations</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE DYNAMIC TABLE sales_summary
+TARGET_LAG = '1 minute'
+WAREHOUSE = compute_wh
+AS
+SELECT 
+    product_id,
+    SUM(quantity) as total_quantity,
+    SUM(amount) as total_amount
+FROM sales_transactions
+GROUP BY product_id;
+</pre>
+
+<h2>6. Hybrid Tables</h2>
+<p>Hybrid tables (Unistore) combine OLTP and OLAP capabilities, supporting both transactional and analytical workloads.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Row-based Storage:</strong> Optimized for transactional operations</li>
+    <li><strong>ACID Compliance:</strong> Full transactional support</li>
+    <li><strong>Primary Keys:</strong> Enforced unique constraints</li>
+    <li><strong>Indexes:</strong> Support for secondary indexes</li>
+    <li><strong>Lock Management:</strong> Row-level locking for concurrent transactions</li>
+    <li><strong>Performance:</strong> Fast single-row operations</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Application databases</li>
+    <li>Operational data stores</li>
+    <li>Real-time transactional systems</li>
+    <li>Mixed OLTP/OLAP workloads</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE HYBRID TABLE orders (
+    order_id NUMBER(38,0) NOT NULL PRIMARY KEY,
+    customer_id NUMBER(38,0),
+    order_date TIMESTAMP_NTZ,
+    status VARCHAR(20),
+    INDEX idx_customer (customer_id),
+    INDEX idx_date (order_date)
+);
+</pre>
+
+<h2>7. Iceberg Tables</h2>
+<p>Iceberg tables use Apache Iceberg table format, providing an open table format for large analytic datasets.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Open Format:</strong> Apache Iceberg compatibility</li>
+    <li><strong>External Storage:</strong> Data stored in customer-managed storage</li>
+    <li><strong>Interoperability:</strong> Works with multiple compute engines</li>
+    <li><strong>Schema Evolution:</strong> Supports schema changes without rewriting data</li>
+    <li><strong>Partitioning:</strong> Hidden partitioning support</li>
+    <li><strong>Time Travel:</strong> Version history through Iceberg snapshots</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Multi-engine analytics</li>
+    <li>Data lake architectures</li>
+    <li>Vendor-neutral storage</li>
+    <li>Cross-platform data sharing</li>
+</ul>
+
+<h3>Creation Syntax:</h3>
+<pre>
+CREATE ICEBERG TABLE customer_iceberg (
+    customer_id INTEGER,
+    customer_name STRING,
+    registration_date DATE
+)
+CATALOG = 'SNOWFLAKE'
+EXTERNAL_VOLUME = 'my_external_volume'
+BASE_LOCATION = 'customer_data/';
+</pre>
+
+<h2>8. Event Tables</h2>
+<p>Event tables are specialized tables for storing and analyzing log and telemetry data efficiently.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>Time-series Optimized:</strong> Designed for time-based data</li>
+    <li><strong>High Ingestion Rate:</strong> Optimized for streaming data</li>
+    <li><strong>Automatic Clustering:</strong> Time-based partitioning</li>
+    <li><strong>Retention Policies:</strong> Automatic data expiration</li>
+    <li><strong>Schema Flexibility:</strong> Semi-structured data support</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>Application logs</li>
+    <li>IoT telemetry data</li>
+    <li>Security event monitoring</li>
+    <li>Clickstream analytics</li>
+</ul>
+
+<h2>9. Directory Tables</h2>
+<p>Directory tables provide a catalog view of files in a stage, allowing SQL queries over file metadata.</p>
+
+<h3>Characteristics:</h3>
+<ul>
+    <li><strong>File Metadata:</strong> Query file properties without loading data</li>
+    <li><strong>Automatic Refresh:</strong> Synchronized with stage contents</li>
+    <li><strong>No Data Storage:</strong> Only metadata is stored</li>
+    <li><strong>Read-only:</strong> Cannot modify through directory table</li>
+</ul>
+
+<h3>Use Cases:</h3>
+<ul>
+    <li>File inventory management</li>
+    <li>Data discovery</li>
+    <li>File processing workflows</li>
+    <li>Audit and compliance tracking</li>
+</ul>
+
+<h2>Table Type Comparison Matrix</h2>
+<pre style="line-height: 1.4; font-family: monospace;">
+┌──────────────┬────────────┬─────────────┬───────────┬───────────┬───────────┐
+│ Feature      │  Permanent │  Temporary  │ Transient │ External  │  Dynamic  │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Time Travel  │  0-90 days │   0-1 day   │  0-1 day  │    No     │    Yes    │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Fail-safe    │    7 days  │     No      │    No     │    No     │    No     │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Persistence  │   Until    │   Session   │   Until   │  External │   Until   │
+│              │  dropped   │     only    │  dropped  │   files   │  dropped  │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ DML Support  │    Yes     │     Yes     │    Yes    │    No     │    No*    │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Clone        │    Yes     │      No     │    Yes    │    No     │    Yes    │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Storage Cost │    High    │     Low     │  Medium   │   Low     │   Medium  │
+├──────────────┼────────────┼─────────────┼───────────┼───────────┼───────────┤
+│ Use Case     │ Production │     ETL     │  Staging  │ Data Lake │ Analytics │
+└──────────────┴────────────┴─────────────┴───────────┴───────────┴───────────┘
+* Dynamic tables are read-only from user perspective, auto-updated by system
+</pre>
+
+<h2>Best Practices for Table Selection</h2>
+<ol>
+    <li><strong>Use Permanent Tables for:</strong>
+        <ul>
+            <li>Core business data requiring maximum protect
+
+{% include footer.html %}
