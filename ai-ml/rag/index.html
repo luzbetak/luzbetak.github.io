@@ -1,0 +1,22 @@
+---
+---
+{% include menu.html title="Retrieval-Augmented Generation (RAG) Architecture" %}
+
+<h1>Retrieval-Augmented Generation (RAG) Architecture</h1>
+
+<h2>Description:</h2>
+
+<p>
+This diagram illustrates the end-to-end workflow of a Retrieval-Augmented
+Generation (RAG) system. A user submits a query, which is converted into
+embeddings and used to retrieve relevant information from external data sources
+stored in a vector database. The retrieved context is combined with the
+original query and a system prompt to form an augmented input. This enriched
+input is then passed to a large language model, which generates a more
+accurate, grounded, and context-aware response as the final output.
+</p>
+
+<hr>
+<img src="Retrieval-Augmented-Generation-RAG-Architecture.jpg">
+
+{% include footer.html %}

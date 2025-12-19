@@ -1,0 +1,97 @@
+---
+---
+{% include menu.html title="Apache Kafka Producer and Consumer" %}
+
+<h1>MongoDB CLI Commands</h1>
+ <hr>
+    <pre><code class="language-bash"># Log in to the MongoDB shell locally
+mongosh
+
+# Default port on localhost rag_database:
+mongosh mongodb://localhost:27017/rag_database
+
+# View All Documents
+db.documents.find().pretty()
+
+# View a Document by ID
+db.documents.find({ _id: ObjectId("671f110807e141d70ebe59d8") }).pretty()
+
+# Filter Documents by a Field
+db.documents.find({ url: "https://kevinluzbetak.com/1-ai/Gunning-Fog-Index.html" }).pretty()
+
+# Limit the Number of Documents
+db.documents.find().limit(5).pretty()
+
+# Skip Documents and Limit
+db.documents.find().skip(5).limit(5).pretty()
+
+# Sort Documents
+db.documents.find().sort({ title: 1 }).pretty()
+
+# Project Specific Fields
+db.documents.find({}, { url: 1, title: 1, content: 1, _id: 0 }).pretty()
+
+# Exclude a Specific Field
+db.documents.find({}, { embedding: 0 }).pretty()
+
+# Find Random Document
+db.documents.aggregate([{ $sample: { size: 1 } }]).pretty()
+
+# Count the Number of Documents
+db.documents.countDocuments()
+
+# Find Documents Matching a Range
+db.documents.find({ "score": { $gte: 50, $lte: 100 } }).pretty()
+
+# Find Documents Using Regular Expressions
+db.documents.find({ "title": { $regex: "Index", $options: "i" } }).pretty()
+
+# Use $in Operator to Match Multiple Values
+db.documents.find({ "title": { $in: ["Gunning-Fog-Index.html", "TF-IDF.html"] } }).pretty()
+
+# Find Documents Based on Field Existence
+db.documents.find({ "author": { $exists: true } }).pretty()
+
+# Retrieve and Sort Documents with Pagination
+db.documents.find().sort({ _id: 1 }).skip(10).limit(10).pretty()
+
+</code></pre>
+
+<hr>
+    <h2>MongoDB as a Document-Based Database</h2>
+    <p>
+        MongoDB is not a traditional key-value store, but it can function similarly in some contexts. 
+        MongoDB is a document-based NoSQL database, where each document (typically represented in BSON format, 
+        a binary form of JSON) can have multiple key-value pairs. The keys in a MongoDB document are the field names, 
+        and the values are the corresponding data.
+    </p>
+
+    <h3>In this context, the key-value pairs are:</h3>
+    <ul>
+        <li><strong>Key</strong>: <code>url</code>, <strong>Value</strong>: <code>'https://luzbetak.github.io/ai/Gunning-Fog-Index.html'</code></li>
+        <li><strong>Key</strong>: <code>title</code>, <strong>Value</strong>: <code>'Gunning-Fog-Index.html'</code></li>
+        <li><strong>Key</strong>: <code>content</code>, <strong>Value</strong>: <code>'gunning fog index account ...'</code></li>
+        <li><strong>Key</strong>: <code>embedding</code>, <strong>Value</strong>: <code>[-0.01926298439502716, 0.03058304823935032, ...]</code></li>
+    </ul>
+
+    <p>
+        Each document in MongoDB also has an implicit key-value pair for the <code>_id</code> field:
+    </p>
+    <ul>
+        <li><strong>Key</strong>: <code>_id</code>, <strong>Value</strong>: <code>ObjectId('671f110807e141d70ebe59d8')</code></li>
+    </ul>
+
+    <h3>Key in MongoDB:</h3>
+    <p>
+        The <code>_id</code> field is the primary key in each MongoDB document. It uniquely identifies the document within a collection, 
+        much like how a key works in a key-value database.
+    </p>
+
+    <h3>Example:</h3>
+    <p>
+        In the document you retrieved, the "keys" are the field names (<code>_id</code>, <code>url</code>, 
+        <code>title</code>, <code>content</code>, and <code>embedding</code>), and their "values" are the corresponding 
+        data (e.g., the URL, title, content text, and embedding vector).
+    </p>
+
+{% include footer.html %}

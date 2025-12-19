@@ -1,0 +1,153 @@
+---
+---
+{% include menu.html title="Kimball Dimensional Architecture" %}
+
+<h1>Kimball Data Architecture (Kimball Dimensional Architecture)</h1>
+
+<h2>1. Overview</h2>
+<p>
+<strong>Kimball Data Architecture</strong> is a <strong>bottom-up data warehouse design approach</strong> focused on delivering
+<strong>business-friendly analytics</strong>. It organizes data using <strong>dimensional modeling</strong>,
+making it optimized for reporting, dashboards, and BI tools.
+</p>
+
+<img src="kimball-star-schema.png" width=800 alt="Kimball data warehouse architecture overview">
+
+<h2>2. Core Principles</h2>
+<ul>
+  <li><strong>Business-process centric</strong></li>
+  <li><strong>Bottom-up development</strong></li>
+  <li><strong>Dimensional modeling (facts and dimensions)</strong></li>
+  <li><strong>Incremental delivery</strong></li>
+  <li><strong>High query performance</strong></li>
+</ul>
+
+<h2>3. Main Components</h2>
+
+<h3>3.1 Source Systems</h3>
+<ul>
+  <li>Operational databases (ERP, CRM, billing)</li>
+  <li>Logs and event streams</li>
+  <li>APIs and flat files</li>
+  <li>External data sources</li>
+</ul>
+
+<h3>3.2 ETL / ELT Layer</h3>
+<ul>
+  <li><strong>Extract</strong> data from source systems</li>
+  <li><strong>Transform</strong> data using business rules</li>
+  <li><strong>Load</strong> data into dimensional tables</li>
+  <li>Data quality checks</li>
+  <li>Surrogate key generation</li>
+  <li>Slowly Changing Dimensions (SCD)</li>
+</ul>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/ETL_process_diagram.svg" alt="ETL process diagram">
+
+<h3>3.3 Dimensional Data Warehouse</h3>
+<p>
+The core of Kimball architecture is the <strong>dimensional warehouse</strong>,
+built using <strong>star schemas</strong>.
+</p>
+
+<h2>4. Dimensional Modeling</h2>
+
+<h3>4.1 Fact Tables</h3>
+<ul>
+  <li>Store <strong>measurable numeric data</strong></li>
+  <li>Represent a <strong>business process</strong></li>
+  <li>Defined at a specific <strong>grain</strong></li>
+  <li>Contain foreign keys to dimensions</li>
+</ul>
+
+<strong>Examples:</strong>
+<ul>
+  <li>sales_amount</li>
+  <li>quantity_sold</li>
+  <li>revenue</li>
+</ul>
+
+<h3>4.2 Dimension Tables</h3>
+<ul>
+  <li>Store <strong>descriptive attributes</strong></li>
+  <li>Denormalized and human-readable</li>
+  <li>Provide context for facts</li>
+</ul>
+
+<strong>Examples:</strong>
+<ul>
+  <li>Customer</li>
+  <li>Product</li>
+  <li>Date</li>
+  <li>Location</li>
+</ul>
+
+<img src="star_schema_diagram.png" width=800 alt="Star Schema Diagram">
+
+<h2>5. Star Schema</h2>
+<ul>
+  <li>One <strong>central fact table</strong></li>
+  <li>Multiple surrounding <strong>dimension tables</strong></li>
+  <li>Simple joins</li>
+  <li>High-performance queries</li>
+</ul>
+
+<h2>6. Conformed Dimensions</h2>
+<ul>
+  <li>Shared dimensions used across multiple fact tables</li>
+  <li>Ensure <strong>consistent metrics</strong> enterprise-wide</li>
+  <li>Enable cross-functional reporting</li>
+</ul>
+
+<strong>Example:</strong>
+<ul>
+  <li>The same <strong>Date</strong> and <strong>Customer</strong> dimensions used by Sales, Inventory, and Finance</li>
+</ul>
+
+<h2>7. Data Marts</h2>
+<p>
+In Kimball architecture, <strong>data marts are not silos</strong>.
+They are logical subsets of the dimensional warehouse.
+</p>
+
+<ul>
+  <li>Sales data mart</li>
+  <li>Inventory data mart</li>
+  <li>Finance data mart</li>
+</ul>
+
+<h2>8. Bus Architecture</h2>
+<ul>
+  <li>Defines standard business processes</li>
+  <li>Maps processes to shared dimensions</li>
+  <li>Ensures architectural consistency</li>
+</ul>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Bus_matrix_example.png" alt="Kimball bus matrix">
+
+<h2>9. Strengths</h2>
+<ul>
+  <li>Easy for business users to understand</li>
+  <li>Excellent BI tool compatibility</li>
+  <li>High performance on analytical workloads</li>
+  <li>Incremental and agile development</li>
+</ul>
+
+<h2>10. Limitations</h2>
+<ul>
+  <li>Not designed for OLTP workloads</li>
+  <li>Requires strong governance of dimensions</li>
+  <li>Complex transformations live outside the model</li>
+</ul>
+
+<h2>11. One-Sentence Summary</h2>
+<p>
+<strong>Kimball Data Architecture organizes enterprise data into fact and dimension tables to deliver fast,
+consistent, and business-friendly analytics.</strong>
+</p>
+
+<p>
+<h3>References:</h3>
+<a href="https://www.montecarlodata.com/blog-fact-vs-dimension-tables-in-data-warehousing-explained/">Fact vs Dimension Tables</a>
+
+{% include footer.html %}

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ include.title }}</title>
+  <link rel="stylesheet" type="text/css" href="/static/style.css" />
+  <link rel="stylesheet" type="text/css" href="/static/navigation-improved.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/images/vector-image-green.jpg" type="image/png" sizes="32x32">
+  <!-- https://prismjs.com/#supported-languages -->
+  <link href="/static/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="/static/prism.min.js"></script>
+  <script src="/static/prism-python.min.js"></script>
+  <script src="/static/prism-yaml.min.js"></script>
+  <script src="/static/prism-sql.min.js"></script>
+  <script src="/static/prism-markdown.min.js"></script>
+  <script src="/static/prism-bash.min.js"></script>
+  <script src="/static/prism-go.min.js"></script>
+
+</head>
+
+<body>
+  <!-- Navigation Menu with nested dropdowns -->
+  <nav class="navbar">
+    <ul>
+      <li><a id="home" href="/">Home</a></li>
+
+      <!-- AI / ML with nested submenus -->
+      <li>
+        <a id="ai-ml" href="/ai-ml">AI / ML</a>
+        <ul class="dropdown">
+          <!-- Core ML Libraries & Frameworks -->
+          <li class="dropdown-section-header">Frameworks & Libraries</li>
+          <li><a href="/ai-ml/Keras.html">Keras</a></li>
+          <li><a href="/ai-ml/PyTorch.html">PyTorch</a></li>
+          <li><a href="/ai-ml/PyTorch-Sentiment-Analysis-Model.html">PyTorch Sentiment Analysis</a></li>
+          <li><a href="/ai-ml/Scikit-learn.html">Scikit-learn</a></li>
+          <li><a href="/ai-ml/Hugging-Face-Machine-Learning.html">Hugging Face ML</a></li>
+          <li><a href="/ai-ml/Tensors-Machine-Learning.html">Tensors ML</a></li>
+          
+          <!-- FAISS submenu - Fixed -->
+          <li class="has-submenu">
+            <a href="/ai-ml/FAISS-Vector-Database.html">FAISS</a>
+            <ul class="submenu">
+              <li><a href="/ai-ml/faiss/index.html">FAISS Overview</a></li>
+              <li><a href="/ai-ml/FAISS-Vector-Database.html">FAISS Vector Database</a></li>
+              <li><a href="/ai-ml/faiss/Gmail-Email-Fetch.html">Gmail Email Fetch</a></li>
+              <li><a href="/ai-ml/faiss/Indexing-FAISS-OpenAI-Embeddings.html">Indexing FAISS OpenAI</a></li>
+              <li><a href="/ai-ml/faiss/RetrievalQA-FAISS-with-OpenAI-GPT-4.html">RetrievalQA FAISS GPT-4</a></li>
+              <li><a href="/ai-ml/Recompile-FAISS-GPU-Installation.html">Recompile FAISS GPU</a></li>
+            </ul>
+          </li>
+          
+          <li><a href="/ai-ml/LanceDB-Vector-Database.html">LanceDB Vector Database</a></li>
+          
+          <!-- Neural Networks submenu - Fixed -->
+          <li class="has-submenu">
+            <a href="/ai-ml/neural-network/index.html">Neural Networks</a>
+            <ul class="submenu">
+              <li><a href="/ai-ml/neural-network/index.html">Neural Network Overview</a></li>
+              <li><a href="/ai-ml/neural-network/neural-network-code.html">Neural Network Code</a></li>
+            </ul>
+          </li>
+          
+          <!-- RAG submenu - Fixed -->
+          <li class="has-submenu">
+            <a href="/ai-ml/rag/index.html">RAG</a>
+            <ul class="submenu">
+              <li><a href="/ai-ml/rag/index.html">RAG Overview</a></li>
+              <li><a href="/ai-ml/Retrieval-Augmented-Generation.html">RAG Architecture</a></li>
+              <li><a href="/ai-ml/Retrieval-Augmented-Generation-Workflow.html">RAG Workflow</a></li>
+            </ul>
+          </li>
+
+          <!-- ML Models & Algorithms -->
+          <li class="dropdown-section-header">Models & Algorithms</li>
+          <li><a href="/ai-ml/Random-Forest-Classifier-Model.html">Random Forest Classifier</a></li>
+          <li><a href="/ai-ml/BM25_Probabilistic_Model.html">BM25 Probabilistic Model</a></li>
+          <li><a href="/ai-ml/TF-IDF.html">TF-IDF</a></li>
+          
+          <!-- NLP & Text Processing -->
+          <li class="dropdown-section-header">Text Processing</li>
+          <li><a href="/ai-ml/Gunning-Fog-Index.html">Gunning Fog Index</a></li>
+          <li><a href="/ai-ml/python-whoosh.html">Python Whoosh</a></li>
+          <li><a href="/ai-ml/Python-Syntax-Highlighting.html">Python Syntax Highlighting</a></li>
+          <li><a href="/ai-ml/Unstructured-Data-Indexing.html">Unstructured Data Indexing</a></li>
+          
+          <!-- Document Processing -->
+          <li class="dropdown-section-header">Document Processing</li>
+          <li><a href="/ai-ml/Ms-Word-Document-Processing.html">MS Word Processing</a></li>
+          <li><a href="/ai-ml/PDF-Convert-to-Text-File.html">PDF to Text Conversion</a></li>
+          <li><a href="/ai-ml/PDF-Split-File.html">PDF Split File</a></li>
+          
+          <!-- Tools & Applications -->
+          <li class="dropdown-section-header">Tools & Apps</li>
+          <li><a href="/ai-ml/Stable-Diffusion-Web-UI.html">Stable Diffusion Web UI</a></li>
+          <li><a href="/ai-ml/Streamlit-app.html">Streamlit App</a></li>
+          
+          <!-- Infrastructure & Hardware -->
+          <li class="dropdown-section-header">Infrastructure</li>
+          <li><a href="/ai-ml/NVIDIA-GeForce-RTX-3060-Installation.html">NVIDIA RTX 3060 Setup</a></li>
+          
+          <!-- Theory & Concepts -->
+          <li class="dropdown-section-header">Theory & Concepts</li>
+          <li><a href="/ai-ml/Time-Complexity-Big-O-Notation.html">Time Complexity (Big O)</a></li>
+        </ul>
+      </li>
+
+      <!-- Database with nested submenus -->
+      <li>
+        <a id="database" href="/database">Database</a>
+        <ul class="dropdown">
+          <!-- Core Database Concepts -->
+          <li class="dropdown-section-header">Database Fundamentals</li>
+          <li><a href="/database/index.html">Database Overview</a></li>
+          <li><a href="/database/Relational-Databases.html">Relational Databases</a></li>
+          <li><a href="/database/SQL_Overview.html">SQL Overview</a></li>
+          <li><a href="/database/SQL_Statements.html">SQL Statements</a></li>
+          
+          <!-- Data Modeling -->
+          <li class="dropdown-section-header">Data Modeling & Schemas</li>
+          <li><a href="/database/RDBMS-Schemas.html">RDBMS Schemas</a></li>
+          <li><a href="/database/RDBMS-Star-Schema.html">Star Schema</a></li>
+          <li><a href="/database/RDBMS-Snowflake-Schema.html">Snowflake Schema</a></li>
+          
+          <!-- Kimball Methodology submenu -->
+          <li class="has-submenu">
+            <a href="/database/kimball/index.html">Kimball Methodology →</a>
+            <ul class="submenu">
+              <li><a href="/database/kimball/index.html">Kimball Overview</a></li>
+              <li><a href="/database/kimball/Kimball_Bus_Matrix.html">Bus Matrix</a></li>
+              <li><a href="/database/kimball/Real_Sales_Dimensional_Model.html">Sales Dimensional Model</a></li>
+            </ul>
+          </li>
+          
+          <!-- NoSQL & Document Stores -->
+          <li class="dropdown-section-header">NoSQL Databases</li>
+          <li><a href="/database/MongoDB_Document_Based_NoSQL.html">MongoDB</a></li>
+          <li class="has-submenu">
+            <a href="/database/foundation_db/index.html">FoundationDB →</a>
+            <ul class="submenu">
+              <li><a href="/database/foundation_db/index.html">FoundationDB Overview</a></li>
+            </ul>
+          </li>
+          <li><a href="/database/Graph-Databases-ArgoDB-Neo4j.html">Graph Databases</a></li>
+          
+          <!-- Data Formats & Technologies -->
+          <li class="dropdown-section-header">Data Technologies</li>
+          <li><a href="/database/Apache_Parquet.html">Apache Parquet</a></li>
+          <li><a href="/database/Apache_Iceberg.html">Apache Iceberg</a></li>
+          <li><a href="/database/Apache_Kafka.html">Apache Kafka</a></li>
+          <li><a href="/database/Kafka-Producer-Consumer.html">Kafka Producer-Consumer</a></li>
+          <li><a href="/database/GraphQL.html">GraphQL</a></li>
+          
+          <!-- ETL & Data Quality -->
+          <li class="dropdown-section-header">ETL & Data Quality</li>
+          <li><a href="/database/etl-pipeline.html">ETL Pipeline</a></li>
+          <li><a href="/database/Large-Scale-Data-Ingestion.html">Large Scale Data Ingestion</a></li>
+          <li><a href="/database/Collibra-Data-Quality.html">Collibra Data Quality</a></li>
+          
+          <!-- SQL Performance & Optimization -->
+          <li class="dropdown-section-header">Performance & Optimization</li>
+          <li><a href="/database/Query_Performance.html">Query Performance</a></li>
+          <li><a href="/database/Optimizing-Join-Queries.html">Optimizing Join Queries</a></li>
+          <li><a href="/database/sql-with-2-tables-join.html">SQL Table Joins</a></li>
+          <li><a href="/database/MySQL_LAG_Function.html">MySQL LAG Function</a></li>
+        </ul>
+      </li>
+
+      <!-- Snowflake -->
+      <li>
+        <a id="snowflake" href="/snowflake">Snowflake</a>
+        <ul class="dropdown dropdown-compact">
+          <li><a href="/snowflake/index.html">Snowflake Overview</a></li>
+          <li><a href="/snowflake/Snowflake_Production.html">Snowflake Production</a></li>
+          <li><a href="/snowflake/Snowflake_Table_Types.html">Table Types</a></li>
+          <li><a href="/snowflake/Cortex_AI_Document_RAG_Embeddings.html">Cortex AI RAG</a></li>
+        </ul>
+      </li>
+
+      <!-- Databricks -->
+      <li>
+        <a id="databricks" href="/databricks">Databricks</a>
+        <ul class="dropdown">
+          <!-- Core Databricks -->
+          <li class="dropdown-section-header">Databricks Fundamentals</li>
+          <li><a href="/databricks/index.html">Databricks Overview</a></li>
+          <li><a href="/databricks/Apache-Spark.html">Apache Spark</a></li>
+          <li><a href="/databricks/Databricks-Delta-Lake.html">Delta Lake</a></li>
+          <li><a href="/databricks/Medallion-Architecture.html">Medallion Architecture</a></li>
+          
+          <!-- Delta Live Tables -->
+          <li class="dropdown-section-header">Delta Live Tables</li>
+          <li><a href="/databricks/Delta-Live-Tables.html">Delta Live Tables</a></li>
+          <li><a href="/databricks/Howto-Use-Delta-Live-Tables.html">How to Use DLT</a></li>
+          <li><a href="/databricks/DLT-SCD-Type2.html">DLT SCD Type 2</a></li>
+          <li><a href="/databricks/Managed-External-Live-Tables.html">Managed External Live Tables</a></li>
+          
+          <!-- PySpark -->
+          <li class="dropdown-section-header">PySpark</li>
+          <li><a href="/databricks/PySpark_Deep_Dive.html">PySpark Deep Dive</a></li>
+          <li><a href="/databricks/PySpark-Coding-Examples.html">PySpark Examples</a></li>
+          <li><a href="/databricks/PySpark-SQL-Functions-Parquet.html">PySpark SQL Functions</a></li>
+          <li><a href="/databricks/PySpark-Data-Streaming.html">Data Streaming</a></li>
+          <li><a href="/databricks/PySpark-Lazy-Evaluation.html">Lazy Evaluation</a></li>
+          <li><a href="/databricks/PySpark-Pivot-Table.html">Pivot Tables</a></li>
+          <li><a href="/databricks/PySpark-Handling-Missing-Data.html">Handling Missing Data</a></li>
+          <li><a href="/databricks/PySpark-S3-Small-Files-Compaction.html">S3 Files Compaction</a></li>
+          <li><a href="/databricks/PySpark-Questions-Answers.html">Q&A</a></li>
+          
+          <!-- Performance & Optimization -->
+          <li class="dropdown-section-header">Performance & Tables</li>
+          <li><a href="/databricks/Performance_Optimization_Databricks.html">Performance Optimization</a></li>
+          <li><a href="/databricks/Column-Shuffle-Repartition.html">Shuffle & Repartition</a></li>
+          <li><a href="/databricks/Managed-External-Tables.html">Managed vs External Tables</a></li>
+          <li><a href="/databricks/Medallion-Partitioning-Code.html">Medallion Partitioning</a></li>
+          
+          <!-- Data Operations -->
+          <li class="dropdown-section-header">Data Operations</li>
+          <li><a href="/databricks/Change_Data_Capture_CDC.html">Change Data Capture</a></li>
+          <li><a href="/databricks/Data_Migration_From_Snowflake.html">Snowflake Migration</a></li>
+          
+          <!-- Unity Catalog -->
+          <li class="dropdown-section-header">Unity Catalog</li>
+          <li><a href="/databricks/unity-catalog/index.html">Unity Catalog Overview</a></li>
+          <li><a href="/databricks/unity-catalog/Unity-Catalog-Clustering.html">Clustering</a></li>
+          <li><a href="/databricks/unity-catalog/Unity-Catalog-Schema-Table-Migration.html">Schema Migration</a></li>
+        </ul>
+      </li>
+
+      <!-- Redshift -->
+      <li>
+        <a id="redshift" href="/redshift">Redshift</a>
+        <ul class="dropdown dropdown-compact">
+          <li><a href="/redshift/index.html">Redshift Overview</a></li>
+          <li><a href="/redshift/Redshift-Architecture.html">Architecture</a></li>
+          <li><a href="/redshift/Redshift-Performance.html">Performance</a></li>
+          <li><a href="/redshift/Redshift-Spectrum.html">Spectrum</a></li>
+        </ul>
+      </li>
+
+      <!-- AWS -->
+      <li>
+        <a id="aws" href="/aws">AWS</a>
+        <ul class="dropdown dropdown-compact">
+          <li><a href="/aws/index.html">AWS Overview</a></li>
+          <li><a href="/aws/AWS-S3.html">S3 Storage</a></li>
+          <li><a href="/aws/S3-Transfer-Acceleration.html">S3 Transfer Acceleration</a></li>
+          <li><a href="/aws/AWS-Athena.html">Athena</a></li>
+          <li><a href="/aws/AWS-Glue.html">Glue</a></li>
+          <li><a href="/aws/AWS_Kinesis.html">Kinesis</a></li>
+          <li><a href="/aws/Amazon-EMR.html">EMR</a></li>
+          <li><a href="/aws/Lambda-Serverless-Computing.html">Lambda</a></li>
+        </ul>
+      </li>
+
+      <!-- Software -->
+      <li>
+        <a id="software" href="/software">Software</a>
+        <ul class="dropdown">
+          <!-- General Software -->
+          <li class="dropdown-section-header">Software Engineering</li>
+          <li><a href="/software/index.html">Software Overview</a></li>
+          <li><a href="/software/New-Project-Design.html">New Project Design</a></li>
+          <li><a href="/software/Implementing-API.html">Implementing API</a></li>
+          <li><a href="/software/FastAPI.html">FastAPI</a></li>
+          
+          <!-- Python submenu -->
+          <li class="has-submenu">
+            <a href="/software/python/index.html">Python →</a>
+            <ul class="submenu">
+              <li><a href="/software/python/index.html">Python Overview</a></li>
+              <li><a href="/software/python/Python-Coding-Exercise-Algorithms.html">Coding Exercises</a></li>
+              <li><a href="/software/python/Python-Function-OOP-Data-Structure.html">OOP & Data Structures</a></li>
+              <li><a href="/software/python/Python-Search-Algorithms.html">Search Algorithms</a></li>
+              <li><a href="/software/python/Python-String-Algorithms.html">String Algorithms</a></li>
+              <li><a href="/software/python/Python_Algorithms_Solutions.html">Algorithm Solutions</a></li>
+            </ul>
+          </li>
+          
+          <!-- Data Transformation submenu -->
+          <li class="has-submenu">
+            <a href="/software/transformation/index.html">Transformation →</a>
+            <ul class="submenu">
+              <li><a href="/software/transformation/index.html">Transformation Overview</a></li>
+              <li><a href="/software/transformation/CSV_To_JSON.html">CSV to JSON</a></li>
+              <li><a href="/software/transformation/Products-By-Regions.html">Products by Regions</a></li>
+            </ul>
+          </li>
+          
+          <!-- Algorithms -->
+          <li class="dropdown-section-header">Algorithms</li>
+          <li><a href="/software/Sudoku-Board-Verification.html">Sudoku Board Verification</a></li>
+        </ul>
+      </li>
+
+      <!-- Tools -->
+      <li>
+        <a id="tools" href="/tools">Tools</a>
+        <ul class="dropdown">
+          <!-- DevOps & Infrastructure -->
+          <li class="dropdown-section-header">DevOps & Infrastructure</li>
+          <li><a href="/tools/index.html">Tools Overview</a></li>
+          <li><a href="/tools/docker.html">Docker</a></li>
+          <li><a href="/tools/Kubernetes.html">Kubernetes</a></li>
+          <li><a href="/tools/debugging-kubernetes-performance.html">Kubernetes Debugging</a></li>
+          <li><a href="/tools/Orchestration_Tools.html">Orchestration Tools</a></li>
+          
+          <!-- Apache Tools submenu -->
+          <li class="has-submenu">
+            <a href="/tools/apache/index.html">Apache Tools →</a>
+            <ul class="submenu">
+              <li><a href="/tools/apache/index.html">Apache Overview</a></li>
+              <li><a href="/tools/apache/AirFlow.html">Airflow</a></li>
+              <li><a href="/tools/apache/Apache_Hudi.html">Apache Hudi</a></li>
+              <li><a href="/tools/apache/Nifi.html">NiFi</a></li>
+            </ul>
+          </li>
+          
+          <!-- System & Security -->
+          <li class="dropdown-section-header">System & Security</li>
+          <li><a href="/tools/systemd-services.html">Systemd Services</a></li>
+          <li><a href="/tools/block-all-non-us-traffic.html">Block Non-US Traffic</a></li>
+          <li><a href="/tools/software-delivery.html">Software Delivery</a></li>
+          
+          <!-- YouTube submenu -->
+          <li class="has-submenu">
+            <a href="/tools/youtube/index.html">YouTube →</a>
+            <ul class="submenu">
+              <li><a href="/tools/youtube/index.html">YouTube Overview</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- GitHub -->
+      <li>
+        <a id="github" href="/github">My Github</a>
+      </li>
+
+      <!-- Search -->
+      <li>
+        <a id="search" href="/search">Search</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div id="breadcrumb" class="breadcrumb"></div>
+
+  <script>
+    // Generate breadcrumbs based on the current URL path
+    const breadcrumbDiv = document.getElementById('breadcrumb');
+    const baseUrl       = "https://luzbetak.github.io";
+    const pathParts     = window.location.pathname.split('/').filter(Boolean);
+
+    let breadcrumbHtml = `<a href="${baseUrl}">Home</a>`;
+    let accumulatedPath = "";
+
+    pathParts.forEach((part, index) => {
+      accumulatedPath += `/${part}`;
+      if (index === pathParts.length - 1 && part.endsWith(".html")) {
+        part = part.replace(".html", "");
+      }
+      breadcrumbHtml += ` › <a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
+    });
+
+    breadcrumbDiv.innerHTML = breadcrumbHtml;
+
+    // Highlight the active section in the navbar
+    const currentPath = window.location.pathname;
+    if (currentPath === '/' || currentPath === '/index.html') {
+      document.getElementById('home').style.backgroundColor         = '#004499';
+    } else if (currentPath.includes('/ai-ml')) {
+      document.getElementById('ai-ml').style.backgroundColor        = '#004499';
+    } else if (currentPath.includes('/database')) {
+      document.getElementById('database').style.backgroundColor     = '#004499';
+    } else if (currentPath.includes('/snowflake')) {
+      document.getElementById('snowflake').style.backgroundColor    = '#004499';
+    } else if (currentPath.includes('/databricks')) {
+      document.getElementById('databricks').style.backgroundColor   = '#004499';
+    } else if (currentPath.includes('/redshift')) {
+      document.getElementById('redshift').style.backgroundColor     = '#004499';
+    } else if (currentPath.includes('/aws')) {
+      document.getElementById('aws').style.backgroundColor          = '#004499';
+    } else if (currentPath.includes('/software')) {
+      document.getElementById('software').style.backgroundColor     = '#004499';
+    } else if (currentPath.includes('/tools')) {
+      document.getElementById('tools').style.backgroundColor        = '#004499';
+    } else if (currentPath.includes('/github')) {
+      document.getElementById('github').style.backgroundColor       = '#004499';
+    } else if (currentPath.includes('/search')) {
+      document.getElementById('search').style.backgroundColor       = '#004499';
+    }
+
+    // Navigation using left and right arrow keys
+    document.addEventListener('keydown', function(event) {
+      const menuItems = document.querySelectorAll('.navbar a');
+      let currentIndex = -1;
+
+      menuItems.forEach((item, index) => {
+        if (item === document.activeElement) {
+          currentIndex = index;
+        }
+      });
+
+      if (event.key === 'ArrowRight') {
+        const nextIndex = (currentIndex + 1) % menuItems.length;
+        menuItems[nextIndex].focus();
+      } else if (event.key === 'ArrowLeft') {
+        const prevIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+        menuItems[prevIndex].focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
