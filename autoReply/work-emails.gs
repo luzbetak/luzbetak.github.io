@@ -1,6 +1,6 @@
 /**
  * Google Auto Reply Email Script (Simplified)
- * Version: 3.0.0 — 2024-11-26
+ * Version: 3.0.1 — 2024-12-19
  *
  * Features:
  * - Single, professional response template
@@ -41,7 +41,7 @@ const CONFIG = {
   personal: {
     name: 'Kevin Luzbetak',
     location: 'Agoura Hills, California',
-    phone: '(818) 288-7357',
+    calendly: 'https://calendly.com/luzbetak5739/',
     resume: 'https://kevinluzbetak.com/resume.pdf',
     portfolio: 'https://kevinluzbetak.com',
     qualifications: {
@@ -110,7 +110,7 @@ I look forward to discussing how my expertise can contribute to your team's succ
 
 Best regards,
 ${this.config.personal.name}
-Phone: ${this.config.personal.phone}
+Calendly: ${this.config.personal.calendly}
 Portfolio: ${this.config.personal.portfolio}
 Resume: ${this.config.personal.resume}`;
     
@@ -133,7 +133,7 @@ Please share the job details, company name, and work arrangement so we can deter
 
 Best regards,
 ${this.config.personal.name}
-${this.config.personal.phone}
+${this.config.personal.calendly}
 ${this.config.personal.portfolio}
 ${this.config.personal.resume}`;
     
@@ -784,3 +784,4 @@ function testProcessThreads(limit = 5) {
   CONFIG.limits.maxSend = originalMaxSend;
   CONFIG.limits.maxThreadsToProcess = 500;
 }
+
