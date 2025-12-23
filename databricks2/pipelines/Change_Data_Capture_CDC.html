@@ -1,0 +1,165 @@
+---
+---
+{% include menu.html title="Databricks CDC (Change Data Capture)" %}
+
+<body>
+  <h1>Databricks CDC (Change Data Capture)</h1>
+
+  <p>
+    <strong>Change Data Capture (CDC)</strong> in Databricks is a pattern for processing only the 
+    <strong>changes</strong> (inserts, updates, deletes) from source systems instead of repeatedly 
+    reloading full tables. This enables near real-time analytics, efficient data pipelines, and 
+    simpler auditability on the Databricks Lakehouse.
+  </p>
+
+  <h2>What Is Change Data Capture?</h2>
+  <ul>
+    <li><strong>CDC</strong> tracks row-level changes (INSERT, UPDATE, DELETE) in source systems.</li>
+    <li>Only the <strong>delta</strong> (what changed since last read) is processed.</li>
+    <li>Supports <strong>incremental</strong> data pipelines instead of full refreshes.</li>
+  </ul>
+
+  <h3>Why Use CDC?</h3>
+  <ul>
+    <li><strong>Lower cost</strong>: Less data scanned and written.</li>
+    <li><strong>Lower latency</strong>: Faster delivery of fresh data to downstream consumers.</li>
+    <li><strong>Better scalability</strong>: Handles large tables and high-change volumes.</li>
+    <li><strong>Audit and history</strong>: Easier to reconstruct how data changed over time.</li>
+  </ul>
+
+  <h2>CDC in the Databricks Lakehouse</h2>
+  <p>
+    Databricks typically organizes CDC pipelines using the <strong>Bronze / Silver / Gold</strong> 
+    layering pattern on top of <strong>Delta Lake</strong> tables:
+  </p>
+
+  <ol>
+    <li><strong>Bronze</strong>: Raw, ingested CDC events (from logs, queues, or files).</li>
+    <li><strong>Silver</strong>: Cleaned, merged, de-duplicated tables with current state and history.</li>
+    <li><strong>Gold</strong>: Business-ready aggregates, marts, and feature tables.</li>
+  </ol>
+
+  <h3>Key Databricks Building Blocks for CDC</h3>
+  <ul>
+    <li><strong>Delta Lake</strong>: Transactional storage format supporting ACID and MERGE operations.</li>
+    <li><strong>Delta Change Data Feed (CDF)</strong>: Exposes row-level changes from Delta tables.</li>
+    <li><strong>Structured Streaming</strong>: For continuous ingestion and processing of change events.</li>
+    <li><strong>Auto Loader</strong>: Incrementally processes new files from cloud storage.</li>
+    <li><strong>Delta Live Tables (DLT)</strong>: Declarative ETL framework for building CDC-aware pipelines.</li>
+  </ul>
+
+  <h2>Typical CDC Architectures on Databricks</h2>
+
+  <h3>1. Log-Based CDC Into Databricks</h3>
+  <p>
+    In this pattern, a separate CDC tool reads database logs and pushes changes to Databricks.
+  </p>
+  <ol>
+    <li>A CDC tool (e.g., Debezium, Fivetran, etc.) captures database changes (INSERT, UPDATE, DELETE).</li>
+    <li>Changes are written as events to:
+      <ul>
+        <li>cloud storage (e.g., JSON/Avro/Parquet files), or</li>
+        <li>a message bus (e.g., Kafka), which Databricks then reads.</li>
+      </ul>
+    </li>
+    <li>Databricks <strong>Structured Streaming</strong> or <strong>Auto Loader</strong> ingests these events into a Bronze Delta table.</li>
+    <li>Silver tables apply business logic:
+      <ul>
+        <li>MERGE events into a target Delta table.</li>
+        <li>Maintain both <strong>current</strong> and <strong>historical</strong> views.</li>
+      </ul>
+    </li>
+    <li>Gold tables build aggregates and reporting layers.</li>
+  </ol>
+
+  <h3>2. Using Delta Change Data Feed (CDF)</h3>
+  <p>
+    When your source is already a Delta table, you can use <strong>Change Data Feed</strong> to read only 
+    changed rows instead of scanning the full table.
+  </p>
+
+  <ul>
+    <li>Enable CDF on a Delta table (so it records row-level changes).</li>
+    <li>Downstream pipelines use CDF to read changes from a given version or timestamp.</li>
+    <li>Silver/Gold tables consume only the new changes each run.</li>
+  </ul>
+
+  <h3>3. Batch CDC from Snapshots (Pseudo-CDC)</h3>
+  <p>
+    If the source system provides only full snapshots, Databricks can compute changes between 
+    <strong>current</strong> and <strong>previous</strong> snapshots.
+  </p>
+  <ol>
+    <li>Ingest each snapshot into a Bronze Delta table with a <strong>snapshot_date</strong>.</li>
+    <li>Compute differences between the latest and previous snapshots:
+      <ul>
+        <li>New rows ⇒ <strong>inserts</strong></li>
+        <li>Changed rows ⇒ <strong>updates</strong></li>
+        <li>Missing rows ⇒ <strong>deletes</strong></li>
+      </ul>
+    </li>
+    <li>Apply results as MERGE operations to the Silver table.</li>
+  </ol>
+
+  <h2>How CDC Is Applied in Delta Tables</h2>
+
+  <h3>Upserts Using MERGE</h3>
+  <p>
+    A common CDC pattern in Databricks is to <strong>MERGE</strong> change events into a target Delta table:
+  </p>
+  <ul>
+    <li>Match on a <strong>business key</strong> (e.g., customer_id, order_id).</li>
+    <li>When a row exists:
+      <ul>
+        <li>Apply UPDATE or DELETE logic based on the CDC operation type.</li>
+      </ul>
+    </li>
+    <li>When a row does not exist:
+      <ul>
+        <li>INSERT the new row.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Slowly Changing Dimensions (SCD) with CDC</h3>
+  <p>
+    For dimensional models, Databricks CDC is often combined with <strong>SCD Type 1</strong> and 
+    <strong>SCD Type 2</strong> patterns:
+  </p>
+  <ul>
+    <li><strong>SCD Type 1</strong>: Overwrite old values with new values (no history).</li>
+    <li><strong>SCD Type 2</strong>: Keep full history with effective/from and to dates, and a current flag.</li>
+  </ul>
+
+  <h2>CDC with Delta Live Tables (DLT)</h2>
+  <p>
+    Delta Live Tables can simplify CDC implementations by managing dependencies, ordering, and 
+    fault tolerance for you.
+  </p>
+  <ul>
+    <li>Define <strong>Bronze</strong>, <strong>Silver</strong>, and <strong>Gold</strong> tables declaratively.</li>
+    <li>Use streaming or triggered modes to process new CDC data automatically.</li>
+    <li>Leverage built-in expectations (data quality rules) to validate change records.</li>
+  </ul>
+
+  <h2>Best Practices for Databricks CDC</h2>
+  <ul>
+    <li><strong>Use Delta Lake</strong> for all CDC tables (Bronze, Silver, Gold).</li>
+    <li><strong>Partition</strong> tables by high-cardinality, time-based columns to optimize incremental reads.</li>
+    <li><strong>Store immutable change events</strong> in Bronze; do not overwrite raw CDC.</li>
+    <li><strong>Normalize CDC event schema</strong> (operation type, timestamps, source metadata).</li>
+    <li><strong>Monitor pipeline health</strong> (lag, error rates, schema drift) in Databricks jobs or DLT.</li>
+    <li><strong>Plan retention</strong> for historical CDC data to balance cost vs. audit requirements.</li>
+  </ul>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Databricks CDC focuses on processing <strong>only changed data</strong> instead of full reloads.</li>
+    <li>It uses <strong>Delta Lake</strong>, <strong>MERGE</strong>, and optionally <strong>CDF</strong> and <strong>DLT</strong>.</li>
+    <li>Typical architecture uses <strong>Bronze/Silver/Gold</strong> layers for raw, curated, and business data.</li>
+    <li>Proper CDC design improves <strong>freshness</strong>, <strong>performance</strong>, and <strong>cost efficiency</strong> of data pipelines on Databricks.</li>
+  </ul>
+</body>
+
+
+{% include footer.html %}

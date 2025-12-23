@@ -1,0 +1,87 @@
+---
+---
+{% include menu.html title="Orchestration" %}
+
+<h1>Orchestration</h1>
+
+<h2>What orchestration is</h2>
+<p>
+<strong>Orchestration</strong> is the coordinated management of multiple tasks, services, or systems so they execute
+<strong>in the correct order</strong>, <strong>with proper dependencies</strong>, <strong>error handling</strong>,
+and <strong>scalability</strong> as part of a complete workflow.
+</p>
+
+<h2>Simple explanation</h2>
+<p>
+Orchestration defines:
+</p>
+<ul>
+  <li><strong>What</strong> runs</li>
+  <li><strong>When</strong> it runs</li>
+  <li><strong>In what order</strong> it runs</li>
+  <li><strong>How failures are handled</strong></li>
+  <li><strong>What happens next</strong></li>
+</ul>
+
+<h2>Core characteristics</h2>
+<ul>
+  <li><strong>Workflow coordination</strong> – sequencing, branching, and dependencies</li>
+  <li><strong>Automation</strong> – tasks execute without manual intervention</li>
+  <li><strong>State management</strong> – tracks progress, success, and failure</li>
+  <li><strong>Error handling</strong> – retries, rollbacks, alerts</li>
+  <li><strong>Scalability</strong> – parallel execution and dynamic resource usage</li>
+</ul>
+
+<h2>Orchestration vs automation</h2>
+<ul>
+  <li><strong>Automation</strong> executes a single task automatically</li>
+  <li><strong>Orchestration</strong> coordinates many automated tasks into a full process</li>
+</ul>
+
+<h2>Where orchestration is used</h2>
+
+<h3>Software and microservices</h3>
+<ul>
+  <li>Controls service startup and shutdown order</li>
+  <li>Manages dependencies between services</li>
+  <li>Handles scaling and health monitoring</li>
+</ul>
+
+<h3>Data engineering</h3>
+<ul>
+  <li>Coordinates ETL and ELT pipelines</li>
+  <li>Ensures downstream jobs wait for upstream data</li>
+  <li>Manages retries, backfills, and failure recovery</li>
+</ul>
+
+<h3>Infrastructure and cloud</h3>
+<ul>
+  <li>Provisions resources in the correct sequence</li>
+  <li>Scales systems based on demand</li>
+  <li>Ensures fault tolerance and resilience</li>
+</ul>
+
+<h3>Business processes</h3>
+<ul>
+  <li>Coordinates approvals and notifications</li>
+  <li>Enforces business rules across systems</li>
+  <li>Tracks end-to-end process status</li>
+</ul>
+
+<h2>Example workflow</h2>
+<ol>
+  <li>Wait for source data to arrive</li>
+  <li>Validate the data</li>
+  <li>Transform the data</li>
+  <li>Load the data into a target system</li>
+  <li>Trigger downstream processes or reports</li>
+  <li>Retry or alert if any step fails</li>
+</ol>
+
+<h2>One-sentence definition</h2>
+<p>
+<strong>Orchestration is the intelligent coordination of multiple automated tasks into a reliable, ordered, and scalable workflow.</strong>
+</p>
+
+
+{% include footer.html %}

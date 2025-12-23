@@ -1,0 +1,119 @@
+---
+---
+{% include menu.html title="RDBMS Schemas" %}
+<hr>
+    <h1>Kimball Bottom-Up Data Warehouse Architecture</h1>
+
+    <h2>Dimensional Modeling:</h2>
+    <ul>
+        <li>This approach employs a <strong>star schema</strong> or <strong>snowflake schema</strong> to structure the data in each data mart.</li> 
+        <li><strong>Fact tables</strong> store quantitative data (e.g., sales revenue, quantity sold), while dimension tables store descriptive data (e.g., product details, time, customer information).</li>
+    </ul>
+
+    <h2>Key Characteristics</h2>
+    <ul>
+        <li><strong>Data Marts First:</strong> Develops small, focused data marts for individual business functions, such as sales, marketing, and finance, addressing specific analytical needs.</li>
+        <li><strong>Dimensional Modeling:</strong> Each data mart is structured using dimensional modeling (e.g., star schema), with fact tables for quantitative data and dimension tables for descriptive details, optimizing query efficiency.</li>
+        <li><strong>Conformed Dimensions for Integration:</strong> Standardized dimensions like time, geography, and product enable seamless integration and consistent reporting across departments.</li>
+        <li><strong>Enterprise Data Warehouse (EDW):</strong> As data marts are integrated, they form a central EDW, providing a unified source for cross-functional analytics and consolidated insights.</li>
+        <li><strong>Business Intelligence (BI) and Analytics:</strong> The EDW supports various BI and analytics tools, allowing departments to leverage dashboards, reports, and insights to make informed decisions.</li>
+    </ul>
+
+    <h2>Advantages</h2>
+    <ul>
+        <li><strong>Incremental Implementation:</strong> Enables rapid deployment of data marts, providing immediate value without waiting for a fully developed data warehouse.</li>
+        <li><strong>Flexibility and Adaptability:</strong> New data marts can be added and integrated as needed, allowing for scalable growth and adaptation to evolving business requirements.</li>
+        <li><strong>Focused Optimization:</strong> Each data mart is optimized for specific business functions, ensuring efficient, targeted insights for departments.</li>
+    </ul>
+
+<hr>
+<p>The following are common database schemas used in relational database management systems (RDBMS), including the Star Schema, from which the Snowflake Schema is derived:</p>
+
+<ol>
+    <li><strong>Star Schema</strong>:
+        <ul>
+            <li>The foundational schema that involves a central fact table connected directly to several dimension tables.</li>
+            <li>Simpler structure with denormalized dimension tables.</li>
+            <li>Offers faster query performance due to fewer joins.</li>
+        </ul>
+    </li>
+    <li><strong>Snowflake Schema</strong>:
+        <ul>
+            <li>Derived from the Star Schema.</li>
+            <li>Normalizes dimensions into multiple related tables.</li>
+            <li>Reduces redundancy but can make queries more complex.</li>
+        </ul>
+    </li>
+    <li><strong>Galaxy Schema (Fact Constellation Schema)</strong>:
+        <ul>
+            <li>Contains multiple fact tables that share dimension tables.</li>
+            <li>Used for more complex data warehouses with multiple data marts.</li>
+        </ul>
+    </li>
+    <li><strong>Hierarchical Schema</strong>:
+        <ul>
+            <li>Organizes data in a tree-like structure.</li>
+            <li>Used for databases that require a clear parent-child relationship, like organizational charts.</li>
+        </ul>
+    </li>
+    <li><strong>Network Schema</strong>:
+        <ul>
+            <li>Similar to the Hierarchical Schema but allows more complex relationships with many-to-many connections.</li>
+            <li>Often used for more complex, non-hierarchical relationships.</li>
+        </ul>
+    </li>
+    <li><strong>Flat Schema</strong>:
+        <ul>
+            <li>A single table or a simple structure without hierarchical relationships.</li>
+            <li>Typically used for small, simple databases.</li>
+        </ul>
+    </li>
+</ol>
+
+<p>These schemas are utilized based on the specific needs of the database structure, data integrity, and query complexity.</p>
+
+<h1>
+
+    <h1>RDBMS Star Schema</h1>
+    <p>The Star Schema is a popular database schema design used in data warehousing. It is named for its resemblance to a star, where a central fact table is surrounded by dimension tables.</p>
+
+    <h2>Components of Star Schema</h2>
+    <ul>
+        <li><strong>Fact Table</strong>: Contains the quantitative data for analysis, such as sales amounts or quantities. The fact table links to dimension tables through foreign keys.</li>
+        <li><strong>Dimension Tables</strong>: Store descriptive attributes related to the facts, such as product names, customer details, or dates.</li>
+    </ul>
+
+    <h2>Example of Star Schema</h2>
+    <p>Consider an e-commerce sales data warehouse:</p>
+    <ul>
+        <li><strong>Fact Table</strong>: Sales</li>
+        <li><strong>Dimension Tables</strong>:</li>
+        <ul>
+            <li>Product (ProductID, ProductName, Category, Price)</li>
+            <li>Customer (CustomerID, CustomerName, Region, AgeGroup)</li>
+            <li>Date (DateID, Date, Year, Quarter, Month)</li>
+            <li>Store (StoreID, StoreName, Location)</li>
+        </ul>
+    </ul>
+
+    <h2>Advantages</h2>
+    <ul>
+        <li><strong>Simplicity</strong>: Easy to understand and query.</li>
+        <li><strong>Optimized Query Performance</strong>: Efficient joins between fact and dimension tables.</li>
+        <li><strong>De-normalization</strong>: Reduces the number of joins needed for queries.</li>
+    </ul>
+
+    <h2>Disadvantages</h2>
+    <ul>
+        <li><strong>Redundancy</strong>: Can lead to increased storage requirements.</li>
+        <li><strong>Limited Flexibility</strong>: Best suited for simple queries.</li>
+    </ul>
+
+    <p>
+
+    <img src="/images/rdbms-star-schema.png" width=800>
+
+{% include footer.html %}
+
+  </body>
+</html>

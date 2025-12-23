@@ -1,0 +1,41 @@
+---
+---
+{% include menu.html title="Transform-CSV-to-JSON" %}
+<hr>
+
+    <h1 align=center>Python Transformation CSV to JSON</h1>
+<hr>
+
+    <h2>CSV Input</h2>
+    <pre><code class="language-markdown">Name,Age,Location
+    Alice,   30, New York
+    Bob,     25, San Francisco
+    Charlie, 35, Los Angeles</code></pre>
+
+<hr>
+    <h2>JSON Output</h2>
+    <pre><code class="language-json">[
+    {"name": "Alice",   "age": 30, "location": "New York"},
+    {"name": "Bob",     "age": 25, "location": "San Francisco"},
+    {"name": "Charlie", "age": 35, "location": "Los Angeles"}
+]</code></pre>
+
+<hr>
+    <pre><code class="language-python">#!/usr/bin/env python
+
+    import pandas as pd
+    import pprint
+
+    # Read the CSV file
+    input_file = "input.csv"
+    df = pd.read_csv(input_file)
+
+    # Convert the DataFrame to JSON format and save it to a file
+    output_file = "output.json"
+    df.to_json(output_file, orient='records', lines=False)
+
+    # Pretty print the resulting JSON file path
+    pprint.pprint(f"JSON output saved to: {output_file}")</code></pre>
+
+{% include footer.html %}
+

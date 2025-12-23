@@ -1,0 +1,33 @@
+<hr>
+<div class="footer">
+  <p>&copy; <span id="current-year"></span> Kevin Thomas Luzbetak, MSc</p>
+  <p id="current-date"></p>
+</div>
+
+<script>
+  // Get today's date
+  var today = new Date();
+
+  // Arrays of weekday and month names
+  var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  // Extract parts of the date
+  var dayOfWeek = weekdays[today.getDay()];
+  var month = months[today.getMonth()];
+  var day = today.getDate();
+  var year = today.getFullYear();
+
+  // Format the date string
+  var formattedDate = dayOfWeek + ", " + month + " " + day + ", " + year;
+
+  // Display the date and year
+  document.getElementById('current-date').textContent = formattedDate;
+  document.getElementById('current-year').textContent = year;
+</script>
+
+  </body>
+</html>
