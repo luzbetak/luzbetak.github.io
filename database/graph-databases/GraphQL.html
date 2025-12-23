@@ -5,8 +5,6 @@
 
 <h1>GraphQL — Advanced Technical Details and Usages</h1>
 
-<h2>GraphQL Overview</h2>
-
 <p>
 <strong>GraphQL</strong> is an application-layer query language and runtime for APIs that enables clients to request
 <strong>exactly the data they need</strong>. It was designed to solve inefficiencies of REST APIs such as over-fetching,
@@ -24,7 +22,6 @@ under-fetching, and rigid endpoint structures.
 
 <h2>GraphQL Architecture</h2>
 
-<img src="https://graphql.org/img/diagram.svg" alt="GraphQL Architecture Diagram">
 
 <ul>
   <li><strong>Client</strong> — sends queries, mutations, and subscriptions</li>
@@ -43,7 +40,6 @@ under-fetching, and rigid endpoint structures.
 The schema is the contract between clients and servers.
 </p>
 
-<img src="https://graphql.org/img/schema.png" alt="GraphQL Schema Example">
 
 <ul>
   <li>Defines object types, scalars, enums, interfaces, and unions</li>
@@ -66,7 +62,6 @@ The schema is the contract between clients and servers.
 
 <h2>Queries</h2>
 
-<img src="https://graphql.org/img/query-example.png" alt="GraphQL Query Example">
 
 <ul>
   <li>Hierarchical data fetching</li>
@@ -88,7 +83,6 @@ The schema is the contract between clients and servers.
 
 <h2>Mutations</h2>
 
-<img src="https://graphql.org/img/mutation.png" alt="GraphQL Mutation Example">
 
 <ul>
   <li>Write operations (create, update, delete)</li>
@@ -108,7 +102,6 @@ The schema is the contract between clients and servers.
 
 <h2>Subscriptions</h2>
 
-<img src="https://graphql.org/img/subscription.png" alt="GraphQL Subscription Flow">
 
 <ul>
   <li>Real-time data delivery</li>
@@ -124,7 +117,6 @@ Subscriptions enable real-time use cases such as chat, notifications, and live d
 
 <h2>Resolvers and Execution Engine</h2>
 
-<img src="https://www.apollographql.com/docs/assets/schema-resolver-diagram.png" alt="GraphQL Resolver Flow">
 
 <ul>
   <li>Each field maps to a resolver function</li>
@@ -181,7 +173,6 @@ GraphQL shifts responsibility from endpoints to the schema and resolver layer.
 
 <h2>GraphQL Federation and Microservices</h2>
 
-<img src="https://www.apollographql.com/docs/assets/federation-architecture.png" alt="GraphQL Federation">
 
 <ul>
   <li>Single unified graph over multiple services</li>
