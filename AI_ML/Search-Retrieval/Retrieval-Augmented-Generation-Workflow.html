@@ -1,0 +1,72 @@
+---
+---
+{% include menu.html title="Retrieval-Augmented Generation Workflow" %}
+
+<h1>Retrieval-Augmented Generation (RAG) Workflow</h1>
+
+<h2>Standard Workflow of RAG</h2>
+
+<ol>
+  <li>
+    <strong>User Prompt</strong>
+    <ul>
+      <li>The system receives a user query or prompt as input.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Embedding Generation</strong>
+    <ul>
+      <li>The user prompt is tokenized and transformed into a vector representation using an embedding model (e.g., Sentence-BERT or a transformer encoder).</li>
+      <li>This vector captures the semantic meaning of the query.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Similarity Search in FAISS</strong>
+    <ul>
+      <li>The query vector is compared against stored vectors in the <strong>FAISS</strong> index to find the most similar documents based on semantic similarity (e.g., cosine similarity or Euclidean distance).</li>
+      <li>FAISS returns the top-N most relevant results, which include document IDs and their similarity scores.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Retrieval of Raw Text</strong>
+    <ul>
+      <li>The document IDs returned by FAISS are used to fetch corresponding raw text or content from an external database or data store (e.g., Elasticsearch, MongoDB).</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Contextual Generation</strong>
+    <ul>
+      <li>The retrieved text and the original user prompt are fed into the generative model (e.g., T5, GPT).</li>
+      <li>The model conditions its output on the combined input of the query and retrieved documents to produce the final response.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Why Similarity Search Comes First</h2>
+
+<ul>
+  <li><strong>Semantic Matching</strong>: Ensures the generative model is provided with semantically relevant content, enhancing response quality.</li>
+  <li><strong>Efficiency</strong>: Narrows down large datasets to a smaller set of relevant documents, optimizing processing.</li>
+</ul>
+
+<h2>When Text Search Might Be Used</h2>
+
+<ul>
+  <li><strong>Supplementary Retrieval</strong>: May complement the vector-based search to apply specific filters or search for keywords.</li>
+  <li><strong>Hybrid Models</strong>:
+    <ul>
+      <li>Combines vector similarity search with full-text search for a balance between semantic and lexical matching.</li>
+      <li>Refines or filters results based on complex conditions after the initial vector search.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<ul>
+  <li><strong>Primary Approach</strong>: RAG begins with a similarity search against a vector database (e.g., FAISS) to identify semantically relevant documents.</li>
+  <li><strong>Text Search</strong>: Used as a complementary step for more complex retrieval strategies or filtering.</li>
+</ul>
+
+
+{% include footer.html %}

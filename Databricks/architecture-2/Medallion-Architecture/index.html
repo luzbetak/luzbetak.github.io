@@ -1,0 +1,89 @@
+---
+---
+{% include menu.html title="Medallion Architecture in Delta Lake" %}
+<hr>
+
+<h1>Medallion Architecture</h1>
+
+<p><hr>
+    <h2>Storing Data in the Bronze Layer</h2>
+    <h3>Medallion Architecture Best Practices</h3>
+    <ul>
+        <li>Maintain the data in its <strong>original format</strong> (e.g., JSON, Parquet, Excel) to ensure traceability and auditability.</li>
+        <li>Storing data as-is ensures data completeness and prevents potential data loss from premature transformations.</li>
+        <li>Provides flexibility for data adjustments and future transformations without the need for re-ingestion.</li>
+    </ul>
+
+    <h3>Benefits of Keeping Original Format:</h3>
+    <ul>
+        <li><strong>Traceability and Auditability</strong>: Original data offers a clear audit trail for data integrity checks.</li>
+        <li><strong>Flexibility</strong>: Allows for modifications to data processing logic without re-ingesting data.</li>
+        <li><strong>Data Completeness</strong>: Preserves all variations and details from source systems.</li>
+    </ul>
+<p><hr>
+<h2>Cost Savings</h2>
+<ul>
+    <li><strong>Reduced Storage Costs:</strong> Storing data incrementally (Bronze, Silver, Gold) minimizes storage costs by reducing the need to retain multiple versions or raw data copies. Only essential transformations are stored in the Gold layer, conserving storage space.</li>
+    <li><strong>Optimized Resource Usage:</strong> Data processing tasks can be tailored to each layer, allowing for efficient resource allocation. For instance, resource-intensive tasks can be confined to specific layers, reducing cloud costs for computing and storage.</li>
+    <li><strong>Lower Maintenance Costs:</strong> By standardizing data processing and quality checks across layers, maintenance overhead is reduced. This decreases the need for frequent data reconciliations and error correction, cutting down operational expenses.</li>
+</ul>
+
+<p><hr>
+<h2>Overview of Layers</h2>
+<ul>
+    <li><strong>Bronze Layer (Raw Data):</strong> Stores unprocessed data from various sources in its original state, preserving data fidelity. This serves as a single source of truth, allowing for reprocessing and auditing when needed.</li>
+    <li><strong>Silver Layer (Cleansed Data):</strong> Data from the Bronze layer is cleaned, validated, and transformed. This intermediate layer improves data quality and ensures that only reliable data moves downstream, reducing the need for extensive processing in later stages.</li>
+    <li><strong>Gold Layer (Curated Data):</strong> Contains refined, aggregated data tailored to specific business needs, such as analytics and reporting. This layer is aligned with business logic and optimized for high-performance queries and dashboards.</li>
+</ul>
+
+<p><hr>
+<h2>Key Benefits</h2>
+<ul>
+    <li><strong>Data Quality:</strong> Incremental processing through each layer enhances data reliability, reducing the need for costly data cleansing operations later in the workflow and enabling more accurate analytics and machine learning applications.</li>
+    <li><strong>Scalability:</strong> The structured approach efficiently handles large data volumes. As the data grows, the architecture scales without requiring significant infrastructure investment, lowering overall data management costs.</li>
+    <li><strong>Flexibility:</strong> Different teams can work on separate layers simultaneously, enabling parallel processing and faster data pipelines. This reduces development time, lowering operational costs associated with waiting on dependencies and rework.</li>
+    <li><strong>Enhanced Data Governance:</strong> By having distinct layers, the architecture supports robust data governance practices, including access controls, data lineage tracking, and compliance measures. This approach reduces costs associated with regulatory compliance and minimizes the risk of expensive data breaches.</li>
+</ul>
+
+
+<p>In summary, the Medallion Architecture not only enhances data quality, scalability, and governance but also results in considerable cost savings by optimizing data storage, processing, and resource allocation across the entire data pipeline.</p>
+
+
+<hr>    
+    <h2>Example Code for Data Ingestion in Python</h2>
+    <pre><code class="language-python"># Ingesting raw data into the Bronze layer
+import pyspark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("BronzeLayerIngestion").getOrCreate()
+
+# Read data from different formats
+json_df    = spark.read.json("/path/to/source/data.json")
+parquet_df = spark.read.parquet("/path/to/source/data.parquet")
+excel_df   = spark.read.format("com.crealytics.spark.excel") \\
+    .option("useHeader", "true") \\
+    .load("/path/to/source/data.xlsx")
+
+# Write data to Bronze layer
+json_df.write.format("delta").mode("append").save("/path/to/bronze/json")
+parquet_df.write.format("delta").mode("append").save("/path/to/bronze/parquet")
+excel_df.write.format("delta").mode("append").save("/path/to/bronze/excel")
+    </code></pre>
+
+    <h2>SQL Query for Verifying Bronze Data</h2>
+    <pre><code class="language-sql">-- Verify data ingestion in the Bronze layer
+SELECT COUNT(*) AS record_count, source_format
+FROM bronze_layer_table
+GROUP BY source_format;</code></pre>
+
+    <h2>Expected Output</h2>
+    <pre>
+| record_count | source_format |
+|--------------|---------------|
+|    5000      |   JSON        |
+|   12000      |   Parquet     |
+|     800      |   Excel       |
+</pre>
+
+
+{% include footer.html %}

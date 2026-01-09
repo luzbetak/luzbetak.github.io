@@ -1,0 +1,130 @@
+---
+---
+{% include menu.html title="Python Coding Exercise Algorithms" %}
+
+<h1>Python Coding Exercise Algorithms</h1>
+
+    <h2>1. Reverse a String</h2>
+    <pre class="python">
+        <span class="keyword">def</span> reverse_string(s: <span class="datatype">str</span>) -> <span class="datatype">str</span>:
+            <span class="keyword">return</span> s[::-1]
+
+        <span class="comment"># Example usage</span>
+        print(reverse_string(<span class="string">"hello"</span>))  <span class="comment"># Output: "olleh"</span>
+    </pre>
+
+    <h2>2. Find the Largest Number in a List</h2>
+    <pre class="python">
+        <span class="keyword">def</span> find_largest(nums: <span class="datatype">list</span>) -> <span class="datatype">int</span>:
+            <span class="keyword">return</span> max(nums)
+
+        <span class="comment"># Example usage</span>
+        print(find_largest([1, 2, 3, 4, 5]))  <span class="comment"># Output: 5</span>
+    </pre>
+
+    <h2>3. Check if a Number is a Palindrome</h2>
+    <pre class="python">
+        <span class="keyword">def</span> is_palindrome(n: <span class="datatype">int</span>) -> <span class="datatype">bool</span>:
+            <span class="keyword">return</span> <span class="datatype">str</span>(n) == <span class="datatype">str</span>(n)[::-1]
+
+        <span class="comment"># Example usage</span>
+        print(is_palindrome(121))  <span class="comment"># Output: True</span>
+        print(is_palindrome(123))  <span class="comment"># Output: False</span>
+    </pre>
+
+    <h2>4. Fibonacci Sequence</h2>
+    <pre class="python">
+        <span class="keyword">def</span> fibonacci(n: <span class="datatype">int</span>) -> <span class="datatype">list</span>:
+            fib_seq = [0, 1]
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">range</span>(2, n):
+                fib_seq.append(fib_seq[-1] + fib_seq[-2])
+            <span class="keyword">return</span> fib_seq[:n]
+
+        <span class="comment"># Example usage</span>
+        print(fibonacci(5))  <span class="comment"># Output: [0, 1, 1, 2, 3]</span>
+    </pre>
+
+    <h2>5. Two Sum Problem</h2>
+    <pre class="python">
+        <span class="keyword">def</span> two_sum(nums: <span class="datatype">list</span>, target: <span class="datatype">int</span>) -> <span class="datatype">list</span>:
+            num_map = {}
+            <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="keyword">enumerate</span>(nums):
+                complement = target - num
+                <span class="keyword">if</span> complement <span class="keyword">in</span> num_map:
+                    <span class="keyword">return</span> [num_map[complement], i]
+                num_map[num] = i
+
+        <span class="comment"># Example usage</span>
+        print(two_sum([2, 7, 11, 15], 9))  <span class="comment"># Output: [0, 1]</span>
+    </pre>
+
+<p><hr>
+
+    <h2>6. Remove Duplicates from a List</h2>
+    <pre class="python">
+        <span class="keyword">def</span> remove_duplicates(nums: <span class="datatype">list</span>) -> <span class="datatype">list</span>:
+            <span class="keyword">return</span> list(set(nums))
+
+        <span class="comment"># Example usage</span>
+        print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  <span class="comment"># Output: [1, 2, 3, 4, 5]</span>
+    </pre>
+
+    <h2>7. Count the Number of Vowels in a String</h2>
+    <pre class="python">
+        <span class="keyword">def</span> count_vowels(s: <span class="datatype">str</span>) -> <span class="datatype">int</span>:
+            vowels = <span class="string">'aeiouAEIOU'</span>
+            <span class="keyword">return</span> sum(1 <span class="keyword">for</span> char <span class="keyword">in</span> s <span class="keyword">if</span> char <span class="keyword">in</span> vowels)
+
+        <span class="comment"># Example usage</span>
+        print(count_vowels(<span class="string">"hello world"</span>))  <span class="comment"># Output: 3</span>
+    </pre>
+
+    <h2>8. Merge Two Sorted Lists</h2>
+    <pre class="python">
+        <span class="keyword">def</span> merge_sorted_lists(list1: <span class="datatype">list</span>, list2: <span class="datatype">list</span>) -> <span class="datatype">list</span>:
+            merged = []
+            i = j = 0
+            <span class="keyword">while</span> i <span class="keyword">&lt;</span> len(list1) <span class="keyword">and</span> j <span class="keyword">&lt;</span> len(list2):
+                <span class="keyword">if</span> list1[i] <span class="keyword">&lt;</span> list2[j]:
+                    merged.append(list1[i])
+                    i += 1
+                <span class="keyword">else</span>:
+                    merged.append(list2[j])
+                    j += 1
+            merged.extend(list1[i:])
+            merged.extend(list2[j:])
+            <span class="keyword">return</span> merged
+
+        <span class="comment"># Example usage</span>
+        print(merge_sorted_lists([1, 3, 5], [2, 4, 6]))  <span class="comment"># Output: [1, 2, 3, 4, 5, 6]</span>
+    </pre>
+
+    <h2>9. Find the First Non-Repeated Character in a String</h2>
+    <pre class="python">
+        <span class="keyword">def</span> first_non_repeated_char(s: <span class="datatype">str</span>) -> <span class="datatype">str</span>:
+            counts = {}
+            <span class="keyword">for</span> char <span class="keyword">in</span> s:
+                counts[char] = counts.get(char, 0) + 1
+            <span class="keyword">for</span> char <span class="keyword">in</span> s:
+                <span class="keyword">if</span> counts[char] == 1:
+                    <span class="keyword">return</span> char
+            <span class="keyword">return</span> None
+
+        <span class="comment"># Example usage</span>
+        print(first_non_repeated_char(<span class="string">"swiss"</span>))  <span class="comment"># Output: "w"</span>
+    </pre>
+
+    <h2>10. Find the Intersection of Two Lists</h2>
+    <pre class="python">
+        <span class="keyword">def</span> list_intersection(list1: <span class="datatype">list</span>, list2: <span class="datatype">list</span>) -> <span class="datatype">list</span>:
+            <span class="keyword">return</span> list(set(list1) & set(list2))
+
+        <span class="comment"># Example usage</span>
+        print(list_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  <span class="comment"># Output: [3, 4]</span>
+    </pre>
+
+
+  {% include footer.html %}
+
+  </body>
+</html>
