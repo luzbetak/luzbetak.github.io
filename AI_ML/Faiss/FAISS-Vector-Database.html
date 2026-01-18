@@ -1,0 +1,44 @@
+---
+---
+{% include menu.html title="Vector Database" %}
+<hr align=left width=1000>
+
+<h1>FAISS (Facebook AI Similarity Search)</h1>
+<p><strong>FAISS</strong> is an open-source library developed by Facebook AI for efficient
+similarity search and clustering of dense vectors. It is highly optimized for handling very large
+dataset of high-dimensional vectors.</p>
+
+<h2>Key Features:</h2>
+<ul>
+    <li><strong>No API key</strong> required since it’s a local library.</li>
+    <li><strong>Scales</strong> to billions of vectors.</li>
+    <li><strong>Offers various index types</strong> such as Flat, HNSW, and IVF (Inverted File Index).</li>
+    <li><strong>Supports both GPU and CPU</strong> for faster performance.</li>
+</ul>
+
+<h2>Use Case:</h2>
+<p>FAISS can be used in scenarios like image search, recommendation systems, and NLP embedding retrieval.</p>
+<pre><code class="language-python">#-------------------------------------------------------------#
+# pip install faiss-cpu  # or 'faiss-gpu' for GPU version
+#-------------------------------------------------------------#
+import faiss
+import numpy as np
+
+# Create an index for L2 distance (Euclidean)
+d = 128  # dimension of vectors
+index = faiss.IndexFlatL2(d)  # create the index
+
+# Generate random data (vectors)
+vectors = np.random.random((1000, d)).astype('float32')
+
+# Add vectors to the index
+index.add(vectors)
+
+# Query for the nearest neighbors
+query_vector = np.random.random((1, d)).astype('float32')
+distances, indices = index.search(query_vector, k=5)  # retrieve top-5 nearest neighbors
+print("Nearest neighbors:", indices)
+</code></pre>
+
+{% include footer.html %}
+

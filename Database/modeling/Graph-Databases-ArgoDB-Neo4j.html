@@ -1,0 +1,114 @@
+---
+---
+{% include menu.html title="ArgoDB" %}
+<hr align=left width=1100>
+
+<div>
+  <h2>ArgoDB</h2>
+  <p>ArgoDB is a specialized distributed database optimized for complex, large-scale graph data. It is designed to handle high-performance graph processing workloads, providing efficient querying and analysis of relationships within data, such as social networks, fraud detection, and recommendation systems.</p>
+  
+  <p><hr align=left width=1100>
+  <h3>Key Features:</h3>
+  <ul>
+    <li><strong>Scalability:</strong> Handles massive graph datasets across distributed systems, ensuring efficient storage and querying even with billions of nodes and edges.</li>
+    <li><strong>Performance:</strong> Optimized for fast traversal and pattern matching, making it ideal for workloads requiring deep or complex graph analysis.</li>
+    <li><strong>ACID Compliance:</strong> Ensures consistency and reliability of data even in a distributed setup.</li>
+    <li><strong>Integration with Analytics:</strong> Integrates with other data platforms and analytics systems to deliver insights from graph data.</li>
+  </ul>
+  
+  <p>ArgoDB excels in scaling effectively and delivering rapid analysis for graph-related use cases, making it distinct from other graph databases.</p>
+</div>
+
+<div>
+  <h2>ArgoDB (or ArangoDB) vs Neo4j Code Example</h2>
+  <p>
+    While ArgoDB and Neo4j are different databases, the code example below is based on Neo4j, a popular graph database. If you're referring to <strong>ArangoDB</strong>, which is a multi-model database (graph, document, key-value), the syntax would be different, but the concept of handling nodes and relationships remains similar.
+  </p>
+  
+  <p><hr align=left width=1100>
+  <h3>Python Code Example (Neo4j)</h3>
+<pre><code class="language-python">
+from neo4j import GraphDatabase
+
+class ArgoDBExample:
+
+    def __init__(self, uri, user, password):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
+    def close(self):
+        self.driver.close()
+
+    def create_node(self, name):
+        with self.driver.session() as session:
+            session.write_transaction(self._create_node, name)
+
+    @staticmethod
+    def _create_node(tx, name):
+        query = "CREATE (n:Person {name: $name})"
+        tx.run(query, name=name)
+
+    def create_relationship(self, person1, person2, relation):
+        with self.driver.session() as session:
+            session.write_transaction(self._create_relationship, person1, person2, relation)
+
+    @staticmethod
+    def _create_relationship(tx, person1, person2, relation):
+        query = """
+        MATCH (a:Person {name: $person1}), (b:Person {name: $person2})
+        CREATE (a)-[:KNOWS {relation: $relation}]->(b)
+        """
+        tx.run(query, person1=person1, person2=person2, relation=relation)
+
+    def find_friends(self, name):
+        with self.driver.session() as session:
+            result = session.read_transaction(self._find_friends, name)
+            for record in result:
+                print(f"{name} knows {record['friend']}")
+
+    @staticmethod
+    def _find_friends(tx, name):
+        query = """
+        MATCH (a:Person)-[:KNOWS]->(friend)
+        WHERE a.name = $name
+        RETURN friend.name AS friend
+        """
+        return tx.run(query, name=name)
+
+# Example usage
+db = ArgoDBExample("bolt://localhost:7687", "neo4j", "password")
+
+# Create nodes
+db.create_node("Alice")
+db.create_node("Bob")
+
+# Create relationships
+db.create_relationship("Alice", "Bob", "Friends")
+
+# Find friends of Alice
+db.find_friends("Alice")
+
+db.close()
+</code>
+  </pre>
+  
+  <p><hr align=left width=1100>
+  <h3>Explanation</h3>
+  <p>
+    This example shows how to work with Neo4j, a graph database, using Python. Here's a breakdown of the code:
+  </p>
+  <ul>
+    <li><strong>Create Nodes:</strong> The <code>create_node</code> function adds a new node (person) into the graph using the <code>CREATE</code> query in Cypher (Neo4j's query language).</li>
+    <li><strong>Create Relationships:</strong> The <code>create_relationship</code> function establishes a relationship between two people. In this case, it creates a "KNOWS" relationship between two nodes using the <code>MATCH</code> and <code>CREATE</code> queries.</li>
+    <li><strong>Query Data:</strong> The <code>find_friends</code> function finds all nodes that have a "KNOWS" relationship with a given person by using the <code>MATCH</code> query.</li>
+    <li><strong>Driver and Sessions:</strong> The <code>GraphDatabase.driver</code> method establishes a connection to the Neo4j database, and the session methods handle transactions.</li>
+  </ul>
+
+  <p>
+    If you're using ArangoDB or ArgoDB, you would adapt the queries and the way you handle data according to their APIs or query languages.
+  </p>
+</div>
+
+
+{% include footer.html %}
+</body>
+</html>

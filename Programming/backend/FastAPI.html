@@ -1,0 +1,47 @@
+---
+---
+{% include menu.html title="FastAPI for REST APIs" %}
+
+<h1>FastAPI for REST APIs</h1>
+
+<h2>Overview</h2>
+<ul>
+    <li><strong>Fast Development</strong>: FastAPI uses Python type hints to auto-generate API endpoints and validate request/response data, speeding up development and minimizing errors.</li>
+    <li><strong>Automatic Documentation</strong>: With OpenAPI and JSON Schema, FastAPI auto-generates interactive API documentation through tools like Swagger UI and ReDoc.</li>
+    <li><strong>Asynchronous Support</strong>: Built with <code>async</code> and <code>await</code>, FastAPI handles high-performance asynchronous endpoints, ideal for high concurrency.</li>
+    <li><strong>Data Validation</strong>: Utilizes Pydantic to enforce data validation automatically, based on endpoint function types for strict, reliable data integrity.</li>
+    <li><strong>Security</strong>: Provides built-in support for OAuth2, JWTs, and other security protocols, simplifying secure authentication and authorization.</li>
+    <li><strong>WebSockets and Background Tasks</strong>: Supports WebSockets for real-time communication and background tasks, offloading intensive processes from the main request cycle.</li>
+</ul>
+
+<h2>Example Code Structure</h2>
+<pre><code class="language-python">
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import Optional
+
+# Define the application
+app = FastAPI()
+
+# Define a request model with Pydantic
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+
+# Define a simple POST endpoint
+@app.post("/items/")
+async def create_item(item: Item):
+    return {"name": item.name, "price_with_tax": item.price + (item.tax or 0)}
+</code></pre>
+
+<h2>Explanation of Example</h2>
+<ul>
+    <li><strong>Item Model</strong>: Defined using Pydantic, ensuring each field is automatically validated.</li>
+    <li><strong>Endpoint</strong>: The <code>/items/</code> POST endpoint accepts <code>Item</code> data, validates it, and calculates the <code>price_with_tax</code>.</li>
+</ul>
+
+<p>FastAPI combines simplicity and power, making it a strong choice for modern REST API development.</p>
+
+{% include footer.html %}

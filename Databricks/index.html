@@ -1,0 +1,87 @@
+---
+---
+{% include menu.html title="Databricks" %}
+
+  <h1>Databricks and Apache Spark</h1>
+
+  <h2>Apache Spark</h2>
+  <ul>
+    <li><strong>Apache Spark</strong> is an open-source, distributed computing framework for big data processing and analytics.</li>
+    <li>Designed for <strong>speed</strong>, <strong>ease of use</strong>, and <strong>scalability</strong> across clusters of machines.</li>
+  </ul>
+
+  <h3>Key Features</h3>
+  <ul>
+    <li><strong>In-memory processing</strong> for much faster performance than traditional MapReduce.</li>
+    <li><strong>Unified engine</strong> supporting:
+      <ul>
+        <li>Batch processing (Spark Core, Spark SQL)</li>
+        <li>Streaming (Structured Streaming)</li>
+        <li>Machine learning (MLlib)</li>
+        <li>Graph processing (GraphX)</li>
+      </ul>
+    </li>
+    <li><strong>Multi-language APIs</strong> (Python, Scala, Java, SQL, R).</li>
+  </ul>
+
+  <h3>Usage</h3>
+  <ol>
+    <li><strong>High performance</strong> for large-scale data processing and analytics.</li>
+    <li><strong>Flexibility</strong> to handle different workloads (ETL, ML, streaming, BI).</li>
+    <li><strong>Integration</strong> with many data sources (HDFS, S3, Delta, JDBC, etc.).</li>
+  </ol>
+
+  <h2>Databricks</h2>
+  <ul>
+    <li><strong>Databricks</strong> is a cloud-based unified analytics platform built by the original creators of Apache Spark.</li>
+    <li>Runs on top of major clouds (AWS, Azure, GCP) and manages Spark clusters for you.</li>
+  </ul>
+
+  <h3>Key Capabilities</h3>
+  <ul>
+    <li><strong>Managed Spark</strong>:
+      <ul>
+        <li>Automatic cluster provisioning, scaling, and termination.</li>
+        <li>Optimized runtimes for improved performance and stability.</li>
+      </ul>
+    </li>
+    <li><strong>Collaborative workspace</strong>:
+      <ul>
+        <li>Notebooks (Python, SQL, Scala, R) for development and exploration.</li>
+        <li>Versioning, comments, and collaboration features for teams.</li>
+      </ul>
+    </li>
+    <li><strong>Delta Lake</strong>:
+      <ul>
+        <li>ACID transactions on data lakes.</li>
+        <li>Schema enforcement, time travel, and efficient upserts/merges.</li>
+      </ul>
+    </li>
+    <li><strong>ML & BI support</strong>:
+      <ul>
+        <li>Integrated ML lifecycle (experiments, models, deployment).</li>
+        <li>SQL endpoints and dashboards for analytics and reporting.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>How Databricks Relates to Spark</h3>
+  <ol>
+    <li><strong>Databricks uses Apache Spark as its core computation engine.</strong></li>
+    <li>It <strong>abstracts away cluster management</strong> so engineers can focus on code and data, not infrastructure.</li>
+    <li>It adds <strong>enterprise features</strong>:
+      <ul>
+        <li>Security, governance, and role-based access control.</li>
+        <li>Optimizations (e.g., Photon, Delta Lake) for higher performance.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>Short Summary</h2>
+  <ul>
+    <li><strong>Apache Spark:</strong> A fast, distributed processing engine for big data that supports batch, streaming, ML, and graph workloads with in-memory computation.</li>
+    <li><strong>Databricks:</strong> A cloud-native, managed platform built around Spark that provides collaborative notebooks, automated cluster management, Delta Lake, and tooling for end-to-end data and AI workflows.</li>
+  </ul>
+
+
+{% include footer.html %}

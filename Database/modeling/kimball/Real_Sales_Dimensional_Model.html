@@ -1,0 +1,146 @@
+---
+---
+{% include menu.html title="Real Sales Dimensional Model" %}
+
+<h1>Real Sales Dimensional Model (Kimball)</h1>
+
+<h2>1. Business Process</h2>
+<p>
+<strong>Sales</strong> — capturing each product sold to a customer at a point in time.
+</p>
+
+<h2>2. Declared Grain</h2>
+<p>
+<strong>One row per product per order per day</strong>
+</p>
+
+<ul>
+  <li>Each row represents a single line item on a sales order</li>
+  <li>Grain is fixed and never violated</li>
+</ul>
+
+<h2>3. Star Schema Overview</h2>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Star_schema_example.svg" alt="Sales star schema diagram">
+
+<h2>4. Fact Table</h2>
+
+<h3>fact_sales</h3>
+<ul>
+  <li><strong>order_id</strong> (degenerate dimension)</li>
+  <li><strong>date_key</strong></li>
+  <li><strong>customer_key</strong></li>
+  <li><strong>product_key</strong></li>
+  <li><strong>store_key</strong></li>
+  <li><strong>promotion_key</strong></li>
+</ul>
+
+<strong>Measures:</strong>
+<ul>
+  <li>quantity_sold</li>
+  <li>gross_sales_amount</li>
+  <li>discount_amount</li>
+  <li>net_sales_amount</li>
+  <li>tax_amount</li>
+  <li>cost_amount</li>
+</ul>
+
+<h2>5. Dimension Tables</h2>
+
+<h3>dim_date</h3>
+<ul>
+  <li>date_key (surrogate key)</li>
+  <li>full_date</li>
+  <li>day_of_week</li>
+  <li>week_number</li>
+  <li>month</li>
+  <li>quarter</li>
+  <li>year</li>
+  <li>is_holiday</li>
+</ul>
+
+<h3>dim_customer</h3>
+<ul>
+  <li>customer_key (surrogate key)</li>
+  <li>customer_id (natural key)</li>
+  <li>first_name</li>
+  <li>last_name</li>
+  <li>gender</li>
+  <li>birth_date</li>
+  <li>customer_segment</li>
+  <li>region</li>
+  <li>effective_date</li>
+  <li>expiration_date</li>
+  <li>current_flag</li>
+</ul>
+
+<h3>dim_product</h3>
+<ul>
+  <li>product_key</li>
+  <li>product_id</li>
+  <li>product_name</li>
+  <li>brand</li>
+  <li>category</li>
+  <li>subcategory</li>
+  <li>package_size</li>
+</ul>
+
+<h3>dim_store</h3>
+<ul>
+  <li>store_key</li>
+  <li>store_id</li>
+  <li>store_name</li>
+  <li>store_type</li>
+  <li>city</li>
+  <li>state</li>
+  <li>country</li>
+  <li>open_date</li>
+</ul>
+
+<h3>dim_promotion</h3>
+<ul>
+  <li>promotion_key</li>
+  <li>promotion_name</li>
+  <li>promotion_type</li>
+  <li>start_date</li>
+  <li>end_date</li>
+  <li>discount_percent</li>
+</ul>
+
+<h2>6. Degenerate Dimension</h2>
+<ul>
+  <li><strong>order_id</strong> stored directly in fact_sales</li>
+  <li>No separate dimension table</li>
+  <li>Used for drill-through and reconciliation</li>
+</ul>
+
+<h2>7. Conformed Dimensions</h2>
+<ul>
+  <li>dim_date shared with inventory, finance, shipments</li>
+  <li>dim_product shared across sales and inventory</li>
+  <li>dim_customer shared across marketing and CRM analytics</li>
+</ul>
+
+<h2>8. Example Query Use Case</h2>
+<ul>
+  <li>Total net sales by product category and month</li>
+  <li>Top customers by revenue</li>
+  <li>Promotion effectiveness analysis</li>
+</ul>
+
+<h2>9. Why This Model Works</h2>
+<ul>
+  <li>Simple joins</li>
+  <li>High-performance aggregations</li>
+  <li>Business-readable structure</li>
+  <li>Scales cleanly on MPP systems</li>
+</ul>
+
+<h2>10. One-Line Summary</h2>
+<p>
+<strong>This sales dimensional model captures transactional sales at line-item grain using a star schema optimized for analytics.</strong>
+</p>
+
+
+
+{% include footer.html %}
