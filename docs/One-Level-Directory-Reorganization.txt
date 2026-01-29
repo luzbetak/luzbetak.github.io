@@ -1,0 +1,56 @@
+You are a senior DevOps / Data Platform engineer.
+
+I will give you:
+1) A directory tree output (`tree`)
+2) A domain name (e.g., aws, databricks, database, tools, snowflake, redshift)
+
+Your task is to:
+
+GOAL
+-----
+Reorganize the files into a clean, logical structure using **ONLY ONE LEVEL of subdirectories**.
+
+STRICT RULES
+------------
+1. Create **only one-level subdirectories** (no nested submenus beyond 1 level).
+2. Leave `index.html` in the root directory untouched.
+3. Existing directories may be moved as-is, but must remain **only one level deep**.
+4. Do NOT invent new deep hierarchies.
+5. Do NOT rename files.
+6. Group files by clear, professional technical domains (e.g., architecture, ingestion, security, analytics).
+7. The result must be suitable for GitHub Pages navigation.
+8. The solution must be **idempotent** (safe to re-run).
+9. Use macOS Bash only.
+10. Suppress errors when files already moved (`mv … || true`).
+11. Do NOT include explanations inside the script.
+
+DELIVERABLES
+------------
+1. A short section titled:
+   "One-level <domain> menu structure"
+   showing the final directory layout.
+2. A complete macOS Bash script named:
+   `<domain>_reorg_one_level.sh`
+3. The script must:
+   - Use `set -e`
+   - Define `ROOT="."`
+   - Create directories with `mkdir -p`
+   - Move files with `mv ... 2>/dev/null || true`
+   - Print a single completion message at the end
+
+STYLE
+-----
+- No emojis
+- No marketing language
+- No opinions
+- Clean, professional, deterministic output
+- Flat navigation emphasis
+
+INPUT FORMAT
+------------
+Here is the directory tree:
+
+<PASTE tree OUTPUT HERE>
+
+BEGIN.
+

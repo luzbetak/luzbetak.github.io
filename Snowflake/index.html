@@ -1,0 +1,195 @@
+---
+---
+{% include menu.html title="Big Data" %}
+
+<hr>
+<body>
+<body>
+
+    <img src="/images/snowflake-architecture.png" width=1100>
+
+    <p><hr>
+
+<h1>Snowflake Data Warehouse Architecture</h1>
+<img src="/images/snowflake_cortex_ai.png" width=800>
+<p>Snowflake is a cloud-based data warehouse platform that uses a unique multi-cluster, shared data architecture. It separates storage and compute resources, allowing them to scale independently.</p>
+
+<h2>Architecture Overview</h2>
+<p>Snowflake's architecture consists of three main layers that work together to provide a powerful, scalable, and flexible data warehousing solution:</p>
+
+<ol>
+    <li><strong>Cloud Services/Client Layer</strong> (Top Layer)</li>
+    <li><strong>Query Processing/Compute Layer</strong> (Middle Layer)</li>
+    <li><strong>Database Storage Layer</strong> (Bottom Layer)</li>
+</ol>
+
+<h2>Architecture Diagram</h2>
+<pre style="line-height: 1.2; font-family: monospace;">
+┌──────────────────────────────────────────────────────────┐
+│                  <strong>CLIENT/CLOUD SERVICES LAYER</strong>             │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────────┐  │
+│  │   Web    │ │   ODBC   │ │   JDBC   │ │   SnowSQL   │  │
+│  │Interface │ │  Driver  │ │  Driver  │ │   CLI Tool  │  │
+│  └──────────┘ └──────────┘ └──────────┘ └─────────────┘  │
+│                                                          │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │           Authentication & Access Control          │  │
+│  │          Query Parsing & Optimization              │  │
+│  │             Metadata Management                    │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────┐
+│                      <strong>COMPUTE LAYER</strong>                      │
+│                                                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │   Virtual    │  │   Virtual    │  │   Virtual    │   │
+│  │  Warehouse 1 │  │  Warehouse 2 │  │  Warehouse 3 │   │
+│  │              │  │              │  │              │   │
+│  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │   │
+│  │  │Compute │  │  │  │Compute │  │  │  │Compute │  │   │
+│  │  │ Node 1 │  │  │  │ Node 1 │  │  │  │ Node 1 │  │   │
+│  │  └────────┘  │  │  └────────┘  │  │  └────────┘  │   │
+│  │  ┌────────┐  │  │  ┌────────┐  │  │  ┌────────┐  │   │
+│  │  │Compute │  │  │  │Compute │  │  │  │Compute │  │   │
+│  │  │ Node 2 │  │  │  │ Node 2 │  │  │  │ Node n │  │   │
+│  │  └────────┘  │  │  └────────┘  │  │  └────────┘  │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘   │
+│                                                         │
+│              (Auto-scaling, Multi-cluster)              │
+└─────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│                      <strong>STORAGE LAYER</strong>                       │
+│                                                          │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │          Centralized Storage (Cloud Storage)       │  │
+│  │                                                    │  │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │  │
+│  │  │  Tables  │  │  Schema  │  │    File Format   │  │  │
+│  │  │   Data   │  │ Metadata │  │  (Compressed &   │  │  │
+│  │  │          │  │          │  │   Columnar)      │  │  │
+│  │  └──────────┘  └──────────┘  └──────────────────┘  │  │
+│  │                                                    │  │
+│  │         (Amazon S3, Azure Blob, Google Cloud)      │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
+
+</pre>
+<h2>1. Cloud Services Layer (Top Layer)</h2>
+<p>The cloud services layer coordinates and manages the entire Snowflake system, handling all user requests and system operations.</p>
+
+<h3>Key Components:</h3>
+<ul>
+    <li><strong>Authentication and Access Control:</strong>
+        <ul>
+            <li>User authentication (username/password, SSO, MFA)</li>
+            <li>Role-based access control (RBAC)</li>
+            <li>Row-level and column-level security</li>
+        </ul>
+    </li>
+    <li><strong>Query Parsing and Optimization:</strong>
+        <ul>
+            <li>SQL compilation and parsing</li>
+            <li>Query optimization and execution planning</li>
+            <li>Result caching management</li>
+        </ul>
+    </li>
+    <li><strong>Metadata Management:</strong>
+        <ul>
+            <li>Catalog of all database objects</li>
+            <li>Table statistics and metadata</li>
+            <li>Query history and performance metrics</li>
+        </ul>
+    </li>
+    <li><strong>Infrastructure Management:</strong>
+        <ul>
+            <li>Virtual warehouse provisioning</li>
+            <li>Resource monitoring and allocation</li>
+            <li>Automatic failover and recovery</li>
+        </ul>
+    </li>
+    <li><strong>Transaction Management:</strong>
+        <ul>
+            <li>ACID compliance</li>
+            <li>Concurrency control</li>
+            <li>Data sharing coordination</li>
+        </ul>
+    </li>
+</ul>
+
+
+<h2>2. Compute Layer (Middle Layer)</h2>
+<p>The compute layer consists of virtual warehouses that execute queries and perform data processing operations.</p>
+
+<h3>Key Features:</h3>
+<ul>
+    <li><strong>Virtual Warehouses:</strong> Independent compute clusters that can be created, resized, or suspended on-demand</li>
+    <li><strong>Elastic Scaling:</strong> Warehouses can scale up (increase size) or scale out (add clusters) based on workload</li>
+    <li><strong>Size Options:</strong> Available in multiple sizes:
+        <ol>
+            <li>(001) X-Small</li>
+            <li>(002) Small</li>
+            <li>(004) Medium</li>
+            <li>(008) Large</li>
+            <li>(016) X-Large</li>
+            <li>(032) 2X-Large</li>
+            <li>(064) 3X-Large</li>
+            <li>(128) 4X-Large</li>
+        </ol>
+    </li>
+    <li><strong>Multi-cluster Warehouses:</strong> Automatically spin up additional clusters during peak demand</li>
+    <li><strong>Auto-suspend and Auto-resume:</strong> Warehouses can automatically suspend when idle and resume when queries arrive</li>
+    <li><strong>Workload Isolation:</strong> Different warehouses can be dedicated to different workloads (ETL, analytics, reporting)</li>
+    <li><strong>Query Processing:</strong> Each warehouse has access to all data in the storage layer via shared metadata</li>
+</ul>
+
+<h2>3. Storage Layer (Bottom Layer)</h2>
+<p>The storage layer is the foundation of Snowflake's architecture, responsible for persistent data storage.</p>
+
+<h3>Key Features:</h3>
+<ul>
+    <li><strong>Centralized Storage:</strong> All data is stored in a centralized location in cloud storage (AWS S3, Azure Blob Storage, or Google Cloud Storage)</li>
+    <li><strong>Automatic Management:</strong> Snowflake automatically handles all aspects of data storage including:
+        <ul>
+            <li>File size optimization</li>
+            <li>Data compression (automatic compression)</li>
+            <li>Data replication for durability</li>
+            <li>Data encryption at rest</li>
+        </ul>
+    </li>
+    <li><strong>Columnar Format:</strong> Data is stored in a proprietary compressed columnar format for optimal query performance</li>
+    <li><strong>Micro-partitioning:</strong> Data is automatically divided into micro-partitions (50-500 MB of uncompressed data)</li>
+    <li><strong>Zero-copy Cloning:</strong> Creates instant copies of databases, schemas, or tables without duplicating storage</li>
+    <li><strong>Time Travel:</strong> Maintains historical data versions for up to 90 days</li>
+</ul>
+
+
+<h2>Key Benefits of This Architecture</h2>
+<ol>
+    <li><strong>Separation of Storage and Compute:</strong> Allows independent scaling of resources based on needs</li>
+    <li><strong>Elastic Scalability:</strong> Can handle varying workloads without manual intervention</li>
+    <li><strong>Pay-per-use Model:</strong> Only pay for storage used and compute time consumed</li>
+    <li><strong>Zero Maintenance:</strong> No infrastructure management, tuning, or optimization required</li>
+    <li><strong>Concurrent Workloads:</strong> Multiple virtual warehouses can operate simultaneously without resource contention</li>
+    <li><strong>Instant Data Sharing:</strong> Share data across organizations without data movement</li>
+    <li><strong>Built-in Security:</strong> End-to-end encryption, both in transit and at rest</li>
+    <li><strong>High Availability:</strong> Built-in redundancy and automatic failover capabilities</li>
+</ol>
+
+<h2>Client Connectivity Options</h2>
+<p>Users and applications can connect to Snowflake through various interfaces:</p>
+<ul>
+    <li><strong>Web Interface:</strong> Browser-based UI for query execution and administration</li>
+    <li><strong>SnowSQL:</strong> Command-line client for executing SQL queries</li>
+    <li><strong>ODBC/JDBC Drivers:</strong> For connecting third-party tools and applications</li>
+    <li><strong>Python Connector:</strong> Native Python library for programmatic access</li>
+    <li><strong>Spark Connector:</strong> Integration with Apache Spark</li>
+    <li><strong>REST API:</strong> For custom integrations and automation</li>
+    <li><strong>Third-party Tools:</strong> Support for BI tools like Tableau, Power BI, Looker, etc.</li>
+</ul>
+
+</body>    
+{% include footer.html %}

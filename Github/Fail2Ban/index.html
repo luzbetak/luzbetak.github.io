@@ -1,0 +1,148 @@
+---
+---
+{% include menu.html title="Fail2Ban Setup Guide" %}
+
+<body>
+
+<h1>Fail2Ban Setup Guide for Ubuntu Server</h1>
+<p>Block malicious IPs with /24 subnet banning for Apache2 web server.</p>
+
+<h2>1. Install Fail2Ban</h2>
+<pre><code class="language-bash">sudo apt update
+sudo apt install fail2ban -y</code></pre>
+
+<h2>2. Create Custom Subnet Ban Action</h2>
+<p>Create a custom action that bans entire /24 subnets (256 IPs) instead of individual IPs:</p>
+<pre><code class="language-bash">sudo vim /etc/fail2ban/action.d/iptables-subnet.conf</code></pre>
+
+<p>Add the following content:</p>
+<pre><code class="language-ini">[Definition]
+actionban = iptables -I INPUT -s &lt;ip&gt;/24 -j DROP
+actionunban = iptables -D INPUT -s &lt;ip&gt;/24 -j DROP</code></pre>
+
+<h2>3. Create Filters</h2>
+
+<h3>3.1 Block /search Requests</h3>
+<p>Create a filter to catch spam bots hitting search endpoints:</p>
+<pre><code class="language-bash">sudo vim /etc/fail2ban/filter.d/apache-search.conf</code></pre>
+
+<p>Add the following content:</p>
+<pre><code class="language-ini">[Definition]
+failregex = ^&lt;HOST&gt; .* "(GET|POST) /search\?.*"
+ignoreregex =</code></pre>
+
+<h3>3.2 Block PHP Requests</h3>
+<p>Create a filter to catch any request containing "php" in the URL:</p>
+<pre><code class="language-bash">sudo vim /etc/fail2ban/filter.d/apache-php.conf</code></pre>
+
+<p>Add the following content:</p>
+<pre><code class="language-ini">[Definition]
+failregex = ^&lt;HOST&gt; .* "(GET|POST) .*php.*"
+ignoreregex =</code></pre>
+
+<p>This filter will catch:</p>
+<ul>
+    <li><code>/hello.php</code></li>
+    <li><code>/wp-admin/something.php?id=1</code></li>
+    <li><code>/phpMyAdmin/</code></li>
+    <li><code>/something/php/test.html</code></li>
+</ul>
+
+<h2>4. Configure Jails</h2>
+<p>Create the jail configuration file:</p>
+<pre><code class="language-bash">sudo vim /etc/fail2ban/jail.local</code></pre>
+
+<p>Add the following content:</p>
+<pre><code class="language-ini">[apache-search]
+enabled = true
+port = http,https
+filter = apache-search
+logpath = /var/log/apache2/protonchat.access.log
+backend = auto
+maxretry = 1
+findtime = 86400
+bantime = 432000
+banaction = iptables-subnet
+
+[apache-php]
+enabled = true
+port = http,https
+filter = apache-php
+logpath = /var/log/apache2/protonchat.access.log
+backend = auto
+maxretry = 1
+findtime = 86400
+bantime = 432000
+banaction = iptables-subnet</code></pre>
+
+<h3>Configuration Parameters Explained</h3>
+<ul>
+    <li><strong>maxretry = 1</strong> — Ban on first offense</li>
+    <li><strong>findtime = 86400</strong> — Time window of 24 hours (in seconds)</li>
+    <li><strong>bantime = 432000</strong> — Ban duration of 5 days (in seconds: 5 × 24 × 60 × 60)</li>
+    <li><strong>banaction = iptables-subnet</strong> — Use our custom /24 subnet blocking</li>
+</ul>
+
+<h2>5. Start Fail2Ban</h2>
+<pre><code class="language-bash">sudo systemctl enable fail2ban
+sudo systemctl restart fail2ban</code></pre>
+
+<h2>6. Verify Configuration</h2>
+
+<h3>6.1 Check Jail Status</h3>
+<pre><code class="language-bash"># List all jails
+sudo fail2ban-client status
+
+# Check specific jail
+sudo fail2ban-client status apache-search
+sudo fail2ban-client status apache-php</code></pre>
+
+<h3>6.2 Test Regex Against Log File</h3>
+<pre><code class="language-bash">sudo fail2ban-regex /var/log/apache2/protonchat.access.log /etc/fail2ban/filter.d/apache-search.conf
+sudo fail2ban-regex /var/log/apache2/protonchat.access.log /etc/fail2ban/filter.d/apache-php.conf</code></pre>
+
+<h3>6.3 Verify IPTables Rules</h3>
+<pre><code class="language-bash">sudo iptables -L INPUT -n | grep "/24"</code></pre>
+
+<p>Expected output:</p>
+<pre><code class="language-bash">DROP       0    --  103.3.220.0/24       0.0.0.0/0           
+DROP       0    --  102.89.75.0/24       0.0.0.0/0           
+DROP       0    --  125.164.122.0/24     0.0.0.0/0</code></pre>
+
+<h2>7. Useful Management Commands</h2>
+
+<h3>7.1 View Banned IPs</h3>
+<pre><code class="language-bash"># View all banned IPs for a jail
+sudo fail2ban-client get apache-search banned
+
+# View jail status with ban list
+sudo fail2ban-client status apache-search</code></pre>
+
+<h3>7.2 Unban IPs</h3>
+<pre><code class="language-bash"># Unban a specific IP
+sudo fail2ban-client set apache-search unbanip 1.2.3.4
+
+# Unban all IPs from all jails
+sudo fail2ban-client unban --all</code></pre>
+
+<h3>7.3 Monitor Logs</h3>
+<pre><code class="language-bash"># Watch fail2ban activity in real-time
+sudo tail -f /var/log/fail2ban.log</code></pre>
+
+<h2>8. File Locations Summary</h2>
+<ol>
+    <li><strong>Main config:</strong> <code>/etc/fail2ban/jail.conf</code> (do not edit)</li>
+    <li><strong>Custom jails:</strong> <code>/etc/fail2ban/jail.local</code></li>
+    <li><strong>Filters:</strong> <code>/etc/fail2ban/filter.d/</code></li>
+    <li><strong>Actions:</strong> <code>/etc/fail2ban/action.d/</code></li>
+    <li><strong>Fail2ban log:</strong> <code>/var/log/fail2ban.log</code></li>
+</ol>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+</body>
+
+{% include footer.html %}

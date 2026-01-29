@@ -1,0 +1,404 @@
+---
+---
+{% include menu.html title="Databricks Optimization Guide" %}
+
+<h1>Databricks Optimization Guide</h1>
+
+<h2>Understanding Databricks Performance</h2>
+
+<p>Databricks is a unified analytics platform built on Apache Spark that provides a collaborative environment for data engineering, data science, and machine learning workloads. Performance in Databricks depends on several interconnected factors including cluster configuration, data layout, query optimization, and proper use of platform-specific features.</p>
+
+<p>The platform offers both automatic optimizations (enabled by default in Databricks Runtime 10.4 LTS and above) and manual tuning options. Key performance drivers include:</p>
+
+<ul>
+    <li><strong>Cluster Resources:</strong> CPU, memory, and storage allocation across worker nodes</li>
+    <li><strong>Data Layout:</strong> How data is physically organized in Delta Lake tables</li>
+    <li><strong>Query Execution:</strong> How Spark processes and optimizes queries</li>
+    <li><strong>Caching:</strong> Storing frequently accessed data closer to compute</li>
+    <li><strong>Parallelism:</strong> Efficient distribution of work across the cluster</li>
+</ul>
+
+<h2>Key Performance Challenges</h2>
+
+<ol>
+    <li><strong>Data Skew:</strong> Uneven data distribution causing some partitions to be significantly larger than others, leading to resource imbalances</li>
+    <li><strong>Small Files Problem:</strong> Too many tiny files create overhead from opening/closing files and metadata management</li>
+    <li><strong>Inefficient Joins:</strong> Poorly optimized join operations causing excessive data shuffling</li>
+    <li><strong>Under/Over-Provisioned Clusters:</strong> Mismatched resources leading to wasted spend or slow performance</li>
+    <li><strong>Suboptimal Query Plans:</strong> Queries not leveraging available optimizations</li>
+</ol>
+
+<h2>Strategies to Increase Databricks Performance</h2>
+
+<h3>1. Cluster Configuration Optimization</h3>
+
+<p>Proper cluster sizing is the foundation of performance optimization:</p>
+
+<ul>
+    <li><strong>Right-size your cluster:</strong> Match worker count and instance types to workload requirements
+        <ul>
+            <li>Use compute-optimized instances (e.g., AWS C5) for CPU-intensive ETL pipelines</li>
+            <li>Use memory-optimized instances (e.g., R5) for ML workloads with large in-memory datasets</li>
+        </ul>
+    </li>
+    <li><strong>Enable Autoscaling:</strong> Set minimum and maximum worker counts to dynamically adjust to workload demands
+        <ul>
+            <li>Prevents over-provisioning during low-activity periods</li>
+            <li>Ensures adequate resources during peak times</li>
+        </ul>
+    </li>
+    <li><strong>Use Databricks Pools:</strong> Pre-allocate instances to reduce cluster start and autoscaling times
+        <ul>
+            <li>Idle instances in pools only incur VM costs, not DBU costs</li>
+            <li>Recommended for workloads with tight SLAs</li>
+        </ul>
+    </li>
+    <li><strong>Leverage Spot Instances:</strong> Use for non-critical jobs to save 70-90% on compute costs</li>
+    <li><strong>Use Latest Databricks Runtime:</strong> Always use the newest LTS version for performance enhancements</li>
+</ul>
+
+<h3>2. Enable Photon Engine</h3>
+
+<p>Photon is Databricks' next-generation vectorized query engine built in C++ that accelerates SQL and DataFrame workloads:</p>
+
+<ul>
+    <li><strong>Performance Gains:</strong> Delivers 2-10x speedups for analytical queries, with some ETL workloads running up to 15x faster</li>
+    <li><strong>How to Enable:</strong>
+        <ul>
+            <li>Check "Use Photon Acceleration" in cluster configuration UI</li>
+            <li>Use Databricks Runtime 9.1 LTS or above</li>
+            <li>For API: set <code>"runtime_engine": "PHOTON"</code></li>
+        </ul>
+    </li>
+    <li><strong>Best Use Cases:</strong>
+        <ul>
+            <li>ETL pipelines</li>
+            <li>Large-scale analytical queries</li>
+            <li>BI dashboards using SQL</li>
+            <li>Feature engineering jobs</li>
+        </ul>
+    </li>
+    <li><strong>Limitations:</strong>
+        <ul>
+            <li>Does not accelerate Python UDFs</li>
+            <li>Limited benefit for iterative ML training loops</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>3. Delta Lake Optimizations</h3>
+
+<h4>File Size Optimization</h4>
+<ul>
+    <li><strong>Target file size:</strong> Between 16MB and 1GB for optimal query performance</li>
+    <li><strong>OPTIMIZE command:</strong> Compacts small files into larger ones (up to 1GB)
+        <pre>OPTIMIZE table_name;</pre>
+    </li>
+    <li><strong>Auto Optimize:</strong> Enable automatic compaction during writes
+        <pre>
+-- Table properties
+ALTER TABLE table_name SET TBLPROPERTIES (
+  'delta.autoOptimize.optimizeWrite' = 'true',
+  'delta.autoOptimize.autoCompact' = 'true'
+);</pre>
+    </li>
+    <li><strong>Unity Catalog Auto-tuning:</strong> Databricks Runtime 11.3+ automatically optimizes file sizes for managed tables</li>
+</ul>
+
+<h4>Z-Ordering</h4>
+<ul>
+    <li><strong>What it does:</strong> Physically reorganizes data within a Delta table based on specified columns, co-locating related data together</li>
+    <li><strong>When to use:</strong> When queries frequently filter on specific columns</li>
+    <li><strong>Syntax:</strong>
+        <pre>OPTIMIZE table_name ZORDER BY (column1, column2);</pre>
+    </li>
+    <li><strong>Best practices:</strong>
+        <ul>
+            <li>Choose high-cardinality columns used in WHERE clauses</li>
+            <li>Limit to 2-4 columns for best results</li>
+            <li>Run regularly as part of maintenance jobs</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Liquid Clustering (Recommended for New Tables)</h4>
+<ul>
+    <li><strong>What it does:</strong> Dynamically and continuously reorganizes data based on clustering keys without static partitions</li>
+    <li><strong>Advantages over Z-Ordering:</strong>
+        <ul>
+            <li>Incremental optimization - only reorganizes unclustered data</li>
+            <li>Adapts to changing query patterns</li>
+            <li>More efficient writes</li>
+            <li>Works across entire table dynamically</li>
+        </ul>
+    </li>
+    <li><strong>Syntax:</strong>
+        <pre>
+-- Create table with liquid clustering
+CREATE TABLE table_name CLUSTER BY (column1, column2);
+
+-- Add to existing table
+ALTER TABLE table_name CLUSTER BY (column1, column2);
+
+-- Run optimization
+OPTIMIZE table_name;</pre>
+    </li>
+    <li><strong>Guidelines:</strong>
+        <ul>
+            <li>Best for tables over 1TB</li>
+            <li>Keep clustering keys to 1-4 columns</li>
+            <li>Not compatible with partitioning or ZORDER on same table</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Table Partitioning</h4>
+<ul>
+    <li><strong>When to use:</strong> Tables larger than 1TB with predictable query patterns</li>
+    <li><strong>Best practices:</strong>
+        <ul>
+            <li>Do NOT partition tables under 1TB</li>
+            <li>Choose low-cardinality columns (e.g., date, region)</li>
+            <li>Apply filters on partition columns early in queries</li>
+        </ul>
+    </li>
+    <li><strong>Syntax:</strong>
+        <pre>
+CREATE TABLE table_name
+PARTITIONED BY (date_column)
+AS SELECT * FROM source_table;</pre>
+    </li>
+</ul>
+
+<h3>4. Caching Strategies</h3>
+
+<h4>Disk Cache (Delta Cache)</h4>
+<ul>
+    <li><strong>What it does:</strong> Stores frequently accessed data on local SSDs of worker nodes</li>
+    <li><strong>Benefits:</strong> Reduces latency by avoiding repeated remote file reads</li>
+    <li><strong>Enable:</strong>
+        <pre>SET spark.databricks.io.cache.enabled = true;</pre>
+    </li>
+    <li><strong>Best for:</strong> Repeated reads of Parquet/Delta files</li>
+</ul>
+
+<h4>Spark Cache</h4>
+<ul>
+    <li><strong>What it does:</strong> Stores DataFrames in memory for reuse</li>
+    <li><strong>When to use:</strong> Iterative algorithms or when same data is accessed multiple times</li>
+    <li><strong>Syntax:</strong>
+        <pre>
+df.cache()
+df.persist(StorageLevel.MEMORY_AND_DISK)</pre>
+    </li>
+    <li><strong>Important:</strong> Unpersist when no longer needed to free memory</li>
+</ul>
+
+<h3>5. Query Optimization</h3>
+
+<h4>Adaptive Query Execution (AQE)</h4>
+<ul>
+    <li><strong>What it does:</strong> Automatically optimizes query plans at runtime based on actual data statistics</li>
+    <li><strong>Features:</strong>
+        <ul>
+            <li>Dynamically coalesces shuffle partitions</li>
+            <li>Converts sort-merge joins to broadcast joins when beneficial</li>
+            <li>Optimizes skewed joins</li>
+        </ul>
+    </li>
+    <li><strong>Enable (on by default in Spark 3.0+):</strong>
+        <pre>SET spark.sql.adaptive.enabled = true;</pre>
+    </li>
+</ul>
+
+<h4>Cost-Based Optimizer (CBO)</h4>
+<ul>
+    <li><strong>What it does:</strong> Uses table statistics to choose optimal query execution plans</li>
+    <li><strong>Collect statistics:</strong>
+        <pre>ANALYZE TABLE table_name COMPUTE STATISTICS FOR ALL COLUMNS;</pre>
+    </li>
+    <li><strong>Best practices:</strong>
+        <ul>
+            <li>Run ANALYZE TABLE regularly, especially after large data changes</li>
+            <li>Run as a separate maintenance job, not during ETL</li>
+            <li>Use EXPLAIN to verify optimizer is using statistics</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Predicate Pushdown and Partition Pruning</h4>
+<ul>
+    <li><strong>Apply filters early:</strong> Place filter conditions immediately after reading the table</li>
+    <li><strong>Filter on partition columns:</strong> Enables partition pruning to skip irrelevant data
+        <pre>
+-- Good: Filter immediately after read
+SELECT * FROM table 
+WHERE partition_col = 'value' 
+  AND other_col > 100;
+
+-- Apply filters before joins
+SELECT * FROM table_a a
+JOIN table_b b ON a.id = b.id
+WHERE a.partition_col = 'value';</pre>
+    </li>
+</ul>
+
+<h4>Dynamic File Pruning</h4>
+<ul>
+    <li><strong>What it does:</strong> Skips directories that don't contain matching data files</li>
+    <li><strong>Enabled by default:</strong> In Databricks Runtime 10.4 LTS and above</li>
+</ul>
+
+<h3>6. Join Optimization</h3>
+
+<ul>
+    <li><strong>Broadcast Joins:</strong> Use for small tables (less than 10MB by default)
+        <pre>
+-- Hint to broadcast smaller table
+SELECT /*+ BROADCAST(small_table) */ *
+FROM large_table
+JOIN small_table ON large_table.id = small_table.id;</pre>
+    </li>
+    <li><strong>Avoid Cartesian Products:</strong> Always use explicit join conditions</li>
+    <li><strong>Handle Data Skew:</strong>
+        <ul>
+            <li>Use AQE's skew join optimization</li>
+            <li>Salting technique for severely skewed keys</li>
+            <li>Filter out null keys before joining if not needed</li>
+        </ul>
+    </li>
+    <li><strong>Range Join Optimization:</strong> Manually tune settings for range joins using bin size configuration</li>
+</ul>
+
+<h3>7. Shuffle Optimization</h3>
+
+<ul>
+    <li><strong>Tune shuffle partitions:</strong> Default is 200, but optimal value depends on data size
+        <pre>SET spark.sql.shuffle.partitions = 400; -- Adjust based on workload</pre>
+    </li>
+    <li><strong>Low Shuffle Merge:</strong> Reduces files rewritten during MERGE operations (enabled by default)</li>
+    <li><strong>Minimize shuffles:</strong>
+        <ul>
+            <li>Use broadcast joins when possible</li>
+            <li>Partition data by join keys</li>
+            <li>Avoid unnecessary repartitioning</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>8. Code-Level Best Practices</h3>
+
+<ul>
+    <li><strong>Avoid Python/Scala UDFs when native functions exist:</strong>
+        <ul>
+            <li>UDFs require serialization between Python and Spark</li>
+            <li>Use built-in Spark SQL functions instead</li>
+            <li>Use higher-order functions for array operations</li>
+        </ul>
+    </li>
+    <li><strong>Use DataFrame/SQL APIs over RDDs:</strong> Enables Catalyst optimizer to work effectively</li>
+    <li><strong>Prefer Managed Tables:</strong> Unity Catalog managed tables get automatic predictive optimization</li>
+    <li><strong>Use Delta Lake format:</strong> Provides ACID transactions, time travel, and optimization features</li>
+</ul>
+
+<h3>9. Predictive Optimization (Unity Catalog)</h3>
+
+<ul>
+    <li><strong>What it does:</strong> Automatically identifies and runs maintenance operations on tables</li>
+    <li><strong>Benefits:</strong>
+        <ul>
+            <li>Eliminates manual maintenance scheduling</li>
+            <li>Optimizes based on actual query patterns</li>
+            <li>Typically provides significant performance improvements</li>
+        </ul>
+    </li>
+    <li><strong>Enable:</strong> At account, catalog, or schema level in Unity Catalog settings</li>
+</ul>
+
+<h3>10. Regular Maintenance</h3>
+
+<ul>
+    <li><strong>OPTIMIZE:</strong> Run regularly to compact files and maintain clustering
+        <pre>OPTIMIZE table_name;</pre>
+    </li>
+    <li><strong>VACUUM:</strong> Remove old data files no longer needed
+        <pre>VACUUM table_name RETAIN 168 HOURS; -- 7 days</pre>
+    </li>
+    <li><strong>Schedule maintenance:</strong>
+        <ul>
+            <li>Run during off-peak hours</li>
+            <li>Use separate dedicated clusters for maintenance jobs</li>
+            <li>Automate with Databricks workflows</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Performance Optimization Checklist</h2>
+
+<ol>
+    <li><strong>Cluster Setup</strong>
+        <ul>
+            <li>Use latest Databricks Runtime LTS</li>
+            <li>Enable Photon for analytical workloads</li>
+            <li>Configure appropriate autoscaling</li>
+            <li>Select right instance types for workload</li>
+        </ul>
+    </li>
+    <li><strong>Data Layout</strong>
+        <ul>
+            <li>Use Delta Lake format</li>
+            <li>Implement Liquid Clustering for new tables</li>
+            <li>Or use Z-Ordering for existing tables</li>
+            <li>Maintain optimal file sizes (16MB-1GB)</li>
+        </ul>
+    </li>
+    <li><strong>Query Design</strong>
+        <ul>
+            <li>Apply filters early</li>
+            <li>Use native functions over UDFs</li>
+            <li>Leverage broadcast joins for small tables</li>
+            <li>Keep table statistics updated</li>
+        </ul>
+    </li>
+    <li><strong>Caching</strong>
+        <ul>
+            <li>Enable disk cache for frequently accessed data</li>
+            <li>Use Spark cache for iterative processing</li>
+            <li>Monitor cache hit rates</li>
+        </ul>
+    </li>
+    <li><strong>Maintenance</strong>
+        <ul>
+            <li>Schedule regular OPTIMIZE jobs</li>
+            <li>Run VACUUM to clean up old files</li>
+            <li>Update statistics with ANALYZE TABLE</li>
+            <li>Enable Predictive Optimization if using Unity Catalog</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>Monitoring and Troubleshooting</h2>
+
+<ul>
+    <li><strong>Use Spark UI:</strong> Analyze query plans, stage details, and task distribution</li>
+    <li><strong>Check for data skew:</strong> Look for uneven task durations in Spark UI</li>
+    <li><strong>Review EXPLAIN output:</strong> Verify optimizer is making good choices
+        <pre>EXPLAIN EXTENDED SELECT * FROM table WHERE condition;</pre>
+    </li>
+    <li><strong>Monitor cluster metrics:</strong> CPU, memory, and I/O utilization</li>
+    <li><strong>Enable pipeline logging:</strong> Track performance over time to identify bottlenecks</li>
+    <li><strong>Use cluster tagging:</strong> Map resource usage to teams and workloads for cost tracking</li>
+</ul>
+
+<h2>Expected Performance Improvements</h2>
+
+<p>When properly implementing these optimization techniques, organizations typically see:</p>
+
+<ul>
+    <li><strong>300-800% performance improvements</strong> through intelligent cluster sizing, data skew prevention, and query optimization</li>
+    <li><strong>40-60% reduction in compute costs</strong> through proper resource allocation and autoscaling</li>
+    <li><strong>2-10x faster queries</strong> with Photon engine for analytical workloads</li>
+    <li><strong>Significant I/O reduction</strong> through Z-Ordering and Liquid Clustering</li>
+</ul>
+
+{% include footer.html %}
