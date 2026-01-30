@@ -1,0 +1,120 @@
+---
+---
+{% include menu.html title="Medallion Architecture with 256 Node Cluster" %}
+<hr>
+   <h1 align=center>Medallion Architecture with Partitioning</h1>
+<hr>
+    <pre><code class=language-python>
+spark = SparkSession.builder \
+  .appName("Medallion Architecture") \
+  .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
+  .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
+  .config("spark.executor.instances", "256") \
+  .config("spark.sql.shuffle.partitions", "1024") \
+  .getOrCreate()
+
+# Paths for the Bronze, Silver, and Gold layers
+bronze_path = "/mnt/delta/bronze"
+silver_path = "/mnt/delta/silver"
+gold_path   = "/mnt/delta/gold"
+
+# ----------- Bronze Layer (Raw Data Ingestion) ----------------------------- #
+raw_data = spark.read().format("json").load("/mnt/raw_data/")
+raw_data = raw_data.repartition(1024)
+raw_data.write().format("delta").mode("overwrite").save(bronze_path)
+
+
+# ----------- Silver Layer (Data Cleaning and Transformation) --------------- #
+bronze_df = spark.read().format("delta").load(bronze_path)
+
+# Filter data for today and the last 365 days
+silver_df = bronze_df.filter(
+    (col("date") >= date_sub(current_date(), 365)) & (col("date") <= current_date())
+)
+
+silver_df = silver_df.dropDuplicates().filter(col("status").isNotNull())
+silver_df = silver_df.repartition(365, col("date"))
+silver_df.write().format("delta").mode("overwrite").save(silver_path)
+
+
+# ----------- Gold Layer (Aggregated and Optimized Data) ------------------ #
+silver_df = spark.read().format("delta").load(silver_path)
+
+# Perform aggregations for reporting.
+gold_df   = silver_df.groupBy("category") 
+                     .agg( 
+                          count("order_id").alias("total_orders"), 
+                          sum("sales_amount").alias("total_sales") 
+                         ) 
+gold_df = gold_df.repartition(100, col("category"), col("date"))
+gold_df.write().format("delta").mode("overwrite").save(gold_path)
+
+spark.stop()
+    </code></pre>    
+
+<hr>
+<h1 align=center>PySpark Aggregation Tables</h1>
+<hr>
+
+<h2>Data Description</h2>
+<p>Dataset containing three columns: <strong>category</strong>, <strong>order_id</strong>, and <strong>sales_amount</strong>. The dataset is grouped by the <strong>category</strong> column, and we perform aggregation to count the total number of orders and sum up the sales amounts for each category.</p>
+
+<h3>Original Dataset</h3>
+<table class="comparison-table">
+    <tr>
+        <th>category</th>
+        <th>order_id</th>
+        <th>sales_amount</th>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>1</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>2</td>
+        <td>200</td>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>3</td>
+        <td>150</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>4</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>5</td>
+        <td>100</td>
+    </tr>
+</table>
+
+<h3>Aggregated Result</h3>
+<p>After performing the aggregation, the dataset is grouped by <strong>category</strong>, and we compute two new columns: <strong>total_orders</strong> and <strong>total_sales</strong>.</p>
+
+<table class="comparison-table">
+    <tr>
+        <th>category</th>
+        <th>total_orders</th>
+        <th>total_sales</th>
+    </tr>
+    <tr>
+        <td>Grocery</td>
+        <td>3</td>
+        <td>350</td>
+    </tr>
+    <tr>
+        <td>Electronics</td>
+        <td>2</td>
+        <td>500</td>
+    </tr>
+</table>
+
+  {% include footer.html %}
+
+  </body>
+</html>

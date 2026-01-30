@@ -1,0 +1,131 @@
+---
+---
+{% include menu.html title="System Design" %}
+
+<style>
+    .video-container {
+        display: flex;
+        flex-wrap: nowrap; /* Ensures videos stay in one row */
+        gap: 20px;
+        justify-content: center; /* Centers the videos horizontally */
+    }
+    .video-item {
+        width: 300px;
+        text-align: center;
+    }
+    .video-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        margin: initial; /* Resets global margin */
+        padding: initial; /* Resets global padding */
+    }
+    .video-description {
+        margin: 0; /* Explicitly removes space */
+        padding: 0; /* Ensures no internal padding */
+        font-size: 0.8rem;
+        color: gray;
+        line-height: 1; /* Compact spacing */
+    }
+    .video-item a {
+        text-decoration: none;
+        color: #0073e6;
+        font-weight: bold;
+    }
+    .video-item a:hover {
+        text-decoration: underline;
+    }
+</style>
+<body>
+
+  
+<h1>STAR Method: (Situation – Task – Action – Result)</h1>
+
+<h2>Overview</h2>
+<p>
+The <strong>STAR method</strong> is a structured workflow used to clearly explain professional experience by breaking an answer into four logical parts:
+<strong>Situation</strong>, <strong>Task</strong>, <strong>Action</strong>, and <strong>Result</strong>.
+</p>
+
+<h2>STAR Workflow</h2>
+
+<ol>
+  <li>
+    <h3>Situation (Context) - Analysis</h3>
+    <ul>
+      <li>Describe the <strong>environment</strong> or background</li>
+      <li>Explain the <strong>business or technical problem</strong></li>
+      <li>Provide relevant <strong>constraints</strong> such as scale, deadlines, or compliance</li>
+    </ul>
+    <p><strong>Key question:</strong> What was happening?</p>
+  </li>
+
+  <li>
+    <h3>Task (Responsibility) - Design</h3>
+    <ul>
+      <li>Define <strong>your role</strong> in the situation</li>
+      <li>Clarify what you were <strong>accountable for</strong></li>
+      <li>State the <strong>goal or success criteria</strong></li>
+    </ul>
+    <p><strong>Key question:</strong> What was I responsible for?</p>
+  </li>
+
+  <li>
+    <h3>Action (Execution) - Implementation</h3>
+    <ul>
+      <li>Explain the <strong>specific actions</strong> you took</li>
+      <li>Describe the <strong>tools, technologies, or methods</strong> used</li>
+      <li>Highlight <strong>technical decisions</strong> and trade-offs</li>
+      <li>Show <strong>ownership, problem-solving, and leadership</strong></li>
+    </ul>
+    <p><strong>Key question:</strong> What did I do to solve the problem?</p>
+  </li>
+
+  <li>
+    <h3>Result (Outcome) - Testing</h3>
+    <ul>
+      <li>Present <strong>measurable results</strong> whenever possible</li>
+      <li>Show <strong>business or technical impact</strong></li>
+      <li>Explain <strong>long-term value</strong> created</li>
+    </ul>
+    <p><strong>Key question:</strong> What was the outcome?</p>
+  </li>
+</ol>
+
+<hr />
+
+    <img src="/images/scaling-database.png" width=1100>
+    <p><hr>
+
+    <div class="video-container">
+
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=_1IKwnbscQU" target="_blank">
+                <img src="https://img.youtube.com/vi/_1IKwnbscQU/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Strategies to Scale Database</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=hK1SJqJi1PU" target="_blank">
+                <img src="https://img.youtube.com/vi/hK1SJqJi1PU/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">System Design - Dianna Yau</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=Bh5b_C2k3Bg" target="_blank">
+                <img src="https://img.youtube.com/vi/Bh5b_C2k3Bg/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Snowflake System Design</p>
+        </div>
+
+    </div>
+
+</body>
+
+{% include footer.html %}

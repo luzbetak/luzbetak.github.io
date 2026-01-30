@@ -1,0 +1,151 @@
+---
+---
+{% include menu.html title="Retrieval-Augmented Generation (RAG) Architecture" %}
+
+<h1>Retrieval-Augmented Generation (RAG) Architecture</h1>
+
+<pre>
+    Transformer Architecture
+    |
+    ├─ Encoder-Only (BERT, RoBERTa)
+    │  └─ Embedding Models ← RAG embeddings
+    │     ├─ MiniLM (384 dims)
+    │     ├─ multi-qa-mpnet (768 dims)
+    │     └─ OpenAI ada-002 (1536 dims)
+    |
+    ├─ Decoder-Only (GPT, Claude, LLaMA)
+    │  └─ Large Language Models (LLMs)
+    |
+    └─ Encoder-Decoder (T5, BART)
+</pre>
+
+
+<p><hr>
+<h2>Text Embeddings - Cosine Similarity Calculation</h2>
+<pre><code class='language-python'>similarity       = 1 - cosine_distance
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+model      = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+
+# VECTOR_DIMENSION = 384 is fixed property of the "all-MiniLM-L6-v2" model
+# Each text input will be converted into a vector with exactly 384 numbers
+# ANY text - single word, a sentence, a paragraph, or a chunk of text will 
+# be converted into exactly 384 numbers by the model.
+VECTOR_DIMENSION = 384
+
+# Models and their dimensions
+# "all-MiniLM-L6-v2"                      -> 384 dimensions
+# "all-mpnet-base-v2"                     -> 768 dimensions
+# "all-MiniLM-L12-v2"                     -> 384 dimensions
+# "paraphrase-multilingual-MiniLM-L12-v2" -> 384 dimensions</code></pre>
+<img src="/images/Embedding-dimensions-heatmap.png" width=1100>
+
+
+<p><hr align=left width=1100>
+
+<h1>Document Ingestion Techniques for Machine Learning RAG<br>(Retrieval-Augmented Generation)</h1>
+
+<p>Various techniques for ingesting documents into a Retrieval-Augmented Generation (RAG) system.  RAG combines the strengths of pre-trained language models (LLMs) with the ability to retrieve relevant information from external knowledge sources.  Effective document ingestion is critical for RAG system performance.</p>
+
+<h2>Understanding the Document Ingestion Pipeline</h2>
+
+<p>The ingestion pipeline typically consists of these stages:</p>
+
+<ol>
+  <li><strong>Loading:</strong> Retrieving documents from various sources.
+  <li><strong>Preprocessing:</strong> Cleaning, structuring, and preparing the document text.
+  <li><strong>Chunking:</strong>  Dividing the document into smaller, manageable pieces (chunks).
+  <li><strong>Embedding:</strong> Creating vector representations (embeddings) of each chunk.
+  <li><strong>Indexing:</strong> Storing the embeddings and associated metadata in a vector database.
+  <li><strong>Retrieval:</strong> Querying the vector database to find relevant chunks.
+</ol>
+
+<h2>1. Document Loading Techniques</h2>
+
+<ul>
+  <li><strong>Local File System:</strong>  Simple for development and smaller datasets. Libraries like <code>os</code> and <code>glob</code> in Python are commonly used.
+  <li><strong>Web Scraping:</strong> Extracts data from websites. Tools include <code>BeautifulSoup</code>, <code>Scrapy</code> (Python), and various browser automation frameworks. Careful consideration of website terms of service and robots.txt is crucial.
+  <li><strong>Cloud Storage (AWS S3, Google Cloud Storage, Azure Blob Storage):</strong>  Scalable and reliable for large datasets.  Libraries provide APIs for accessing and downloading files.
+  <li><strong>Databases (SQL, NoSQL):</strong> Direct access to data stored in databases.  SQLAlchemy (Python) is a popular ORM.
+  <li><strong>APIs:</strong> Retrieving data from external APIs (e.g., news APIs, financial data APIs).
+  <li><strong>Document Management Systems (DMS):</strong>  Systems like SharePoint, Alfresco, and Confluence often have APIs or connectors for accessing documents.
+  <li><strong>Email Ingestion:</strong>  Parsing and processing emails from inboxes.
+</ul>
+
+<h2>2. Preprocessing Techniques</h2>
+
+<ul>
+  <li><strong>Text Cleaning:</strong>
+    <ul>
+      <li><strong>HTML/XML Tag Removal:</strong> Stripping away markup using libraries like <code>BeautifulSoup</code>.
+      <li><strong>Special Character Removal:</strong> Removing unwanted characters (e.g., non-breaking spaces, control characters). Regular expressions are frequently used.
+      <li><strong>Whitespace Normalization:</strong> Consolidating multiple whitespace characters into single spaces.
+    </ul>
+  <li><strong>Language Detection:</strong> Identifying the language of the document for appropriate processing. Libraries like <code>langdetect</code> (Python) are helpful.
+  <li><strong>OCR (Optical Character Recognition):</strong> Converting images or PDFs containing scanned text into machine-readable text.  Tesseract OCR is a popular open-source option.  Commercial OCR engines often offer better accuracy.
+  <li><strong>PDF Parsing:</strong> Extracting text and metadata from PDF files.  Libraries like <code>PyPDF2</code>, <code>pdfminer.six</code>, and <code>fitz (PyMuPDF)</code> are widely used. <code>fitz</code> is generally faster and more feature-rich.
+  <li><strong>Metadata Extraction:</strong> Extracting information like author, title, creation date, and modification date.  Metadata can be crucial for filtering and ranking retrieved chunks.
+</ul>
+
+<h2>3. Chunking Strategies <a href="https://tokenvisualizer.netlify.app/">Visualize LLM Tokens</a></h2>
+
+<p>Chunking is arguably the most critical aspect of document ingestion. The size and nature of chunks dramatically affect retrieval performance.</p>
+
+<ul>
+  <li><strong>Fixed-Size Chunking:</strong> Splitting the document into chunks of a predetermined length (e.g., 512 tokens). Simple but often disrupts context.
+  <li><strong>Recursive Character Splitting:</strong> Splitting by sentences, paragraphs, or sections. Aims to preserve semantic boundaries. Requires logic to handle edge cases (e.g., sentences spanning across sections).
+  <li><strong>Token-Based Chunking:</strong> Using a tokenizer (e.g., the tokenizer used by the LLM) to split the document into chunks that respect token boundaries. Ensures that chunks are compatible with the LLM's input limits.  Libraries like <code>tiktoken</code> (OpenAI) are used.
+  <li><strong>Context-Aware Chunking:</strong> Combining techniques to preserve document structure. For example, splitting by section headings and then further dividing sections into smaller chunks.
+  <li><strong>Semantic Chunking:</strong> Attempts to group sentences or paragraphs with related meaning together.  Can involve techniques like clustering or topic modeling, which are computationally intensive.
+  <li><strong>Overlapping Chunks:</strong>  Creating chunks that have some overlap to maintain context across chunk boundaries.  Useful when context spans chunk boundaries.
+</ul>
+
+<h2>4. Embedding Techniques</h2>
+
+<ul>
+  <li><strong>Sentence Transformers:</strong>  Models like <code>all-MiniLM-L6-v2</code> offer a good balance of speed and accuracy.  Widely used for creating embeddings for RAG.
+  <li><strong>OpenAI Embeddings:</strong>  Accessible through the OpenAI API. Provide high-quality embeddings, but incur costs.
+  <li><strong>Hugging Face Transformers:</strong>  Allows access to a vast range of embedding models.
+  <li><strong>FAISS (Facebook AI Similarity Search):</strong> A library for efficient similarity search, often used in conjunction with embedding models.
+  <li><strong>Annoy (Approximate Nearest Neighbors Oh Yeah):</strong>  Another library for approximate nearest neighbor search.
+</6l>
+
+<h2>5. Vector Databases</h2>
+
+<p>Vector databases store and index embeddings for efficient retrieval.</p>
+
+<ul>
+  <li><strong>Pinecone:</strong>  A managed vector database service.  Offers high performance and scalability.
+  <li><strong>Weaviate:</strong> An open-source vector database with GraphQL API and a focus on semantic search.
+  <li><strong>ChromaDB:</strong>  An in-memory vector database suitable for development and smaller projects.
+  <li><strong>Milvus:</strong>  An open-source vector database designed for large-scale similarity search.
+  <li><strong>Qdrant:</strong>  An open-source vector database with filtering and other advanced features.
+  <li><strong>FAISS (used in conjunction with other databases):</strong> Can be used as a standalone index but is often integrated into other solutions.
+</ul>
+
+<h2>6. Advanced Considerations</h2>
+
+<ul>
+  <li><strong>Metadata Filtering:</strong> Storing and querying metadata alongside embeddings to filter results (e.g., search for documents created within a specific date range).
+  <li><strong>Reranking:</strong> Using a separate model to rerank retrieved chunks based on relevance to the query. Improves the precision of retrieved results.
+  <li><strong>Hybrid Search:</strong> Combining vector search with traditional keyword search to leverage the strengths of both approaches.
+  <li><strong>Dynamic Chunking:</strong> Adjusting chunk size dynamically based on document content and query patterns.
+  <li><strong>Knowledge Graph Integration:</strong>  Incorporating knowledge graph information to enhance search and context.
+  <li><strong>Long Context Handling:</strong> Techniques for dealing with very long documents, which may exceed the context window of the LLM and vector database. These include summarization, hierarchical chunking and windowed retrieval.
+  <li><strong>Evaluation and Monitoring:</strong>  Regularly evaluating the RAG system’s retrieval performance (e.g., using metrics like recall and precision) and monitoring the ingestion pipeline for errors.
+</ul>
+
+<h2>RAG end-to-end workflow</h2>
+<p>
+This diagram illustrates the end-to-end workflow of a Retrieval-Augmented
+Generation (RAG) system. A user submits a query, which is converted into
+embeddings and used to retrieve relevant information from external data sources
+stored in a vector database. The retrieved context is combined with the
+original query and a system prompt to form an augmented input. This enriched
+input is then passed to a large language model, which generates a more
+accurate, grounded, and context-aware response as the final output.
+</p>
+<img src="/images/Retrieval-Augmented-Generation-RAG-Architecture.jpg">
+
+
+{% include footer.html %}
+

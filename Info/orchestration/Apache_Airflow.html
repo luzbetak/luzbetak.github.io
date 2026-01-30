@@ -1,0 +1,106 @@
+---
+---
+{% include menu.html title="Apache Software" %}
+
+<hr align=left width=1100>
+
+<body>
+    <h1>Apache Airflow</h1>
+    <p>Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. It allows you to define your workflows as Directed Acyclic Graphs (DAGs) using Python, where each node in the graph represents a task.</p>
+    <h2>Key Features</h2>
+    <ul>
+        <li><h3>Dynamic Pipelines</h3> -  Workflows are defined as code, enabling dynamic pipeline generation.</li>
+        <li><h3>Scalability</h3> -  Airflow can scale to support complex workflows across a large number of tasks and workers.</li>
+        <li><h3>Extensibility</h3> -  It has a modular architecture with a rich set of plugins and operators that allow integration with various technologies and services, such as databases, cloud services, and more.</li>
+        <li><h3>Scheduling</h3> -  Airflow allows you to schedule workflows to run at specified intervals or based on triggers.</li>
+        <li><h3>Monitoring</h3> -  Airflow provides a web-based user interface to monitor and manage workflows, including tracking the progress of each task and managing errors.</li>
+        <li><h3>Alerting</h3> -  It can send notifications when tasks succeed, fail, or retry, making it easier to manage workflows.</li>
+    </ul>
+    <p>Airflow is widely used in data engineering, data science, and DevOps to automate data pipelines, orchestrate ETL (Extract, Transform, Load) processes, and manage machine learning workflows.</p>
+    <hr>
+    <h1>Apache Airflow Key Points</h1>
+    <ul>
+        <li><p><h3>DAG (Directed Acyclic Graph)</h3> - Workflows are represented as DAGs, which define the order of tasks and their relationships.</li>
+        <li><p><h3>Tasks</h3> - Each step in the workflow is a task, which can be executed independently and is defined using Python code.</li>
+        <li><p><h3>Operators</h3> - Airflow provides various operators to perform different types of tasks, such as BashOperator, PythonOperator, and SQL operators.</li>
+        <li><p><h3>Scheduling</h3> - Airflow allows you to schedule workflows to run at specific intervals or based on external triggers.</li>
+        <li><p><h3>Task Dependencies</h3> - You can define dependencies between tasks, ensuring that they execute in the correct order.</li>
+        <li><p><h3>Extensibility</h3> - Airflow is highly extensible, allowing custom operators, sensors, and hooks to be created for specific needs.</li>
+        <li><p><h3>Web UI</h3> - Airflow has a web-based user interface for monitoring, managing, and troubleshooting workflows.</li>
+        <li><p><h3>Scalability</h3> - It supports scaling horizontally across multiple workers and can be integrated with distributed systems like Celery and Kubernetes.</li>
+        <li><p><h3>Retry Mechanism</h3> - Airflow provides mechanisms to retry tasks on failure, with configurable delays and limits.</li>
+        <li><p><h3>XComs</h3> - Tasks can exchange small amounts of data using XComs, allowing communication between tasks within a DAG.</li>
+        <li><p><h3>Versioning</h3> - Airflow supports DAG versioning, making it easier to manage changes and updates to workflows.</li>
+        <li><p><h3>Logging</h3> - Airflow logs task execution details, which can be accessed through the web UI for debugging and analysis.</li>
+        <li><p><h3>Integrations</h3> - Airflow integrates with various databases, cloud platforms, and services, allowing seamless connection and data flow across systems.</li>
+    </ul>
+
+    <hr>
+    
+    <h1>Apache NiFi Overview</h1>
+    <p>Apache NiFi is an open-source data integration tool designed to automate the flow of data between systems. It provides a user-friendly web-based interface that allows users to design, monitor, and control data flows through a visual programming approach. NiFi is particularly useful for organizations that need to move large volumes of data from diverse sources to various destinations in a scalable, reliable, and efficient manner.</p>
+    
+    <h2>Key Features of Apache NiFi:</h2>
+    <ul>
+        <li><h3>Data Flow Automation:</h3> NiFi automates the transfer of data between systems, handling tasks such as data ingestion, routing, transformation, and delivery.</li>
+        <li><h3>Visual Interface:</h3> It offers a drag-and-drop interface for designing data flows, making it accessible for both technical and non-technical users.</li>
+        <li><h3>Scalability:</h3> NiFi can scale horizontally, allowing it to handle large data volumes and high-throughput scenarios.</li>
+        <li><h3>Flexibility:</h3> It supports a wide range of data formats and protocols, including JSON, XML, CSV, HTTP, FTP, Kafka, and more.</li>
+        <li><h3>Data Provenance:</h3> NiFi tracks the lineage of data as it moves through the system, providing detailed logs and audit trails that can be used for monitoring and debugging.</li>
+        <li><h3>Security:</h3> It includes features like SSL encryption, multi-tenant authorization, and secure authentication mechanisms to ensure data privacy and compliance.</li>
+        <li><h3>Extensibility:</h3> NiFi is highly extensible, allowing developers to create custom processors and integrate with various external systems through APIs and other plugins.</li>
+    </ul>
+
+    <h2>Common Use Cases:</h2>
+    <ul>
+        <li><h3>Data Ingestion:</h3> NiFi is often used to ingest data from various sources, such as databases, APIs, IoT devices, and cloud services, into data lakes or data warehouses.</li>
+        <li><h3>Data Transformation:</h3> It can perform complex data transformations, such as filtering, enrichment, aggregation, and formatting, as data moves through the flow.</li>
+        <li><h3>Real-Time Data Processing:</h3> NiFi is suitable for processing and analyzing data in real-time, making it valuable in use cases like fraud detection, log monitoring, and IoT data analysis.</li>
+        <li><h3>Data Integration:</h3> Organizations use NiFi to integrate data across different systems, ensuring seamless data flow between on-premises and cloud environments.</li>
+    </ul>
+    
+    <p>NiFi is widely adopted in industries like finance, healthcare, telecommunications, and government for its ability to manage data pipelines efficiently and securely.</p>
+
+ {% include footer.html %}
+
+  </body>
+</html>
+---
+---
+{% include menu.html title="Apache Airflow Overview" %}
+
+<body>
+    <h1>Apache Airflow</h1>
+    <p>Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. It allows you to define your workflows as Directed Acyclic Graphs (DAGs) using Python, where each node in the graph represents a task.</p>
+    <h2>Key Features</h2>
+    <ul>
+        <li><h3>Dynamic Pipelines</h3> -  Workflows are defined as code, enabling dynamic pipeline generation.</li>
+        <li><h3>Scalability</h3> -  Airflow can scale to support complex workflows across a large number of tasks and workers.</li>
+        <li><h3>Extensibility</h3> -  It has a modular architecture with a rich set of plugins and operators that allow integration with various technologies and services, such as databases, cloud services, and more.</li>
+        <li><h3>Scheduling</h3> -  Airflow allows you to schedule workflows to run at specified intervals or based on triggers.</li>
+        <li><h3>Monitoring</h3> -  Airflow provides a web-based user interface to monitor and manage workflows, including tracking the progress of each task and managing errors.</li>
+        <li><h3>Alerting</h3> -  It can send notifications when tasks succeed, fail, or retry, making it easier to manage workflows.</li>
+    </ul>
+    <p>Airflow is widely used in data engineering, data science, and DevOps to automate data pipelines, orchestrate ETL (Extract, Transform, Load) processes, and manage machine learning workflows.</p>
+    <hr>
+    <h1>Apache Airflow Key Points</h1>
+    <ul>
+        <li><p><h3>DAG (Directed Acyclic Graph)</h3> - Workflows are represented as DAGs, which define the order of tasks and their relationships.</li>
+        <li><p><h3>Tasks</h3> - Each step in the workflow is a task, which can be executed independently and is defined using Python code.</li>
+        <li><p><h3>Operators</h3> - Airflow provides various operators to perform different types of tasks, such as BashOperator, PythonOperator, and SQL operators.</li>
+        <li><p><h3>Scheduling</h3> - Airflow allows you to schedule workflows to run at specific intervals or based on external triggers.</li>
+        <li><p><h3>Task Dependencies</h3> - You can define dependencies between tasks, ensuring that they execute in the correct order.</li>
+        <li><p><h3>Extensibility</h3> - Airflow is highly extensible, allowing custom operators, sensors, and hooks to be created for specific needs.</li>
+        <li><p><h3>Web UI</h3> - Airflow has a web-based user interface for monitoring, managing, and troubleshooting workflows.</li>
+        <li><p><h3>Scalability</h3> - It supports scaling horizontally across multiple workers and can be integrated with distributed systems like Celery and Kubernetes.</li>
+        <li><p><h3>Retry Mechanism</h3> - Airflow provides mechanisms to retry tasks on failure, with configurable delays and limits.</li>
+        <li><p><h3>XComs</h3> - Tasks can exchange small amounts of data using XComs, allowing communication between tasks within a DAG.</li>
+        <li><p><h3>Versioning</h3> - Airflow supports DAG versioning, making it easier to manage changes and updates to workflows.</li>
+        <li><p><h3>Logging</h3> - Airflow logs task execution details, which can be accessed through the web UI for debugging and analysis.</li>
+        <li><p><h3>Integrations</h3> - Airflow integrates with various databases, cloud platforms, and services, allowing seamless connection and data flow across systems.</li>
+    </ul>
+
+  {% include footer.html %}
+
+  </body>
+</html>

@@ -1,0 +1,147 @@
+---
+---
+{% include menu.html title="Orchestration Tools" %}
+
+
+<h1>Orchestration Tools</h1>
+
+<h2>Definition</h2>
+<p>
+<strong>Orchestration tools</strong> are platforms that coordinate, schedule, and manage the execution of
+multi-step workflows composed of interdependent tasks, services, or jobs. They ensure tasks run
+in the correct order, at the correct time, with proper error handling and visibility.
+</p>
+
+<h2>Core Responsibilities of Orchestration Tools</h2>
+<ul>
+  <li><strong>Workflow definition</strong> – Define multi-step processes, typically as DAGs (Directed Acyclic Graphs)</li>
+  <li><strong>Scheduling and triggering</strong> – Time-based or event-driven execution</li>
+  <li><strong>Dependency management</strong> – Enforce task execution order</li>
+  <li><strong>Error handling</strong> – Retries, timeouts, and failure escalation</li>
+  <li><strong>State management</strong> – Track task and workflow status</li>
+  <li><strong>Scalability</strong> – Distribute workloads across compute resources</li>
+  <li><strong>Observability</strong> – Logging, metrics, lineage, and audit trails</li>
+</ul>
+
+<h2>Categories of Orchestration Tools</h2>
+
+<h3>1. Data Workflow Orchestration</h3>
+<p>Used for ETL/ELT pipelines, analytics workflows, and machine learning pipelines.</p>
+<ul>
+  <li><strong>Apache Airflow</strong>
+    <ul>
+      <li>Python-defined DAGs</li>
+      <li>Strong scheduling and dependency control</li>
+      <li>Common in enterprise data platforms</li>
+    </ul>
+  </li>
+  <li><strong>Dagster</strong>
+    <ul>
+      <li>Asset-centric design</li>
+      <li>Built-in data quality and lineage concepts</li>
+    </ul>
+  </li>
+  <li><strong>Prefect</strong>
+    <ul>
+      <li>Dynamic, Python-first workflows</li>
+      <li>Lightweight local and cloud execution</li>
+    </ul>
+  </li>
+  <li><strong>Luigi</strong>
+    <ul>
+      <li>Simple dependency-based pipelines</li>
+      <li>Minimal UI and observability</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>2. Container and Infrastructure Orchestration</h3>
+<p>Used to schedule and manage long-running services and distributed applications.</p>
+<ul>
+  <li><strong>Kubernetes</strong>
+    <ul>
+      <li>Schedules containers across clusters</li>
+      <li>Handles scaling, self-healing, and rolling updates</li>
+    </ul>
+  </li>
+  <li><strong>Nomad</strong>
+    <ul>
+      <li>Lightweight workload scheduler</li>
+      <li>Supports containers and virtual machines</li>
+    </ul>
+  </li>
+  <li><strong>Docker Swarm</strong>
+    <ul>
+      <li>Basic container orchestration</li>
+      <li>Less commonly used today</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>3. Cloud-Native Orchestration Services</h3>
+<p>Managed services tightly integrated with cloud ecosystems.</p>
+<ul>
+  <li><strong>AWS Step Functions</strong>
+    <ul>
+      <li>State-machine-based workflows</li>
+      <li>Integrates with Lambda, ECS, Glue, Batch</li>
+    </ul>
+  </li>
+  <li><strong>Azure Data Factory</strong>
+    <ul>
+      <li>Visual and code-based pipelines</li>
+      <li>Strong data integration focus</li>
+    </ul>
+  </li>
+  <li><strong>Google Cloud Composer</strong>
+    <ul>
+      <li>Managed Apache Airflow</li>
+      <li>Native GCP integration</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>4. CI/CD Orchestration</h3>
+<p>Coordinates build, test, and deployment workflows.</p>
+<ul>
+  <li><strong>Jenkins</strong></li>
+  <li><strong>GitHub Actions</strong></li>
+  <li><strong>GitLab CI</strong></li>
+  <li><strong>Argo Workflows</strong></li>
+</ul>
+
+<h2>Key Orchestration Concepts</h2>
+<ul>
+  <li><strong>DAG (Directed Acyclic Graph)</strong> – Defines task dependencies</li>
+  <li><strong>Idempotency</strong> – Safe re-execution without duplication</li>
+  <li><strong>Backfilling</strong> – Reprocessing historical data</li>
+  <li><strong>Event-driven execution</strong> – Triggered by data or system events</li>
+  <li><strong>Control plane vs data plane</strong> – Coordination logic versus execution logic</li>
+</ul>
+
+<h2>Orchestration vs Automation</h2>
+<ul>
+  <li><strong>Automation</strong>
+    <ul>
+      <li>Executes single tasks or scripts</li>
+      <li>Limited awareness of dependencies</li>
+    </ul>
+  </li>
+  <li><strong>Orchestration</strong>
+    <ul>
+      <li>Coordinates multiple automated tasks</li>
+      <li>Manages dependencies, state, retries, and scale</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>When Orchestration Tools Are Needed</h2>
+<ul>
+  <li>Multi-step pipelines with dependencies</li>
+  <li>Distributed or cloud-based workloads</li>
+  <li>Production-grade reliability and monitoring requirements</li>
+  <li>Complex data, analytics, or service workflows</li>
+</ul>
+
+
+{% include footer.html %}

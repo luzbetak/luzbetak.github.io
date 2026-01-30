@@ -1,0 +1,344 @@
+---
+---
+{% include menu.html title="index" %}
+
+<h1>Graph Databases — Advanced Technical Details and Usages</h1>
+<img src="/images/graph-databases.png" width=1000>
+<h2>1. Definition and Core Concept</h2>
+
+<p>
+A <strong>graph database</strong> is a database system designed to store, manage, and query data as a graph structure.
+It emphasizes <strong>relationships</strong> between entities as first-class citizens, rather than treating relationships
+as secondary constructs (such as foreign keys).
+</p>
+
+<ul>
+  <li><strong>Nodes (Vertices)</strong> — entities or objects</li>
+  <li><strong>Edges (Relationships)</strong> — directed or undirected connections between nodes</li>
+  <li><strong>Properties</strong> — key–value attributes on nodes and/or edges</li>
+</ul>
+
+<p>
+Graph databases are optimized for <strong>relationship traversal</strong>, <strong>pattern matching</strong>,
+and <strong>connected-data queries</strong>.
+</p>
+
+<hr/>
+
+<h2>2. Graph Data Models</h2>
+
+<h3>2.1 Property Graph Model</h3>
+
+<ul>
+  <li>Nodes and edges both support arbitrary properties</li>
+  <li>Edges have <strong>direction</strong> and <strong>type</strong></li>
+  <li>Schema-optional (schema-on-read)</li>
+</ul>
+
+<p><strong>Common usage:</strong> social networks, fraud detection, recommendations</p>
+
+<h3>2.2 RDF (Resource Description Framework) Model</h3>
+
+<ul>
+  <li>Data stored as <strong>triples</strong>: subject → predicate → object</li>
+  <li>Strongly schema-driven using ontologies (RDFS, OWL)</li>
+  <li>Designed for semantic reasoning and inference</li>
+</ul>
+
+<p><strong>Common usage:</strong> knowledge graphs, semantic web, linked data</p>
+
+<h3>2.3 Labeled Property Graph (LPG)</h3>
+
+<ul>
+  <li>Extension of property graph</li>
+  <li>Multiple labels per node</li>
+  <li>Used by most modern graph engines</li>
+</ul>
+
+<hr/>
+
+<h2>3. Query Languages</h2>
+
+<h3>3.1 Cypher</h3>
+
+<ul>
+  <li>Declarative, pattern-matching language</li>
+  <li>ASCII-art style graph patterns</li>
+  <li>Optimized for readability and traversal queries</li>
+</ul>
+
+<h3>3.2 Gremlin</h3>
+
+<ul>
+  <li>Imperative, traversal-based language</li>
+  <li>Part of Apache TinkerPop</li>
+  <li>Supports OLTP and OLAP traversals</li>
+</ul>
+
+<h3>3.3 SPARQL</h3>
+
+<ul>
+  <li>Query language for RDF graphs</li>
+  <li>Supports reasoning and inference queries</li>
+  <li>Designed for semantic consistency</li>
+</ul>
+
+<h3>3.4 Native / Proprietary Languages</h3>
+
+<ul>
+  <li>Custom optimizations for performance</li>
+  <li>Often support graph analytics primitives</li>
+</ul>
+
+<hr/>
+
+<h2>4. Storage and Architecture</h2>
+
+<h3>4.1 Native Graph Storage</h3>
+
+<ul>
+  <li>Adjacency lists stored on disk</li>
+  <li>Pointer-based traversal</li>
+  <li>Constant-time edge traversal</li>
+</ul>
+
+<h3>4.2 Distributed Graph Storage</h3>
+
+<ul>
+  <li>Graphs partitioned across nodes</li>
+  <li>Vertex-cut or edge-cut strategies</li>
+  <li>Trade-offs between locality and scalability</li>
+</ul>
+
+<h3>4.3 In-Memory Graph Engines</h3>
+
+<ul>
+  <li>Entire graph stored in RAM</li>
+  <li>Microsecond-level traversals</li>
+  <li>Used for real-time decision systems</li>
+</ul>
+
+<hr/>
+
+<h2>5. Indexing Strategies</h2>
+
+<ul>
+  <li><strong>Node property indexes</strong> — fast node lookup</li>
+  <li><strong>Composite indexes</strong> — multi-property filtering</li>
+  <li><strong>Relationship-type indexes</strong> — traversal pruning</li>
+  <li><strong>Full-text indexes</strong> — graph + text search</li>
+</ul>
+
+<p>
+Indexes accelerate entry points, while traversals dominate query execution time.
+</p>
+
+<hr/>
+
+<h2>6. Query Execution and Optimization</h2>
+
+<h3>6.1 Traversal-Based Execution</h3>
+
+<ul>
+  <li>Queries executed as step-by-step graph walks</li>
+  <li>Highly efficient for deep relationship queries</li>
+</ul>
+
+<h3>6.2 Cost-Based Optimization</h3>
+
+<ul>
+  <li>Cardinality estimation</li>
+  <li>Traversal ordering</li>
+  <li>Early pruning of paths</li>
+</ul>
+
+<h3>6.3 Path Explosion Control</h3>
+
+<ul>
+  <li>Depth limits</li>
+  <li>Uniqueness constraints</li>
+  <li>Cycle detection</li>
+</ul>
+
+<hr/>
+
+<h2>7. Transactions and Consistency</h2>
+
+<ul>
+  <li><strong>ACID transactions</strong> for OLTP workloads</li>
+  <li>Fine-grained locking on nodes and edges</li>
+  <li>Eventual consistency in large distributed clusters</li>
+</ul>
+
+<p>
+Most production graph databases support full transactional guarantees.
+</p>
+
+<hr/>
+
+<h2>8. Graph Analytics</h2>
+
+<h3>8.1 Centrality Algorithms</h3>
+
+<ul>
+  <li>PageRank</li>
+  <li>Betweenness centrality</li>
+  <li>Closeness centrality</li>
+</ul>
+
+<h3>8.2 Community Detection</h3>
+
+<ul>
+  <li>Louvain</li>
+  <li>Label propagation</li>
+  <li>Connected components</li>
+</ul>
+
+<h3>8.3 Similarity and Path Algorithms</h3>
+
+<ul>
+  <li>Shortest path</li>
+  <li>K-nearest neighbors</li>
+  <li>Node similarity metrics</li>
+</ul>
+
+<hr/>
+
+<h2>9. Common Use Cases</h2>
+
+<h3>9.1 Recommendation Systems</h3>
+
+<ul>
+  <li>User–item relationships</li>
+  <li>Real-time personalization</li>
+</ul>
+
+<h3>9.2 Fraud Detection</h3>
+
+<ul>
+  <li>Ring detection</li>
+  <li>Multi-hop transaction analysis</li>
+</ul>
+
+<h3>9.3 Knowledge Graphs</h3>
+
+<ul>
+  <li>Entity resolution</li>
+  <li>Semantic inference</li>
+</ul>
+
+<h3>9.4 Network and IT Operations</h3>
+
+<ul>
+  <li>Dependency mapping</li>
+  <li>Impact analysis</li>
+</ul>
+
+<h3>9.5 Identity and Access Management</h3>
+
+<ul>
+  <li>Role hierarchies</li>
+  <li>Permission propagation</li>
+</ul>
+
+<hr/>
+
+<h2>10. Integration with Modern Data Platforms</h2>
+
+<ul>
+  <li>Streaming ingestion (Kafka, Kinesis)</li>
+  <li>Graph + machine learning pipelines</li>
+  <li>Hybrid architectures with relational and data lake systems</li>
+</ul>
+
+<hr/>
+
+<h2>11. Strengths and Limitations</h2>
+
+<h3>Strengths</h3>
+
+<ul>
+  <li>Extremely fast relationship traversal</li>
+  <li>Natural modeling of connected data</li>
+  <li>Flexible schema</li>
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+  <li>Not ideal for large aggregations</li>
+  <li>Sharding complexity</li>
+  <li>Less efficient for simple tabular workloads</li>
+</ul>
+
+<hr/>
+
+<h2>12. When to Use a Graph Database</h2>
+
+<ul>
+  <li>Data is highly connected</li>
+  <li>Queries involve multi-hop relationships</li>
+  <li>Business logic depends on graph structure</li>
+  <li>Real-time traversal performance is required</li>
+</ul>
+
+<p>
+Graph databases are most effective when <strong>relationships are the data</strong>, not just attributes.
+</p>
+
+<hr/>
+
+<h1>Most Popular Graph Databases</h1>
+
+<h2>Widely Adopted (Enterprise & Production)</h2>
+
+<ul>
+  <li><strong>Neo4j</strong> — Property graph model; Cypher query language</li>
+  <li><strong>Amazon Neptune</strong> — Fully managed service; supports Gremlin, SPARQL, and openCypher</li>
+  <li><strong>TigerGraph</strong> — High-performance parallel graph analytics; GSQL</li>
+  <li><strong>ArangoDB</strong> — Multi-model database combining graph, document, and key-value; AQL</li>
+</ul>
+
+<hr/>
+
+<h2>Open-Source / Infrastructure-Centric</h2>
+
+<ul>
+  <li><strong>JanusGraph</strong> — Distributed graph database running on Cassandra, HBase, or ScyllaDB</li>
+  <li><strong>Dgraph</strong> — Native distributed graph engine with GraphQL+- query language</li>
+  <li><strong>OrientDB</strong> — Multi-model graph and document database with SQL-like queries</li>
+</ul>
+
+<hr/>
+
+<h2>In-Memory / Real-Time Graph Engines</h2>
+
+<ul>
+  <li><strong>RedisGraph</strong> — In-memory graph database optimized for low-latency traversal</li>
+</ul>
+
+<hr/>
+
+<h2>RDF / Semantic Graph Databases</h2>
+
+<ul>
+  <li><strong>AllegroGraph</strong> — RDF triple store; SPARQL querying; semantic reasoning and knowledge graphs</li>
+</ul>
+
+<hr/>
+
+<h2>Cloud-Native Graph Offerings</h2>
+
+<ul>
+  <li><strong>Azure Cosmos DB (Gremlin API)</strong> — Managed property graph service</li>
+  <li><strong>DataStax Enterprise Graph</strong> — Graph layer built on Apache Cassandra infrastructure</li>
+</ul>
+
+<p>
+These platforms represent the most commonly used graph databases across enterprise systems,
+open-source ecosystems, real-time applications, semantic technologies, and cloud-native architectures.
+</p>
+
+
+
+{% include footer.html %}
