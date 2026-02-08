@@ -1,0 +1,107 @@
+--
+---
+{% include menu.html title="Kevin Luzbetak Github Pages" %}
+
+    <p><span class="keyword">PySpark</span> is the Python API for Apache Spark, an open-source, distributed computing system designed for processing large-scale data. PySpark enables Python developers to write Spark applications using the popular Python programming language, offering a powerful framework for big data processing and analytics.</p>
+
+    <h2>Key Features of PySpark:</h2>
+    <ul>
+        <li><b>Distributed Data Processing:</b>
+            <p>PySpark allows you to process large datasets across a cluster of machines, making it suitable for handling big data that exceeds the memory of a single computer.</p>
+        </li>
+        <li><b>Resilient Distributed Datasets (RDDs):</b>
+            <p>RDDs are the fundamental data structure in PySpark. They are immutable, distributed collections of objects that can be processed in parallel. RDDs provide fault tolerance by automatically recovering lost data across the cluster.</p>
+        </li>
+        <li><b>DataFrames and SQL:</b>
+            <p>PySpark DataFrames are distributed collections of data organized into named columns, similar to a table in a relational database. DataFrames allow for optimizations such as lazy evaluation and query planning. PySpark also supports SQL queries on DataFrames, making it easier to work with structured data.</p>
+        </li>
+        <li><b>Lazy Evaluation:</b>
+            <p>Operations in PySpark are lazily evaluated, meaning that transformations on data (e.g., <code class="keyword">map</code>, <code class="keyword">filter</code>) are not executed until an action (e.g., <code class="keyword">collect</code>, <code class="keyword">save</code>) is performed. This allows Spark to optimize the execution plan for performance.</p>
+        </li>
+        <li><b>Machine Learning with MLlib:</b>
+            <p>PySpark’s MLlib library provides various tools for machine learning, including techniques for handling missing data, building models, and performing data preprocessing.</p>
+        </li>
+    </ul>
+
+    <h2>Handling Missing Data in PySpark:</h2>
+    <p>Handling missing data is a common task in data preprocessing, and PySpark provides several methods to manage missing or null values within DataFrames. Here are some common techniques to handle missing data in PySpark:</p>
+    <ol>
+        <li><b>Dropping Missing Values:</b>
+            <p>You can remove rows or columns that contain null values using the <code class="keyword">dropna()</code> function.</p>
+            <pre><code>
+<span class="comment"># Drop rows with any null values</span>
+df_cleaned = df.dropna()
+
+<span class="comment"># Drop rows if a specified subset of columns have null values</span>
+df_cleaned = df.dropna(subset=['column1', 'column2'])
+
+<span class="comment"># Drop rows if all values are null</span>
+df_cleaned = df.dropna(how='all')
+
+<span class="comment"># Drop columns with any null values</span>
+df_cleaned = df.dropna(axis=1)
+            </code></pre>
+        </li>
+        <li><b>Filling Missing Values:</b>
+            <p>You can replace null values with a specific value using the <code class="keyword">fillna()</code> function.</p>
+            <pre><code>
+<span class="comment"># Fill all null values with a constant value (e.g., 0 or 'unknown')</span>
+df_filled = df.fillna(0)  <span class="comment"># For numeric columns</span>
+df_filled = df.fillna('unknown')  <span class="comment"># For string columns</span>
+
+<span class="comment"># Fill null values in specific columns with different values</span>
+df_filled = df.fillna({'column1': 0, 'column2': 'unknown'})
+
+<span class="comment"># Fill null values with mean, median, or mode of the column</span>
+mean_value = df.select(mean(df['column1'])).collect()[0][0]
+df_filled = df.fillna({'column1': mean_value})
+            </code></pre>
+        </li>
+        <li><b>Replacing Missing Values with Forward or Backward Fill:</b>
+            <p>PySpark does not have a built-in method for forward or backward filling (also known as "imputation"). However, this can be implemented using window functions.</p>
+            <pre><code>
+from pyspark.sql.window import Window
+from pyspark.sql.functions import last, col
+
+<span class="comment"># Forward fill</span>
+window_spec = Window.orderBy('date_column').rowsBetween(-sys.maxsize, 0)
+df_filled = df.withColumn('column1_filled', last(col('column1'), ignorenulls=True).over(window_spec))
+
+<span class="comment"># Backward fill</span>
+window_spec = Window.orderBy('date_column').rowsBetween(0, sys.maxsize)
+df_filled = df.withColumn('column1_filled', last(col('column1'), ignorenulls=True).over(window_spec))
+            </code></pre>
+        </li>
+        <li><b>Imputing Missing Values with Machine Learning:</b>
+            <p>You can use machine learning algorithms to predict and fill in missing values. PySpark’s MLlib library provides tools to build models for imputation. For instance, you can use a regression model to predict missing values based on other features.</p>
+            <pre><code>
+from pyspark.ml.feature import Imputer
+
+imputer = Imputer(inputCols=['column1', 'column2'], outputCols=['column1_imputed', 'column2_imputed'])
+df_imputed = imputer.fit(df).transform(df)
+            </code></pre>
+        </li>
+        <li><b>Flagging Missing Values:</b>
+            <p>Sometimes, it’s useful to create a flag indicating whether a value was missing. This can be useful for downstream analysis or modeling.</p>
+            <pre><code>
+from pyspark.sql.functions import when
+
+df_flagged = df.withColumn('column1_missing', when(df['column1'].isNull(), 1).otherwise(0))
+            </code></pre>
+        </li>
+    </ol>
+
+    <h2>Summary:</h2>
+    <ul>
+        <li><b>Drop:</b> Remove rows or columns with missing data.</li>
+        <li><b>Fill:</b> Replace missing data with a specific value, mean, median, mode, etc.</li>
+        <li><b>Forward/Backward Fill:</b> Use the last valid observation to fill the missing data.</li>
+        <li><b>Machine Learning Imputation:</b> Predict missing values using models.</li>
+        <li><b>Flagging:</b> Create a binary indicator for missing values.</li>
+    </ul>
+    <p>These methods can be combined or chosen based on the specific requirements of your data and the nature of the missingness.</p>
+
+{% include footer.html %}
+
+  </body>
+</html>

@@ -1,0 +1,98 @@
+---
+---
+{% include menu.html title="Kevin Luzbetak Github Pages" %}
+    <h1>PySpark Questions and Answers</h1>
+
+    <ol>
+        <li>
+            <h2>What is PySpark?</h2>
+            <ul>
+                <li>PySpark is the Python API for Apache Spark, an open-source distributed computing system. It enables scalable, big data processing through parallelized tasks across clusters.</li>
+                <li>PySpark provides an interface for programming entire clusters with data parallelism and fault tolerance.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Key Features of PySpark</h2>
+            <ul>
+                <li><strong>Distributed Computing</strong>: PySpark runs across a cluster of machines, allowing for large-scale data processing by distributing tasks.</li>
+                <li><strong>RDDs (Resilient Distributed Datasets)</strong>: The fundamental data structure in PySpark, RDDs are fault-tolerant, distributed datasets that can be processed in parallel.</li>
+                <li><strong>DataFrames</strong>: Similar to Pandas, DataFrames are distributed across a cluster, PySpark DataFrames provide high-level APIs for working with structured data.</li>
+                <li><strong>Lazy Evaluation</strong>: Operations in PySpark are lazily evaluated, meaning they are not computed until an action (e.g., `collect()`, `count()`) is triggered.</li>
+                <li><strong>In-Memory Processing</strong>: PySpark performs most operations in memory, making it highly efficient for iterative algorithms and large-scale data processing.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>How does PySpark handle data?</h2>
+            <ul>
+                <li>PySpark uses DataFrames and RDDs (Resilient Distributed Datasets) to handle large datasets. DataFrames are similar to tables in relational databases, whereas RDDs are low-level objects that allow more control over data flow.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>What is an RDD?</h2>
+            <ul>
+                <li>RDD stands for Resilient Distributed Dataset. It is the fundamental data structure of Apache Spark, which is immutable, distributed, and fault-tolerant.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>How do you create an RDD in PySpark?</h2>
+            <ul>
+                <li>RDDs can be created in PySpark in two ways: by loading an external dataset from storage or by parallelizing an existing collection.</li>
+                <pre><code>rdd = sc.parallelize([1, 2, 3, 4, 5])</code></pre>
+            </ul>
+        </li>
+
+        <li>
+            <h2>What is the difference between <code>map()</code> and <code>flatMap()</code> in PySpark?</h2>
+            <ul>
+                <li>The <code>map()</code> transformation in PySpark applies a function to each element of the RDD and returns a new RDD with the results. The <code>flatMap()</code> transformation can return multiple elements for each input element and flattens them into a single list.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>What are actions and transformations in PySpark?</h2>
+            <ul>
+                <li>Transformations are operations that create a new RDD from an existing one, such as <code>map()</code> or <code>filter()</code>. Actions trigger the execution of transformations to return results to the driver program, such as <code>count()</code> or <code>collect()</code>.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Explain the concept of lazy evaluation in PySpark.</h2>
+            <ul>
+                <li>In PySpark, transformations are lazy, meaning they do not execute immediately. Instead, Spark builds a lineage of transformations, which is only executed when an action is called, optimizing the computation.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>How does Spark optimize execution plans?</h2>
+            <ul>
+                <li>Spark uses the Catalyst optimizer to automatically optimize the execution plan. The optimizer analyzes the logical plan created by the transformations and applies various rules to produce an efficient physical plan for execution.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>What is a DataFrame in PySpark?</h2>
+            <ul>
+                <li>A DataFrame in PySpark is a distributed collection of data organized into named columns, similar to a table in a relational database. It is a higher-level API that allows easier manipulation of structured and semi-structured data.</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>How do you perform joins in PySpark?</h2>
+            <ul>
+                <li>Joins in PySpark can be performed using the <code>join()</code> function on DataFrames. For example, to perform an inner join:</li>
+                <pre><code>df1.join(df2, df1.id == df2.id, 'inner')</code></pre>
+            </ul>
+        </li>
+    </ol>
+
+  {% include footer.html %}
+
+  </body>
+</html>
+    
+
+

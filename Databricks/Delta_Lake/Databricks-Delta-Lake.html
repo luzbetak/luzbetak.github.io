@@ -1,0 +1,59 @@
+---
+---
+{% include menu.html title="Databricks Delta Lake Design for Big Data" %}
+
+
+<table width="900">
+        <tr>
+            <td>
+                <h1>Databricks Delta Lake Design for Big Data</h1>
+
+                <h3>Unified Data Processing</h3>
+                <ul>
+                    <li>Delta Lake allows seamless support for both batch and streaming data processing using a single data copy.</li>
+                    <li>This provides flexibility in handling various types of workloads without the need to duplicate data.</li>
+                </ul>
+
+                <h3>ACID Transactions</h3>
+                <ul>
+                    <li>It offers ACID (Atomicity, Consistency, Isolation, Durability) transaction capabilities, ensuring data consistency and reliability.</li>
+                    <li>This is crucial in scenarios involving concurrent data modifications or failures.</li>
+                </ul>
+
+                <h3>Data Versioning</h3>
+                <ul>
+                    <li>Delta Lake supports data versioning, allowing for "time travel."</li>
+                    <li>This feature lets users query historical versions of data, which is beneficial for audits, debugging, and reproducing analysis at a given point in time.</li>
+                </ul>
+
+                <h3>Scalable Metadata</h3>
+                <ul>
+                    <li>Handling large-scale datasets requires efficient metadata management.</li>
+                    <li>Delta Lake provides scalable and optimized metadata handling, ensuring fast queries even with massive data.</li>
+                </ul>
+
+                <h3>Delta Sharing</h3>
+                <ul>
+                    <li>Through Delta Sharing, organizations can securely share large datasets with external partners or other organizations using an open protocol.</li>
+                    <li>This feature ensures secure and controlled data collaboration.</li>
+                </ul>
+
+                <h3>Connector Ecosystem</h3>
+                <ul>
+                    <li>Delta Lake integrates with a broad ecosystem of tools like Flink, Presto, and Trino.</li>
+                    <li>It enables seamless data processing and querying across platforms.</li>
+                </ul>
+
+                <a href="medallion-architecture.html"><h3>Medallion Architecture</h3></a>
+                <ul>
+                    <li>Delta Lake follows the Medallion Architecture, categorizing data into bronze (raw data), silver (cleaned data), and gold (aggregated or refined data) tiers.</li>
+                    <li>This approach streamlines data processing, improving data quality and availability as it moves through the tiers.</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+  {% include footer.html %}
+
+  </body>
+</html>

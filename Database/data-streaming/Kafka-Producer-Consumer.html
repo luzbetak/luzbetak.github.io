@@ -1,0 +1,87 @@
+---
+---
+{% include menu.html title="Apache Kafka Producer and Consumer" %}
+
+    <h1>Apache Kafka Producer and Consumer</h1>
+
+    <h2>Kafka Producer</h2>
+    <pre><code class="language-python">
+from kafka import KafkaProducer
+import json
+
+# Initialize the Kafka producer
+producer = KafkaProducer(
+    bootstrap_servers=['localhost:9092'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+# Send a message to the Kafka topic 'test_topic'
+producer.send('test_topic', {'key': 'value'})
+
+# Ensure all messages are sent before closing the producer
+producer.flush()
+producer.close()
+    </code></pre>
+
+    <h2>Description</h2>
+    <p>
+        <strong>KafkaProducer:</strong> Initializes the producer with a list of Kafka brokers. Here, it connects to 
+        <code>localhost:9092</code>.
+    </p>
+    <p>
+        <strong>value_serializer:</strong> Serializes the message to JSON format before sending it to Kafka.
+    </p>
+    <p>
+        <strong>send:</strong> Sends the message to the specified topic (<code>test_topic</code>).
+    </p>
+    <p>
+        <strong>flush:</strong> Ensures all messages are sent.
+    </p>
+    <p>
+        <strong>close:</strong> Closes the producer after sending messages.
+    </p>
+
+    <h2>Kafka Consumer</h2>
+    <pre><code class="language-python">
+from kafka import KafkaConsumer
+import json
+
+# Initialize the Kafka consumer
+consumer = KafkaConsumer(
+    'test_topic',
+    bootstrap_servers=['localhost:9092'],
+    auto_offset_reset='earliest',
+    enable_auto_commit=True,
+    value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+)
+
+# Read and print messages from the Kafka topic
+for message in consumer:
+    print(f"Received message: {message.value}")
+
+# Close the consumer when done
+consumer.close()
+    </code></pre>
+
+    <h2>Description</h2>
+    <p>
+        <strong>KafkaConsumer:</strong> Initializes the consumer to connect to <code>localhost:9092</code> and reads messages from 
+        the <code>test_topic</code>.
+    </p>
+    <p>
+        <strong>auto_offset_reset:</strong> Sets the consumer to start reading from the earliest message.
+    </p>
+    <p>
+        <strong>enable_auto_commit:</strong> Automatically commits the offset of the messages.
+    </p>
+    <p>
+        <strong>value_deserializer:</strong> Deserializes the JSON messages received from Kafka.
+    </p>
+    <p>
+        <strong>for message in consumer:</strong> Continuously reads messages from the topic and prints them.
+    </p>
+
+  {% include footer.html %}
+
+  </body>
+</html>

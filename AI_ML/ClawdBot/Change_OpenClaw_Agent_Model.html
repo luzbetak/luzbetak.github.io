@@ -1,0 +1,73 @@
+---
+---
+{% include menu.html title="Change OpenClaw Agent Model" %}
+
+  <h1>Change OpenClaw Agent Model on Clawdbot</h1>
+
+  <h2>Option 1 (recommended): Change the agent default via CLI</h2>
+
+  <ol>
+    <li>
+      <strong>Set the primary model</strong>:
+      <pre><code class="language-bash">
+openclaw config set agents.defaults.model.primary "anthropic/claude-opus-4-5"
+openclaw config set agents.defaults.model.secondary "anthropic/claude-3-5-haiku-latest"
+
+openclaw doctor --fix
+      </code></pre>
+    </li>
+    <li>
+      <strong>Restart the gateway</strong>:
+      <pre><code class="language-bash">
+openclaw gateway
+      </code></pre>
+    </li>
+    <li>
+      <strong>Confirm in logs</strong> you see:
+      <pre><code class="language-bash">
+[gateway] agent model: anthropic/claude-opus-4-5
+      </code></pre>
+    </li>
+  </ol>
+ </li>
+
+  <h2>Verify</h2>
+
+  <ul>
+    <li>
+      Run:
+      <pre><code class="language-bash">
+openclaw doctor
+      </code></pre>
+    </li>
+    <li>
+      Or <strong>watch startup logs</strong> for:
+      <pre><code class="language-bash">
+[gateway] agent model: anthropic/claude-opus-4-5
+      </code></pre>
+    </li>
+  </ul>
+
+  <h2>Important Note</h2>
+
+  <ul>
+    <li>
+      You must have <strong>anthropic/claude-opus-4-5</strong> enabled on your Anthropic account.
+      Otherwise you may see <strong>403</strong> or <strong>model-not-allowed</strong> errors.
+    </li>
+    <li>
+      If that happens, it’s an <strong>Anthropic permissions</strong> issue, not an OpenClaw config issue.
+    </li>
+  </ul>
+
+  <h3>Optional Next Steps</h3>
+
+  <ul>
+    <li>Set <strong>per-channel</strong> models</li>
+    <li>Configure <strong>fallback</strong> models</li>
+    <li>Run <strong>multiple agents</strong> with different models</li>
+    <li>Hot-swap models (where supported) without restarting</li>
+  </ul>
+
+
+{% include footer.html %}

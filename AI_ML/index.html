@@ -1,0 +1,256 @@
+---
+---
+{% include menu.html title="Artificial Intelligence (AI)" %}
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+/*
+            min-height: 100vh;
+            padding: 40px;
+*/
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            /* No position fixed/sticky */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* No position fixed/sticky - scrolls with page */
+        }
+
+        .tree {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .branch { color: #334155; }
+
+        .line {
+            padding: 2px 0;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .line:hover { background: rgba(148, 163, 184, 0.08); }
+
+        /* ROOT */
+        .ai-root { color: #f8fafc; font-weight: 700; font-size: 1.1rem; }
+
+        /* EXPERT SYSTEMS - Amber */
+        .expert-title { color: #fbbf24; font-weight: 600; }
+        .expert-child { color: #b45309; }
+
+        /* NLP - Emerald */
+        .nlp-title { color: #34d399; font-weight: 600; }
+        .nlp-child { color: #047857; }
+
+        /* COMPUTER VISION - Rose */
+        .cv-title { color: #fb7185; font-weight: 600; }
+        .cv-child { color: #be123c; }
+
+        /* ROBOTICS - Violet */
+        .robotics-title { color: #a78bfa; font-weight: 600; }
+
+        /* PLANNING - Cyan */
+        .planning-title { color: #22d3ee; font-weight: 600; }
+
+        /* MACHINE LEARNING - Blue */
+        .ml-title { color: #60a5fa; font-weight: 700; font-size: 0.95rem; }
+
+        /* Supervised - Green */
+        .supervised-title { color: #4ade80; font-weight: 600; }
+        .supervised-child { color: #16a34a; }
+        .supervised-grandchild { color: #15803d; }
+
+        /* Unsupervised - Orange */
+        .unsupervised-title { color: #fb923c; font-weight: 600; }
+        .unsupervised-child { color: #ea580c; }
+        .unsupervised-grandchild { color: #c2410c; }
+
+        /* Reinforcement - Purple */
+        .reinforcement-title { color: #c084fc; font-weight: 600; }
+        .reinforcement-child { color: #9333ea; }
+
+        /* DEEP LEARNING - Cyan */
+        .dl-title { color: #22d3ee; font-weight: 700; font-size: 0.95rem; }
+
+        /* FNN - Slate */
+        .fnn-title { color: #94a3b8; font-weight: 600; }
+        .fnn-child { color: #64748b; }
+
+        /* CNN - Teal */
+        .cnn-title { color: #2dd4bf; font-weight: 600; }
+        .cnn-child { color: #0d9488; }
+
+        /* RNN - Pink */
+        .rnn-title { color: #f472b6; font-weight: 600; }
+        .rnn-child { color: #db2777; }
+        .rnn-grandchild { color: #a21caf; }
+
+        /* Transformer - Gold */
+        .transformer-title { color: #facc15; font-weight: 700; }
+        .transformer-encoder { color: #4ade80; font-weight: 600; }
+        .transformer-encoder-child { color: #22c55e; }
+        .transformer-decoder { color: #fbbf24; font-weight: 600; }
+        .transformer-decoder-child { color: #d97706; }
+        .transformer-encdec { color: #38bdf8; font-weight: 600; }
+
+        /* Generative - Violet */
+        .generative-title { color: #a78bfa; font-weight: 600; }
+        .generative-child { color: #8b5cf6; }
+        .generative-grandchild { color: #7c3aed; }
+
+        /* GNN - Sky */
+        .gnn-title { color: #38bdf8; font-weight: 600; }
+        .gnn-child { color: #0284c7; }
+
+        /* RAG Highlight */
+        .rag-highlight {
+            background: rgba(34, 197, 94, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px dashed rgba(34, 197, 94, 0.6);
+            margin-left: -4px;
+        }
+        .rag-arrow { color: #22c55e; font-weight: 600; }
+        .rag-model { color: #86efac; font-weight: 500; }
+        .llm-highlight { color: #fde047; font-weight: 500; }
+    </style>
+
+<div class="container">
+<img src="https://luzbetak.github.io/images/artificial-intelligence-distributed-computing-2008.jpg" style="margin-left: 80px;">
+<p><br>
+<p><br>
+<h1>🧠 Artificial Intelligence Hierarchy</h1>
+<div class="tree">
+<div class="line"><span class="ai-root">Artificial Intelligence (AI)</span></div>
+<div class="line"><span class="branch"></span><span class="expert-title">Expert Systems</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="expert-child">Rule-based Systems</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="expert-child">Knowledge-based Systems</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="nlp-title">Natural Language Processing (NLP)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="nlp-child">Text Classification</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="nlp-child">Named Entity Recognition (NER)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="nlp-child">Sentiment Analysis</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="nlp-child">Machine Translation</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="nlp-child">Question Answering</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="transformer-title">Transformer Architecture</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="transformer-encoder">Encoder-Only (BERT, RoBERTa)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─</span><span class="rag-highlight"><span class="transformer-encoder-child">Embedding Models</span> <span class="rag-arrow">← RAG embeddings</span></span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─</span><span class="rag-model">MiniLM (384 dims)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─</span><span class="rag-model">multi-qa-mpnet (768 dims)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─</span><span class="rag-model">OpenAI ada-002 (1536 dims)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="transformer-decoder">Decoder-Only (GPT, Claude, LLaMA)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="llm-highlight">Large Language Models (LLMs)</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="transformer-encdec">Encoder-Decoder (T5, BART)</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="cv-title">Computer Vision</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cv-child">Image Classification</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cv-child">Object Detection</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cv-child">Image Segmentation</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cv-child">Facial Recognition</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cv-child">Image Recognition & Object Detection</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="cv-child">Medical Imaging & OCR</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="generative-title">Generative Models</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="generative-child">Variational Autoencoders (VAE)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="generative-child">Generative Adversarial Networks (GAN)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="generative-grandchild">DCGAN</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="generative-grandchild">StyleGAN</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="generative-grandchild">CycleGAN</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="generative-child">Diffusion Models</span></div>
+<div class="line"><span class="branch">  &nbsp; ├─ </span><span class="generative-grandchild">Stable Diffusion</span></div>
+<div class="line"><span class="branch">  &nbsp; ├─ </span><span class="generative-grandchild">DALL-E</span></div>
+<div class="line"><span class="branch">  &nbsp; └─ </span><span class="generative-grandchild">Midjourney</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="ml-title">Machine Learning (ML)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="supervised-title">Supervised Learning</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="supervised-child">Classification</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="supervised-grandchild">Logistic Regression</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="supervised-grandchild">Decision Trees</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="supervised-grandchild">Random Forest</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="supervised-grandchild">Support Vector Machines (SVM)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="supervised-grandchild">Naive Bayes</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; └─ </span><span class="supervised-grandchild">K-Nearest Neighbors (KNN)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="supervised-child">Regression</span></div>
+<div class="line"><span class="branch">  │ &nbsp; &nbsp; &nbsp; ├─ </span><span class="supervised-grandchild">Linear Regression</span></div>
+<div class="line"><span class="branch">  │ &nbsp; &nbsp; &nbsp; ├─ </span><span class="supervised-grandchild">Polynomial Regression</span></div>
+<div class="line"><span class="branch">  │ &nbsp; &nbsp; &nbsp; └─ </span><span class="supervised-grandchild">Ridge/Lasso Regression</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="unsupervised-title">Unsupervised Learning</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="unsupervised-child">Clustering</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="unsupervised-grandchild">K-Means</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="unsupervised-grandchild">DBSCAN</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; └─ </span><span class="unsupervised-grandchild">Hierarchical Clustering</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="unsupervised-child">Dimensionality Reduction</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="unsupervised-grandchild">PCA (Principal Component Analysis)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="unsupervised-grandchild">t-SNE</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="unsupervised-grandchild">UMAP</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="reinforcement-title">Reinforcement (Q-Learning, PPO)</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="dl-title">Deep Learning (DL)</span></div>
+
+<div class="line"><span class="branch">  ├─ </span><span class="fnn-title">Feedforward Neural Networks (FNN)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="fnn-child">Perceptron</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="fnn-child">Multi-Layer Perceptron (MLP)</span></div>
+
+<div class="line"><span class="branch">  ├─ </span><span class="cnn-title">Convolutional Neural Networks (CNN)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="cnn-child">ResNet / EfficientNet</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="cnn-child">YOLO (Object Detection)</span></div>
+
+<div class="line"><span class="branch">  ├─ </span><span class="rnn-title">Recurrent Neural Networks (RNN)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="rnn-child">Vanilla RNN</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="rnn-child">LSTM (Long Short-Term Memory)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; ├─ </span><span class="rnn-grandchild">Bidirectional LSTM</span></div>
+<div class="line"><span class="branch">  │ &nbsp; │ &nbsp; └─ </span><span class="rnn-grandchild">Stacked LSTM</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="rnn-child">GRU (Gated Recurrent Unit)</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="rnn-title">Recurrent Neural Networks (RNN)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="rnn-child">Vanilla RNN</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="rnn-child">LSTM (Long Short-Term Memory)</span></div>
+<div class="line"><span class="branch">  │ &nbsp; ├─ </span><span class="rnn-grandchild">Bidirectional LSTM</span></div>
+<div class="line"><span class="branch">  │ &nbsp; └─ </span><span class="rnn-grandchild">Stacked LSTM</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="rnn-child">GRU (Gated Recurrent Unit)</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="gnn-title">Graph Neural Networks (GNN)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="gnn-child">Graph Convolutional Networks (GCN)</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="gnn-child">Graph Attention Networks (GAT)</span></div>        
+<br>
+<div class="line"><span class="branch"></span><span class="cnn-title">Convolutional Neural Networks (CNN)</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cnn-child">LeNet</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cnn-child">AlexNet</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cnn-child">VGGNet</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="cnn-child">ResNet</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="cnn-child">EfficientNet</span></div>
+<br>
+<div class="line"><span class="branch"></span><span class="robotics-title">Robotics</span></div>
+<div class="line"><span class="branch">  ├─ </span><span class="expert-child">Control Algorithms</span></div>
+<div class="line"><span class="branch">  └─ </span><span class="expert-child">Path Planning (A*, Dijkstra)</span></div>
+</div>
+</div>
+
+{% include footer.html %}

@@ -1,0 +1,550 @@
+---
+---
+{% include menu.html title="index" %}
+
+<body>
+
+<h1>🦞 OpenClaw Setup Guide</h1>
+<h2>Ubuntu Desktop + NVIDIA RTX 3060 + WhatsApp Chat</h2>
+<p>Running as user <strong>clawdbot@ai</strong> in <strong>/home/clawdbot</strong></p>
+
+<hr>
+
+<h1>Table of Contents</h1>
+<ol>
+    <li><a href="#overview">Overview — What is OpenClaw?</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#create-user">Create the clawdbot User</a></li>
+    <li><a href="#install-node">Install Node.js 22+</a></li>
+    <li><a href="#nvidia-setup">NVIDIA RTX 3060 Driver Setup</a></li>
+    <li><a href="#install-openclaw">Install OpenClaw</a></li>
+    <li><a href="#onboard">Run the Onboarding Wizard</a></li>
+    <li><a href="#configure">Configure OpenClaw</a></li>
+    <li><a href="#whatsapp">Set Up WhatsApp Channel</a></li>
+    <li><a href="#systemd">Run as a systemd Service (Always-On)</a></li>
+    <li><a href="#browser">Browser Control (Optional)</a></li>
+    <li><a href="#verify">Verify and Troubleshoot</a></li>
+    <li><a href="#useful-commands">Useful Commands Reference</a></li>
+</ol>
+
+<hr>
+
+<h1 id="overview">1. Overview — What is OpenClaw?</h1>
+<p>
+    <strong>OpenClaw</strong> (formerly Clawdbot) is an open-source <strong>personal AI assistant</strong> you run on your own machine. 
+    It connects to chat platforms you already use — <strong>WhatsApp, Telegram, Discord, Slack, Signal, iMessage</strong> — and can browse the web, 
+    execute shell commands, manage files, run cron jobs, and extend itself with skills/plugins.
+</p>
+<p>Key facts:</p>
+<ul>
+    <li><strong>GitHub:</strong> <a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a> (117k+ stars, MIT license)</li>
+    <li><strong>Runtime:</strong> Node.js ≥ 22 (Bun is NOT recommended for WhatsApp)</li>
+    <li><strong>AI Models:</strong> Anthropic Claude (recommended), OpenAI GPT, local models, and more</li>
+    <li><strong>Architecture:</strong> A local Gateway (WebSocket control plane) + channels + agent runtime</li>
+    <li><strong>WhatsApp:</strong> Uses Baileys (WhatsApp Web protocol) — requires a real phone number</li>
+</ul>
+
+<hr>
+
+<h1 id="prerequisites">2. Prerequisites</h1>
+
+<h3>Hardware</h3>
+<ul>
+    <li>Ubuntu Desktop (22.04 or 24.04 LTS recommended)</li>
+    <li>NVIDIA RTX 3060 GPU (for browser control and optional local model inference)</li>
+    <li>At least 16 GB RAM recommended</li>
+    <li>Stable internet connection</li>
+</ul>
+
+<h3>Accounts &amp; API Keys</h3>
+<ul>
+    <li><strong>Anthropic account</strong> — Claude Pro/Max subscription (recommended) OR an API key</li>
+    <li>Alternatively: OpenAI API key or other supported provider</li>
+    <li><strong>A dedicated phone number</strong> for WhatsApp (recommended) — or use your personal number in self-chat mode</li>
+</ul>
+
+<h3>Software</h3>
+<ul>
+    <li>Git</li>
+    <li>Node.js ≥ 22</li>
+    <li>npm or pnpm</li>
+    <li>NVIDIA drivers (for browser/Chromium GPU acceleration)</li>
+</ul>
+
+<hr>
+
+<pre><code class="language-bash">
+npm install -g @anthropic-ai/claude-code
+claude setup-token
+</code></pre>
+
+<hr>
+
+<h1 id="create-user">3. Create the clawdbot User</h1>
+
+<p>Create a dedicated system user to run OpenClaw in its own isolated home directory:</p>
+
+<pre><code class="language-bash"># Run as root or with sudo from your admin account
+sudo adduser clawdbot --home /home/clawdbot --shell /bin/bash
+
+# Set a password when prompted, or:
+sudo passwd clawdbot
+
+# Add clawdbot to useful groups
+sudo usermod -aG video,audio,render clawdbot
+
+# (Optional) Allow clawdbot to run systemd user services after logout
+sudo loginctl enable-linger clawdbot</code></pre>
+
+<p>Now switch to the clawdbot user for all remaining steps:</p>
+
+<pre><code class="language-bash">su - clawdbot
+# You are now clawdbot@ai in /home/clawdbot</code></pre>
+
+<hr>
+
+<h1 id="install-node">4. Install Node.js 22+</h1>
+
+<p>OpenClaw requires <strong>Node.js 22 or newer</strong>. Install via NodeSource:</p>
+
+<pre><code class="language-bash"># Install Node.js 22.x via NodeSource (as clawdbot)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verify versions
+node --version    # Should be v22.x.x or higher
+npm --version     # Should be 10.x+</code></pre>
+
+<p>Alternatively, use <strong>nvm</strong> (Node Version Manager) for per-user installs without sudo:</p>
+
+<pre><code class="language-bash"># Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+
+# Install and use Node 22
+nvm install 22
+nvm use 22
+nvm alias default 22
+
+# Verify
+node --version</code></pre>
+
+<hr>
+
+<h1 id="nvidia-setup">5. NVIDIA RTX 3060 Driver Setup</h1>
+
+<p>The RTX 3060 is useful for OpenClaw's <strong>browser control</strong> (Chromium GPU rendering) and optional <strong>local model inference</strong>.</p>
+
+<pre><code class="language-bash"># Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install NVIDIA driver (recommended: use Ubuntu's built-in driver manager)
+sudo apt install -y nvidia-driver-550
+
+# Reboot after driver installation
+sudo reboot</code></pre>
+
+<p>After reboot, verify the driver:</p>
+
+<pre><code class="language-bash"># Check NVIDIA driver
+nvidia-smi
+
+# You should see your RTX 3060 with driver version and CUDA version</code></pre>
+
+<p><strong>Optional — Install CUDA Toolkit</strong> (only needed if running local models via Ollama, llama.cpp, etc.):</p>
+
+<pre><code class="language-bash"># Install CUDA toolkit
+sudo apt install -y nvidia-cuda-toolkit
+
+# Verify
+nvcc --version</code></pre>
+
+<hr>
+
+<h1 id="install-openclaw">6. Install OpenClaw</h1>
+
+<p>As the <strong>clawdbot</strong> user, install OpenClaw globally via npm:</p>
+
+<h3>Option A: Quick Install (npm global — recommended)</h3>
+
+<pre><code class="language-bash"># As clawdbot user
+npm install -g openclaw@latest
+
+# Verify installation
+openclaw --version</code></pre>
+
+<h3>Option B: One-Liner Installer</h3>
+
+<pre><code class="language-bash"># The installer handles Node.js and everything automatically
+curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+
+<h3>Option C: From Source (Hackable)</h3>
+
+<pre><code class="language-bash">cd /home/clawdbot
+git clone https://github.com/openclaw/openclaw.git
+cd openclaw
+
+# Install pnpm if not present
+npm install -g pnpm
+
+pnpm install
+pnpm ui:build
+pnpm build
+
+# Run via pnpm
+pnpm openclaw --version</code></pre>
+
+<hr>
+
+<h1 id="onboard">7. Run the Onboarding Wizard</h1>
+
+<p>The onboarding wizard walks you through setting up the Gateway, workspace, AI model, and channels:</p>
+
+<pre><code class="language-bash"># Run onboarding and install the background daemon
+openclaw onboard --install-daemon</code></pre>
+
+<p>The wizard will guide you through:</p>
+<ol>
+    <li><strong>Model selection</strong> — Choose Anthropic Claude (recommended: <code>anthropic/claude-opus-4-5</code>)</li>
+    <li><strong>Authentication</strong> — Enter your API key or OAuth credentials</li>
+    <li><strong>Gateway setup</strong> — Configures the local WebSocket server on port 18789</li>
+    <li><strong>Channel setup</strong> — Select WhatsApp and configure your phone number</li>
+    <li><strong>Workspace &amp; identity</strong> — Name your assistant and set personality</li>
+    <li><strong>Daemon install</strong> — Creates a systemd user service for always-on operation</li>
+</ol>
+
+<p><strong>Important:</strong> The <code>--install-daemon</code> flag installs a <strong>systemd user service</strong> so the gateway auto-starts and stays running.</p>
+
+<hr>
+
+<h1 id="configure">8. Configure OpenClaw</h1>
+
+<p>OpenClaw's configuration lives in <strong>~/.openclaw/openclaw.json</strong>. The wizard creates this, but you can edit it manually:</p>
+
+<pre><code class="language-bash"># Open the config file
+vim ~/.openclaw/openclaw.json</code></pre>
+
+<h3>Minimal Configuration Example</h3>
+
+<pre><code class="language-json">{
+  "agent": {
+    "model": "anthropic/claude-opus-4-5"
+  },
+  "channels": {
+    "whatsapp": {
+      "dmPolicy": "allowlist",
+      "allowFrom": ["+1XXXXXXXXXX"]
+    }
+  },
+  "browser": {
+    "enabled": true
+  }
+}</code></pre>
+
+<h3>Key Configuration Paths</h3>
+<ul>
+    <li><strong>Config file:</strong> <code>~/.openclaw/openclaw.json</code></li>
+    <li><strong>Workspace:</strong> <code>~/.openclaw/workspace/</code></li>
+    <li><strong>Credentials:</strong> <code>~/.openclaw/credentials/</code></li>
+    <li><strong>Skills:</strong> <code>~/.openclaw/workspace/skills/</code></li>
+    <li><strong>Logs:</strong> <code>/tmp/openclaw/openclaw-YYYY-MM-DD.log</code></li>
+</ul>
+
+<hr>
+
+<h1 id="whatsapp">9. Set Up WhatsApp Channel</h1>
+
+<h2>Step 1: Get a Phone Number</h2>
+<ul>
+    <li><strong>Recommended:</strong> Use a <strong>dedicated/separate phone number</strong> — a spare SIM, eSIM, or prepaid SIM</li>
+    <li><strong>Fallback:</strong> Use your personal number with <code>selfChatMode: true</code></li>
+    <li><strong>Avoid:</strong> Google Voice, TextNow, and VoIP numbers — WhatsApp blocks these</li>
+</ul>
+
+<h2>Step 2: Configure WhatsApp in openclaw.json</h2>
+
+<h3>Dedicated Number Setup (Recommended)</h3>
+<pre><code class="language-json">{
+  "channels": {
+    "whatsapp": {
+      "dmPolicy": "allowlist",
+      "allowFrom": ["+1XXXXXXXXXX"]
+    }
+  }
+}</code></pre>
+<p>Replace <code>+1XXXXXXXXXX</code> with <strong>your personal phone number</strong> (the one you'll message FROM).</p>
+
+<h3>Personal Number Setup (Self-Chat Mode)</h3>
+<pre><code class="language-json">{
+  "channels": {
+    "whatsapp": {
+      "selfChatMode": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": ["+1XXXXXXXXXX"]
+    }
+  }
+}</code></pre>
+
+<h2>Step 3: Link WhatsApp via QR Code</h2>
+
+<pre><code class="language-bash"># This displays a QR code in the terminal
+openclaw channels login</code></pre>
+
+<ol>
+    <li>Open <strong>WhatsApp</strong> on your phone (the phone with the dedicated number)</li>
+    <li>Go to <strong>Settings → Linked Devices → Link a Device</strong></li>
+    <li>Scan the QR code shown in the terminal</li>
+    <li>Wait for confirmation — credentials are saved to <code>~/.openclaw/credentials/whatsapp/</code></li>
+</ol>
+
+<h2>Step 4: Start (or Restart) the Gateway</h2>
+
+<pre><code class="language-bash"># If using systemd daemon (installed during onboard)
+systemctl --user restart openclaw-gateway
+
+# Or start manually for testing
+openclaw gateway --port 18789 --verbose</code></pre>
+
+<h2>Step 5: Test It!</h2>
+<ul>
+    <li><strong>Dedicated number:</strong> From your personal phone, send a WhatsApp message to the OpenClaw number</li>
+    <li><strong>Self-chat mode:</strong> Open WhatsApp, go to "Message yourself", and type a message</li>
+    <li>OpenClaw should respond within seconds!</li>
+</ul>
+
+<h3>WhatsApp DM Policies</h3>
+<ul>
+    <li><strong>allowlist</strong> — Only numbers in <code>allowFrom</code> can chat (recommended)</li>
+    <li><strong>pairing</strong> — Unknown senders get a pairing code; approve with <code>openclaw pairing approve whatsapp &lt;code&gt;</code></li>
+    <li><strong>open</strong> — Anyone can message (requires <code>allowFrom: ["*"]</code>)</li>
+    <li><strong>disabled</strong> — No DMs accepted</li>
+</ul>
+
+<h3>WhatsApp Group Support</h3>
+<pre><code class="language-json">{
+  "channels": {
+    "whatsapp": {
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>Use <code>"*"</code> to allow all groups or specify group JIDs. With <code>requireMention: true</code>, the bot only responds when @mentioned.</p>
+
+<hr>
+
+<h1 id="systemd">10. Run as a systemd Service (Always-On)</h1>
+
+<p>If you used <code>openclaw onboard --install-daemon</code>, a systemd user service was already created. If not, set it up manually:</p>
+
+<pre><code class="language-bash"># Create the systemd user directory
+mkdir -p ~/.config/systemd/user/</code></pre>
+
+<p>Create the service file:</p>
+
+<pre><code class="language-bash">cat &lt;&lt; 'EOF' &gt; ~/.config/systemd/user/openclaw-gateway.service
+[Unit]
+Description=OpenClaw Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/openclaw gateway --port 18789
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=default.target
+EOF</code></pre>
+
+<p><strong>Note:</strong> If you installed Node via nvm, adjust the ExecStart path:</p>
+<pre><code class="language-bash"># Find your openclaw binary path
+which openclaw
+# Example: /home/clawdbot/.nvm/versions/node/v22.x.x/bin/openclaw
+# Update ExecStart accordingly</code></pre>
+
+<p>Enable and start the service:</p>
+
+<pre><code class="language-bash"># Reload systemd
+systemctl --user daemon-reload
+
+# Enable auto-start on boot
+systemctl --user enable openclaw-gateway
+
+# Start the service now
+systemctl --user start openclaw-gateway
+
+# Check status
+systemctl --user status openclaw-gateway
+
+# View logs
+journalctl --user -u openclaw-gateway -f</code></pre>
+
+<p><strong>Important:</strong> For the service to run after logout, enable linger:</p>
+<pre><code class="language-bash">sudo loginctl enable-linger clawdbot</code></pre>
+
+<hr>
+
+<h1 id="browser">11. Browser Control (Optional)</h1>
+
+<p>OpenClaw can control a Chromium browser for web browsing, form filling, and data extraction. The RTX 3060 helps with GPU-accelerated rendering.</p>
+
+<pre><code class="language-bash"># Install Chromium and dependencies
+sudo apt install -y chromium-browser
+
+# Or install Google Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt --fix-broken install -y</code></pre>
+
+<p>Enable browser in your config:</p>
+<pre><code class="language-json">{
+  "browser": {
+    "enabled": true
+  }
+}</code></pre>
+
+<p>If running headless (no display), install Xvfb:</p>
+
+<pre><code class="language-bash">sudo apt install -y xvfb
+# OpenClaw handles headless mode internally, but Xvfb can help with edge cases</code></pre>
+
+<p>For browser troubleshooting on Linux, see: <a href="https://docs.openclaw.ai/tools/browser-linux-troubleshooting">docs.openclaw.ai/tools/browser-linux-troubleshooting</a></p>
+
+<hr>
+
+<h1 id="verify">12. Verify and Troubleshoot</h1>
+
+<h3>Run the Doctor</h3>
+<pre><code class="language-bash"># Diagnoses configuration, channels, and gateway health
+openclaw doctor</code></pre>
+
+<h3>Check Gateway Status</h3>
+<pre><code class="language-bash"># Gateway health check
+openclaw health
+
+# Detailed status
+openclaw status</code></pre>
+
+<h3>Check Channel Status</h3>
+<pre><code class="language-bash"># See all connected channels
+openclaw channels status</code></pre>
+
+<h3>View Logs</h3>
+<pre><code class="language-bash"># Real-time log streaming
+openclaw logs --follow
+
+# Or read the log file directly
+tail -f /tmp/openclaw/openclaw-$(date +%Y-%m-%d).log</code></pre>
+
+<h3>Common Issues</h3>
+<ul>
+    <li><strong>WhatsApp not linking:</strong> Run <code>openclaw channels login</code> and re-scan the QR code</li>
+    <li><strong>WhatsApp disconnecting:</strong> Run <code>openclaw doctor</code> — check if credentials are corrupt</li>
+    <li><strong>Gateway won't start:</strong> Check port 18789 is free: <code>ss -tlnp | grep 18789</code></li>
+    <li><strong>Node version too old:</strong> Verify <code>node --version</code> is 22+</li>
+    <li><strong>Permission errors:</strong> Make sure you're running as <code>clawdbot</code>, not root</li>
+</ul>
+
+<hr>
+
+<h1 id="useful-commands">13. Useful Commands Reference</h1>
+
+<h3>Gateway Control</h3>
+<pre><code class="language-bash"># Start gateway (foreground, verbose)
+openclaw gateway --port 18789 --verbose
+
+# Restart systemd service
+systemctl --user restart openclaw-gateway
+
+# Stop the gateway
+systemctl --user stop openclaw-gateway</code></pre>
+
+<h3>Chat &amp; Messaging</h3>
+<pre><code class="language-bash"># Send a message from CLI
+openclaw message send --to "+1XXXXXXXXXX" --message "Hello from OpenClaw!"
+
+# Talk to the agent directly
+openclaw agent --message "What can you do?"
+
+# Send with high thinking level
+openclaw agent --message "Analyze this problem" --thinking high</code></pre>
+
+<h3>Session Management</h3>
+<pre><code class="language-bash"># List active sessions
+openclaw sessions list
+
+# Reset a session
+openclaw sessions reset</code></pre>
+
+<h3>WhatsApp Chat Commands</h3>
+<p>Send these <strong>in WhatsApp</strong> to your OpenClaw bot:</p>
+<ul>
+    <li><strong>/status</strong> — Show session status (model, tokens, cost)</li>
+    <li><strong>/new</strong> or <strong>/reset</strong> — Reset the session</li>
+    <li><strong>/compact</strong> — Compact session context</li>
+    <li><strong>/think high</strong> — Set thinking level to high</li>
+    <li><strong>/verbose on|off</strong> — Toggle verbose mode</li>
+</ul>
+
+<h3>Updating OpenClaw</h3>
+<pre><code class="language-bash"># Update to the latest version
+npm update -g openclaw@latest
+
+# Or use the built-in updater
+openclaw update
+
+# Run doctor after update to migrate configs
+openclaw doctor</code></pre>
+
+<h3>Skills &amp; Plugins</h3>
+<pre><code class="language-bash"># List installed skills
+openclaw skills list
+
+# Search for skills on ClawHub
+openclaw skills search "gmail"
+
+# Install a skill
+openclaw skills install &lt;skill-name&gt;</code></pre>
+
+<hr>
+
+<h1>Directory Structure Summary</h1>
+<pre><code class="language-bash">/home/clawdbot/
+├── .openclaw/
+│   ├── openclaw.json          # Main configuration file
+│   ├── workspace/
+│   │   ├── AGENTS.md          # Agent prompt file
+│   │   ├── SOUL.md            # Personality/soul file
+│   │   ├── TOOLS.md           # Tools configuration
+│   │   └── skills/            # Installed skills
+│   └── credentials/
+│       └── whatsapp/
+│           └── default/
+│               └── creds.json # WhatsApp session credentials
+├── .config/
+│   └── systemd/
+│       └── user/
+│           └── openclaw-gateway.service  # systemd service
+└── .npm-global/               # npm global packages (if configured)</code></pre>
+
+<hr>
+
+<h1>Helpful Links</h1>
+<ul>
+    <li><strong>Website:</strong> <a href="https://openclaw.ai">openclaw.ai</a></li>
+    <li><strong>Docs:</strong> <a href="https://docs.openclaw.ai">docs.openclaw.ai</a></li>
+    <li><strong>GitHub:</strong> <a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a></li>
+    <li><strong>Discord Community:</strong> <a href="https://discord.gg/clawd">discord.gg/clawd</a></li>
+    <li><strong>Linux Platform Guide:</strong> <a href="https://docs.openclaw.ai/platforms/linux">docs.openclaw.ai/platforms/linux</a></li>
+    <li><strong>WhatsApp Channel Docs:</strong> <a href="https://docs.openclaw.ai/channels/whatsapp">docs.openclaw.ai/channels/whatsapp</a></li>
+    <li><strong>ClawHub (Skills Registry):</strong> <a href="https://clawhub.com">clawhub.com</a></li>
+    <li><strong>Browser Troubleshooting (Linux):</strong> <a href="https://docs.openclaw.ai/tools/browser-linux-troubleshooting">docs.openclaw.ai/tools/browser-linux-troubleshooting</a></li>
+</ul>
+
+
+{% include footer.html %}
