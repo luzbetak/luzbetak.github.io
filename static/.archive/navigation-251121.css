@@ -1,0 +1,133 @@
+    /* Reset navbar link styles to prevent inheritance from style.css */
+    .navbar li {
+      margin: 0 !important;
+      padding: 0 !important;
+      color: inherit !important;
+    }
+    
+    /* Override base style.css with higher specificity */
+    nav.navbar {
+      overflow: visible !important;
+    }
+    
+    nav.navbar a {
+      float: none !important;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      font-size: 14px;
+      gap: 6px;
+      margin: 8px 12px;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top navigation bar with dropdowns
+       (overrides base .navbar styles from style.css) */
+    .navbar {
+      background-color: #0066cc; /* Blue background */
+      border-bottom: 1px solid #004499; /* Darker blue border */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      overflow: visible;
+      width: 1000px; /* match body width */
+    }
+
+    .navbar > ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .navbar > ul > li {
+      position: relative; /* for dropdown positioning */
+    }
+
+    .navbar a {
+      display: block;
+      padding: 12px 16px;
+      color: #ffffff; /* White text for better contrast on blue */
+      text-decoration: none;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    /* hover on top-level items */
+    .navbar > ul > li:hover > a {
+      background-color: #004499; /* Darker blue on hover */
+      color: #ffffff; /* White text on hover */
+    }
+
+    /* Two-column dropdown menu */
+    .navbar .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #1a1a1a; /* Very dark gray background */
+      min-width: 520px; /* Increased width for two columns */
+      list-style: none;
+      margin: 0;
+      padding: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+      z-index: 1000;
+      border: 1px solid #333; /* Add border for definition */
+      
+      /* CSS Grid for two columns */
+      display: none; /* Will become grid on hover */
+      grid-template-columns: 1fr 1fr; /* Two equal columns */
+      grid-auto-flow: row; /* Fill by rows */
+      gap: 4px 16px; /* Gap between rows and columns */
+    }
+
+    /* show dropdown on hover */
+    .navbar li:hover > .dropdown {
+      display: grid; /* Changed from block to grid */
+    }
+
+    .navbar .dropdown li {
+      margin: 0;
+      padding: 0;
+      display: block;
+      width: 100%; /* Each item takes full width of its column */
+    }
+
+    .navbar .dropdown li a {
+      padding: 6px 12px;
+      font-size: 14px;
+      text-align: left !important;
+      width: 100%;
+      box-sizing: border-box;
+      display: block;
+      color: #00ccff; /* Light cyan color for dropdown items */
+    }
+
+    .navbar .dropdown li a:hover {
+      background-color: #333; /* Dark gray background on hover */
+      color: #ffcc00; /* Yellow/gold text on hover */
+      text-align: left !important;
+    }
+
+    /* optional section headers inside dropdown - spans both columns */
+    .dropdown-header {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #66b3ff; /* Light blue color for headers */
+      padding: 4px 16px;
+      margin-top: 4px;
+      grid-column: span 2; /* Header spans both columns */
+    }
+

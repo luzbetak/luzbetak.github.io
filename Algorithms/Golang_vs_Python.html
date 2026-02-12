@@ -1,0 +1,191 @@
+---
+---
+{% include menu.html title="Golang vs Python" %}
+
+<h1>Go (Golang) vs Python Performance Comparison</h1>
+
+<h2>1. Execution Speed (CPU-bound)</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Compiled to native machine code</li>
+      <li>Static typing, no runtime interpretation</li>
+      <li>Typical performance: <strong>5–30× faster than CPython</strong></li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>Interpreted (CPython bytecode + VM)</li>
+      <li>Dynamic typing with runtime checks</li>
+      <li>Slower for tight loops and numeric logic</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go is significantly faster for CPU-intensive workloads.</strong></p>
+
+<h2>2. Concurrency &amp; Parallelism</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Built-in concurrency primitives (goroutines, channels)</li>
+      <li>Lightweight threads (~2–4 KB stack)</li>
+      <li>True parallelism across CPU cores</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>Global Interpreter Lock (GIL) in CPython</li>
+      <li>Threads do not run CPU-bound code in parallel</li>
+      <li>Multiprocessing required for CPU parallelism (high overhead)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go scales far better on multi-core systems.</strong></p>
+
+<h2>3. Memory Usage</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Lower per-object overhead</li>
+      <li>Compact runtime memory model</li>
+      <li>Predictable allocation behavior</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>High object overhead</li>
+      <li>Reference counting + cyclic GC</li>
+      <li>Higher RAM usage per process</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go uses substantially less memory.</strong></p>
+
+<h2>4. Garbage Collection</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Concurrent, low-latency garbage collector</li>
+      <li>Tuned for server workloads</li>
+      <li>Millisecond-level pauses</li>
+    </ul>
+  </li>
+  <li><strong>Python (CPython)</strong>
+    <ul>
+      <li>Reference counting + periodic GC</li>
+      <li>Frequent allocations/deallocations</li>
+      <li>Higher overhead in object-heavy workloads</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go GC is more predictable under load.</strong></p>
+
+<h2>5. Startup Time</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Single static binary</li>
+      <li>Near-instant startup</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>Interpreter startup + imports</li>
+      <li>Noticeably slower startup</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go starts faster.</strong></p>
+
+<h2>6. I/O-Bound Performance</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Async I/O via goroutines</li>
+      <li>Scales well with tens of thousands of connections</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>Async frameworks (asyncio, uvloop) mitigate slowness</li>
+      <li>Still limited by interpreter overhead</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go handles high-concurrency I/O more efficiently.</strong></p>
+
+<h2>7. Numerical &amp; Scientific Computing</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Slower than optimized C/Fortran libraries</li>
+      <li>Less mature ecosystem</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>NumPy, SciPy backed by C/Fortran</li>
+      <li>Near-native performance for vectorized math</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Python wins for scientific workloads when native extensions are used.</strong></p>
+
+<h2>8. Binary Size &amp; Deployment</h2>
+<ul>
+  <li><strong>Go</strong>
+    <ul>
+      <li>Single static binary (5–20 MB typical)</li>
+      <li>No runtime dependencies</li>
+    </ul>
+  </li>
+  <li><strong>Python</strong>
+    <ul>
+      <li>Requires interpreter + environment</li>
+      <li>Larger deployment footprint</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Result</h3>
+<p><strong>Go is simpler and faster to deploy.</strong></p>
+
+<h2>9. Typical Benchmarks (Approximate)</h2>
+<ul>
+  <li><strong>JSON parsing:</strong> Go ~3–10× faster</li>
+  <li><strong>HTTP server throughput:</strong> Go ~5–15× higher</li>
+  <li><strong>CPU loops:</strong> Go ~10–30× faster</li>
+  <li><strong>Memory usage:</strong> Go low, Python high</li>
+</ul>
+
+<h2>Bottom Line (Performance Only)</h2>
+<ol>
+  <li><strong>Go dominates</strong> in CPU-bound workloads, high-concurrency servers, low-latency systems, and memory efficiency.</li>
+  <li><strong>Python competes</strong> only when performance-critical logic runs in native C/C++ extensions.</li>
+</ol>
+
+<h3>Summary</h3>
+<p>
+  <strong>
+    Go delivers consistently higher raw performance, better concurrency, lower memory usage,
+    and more predictable behavior under load than Python.
+  </strong>
+</p>
+
+
+
+{% include footer.html %}

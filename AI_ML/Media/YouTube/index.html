@@ -1,0 +1,89 @@
+---
+---
+{% include menu.html title="Machine Learning - YouTube" %}
+
+<style>
+    .video-container {
+        display: flex;
+        flex-wrap: nowrap; /* Ensures videos stay in one row */
+        gap: 20px;
+        justify-content: center; /* Centers the videos horizontally */
+    }
+    .video-item {
+        width: 300px;
+        text-align: center;
+    }
+    .video-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        margin: initial; /* Resets global margin */
+        padding: initial; /* Resets global padding */
+    }
+    .video-description {
+        margin: 0; /* Explicitly removes space */
+        padding: 0; /* Ensures no internal padding */
+        font-size: 0.8rem;
+        color: gray;
+        line-height: 1; /* Compact spacing */
+    }
+    .video-item a {
+        text-decoration: none;
+        color: #0073e6;
+        font-weight: bold;
+    }
+    .video-item a:hover {
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <div class="video-container">
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=fFgyOucIFuk" target="_blank">
+                <img src="https://img.youtube.com/vi/fFgyOucIFuk/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Feed Your OWN Documents to a Local Large Language Model!</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=Wjrdr0NU4Sk" target="_blank">
+                <img src="https://img.youtube.com/vi/Wjrdr0NU4Sk/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Host ALL your AI locally</p>
+        </div>
+        <div class="video-item">
+            <a href="https://youtu.be/15bpNKJB-X4?si=PZK_dLgGwerezr7H" target="_blank">
+                <img src="https://img.youtube.com/vi/15bpNKJB-X4/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">New Free AI - chat.notdiamond.ai</p>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=CfubH7XpRVw" target="_blank">
+                <img src="https://img.youtube.com/vi/CfubH7XpRVw/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Intro to Databricks Lakehouse Platform</p>
+        </div>
+        <div class="video-item">
+            <a href="https://youtu.be/5CmAKm1wWW0?si=oCDnomEOfIE" target="_blank">
+                <img src="https://img.youtube.com/vi/5CmAKm1wWW0/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Build Anything with Claude MCP Agents</p>
+        </div>
+        <div class="video-item">
+            <a href="https://www.youtube.com/watch?v=WxYC9-hBM_g" target="_blank">
+                <img src="https://img.youtube.com/vi/WxYC9-hBM_g/hqdefault.jpg" alt="Video Thumbnail">
+            </a>
+            <p class="video-description">Run your own AI (but private)</p>
+        </div>
+    </div>
+</body>
+
+{% include footer.html %}

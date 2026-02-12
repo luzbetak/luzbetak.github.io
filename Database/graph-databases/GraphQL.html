@@ -1,0 +1,266 @@
+---
+---
+{% include menu.html title="GraphQL" %}
+
+
+<h1>GraphQL — Advanced Technical Details and Usages</h1>
+
+<p>
+<strong>GraphQL</strong> is an application-layer query language and runtime for APIs that enables clients to request
+<strong>exactly the data they need</strong>. It was designed to solve inefficiencies of REST APIs such as over-fetching,
+under-fetching, and rigid endpoint structures.
+</p>
+
+<ul>
+  <li>Strongly typed schema</li>
+  <li>Single endpoint</li>
+  <li>Client-driven queries</li  >
+  <li>Language-agnostic specification</li>
+</ul>
+
+<hr/>
+
+<h2>GraphQL Architecture</h2>
+
+
+<ul>
+  <li><strong>Client</strong> — sends queries, mutations, and subscriptions</li>
+  <li><strong>GraphQL Server</strong> — validates, resolves, and executes operations</li>
+  <li><strong>Schema</strong> — defines types, fields, and relationships</li>
+  <li><strong>Resolvers</strong> — functions that fetch or compute data</li>
+</ul>
+
+<hr/>
+
+<h2>Core GraphQL Concepts</h2>
+
+<h3>Schema Definition Language (SDL)</h3>
+
+<p>
+The schema is the contract between clients and servers.
+</p>
+
+
+<ul>
+  <li>Defines object types, scalars, enums, interfaces, and unions</li>
+  <li>Statically typed</li>
+  <li>Validated at query time</li>
+</ul>
+
+<h3>Types</h3>
+
+<ul>
+  <li><strong>Scalar Types</strong> — String, Int, Float, Boolean, ID</li>
+  <li><strong>Object Types</strong> — structured data types</li>
+  <li><strong>Input Types</strong> — used for mutations</li>
+  <li><strong>Enums</strong> — constrained value sets</li>
+  <li><strong>Interfaces</strong> — shared field definitions</li>
+  <li><strong>Unions</strong> — multiple possible object types</li>
+</ul>
+
+<hr/>
+
+<h2>Queries</h2>
+
+
+<ul>
+  <li>Hierarchical data fetching</li>
+  <li>Nested field selection</li>
+  <li>Field-level resolution</li>
+  <li>Strong validation before execution</li>
+</ul>
+
+<h3>Advanced Query Features</h3>
+
+<ul>
+  <li><strong>Arguments</strong> — parameterized field access</li>
+  <li><strong>Aliases</strong> — multiple queries to the same field</li>
+  <li><strong>Fragments</strong> — reusable query components</li>
+  <li><strong>Directives</strong> — conditional execution (@include, @skip)</li>
+</ul>
+
+<hr/>
+
+<h2>Mutations</h2>
+
+
+<ul>
+  <li>Write operations (create, update, delete)</li>
+  <li>Strongly typed input validation</li>
+  <li>Transactional execution order</li>
+</ul>
+
+<h3>Mutation Characteristics</h3>
+
+<ul>
+  <li>Executed sequentially</li>
+  <li>Return updated state</li>
+  <li>Supports nested writes</li>
+</ul>
+
+<hr/>
+
+<h2>Subscriptions</h2>
+
+
+<ul>
+  <li>Real-time data delivery</li>
+  <li>Uses WebSockets or similar protocols</li>
+  <li>Event-driven architecture</li>
+</ul>
+
+<p>
+Subscriptions enable real-time use cases such as chat, notifications, and live dashboards.
+</p>
+
+<hr/>
+
+<h2>Resolvers and Execution Engine</h2>
+
+
+<ul>
+  <li>Each field maps to a resolver function</li>
+  <li>Resolvers can call databases, APIs, caches, or services</li>
+  <li>Execution follows the query tree</li>
+</ul>
+
+<h3>Resolver Execution Model</h3>
+
+<ul>
+  <li>Depth-first traversal</li>
+  <li>Parallel resolution where possible</li>
+  <li>Lazy execution of nested fields</li>
+</ul>
+
+<hr/>
+
+<h2>Performance and Optimization</h2>
+
+<h3>N+1 Query Problem</h3>
+
+<ul>
+  <li>Occurs when resolvers fetch data independently</li>
+  <li>Common with relational backends</li>
+</ul>
+
+<h3>Optimization Techniques</h3>
+
+<ul>
+  <li><strong>Batching</strong> (DataLoader)</li>
+  <li><strong>Caching</strong> (field-level, query-level)</li>
+  <li><strong>Persisted Queries</strong></li>
+  <li><strong>Query Complexity Analysis</strong></li>
+  <li><strong>Depth Limiting</strong></li>
+</ul>
+
+<hr/>
+
+<h2>Security Considerations</h2>
+
+<ul>
+  <li>Query depth and cost limiting</li>
+  <li>Field-level authorization</li>
+  <li>Schema masking</li>
+  <li>Input validation</li>
+  <li>Rate limiting</li>
+</ul>
+
+<p>
+GraphQL shifts responsibility from endpoints to the schema and resolver layer.
+</p>
+
+<hr/>
+
+<h2>GraphQL Federation and Microservices</h2>
+
+
+<ul>
+  <li>Single unified graph over multiple services</li>
+  <li>Schema composition</li>
+  <li>Decoupled service ownership</li>
+</ul>
+
+<h3>Federation Benefits</h3>
+
+<ul>
+  <li>Independent deployments</li>
+  <li>Centralized API contract</li>
+  <li>Cross-service joins</li>
+</ul>
+
+<hr/>
+
+<h2>GraphQL and Databases</h2>
+
+<h3>Supported Backend Patterns</h3>
+
+<ul>
+  <li>Relational databases (PostgreSQL, MySQL)</li>
+  <li>NoSQL databases (MongoDB, DynamoDB)</li>
+  <li>Graph databases (Neo4j, Amazon Neptune)</li>
+  <li>Data lakes and analytics engines</li>
+</ul>
+
+<h3>GraphQL vs Graph Databases</h3>
+
+<ul>
+  <li><strong>GraphQL</strong> — API query language</li>
+  <li><strong>Graph Databases</strong> — data storage and traversal engines</li>
+</ul>
+
+<p>
+GraphQL does not require a graph database, but they integrate naturally.
+</p>
+
+<hr/>
+
+<h2>Common Use Cases</h2>
+
+<ul>
+  <li>Frontend-driven APIs</li>
+  <li>Mobile applications</li>
+  <li>Microservices aggregation</li>
+  <li>Real-time dashboards</li>
+  <li>Developer platforms</li>
+  <li>Public APIs</li>
+</ul>
+
+<hr/>
+
+<h2>Strengths and Limitations</h2>
+
+<h3>Strengths</h3>
+
+<ul>
+  <li>Precise data fetching</li>
+  <li>Strong typing and introspection</li>
+  <li>Single endpoint architecture</li>
+  <li>Excellent developer experience</li>
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+  <li>Complex server-side implementation</li>
+  <li>Caching harder than REST</li>
+  <li>Requires governance at scale</li>
+</ul>
+
+<hr/>
+
+<h2>When to Use GraphQL</h2>
+
+<ul>
+  <li>Client requirements change frequently</li>
+  <li>Multiple consumers with different data needs</li>
+  <li>Microservice-based architectures</li>
+  <li>Real-time or interactive applications</li>
+</ul>
+
+<p>
+GraphQL is best suited when <strong>API flexibility and efficiency</strong> are more important than rigid endpoint design.
+</p>
+
+
+
+{% include footer.html %}

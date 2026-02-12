@@ -1,0 +1,113 @@
+---
+---
+{% include menu.html title="AWS Glue" %}
+<hr>
+
+<h1>What is Glue ETL?</h1>
+
+<h2>Breakdown:</h2>
+<ul>
+  <li><strong>ETL</strong>: Extract, Transform, Load. A process used to extract data from multiple sources, transform the data into a standardized format, and load it into a target system.</li>
+  <li><strong>Glue</strong>: Refers to <strong>AWS Glue</strong>, a fully managed ETL service by Amazon Web Services (AWS).</li>
+</ul>
+
+<h2>AWS Glue as an ETL Service:</h2>
+
+### Extract (E)
+<ul>
+  <li><strong>Data Catalog</strong>: Automatically discovers and catalogs metadata from various data stores (S3, databases, etc.) across your AWS environment.</li>
+  <li><strong>Connectors</strong>: Supports connections to a wide range of data sources for extraction.</li>
+</ul>
+
+### Transform (T)
+<ul>
+  <li><strong>Data Transformation</strong>: Provides a flexible engine for transforming and processing data using <strong>Apache Spark</strong>.</li>
+  <li>Capabilities include cleaning, aggregating, and converting data formats.</li>
+</ul>
+
+### Load (L)
+<ul>
+  <li><strong>Targets Various Storage</strong>: Seamlessly loads transformed data into AWS services like Amazon S3, Amazon Redshift, Amazon DynamoDB, and more.</li>
+</ul>
+
+<h3-Key Features of AWS Glue for ETL:</h3>
+<ul>
+  <li>**Serverless**: Pay only for resources used during execution.</li>
+  <li>**Automatic Schema Detection**</li>
+  <li>**Integration with Other AWS Services** (e.g., S3, Redshift, QuickSight)</li>
+  <li>**Security and Access Control** via IAM roles</li>
+</ul>
+
+<h3>Example ETL Workflow with Glue:</h3>
+<ol>
+  <li>Define Your ETL Job: Configure extract, transform, and load operations.</li>
+  <li>Run the Job: Glue executes on a serverless Apache Spark environment.</li>
+  <li>Monitor and Optimize: Use built-in monitoring tools to review performance.</li>
+</ol>
+
+
+<p><hr>
+<section>
+  <h3>Simple Python Code Example Using AWS Glue</h3>
+  <p>Here's a simple example of Python code that you might use in an AWS Glue ETL job. This code reads data from an S3 bucket, applies a basic transformation, and then writes the transformed data back to another S3 bucket.</p>
+
+  <h4>Example: Simple ETL Job Using AWS Glue</h4>
+  <pre><code class="language-python">
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+
+# Initialize Glue Context
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+# Load data from S3
+input_data = glueContext.create_dynamic_frame.from_options(
+    connection_type="s3",
+    connection_options={"paths": ["s3://your-input-bucket/input-data/"]},
+    format="json"
+)
+
+# Apply transformation: Filter out records where "age" is less than 30
+filtered_data = Filter.apply(frame=input_data, f=lambda x: x["age"] >= 30)
+
+# Write the transformed data back to S3 in JSON format
+glueContext.write_dynamic_frame.from_options(
+    frame=filtered_data,
+    connection_type="s3",
+    connection_options={"path": "s3://your-output-bucket/transformed-data/"},
+    format="json"
+)
+
+# Commit job
+job.commit()
+  </code></pre>
+
+<p><hr align=left width=1100>
+  <h4>Explanation:</h4>
+  <ul>
+    <li><strong>Initialization:</strong> The script initializes a <code>GlueContext</code>, which is needed to interact with AWS Glue. The <code>Job</code> object is initialized with the job name passed as an argument.</li>
+    <li><strong>Loading Data:</strong> The data is loaded from an S3 bucket in JSON format using <code>create_dynamic_frame.from_options</code>.</li>
+    <li><strong>Transformation:</strong> The transformation step filters the records, keeping only those where the "age" field is 30 or older.</li>
+    <li><strong>Writing Data:</strong> The transformed data is written back to another S3 bucket in JSON format using <code>write_dynamic_frame.from_options</code>.</li>
+    <li><strong>Job Commit:</strong> The job is committed to signal completion.</li>
+  </ul>
+
+<p><hr align=left width=1100>
+  <h4>Usage:</h4>
+  <p>Replace <code>"s3://your-input-bucket/input-data/"</code> and <code>"s3://your-output-bucket/transformed-data/"</code> with your actual S3 bucket paths. This script can be run in AWS Glue as part of a Glue job.</p>
+
+  <p>This example shows a basic ETL workflow using AWS Glue, demonstrating how to load data from S3, apply a transformation, and save the result back to S3.</p>
+</section>
+
+{% include footer.html %}
+
+  </body>
+</html>

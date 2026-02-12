@@ -1,0 +1,82 @@
+---
+---
+{% include menu.html title="AWS Config Inspector" %}
+<hr align=left width=1100>
+
+<section>
+  <h3>AWS Config</h3>
+  <p>AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. It continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. This helps you maintain compliance with organizational policies and regulatory standards.</p>
+
+<p><hr align=left width=1100>
+  <h4>Key Features:</h4>
+  <ul>
+    <li><strong>Continuous Monitoring:</strong> AWS Config continuously records changes to the configuration of your AWS resources, providing a detailed view of the current and historical state of each resource.</li>
+    <li><strong>Compliance Management:</strong> AWS Config allows you to define compliance rules and automatically evaluate the compliance of your AWS resource configurations against these rules.</li>
+    <li><strong>Resource Relationships:</strong> Config provides a resource inventory and shows relationships between resources, helping you understand dependencies and impacts of configuration changes.</li>
+    <li><strong>Change Management:</strong> AWS Config records all configuration changes and provides alerts on non-compliant configurations, enabling better change management and governance.</li>
+    <li><strong>Integration with AWS Services:</strong> AWS Config integrates with other AWS services like AWS Lambda, SNS, and CloudTrail, allowing you to automate remediation, notifications, and compliance checks.</li>
+  </ul>
+
+<p><hr align=left width=1100>
+  <h4>Common Use Cases:</h4>
+  <ul>
+    <li><strong>Compliance Auditing:</strong> Automatically audit resource configurations against internal policies or external regulatory requirements.</li>
+    <li><strong>Security Analysis:</strong> Monitor and evaluate security configurations to ensure that resources comply with security best practices.</li>
+    <li><strong>Operational Troubleshooting:</strong> Investigate configuration changes that may have led to operational issues or security incidents.</li>
+    <li><strong>Change Management:</strong> Track and manage changes to AWS resources, ensuring that all changes are documented and compliant with organizational policies.</li>
+    <li><strong>Disaster Recovery Planning:</strong> Ensure that resource configurations are consistent and compliant, aiding in disaster recovery planning and execution.</li>
+  </ul>
+
+<p><hr align=left width=1100>
+  <h4>Example Workflow:</h4>
+  <ol>
+    <li><strong>Enable AWS Config:</strong> Set up AWS Config to start recording the configuration of your AWS resources across your account.</li>
+    <li><strong>Define Compliance Rules:</strong> Create rules that represent your compliance policies and configure AWS Config to automatically evaluate resources against these rules.</li>
+    <li><strong>Monitor Compliance:</strong> Continuously monitor compliance status and receive notifications for any non-compliant resources.</li>
+    <li><strong>Remediate Issues:</strong> Use AWS Lambda or manual intervention to remediate non-compliant configurations and bring resources back into compliance.</li>
+    <li><strong>Audit and Report:</strong> Generate compliance reports and audit logs to demonstrate adherence to policies and regulations.</li>
+  </ol>
+
+  <p>AWS Config provides a powerful way to manage and monitor resource configurations, ensuring that your AWS environment remains compliant and secure.</p>
+
+<p><hr align=left width=1100>
+  <h3>AWS Inspector</h3>
+  <p>AWS Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS. It automatically assesses applications for vulnerabilities or deviations from best practices, providing detailed findings and recommendations to improve security.</p>
+
+<p><hr align=left width=1100>
+  <h4>Key Features:</h4>
+  <ul>
+    <li><strong>Automated Security Assessments:</strong> AWS Inspector automatically scans your AWS resources and applications for vulnerabilities, such as exposed ports, unpatched software, and insecure configurations.</li>
+    <li><strong>Security Best Practices:</strong> Inspector assesses your applications against a predefined set of security best practices and compliance standards, providing a clear view of potential risks.</li>
+    <li><strong>Detailed Reporting:</strong> Inspector generates detailed reports that highlight vulnerabilities and provide actionable recommendations to mitigate identified risks.</li>
+    <li><strong>Integration with AWS Services:</strong> AWS Inspector integrates with services like AWS Config, CloudTrail, and IAM to enhance security assessment capabilities and automate remediation actions.</li>
+    <li><strong>Continuous Monitoring:</strong> With continuous assessment capabilities, Inspector helps you maintain security compliance over time by regularly scanning your environment for vulnerabilities.</li>
+  </ul>
+
+<p><hr align=left width=1100>
+  <h4>Common Use Cases:</h4>
+  <ul>
+    <li><strong>Vulnerability Management:</strong> Identify and manage vulnerabilities in your AWS environment, helping to prevent potential security breaches.</li>
+    <li><strong>Compliance Auditing:</strong> Use Inspector to assess applications against industry standards and regulatory requirements, such as PCI-DSS, ensuring compliance.</li>
+    <li><strong>Security Posture Improvement:</strong> Continuously assess and improve the security posture of your applications by addressing vulnerabilities and following security best practices.</li>
+    <li><strong>Incident Response:</strong> Use Inspector findings as part of your incident response process to quickly identify and remediate vulnerabilities during a security incident.</li>
+    <li><strong>DevOps Integration:</strong> Integrate Inspector into your DevOps pipeline to automatically assess security risks as part of the CI/CD process, ensuring secure deployments.</li>
+  </ul>
+
+<p><hr align=left width=1100>
+  <h4>Example Workflow:</h4>
+  <ol>
+    <li><strong>Set Up Inspector:</strong> Configure AWS Inspector by defining assessment targets and templates that specify the resources and checks to be performed.</li>
+    <li><strong>Run Assessments:</strong> Execute assessments against your defined targets, either on-demand or on a scheduled basis, to identify security vulnerabilities.</li>
+    <li><strong>Review Findings:</strong> Review the detailed findings generated by Inspector, which highlight vulnerabilities, misconfigurations, and recommendations.</li>
+    <li><strong>Remediate Issues:</strong> Take action on the findings by applying security patches, updating configurations, or implementing recommended security controls.</li>
+    <li><strong>Continuous Monitoring:</strong> Schedule regular assessments to ensure ongoing security and compliance, adapting to changes in your environment.</li>
+  </ol>
+
+  <p>AWS Inspector provides an automated and thorough approach to security assessment, helping you identify vulnerabilities and improve the security of your applications on AWS.</p>
+</section>
+
+
+{% include footer.html %}
+</body>
+</html>

@@ -1,0 +1,67 @@
+---
+---
+{% include menu.html title="Apache Spark" %}
+
+  <style>
+    body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; margin: 2rem; color: #111; }
+    h1 { margin-bottom: 0.25rem; }
+    h2 { margin-top: 2rem; }
+    .q { font-weight: 700; margin-bottom: 0.25rem; }
+    ul { margin: 0.5rem 0 0 1.25rem; }
+    li { margin: 0.25rem 0; }
+    .note { color: #555; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Performance Optimization — Databricks & Tableau</h1>
+
+  <section>
+    <div class="q">What steps would you take to optimize the performance of a Databricks job?</div>
+    <ul>
+      <li>Use Photon runtime &amp; autoscaling clusters.</li>
+      <li>Store in Delta/Parquet, compact files, use Z-ORDER.</li>
+      <li>Enable Adaptive Query Execution (AQE).</li>
+      <li>Tune shuffle partitions &amp; use broadcast joins.</li>
+      <li>Filter/prune columns early, cache selectively.</li>
+      <li>Prefer built-ins over UDFs.</li>
+      <li>Monitor Spark UI &amp; fix bottlenecks.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="q">How would you handle data skew in a Databricks job?</div>
+    <ul>
+      <li>Detect with Spark UI (slow tasks, uneven partitions).</li>
+      <li>Enable AQE skew handling.</li>
+      <li>Broadcast small tables, pre-aggregate before joins.</li>
+      <li>Apply salting or composite keys.</li>
+      <li>Repartition by uniform keys or process hot keys separately.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="q">What are the best practices for writing efficient ETL pipelines in Databricks?</div>
+    <ul>
+      <li>Use Delta tables with Auto Loader for ingestion.</li>
+      <li>Build bronze → silver → gold layers, incremental not full reloads.</li>
+      <li>Optimize/Z-ORDER for query speed.</li>
+      <li>Parameterize code, add data quality checks.</li>
+      <li>Avoid UDFs, reduce shuffles, prune columns early.</li>
+      <li>Orchestrate with retries, alerts, checkpoints.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="q">How would you optimize a Tableau dashboard for performance when dealing with large datasets?</div>
+    <ul>
+      <li>Use extracts (Hyper), aggregated/incremental refresh.</li>
+      <li>Pre-aggregate data, reduce marks (&lt;100k per view).</li>
+      <li>Use context filters, avoid high-cardinality quick filters.</li>
+      <li>Push heavy calcs upstream; limit complex LODs.</li>
+      <li>Keep dashboards simple, fewer worksheets.</li>
+      <li>Monitor with Performance Recording &amp; query plans.</li>
+    </ul>
+  </section>
+</body>
+</html>
+

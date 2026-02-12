@@ -1,0 +1,128 @@
+---
+---
+{% include menu.html title="FastAPI for REST APIs" %}
+
+<h1>Block ALL Non US Traffic</h1>
+
+<pre><code class="language-bash">
+#!/bin/bash
+
+# Enable error checking and debugging
+set -e
+set -x
+
+# Function to log messages
+log_message() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+
+# Function to check if command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check for required tools
+for cmd in curl iptables awk grep sort; do
+    if ! command_exists "$cmd"; then
+        log_message "Error: Required command '$cmd' not found"
+        exit 1
+    fi
+done
+
+log_message "Starting firewall configuration..."
+
+# Create temporary files with cleanup trap
+TEMP_DIR=$(mktemp -d)
+RAW_IPS_FILE="${TEMP_DIR}/raw_ips"
+PROCESSED_IPS_FILE="${TEMP_DIR}/processed_ips"
+MERGED_IPS_FILE="${TEMP_DIR}/merged_ips"
+
+trap 'rm -rf "${TEMP_DIR}"' EXIT
+
+# Backup existing rules
+if [ -d "/etc/iptables" ]; then
+    cp /etc/iptables/rules.v4 "/etc/iptables/rules.v4.backup.$(date +%Y%m%d_%H%M%S)" 2>/dev/null || true
+fi
+
+log_message "Setting up basic firewall rules..."
+
+# Clear existing rules
+iptables -F
+iptables -X
+
+# Set default policies
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+# Allow loopback
+iptables -A INPUT -i lo -j ACCEPT
+
+# Allow all internal network traffic (adjusted to be more inclusive)
+iptables -A INPUT -s 10.0.0.0/8 -j ACCEPT     # Private network
+iptables -A INPUT -s 172.16.0.0/12 -j ACCEPT  # Private network
+iptables -A INPUT -s 192.168.0.0/16 -j ACCEPT # Private network
+
+# Allow established connections
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Allow specific services (adjust ports as needed)
+iptables -A INPUT -p tcp --dport 22   -j ACCEPT # SSH
+iptables -A INPUT -p tcp --dport 3000 -j ACCEPT
+iptables -A INPUT -p tcp --dport 3389 -j ACCEPT # RDP
+iptables -A INPUT -p tcp --dport 443  -j ACCEPT # HTTPS
+iptables -A INPUT -p tcp --dport 80   -j ACCEPT # HTTP
+iptables -A INPUT -p tcp --dport 8333 -j ACCEPT
+iptables -A INPUT -p udp --dport 53   -j ACCEPT # DNS
+
+log_message "Downloading US IP ranges..."
+if ! curl -s "https://ftp.ripe.net/pub/stats/arin/delegated-arin-extended-latest" | \
+    grep "^arin|.*|ipv4|.*|allocated|.*" | \
+    grep -i "US|" | \
+    awk -F'|' '{print $4"/"32-log($5)/log(2)}' > "$RAW_IPS_FILE"; then
+    log_message "Warning: Failed to download IP ranges, using basic configuration"
+fi
+
+# Process IP ranges if download was successful
+if [ -s "$RAW_IPS_FILE" ]; then
+    log_message "Processing IP ranges..."
+    while IFS= read -r ip_range; do
+        if [[ $ip_range =~ ^([0-9]{1,3}\.[0-9]{1,3})\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}$ ]]; then
+            echo "${BASH_REMATCH[1]}.0.0/16"
+        fi
+    done < "$RAW_IPS_FILE" | sort -u > "$PROCESSED_IPS_FILE"
+
+    # Add US IP ranges
+    while IFS= read -r ip_range; do
+        if [[ $ip_range =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}$ ]]; then
+            log_message "Adding rule for $ip_range"
+            iptables -A INPUT -s "$ip_range" -j ACCEPT
+        fi
+    done < "$PROCESSED_IPS_FILE"
+fi
+
+# Enable ICMP (ping)
+iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+
+# Log dropped packets
+iptables -A INPUT -j LOG --log-prefix "DROPPED_PACKET: " --log-level 4
+
+# Final drop rule
+iptables -A INPUT -j DROP
+
+# Save rules
+if [ -d "/etc/iptables" ]; then
+    iptables-save > /etc/iptables/rules.v4
+    log_message "Rules saved to /etc/iptables/rules.v4"
+else
+    log_message "Warning: /etc/iptables directory not found, rules not saved permanently"
+fi
+
+log_message "Verifying rules..."
+iptables -L INPUT -n -v
+
+log_message "Firewall configuration complete."
+</code></pre>
+
+{% include footer.html %}

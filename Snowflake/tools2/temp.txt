@@ -1,0 +1,30 @@
+┌───────────────────────────────────────────────────────────────────────┐
+│                         <strong>SNOWFLAKE TABLE TYPES</strong>                         │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │    <strong>PERMANENT</strong>     │  │    <strong>TRANSIENT</strong>      │  │    <strong>TEMPORARY</strong>      │   │
+│  │     TABLES       │  │     TABLES        │  │     TABLES        │   │
+│  │                  │  │                   │  │                   │   │
+│  │   ✓ Fail-safe    │  │   ✗ Fail-safe     │  │   ✗ Fail-safe     │   │
+│  │   ✓ Time Travel  │  │   ✓ Time Travel   │  │   ✓ Time Travel   │   │
+│  │     (90 days)    │  │     (1 day)       │  │      (1 day)      │   │
+│  │                  │  │  Between Sessions │  |  Current Session  │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │     <strong>EXTERNAL</strong>     │  │     <strong>DYNAMIC</strong>       │  │      <strong>HYBRID</strong>       │   │
+│  │     TABLES       │  │     TABLES        │  │      TABLES       │   │
+│  │                  │  │                   │  │                   │   │
+│  │   Data Outside   │  │   Auto-refresh    │  │    OLTP + OLAP    │   │
+│  │    Snowflake     │  │   Materialized    │  │    Unistore       │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+│                                                                       │
+│  ┌──────────────────┐  ┌───────────────────┐  ┌───────────────────┐   │
+│  │     <strong>ICEBERG</strong>      │  │      <strong>EVENT</strong>        │  │    <strong>DIRECTORY</strong>      │   │
+│  │     TABLES       │  │      TABLES       │  │     TABLES        │   │
+│  │                  │  │                   │  │                   │   │
+│  │   Apache Format  │  │   Log/Telemetry   │  │   Stage Files     │   │
+│  │    Open Table    │  │     Storage       │  │     Catalog       │   │
+│  └──────────────────┘  └───────────────────┘  └───────────────────┘   │
+└───────────────────────────────────────────────────────────────────────┘

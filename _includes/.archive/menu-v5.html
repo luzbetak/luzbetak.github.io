@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ include.title }}</title>
+  <link rel="stylesheet" type="text/css" href="/static/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/images/vector-image-green.jpg" type="image/png" sizes="32x32">
+  <!-- https://prismjs.com/#supported-languages -->
+  <link href="/static/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="/static/prism.min.js"></script>
+  <script src="/static/prism-python.min.js"></script>
+  <script src="/static/prism-yaml.min.js"></script>
+  <script src="/static/prism-sql.min.js"></script>
+  <script src="/static/prism-markdown.min.js"></script>
+  <script src="/static/prism-bash.min.js"></script>
+  <script src="/static/prism-go.min.js"></script>
+
+  <style>
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      font-size: 14px;
+      gap: 6px;
+      margin: 8px 12px;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top navigation bar with dropdowns
+       (overrides base .navbar styles from style.css) */
+    .navbar {
+      background-color: #111;
+      border-bottom: 1px solid #333;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      overflow: visible;
+      width: 1000px; /* match body width */
+    }
+
+    .navbar > ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .navbar > ul > li {
+      position: relative; /* for dropdown positioning */
+    }
+
+    .navbar a {
+      display: block;
+      padding: 12px 16px;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    /* hover on top-level items */
+    .navbar > ul > li:hover > a {
+      background-color: #222;
+      color: #00bcd4;
+    }
+
+    /* dropdown menu */
+    .navbar .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #111;
+      min-width: 260px;
+      list-style: none;
+      margin: 0;
+      padding: 4px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      z-index: 1000;
+      text-align: left !important;
+    }
+
+    /* show dropdown on hover */
+    .navbar li:hover > .dropdown {
+      display: block;
+    }
+
+    .navbar .dropdown li a {
+      padding: 6px 16px;
+      font-size: 14px;
+      text-align: left !important;
+    }
+
+    .navbar .dropdown li a:hover {
+      display: block;
+      break-inside: avoid;  /* keeps items from being split between columns */
+      background-color: #222;
+      color: #ff9800;
+      text-align: left !important;
+    }
+
+    /* optional section headers inside dropdown */
+    .dropdown-header {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #bbbbbb;
+      padding: 4px 16px;
+      margin-top: 4px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <!-- Navigation Menu with dropdowns -->
+  <nav class="navbar">
+    <ul>
+      <li><a id="home" href="/">Home</a></li>
+
+      <!-- AI -->
+      <li>
+        <a id="ai" href="/ai">AI</a>
+        <ul class="dropdown">
+          <li><a href="/ai/index.html">AI Index</a></li>
+          <li><a href="/ai/Kevin_Luzbetak_Portfolio.html">Portfolio</a></li>
+
+          <li><a href="/ai/FAISS-Vector-Database.html">FAISS Vector Database</a></li>
+          <li><a href="/ai/faiss/index.html">FAISS Index</a></li>
+          <li><a href="/ai/faiss/Indexing-FAISS-OpenAI-Embeddings.html">Indexing FAISS + OpenAI</a></li>
+          <li><a href="/ai/faiss/RetrievalQA-FAISS-with-OpenAI-GPT-4.html">RetrievalQA with GPT-4</a></li>
+          <li><a href="/ai/LanceDB-Vector-Database.html">LanceDB Vector Database</a></li>
+          <li><a href="/ai/Retrieval-Augmented-Generation.html">RAG Overview</a></li>
+          <li><a href="/ai/Retrieval-Augmented-Generation-Workflow.html">RAG Workflow</a></li>
+          <li><a href="/ai/bm25-probabilistic-information-retrieval-model.html">BM25 Model</a></li>
+          <li><a href="/ai/TF-IDF.html">TF-IDF</a></li>
+          <li><a href="/ai/python-whoosh.html">Python Whoosh</a></li>
+
+          <li><a href="/ai/Keras.html">Keras</a></li>
+          <li><a href="/ai/PyTorch.html">PyTorch</a></li>
+          <li><a href="/ai/PyTorch-Sentiment-Analysis-Model.html">PyTorch Sentiment</a></li>
+          <li><a href="/ai/Random-Forest-Classifier-Model.html">Random Forest</a></li>
+          <li><a href="/ai/Scikit-learn.html">Scikit-learn</a></li>
+          <li><a href="/ai/Hugging-Face-Machine-Learning.html">Hugging Face</a></li>
+          <li><a href="/ai/Tensors-Machine-Learning.html">Tensors</a></li>
+          <li><a href="/ai/Time-Complexity-Big-O-Notation.html">Big-O Notation</a></li>
+
+          <li><a href="/ai/Gunning-Fog-Index.html">Gunning Fog Index</a></li>
+          <li><a href="/ai/Python-Syntax-Highlighting.html">Python Syntax Highlighting</a></li>
+          <li><a href="/ai/PDF-Convert-to-Text-File.html">PDF → Text</a></li>
+          <li><a href="/ai/PDF-Split-File.html">PDF Split</a></li>
+          <li><a href="/ai/Ms-Word-Document-Processing.html">MS Word Processing</a></li>
+          <li><a href="/ai/Unstructured-Data-Indexing.html">Unstructured Data Indexing</a></li>
+          <li><a href="/ai/Stable-Diffusion-Web-UI.html">Stable Diffusion UI</a></li>
+          <li><a href="/ai/Streamlit-app.html">Streamlit App</a></li>
+          <li><a href="/ai/NVIDIA-GeForce-RTX-3060-Installation.html">RTX-3060 Installation</a></li>
+          <li><a href="/ai/Gmail-Email-Fetch.html">Gmail Email Fetch (FAISS)</a></li>
+        </ul>
+      </li>
+
+      <!-- Snowflake / Data -->
+      <li>
+        <a id="snowflake" href="/snowflake">Snowflake</a>
+        <ul class="dropdown">
+          <li><a href="/snowflake/index.html">Snowflake Index</a></li>
+          <li><a href="/snowflake/etl-pipeline.html">ETL Pipeline</a></li>
+          <li><a href="/snowflake/Data-Mesh-Decentralized-Architecture.html">Data Mesh Architecture</a></li>
+          <li><a href="/snowflake/Data-Fabric-vs-Data-Mesh.html">Data Fabric vs Data Mesh</a></li>
+          <li><a href="/snowflake/Large-Scale-Data-Ingestion.html">Large-Scale Data Ingestion</a></li>
+          <li><a href="/snowflake/Marketing-Data-Overview.html">Marketing Data Overview</a></li>
+
+          <li><a href="/snowflake/Kafka-Producer-Consumer.html">Kafka Producer / Consumer</a></li>
+          <li><a href="/snowflake/Kafka-Multiple-Cosumers-In-Group-Offset.html">Kafka Consumers & Offsets</a></li>
+          <li><a href="/snowflake/Apache-Kafka.html">Apache Kafka</a></li>
+
+          <li><a href="/snowflake/Apache-Parquet.html">Apache Parquet</a></li>
+          <li><a href="/snowflake/Apache-Iceberg.html">Apache Iceberg</a></li>
+          <li><a href="/snowflake/Apache-Hudi.html">Apache Hudi</a></li>
+
+          <li><a href="/snowflake/RDBMS-Schemas.html">RDBMS Schemas Overview</a></li>
+          <li><a href="/snowflake/RDBMS-Star-Schema.html">Star Schema</a></li>
+          <li><a href="/snowflake/RDBMS-Snowflake-Schema.html">Snowflake Schema</a></li>
+          <li><a href="/snowflake/RDBMS-Kimball-Bottom-Up-Data-Warehouse-Architecture.html">Kimball DW</a></li>
+
+          <li><a href="/snowflake/MongoDB-Document-Based-NoSQL-Database.html">MongoDB</a></li>
+          <li><a href="/snowflake/GraphQL.html">GraphQL</a></li>
+          <li><a href="/snowflake/Graph-Databases-ArgoDB-Neo4j.html">Graph DBs (Arango / Neo4j)</a></li>
+          <li><a href="/snowflake/Collibra-Data-Quality.html">Collibra Data Quality</a></li>
+        </ul>
+      </li>
+
+      <!-- Databricks -->
+      <li>
+        <a id="databricks" href="/databricks">Databricks</a>
+        <ul class="dropdown">
+          <li><a href="/databricks/index.html">Databricks Index</a></li>
+          <li><a href="/databricks/Apache-Spark.html">Apache Spark</a></li>
+          <li><a href="/databricks/Databricks-PySpark.html">Databricks PySpark</a></li>
+          <li><a href="/databricks/PySpark-Coding-Examples.html">PySpark Coding Examples</a></li>
+          <li><a href="/databricks/PySpark-Data-Streaming.html">PySpark Streaming</a></li>
+          <li><a href="/databricks/PySpark-Handling-Missing-Data.html">PySpark Missing Data</a></li>
+          <li><a href="/databricks/PySpark-Lazy-Evaluation.html">PySpark Lazy Evaluation</a></li>
+          <li><a href="/databricks/PySpark-Pivot-Table.html">PySpark Pivot Tables</a></li>
+          <li><a href="/databricks/PySpark-S3-Small-Files-Compaction.html">S3 Small-File Compaction</a></li>
+          <li><a href="/databricks/PySpark-SQL-Functions-Parquet.html">PySpark SQL & Parquet</a></li>
+
+          <li><a href="/databricks/Databricks-Delta-Lake.html">Delta Lake</a></li>
+          <li><a href="/databricks/Delta-Live-Tables.html">Delta Live Tables</a></li>
+          <li><a href="/databricks/When-Top-Use-Delta-Live-Tables.html">When to use DLT</a></li>
+          <li><a href="/databricks/DLT-SCD-Type2.html">DLT SCD Type 2</a></li>
+          <li><a href="/databricks/Managed-External-Tables.html">Managed vs External Tables</a></li>
+          <li><a href="/databricks/Managed-External-Live-Tables.html">Managed vs External Live Tables</a></li>
+
+          <li><a href="/databricks/Medallion-Architecture.html">Medallion Architecture</a></li>
+          <li><a href="/databricks/Medallion-Architecture-Partitioning-Code.html">Medallion Partitioning Code</a></li>
+          <li><a href="/databricks/Data-Migration-from-Snowflake-to-Databricks.html">Migration Snowflake → DBX</a></li>
+          <li><a href="/databricks/Star-Schema-Data-Migration-Snowflake-to-Databricks.html">Star Schema Migration</a></li>
+          <li><a href="/databricks/Optimizing-Join-Queries.html">Optimizing Join Queries</a></li>
+          <li><a href="/databricks/Databricks-Tableau-Performance.html">Tableau Performance</a></li>
+
+          <li><a href="/databricks/slideshow/index.html">Databricks Slideshow</a></li>
+        </ul>
+      </li>
+
+      <!-- Redshift -->
+      <li>
+        <a id="redshift" href="/redshift">Redshift</a>
+        <ul class="dropdown">
+          <li><a href="/redshift/index.html">Redshift Overview</a></li>
+        </ul>
+      </li>
+
+      <!-- AWS -->
+      <li>
+        <a id="aws" href="/aws">AWS</a>
+        <ul class="dropdown">
+          <li><a href="/aws/index.html">AWS Index</a></li>
+          <li><a href="/aws/AWS.html">AWS Overview</a></li>
+
+          <li><a href="/aws/Amazon-S3.html">Amazon S3</a></li>
+          <li><a href="/aws/Amazon-RDS.html">Amazon RDS</a></li>
+          <li><a href="/aws/AWS-Redshift.html">AWS Redshift</a></li>
+          <li><a href="/aws/AWS-EMR.html">AWS EMR</a></li>
+          <li><a href="/aws/Lambda-Serverless-Computing.html">AWS Lambda</a></li>
+          <li><a href="/aws/Auto-Scaling-EC2-EMR.html">Auto Scaling EC2 / EMR</a></li>
+
+          <li><a href="/aws/AWS-Glue-as-an-ETL-Service.html">Glue as ETL Service</a></li>
+          <li><a href="/aws/AWS-Glue-ETL-Service.html">Glue ETL Service</a></li>
+          <li><a href="/aws/AWS-Glue-Data-Catalog.html">Glue Data Catalog</a></li>
+          <li><a href="/aws/AWS-Glue-Workflow.html">Glue Workflow</a></li>
+          <li><a href="/aws/Amazon-QuickSight.html">Amazon QuickSight</a></li>
+          <li><a href="/aws/ETL-Pipeline-AWS.html">ETL Pipeline on AWS</a></li>
+
+          <li><a href="/aws/AWS-Kinesis-Data-Streams.html">Kinesis Data Streams</a></li>
+          <li><a href="/aws/AWS-Lake-Formation.html">Lake Formation</a></li>
+          <li><a href="/aws/AWS-Lake-Formation-vs-AWS-CloudFormation.html">Lake Formation vs CloudFormation</a></li>
+
+          <li><a href="/aws/IAM-Identity-Access-Management.html">IAM</a></li>
+          <li><a href="/aws/KMS-Key-Management-Service.html">KMS</a></li>
+          <li><a href="/aws/AWS-CloudWatch.html">CloudWatch</a></li>
+          <li><a href="/aws/AWS-CloudWatch-Events.html">CloudWatch Events</a></li>
+          <li><a href="/aws/AWS-CloudTrail.html">CloudTrail</a></li>
+          <li><a href="/aws/AWS-Config-Inspector.html">Config / Inspector</a></li>
+          <li><a href="/aws/AWS-Cloud-Formation.html">CloudFormation</a></li>
+          <li><a href="/aws/S3-Transfer-Acceleration.html">S3 Transfer Acceleration</a></li>
+        </ul>
+      </li>
+
+      <!-- Software -->
+      <li>
+        <a id="software" href="/software">Software</a>
+        <ul class="dropdown">
+          <li><a href="/software/index.html">Software Index</a></li>
+          <li><a href="/software/101.html">Software 101</a></li>
+
+          <li><a href="/software/algorithms.html">Algorithms</a></li>
+          <li><a href="/software/algorithms2.html">Algorithms 2</a></li>
+          <li><a href="/software/Python-Algorithms.html">Python Algorithms</a></li>
+          <li><a href="/software/Python-Search-Algorithms.html">Search Algorithms</a></li>
+          <li><a href="/software/Python-String-Algorithms.html">String Algorithms</a></li>
+          <li><a href="/software/Python-Coding-Exercise-Algorithms.html">Coding Exercises</a></li>
+          <li><a href="/software/Python-Function-OOP-Data-Structure.html">Functions / OOP / DS</a></li>
+
+          <li><a href="/software/sql-overview.html">SQL Overview</a></li>
+          <li><a href="/software/sql-statements.html">SQL Statements</a></li>
+          <li><a href="/software/mysql-lag-function.html">MySQL LAG Function</a></li>
+          <li><a href="/software/Query-Performance.html">Query Performance</a></li>
+
+          <li><a href="/software/FastAPI.html">FastAPI</a></li>
+          <li><a href="/software/Implementing-API.html">Implementing an API</a></li>
+          <li><a href="/software/Fibonacci-Generator.html">Fibonacci Generator</a></li>
+          <li><a href="/software/Sudoku-Board-Verification.html">Sudoku Board Verification</a></li>
+          <li><a href="/software/New-Project-Design.html">New Project Design</a></li>
+
+          <li><a href="/software/ascii-number-scanner/index.html">ASCII Number Scanner Index</a></li>
+          <li><a href="/software/ascii-number-scanner/ASCII-Generator-Numbers.html">ASCII Generator</a></li>
+          <li><a href="/software/ascii-number-scanner/ASCII-Number-Parser.html">ASCII Number Parser</a></li>
+          <li><a href="/software/ascii-number-scanner/ASCII-Number-Fixer.html">ASCII Number Fixer</a></li>
+
+          <li><a href="/software/transformation/index.html">Transformations Index</a></li>
+          <li><a href="/software/transformation/Top-Selling-Products-By-Regions.html">Top-Selling Products</a></li>
+          <li><a href="/software/transformation/Transform-CSV-to-JSON.html">CSV → JSON</a></li>
+        </ul>
+      </li>
+
+      <!-- Platform -->
+      <li>
+        <a id="platform" href="/platform">Platform</a>
+        <ul class="dropdown">
+          <li><a href="/platform/index.html">Platform Index</a></li>
+          <li><a href="/platform/general-101.html">Platform 101</a></li>
+
+          <li><a href="/platform/docker.html">Docker</a></li>
+          <li><a href="/platform/Kubernetes.html">Kubernetes</a></li>
+          <li><a href="/platform/debugging-kubernetes-performance.html">Debugging K8s Performance</a></li>
+
+          <li><a href="/platform/apache-airflow.html">Apache Airflow</a></li>
+          <li><a href="/platform/apache-nifi.html">Apache NiFi</a></li>
+          <li><a href="/platform/software-delivery.html">Software Delivery</a></li>
+          <li><a href="/platform/systemd-services.html">systemd Services</a></li>
+
+          <li><a href="/platform/github.html">GitHub</a></li>
+          <li><a href="/platform/bashrc.txt">.bashrc</a></li>
+          <li><a href="/platform/gitrc.txt">.gitconfig</a></li>
+          <li><a href="/platform/vimrc.txt">.vimrc</a></li>
+
+          <li><a href="/platform/block-all-non-us-traffic.html">Block Non-US Traffic</a></li>
+          <li><a href="/platform/Completely-Delete-Google-Chrome-from-iMac.html">Delete Chrome (iMac)</a></li>
+          <li><a href="/platform/Uninstall-Google-Chrome-on-macOS.html">Uninstall Chrome (macOS)</a></li>
+
+          <li><a href="/platform/youtube/index.html">YouTube Notes</a></li>
+        </ul>
+      </li>
+
+      <!-- GitHub -->
+      <li>
+        <a id="github" href="/github">GitHub</a>
+        <ul class="dropdown">
+          <li><a href="/github/index.html">GitHub Notes</a></li>
+          <li><a href="/github/uninstall-chrome.sh">Uninstall Chrome Script</a></li>
+          <li><a href="/animation/index.html">Neural Network Animation</a></li>
+          <li><a href="/animation/index-neural-network-javascript.html">Neural Net JS Demo</a></li>
+        </ul>
+      </li>
+
+      <!-- Search -->
+      <li>
+        <a id="search" href="/search">Search</a>
+        <ul class="dropdown">
+          <li><a href="/search/index.html">Search Index</a></li>
+          <li><a href="/search/index-full-words.html">Search – Full Words</a></li>
+          <li><a href="/search/index-and-or.html">Search – AND / OR</a></li>
+          <li><a href="/search/README.md">Search README</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div id="breadcrumb" class="breadcrumb"></div>
+
+  <script>
+    // Generate breadcrumbs based on the current URL path
+    const breadcrumbDiv = document.getElementById('breadcrumb');
+    const baseUrl       = "https://luzbetak.github.io";
+    const pathParts     = window.location.pathname.split('/').filter(Boolean);
+
+    let breadcrumbHtml = `<a href="${baseUrl}">Home</a>`;
+    let accumulatedPath = "";
+
+    pathParts.forEach((part, index) => {
+      accumulatedPath += `/${part}`;
+      if (index === pathParts.length - 1 && part.endsWith(".html")) {
+        part = part.replace(".html", "");
+      }
+      breadcrumbHtml += ` › <a href="${baseUrl}${accumulatedPath}">${decodeURIComponent(part)}</a>`;
+    });
+
+    breadcrumbDiv.innerHTML = breadcrumbHtml;
+
+    // Highlight the active section in the navbar
+    const currentPath = window.location.pathname;
+    if (currentPath === '/' || currentPath === '/index.html') {
+      document.getElementById('home').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/ai')) {
+      document.getElementById('ai').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/snowflake')) {
+      document.getElementById('snowflake').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/databricks')) {
+      document.getElementById('databricks').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/redshift')) {
+      document.getElementById('redshift').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/aws')) {
+      document.getElementById('aws').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/software')) {
+      document.getElementById('software').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/platform')) {
+      document.getElementById('platform').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/animation')) {
+      document.getElementById('animation').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/foundationdb')) {
+      document.getElementById('foundationdb').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/github')) {
+      document.getElementById('github').style.backgroundColor = '#555';
+    } else if (currentPath.includes('/search')) {
+      document.getElementById('search').style.backgroundColor = '#555';
+    }
+
+    // Navigation using left and right arrow keys
+    document.addEventListener('keydown', function(event) {
+      const menuItems = document.querySelectorAll('.navbar a');
+      let currentIndex = -1;
+
+      menuItems.forEach((item, index) => {
+        if (item === document.activeElement) {
+          currentIndex = index;
+        }
+      });
+
+      if (event.key === 'ArrowRight') {
+        const nextIndex = (currentIndex + 1) % menuItems.length;
+        menuItems[nextIndex].focus();
+      } else if (event.key === 'ArrowLeft') {
+        const prevIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+        menuItems[prevIndex].focus();
+      }
+    });
+  </script>
+
+

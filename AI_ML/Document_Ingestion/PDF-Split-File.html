@@ -1,0 +1,91 @@
+---
+---
+{% include menu.html title="PDF File Split" %}
+<hr align=left width=1100>
+
+  <h1>Split PDF Script</h1>
+  <p>This script allows you to split a PDF file into a specified number of parts. It takes an input PDF file and the desired number of parts, calculates the page range for each part, and generates separate output files for each part.</p>
+<hr>
+  <h2>Installation Requirements</h2>
+  <p>Before running the script, make sure to install <code>pdftk</code> on Ubuntu by running the following commands:</p>
+  <pre><code>sudo apt-get update
+sudo apt-get install -y pdftk</code></pre>
+
+  <h2>Usage</h2>
+  <p>To run the script, use the following command:</p>
+  <pre><code>./split-pdf.sh input_file number_of_parts</code></pre>
+  <p>Replace <code>input_file</code> with the path to your PDF file, and <code>number_of_parts</code> with the number of parts you want to split the file into. For example:</p>
+  <pre><code>./split-pdf.sh document.pdf 3</code></pre>
+  <p>This command will split <code>document.pdf</code> into 3 separate PDF files.</p>
+
+  <h2>How the Script Works</h2>
+  <p>The script performs the following steps:</p>
+  <ol>
+    <li>Extracts the base name from the input file (removing the path and extension).</li>
+    <li>Uses <code>pdftk</code> to determine the total number of pages in the PDF.</li>
+    <li>Calculates the number of pages per part by dividing the total pages by the number of parts specified.</li>
+    <li>Splits the PDF into the specified number of parts, creating output files named with the base name followed by a part number (e.g., <code>document-1.pdf</code>, <code>document-2.pdf</code>).</li>
+  </ol>
+
+  <h2>split-pdf.sh</h2>
+  <pre><code class="language-bash">#!/bin/bash
+
+# Installation Requirements on Ubuntu:
+# sudo apt-get update
+# sudo apt-get install -y pdftk
+
+# Usage: ./split-pdf.sh input_file number_of_parts
+
+# Input Arguments
+input_file="$1"
+number_of_parts="$2"
+
+# Check if correct arguments are passed
+if [[ -z "$input_file" || -z "$number_of_parts" ]]; then
+  echo "Usage: $0 input_file number_of_parts"
+  exit 1
+fi
+
+# Extract base name from input file (remove path and extension)
+base_name=$(basename "$input_file" .pdf)
+
+# Find the number of pages in the PDF
+total_pages=$(pdftk "$input_file" dump_data | grep NumberOfPages | awk '{print $2}')
+
+if [[ -z "$total_pages" ]]; then
+  echo "Error: Could not determine the number of pages in the PDF."
+  exit 1
+fi
+
+# Calculate the number of pages per part
+pages_per_part=$((total_pages / number_of_parts))
+remainder=$((total_pages % number_of_parts))
+
+start_page=1
+
+# Split the PDF file into the specified number of parts
+for ((i=1; i<=number_of_parts; i++)); do
+  if [[ $i -eq $number_of_parts ]]; then
+    end_page=$total_pages
+  else
+    end_page=$((start_page + pages_per_part - 1))
+  fi
+
+  output_file="${base_name}-${i}.pdf"
+
+  pdftk "$input_file" cat ${start_page}-${end_page} output "$output_file"
+
+  if [[ $? -eq 0 ]]; then
+    echo "Generated: $output_file"
+  else
+    echo "Error creating: $output_file"
+    exit 1
+  fi
+
+  start_page=$((end_page + 1))
+
+done</code></pre>
+
+
+{% include footer.html %}
+

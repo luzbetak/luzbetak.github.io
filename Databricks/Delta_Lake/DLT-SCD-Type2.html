@@ -1,0 +1,108 @@
+---
+---
+{% include menu.html title="SCD Type 2 Implementation" %}
+
+<body>
+
+<h1>Delta Live Tables (DLT) – Slowly Changing Dimensions SCD Type 2</h1>
+
+<p><strong>Delta Live Tables (DLT)</strong> is a declarative framework in Databricks for building reliable, automated ETL pipelines. It can automatically manage <strong>SCD Type 2</strong> logic, tracking complete historical changes for dimension tables.</p>
+
+<h2>What SCD Type 2 Means</h2>
+
+<ul>
+  <li>SCD Type 2 keeps <strong>full history</strong> of record changes.</li>
+  <li>When a tracked attribute changes, a <strong>new row</strong> is inserted.</li>
+  <li>Old rows are marked as <strong>no longer current</strong>.</li>
+  <li>Useful for customer history, product changes, employee roles, etc.</li>
+</ul>
+
+<h2>How DLT Implements SCD Type 2</h2>
+
+<p>DLT simplifies SCD2 by using the <strong>dlt.apply_changes</strong> function, which automatically:</p>
+
+<ul>
+  <li>Detects changes by business key</li>
+  <li>Expires the previous “current” row</li>
+  <li>Inserts a new version with updated values</li>
+  <li>Maintains current/historical indicators and effective dates</li>
+</ul>
+
+<h2>Pipeline Structure</h2>
+
+<ol>
+  <li>A source table or stream (CDC feed or Silver table)</li>
+  <li>A target dimension table in DLT</li>
+  <li>A configuration using <strong>dlt.apply_changes</strong> with SCD Type 2 options</li>
+</ol>
+
+<h3>Example Source Table (Customer Changes)</h3>
+
+<pre>
+<code>
+@dlt.table
+def customer_changes():
+    return spark.readStream.table("silver.customer_changes")
+</code>
+</pre>
+
+<ul>
+  <li><strong>customer_id</strong> – business key</li>
+  <li><strong>name</strong>, <strong>address</strong> – tracked attributes</li>
+  <li><strong>change_ts</strong> – timestamp used to order events</li>
+</ul>
+
+<h3>Example Target Table (Dimension Seed)</h3>
+
+<pre>
+<code>
+@dlt.table
+def dim_customer():
+    return spark.read.table("dim.dim_customer_seed")
+</code>
+</pre>
+
+<h3>DLT SCD Type 2 Logic</h3>
+
+<pre>
+<code>
+dlt.apply_changes(
+    target = "dim_customer",
+    source = "customer_changes",
+    keys = ["customer_id"],
+    sequence_by = col("change_ts"),
+    stored_as_scd_type = "2",
+    track_history_columns = ["name", "address"]
+)
+</code>
+</pre>
+
+<ul>
+  <li><strong>keys</strong> defines the business key</li>
+  <li><strong>sequence_by</strong> determines the event order</li>
+  <li><strong>stored_as_scd_type = "2"</strong> activates SCD Type 2 mode</li>
+  <li><strong>track_history_columns</strong> defines which changes create new versions</li>
+</ul>
+
+<h2>Why Use DLT for SCD Type 2</h2>
+
+<ul>
+  <li>Simplifies complex MERGE logic</li>
+  <li>Automates orchestration (Bronze → Silver → Gold)</li>
+  <li>Supports streaming and batch sources</li>
+  <li>Provides built-in lineage, monitoring, and data quality</li>
+  <li>Handles automatic maintenance of Delta tables</li>
+</ul>
+
+<h2>Summary</h2>
+
+<ol>
+  <li>DLT reads change data from a source table or stream</li>
+  <li>A dimension table is defined as a DLT-managed table</li>
+  <li><strong>dlt.apply_changes</strong> uses SCD2 logic to insert new versions and expire old ones</li>
+  <li>The result is a fully historical, audit-friendly dimension table</li>
+</ol>
+
+</body>
+
+{% include footer.html %}

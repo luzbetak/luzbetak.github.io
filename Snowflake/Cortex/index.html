@@ -1,0 +1,203 @@
+---
+---
+{% include menu.html title="Snowflake Cortex AI Development Pipeline" %}
+
+<h1>Snowflake AI_COMPLETE / Cortex Commands</h1>
+
+<ul>
+  <li><strong>CORTEX.COMPLETE</strong> – general-purpose LLM reasoning, generation, NL→SQL, explanations</li>
+  <li><strong>CORTEX.SUMMARIZE</strong> – summarization of text, tables, query results, and metadata</li>
+  <li><strong>CORTEX.CLASSIFY_TEXT</strong> – text classification for labeling, tagging, and PII/PHI detection</li>
+  <li><strong>CORTEX.EXTRACT_ANSWER</strong> – precise answer extraction from large text bodies</li>
+  <li><strong>CORTEX.TRANSLATE</strong> – language translation for multilingual datasets</li>
+  <li><strong>CORTEX.EMBED_TEXT</strong> – vector embedding generation for semantic search and RAG</li>
+  <li><strong>CORTEX.SEARCH</strong> – semantic and keyword search over data and metadata</li>
+  <li><strong>CORTEX.EXPLAIN_SQL</strong> – natural-language explanation of SQL queries</li>
+  <li><strong>CORTEX.OPTIMIZE_SQL</strong> – AI-assisted SQL performance optimization suggestions</li>
+  <li><strong>CORTEX.DOCUMENT_TABLE</strong> – automatic table-level documentation generation</li>
+  <li><strong>CORTEX.DOCUMENT_COLUMN</strong> – automatic column-level semantic descriptions</li>
+  <li><strong>CORTEX.DETECT_SENSITIVE_DATA</strong> – AI-based identification of sensitive fields</li>
+  <li><strong>CORTEX.GENERATE_SQL</strong> – natural-language to Snowflake SQL generation</li>
+  <li><strong>CORTEX.GENERATE_JSON</strong> – structured JSON output generation from prompts</li>
+  <li><strong>CORTEX.GENERATE_VALIDATION_RULES</strong> – AI-generated data quality and validation logic</li>
+</ul>
+
+
+<h1>Snowflake Cortex AI Development Pipeline</h1>
+
+<p>Snowflake Cortex provides a platform for building and deploying generative AI models directly within Snowflake. This document outlines a typical development pipeline, including data preparation, model training, deployment, and monitoring. The pipeline leverages Snowflake's functionalities and Cortex's capabilities for seamless integration.</p>
+
+<h2>1. Data Preparation</h2>
+
+<p>The foundation of any AI model is high-quality data.  This phase involves data extraction, cleaning, transformation, and feature engineering within Snowflake.</p>
+
+<ul>
+    <li><strong>Data Extraction:</strong> Retrieve data from various Snowflake tables and external sources.</li>
+    <li><strong>Data Cleaning:</strong> Handle missing values, outliers, and inconsistencies.</li>
+    <li><strong>Data Transformation:</strong> Convert data into a suitable format for model training (e.g., text encoding, numerical scaling).</li>
+    <li><strong>Feature Engineering:</strong> Create new features from existing ones to improve model performance.</li>
+</ul>
+
+<h3>Sample Code (SQL - Snowflake)</h3>
+
+<pre><code class="language-sql">-- Example: Extract and clean data from a Snowflake table
+CREATE OR REPLACE TEMPORARY TABLE cleaned_data AS
+SELECT
+    lower(text_column) AS cleaned_text, -- Convert to lowercase
+    CASE
+        WHEN length(text_column) > 1000 THEN null -- Remove long texts
+        ELSE text_column
+    END AS trimmed_text
+FROM
+    raw_data_table
+WHERE
+    text_column IS NOT NULL
+    AND length(text_column) > 0;
+</code></pre>
+
+<h2>2. Model Training (using Snowflake ML or Cortex Functions)</h2>
+
+<p>Model training can be performed either using Snowflake ML (for more general machine learning tasks) or, more commonly for generative AI, utilizing Cortex Functions.</p>
+
+<ul>
+    <li><strong>Snowflake ML:</strong>  Suitable for training tabular data models.</li>
+    <li><strong>Cortex Functions:</strong>  Ideal for training generative models using Large Language Models (LLMs).  This often involves fine-tuning existing base models.</li>
+</ul>
+
+<h3>Sample Code (Cortex Function - Python - within Snowflake)</h3>
+
+<p>This example uses a simple prompt template. Real-world fine-tuning will require significantly more complex code and datasets.</p>
+
+<pre><code class="language-sql">-- Create a prompt template
+CREATE OR REPLACE FUNCTION prompt_template(input_text VARCHAR)
+RETURNS VARCHAR
+LANGUAGE PYTHON
+AS
+$$
+    prompt = f"""
+    You are a helpful assistant.  Respond to the user's question:
+
+    User: {input_text}
+    Assistant:
+    """
+    return prompt;
+$$;
+
+-- Use the prompt template
+SELECT prompt_template('What is the capital of France?');
+
+-- To fine-tune a model, this prompt template would be incorporated into the training data and used with the
+-- Cortex.FineTune function.  The actual fine-tuning command is more complex and depends on the specific LLM.
+
+-- Example:
+   Cortex.FineTune(
+      base_model_name = 'mistralai/Mistral-7B-Instruct-v0.1',
+      training_data = (
+                        SELECT prompt_template(input_text) AS prompt, 
+                        input_text AS completion FROM training_data_table
+                       ),
+--   ...
+-- )
+</code></pre>
+
+<h2>3. Model Deployment</h2>
+
+<p>Once the model is trained, it needs to be deployed to make it accessible for inference requests.</p>
+
+<ul>
+    <li><strong>Cortex Model Deployment:</strong> Cortex simplifies model deployment by creating a model endpoint.</li>
+    <li><strong>Endpoint Configuration:</strong> Configure the endpoint with appropriate parameters, such as resource allocation and access controls.</li>
+</ul>
+
+<h3>Sample Code (SQL - Snowflake) - Illustrative</h3>
+
+<pre><code class="language-sql">-- Assuming you have a fine-tuned model 'my_fine_tuned_model'
+-- (This is simplified, actual deployment steps are more involved)
+
+-- This is a conceptual illustration.  Actual deployment involves:
+-- 1. Creating a Cortex Model resource.
+-- 2. Uploading the trained model files to Snowflake.
+-- 3. Creating a Cortex Endpoint linked to the model.
+
+-- Example (Requires a fine-tuned model 'my_fine_tuned_model'):
+   Cortex.CreateEndpoint(
+         model_name = 'my_fine_tuned_model',
+         resource_allocation = 'SMALL'
+   )
+</code></pre>
+
+<h2>4. Model Inference (Prediction)</h2>
+
+<p>This stage involves sending requests to the deployed endpoint and receiving predictions.</p>
+
+<h3>Sample Code (SQL - Snowflake)</h3>
+
+<pre><code class="language-sql">-- Example: Send a prediction request to the Cortex endpoint (Illustrative)
+
+-- Assuming 'my_endpoint' is the name of your deployed Cortex Endpoint
+
+SELECT
+    Cortex.Invoke(
+        endpoint_name = 'my_endpoint',
+        payload = '{"input": "Translate to French: Hello, world!"}'
+    );
+
+-- Response from Cortex.Invoke will be a JSON string containing the model's response.
+-- Further parsing may be required to extract the specific data.
+</code></pre>
+
+<h2>5. Model Monitoring & Evaluation</h2>
+
+<p>Continuous monitoring is crucial for ensuring model performance and identifying potential issues.</p>
+
+<ul>
+    <li><strong>Performance Metrics:</strong> Track metrics like latency, throughput, and error rates.</li>
+    <li><strong>Data Drift Detection:</strong> Monitor for changes in the input data distribution that could degrade model accuracy.</li>
+    <li><strong>Feedback Loops:</strong> Incorporate user feedback to improve model quality.</li>
+</ul>
+
+<h3>Sample Code (SQL - Snowflake - Monitoring - Illustrative)</h3>
+
+<pre><code class="language-sql">-- This is a simplified example - actual monitoring involves more sophisticated techniques
+-- to track performance, cost, and data drift.
+
+-- Create a table to log Cortex.Invoke requests and responses
+CREATE OR REPLACE TABLE cortex_inference_logs (
+    request_time TIMESTAMP,
+    endpoint_name VARCHAR,
+    payload VARCHAR,
+    response VARCHAR
+);
+
+-- Log the inference requests and responses
+INSERT INTO cortex_inference_logs (request_time, endpoint_name, payload, response)
+SELECT
+    CURRENT_TIMESTAMP(),
+    'my_endpoint',
+    Cortex.Invoke(
+        endpoint_name = 'my_endpoint',
+        payload = '{"input": "What is the capital of Germany?"}'
+    ),
+    Cortex.Invoke(
+        endpoint_name = 'my_endpoint',
+        payload = '{"input": "What is the capital of Germany?"}'
+    );
+
+-- Analyze the logs to identify trends and potential issues.
+-- Example:  Average inference time
+SELECT AVG(length(response)) FROM cortex_inference_logs;
+</code></pre>
+
+<h2>Key Considerations</h2>
+
+<ul>
+    <li><strong>Cost Management:</strong> Monitor Cortex resource consumption to optimize costs.</li>
+    <li><strong>Security:</strong> Implement appropriate access controls and data encryption.</li>
+    <li><strong>Governance:</strong> Establish processes for model versioning, testing, and deployment.</li>
+    <li><strong>Prompt Engineering:</strong> Careful prompt design is crucial for the effectiveness of generative AI models.</li>
+</ul>
+
+<p>This pipeline provides a foundational understanding of developing AI models within Snowflake Cortex.  Refer to the official Snowflake documentation for comprehensive details and advanced features.</p>
+
+
+{% include footer.html %}

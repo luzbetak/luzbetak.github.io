@@ -1,0 +1,75 @@
+---
+---
+{% include menu.html title="Python Algorithms" %}
+
+
+<h1>Python Search Algorithms</h1>
+
+<p><hr align=left width=1000>
+<h2>Find the Intersection of Two Lists</h2>
+<pre><code class="language-python">def list_intersection(list1: list, list2: list) -> list:
+    return list(set(list1) & set(list2))
+
+print(list_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [3, 4]
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Binary Search</h2>
+The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element. If they are equal, we return the index of the middle element as the result. If the middle element is less than the target element, we discard the first half of the array and repeat the same process on the second half. Similarly, if the middle element is greater than the target element, we discard the second half of the array and repeat the same process on the first half.
+<pre><code class="language-python">def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Quick Sort</h2>
+The quick sort algorithm works by selecting a pivot element from the array and partitioning it into two halves, one containing elements less than or equal to the pivot and another containing elements greater than the pivot. We then recursively call the quick sort function on both halves.
+<pre><code class="language-python">def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x <= pivot]
+    right = [x for x in arr[1:] if x > pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Merge Sort</h2>
+The merge sort algorithm works by dividing the array into two halves, sorting each half recursively and then merging them back together. In the base case, an array of length 1 or less is considered sorted and returned as is.
+<pre><code class="language-python">def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    while left and right:
+        if left[0] <= right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    if left:
+        result += left
+    if right:
+        result += right
+    return result
+</code></pre>
+
+
+  {% include footer.html %}
+
+  </body>
+</html>

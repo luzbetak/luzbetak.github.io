@@ -1,0 +1,8 @@
+```
+python -m spacy download en_core_web_sm
+
+conda create -n numpy2 python=3.11
+conda activate numpy2
+pip install numpy>=2 langchain spacy thinc
+
+```

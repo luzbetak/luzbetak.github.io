@@ -1,0 +1,228 @@
+---
+---
+{% include menu.html title="Amazon AWS" %}
+
+<hr align=left width=1100>
+<h1 align=center>AWS Data Lake and AWS Cloud Formation</h1>
+<hr align=left width=1100>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Lake-Formation-vs-AWS-CloudFormation.html">Lake Formation vs Cloud Formation</a></li>
+                <li><a href="AWS-Lake-Formation.html">AWS Lake Formation</a>
+                    <span class="comment">Manages Data Lakes, Athena, Redshift, Analytics (AI) </span>
+                </li>
+                <li><a href="AWS-Cloud-Formation.html">AWS Cloud Formation</a>
+                    <span class="comment">Automates Provision and Manage Cloud Resources.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Amazon-QuickSight.html">Amazon QuickSight (AI)</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<p><hr align=left width=1100>
+<h1 align=center>Building an ETL Pipeline on AWS</h1>
+<p><hr align=left width=1100>
+<h2>Data Ingestion (Extract)</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Glue-Data-Catalog.html">AWS Glue Data Catalog</a>
+                    <span class="comment">Manage metadata and keep track of your data schema across the pipeline.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="/AWS/Serverless/AWS-Kinesis-Data-Streams.html">AWS Kinesis Data Streams</a>
+                    <span class="comment">For real-time data ingestion, use Kinesis to collect and process data streams.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Amazon-S3.html">Amazon S3 (Simple Storage Service)</a>
+                    <span class="comment">Store raw data in S3 buckets. Data can come from various sources like logs, databases, or third-party APIs.</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<hr align=left width=1100>
+<h2>Data Transformation</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Glue-ETL-Service.html">AWS Glue (ETL Service)</a>
+                <span class="comment">A fully managed ETL service that can run Apache Spark jobs to transform data. Create Glue jobs to clean, format, and enrich the data.</span>                
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="/AWS/Serverless/Lambda-Serverless-Computing.html">Lambda Serverless Computing</a>
+                <span class="comment">For simple transformations, use Lambda functions to process data in real-time or batch.</span>                
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-EMR.html">AWS EMR (Elastic MapReduce)</a>
+                <span class="comment">For more complex transformations requiring big data processing, use EMR to run large-scale data processing frameworks like Hadoop or Spark.</span>                
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+<hr align=left width=1100>
+<h2>Data Loading</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Redshift.html">AWS Redshift</a>
+                    <span class="comment">Load transformed data into a Redshift data warehouse for analytical queries and reporting.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Amazon-RDS.html">Amazon RDS (Relational Database Service)</a>
+                    <span class="comment">Supports Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and Microsoft SQL Server.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="Amazon-S3.html">Amazon S3 (Simple Storage Service)</a>
+                    <span class="comment">Store transformed data back in S3 for further use, archival, or as a data lake.</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<hr align=left width=1100>
+<h1 align=center>Orchestration, Automation, Monitoring, Performance</h1>
+<hr align=left width=1100>
+
+<h2>Orchestration, Automation</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Glue-Workflow.html">AWS Glue Workflow</a>
+                    <span class="comment"><strong>Orchestration</strong> within AWS Glue, allowing to manage ETL job dependencies.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="/AWS/Serverless/AWS-Step-Functions.html">AWS Step Functions</a>
+                    <span class="comment">Orchestrate the workflow by defining the sequence of AWS services to be executed.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-CloudWatch-Events.html">AWS CloudWatch Events</a>
+                    <span class="comment">Trigger ETL jobs based on schedules or specific events.</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<hr align=left width=1100>
+<h2>Monitoring and Logging</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top>
+            <ul>
+                <li><a href="AWS-CloudWatch.html"> AWS CloudWatch</a>
+                    <span class="comment">Monitor your ETL jobs and the overall health of the pipeline. Set up alarms for failures or performance issues.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top>
+            <ul>
+                <li><a href="AWS-CloudTrail.html">AWS CloudTrail</a></li>
+               <span class="comment">Log API calls and track the pipeline's activity for auditing purposes.</span>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Glue-Data-Catalog.html">AWS Glue Data Catalog</a>
+                    <span class="comment">Manage metadata and keep track of your data schema across the pipeline.</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+<hr align=left width=1100>
+<h2>Security and Compliance</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="IAM-Identity-Access-Management.html">IAM Identity Access Management</a>
+                <span class="comment">Define roles and policies to control access to resources.</span>
+            </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="KMS-Key-Management-Service.html">KMS Key Management Service</a>
+                <span class="comment">Encrypt data at rest and in transit to ensure security.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top width=33%>
+            <ul>
+                <li><a href="AWS-Config-Inspector.html">AWS Config Inspector</a>
+                <span class="comment">Ensure compliance with internal policies and external regulations.</span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<hr align=left width=1100>
+<h2>Scaling and Performance</h2>
+<table width="1100" border="0">
+    <tr>
+        <td valign=top>
+            <ul>
+                <li><a href="Auto-Scaling-EC2-EMR.html">Auto Scaling EC2 EMR</a>
+                <span class="comment">Scale your processing resources up or down based on load.</span>
+                </li>
+            </ul>
+        </td>
+        <td valign=top>
+            <ul>
+                <li><a href="S3-Transfer-Acceleration.html">S3 Transfer Acceleration</a>
+                <span class="comment">Speed up data transfer to S3 for large datasets.</span>
+                </li>
+            </ul>
+        </td>
+        </td>
+    </tr>
+</table>
+
+{% include footer.html %}
+

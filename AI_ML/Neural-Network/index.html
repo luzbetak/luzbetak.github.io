@@ -1,0 +1,414 @@
+---
+---
+{% include menu.html title="Neural Networks" %}
+<hr align=left width=1000>
+<h1 align=center>Neural Network Overview</h1>
+<!-- p align=center>Software engineering is not based on people's appearances,<br>
+but on individuals spending more time with computer science and less time on appearances.</p-->
+  <canvas id="networkCanvas" style="width: 100%; height: 400px; background: #1a1a1a;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    function setupCanvas() {
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * devicePixelRatio;
+      canvas.height = canvas.offsetHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+    setupCanvas();
+    window.addEventListener('resize', setupCanvas);
+
+    class Pulse {
+      constructor(startNode, endNode) {
+        this.startNode = startNode;
+        this.endNode = endNode;
+        this.progress = 0;
+        this.speed = 0.02;
+        this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        this.alive = true;
+      }
+
+      update() {
+        this.progress += this.speed;
+        if (this.progress >= 1) {
+          this.alive = false;
+        }
+      }
+
+      draw() {
+        const x = this.startNode.x + (this.endNode.x - this.startNode.x) * this.progress;
+        const y = this.startNode.y + (this.endNode.y - this.startNode.y) * this.progress;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+
+        // Light up the start node
+        ctx.beginPath();
+        ctx.arc(this.startNode.x, this.startNode.y, this.startNode.radius + 2, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+
+        // Light up the end node when pulse is close
+        if (this.progress > 0.8) {
+          const endNodeGlow = (this.progress - 0.8) * 5;
+          ctx.beginPath();
+          ctx.arc(this.endNode.x, this.endNode.y, this.endNode.radius + 2 * endNodeGlow, 0, Math.PI * 2);
+          ctx.fillStyle = `${this.color}${Math.floor(endNodeGlow * 255).toString(16).padStart(2, '0')}`;
+          ctx.fill();
+        }
+      }
+    }
+
+    class Node {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 4;
+        this.connections = [];
+        this.speed = Math.random() * 0.5 + 0.2;
+        this.offset = Math.random() * Math.PI * 2;
+      }
+
+      update(time) {
+        this.y += Math.sin(time * this.speed + this.offset) * 0.3;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#4a9eff';
+        ctx.fill();
+      }
+    }
+
+    const nodes = [];
+    const layers = [4, 6, 6, 4];
+    const margin = 100;
+    const spacing = 50;
+    let pulses = [];
+
+    layers.forEach((nodeCount, layerIndex) => {
+      const layerX = margin + (canvas.offsetWidth - 2 * margin) * (layerIndex / (layers.length - 1));
+      for (let i = 0; i < nodeCount; i++) {
+        const layerY = (canvas.offsetHeight - (nodeCount - 1) * spacing) / 2 + i * spacing;
+        nodes.push(new Node(layerX, layerY));
+      }
+    });
+
+    let currentIndex = 0;
+    for (let i = 0; i < layers.length - 1; i++) {
+      for (let j = 0; j < layers[i]; j++) {
+        for (let k = 0; k < layers[i + 1]; k++) {
+          const startNode = nodes[currentIndex + j];
+          const endNode = nodes[currentIndex + layers[i] + k];
+          startNode.connections.push(endNode);
+        }
+      }
+      currentIndex += layers[i];
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    // Generate multiple concurrent pulses
+    function generatePulses() {
+      // Number of simultaneous paths (2-3 paths)
+      const numPaths = Math.floor(Math.random() * 2) + 2;
+      
+      // Keep track of used start nodes to avoid duplicates
+      const usedStartNodes = new Set();
+      
+      for (let i = 0; i < numPaths; i++) {
+        // Select random unused start node from first layer
+        let availableStartNodes = nodes.slice(0, layers[0]).filter(node => !usedStartNodes.has(node));
+        if (availableStartNodes.length === 0) break;
+        
+        const startNode = availableStartNodes[Math.floor(Math.random() * availableStartNodes.length)];
+        usedStartNodes.add(startNode);
+        
+        // Create path through network
+        let currentNode = startNode;
+        while (currentNode.connections.length > 0) {
+          const nextNode = currentNode.connections[Math.floor(Math.random() * currentNode.connections.length)];
+          pulses.push(new Pulse(currentNode, nextNode));
+          currentNode = nextNode;
+        }
+      }
+    }
+
+    // Generate new pulses periodically
+    setInterval(generatePulses, 2000);
+
+    function animate(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connections
+      nodes.forEach(node => {
+        node.connections.forEach(connectedNode => {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(connectedNode.x, connectedNode.y);
+          ctx.strokeStyle = 'rgba(74, 158, 255, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+      });
+      
+      // Update and draw nodes
+      nodes.forEach(node => {
+        node.update(time / 1000);
+        node.draw();
+      });
+
+      // Update and draw pulses
+      pulses = pulses.filter(pulse => pulse.alive);
+      pulses.forEach(pulse => {
+        pulse.update();
+        pulse.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    animate(0);
+  </script>
+
+<body>
+
+  <h2>What Is a Neural Network?</h2>
+  <p>
+    A <strong>neural network</strong> is a computational model made of many simple processing units called
+    <strong>neurons</strong>. These neurons are organized into layers and connected by weighted links.
+    The network transforms input data into outputs and can learn complex patterns and relationships
+    from examples.
+  </p>
+
+  <h2>Core Components</h2>
+
+  <h3>1. Neurons</h3>
+  <ul>
+    <li>Each neuron receives one or more inputs (numbers).</li>
+    <li>It computes a <strong>weighted sum</strong> of these inputs.</li>
+    <li>It adds a <strong>bias</strong> term.</li>
+    <li>It applies an <strong>activation function</strong> to produce an output.</li>
+  </ul>
+
+  <h3>2. Layers</h3>
+  <ul>
+    <li>
+      <strong>Input Layer</strong>
+      <ul>
+        <li>Receives raw data (e.g., pixels, feature vectors, numerical signals).</li>
+        <li>Does not perform computation; it just feeds data into the network.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Hidden Layers</strong>
+      <ul>
+        <li>One or more layers of neurons between input and output.</li>
+        <li>Each layer learns increasingly abstract features from the previous layer.</li>
+        <li>Networks with many hidden layers are called <strong>deep neural networks</strong>.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Output Layer</strong>
+      <ul>
+        <li>Produces the final result of the network.</li>
+        <li>Examples: class probabilities, a numeric prediction, or an encoded representation.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>3. Weights and Biases</h3>
+  <ul>
+    <li><strong>Weights</strong> control the strength and direction of connections between neurons.</li>
+    <li><strong>Biases</strong> allow the neuron to shift the activation function left or right.</li>
+    <li>Learning in a neural network means adjusting weights and biases to reduce error.</li>
+  </ul>
+
+  <h2>How Neural Networks Learn</h2>
+
+  <h3>1. Training Data</h3>
+  <ul>
+    <li>The network is given many examples of input–output pairs.</li>
+    <li>Goal: learn a mapping from inputs to outputs that generalizes to unseen data.</li>
+  </ul>
+
+  <h3>2. Forward Pass</h3>
+  <ol>
+    <li>Input data is fed into the input layer.</li>
+    <li>Each layer computes its outputs and passes them to the next layer.</li>
+    <li>The output layer produces a final prediction.</li>
+  </ol>
+
+  <h3>3. Loss Function</h3>
+  <ul>
+    <li>The loss function measures how far the prediction is from the target.</li>
+    <li>
+      Common examples:
+      <ul>
+        <li><strong>Mean Squared Error (MSE)</strong> for regression.</li>
+        <li><strong>Cross-Entropy Loss</strong> for classification.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>4. Backpropagation and Optimization</h3>
+  <ol>
+    <li>
+      <strong>Backpropagation</strong> computes gradients of the loss with respect to all weights and biases.
+    </li>
+    <li>
+      An <strong>optimizer</strong> uses these gradients to update the parameters and reduce the loss.
+      Common optimizers include:
+      <ul>
+        <li><strong>Stochastic Gradient Descent (SGD)</strong></li>
+        <li><strong>Adam</strong></li>
+      </ul>
+    </li>
+    <li>This process repeats over many iterations (epochs) until performance is acceptable.</li>
+  </ol>
+
+  <h2>Activation Functions</h2>
+  <p>
+    Activation functions introduce <strong>nonlinearity</strong>, allowing the network to learn complex
+    patterns that a simple linear model cannot.
+  </p>
+  <ul>
+    <li>
+      <strong>ReLU (Rectified Linear Unit)</strong>
+      <ul>
+        <li>Outputs 0 for negative inputs and the input itself for positive values.</li>
+        <li>Widely used in hidden layers of deep networks.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Sigmoid</strong>
+      <ul>
+        <li>Outputs values between 0 and 1.</li>
+        <li>Historically used for binary classification and output layers.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Tanh</strong>
+      <ul>
+        <li>Outputs values between -1 and 1.</li>
+        <li>Zero-centered version of sigmoid.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Softmax</strong>
+      <ul>
+        <li>Converts a vector of scores into a probability distribution.</li>
+        <li>Commonly used in the output layer for multi-class classification.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Common Types of Neural Networks</h2>
+
+  <h3>1. Feedforward Neural Networks (FNN)</h3>
+  <ul>
+    <li>Layers are fully connected; data flows strictly from input to output.</li>
+    <li>Used for basic classification and regression tasks.</li>
+  </ul>
+
+  <h3>2. Convolutional Neural Networks (CNNs)</h3>
+  <ul>
+    <li>Use convolutional layers to process grid-like data such as images.</li>
+    <li>Excellent for image classification, object detection, and vision tasks.</li>
+  </ul>
+
+  <h3>3. Recurrent Neural Networks (RNNs)</h3>
+  <ul>
+    <li>Designed for sequence data (time series, text, speech).</li>
+    <li>Have connections that loop back, allowing information to persist over time.</li>
+    <li>Variants include LSTM and GRU networks.</li>
+  </ul>
+
+  <h3>4. Transformers</h3>
+  <ul>
+    <li>Use <strong>attention mechanisms</strong> instead of recurrence.</li>
+    <li>Very effective for language modeling, translation, and large-scale sequence tasks.</li>
+    <li>Form the basis for many modern large language models.</li>
+  </ul>
+
+  <h3>5. Autoencoders and Generative Models</h3>
+  <ul>
+    <li>
+      <strong>Autoencoders</strong>
+      <ul>
+        <li>Learn to compress (encode) and reconstruct (decode) data.</li>
+        <li>Used for dimensionality reduction, denoising, and feature learning.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Generative Models</strong> (e.g., GANs, VAEs, diffusion models)
+      <ul>
+        <li>Learn to generate new data similar to the training data.</li>
+        <li>Used in image generation, audio synthesis, and text generation.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Applications of Neural Networks</h2>
+  <ul>
+    <li>
+      <strong>Computer Vision</strong>
+      <ul>
+        <li>Image classification, object detection, segmentation, facial recognition.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Natural Language Processing</strong>
+      <ul>
+        <li>Machine translation, text classification, chatbots, summarization.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Speech and Audio</strong>
+      <ul>
+        <li>Speech recognition, speech synthesis, audio classification.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Time-Series Forecasting</strong>
+      <ul>
+        <li>Stock prices, demand forecasting, sensor data analysis.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Recommendation Systems</strong>
+      <ul>
+        <li>Personalized content and product recommendations.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Control and Robotics</strong>
+      <ul>
+        <li>Autonomous vehicles, robot control, reinforcement learning.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Neural networks are layered collections of neurons that learn from data.</li>
+    <li>They use weights, biases, and activation functions to model complex relationships.</li>
+    <li>Training uses forward passes, loss computation, backpropagation, and optimization.</li>
+    <li>Different architectures are specialized for images, text, sequences, and generation.</li>
+    <li>They power many modern AI systems across vision, language, audio, and control tasks.</li>
+  </ul>
+
+
+{% include footer.html %}
+

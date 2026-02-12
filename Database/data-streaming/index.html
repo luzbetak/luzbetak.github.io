@@ -1,0 +1,23 @@
+---
+---
+{% include menu.html title="Apache Kafka" %}
+
+
+<h1>Apache Kafka</h1>
+    <ul>
+        <li><p><strong>Distributed Architecture:</strong> Kafka is designed to be distributed across multiple servers, offering high availability, fault tolerance, and scalability.</li>
+        <li><p><strong>Publish-Subscribe Messaging System:</strong> Kafka allows multiple producers to publish messages to topics, which consumers can subscribe to, enabling decoupled communication between different parts of an application
+        <li><p><strong>Topics and Partitions:</strong> Data is organized into topics, which are further divided into partitions. Each partition is an ordered, immutable sequence of records that Kafka appends to in real-time.</li>
+        <li><p><strong>High Throughput and Low Latency:</strong> Kafka can handle large volumes of data with minimal latency, making it ideal for high-throughput use cases like log aggregation, real-time analytics, and event sourcing.</li>
+        <li><p><strong>Durability and Fault Tolerance:</strong> Data in Kafka is written to disk and replicated across multiple brokers, ensuring that it is durable and fault-tolerant.</li>
+        <li><p><strong>Stream Processing:</strong> Kafka includes Kafka Streams, a stream processing library that enables processing and transforming data in real-time as it flows through Kafka topics.</li>
+        <li><p><strong>Scalability:</strong> Kafka's architecture allows easy scaling by adding more brokers to a cluster, which distributes the load across more hardware.</li>
+        <li><p><strong>Retention and Compaction:</strong> Kafka allows you to define retention policies for how long data is kept, with options for data compaction to keep only the latest value for each key, reducing storage requirements.<
+        <li><p><strong>Exactly-once Semantics:</strong> Kafka supports exactly-once delivery semantics, ensuring that messages are neither lost nor duplicated during processing.</li>
+        <li><p><strong>Integrations and Ecosystem:</strong> Kafka integrates with a wide range of data sources and sinks, and its ecosystem includes tools like Kafka Connect for integration with external systems and Confluent Schema Regist
+    </ul>
+  
+   {% include footer.html %}
+
+  </body>
+</html>

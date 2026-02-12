@@ -1,0 +1,121 @@
+---
+---
+{% include menu.html title="Python Examples for Chroma Vector Database" %}
+
+<h1>Python Examples for Chroma Vector Database</h1>
+
+<h1>Python Examples for Chroma Vector Database</h1>
+
+<h2>Adding Records to Chroma</h2>
+
+<p>Here's a Python example demonstrating how to add records (documents and embeddings) to a Chroma vector database:</p>
+
+<h3>Prerequisites</h3>
+<p>Make sure you have ChromaDB installed:</p>
+<pre><code class="language-python">
+pip install chromadb
+</code></pre>
+
+<h3>Example Code</h3>
+
+<pre><code class="language-python">
+import chromadb
+from chromadb.utils import embedding_functions
+
+# Initialize a Chroma client (in-memory) - you can change this to persistent storage
+client = chromadb.Client()
+
+# Create a collection (similar to a table in a relational database)
+collection_name = "my_collection"
+try:
+    collection = client.create_collection(name=collection_name)
+except:
+    collection = client.get_collection(name=collection_name)  # If already exists, get it
+
+# Example documents and their embeddings (replace with your actual data)
+documents = [
+    "This is the first document.",
+    "This is the second document about cars.",
+    "This is the third document discussing programming.",
+    "This is the fourth document about artificial intelligence."
+]
+
+# Generate embeddings using a sentence transformer model
+sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
+collection.update_embeddings_function(sentence_transformer_ef)
+
+# Add the documents to the collection (along with some metadata - optional)
+ids = ["doc1", "doc2", "doc3", "doc4"]
+metadatas = [
+    {"source": "website1", "author": "userA"},
+    {"source": "website2", "author": "userB"},
+    {"source": "blog", "author": "userC"},
+    {"source": "article", "author": "userD"}
+]
+
+collection.add(
+    documents=documents,
+    ids=ids,
+    metadatas=metadatas,
+)
+print("Records added to Chroma collection.")
+</code></pre>
+
+<h2>Retrieving Records from Chroma</h2>
+
+<p>Now, let's see how to retrieve records from the Chroma collection:</p>
+
+<h3>Example Code</h3>
+
+<pre><code class="language-python">
+import chromadb
+from chromadb.utils import embedding_functions
+
+# Initialize a Chroma client (in-memory)
+client = chromadb.Client()
+
+# Get the collection
+collection_name = "my_collection"
+collection = client.get_collection(name=collection_name)
+
+# Example query
+query = "Tell me about cars"
+
+# Generate the embedding for the query
+query_embedding = sentence_transformer_ef.encode(query)
+
+# Perform a similarity search
+results = collection.query(
+    query_embeddings=[query_embedding],
+    n_results=2  # Retrieve the top 2 most similar records
+)
+
+# Print the results
+print("Query Results:")
+print(results)
+# Access the documents
+print("\nDocuments:")
+print(results['documents'][0])
+
+# Access the metadatas
+print("\nMetadatas:")
+print(results['metadatas'][0])
+
+# Access the ids
+print("\nIds:")
+print(results['ids'][0])
+</code></pre>
+
+<h3>Explanation</h3>
+
+<ul>
+  <li>The code first initializes a Chroma client and creates (or retrieves) a collection.</li>
+  <li>It then defines a query string and generates its embedding using the same embedding function as used when adding the records.</li>
+  <li>The `collection.query()` method performs a similarity search, returning the top `n_results` records that are most similar to the query embedding.</li>
+  <li>The `results` dictionary contains various information about the retrieved records, including the documents, metadata, and IDs.</li>
+</ul>
+
+<p>Remember to replace the example data and query with your own data and queries.</p>
+
+
+{% include footer.html %}

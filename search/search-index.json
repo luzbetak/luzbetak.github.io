@@ -1,0 +1,770 @@
+[
+  {
+    "id": 1,
+    "title": "RDBMS-Schemas.html",
+    "content": "rdbms schemas central charts child clear common complex complexity connections constellation data database databases denormalized dimension dimensions fact faster fewer flat foundational galaxy hierarchical integrity joins management many marts multiple needs network non organizational organizes parent performance queries query rdbms redundancy related relational relationship relationships schema schemas several simple simpler single snowflake specific star structure systems table tables tree warehouses",
+    "url": "/Database/relational/RDBMS-Schemas.html"
+  },
+  {
+    "id": 2,
+    "title": "RDBMS-Snowflake-Schema.html",
+    "content": "rdbms snowflake schema additional advanced approach attributes central characteristics complex complexity cost costs data database date design difference differences dimension dimensions duplicated environments example extension fact fewer higher increased indexing integrity joins key layers level levels minimizing modeling multiple need normalization normalized normalizing performance piece priority process queries query reduced redundancy related relational relationships scenarios schema separate several shape single slower snowflake space star storage structure structured sub table tables techniques usage variation warehouses warehousing year",
+    "url": "/Database/relational/RDBMS-Snowflake-Schema.html"
+  },
+  {
+    "id": 3,
+    "title": "RDBMS-Star-Schema.html",
+    "content": "rdbms star schema advantages agegroup amounts analysis attributes central commerce components customer customerid customername data database date dateid dates de descriptive design details dimension e efficient example fact facts flexibility foreign increased joins keys limited links location month names normalization number popular product productid quantitative quantities quarter queries query rdbms region requirements resemblance sales schema simple simplicity star storage store storename table tables warehouse warehousing year",
+    "url": "/Database/relational/RDBMS-Star-Schema.html"
+  },
+  {
+    "id": 4,
+    "title": "Relational-Databases.html",
+    "content": "relational databases accuracy acid advantages algebra analysis analytical analytics another apis atomicity attribute attributes benefits better business category central centralized clear codd column columns complex compliance comprehensive concepts consistency constraints current data database databases datasets decision denormalized design differences dimension durability edgar enforced ensures entities etl extract fact fast features files finance flat foreign functions heavy historical identifier indexing integrity intelligence isolation key keys language large load making managing marts multidimensional multiple normalized nothing olap oltp one online operational operations performance predefined primary process processing purposes queries query querying reads record records redundancy reference relational relations relationships reporting row rows sales schema simple single slice snowflake source sources specific sql star state stores structure structured subsets table tables target techniques theory time transaction transactional transactions transformed trend truth unique users valid various view volumes warehouse warehouses warehousing writes",
+    "url": "/Database/relational/Relational-Databases.html"
+  },
+  {
+    "id": 5,
+    "title": "MySQL_LAG_Function.html",
+    "content": "mysql lag function analysis average avg chronological clause column curdate current daily data date dates day days decimal difference differences explanation filtering four function increase increases interval lag last mysql null order outer overview places previous price purpose query result round row rows select sequential series sql time valid value values window",
+    "url": "/Database/relational/MySQL_LAG_Function.html"
+  },
+  {
+    "id": 6,
+    "title": "Kafka-Producer-Consumer.html",
+    "content": "kafka producer consumer apache brokers consumer description earliest format import initializes json kafka kafkaconsumer kafkaproducer lambda list message messages offset producer specified topic x",
+    "url": "/Database/data-streaming/Kafka-Producer-Consumer.html"
+  },
+  {
+    "id": 7,
+    "title": "Apache_Parquet.html",
+    "content": "apache parquet access amount analytic analytical analytics apache architectures aws azure based benefits big bigquery cases changes cloud columnar columns common compatibility compression costs data datasets dictionary distributed easy efficient encoding engines environments etl evolution existing expenses fast faster features file files format frameworks google hadoop hive impala improved integration key lakes large length lower many massive modern multiple necessary new olap operations optimized parallel parallelism parquet parts performance pipelines platforms processing queries query read redshift reduced retrieval rle scalability scale schema services size spark specific splitting storage stored stores support synapse system systems techniques time use warehousing wide workloads",
+    "url": "/Database/data-streaming/Apache_Parquet.html"
+  },
+  {
+    "id": 8,
+    "title": "Graph-Databases-ArgoDB-Neo4j.html",
+    "content": "graph databases argodb neo4j acid alice analysis analytics apis arangodb argodb argodbexample billions breakdown case cases class code complex compliance concept connection consistency create cypher data database databases datasets db deep def detection different distributed document driver edges efficient ensures example excels explanation fast features fraud friend friends function given graph graphdatabase handles high import insights integrates integration key language languages large massive match matching method methods model multi name networks new node nodes password pattern people performance person platforms popular processing python queries query querying rapid recommendation record related relation relationship relationships reliability result return scalability scale session sessions setup social specialized storage syntax systems transactions traversal two usage use user value way workloads",
+    "url": "/Database/modeling/Graph-Databases-ArgoDB-Neo4j.html"
+  },
+  {
+    "id": 9,
+    "title": "Kimball_Bus_Matrix.html",
+    "content": "kimball bus matrix acts analytics architectural architecture artifact attach blueprint bus business column columns conformed contract critical customer data date defines design development dimension dimensional dimensions enforces ensures enterprise example examples fact full governance grain incremental integrated intersections inventory keys kimball long marked mart matrix multiple one orders planning prevents process processes product promotion relationship representation returns row rows sales schema select sentence shared shipments silos star store structure summary table tables term textual visual warehouse x",
+    "url": "/Database/modeling/kimball/Kimball_Bus_Matrix.html"
+  },
+  {
+    "id": 10,
+    "title": "Real_Sales_Dimensional_Model.html",
+    "content": "real sales dimensional model aggregations analysis analytics brand business case category city conformed country crm customer customers day degenerate dimension dimensional dimensions drill effectiveness example fact finance gender grain high inventory item key kimball line marketing measures model month mpp net one order overview performance point process product promotion query readable real region revenue row sales scales schema separate shipments simple single star state structure subcategory summary systems table tables time top total transactional use works",
+    "url": "/Database/modeling/kimball/Real_Sales_Dimensional_Model.html"
+  },
+  {
+    "id": 11,
+    "title": "Collibra-Data-Quality.html",
+    "content": "collibra data quality acceptable accuracy actionable allows analytics anomalies automated aws azure benefits broken business capabilities catalog checks cloud collaboration collibra completeness compliance conducts consistency continuous creation custom dashboard dashboards data decision depth detailed detects different discovery duplicates efforts enables enhance enriched enterprise errors experience failed features finance glance governance health healthcare high impact improved improvement inaccuracies industries insights integrates integration interactive issues key large learning lineage machine making management metrics mitigates models monitoring multi needs observability operational operations organizations overall owners performance pipelines platform platforms poor potential predefined proactive processes profiling progress quality real reduced regulatory remediation reporting reports requirements retail risks rules scalable standardization standards stewards stewardship support surfaces systems teams telecommunications thresholds time timeliness tool transformation trust trustworthiness types user users uses validation visibility volumes workflows",
+    "url": "/Database/governance/Collibra-Data-Quality.html"
+  },
+  {
+    "id": 12,
+    "title": "etl-pipeline.html",
+    "content": "etl pipeline accuracy additional aggregation analysis apis application applying averages business calculations cleaning cloud common connectivity consistency context conversion convert counts csv currencies data database databases date destination different downtime duplicates enhancing enrichment ensuring errors etl extract extraction failures files format formats incremental information integrity irrelevant issues lake large load loading logic missing needs optimization organization performance process reference resource retries rules services sources specific structure summarizing sums system tables target transform transformed usage values various volumes warehouse xml",
+    "url": "/Database/ingestion-etl/etl-pipeline.html"
+  },
+  {
+    "id": 13,
+    "title": "Large-Scale-Data-Ingestion.html",
+    "content": "large scale data ingestion acid additional advanced amazon amounts analytics apache application applications automation aws azure based batch beam big capabilities cloud cluster compliance computation confluent connectors data databricks dataflow delta distributed end engineering enterprise event events extension features flink flow framework fully google grade high hubs ingestion iot kafka key kinesis lake large latency logs low managed management manner massive message messaging millions movement multi multiple nifi parallel pipelines platform powerful processing pulsar ready real registry role scalability scale schema second security service sources spark storm stream streaming streams structured system systems telemetry tenancy throughput time tool tools transformation variety wide",
+    "url": "/Database/ingestion-etl/Large-Scale-Data-Ingestion.html"
+  },
+  {
+    "id": 14,
+    "title": "MongoDB_Document_Based_NoSQL.html",
+    "content": "mongodb document based nosql account based binary bson cli collection commands consumer content context contexts corresponding data database default document documents embedding existence expressions field fields fog form format gunning id implicit index json kafka key keys limit localhost locally match mongodb mongosh multiple names nosql number operator pagination pair pairs port primary producer project random range regular shell size skip sort specific store text tf title traditional url value values vector view works",
+    "url": "/Database/nosql/MongoDB_Document_Based_NoSQL.html"
+  },
+  {
+    "id": 15,
+    "title": "Apache-Nifi.html",
+    "content": "apache nifi ability aggregation analysis apache apis approach audit authentication automation based cases cloud complex compliance csv custom data databases debugging delivery destinations detailed detection developers devices different diverse drag drop efficient encryption enrichment environments extensibility external features filtering finance flow formats formatting fraud friendly ftp government healthcare high http industries ingestion integration interface iot json kafka key lakes large lineage log logs manner mechanisms monitoring nifi non open organizations overview pipelines plugins premises privacy processing processors programming protocols provenance range real routing scalability scenarios seamless services source sources ssl system systems tasks technical telecommunications throughput time tool trails transfer transformation transformations use user users various visual volumes warehouses web wide xml",
+    "url": "/Database/apache/Apache-Nifi.html"
+  },
+  {
+    "id": 16,
+    "title": "Apache_Hudi.html",
+    "content": "apache hudi acid analytics apache architectures background batch big capabilities cases changed compaction compression conclusion cost data datasets deletes effective efficient environments features file footprint framework fresh gap guarantees hadoop historical hudi incremental incrementals indexes indexing ingestion inserts key lake lakes large latency low management modern older open overall performance pipelines previous processing queries query querying real scalable scale scenarios sizes source storage support systems techniques time top traditional transaction transactional transactions travel updates upserts use users versions",
+    "url": "/Database/apache/Apache_Hudi.html"
+  },
+  {
+    "id": 17,
+    "title": "Apache_Iceberg.html",
+    "content": "apache iceberg access acid analytics apache cases changes cloud columns complex data dataset datasets deletes durable dynamic efficiency enables entire evolution existing features flexible framework frequent hidden historical iceberg key lakes large management manual metadata model models modern need needs object operations partition partitioning partitions petabyte previous queries query reliable removing scale schema storage supports time transactions travel updates upserts use users versions",
+    "url": "/Database/apache/Apache_Iceberg.html"
+  },
+  {
+    "id": 18,
+    "title": "GraphQL.html",
+    "content": "graphql access advanced aggregation agnostic aliases amazon analysis api apis application architecture arguments authorization backend backends batching benefits boolean caches caching cases centralized characteristics chat client clients common complex complexity components composition concepts conditional considerations constrained consumers contract cross dashboards data database databases decoupled defines definition definitions delivery deployments depth design details developer directives driven efficiency endpoint endpoints engine engines enums event exactly excellent execution experience features federation fetching field fields first flexibility float fragments function functions governance graph graphql hierarchical id implementation independent inefficiencies input int interfaces introspection language layer lazy level limitations limiting live microservice microservices model mongodb multiple mutation mutations mysql neptune nested nosql notifications object occurs operations optimization order ownership parallel parameterized patterns performance persisted possible precise problem protocols public queries query rate real relational relationships requirements resolution resolver resolvers resolves responsibility rest return reusable rigid runtime scalar scalars scale schema sdl security selection server servers service services shared shifts side similar single specification state storage strengths string strong structured structures subscriptions supported supports technical techniques time transactional traversal tree types typing unified unions updated usages use uses validates validation value websockets write",
+    "url": "/Database/graph-databases/GraphQL.html"
+  },
+  {
+    "id": 19,
+    "title": "Query_Performance.html",
+    "content": "query performance access advanced age aggregations amount analysis analyze automatic aws batch benefit best better bigquery bottlenecks caching city clauses cloud clustering clusters column columns complex compute conditions consumption cost costs count create customers data database databases dataset datasets date decimal decisions denormalization desc disk distribution efficiency efficient employees ensure executed execution explain explicit fast faster filtering frequently full group grouped hash help id importance improvement index indexes indexing inefficiencies inserts int join joins key keys large leverage limit limiting maintenance materialized memory merge multiple name names need nodes number offset olap operational optimization optimized optimizer optimizing order partitioned partitioning performance plan practices precomputed price products proper queries query range redshift reducing regular resource result results rows run salaries sales scalable scan scans segments select single size smaller snowflake space specific sql statistics stores suboptimal subset systems table tables tasks techniques times tools types update updates use using utilize vacuum view views virtual warehouses writes",
+    "url": "/Database/sql/Query_Performance.html"
+  },
+  {
+    "id": 20,
+    "title": "sql-with-2-tables-join.html",
+    "content": "sql with 2 tables join courses cr create curriculum drop email exists g grade grades join language limit lnaguage order rand replace select semester students table tables",
+    "url": "/Database/sql/sql-with-2-tables-join.html"
+  },
+  {
+    "id": 21,
+    "title": "Optimizing-Join-Queries.html",
+    "content": "optimizing join queries accessed active adequate allocation amount analysis anomalies architectures batch batches bottlenecks buffer cache check clause columns common complex composite condition conditions considerations constraints correct cost costly criterion ctes data database datasets date defragmentation denormalization design different dimension disk disks efficient enable environment example excessive execution expensive explain expressions fact faster files filter filtering filters flexible foreign fragmentation frequently full functions hardware histograms incorrect increased index indexed indexes indexing infrastructure inner insights insufficient join joins key large left legacy less limited loop maintenance management materialized memory merge method methods model monitoring multiple mysql need nested old older ones operation operations optimization optimize optimizing oracle order parallel partition partitioning parts performance plan pools potential processing processors proper pruning queried queries query redundancy redundant region regular regularly repeated resources results retrieval rewrite rewriting scalability scans schema selective separate simpler size smaller solutions specific ssds star statistics steps storage subqueries sufficient summary system table tables tasks techniques time tools type types unnecessary usage use views volume warehouse warehousing write",
+    "url": "/Database/sql/Optimizing-Join-Queries.html"
+  },
+  {
+    "id": 22,
+    "title": "SQL_Overview.html",
+    "content": "sql overview ability access additional alter analysis analytical category changes characteristics columns command commands common commonly complex conditionals control create cube current data database databases dcl ddl delete deleting dml dql drop elements existing extensions functionality functions grant group index indexes insert inserting integrity isolation language level loops managing manipulating modifies new object objects one oracle part point privileges procedural query records relational removes retrieval roles rollback rollup rows schemas select server set significance specific specifies sql structure structured structures table tables tcl technically transaction transactions types undoes update used users variants window",
+    "url": "/Database/sql/SQL_Overview.html"
+  },
+  {
+    "id": 23,
+    "title": "SQL_Statements.html",
+    "content": "sql statements alice alter asc average avg bob bonus bottom case category charlie clause column columns combined combines common company create cte data dave delete department departments desc descending description distinct drop dropping duplicates e else employee employees end every existence existing exists expression expressions final first group hierarchical high highest id image images index insert join level limit limits list low lowest manager managers medium name names negative new null number numbers order orders output pagination positive queries query rank record records recursive removes rename result retrieval retrieve row rows salaries salary samples score scores scoring select selection selects self set sets specific speed sql statements step structure subquery table tables top total truncate two union update values view virtual whose window",
+    "url": "/Database/sql/SQL_Statements.html"
+  },
+  {
+    "id": 24,
+    "title": "main-index-2025-12-16.html",
+    "content": "main index 2025 12 16 ability access accountability acid action actions actuarial adaptive administration ai alerting amazon analysis analytical analytics angeles anomaly answer apache apis apple approach architect architectural architecture architectures artificial assets auditability automated availability aws azure background based batch billion billions boundaries brighthouse business caching california capabilities certificate clarify cloud cluster clusters code compliance compute computer configurations consistent constraints controlled controls core correct correctness cost costs county criteria critical custom customer customers cutover data database databases databricks datasets day deadlines decisions deep degree delta describe design detection deterministic development disciplined disney distributed dms domain downstream downtime driven duplication ecosystems education efficiency elasticsearch embedded employee encryption engineer engineering enterprise entities environment environments etl even events evolution execution experience extension extreme field financial focus fortune four framework frameworks full global goal governance grade greenhouse group guarantees hadoop hierarchy high highlight highlights highly hills historical history hours hr hundreds iceberg iii impact importance inconsistencies individual information infrastructure ingestion initiative insight integrity intelligence internals interoperability interviews issues jobs kafka kevin key lake lakehouse large latency leadership learning level lifecycle linux load location logic logical long los lutheran luzbetak machine major market marketing massive measurable medallion media metadata method methods migration minor modeling models monitoring multi national netezza news nexstar nike normalized oaks object offs one open operational operations optimization ordering organizational oriented outcome overview ownership parallel partition parts patterns pay payment pci people performance petabyte phoenix pii pipeline pipelines platform platforms policies possible postgresql powered practices predictive premises present problem processing product production professional programming protection provisioning pruning pyspark python quality query question real reconciliation records recruitment redshift reductions regions regulated regulatory relevant reliability reliable reporting responsibility result results resume retention reusable role scale scd schema science seamless second security senior sensitive series services severe shared show significant situation slas snowflake software solutions spark specific spikes standards standpoint star state strategies strategy streaming strength strict strong structure structured sub success supporting system systems table task teams technical technologies technology television terabytes teradata term terraform testing thomas thousand throughput tightly time tokenization tolerance tools traceability tracking trade traffic transactional transformations travel tuning type ucla unified university uptime vacuum validation value vision warehouse warehouses weather web whenever wlm woodland workday workflow workloads works z zero",
+    "url": "/.archive/main-index-2025-12-16.html"
+  },
+  {
+    "id": 25,
+    "title": "main-index-2025-12-15.html",
+    "content": "main index 2025 12 15 actionable administration ai algorithms amazon analytics angeles anomaly anti apache apis applications architect architected architecting architecture architectures art artificial assessment augmented balancing behavior billions brain building built business california capabilities cassandra catalog catalogs certificate classification cloud cluster companies complex compliance comprehensive computer computing concept concurrent content control cortex cost county created custom dashboard dashboards data database databases databricks decades deep degree delta deployment deployments design designing detection developed development device diagnosis dimensional distributed edge education elt embedded end engagement engine engineer engineering engines enterprise etl events everything experience expert expertise extension face faiss fastapi financial fine focus fortune foundational frameworks fraud full generation generative golang graduated healthcare high highlights hills hugging implementation implementations indexing information infrastructure innovative integration intelligence intelligent interfaces java kafka kevin kimball kinesis lake lakehouse lakes langchain language languages large learning led legacy llm load loan location los lutheran luzbetak machine major management mapping master mdm medallion media medical methodology migration migrations million millions ml mlflow mllib modeling models modern multi multiple mysql native natural network networks neural oaks object openai optimization optimized oriented overview patterns payment performance petabyte petabytes phoenix pioneered pipeline pipelines platform platforms postgresql powered prediction predictive probabilistic procedures processing production professional programming proven pyspark python pytorch queries query ranking raw real recommendation record records redshift regulatory relationship research response resume retrieval risk robust royalty scala scale schemas science search seasoned second semantic services signals snowflake software solutions spam spans spark sql stack startups state stored strategies streaming streamlit sub subscription system systems tableau technical technology tensorflow text thomas thousand thousands time times track traffic transformations transformative tuning two ucla underwriting unity university unix user users vision visualization visualizations woodland",
+    "url": "/.archive/main-index-2025-12-15.html"
+  },
+  {
+    "id": 26,
+    "title": "Databricks_Slideshow.html",
+    "content": "databricks slideshow full image screen slideshow",
+    "url": "/.archive/slideshow/Databricks_Slideshow.html"
+  },
+  {
+    "id": 27,
+    "title": "LanceDB-Vector-Database.html",
+    "content": "lancedb vector database abnormal accuracy ai angular annoy annoyindex anomalies anomaly api apis applications approximate associated audio behavior bert cases characteristics classification client clustering code collection common connect connection content control count critical data database databases datasets dbscan detection dimension dimensional dimensionality display distance distances documents driven ecosystem efficiency efficient embedding embeddings environments essential euclidean event example explanation external f fast feature features first focuses format friendly full function gcp generated gpt high hosting id identify ids image images import index initialization insert inserts install integration item items k key keywords labels lancedb language large latency learning library local low machine management manhattan match meaning means memory metadata metric metrics ml models modern natural nearest need needs neighbor neighbors new nlp nn np numerical numpy open outliers overview path performance pinecone pip pipelines points processing production products python queries query querying random randomly range real recommend recommendation regression result results retrieval retrieve role scalability scale scenarios search searches semantic semantically services similar similarity situations small source space specialized specified spotify steps storage store systems table tasks text throughput time top traditional transaction tree type types unusual upserting usage use user users using various vec vector vectors visual wide workloads world",
+    "url": "/AI_ML/Vector-Databases/LanceDB-Vector-Database.html"
+  },
+  {
+    "id": 28,
+    "title": "Neural-Network-Sentiment.html",
+    "content": "neural network sentiment acc accuracy array backprop backpropagation bag binary cache characters class connected converts dataset def demo descent dict dl educational entropy epoch epochs eps example experience float food forward freq fully gradient gradients grads great idx import index initialization input int intermediate items label labeled labels layer letter letters level list loss lowercase lr matrix movie n name negative network neural new non np number numpy order output p parameter positive predicted preds print prints probabilities probs product purposes relu remove reserve return returns rng scratch seed self sentence sentences sentiment shape sigmoid simple size small spaces str terrible test tests text threshold tok tokenizer tokens train training tuple unk unknown update values vec vector vocab vocabulary whitespace wonderful word words x z",
+    "url": "/AI_ML/Neural-Network/Neural-Network-Sentiment.html"
+  },
+  {
+    "id": 29,
+    "title": "NVIDIA-GeForce-RTX-3060-Installation.html",
+    "content": "nvidia geforce rtx 3060 installation alias apt best build changes chrome command computing cuda details driver drivers essential example following geforce gpu graphics headers identify insecure install installation installed latest learning linux machine microphone necessary nvidia official optional origins output packages ppa recommended repository rtx smi step sudo system toolkit tools ubuntu update upgrade version xxx",
+    "url": "/AI_ML/Hardware/NVIDIA-GeForce-RTX-3060-Installation.html"
+  },
+  {
+    "id": 30,
+    "title": "TF-IDF.html",
+    "content": "tf idf another breakdown column content convert corpus data decimals doc docs document documents entire example feature frequency high higher highest idf import importance important inverse learning limit low lower machine many matrix model multiple names particular practice prettytable python range ranking relevant result row rows sample score scores specific summary table term terms text tf tfidfvectorizer theory uniqueness upper value values vectorizer word words",
+    "url": "/AI_ML/Search-Retrieval/TF-IDF.html"
+  },
+  {
+    "id": 31,
+    "title": "Retrieval-Augmented-Generation.html",
+    "content": "retrieval augmented generation accurate algorithm another augment augmented base bert build chatbot components conn contextual create cur database datasets dimensional document documents embeddings engines extension external generate generated generation generator gpt high id import indexing information informed insert install key knowledge large limit management model models multiple necessary nodes optimization parallel performance pgvector pgvectorscale postgres postgresql primary process python queries query question rag references relevant repositories response responses retrieval retrieved scale search searches sentencetransformer serial similarity solution step storage store systems table tasks text transformers tutorial user values vector vectors",
+    "url": "/AI_ML/Search-Retrieval/Retrieval-Augmented-Generation.html"
+  },
+  {
+    "id": 32,
+    "title": "BM25_Probabilistic_Model.html",
+    "content": "bm25 probabilistic model account algorithm algorithms application average b based best called cases collection components content controlling corpus customization databases default differences document documents dynamic effective engine engines entire family fewer formula frequency fully function given handling high higher highly idf impact importance influence information inverse key keyword known length less library long longer many matching measures model models modern needs normalization normalizes nt number often overemphasis parameter parameters powerful probabilistic q query ranking rarity real relevance repetition retrieval saturated saturation score search shorter size specific standard systems tasks term terms text tf total traditional tuning use value variant weight well world xapian",
+    "url": "/AI_ML/Search-Retrieval/BM25_Probabilistic_Model.html"
+  },
+  {
+    "id": 33,
+    "title": "Unstructured-Data-Indexing.html",
+    "content": "unstructured data indexing abstractive accuracy advanced advertisements analysis analytics annotation answering applications audio author based bert characters cleaning collection common content contractions control convert creation data databases date dimensionality documents efficiency efficient elements eliminate embedding end ensure entities entity essential extraction faiss fast feeds fidelity files format frequency gather generation html identify idf importance index indexed indexing information ingestion inverted irrelevant key keyword keywords label learning locations machine main major meaning meaningful media metadata methods models names ner new noise non normalization noun numerical operations optional organizations original pages part parts pca performance phrases plain points previously process processed processing quality query question recognition reduction redundant relationships relevant removal representations respective result retrieval search searches semantic sentence sentences similar similarity sne social sources special speech speed storage store structure structuring summaries summarization system tagging tags techniques testing text textual tf tokenization tools topics units unnecessary unstructured use validation various vector vectorization vectors verb verification web words xapian",
+    "url": "/AI_ML/Search-Retrieval/Unstructured-Data-Indexing.html"
+  },
+  {
+    "id": 34,
+    "title": "Gunning-Fog-Index.html",
+    "content": "gunning fog index account algorithms analysis average avoid calculates calculation code complex content count creation def division document education english example explanation expressions first fog following formal formula function general given gunning higher implementation import index language length levels marks natural nlp number output patterns percentage period processing punctuation readability readership reading regular return score sentence sentences steps syllables test text texts three usage vowel vowels way word words writing years zero",
+    "url": "/AI_ML/Search-Retrieval/Gunning-Fog-Index.html"
+  },
+  {
+    "id": 35,
+    "title": "Retrieval-Augmented-Generation-Workflow.html",
+    "content": "retrieval augmented generation workflow augmented balance based bert combined combines complementary complex conditions content contextual corresponding cosine data database datasets distance document documents efficiency elasticsearch embedding encoder euclidean external faiss fed filtering filters final first full generation generative gpt hybrid ids index initial input keywords large lexical matching meaning model models n original output processing prompt quality query rag raw refines relevant representation response results retrieval retrieved scores search semantic semantically sentence set similar similarity smaller specific standard step store stored strategies supplementary system text top transformer user vector vectors workflow",
+    "url": "/AI_ML/Search-Retrieval/Retrieval-Augmented-Generation-Workflow.html"
+  },
+  {
+    "id": 36,
+    "title": "python-whoosh.html",
+    "content": "python whoosh better brown changes content create def define directory doc document documents dog example fast fox id import index indexing lazy library output path print pure python query queryparser quick result results schema search stemminganalyzer text title whoosh writer",
+    "url": "/AI_ML/Search-Retrieval/python-whoosh.html"
+  },
+  {
+    "id": 37,
+    "title": "Stable-Diffusion-Web-UI.html",
+    "content": "stable diffusion web ui acceleration browser cd chip clone command cuda dependencies diffusion error export following git gpu index install local mac message mps optional pip press python repository run server skip stable terminal test torch torchaudio torchvision ui url users web webui",
+    "url": "/AI_ML/Document_Ingestion/Stable-Diffusion-Web-UI.html"
+  },
+  {
+    "id": 38,
+    "title": "Streamlit-app.html",
+    "content": "streamlit app age app b box c chart data dataframe display import input kevin line name np numpy pandas pd python sample slider st streamlit text title user",
+    "url": "/AI_ML/Document_Ingestion/Streamlit-app.html"
+  },
+  {
+    "id": 39,
+    "title": "PDF-Split-File.html",
+    "content": "pdf split file arguments base cat check command commands correct desired document example exit extension extract fi file files following grep input install installation name number numberofpages output page pages part parts path pdf pdftk print range requirements script separate specified split steps sudo total ubuntu usage z",
+    "url": "/AI_ML/Document_Ingestion/PDF-Split-File.html"
+  },
+  {
+    "id": 40,
+    "title": "Ms-Word-Document-Processing.html",
+    "content": "ms word document processing args backend batch checks console content custom def directory docling document documentconverter documents docx e enhancements error exception extracted extracts f features file files format formats formatting full function future handling import information informative input inputdocument inputformat install instructions key library ms msworddocumentbackend multiple name none options output outputs path pathlib pip place print process processed processing processor proper python raise reusable save saves script setup steps str structure support tables text usage w word",
+    "url": "/AI_ML/Document_Ingestion/Ms-Word-Document-Processing.html"
+  },
+  {
+    "id": 41,
+    "title": "PDF-Convert-to-Text-File.html",
+    "content": "pdf convert to text file abram apt conversion convert def dependencies empty extract extracted file following hoffer image images import input install installation instructions libraries list ocr orthomolecular package pages path pdf pillow pip poppler pytesseract python required script string tesseract text ubuntu update usage use utils",
+    "url": "/AI_ML/Document_Ingestion/PDF-Convert-to-Text-File.html"
+  },
+  {
+    "id": 42,
+    "title": "Python-Syntax-Highlighting.html",
+    "content": "python syntax highlighting age b bash cd computer def desc echo golang highlighting int luzbetak mkdir name order python result return science select sql syntax users world",
+    "url": "/AI_ML/Document_Ingestion/Python-Syntax-Highlighting.html"
+  },
+  {
+    "id": 43,
+    "title": "RAG_from_Scrach.html",
+    "content": "rag from scrach scrach",
+    "url": "/AI_ML/RAG/RAG_from_Scrach.html"
+  },
+  {
+    "id": 44,
+    "title": "FAISS-Vector-Database.html",
+    "content": "faiss vector database ai api billions clustering cpu data dataset dense dimension dimensional distance efficient facebook faiss faster features file flat gpu high hnsw image import index indices ivf key large library local nearest neighbors nlp np numpy open performance pip query random recommendation retrieval scales scenarios search similarity source systems top types various vectors version",
+    "url": "/AI_ML/Faiss/FAISS-Vector-Database.html"
+  },
+  {
+    "id": 45,
+    "title": "Gmail-Email-Fetch.html",
+    "content": "gmail email fetch access account analysis another api archival authentication breakdown build complete content credentials creds data date def define description details email emails example f fetch fetched file formatting future gmail google id import important installedappflow internal json key last local login messages msg new none oauth os output payload process prompt purposes python read readable retrieval runs saving scope scopes script service simple snippet system user uses valid w way",
+    "url": "/AI_ML/Faiss/Gmail-Email-Fetch.html"
+  },
+  {
+    "id": 46,
+    "title": "Indexing-FAISS-OpenAI-Embeddings.html",
+    "content": "indexing faiss openai embeddings advanced boilerplate cases class cleaned code conclusion content convert converts create dash dashes data database date datetime define description doc document documents e efficient elements else email emails embeddings entities explanation extra faiss fast fields file flags following function future html id ignorecase import index jq json jsondecodeerror jsonloader learning loads machine message metadata models object objects one openai openaiembeddings parse processing provided python relevant remove retrieval schema script search searches searching set setup similarity spaces store stores tasks text timestamp types unnecessary unwanted urls use various vector",
+    "url": "/AI_ML/Faiss/Indexing-FAISS-OpenAI-Embeddings.html"
+  },
+  {
+    "id": 47,
+    "title": "RetrievalQA-FAISS-with-OpenAI-GPT-4.html",
+    "content": "retrievalqa faiss with openai gpt 4 ability answer answering answers anything api applications architecture base break breakdown chain chatbots chatopenai code conclusion construction content context conversational data databases description deserialization disk document documents e embeddings empty end ensure environment error errors exception exit explanation faiss fast filenotfounderror following framework functionality general goodbye gpt handling import imports index indexed information key knowledge language llm llms loop manual model models natural openai openaiembeddings output parameters powerful precise purpose python qa query question questions relevant responses result results retrieval retrievalqa retrieved retriever retrievers safe scenarios scope script setting setup simple snippets specialized step stores system systems text try type unsupported updated user users valueerror variable various vector yet",
+    "url": "/AI_ML/Faiss/RetrievalQA-FAISS-with-OpenAI-GPT-4.html"
+  },
+  {
+    "id": 48,
+    "title": "Recompile-FAISS-GPU-Installation.html",
+    "content": "recompile faiss gpu installation b bindings c clone cmake commands configuration cuda cxx dependencies dev dimension distance editing environment export faiss file following git gpu import index install installation issues languages libopenblas line lines modify nearest necessary neighbors np number numpy optional path proper python pythonpath random repository script search step steps sudo support swig test top variables vectors version xb",
+    "url": "/AI_ML/Faiss/Recompile-FAISS-GPU-Installation.html"
+  },
+  {
+    "id": 49,
+    "title": "Tensors-Machine-Learning.html",
+    "content": "tensors machine learning access additional array average building channels code color column complex computation computations compute data deep depth dimensional dimensions efficient element elements essence even example excellent foundation frameworks function functionality functions fundamental generalization gpus high images import index indexing key learning library list machine matrices matrix mean models multi multidimensional ndarrays np number numbers numerical numpy operation operations output points powerful print python pytorch row simple single solid spaces specific structure sum support syntax table tensor tensorflow tensors total training us value values vector vectors words",
+    "url": "/AI_ML/Machine-Learning/Tensors-Machine-Learning.html"
+  },
+  {
+    "id": 50,
+    "title": "Random-Forest-Classifier-Model.html",
+    "content": "random forest classifier model account accuracy address approach authentication automation balance billing card case categories category charge classification classifier classifieri clf code collection create credentials cryptocurrency customer damaged data date decision delivery depth details device df dictionary different discount either email factor feature features final forest generalization generator gift history hyperparameters idf import incoming individual information input internal invoice item labels leaf length lists login manual maximum method methods minimum missing model nearest new node notifications number numerical options order output outstanding overfitting pandas parameter password payment pd pin plan policy predicted prediction predictions prettytable product proportion purchase python queries query question questions random refund remaining reproducibility return samples seed set shipping split step store subscription subset support supported table target task technical test testing text textual tf tfidfvectorizer train training tree trees two user value various vectorize vectorizer warranty",
+    "url": "/AI_ML/Machine-Learning/Random-Forest-Classifier-Model.html"
+  },
+  {
+    "id": 51,
+    "title": "Scikit-learn.html",
+    "content": "scikit learn accuracy actions actual algorithms allows analysis apis auc beginners best box bunch categorical classifier clf code comparison corresponding data dataset datasets dbscan decision dictionary dimensionality documented efficient external features files flowers following forest forests function good grid high identical import initializes integration iris joblib k key label labels later learning length libraries library linear load loads machine machines matplotlib metrics missing model modeling models normalization numpy object open output overview pandas pca performance persistence petal pickle points popular precision predicted predictions predicts preprocessing print professionals python random range reduction regression results roc sample samples scaling science scikit scipy search selection sepal set sets setup simple sne source specific split summary supervised support svm target test testing tools top toy train trained training trees unsupervised use used validation values variables variety vector vs well wide widely width yes",
+    "url": "/AI_ML/Machine-Learning/Scikit-learn.html"
+  },
+  {
+    "id": 52,
+    "title": "Keras.html",
+    "content": "keras accessible accuracy activation adam algorithms analysis api artificial backpropagation basic best biases binary blocks building calculating case channel channels churn class classes classification cnn cnns cntk code colored compile complex complexities complexity components computation computational connected connections consistent convolution convolutional core corners correct cpu customer cycle data decision deep dense detection developers diagnosis differences different digit digits dimensional dimensions direction ease edges either error example facial faster feature features feedback feedforward filters final flatten flattening fnn forward frameworks fraud fully function functional functions generation gpu gpus grayscale grid handwriting hardware hidden hierarchies high highly image images import important information input keras kernels key labels layer layers learning level library linear linearity load loops loss low lstm many map maps max medical metrics minimal mnist model models multi network networks neural node nodes non normalize number numpy object one open operations optimizer optimizers output overview parameters part patterns performance pixel pixels platform pooling prediction predictions probabilities process processing propagation recognition rectified reinforcement relu reshape rgb scaler sequential sets simple size softmax source spatial specialized stack standardscaler structure structured summary support synthetic tabular task tasks tensorflow testing text textures theano top training type unit use variety vector video weights x",
+    "url": "/AI_ML/Machine-Learning/Keras.html"
+  },
+  {
+    "id": 53,
+    "title": "PyTorch-Sentiment-Analysis-Model.html",
+    "content": "pytorch sentiment analysis model accuracy acting amazing analysis apply base batch bcewithlogitsloss bertmodel berttokenizer book build class classification complete compute connected convert criterion dataloader dataset decent define dimension direction epoch evaluation every examples existing experience extra false film fully function great horrible import inference input labels layers linearity load logits loop loss masterpiece minute mode model movie negative nn non optimizer optional output outputs performance performances plot positive prediction predictions preds prettytable print python raw report save saved second sentiment sentimentclassifier sets sigmoid split statement statements story storytelling table terrible test testing text textdataset threshold time tokenizer tokens torch train trained training transformers truncation two values waste watch worst year",
+    "url": "/AI_ML/Machine-Learning/PyTorch-Sentiment-Analysis-Model.html"
+  },
+  {
+    "id": 54,
+    "title": "Hugging-Face-Machine-Learning.html",
+    "content": "hugging face machine learning access account api approval cli command dev download ensure face forest hfapi hugging huggingface import issues learning line login machine maintainers model necessary note owners page permissions read repository restricted retry script token verify",
+    "url": "/AI_ML/Machine-Learning/Hugging-Face-Machine-Learning.html"
+  },
+  {
+    "id": 55,
+    "title": "Time-Complexity-Big-O-Notation.html",
+    "content": "time complexity big o notation access addition adjacency algorithm array average avl b balance balanced bfs big binary black brute bst bubble case cases certain children collisions common complexities complexity computer constant data databases deletion deletions design division double e edges efficiency efficient element elements example execution extra factor file force hash head height index indexing input insertion insertions keys leaf least level linear linearithmic list logarithmic loop luzbetak max memory merge merging min minimum much n nature nested new nodes notation number operations performance permutations priority problem process properties queue rebalancing red resizing retrieval root runtime salesman scenario science search selection set size sort sorted space splitting step storage structure structures systems table time traveling tree trees use v vertices way worst",
+    "url": "/AI_ML/Machine-Learning/Time-Complexity-Big-O-Notation.html"
+  },
+  {
+    "id": 56,
+    "title": "PyTorch.html",
+    "content": "pytorch acceleration apply arrays audio autograd automatic backward built class classes common computation computational compute computer connected criterion crossentropyloss custom dataset datasets debug deep developers differentiation digits dimensional dynamic epoch extensibility faster features final flexible fully function gpu gradients graphs image import inputs key labels language layer layers learning libraries library load loop loss machine mnist models module multi natural network networks neural nlp nn numpy open optim optimization optimize output platform pre preprocess processing pytorch relu researchers return simple source speech strong support tasks techniques tensors torch torchaudio torchtext torchvision totensor training trainloader trainset transform variety various vision wide",
+    "url": "/AI_ML/Machine-Learning/PyTorch.html"
+  },
+  {
+    "id": 57,
+    "title": ".html",
+    "content": " ",
+    "url": "/Databricks/pyspark/.html"
+  },
+  {
+    "id": 58,
+    "title": "PySpark_Deep_Dive.html",
+    "content": "pyspark deep dive ability abstractions acceptable access accuracy acid action acyclic adheres advantages aggregation airflow alerts algebra algorithms aligns allocation amazon amounts analysis analysts analytical analytics another apache api apis applications atomicity attribute attributes automated automatic automating automation aws azure based basis batch benefits best better big branch branches branching bug build building business capabilities capacity cases category cd central centralized certain chance change changes checks ci clear cloud cloudformation cloudwatch cluster clustering clusters codd code codebase collaboration collaborative collect collection collections column columns commit commits common complex complexity compliance comprehensive computation compute computing concepts conditions configuration configurations conflicting conflicts considerations consistency consistent constraints container containerized continuous control count cross csv current custom cyclic dag dags data database databases databricks datadog dataframe dataframes dataset datasets date dates decision deep delay deleted delta demand denormalized dependencies deploying deployment design developers development df differences different dimension directed distributed dive docker documentation downstream driven duplicated duplication durability edgar efficiency elastic elt encryption end enforced engineering engineers ensure ensures entire entities environment environments error errors etl evaluation event events every example execution expectations expected experiment extract fact failed failure failures fast fault feature features field fields file files finance fixes flat flexibility focus foreign formal formats fosters full functions fundamental gcp general git github gitlab graceful graphs great handling heavy high historical hotfix iac iam idempotency idempotent identifier identifiers identity implement import improved incoming inconsistent indexing infrastructure insights instances integration integrity intelligence intervals intervention isolation issue issues iteration iterative jenkins key keys kubernetes lake lambda language large layer lazy learning level leverage load location logging logic long luigi machine machines main making managed management managing manipulation manner manual marts mechanisms members memory merge merging metadata mlflow mllib model models modern monitor monitoring mr multidimensional multiple mysql new normalized notebook notebooks nothing null numbers numeric object olap oltp one online open operational operations optimization orchestrated orchestration orchestrator orchestrators order others outcome overview pandas parallel parallelism part parts performance pipeline pipelines platform platforms point popular postgresql pr practices predefined prefect previous prices primary process processes processing product production proper protection provisioning purposes pyspark python quality queries query querying range ranges rapid rdds rds reads real record records recovery redundancy reference refers regular relational relations relationships reliability repeatability reporting repositories repository request requests resilient resizable resource resources response result results retries retry reviews row rows rules running sales scalability scalable scale scaling scheduled scheduling schema scientists secure security semi sensitive separation sequence server serverless servers service services session set setup shared sharing simple simplicity single slice small snapshot snowflake source sources spark sparksession specific specified sql stable stages standards star start state states step storage stores strategies stream streaming structure structured subsets system systems table tables target task tasks team teams techniques technologies temporary terraform test testing tests theory thresholds time tolerance tool tools top traceability track tracking transaction transactional transactions transformation transformations transformed travel trend trigger triggering troubleshooting true truth two types unique uniqueness unit updates upstream use user users valid validated validates validation value values various version versions view virtual visualizations volumes warehouse warehouses warehousing way web workflows workload workloads writes",
+    "url": "/Databricks/pyspark/PySpark_Deep_Dive.html"
+  },
+  {
+    "id": 59,
+    "title": "PySpark-Coding-Examples.html",
+    "content": "pyspark coding examples age aggregate aggregation alice average avg back based bob categories category cathy centralized clause code col column commands computer condition count csv customers data databricks dataframe dataframes def default defined delta department desc df distinct duplicate email example exercises explode false file fill filter format formats function greater group guide handling import introduction lake lakes let limit loading luzbetak missing name names none number occurrences operation order orderby parquet people prefix price pyspark queries read records repository result rows salaries salary sales sample scale science select show spark sparksession specific split sql stringtype structured sum text top total transformation transformations two udf unique unstructured user value values various word words world write writing",
+    "url": "/Databricks/pyspark/PySpark-Coding-Examples.html"
+  },
+  {
+    "id": 60,
+    "title": "PySpark-Data-Streaming.html",
+    "content": "pyspark data streaming abstraction api application averages backpressure based batch batches capabilities checkpointing checkpoints cluster code computation consistent continuous core counts data dataframes dataset datasets declarative development different distributed dstream dstreams ease ecosystems evolution failures fault flexibility flume frames handles handling hardware hdfs information input integration kafka kinesis larger live logs loss lost metrics micro network node nodes operations original overwhelming patterns period process processing pyspark rate rdd rdds real resilience resilient resources running scalability sensor sliding small sockets source sources spark specific sql state stateful stream streaming streams structured support system tcp time tolerance transformations trends tweets various volumes window",
+    "url": "/Databricks/pyspark/PySpark-Data-Streaming.html"
+  },
+  {
+    "id": 61,
+    "title": "pyspark-data-clearning.html",
+    "content": "pyspark data clearning clearning data pyspark",
+    "url": "/Databricks/pyspark/pyspark-data-clearning.html"
+  },
+  {
+    "id": 62,
+    "title": "PySpark-Pivot-Table.html",
+    "content": "pyspark pivot table alice analytics application categorical code column columns combination context data dataframe df dictionaries digestible east employee example explanation following format functions github import information list luzbetak multiple new one original output overview pages pivot pivoted provided purposes pyspark region reporting sales sample something south spark sparksession sum table tool unique using value values",
+    "url": "/Databricks/pyspark/PySpark-Pivot-Table.html"
+  },
+  {
+    "id": 63,
+    "title": "PySpark-S3-Small-Files-Compaction.html",
+    "content": "pyspark s3 small files compaction args bucket calculate columns compaction configuration configurations contents creates data datetime def df e exception false files function given import info initialize input list main many mb name none number obj optimize optimized output page pages partitions path prefix processed processing pyspark session size small spark sparksession specific success target timestamp x",
+    "url": "/Databricks/pyspark/PySpark-S3-Small-Files-Compaction.html"
+  },
+  {
+    "id": 64,
+    "title": "PySpark-SQL-Functions-Parquet.html",
+    "content": "pyspark sql functions parquet age aggregate aggregation alice average avg back based bob categories category cathy centralized clause code col column commands condition count csv customers data databricks dataframe dataframes def default defined delta department desc df distinct duplicate email example explode false file fill filter format formats function functions greater group guide handling import introduction lake lakes let limit loading missing name names none number occurrences operation order orderby parquet people prefix price pyspark queries read records repository result rows salaries salary sales sample scale select show spark sparksession specific split sql stringtype structured sum text top total transformation transformations two udf unique unstructured user value values various word words world write writing",
+    "url": "/Databricks/pyspark/PySpark-SQL-Functions-Parquet.html"
+  },
+  {
+    "id": 65,
+    "title": "PySpark-Lazy-Evaluation.html",
+    "content": "pyspark lazy evaluation ability action actions actual acyclic amount benefits calculations cluster collect complex computation concept count dag data dataframe deferred directed distributed driver efficient entire environments evaluation example examples execution external fewer filter filtering final graph intermediate jobs key lambda large lazy logical manner map mapping memory necessary new operations optimization optimizations performance pipelines plan point points print processing program pyspark rdd resource resources result results saveastextfile scalable scale sequence several small spark steps storage subset transformations trigger unnecessary usage x",
+    "url": "/Databricks/pyspark/PySpark-Lazy-Evaluation.html"
+  },
+  {
+    "id": 66,
+    "title": "PySpark-Handling-Missing-Data.html",
+    "content": "pyspark handling missing data action algorithms analysis analytics apache api applications backward big binary building cluster col collections column columns common computer computing constant data database dataframes datasets developers different distributed downstream drop evaluation execution fault features fill filling filter flag flagging forward framework function functions fundamental github handling import imputation indicator instance key language large last lazy learning library lost luzbetak machine machines memory method methods missing missingness mllib mode model modeling models named nature null numeric objects observation open operations optimizations pages parallel performance plan planning popular powerful predict preprocessing processing programming pyspark python queries query rdds regression relational remove requirements resilient rows scale several single source spark specific specified sql string structure structured subset system table task techniques tolerance tools transformations valid value values various window",
+    "url": "/Databricks/pyspark/PySpark-Handling-Missing-Data.html"
+  },
+  {
+    "id": 67,
+    "title": "PySpark-Questions-Answers.html",
+    "content": "pyspark questions answers action actions algorithms answers apache api apis big catalyst cluster clusters collection columns computation computing concept control count data database databases dataframe dataframes dataset datasets difference distributed driver easier efficient element elements entire evaluation example execution existing external fault features filter flatmap flow function fundamental github high higher inner input interface iterative join joins key large lazy level lineage list logical low luzbetak machines manipulation map memory multiple named new objects open operations optimizer pages pandas parallel parallelism parallelized physical plan plans processing program pyspark python questions rdd rdds relational resilient results rules scale semi single source spark storage structure structured system table tables tasks tolerance transformation transformations two various ways",
+    "url": "/Databricks/pyspark/PySpark-Questions-Answers.html"
+  },
+  {
+    "id": 68,
+    "title": "Managed-External-Live-Tables.html",
+    "content": "managed external live tables actual automated automation aws azure batch blob case checks cloud create data databricks datasets dbfs def default delta dependencies differences dlt etl example execution external feature file files framework fully hdfs id import ingestion int internal key lifecycle live location managed managing metadata monitoring name output persistent pipeline pipelines processing quality real return shared storage streaming string system table tables tasks temporary time transformation underlying use users workflows",
+    "url": "/Databricks/Delta-Lake/Managed-External-Live-Tables.html"
+  },
+  {
+    "id": 69,
+    "title": "DLT-SCD-Type2.html",
+    "content": "dlt scd type2 audit automated automates automatic batch bronze business cdc changes complete complex configuration customer data databricks declarative def defines delta detects dimension dimensions dlt employee etl event events example framework friendly full fully function handles historical history indicators key keys lineage live logic maintenance managed means merge mode monitoring new old ones options orchestration order pipeline pipelines previous product quality record result return roles row rows scd seed silver simplifies source sources stream streaming structure summary supports table tables target type updated use values version versions",
+    "url": "/Databricks/Delta-Lake/DLT-SCD-Type2.html"
+  },
+  {
+    "id": 70,
+    "title": "Databricks-Delta-Lake.html",
+    "content": "databricks delta lake acid aggregated analysis approach architecture audits availability batch big broad bronze cleaned collaboration concurrent connector consistency controlled copy data databricks datasets debugging delta design durability ecosystem efficient external failures fast feature flexibility flink given handling historical isolation lake large management massive medallion metadata modifications need open optimized organizations partners platforms point presto processing protocol quality queries raw refined reliability scalable scale scenarios seamless secure sharing single streaming support tiers time tools transactions travel trino types unified users various versioning versions workloads",
+    "url": "/Databricks/Delta-Lake/Databricks-Delta-Lake.html"
+  },
+  {
+    "id": 71,
+    "title": "Managed-External-Tables.html",
+    "content": "managed external tables case cases control data database delta directory external ideal lake lifecycle location managed management metadata physical specified storage system systems table tables unmanaged use user",
+    "url": "/Databricks/Delta-Lake/Managed-External-Tables.html"
+  },
+  {
+    "id": 72,
+    "title": "Delta-Live-Tables.html",
+    "content": "delta live tables acid analytics automate automatic cases checks clean cleaned col complex constraints creation data databricks declarative def define delta dependencies dependency development dlt ease efficiency enforce enforcement entire etl example execution failure features flexibility framework handling health immediate import incremental ingest ingestion key lake learning lifecycle lineage live machine managed management manual monitoring new observability operational optimizations orchestration output overhead performance pipeline pipelines processing quality raw real return schema simplified simplifies sources streaming supports syntax tables time tools top tracking transactions transformation transformations travel use valid visibility way workflow workloads",
+    "url": "/Databricks/Delta-Lake/Delta-Live-Tables.html"
+  },
+  {
+    "id": 73,
+    "title": "Howto-Use-Delta-Live-Tables.html",
+    "content": "howto use delta live tables auditing auto automated automatic bad best choice code complex compliance consistent continuous coordination correct counts current custom dags data databricks declarative delta dependency dlt drop engineering ensures error errors etl expectations expertise fewer flags framework full gold grade graphical handles handling heavy historical ideal incremental ingestion job jobs latency lineage live loader logic long low maintenance manual merge minimal monitoring need observability operational ops optimization orchestration ordering overhead performance pipelines practices primary production project quality records reliable retries row rules scd scenarios silver spark statements streaming summary table tables tasks teams tracking type use vacuum validation view",
+    "url": "/Databricks/Delta-Lake/Howto-Use-Delta-Live-Tables.html"
+  },
+  {
+    "id": 74,
+    "title": "Change_Data_Capture_CDC.html",
+    "content": "change data capture cdc acid aggregates analytics apply architecture architectures audit auditability auto aware based better bronze bus business capture cardinality cdc cdf change changed changes changing cloud columns common compute consumers continuous cost current data database databricks dates de debezium declarative define delete delivery delta dependencies design differences dimensional dimensions dlt downstream drift duplicated efficiency efficient error etl event events expectations exposes faster feature feed files fivetran flag framework fresh freshness full given gold handles health high historical history immutable implementations incremental ingestion insert inserts jobs kafka key lag lake lakehouse large last latency latest layering layers less level leverage live loader logic logs lower managing marts merge message metadata models modes monitor new normalize old operation operations optionally ordering overwrite partition pattern patterns performance pipeline pipelines plan previous processing proper pseudo quality queues rates raw read reads ready real records refreshes reloads requirements results retention row rows rules run scalability scd schema separate silver simpler slowly snapshot snapshots source state storage streaming structured summary supports system systems table tables target time timestamp timestamps tolerance tool top type typical update updates upserts use using values version views volumes",
+    "url": "/Databricks/pipelines/Change_Data_Capture_CDC.html"
+  },
+  {
+    "id": 75,
+    "title": "Medallion-Partitioning-Code.html",
+    "content": "medallion partitioning code aggregated aggregation aggregations architecture bronze category cleaning column columns data dataset days description electronics gold grocery ingestion last layer layers medallion new node number optimized orders partitioning paths pyspark raw reporting result silver spark tables three today total transformation two",
+    "url": "/Databricks/architecture-2/Medallion-Architecture/Medallion-Partitioning-Code.html"
+  },
+  {
+    "id": 76,
+    "title": "Performance_Optimization_Databricks.html",
+    "content": "performance optimization databricks adaptive aggregate alerts aqe auto autoscaling best bottlenecks broadcast bronze build cache cardinality checkpoints checks clusters code columns compact complex composite context dashboard dashboards data databricks datasets delta efficient etl execution extracts fewer files filters fix full gold handling high hot hyper incremental ingestion ins job joins keys large layers loader lods marks monitor optimization order partitions performance photon pipelines plans practices pre process prune quality query quick recording refresh reloads repartition retries runtime salting shuffle shuffles silver skew slow small spark speed steps store tableau tables tasks tune udfs ui uneven uniform use view worksheets z",
+    "url": "/Databricks/performance/Performance_Optimization_Databricks.html"
+  },
+  {
+    "id": 77,
+    "title": "Data_Migration_From_Snowflake.html",
+    "content": "data migration from snowflake access compute connection connector counts create credentials customer customers data database databricks dataframe decimal decimaltype def define delta df e environment error example exception false format handles import important incremental initialize integertype large loads managed match metrics migrate migrated migrates migrating migration monitor name notes output overview parameters performance prerequisites price print product products pyspark queries query record records resources sample schema schemas select session single snowflake source spark sparksession statistics stringtype structfield structtype successfully sufficient table tables target timestamptype ui uses verification workspace write",
+    "url": "/Databricks/migration/Data_Migration_From_Snowflake.html"
+  },
+  {
+    "id": 78,
+    "title": "Star-Schema-Data-Migration.html",
+    "content": "star schema data migration analysis analyzing better books canada category check clothing col connection count country create customers data database databricks dataframe date decimaltype def define definitions delta design df dimension e electronics email example exception fact false first foreign found group import important incremental initialize int integertype integrity invalid join key large last left loads memory migrate migrated migration monitor name notes null orphaned output p parameters performance primary print process production products quantity query records references referential relationships return sales sample schema schemas select session single snowflake spark sparksession star starting statistics stringtype structfield structtype successfully table tables timestamp timestamptype uk usage valid validate validation write",
+    "url": "/Databricks/migration/Star-Schema-Data-Migration.html"
+  },
+  {
+    "id": 79,
+    "title": "Column-Shuffle-Repartition.html",
+    "content": "column shuffle repartition aggregations alternatives balance balancing case category cluster col column data default efficiency efficient equal example filtering following full goal grouping intention joins large later load logic multiple nodes number operations optimized oversized parallel partition partitions perfectly processing pyspark reasonable repartition repartitioning rows share shuffle shuffling smaller spark specific specified splits syntax value values works",
+    "url": "/Databricks/Spark/Column-Shuffle-Repartition.html"
+  },
+  {
+    "id": 80,
+    "title": "Snowflake_Table_Types.html",
+    "content": "snowflake table types accessed acid additional aggregations analytic analytical analytics apache application auto automated automatic automatically automation available avro azure based best blob boolean business calculations capabilities case cases catalog changes characteristics clickstream clone cloning cloud clustering comparison compatibility compliance compute concurrent constraints consumes contents continuous core cost costs create creation critical cross csv current customer data datasets date day days declarative default defined desired development different directory discovery dml dynamic edition effective end enforced engine engines enterprise etl event evolution expiration external fail fast file files financial flexibility format formats full gcs ground group handles high highest history hours hybrid iceberg id incremental index indexes infrequently ingestion integer integration intermediate interoperability inventory iot json key keys lag lake large level limited location locations lock log low managed management materialized matrix maximum medium metadata middle mixed multi multiple name naming native neutral non null olap oltp open operational operations options orc overview parquet partitioning performance period permanent persistence persists perspective pipeline platform policies practices primary processes processing production properties protect protection query querying rate read real recovery refresh regulatory reporting requirements resources retention row safe schema scope secondary security select selection series session sessions single snapshots snowflake specialized specific sql stage staging state status storage stores streaming string support synchronized syntax system systems table tables target telemetry temporary time transactional transactions transformation transient travel type types underlying unique unistore use user varchar various vendor version view warehouse workloads works",
+    "url": "/Snowflake/core/Snowflake_Table_Types.html"
+  },
+  {
+    "id": 81,
+    "title": "Cortex_AI_Document_RAG_Embeddings.html",
+    "content": "cortex ai document rag embeddings acme ai amount analyst answer api app applications apps c column conn connect connectors context contract correct cortex create data date def dist document embedding embeddings end endpoint engine errors eu example execution flow functions go gpt high highest hosted http import inputs insert january jdbc keyboard laptop layer level limit llms mini ml model models monitor mouse name node notice number order output password period populate product public python q quantity queries question quotes qvec rag ranked region replace results revenue row sales schema select separate snowflake sql str string summaries summarization summarize summary surface table tables termination text ticket tools total us use values",
+    "url": "/Snowflake/AI-ML/Cortex_AI_Document_RAG_Embeddings.html"
+  },
+  {
+    "id": 82,
+    "title": "Pretraining_Fine-tuning_Model_Snowflake_Cortex_AI.html",
+    "content": "pretraining fine tuning model snowflake cortex ai access account accountadmin accuracy actual adaptation ai api appropriate args arguments automodelforsequenceclassification aws azure basic bert bucket call carefully cloud code compute conceptual configurations connect connector convert cortex create creation credits ctx cursor custom data dataset def define dependencies deployment different endpoint endpoints ensure environment epochs example execute execution experiment external features fine food foundation function functions general good google gpt gpus great high highly hyperparameter hyperparameters id identifier implementation import inference input integer integration internal label labeled language large learning libraries library limits load loop loss machine management memory message metrics model models modification necessary object optimizer optional outline overview packages password patterns performance permissions platform pre predictions preparation pretrained pretraining privileges process product python quality query real registry replace resource resources return role row run sagemaker sample schedule script security select service services setup significant snowflake specific sql stage status steps storage structure suitable table task tasks text time tools trained trainer training trainingarguments transformers tuned tuning type underlying understanding unique usage utc validation varchar",
+    "url": "/Snowflake/AI-ML/Pretraining_Fine-tuning_Model_Snowflake_Cortex_AI.html"
+  },
+  {
+    "id": 83,
+    "title": "Snowflake_Production.html",
+    "content": "snowflake production acceleration access account accountadmin accounts additional additions advanced aes ai alert alerts allowlisting analysis analyst analyze api appropriate architect architecture arrays authentication auto automatic avro aws azure based best bracket bulk cache caching cdc clause clean clone clones cloning cloud cluster clustering column columnar columns command commands comments common compare components comprehensive compressed compression compute concepts concurrency connectors container control copy core cost costs create credit critical csv ctes dac data dataframe datasets day days declarative defined denormalization depth design detection development difference different discretionary document documents dot duration dynamic economy edition efficient encrypt encryption engineering enhancement enterprise environments error essential event exchange execution explain explode expressions external extract factor fail features file files filter flatten format formats function functionality functions gcs git grid growth guide handle handling hands hierarchical hierarchy high historical history hour hub hybrid iceberg ideal immutable implement important information ingest ingestion inheritance insert integration internal interview ip issue java javascript json kafka key keys kinesis lag lambda large larger latest layer layers lead learning level leverage lineage link loading local lookup machine management marketplace masking master maximum mention metadata methods mfa micro migration minutes ml model models monetize monitor monitoring monitors movement multi nature needed network non notation notification oauth object objects olap oltp open operations optimization optimize options orc outliers ownership parallel parquet partition partitioning partitions patterns performance period periods pipeline pipelines pivot plans point policies policy positions practice practices principle private privatelink procedures processing production profile proper protection provision pruning python qualify queries query querying questions quotas rank ratios rbac reader real recent reclustering recursive resource rest resume retention review role roles row running safe sample scala scalar scale scaling scenario scenarios scheduled schema schemas search second secret secure security securityadmin segregation semi separation sequences service services set settings shared sharing sizes sizing skills slow snoflake snowflake snowpark snowpipe solution specific specifications sql stage stages standard storage store stored strategies streaming streams structured support suspend sysadmin system table tables tags tasks technical techniques temporary three time timeouts tls tokenization topics traditional transient transit travel tri type types udfs uncompressed understand undrop unistore unloading unnecessary unpivot upsert usage use user users utilization variant version view virtual visual vs warehouse warehouses window work write xml xs zero",
+    "url": "/Snowflake/production/Snowflake_Production.html"
+  },
+  {
+    "id": 84,
+    "title": "Data_Mesh_Architecture.html",
+    "content": "data mesh architecture access accessibility accuracy additional agility analysis approach architecture architectures aspect authorized autonomous autonomy balance benefits best better big bottlenecks building business capabilities capability central centralization centralized challenge changes clear cloud collaboration complexities complexity compliance computing consistent consumers coordination core data datasets decentralization decentralized design differences domain domains driven federated flexibility global governance high idea improved increased independent infrastructure key large limitations location main management managing mesh model models needs often organization organizations oriented ownership pipelines platform policies principles processes processing product products quality recent reliability repository requests requirements resources response responsibilities rigid scalability scales scaling security self service several skillset solutions specific standards strong system systems team teams technical technologies tools traditional traffic training unit units usability users volumes",
+    "url": "/Redshift/concepts/Data_Mesh_Architecture.html"
+  },
+  {
+    "id": 85,
+    "title": "Reshift_Keypoints.html",
+    "content": "reshift keypoints ability access actual ad advanced advisory aggregations algorithms amazon analyses analysis analysts analytical analytics appliances approach architecture assessment audit auditable automatic aws backups based behavioral benefits best bi billions budget business candidate capacity capital cases central centralize cloud cluster clusters column columnar columns combine complex compliance compression compute connect connectivity consistent control controls coordinates cost costs crm current custom customer cycles daily dashboards data database datasets date decision decisions deeper define design detailed different dimension discovery distribution dms downtime efficient empower enablement encodings encryption end engagement enterprise erp estimates etl execution executive expense experiences fact familiar faster feeding finance fine finish foundation fragments frequent fully functions glue goals governance grained handles hardware high historical hoc hours iam identity implementation industry ingestion initiatives insights integration interactions investments isolation joins key keys kinesis kms kpis lake lambda landscape large layout leader leaders learning legacy less level logs long looker lower machine maintenance makers management marketing massively metrics migrate migration minimal minutes modeling models modern monitoring monthly mpp multiple near need needs network networking new node nodes one ongoing operating operational operations optimization optimized organization organizations outcomes ownership pain parallel parallelism party patterns peak performance permissions personalized pipelines plan planning platform points power practices predictive premises private processing procurement queries query quicksight reads real receives reconciliations redshift refreshes regulatory reporting reports requirements resources response rest results roles row rows sales scalable scale schemas science scientists seconds security self semi servers service services single sizes source sources speed sql standard standards static storage store strategies streaming structured sub subset support systems tableau team terms third tight time times tools total transit truth tune tuning types typical unified upfront usage use users view volumes vpc warehouse warehouses web weekly window workflows workload workloads",
+    "url": "/Redshift/concepts/Reshift_Keypoints.html"
+  },
+  {
+    "id": 86,
+    "title": "Data_Fabric_vs_Data_Mesh.html",
+    "content": "data fabric vs data mesh access analytics approach architecture aspect automation autonomy capabilities central centralized challenges cloud comprehensive connectivity consistency consistent control controls core data decentralized decision departments different discovery disparate domain domains ensures enterprises entire environments fabric fabrics federated flexibility governance handling heavy high individual infrastructure integration interoperability large lineage making management many mesh metadata multiple needs one organization organizations others ownership platform platforms policies premises preparation privacy processes product products real related responsibility rest scalability scales seamless security self service single size smooth sources specific standards strong systems tasks team teams time unified use various view vs",
+    "url": "/Redshift/concepts/Data_Fabric_vs_Data_Mesh.html"
+  },
+  {
+    "id": 87,
+    "title": "software-delivery.html",
+    "content": "software delivery actions another ansible application applications artifact artifactory artifacts aspects assurance automation aws binaries bitbucket building categories centralized chef ci cloud cloudformation code configuration containerization containerized containers continuous control data delivery deploying deployment development different distributed docker elasticsearch elk entire environment environments formats frequent functionality functions git github gitlab grafana hosted industry infrastructure initial integration jenkins key kibana kubernetes legacy lifecycle logging logs logstash management manager metrics modern monitoring multiple nexus open orchestration package performance pipelines platform platforms popular practices process production projects prometheus providers puppet quality recipes reliability reliable repositories repository running scalability scaling server service shipping software source sources stack staging stores subversion svn system task tasks terraform testing tool tools top travis unit universal updates use users various version writing",
+    "url": "/Info/devops/software-delivery.html"
+  },
+  {
+    "id": 88,
+    "title": "debugging-kubernetes-performance.html",
+    "content": "debugging kubernetes performance agent anomalies another api application applications approach autoscaler benchmark bottlenecks c calico capacity cause check cilium cli clues cluster clusters code collection combination communication components conclusion conditions congestion container containers cpu crashes dashboard dashboards debugging degradation dependencies deployments describe description detailed details different disk displays distributed entire environment error errors events exhaustion experience external failed features fio flow flows functions go grafana graphical health high historical horizontal hotspots hpa htop hubble indicators information interactions iops issue issues istio java journalctl jvm key kubectl kubelet kubernetes latencies latency leaks level limits load logs look loss measure memory mesh messages metrics misconfigurations monitor monitoring name native nature network networking node nodes object objects observability oomkilled open operations overview packet performance persistentvolumeclaim persistentvolumeclaims planning plugins pod pods policies policy pprof pressure primary probes problems profiler profiling prometheus pvc py python rates real related reliable request requests resource resources restarts root runtime scaling search service slow smooth snapshot solution solutions source space specific spy ssh stack status steps storage swapping symptoms systematic testing tests throughput time tool tools top traces tracing traffic trends troubleshoot u ui unusually usage use variety vertical visualization vmstat vpa warnings wasted weave web",
+    "url": "/Info/orchestration/debugging-kubernetes-performance.html"
+  },
+  {
+    "id": 89,
+    "title": "Orchestration_Tools.html",
+    "content": "orchestration tools actions acyclic airflow analytics apache argo asset audit automated automation awareness aws azure backfilling based basic batch categories ci cloud clusters code common complex composer compute concepts container containers control coordinates coordination core correct dags dagster data define defines definition dependencies dependency deployment directed docker duplication dynamic ecosystems ecs elt enforce enterprise error escalation etl executes execution factory failure focus functions gcp github gitlab glue google grade graph graphs handles handling healing historical idempotency infrastructure integrates integration interdependent jenkins jobs kubernetes lambda learning lightweight limited lineage local logging logic long luigi machine machines managed management metrics minimal monitoring multi multiple native nomad observability orchestration order pipelines plane platforms prefect processes production proper python quality reliability reprocessing requirements resources responsibilities retries rolling running scalability scale scheduler schedules scripts self service services simple single state status step strong supports swarm task tasks test time timeouts tools track trails ui virtual visibility visual vs workflow workflows workload",
+    "url": "/Info/orchestration/Orchestration_Tools.html"
+  },
+  {
+    "id": 90,
+    "title": "Apache_Airflow.html",
+    "content": "apache airflow ability acyclic aggregation airflow amounts analysis apache apis approach architecture audit authentication author automation based bashoperator cases celery changes cloud code communication complex compliance configurable connection correct csv custom dag dags data databases debugging delays delivery dependencies destinations detailed details detection developers devices devops different directed distributed diverse drag drop dynamic efficient encryption engineering enrichment environments errors etl execution extensibility external failure features filtering finance flow formats formatting fraud friendly ftp generation government graph graphs healthcare high hooks http industries ingestion integration integrations interface intervals iot json kafka key kubernetes lakes large learning limits lineage log logging logs machine managing manner mechanism mechanisms modular monitor monitoring multiple needs nifi node non notifications number open operators orchestrate order organizations overview pipeline pipelines platform platforms plugins points premises privacy processes processing processors programmatically programming progress protocols provenance python pythonoperator range real relationships retry rich routing scalability scenarios schedule scheduling science seamless sensors services set small software source sources specific specified sql ssl step system systems task tasks technical technologies telecommunications throughput time tool trails transfer transformation transformations triggers troubleshooting types ui use user users various versioning visual volumes warehouses web wide workers workflow workflows xcoms xml",
+    "url": "/Info/orchestration/Apache_Airflow.html"
+  },
+  {
+    "id": 91,
+    "title": "docker.html",
+    "content": "docker access application applications base cloud commands compose consistency container containerization containerized containers control creation dependencies developers development different docker dockerfile ecosystem efficiency environment environments faster features file filesystem host hub image images increased instructions isolated isolation kernel key load local machine machines management multi multiple networking orchestration os points portability previous problem process processes production repository reproducibility scalability scope security series startup swarm system templates testing text tools variables vast version versions virtual vms vulnerabilities",
+    "url": "/Info/containers/docker.html"
+  },
+  {
+    "id": 92,
+    "title": "Kubernetes.html",
+    "content": "kubernetes access active actual address amount answer answers api apiversion app application applications approach appropriate apps architecture asked automate automated autoscalers autoscaling availability balancing based basic capabilities capacity case cases certificates changes charts claims cloud cluster clusters cncf command communication community complex component components computational computing conclusion conditions configmaps configuration conflicts constraints container containerized containerport containers control controller controllers core count coupled cpu cpus creation custom data databases declarative default definition dependencies deployable deployment deployments desired dev difference different distributed docker downtime easy ecosystem efficiency elk environment environments etcd example execution experience extensibility external f failed features field file foundation fractional functionality given google granular half hand handles healing health healthy helm hierarchy high highest horizontal host hosting hpa http https hub identity image images impact individual information infrastructure ingress inside instance integrations interview interviews ip isolated isolation issues job kernel key kind kube kubectl kubelet kubernetes labels least level levels libraries lifecycle lightweight limit limits load loads logging logs lowest machines main management manager master matchlabels maximum mechanism memory metadata metrics microservices millicores minimal monitoring much multi multiple name namespace namespaces native nature necessary network new nginx node nodes number object observed old one ones open operations operators orchestrate orchestration overview package parts passwords performance persistent physical place plane platform pod pods points policies port portable ports powerful previous private process processes production progress proxy pv pvc questions rate rbac registries reliable replicas replicaset replicasets request requests resource resources restarts reusable revision rich risk role rollback rollbacks rolling rollout rollouts routing running runtime scalability scalable scale scaling scheduler scheduling secrets secure security select selector self sensitive server services set settings share shared simple simplest single smallest snapshots source spec specific specification specifications specified ssl stack staging standards state stateful statefulset statefulsets stateless status storage store strategy sufficient summary system systems tasks template termination three tightly time tls tokens tool tools traditional traffic turn two types typically undo unhealthy unique unit units update updated updates usage use users utilization value varying vcpu version versions virtual volume volumes vulnerabilities way worker workloads yaml",
+    "url": "/Info/containers/Kubernetes.html"
+  },
+  {
+    "id": 93,
+    "title": "New-Project-Design.html",
+    "content": "new project design agile allocate analysis architectural architecture assign best boundaries choose codebase competitive compliance components conduct databases define deliverables deployment design determine develop development diagram document documentation end error expectations feature feedback final frameworks functionality goal growth handoff high ideas inputs integration integrations interactions interface interviews key languages launch level main maintenance methodologies metrics milestones monitoring navigation needs new objective objectives operations optimization outputs performance pick plan planning post practices primary problem production progress project projects requirements research resources responsibilities roles scalability scope screens security select serverless services set similar sketch smaller smooth solution specific sprints stack stakeholder success system task tasks team teams technical technologies technology testing tests tools tracking train training troubleshooting type ui understand unit usage user users waterfall wireframe",
+    "url": "/Programming/design/New-Project-Design.html"
+  },
+  {
+    "id": 94,
+    "title": "Python-Search-Algorithms.html",
+    "content": "python search algorithms algorithm another arr array base binary case containing current def element elements elif first function half halves index intersection iteration length list lists merge mid middle output pivot process quick result return right search second single sort target two x",
+    "url": "/Programming/python/Python-Search-Algorithms.html"
+  },
+  {
+    "id": 95,
+    "title": "Python-String-Algorithms.html",
+    "content": "python string algorithms actual algorithm algorithms anagram anagrams analysis another args argument array base binary boolean buzz calculate cases char character characters check checking common comparison correction corresponding cost counts def deletions detection distance distances dna dp dynamic edits element elements elif equal error example false fill first fizz fizzbuzz function hamming import indices input insertion insertions int integer j karolin language last lcs length levenshtein list longest maximum measure metric minimum n natural non none np number numpy one operation order original output pair palindrome positions processing programming python repeated representation result return returns reverse row second sequence sequences similarity single size sort sorted spell str string strings subsequence substitution substitutions table true two value values versions vowels world x",
+    "url": "/Programming/python/Python-String-Algorithms.html"
+  },
+  {
+    "id": 96,
+    "title": "Python-Coding-Exercise-Algorithms.html",
+    "content": "python coding exercise algorithms algorithms bool char character coding complement counts def duplicates enumerate example exercise first int intersection j largest list lists merged non none num number nums olleh output palindrome problem python range repeated return str string sum true two usage vowels world",
+    "url": "/Programming/python/Python-Coding-Exercise-Algorithms.html"
+  },
+  {
+    "id": 97,
+    "title": "Python_Algorithms_Solutions.html",
+    "content": "python algorithms solutions actual algorithm algorithms anagram anagrams analysis another args argument arr array b base binary boolean buzz calculate case cases char character characters check checking common comparison complement containing correction corresponding cost counts current def deletions detection distance distances dna dp duplicates dynamic edits element elements elif equal error example execution false fibonacci fill first fizz fizzbuzz function generator half halves hamming import index indices infinite input insertion insertions int integer intersection iteration j karolin language last lcs length levenshtein list lists longest loop maximum measure merge metric mid middle minimum n natural nested next non none np num number numbers numpy nums one operation order original output pair palindrome pivot positions problem process processing programming python quick recursive remaining repeated representation result return returns reverse right row search second sequence sequences series similarity single size sort sorted specific spell state statement str string strings subsequence substitution substitutions sum table target true two usage value values versions vowels world x yield",
+    "url": "/Programming/python/Python_Algorithms_Solutions.html"
+  },
+  {
+    "id": 98,
+    "title": "Python-Function-OOP-Data-Structure.html",
+    "content": "python function oop data structure age alice animal anonymous another argument array async asynchronous asyncio attribute attributeerror author await basic bob book buddy c call cat class classes closures code collection common concurrency csv data decorators def defining dictionaries dictionary different dog dunder dynamic element elements encapsulation example expression file func function functions generator generators george header headers hi higher immutable import individual inheritance init item iterator iterators key keys lambda line list lists main memory meow methods msg multiple multiplier multiprocessing multithreading name next numbers object objects order oriented orwell output pair person polymorphism print private process processes program programming python r range reader reading return row rows sample self separate sequence set sets simple single spaces square str structures target thread threading threads tuple tuples unique unordered value woof wrapper x yield yields",
+    "url": "/Programming/python/Python-Function-OOP-Data-Structure.html"
+  },
+  {
+    "id": 99,
+    "title": "Products-By-Regions.html",
+    "content": "products by regions columns conn connection cursor data database date desc description exists explanation function group highest id import insert int library price product products python quantity query rank ranking region regions result results revenue row sales sample script select selling specified sql sqlite table top total transaction values window year",
+    "url": "/Programming/transformation/Products-By-Regions.html"
+  },
+  {
+    "id": 100,
+    "title": "CSV_To_JSON.html",
+    "content": "csv to json age alice angeles bob charlie convert csv dataframe df file format francisco import input json lines location los name new output pandas path pd pprint python resulting san transformation york",
+    "url": "/Programming/transformation/CSV_To_JSON.html"
+  },
+  {
+    "id": 101,
+    "title": "Sudoku-Board-Verification.html",
+    "content": "sudoku board verification args board bool checks col column columns completed conditions example expected false function given grid grids import inner int list lists logic matrix module name numbers output parameters pp pprint pretty prints provided puzzle python result return returns row rows rules script specified standard start steps sub sudoku sum sums total true value verification verifies window",
+    "url": "/Programming/algorithms/Sudoku-Board-Verification.html"
+  },
+  {
+    "id": 102,
+    "title": "FastAPI.html",
+    "content": "fastapi api apis app application async asynchronous authentication authorization auto automatic background basemodel class combines communication concurrency cycle data def description development documentation endpoint endpoints errors example explanation fast fastapi field float function generate high hints httpexception import integrity intensive interactive item json jwts main model modern name none openapi overview performance post power price processes protocols pydantic python real redoc reliable request rest return schema secure security simple simplicity str support supports swagger tasks tax time tools type types ui utilizes validation websockets",
+    "url": "/Programming/backend/FastAPI.html"
+  },
+  {
+    "id": 103,
+    "title": "Implementing-API.html",
+    "content": "implementing api access allow api apis application applications appropriate apps architecture attacks authentication authorization backward based best clear client clients codes communication compatibility consistent control conventions cors cross data datasets ddos definition design development different documentation domain easier efficiency efficient endpoints environments error evolution feature flexibility handling headers high http https implement implementing importance independent information injection input integration interaction interface interfaces jwt key keys language large layered layers limiting messages method methods microservices middleware multiple naming oauth object origin pagination paths performance postman practices principles programming protocol query rate relevant representational request requests resource resources responses rest restful scalability seamless security separation server sharing side simple soap software solution specific standard standardized standards state statelessness status strategies strict structured success supports swagger system systems tools topics transfer transit troubleshooting types understanding unified uniform use uses validate web",
+    "url": "/Programming/backend/Implementing-API.html"
+  },
+  {
+    "id": 104,
+    "title": "AWS-Config-Inspector.html",
+    "content": "aws config inspector account action actionable actions adherence alerts analysis applications approach assessment assessments audit auditing automate automated automatically aws basis best better breaches capabilities cases change changes checks ci clear cloudtrail common compliance compliant config configuration configurations configure continuous controls create current define defined demand dependencies deployments desired detailed deviations devops disaster dss environment evaluation example execute execution exposed external features findings governance historical iam identified impacts improvement incident incidents industry insecure inspector integration internal inventory investigate issues key lambda management misconfigurations monitor monitoring non notifications ongoing operational organizational part patches pci pipeline planning policies ports posture potential powerful practices predefined process recommendations recommended recorded recovery regular regulations regulatory relationships remediate remediation report reporting reports requirements resource resources response risks rules run schedule scheduled secure security service services set sns software standards state status targets templates thorough time track troubleshooting unpatched use view vulnerabilities vulnerability way workflow",
+    "url": "/AWS/security/AWS-Config-Inspector.html"
+  },
+  {
+    "id": 105,
+    "title": "KMS-Key-Management-Service.html",
+    "content": "kms key management service access activities additional api application applications approach audit auditing authenticity automatic aws behalf best cases centralized cli cloud cloudtrail cmk code common communications compliance configuration consistent console control created cryptographic custom customer customers data define deletion digital ebs encrypt encryption environment example feature features granular hardware highly hsms iam industry information integrated integration integrity key keys kms lambda layer level lifecycle managed management managing master minimal modules ongoing operations others permissions policies practices protection providers range rds regulations regulatory repository requirements rest rotation saas sdk security sensitive service services signing single solution specific specifying standards store transit unified usage use users various wide workflow",
+    "url": "/AWS/security/KMS-Key-Management-Service.html"
+  },
+  {
+    "id": 106,
+    "title": "AWS-Lake-Formation-vs-AWS-CloudFormation.html",
+    "content": "aws lake formation vs aws cloudformation access amazon amounts analysis analytics athena automated automates aws build builds cases catalog cleans cloud cloudformation code column compute configuration consistent control controlling controls data deployment differences different emr environment feature fine formation full functionality glue governance grained granularity iac iam infrastructure integrates integration integrations json key lake lakes lambda large level lifecycle main management manages managing metadata multiple organizing permissions policies primary process provisioning purpose purposes rds redshift regulated repeatable resource resources role row scope secure securing security sensitive service services setup simplifies sources storage table templates updating use various version vpc works yaml",
+    "url": "/AWS/security/AWS-Lake-Formation-vs-AWS-CloudFormation.html"
+  },
+  {
+    "id": 107,
+    "title": "IAM-Identity-Access-Management.html",
+    "content": "iam identity access management access account actions active activities added addition additional another api application applications attach audit authentication authorized aws best calls cases cloud cloudtrail common compliance compliant consultants control controls create credentials critical cross custom define directory enhance environment exactly example external factor feature federation fine form foundational google grained granular group groups iam identity individual json lambda least limited long management mfa microsoft monitor multi needs one organization parties password patterns permissions policies powerful practices principle privilege protection provider providers regulatory requirements resources role roles saml second secure security service services specific step strict stronger temporary term third tool unauthorized use user users web workflow",
+    "url": "/AWS/security/IAM-Identity-Access-Management.html"
+  },
+  {
+    "id": 108,
+    "title": "AWS-Lake-Formation.html",
+    "content": "aws lake formation access action ai amazon amounts analysis analysts analytical analytics arn assumerole assumerolepolicydocument athena audit auditing aws awstemplateformatversion best bucket bucketname buckets catalog catalogid centralized clean cleaning cloudformation cloudtrail cloudwatch code column columns compliance console control data database databaseinput databasename databases datalakeprincipal datalakeprincipalidentifier datalocationresource deeper define defines description detailed different easier easily effect efficient emr encryption enhanced explanation false features fine format formation fully getatt glue governance grained grant granular iam ideal import ingest ingestion inputformat int integrates integration key keys kms lake lakes large learning least level levels lineage location machine manage managed manages managing metadata monitor monitoring multiple mydatabase mydatalakebucket mylakeformationadminrole mylakeformationdataaccesspolicy mytable name numberofbuckets optional outputformat paths permission permissions permissionswithgrantoption policies practices premises principal principle privilege process properties queries query querying rapid raw rds redshift ref register repository resource resources role rolename roles row run sagemaker sample scientists securing security service services setup simplified sources specific specified spectrum statement steps storage storagedescriptor streaming string sts sub systems table tableinput tables template tools transform transformation transformations type unauthorized usable use users variety various version workloads yaml",
+    "url": "/AWS/security/AWS-Lake-Formation.html"
+  },
+  {
+    "id": 109,
+    "title": "AWS-CloudTrail.html",
+    "content": "aws cloudtrail access account actions activate activity alarms amazon analysis analyze anomalies api athena audit auditing automated aws bucket call calls cases change changes cloud cloudtrail cloudwatch command common complete compliance comprehensive configurations configure conjunction console dashboards data detailed detecting durable environment essential event events example external files forensic governance historical history incident industry infrastructure insights internal investigate issues key line log logging logs long management monitor monitoring notifications operational party patterns potential problem record recording regions regulations relevant requirements resources responses retention risk roles sdks secure security sequence service services specific standards storage store term third threats time tools track trail troubleshooting unauthorized unusual use user users visibility workflow",
+    "url": "/AWS/security/AWS-CloudTrail.html"
+  },
+  {
+    "id": 110,
+    "title": "AWS-Kinesis-Data-Streams.html",
+    "content": "aws kinesis data streams amazon analytics applications aws cases centralized common data distributed etl event features fly full ingestion insights integration interactions key kinesis lambda large log logs metrics monitoring name personalization phase pipeline processing real redshift scalability service services sources streaming streams time tracking use user various volume",
+    "url": "/AWS/serverless/AWS-Kinesis-Data-Streams.html"
+  },
+  {
+    "id": 111,
+    "title": "AWS-Step-Functions.html",
+    "content": "aws step functions access amazon another api application approvals automate automation aws batch business call common completion complex console coordination data decision defined definition deployment design different distributed dynamodb easy ecs editor end environment error errors etl evaluation example executes execution external extraction failed fault features final flowchart function functions glue handling human iam infrastructure input integration interface jobs json key lambda language learning loading long machine making management microservices model monitoring multiple orchestrate orchestration output path pipelines policies preparation process processes processing redshift reliability reliable roles running scalability sdk security serverless servers service services start state states step steps storage systems task tasks training transformation transitions use validation various visual workflow workflows",
+    "url": "/AWS/serverless/AWS-Step-Functions.html"
+  },
+  {
+    "id": 112,
+    "title": "Lambda-Serverless-Computing.html",
+    "content": "lambda serverless computing access actions ai aliases amazon api apis application applications assistants automated automatically automation availability aws backend behavior c cases changes charges chatbots code common complex comprehend compute computing cost create custom data database databases design development devices different driven dynamodb effective efficiency environment environments etl even event events executes execution external extract features file files fine flexibility function functions gateway generating grained handle high http iam identity images incoming information infrastructure input instances integration intervention invocations iot java key lakes lambda languages levels log logic management managing manual many message messages milliseconds multiple new notifications number orchestration overhead performance permissions persistent power pricing process processing production programming provisioning python queues range rds real records rekognition requests resizing resource resources response role roles ruby runtime scalability scenarios secure server serverless servers service services several shifts sns sources specific sqs staging state stateless storage streams support supports system tasks thumbnails time traffic transform transformation trigger triggers underlying usage use user variables variety various varying versions videos voice web wide workflows",
+    "url": "/AWS/serverless/Lambda-Serverless-Computing.html"
+  },
+  {
+    "id": 113,
+    "title": "Amazon-S3.html",
+    "content": "amazon s3 access accessed amazon amount amounts analysis analytics api apis applications archival archive archiving athena automated availability aws backup backups big bucket buckets cases cdn centers class classes cloud cloudfront common compliance computing content controls cornerstone cost costs custom data datasets deep delivery different disaster dispersed distribution diverse documents durability effectiveness emr encryption features fine flexibility frequently geographically glacier grained high hosting hours ia iam identity images infrequent infrequently integration internet key lakes lambda languages large layers lifecycle long lower lowest management many minutes multiple needs number object objects one option options patterns policies pricing processing programming range rapid reasons recovery redshift regions reliability replication requests rest restful retrieval scalability scalable scale sdks security serverless service services simple single sources specific spectrum sql standard static storage storing term tiers times tools transfer transit transition two unlimited usage use users variety various versioning versions videos virtually web wide zone",
+    "url": "/AWS/storage/Amazon-S3.html"
+  },
+  {
+    "id": 114,
+    "title": "S3-Transfer-Acceleration.html",
+    "content": "s3 transfer acceleration accelerated acceleration access additional amazon amounts applications assets aws backups benefits bucket budget business case cases changes clients closest cloudfront cloudwatch common console content control cost costs critical cross data datasets deadlines desired distance distances distant distributed edge effective enabling endpoint example existing expected factor faster feature features file files geographically global globally iam identity improved infrastructure key large latency location locations long management media metrics monitor nearest need network new operations optimized paths performance processing reach region regions reliability requirements review scale scenarios security sensitive settings solution speed speeds ssl standard streaming time transfer transfers transit upload uploads use users video workflow workflows world",
+    "url": "/AWS/storage/S3-Transfer-Acceleration.html"
+  },
+  {
+    "id": 115,
+    "title": "Amazon-RDS.html",
+    "content": "amazon rds advanced amazon analytical api application applications aurora automated automates availability aws az backend backup backups capabilities cases choice cli clicks cloud cloudwatch common compute console consuming cost costs credentials data database databases demand demands deployments development dms drivers easy effective encryption engine engines enterprise environments excellent failover features flexible grade hardware high import ingestion instance instances integration isolation key kms layers load managed management mariadb microsoft migration mobile models monitoring multi multiple mysql native network operation oracle organizations patching patterns performance point popular postgresql pricing provisioning rds recovery relational reliable replicas reserved resources rest scalability scale scaling security server service services setup several smaller snapshots solution sql staging standard storage tasks testing time tools transit usage use vpc warehouses web zone",
+    "url": "/AWS/compute/Amazon-RDS.html"
+  },
+  {
+    "id": 116,
+    "title": "AWS-EMR.html",
+    "content": "aws emr access advanced algorithms amazon amounts analysis analytics apache aws batch big businesses cases cloud cluster common complex configuration control cost costs data datasets dynamodb ecosystem effective emr encryption environment etl example features flink framework frameworks hadoop hbase hive iam infrastructure instances integration isolation job jobs key languages large layers learning machine managed mapreduce mllib multiple necessary needs network options others pig platform presto pricing processed processing provisioning python querying raw real redshift resources rest results running scala scalability scale security service services spark spot sql storage store streaming tasks termination time transformations transit tuning underlying use vast warehousing workflow",
+    "url": "/AWS/compute/AWS-EMR.html"
+  },
+  {
+    "id": 117,
+    "title": "AWS.html",
+    "content": "aws access accurate ad amazon analytics assets athena auditability automatic aws backbone cases catalog cataloged centralized changes common component configuration core crawlers data databases date define different discovery emr environment etl evolution example fast features flow glue governance history hoc iam identity infer information job jobs key lake lakes landscape lineage manage management manual metadata monitor partitions pipelines place policies powerful process processes queries query redshift reference repository schema schemas services single sources spectrum storage stores strategy structures tables time tool track tracking transformations transforming transparency updates use users various versioning warehouse warehouses workflow",
+    "url": "/AWS/compute/AWS.html"
+  },
+  {
+    "id": 118,
+    "title": "Auto-Scaling-EC2-EMR.html",
+    "content": "auto scaling ec2 emr action activities amazon amount application applications auto automated automatically availability aws balancing batch big build capacity cases changes checks ci cloudwatch cluster clusters common complexity configure consistent continuous cost costs cpu current custom data day demand deployment desired devops disaster dynamic effective effectiveness efficiency elastic elb emr environment environments events example failed features flexible group groups health high instances integration intensive job jobs key levels load mapreduce memory metrics monitor necessary new nodes number ones operations optimal optimization optimize patterns performance pipelines policies powerful predictable processes processing quick real recovery resource resources response review right scale scaling scheduled schedules seamless service services set size solution specific target test time timely times tracking traffic unhealthy unpredictable usage use utilization way web week workflow workload workloads",
+    "url": "/AWS/compute/Auto-Scaling-EC2-EMR.html"
+  },
+  {
+    "id": 119,
+    "title": "AWS-Redshift.html",
+    "content": "aws redshift access amazon analysis analytical analytics aws bi big businesses central cloud cluster clusters columnar commands complex compression control copy cost costs data databases datasets decision demand destination destinations driven dynamodb ecosystem effective emr encryption etl example export fast fine fully gb glue grained iam ideal ingestion insights instances integration isolation jobs language large load looker making multi network new node organizations parallel performance petabyte petabytes pricing processed processing purposes queries query quicksight real redshift reporting reports reserved resources rest results run scale security semi service services single solution sources sql standard storage structured tableau time tools transformation transit use users various visualizations vpc warehouse warehousing workflow workload workloads",
+    "url": "/AWS/compute/AWS-Redshift.html"
+  },
+  {
+    "id": 120,
+    "title": "AWS-CloudWatch.html",
+    "content": "aws cloudwatch access actions activity alarms alerts amazon anomalies application applications automate automated automation aws balancers behavior build cases certain changes cloud cloudwatch collect collection common comprehensive conditions configure cpu create custom dashboards data databases defined ecosystem efficiency entire environment environments errors essential eventbridge events example failure features filters functions gain health immediate infrastructure insights instances interface issues key lambda learning load log logs machine memory metric metrics monitor monitoring notifications observability operational operations part patterns performance premises problems rds real related reliability resource resources response responses security service services single specific thresholds time tool unauthorized unusual usage use utilization view visibility visual web workflow",
+    "url": "/AWS/monitoring/AWS-CloudWatch.html"
+  },
+  {
+    "id": 121,
+    "title": "AWS-CloudWatch-Events.html",
+    "content": "aws cloudwatch events action actions adjustments alerting alternate api application applications architectures auditing audits automate automated automation aws backups building cases change changes checks cloud cloudwatch common complex compliance component components conditions corrective corresponding criteria cron custom data detailed driven ecosystem efficiency environment error errors event events example execution failed flexible function functions handle handling health infrastructure instance instances intervals key lambda load log logging logic logs mechanisms monitor monitoring near needs notification operations performance periodic powerful processing real regular relevant reliability resources response responses retry review robust rotation rule scheduled scripts security service services sns source specific state step stream system target tasks time trigger triggers troubleshooting unnecessary use way workflow workflows",
+    "url": "/AWS/monitoring/AWS-CloudWatch-Events.html"
+  },
+  {
+    "id": 122,
+    "title": "AWS-Cloud-Formation.html",
+    "content": "aws cloud formation access additional advanced amazon arns automated automation aws awstemplateformatversion behalf buckets change changes cidrip cli cloudformation code collection concepts conditions configuration configurations configure consistency consistent console controlled costs create created creation databases define delete deployments description designer detailed detection drag drift drop entire environments error events existing expected failure file format fromport group groupdescription http iac iam ids individual information infrastructure instance instances instancetype interface ipprotocol json key management meaningful monitor mykeypair name necessary notification optional options organization outputs pairs parameters permissions process properties protection provisioning rds real ref repeatability resource resources role rollback safe sdks security securitygroupingress securitygroups service services set sets settings setup simplifies single ssh stack stacks status steps tab tags tcp template templates termination time toport tracking type types unit unnecessary update updated url urls use users verify visual vpc vpcs way write yaml",
+    "url": "/AWS/monitoring/AWS-Cloud-Formation.html"
+  },
+  {
+    "id": 123,
+    "title": "ETL-Pipeline-AWS.html",
+    "content": "etl pipeline aws acceleration access activity alarms amazon analysis analytical another apache api apis archival auditing auto automation aws big buckets catalog cleaned cloudwatch complex compliance config create data database databases datasets define dynamodb emr ensure etl events example external extract failures flow format frameworks fully functions glue hadoop iam identity ingestion inspector internal issues job jobs key kinesis kms lake lambda large load loading log logging logs managed management mapreduce metadata monitor monitoring needs nosql option orchestration party performance pipeline policies processing purposes queries raw rds real redshift regulations relational reporting resources rest roles scale scaling schedules schema security sequence service services simple sources spark specific speed step storage store streams third time track transfer transform transformation transformations transit trigger use various warehouse workflow",
+    "url": "/AWS/analytics/ETL-Pipeline-AWS.html"
+  },
+  {
+    "id": 124,
+    "title": "AWS-Glue-Workflow.html",
+    "content": "aws glue workflow amazon analytics arrival automation aws bucket cases catalog cloudwatch common completion complex comprehensive conditional configuration configure connecting console coordinate correct crawler crawlers custom data define dependencies destinations different editor error etl even events example execution failure feature features flexibility flow flowchart glue ingestion integrated integration interface issues job jobs key lake logging logic management metadata monitor monitoring multiple necessary orchestration order parallel part path paths pipelines predefined previous processes processing progress real redshift scale scheduled schedules sequence solution sources status success tasks time transformations trigger troubleshoot upstream use various visual warehouse warehousing workflow workflows",
+    "url": "/AWS/analytics/AWS-Glue-Workflow.html"
+  },
+  {
+    "id": 125,
+    "title": "AWS-Glue-as-an-ETL-Service.html",
+    "content": "aws glue as an etl service access amazon apache argument aws breakdown capabilities client configure connections connectors control data databases dynamodb e engine environment etl example execution extract extraction flexible format formats fully glue iam import initialize job l load managed metadata monitor multiple name operations optimize performance process processing quicksight range redshift refers resources response roles schema serverless service services sources spark standardized storage stores supports system target tools transform use various web wide workflow",
+    "url": "/AWS/analytics/AWS-Glue-as-an-ETL-Service.html"
+  },
+  {
+    "id": 126,
+    "title": "AWS-Glue-ETL-Service.html",
+    "content": "aws glue etl service access actual amazon another apache argument aws basic bucket capabilities code completion configure connections connectors control data databases dynamodb e engine environment etl example execution extract extraction f field flexible format formats frame fully getresolvedoptions glue gluecontext iam import initialization input job json l lambda less load managed metadata monitor multiple name object operations optimize output part paths performance process processing python quicksight range records redshift refers resources result roles sc schema script serverless service services simple sources spark sparkcontext standardized step storage stores supports sys system target tools transform transformation transformed usage use various web wide workflow writing",
+    "url": "/AWS/analytics/AWS-Glue-ETL-Service.html"
+  },
+  {
+    "id": 127,
+    "title": "AWS-Glue-Data-Catalog.html",
+    "content": "aws glue data catalog access accurate ad amazon analytics assets athena auditability automatic aws backbone cases catalog cataloged centralized changes common component configuration core crawlers data databases date define different discovery emr environment etl evolution example fast features flow glue governance history hoc iam identity infer information job jobs key lake lakes landscape lineage manage management manual metadata monitor partitions pipelines place policies powerful process processes queries query redshift reference repository schema schemas services single sources spectrum storage stores strategy structures tables time tool track tracking transformations transforming transparency updates use users various versioning warehouse warehouses workflow",
+    "url": "/AWS/analytics/AWS-Glue-Data-Catalog.html"
+  },
+  {
+    "id": 128,
+    "title": "Amazon-QuickSight.html",
+    "content": "amazon quicksight access active amazon analysis analysisname analytics anomalies anomaly api application applications athena audiences automate automatic aws bar best better bi business businesses calculated calculation calculations chart charts cloud cluster collaboration columns concepts configuration configure connect connects console control cost creation credentials custom dashboard dashboards data database databases dataset datasets datasourcetype date decision detailed detection devices different download drag drivers drop dynamic easy ecosystem embedding engine expressions external fast faster features field fields filtering filters flexible forecasting functionality graphs groupby grouping groups iam id individuals information infrastructure insights integrates integration intelligence interactions interactive interface key large latest learn learning levels leverage limits machine making manage management maps memory ml mobile monitor multiple mysql name needs new non north operator order organization organizations outliers overview parameters party performance postgresql powered practices predictions prep product queries querying quicksight range rds redshift refreshes region reports responsive roles sales salesforce sample scalability scalable schedule secure security select server serverless service services session set sharing simple size sizes small source sources specific speed spice sql steps super third tool tools trends type types usage use user users uses value variety various views visualization visualizations visualizationtype volume wide xaxis yaml yaxis",
+    "url": "/AWS/analytics/Amazon-QuickSight.html"
+  }
+]

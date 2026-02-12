@@ -1,0 +1,374 @@
+---
+---
+{% include menu.html title="Amazon Redshift Architecture" %}
+
+  <body>
+    <h1>Amazon Redshift Architecture</h1>
+
+    <p>
+      Amazon Redshift is a fully managed, massively parallel processing (MPP)
+      cloud data warehouse. It is designed for analytical workloads such as
+      reporting, dashboards, and large-scale SQL queries over structured data.
+      This tutorial explains the main components of Redshift architecture and
+      how they work together.
+    </p>
+
+    <!-- OVERVIEW DIAGRAM -->
+    <h2>High-Level Architecture Overview</h2>
+
+    <p>
+      The diagram below summarizes the high-level Amazon Redshift architecture.
+    </p>
+
+    <p>
+      <img src="/images/redshift-architecture-overview.png" width=800
+           alt="High-level Amazon Redshift architecture diagram with client applications, leader node, compute nodes, and storage."
+      />
+    </p>
+
+    <ul>
+      <li>
+        <strong>Client Applications</strong> – BI tools, SQL editors, and
+        notebooks connect to Redshift over JDBC, ODBC, or the Data API.
+      </li>
+      <li>
+        <strong>Redshift Cluster</strong> – A collection of nodes (one leader
+        node and one or more compute nodes) that execute queries and store data.
+      </li>
+      <li>
+        <strong>Managed Storage and Data Lake</strong> – RA3 nodes use managed
+        storage that can transparently extend into Amazon S3, and Redshift
+        Spectrum lets you query data directly in S3.
+      </li>
+      <li>
+        <strong>Surrounding AWS Services</strong> – Services such as S3, Glue,
+        Lambda, Kinesis, and others integrate for ingestion, cataloging, ETL,
+        and analytics.
+      </li>
+    </ul>
+
+    <h2>Cluster Components</h2>
+
+    <h3>1. Leader Node</h3>
+    <ul>
+      <li>
+        <strong>Entry point</strong> – All client connections terminate at the
+        leader node.
+      </li>
+      <li>
+        <strong>SQL parser and optimizer</strong> – Parses incoming SQL, builds
+        execution plans, and decides how to distribute work across compute
+        nodes.
+      </li>
+      <li>
+        <strong>Coordinator</strong> – Sends query fragments to compute nodes
+        and aggregates the intermediate results.
+      </li>
+      <li>
+        <strong>Catalog store</strong> – Holds metadata about databases,
+        schemas, tables, and permissions.
+      </li>
+    </ul>
+
+    <h3>2. Compute Nodes</h3>
+    <ul>
+      <li>
+        <strong>Parallel workers</strong> – Each node runs multiple
+        <strong>slices</strong> (worker processes). Slices operate on different
+        portions of the data in parallel.
+      </li>
+      <li>
+        <strong>Local storage / cache</strong> – Data blocks are stored in
+        columnar format. RA3 nodes cache frequently used blocks on fast SSD
+        while automatically managing older blocks in S3.
+      </li>
+      <li>
+        <strong>Distribution styles</strong> – Data is distributed across nodes
+        using:
+        <ul>
+          <li><strong>KEY</strong> – rows with the same key go to the same node</li>
+          <li><strong>EVEN</strong> – rows distributed round-robin</li>
+          <li><strong>ALL</strong> – small dimension tables fully replicated</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Columnar storage and compression</strong> – Only relevant
+        columns are read during queries, and compression reduces I/O and cost.
+      </li>
+    </ul>
+
+    <h2>Storage and Data Lake Integration</h2>
+
+    <h3>1. Managed Storage (RA3)</h3>
+    <ul>
+      <li>
+        <strong>Compute and storage decoupled</strong> – You can scale compute
+        capacity (number of nodes) independently from how much data you store.
+      </li>
+      <li>
+        <strong>Automatic tiering</strong> – Hot data stays in SSD cache; cold
+        data is transparently moved to Amazon S3.
+      </li>
+      <li>
+        <strong>No application changes</strong> – From the user’s perspective,
+        the data behaves like local disk.
+      </li>
+    </ul>
+
+    <h3>2. Redshift Spectrum: Querying Data in S3</h3>
+
+    <p>
+      Redshift Spectrum allows you to run queries against structured data stored
+      directly in Amazon S3, without loading it into local Redshift tables.
+    </p>
+
+    <p>
+      <img src="/images/redshift-spectrum-architecture.png" width=800
+        alt="Redshift Spectrum architecture diagram showing Redshift cluster querying data stored in Amazon S3 via an external data catalog."
+      />
+    </p>
+
+    <ul>
+      <li>
+        <strong>External tables</strong> – Defined in an external data catalog
+        such as AWS Glue. They reference data files (Parquet, ORC, CSV, JSON)
+        in S3.
+      </li>
+      <li>
+        <strong>Hybrid queries</strong> – A single SQL query can join local
+        Redshift tables with external tables in S3.
+      </li>
+      <li>
+        <strong>Pushdown of filters</strong> – Projection and filtering are
+        pushed down to the Spectrum layer to minimize data scanned from S3.
+      </li>
+    </ul>
+
+    <h2>Data Sharing Between Redshift Clusters</h2>
+
+    <p>
+      Amazon Redshift enables secure data sharing across clusters within the
+      same AWS account or across accounts. This is useful for sharing curated
+      data with different business units, teams, or workloads without copying
+      data.
+    </p>
+
+    <p>
+      <img src="/images/Redshift-Data-Sharing.png" width=800
+        alt="Redshift data sharing diagram showing a producer cluster sharing data with one or more consumer clusters."
+      />
+    </p>
+
+    <ul>
+      <li>
+        <strong>Producer cluster</strong> – Owns the physical data and defines
+        <strong>datashares</strong> that expose specific schemas, tables, and
+        views.
+      </li>
+      <li>
+        <strong>Consumer clusters</strong> – Attach the datashares as standard
+        database objects and query them as if they were local.
+      </li>
+      <li>
+        <strong>No data duplication</strong> – Data stays in the producer
+        cluster’s storage; consumers access it in-place.
+      </li>
+      <li>
+        <strong>Fine-grained permissions</strong> – Producers control which
+        objects are shared and who can access them.
+      </li>
+    </ul>
+
+    <h2>Workload Management and Scaling</h2>
+
+    <h3>1. Workload Management (WLM)</h3>
+    <ul>
+      <li>
+        <strong>Queues</strong> – Queries are routed into WLM queues, which
+        define memory allocation and concurrency for different workloads.
+      </li>
+      <li>
+        <strong>Automatic WLM</strong> – Redshift can automatically manage
+        memory and concurrency, reducing the need for manual tuning.
+      </li>
+      <li>
+        <strong>Query monitoring rules</strong> – Rules can log, hop, or abort
+        queries based on thresholds (runtime, rows scanned, etc.).
+      </li>
+    </ul>
+
+    <h3>2. Concurrency Scaling and Elastic Resize</h3>
+    <ul>
+      <li>
+        <strong>Concurrency Scaling</strong> – Redshift automatically adds
+        transient clusters to absorb short-lived spikes in query load.
+      </li>
+      <li>
+        <strong>Elastic resize</strong> – Allows you to change the number or
+        type of nodes for a cluster to handle larger or smaller workloads over
+        time.
+      </li>
+    </ul>
+
+    <h2>Security and Networking</h2>
+
+    <h3>1. Network Isolation</h3>
+    <ul>
+      <li>
+        <strong>Amazon VPC</strong> – Clusters run inside a virtual private
+        cloud; security groups and network ACLs control inbound and outbound
+        access.
+      </li>
+      <li>
+        <strong>Private connectivity</strong> – You can use VPN, Direct Connect,
+        or VPC peering to securely connect on-premises systems or other VPCs.
+      </li>
+    </ul>
+
+    <h3>2. Encryption and Access Control</h3>
+    <ul>
+      <li>
+        <strong>Encryption at rest</strong> – Data can be encrypted using AWS
+        KMS keys or hardware security modules.
+      </li>
+      <li>
+        <strong>Encryption in transit</strong> – Connections from clients can be
+        protected with SSL/TLS.
+      </li>
+      <li>
+        <strong>IAM integration</strong> – IAM roles grant Redshift permission
+        to read and write data in S3 for COPY and UNLOAD operations.
+      </li>
+      <li>
+        <strong>Database privileges</strong> – Users and groups are granted
+        privileges on schemas, tables, and views, with support for row-level and
+        column-level security.
+      </li>
+    </ul>
+
+    <h2>Typical Query Lifecycle</h2>
+
+    <ol>
+      <li>
+        A client application sends a <strong>SQL query</strong> to the Redshift
+        endpoint.
+      </li>
+      <li>
+        The <strong>leader node parses, optimizes,</strong> and generates a
+        distributed execution plan.
+      </li>
+      <li>
+        The leader node <strong>dispatches work</strong> to slices on the
+        compute nodes.
+      </li>
+      <li>
+        Compute nodes <strong>scan columnar data</strong> from local or managed
+        storage and optionally read external data from S3 via Spectrum.
+      </li>
+      <li>
+        Compute nodes <strong>aggregate intermediate results</strong> and send
+        them back to the leader node.
+      </li>
+      <li>
+        The leader node performs the <strong>final aggregation or sorting</strong>
+        and returns the result set to the client.
+      </li>
+    </ol>
+
+    <h2>Putting It All Together</h2>
+
+    <p>
+      In practice, a Redshift-based analytics platform typically includes:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Data sources</strong> – Operational databases, event streams,
+        and flat files.
+      </li>
+      <li>
+        <strong>Ingestion and ETL/ELT</strong> – Data is moved into S3 and then
+        into Redshift using COPY, Glue jobs, Lambda, or third-party ETL tools.
+      </li>
+      <li>
+        <strong>Curated warehouse</strong> – Dimensional models and fact tables
+        stored in Redshift and shared with downstream teams using data sharing.
+      </li>
+      <li>
+        <strong>Consumption layer</strong> – Dashboards, ad-hoc analytics, and
+        machine-learning workloads running on top of Redshift and S3.
+      </li>
+    </ul>
+
+    <p>
+      Use the diagrams above together with the section explanations as a visual
+      tutorial for understanding how Amazon Redshift is structured and how data
+      flows through the system.
+    </p>
+
+    <h2>Data Ingestion Pipeline</h2>
+    
+    <p>
+      The Redshift ingestion pipeline represents the flow of data from operational
+      systems and external data sources into Amazon Redshift. This process typically
+      involves extraction from sources, transformation into optimized formats, and 
+      loading into Amazon S3 before final ingestion into Redshift.
+    </p>
+    
+    <p>
+      <img src="/images/redshift-ingestion-pipeline.png" width=800
+           alt="Redshift ingestion pipeline showing data sources flowing through ETL into S3 and then into Amazon Redshift" />
+    </p>
+    
+    <ul>
+      <li><strong>Data Sources</strong> – Operational databases, application logs,
+          third-party APIs, event streams, and files.</li>
+    
+      <li><strong>ETL / ELT Layer</strong> – AWS Glue, Lambda, EMR, or third-party
+          tools perform transformations and cleaning.</li>
+    
+      <li><strong>Amazon S3</strong> – The primary ingestion landing zone used for
+          staging raw and transformed data.</li>
+    
+      <li><strong>Amazon Redshift</strong> – Final destination for structured
+          analytics workloads. Data is typically loaded using the COPY command for
+          maximum throughput.</li>
+    </ul>
+    
+    
+    <h2>End-to-End Architecture</h2>
+    
+    <p>
+      The end-to-end Redshift architecture shows the complete lifecycle of data –
+      from initial collection, through ingestion and transformation, into Amazon 
+      Redshift, and finally consumed by analytics and BI tools.
+    </p>
+    
+    <p>
+      <img src="/images/redshift-end-to-end-architecture.png" width=800
+           alt="Redshift end-to-end architecture diagram showing data sources, ingestion, AWS Glue transformations, Redshift warehouse, and analytics outputs" />
+    </p>
+    
+    <ul>
+      <li><strong>Data Sources</strong> – Databases, applications, IoT, streaming 
+          services, and file-based inputs.</li>
+    
+      <li><strong>Ingestion Pipeline</strong> – Data flows into S3 or streams 
+          through Kinesis before entering Redshift.</li>
+    
+      <li><strong>AWS Glue</strong> – Optional transformation stage to clean,
+          normalize, or enrich data before SQL analytics.</li>
+    
+      <li><strong>Amazon Redshift</strong> – Central data warehouse storing curated 
+          datasets, fact tables, and dimensional models.</li>
+    
+      <li><strong>Analytics & Business Intelligence</strong> – Tools such as 
+          QuickSight, Tableau, Looker, and Jupyter notebooks read from Redshift 
+          for dashboards, reporting, and ML workloads.</li>
+    </ul>
+
+  </body>
+
+{% include footer.html %}
+
+

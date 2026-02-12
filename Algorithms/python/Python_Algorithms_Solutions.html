@@ -1,0 +1,404 @@
+---
+---
+{% include menu.html title="Python Algorithms" %}
+
+
+<p><hr align=left width=1000>
+<h1>Python Algorithms</h1>
+
+<h2>Two Sum Problem</h2>
+This Python function two_sum is designed to solve the "two-sum" problem. The problem is to find two numbers in a list (nums) that add up to a specific target value (target). The function returns the indices of these two numbers in the list.
+<pre><code class="language-python">def two_sum(nums: list, target: int) -> list:
+    num_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i
+
+print(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1]
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Remove Duplicates from a List</h2>
+<pre><code class="language-python">def remove_duplicates(nums: list) -> list:
+    return list(set(nums))
+    
+print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5]
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Two Sum</h2>
+The two sum algorithm works by iterating through the array and for each element, finding its complement (i.e., the other number that adds up to the target value). We use a nested loop to iterate through the remaining elements of the array and check if their sum is equal to the target value. If it is, we return the indices of both elements as the result.
+<pre><code class="language-python">def two_sum(arr, target):
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] + arr[j] == target:
+                return [i, j]
+    return [-1, -1]
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Merge Two Sorted Lists</h2>
+<pre><code class="language-python">def merge_sorted_lists(list1: list, list2: list) -> list:
+    merged = []
+    i = j = 0
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    merged.extend(list1[i:])
+    merged.extend(list2[j:])
+    return merged
+
+print(merge_sorted_lists([1, 3, 5], [2, 4, 6]))  # Output: [1, 2, 3, 4, 5, 6]
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Fibonacci Series</h2>
+The Fibonacci series algorithm works by defining a recursive function that takes an integer argument n. If n is 0 or 1, we return the value of n as the result. Otherwise, we add the values of fibonacci(n-1) and fibonacci(n-2).
+<pre><code class="language-python">def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+print(fibonacci(5)) # 5           
+</code></pre>
+
+
+<h1>Python String Algorithms</h1>
+
+<p><hr align=left width=1000>
+<h2>Reverse a String</h2>
+<pre><code class="language-python">def reverse_string(s: str) -> str:
+        return s[::-1]
+    
+print(reverse_string("hello"))  # Output: "olleh"
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Count the Number of Vowels in a String</h2>
+<pre><code class="language-python">def count_vowels(s: str) -> int:
+    vowels = 'aeiouAEIOU'
+    return sum(1 for char in s if char in vowels)
+    
+ print(count_vowels("hello world"))  # Output: 3
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Find the First Non-Repeated Character in a String</h2>
+<pre><code class="language-python">def first_non_repeated_char(s: str) -> str:
+    counts = {}
+    for char in s:
+        counts[char] = counts.get(char, 0) + 1
+    for char in s:
+        if counts[char] == 1:
+            return char
+    return None
+print(first_non_repeated_char("swiss"))  # Output: "w"
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Longest Common Subsequence</h2>
+The longest_common_subsequence function calculates the length and the actual sequence of the longest common subsequence (LCS) between two input strings. It uses dynamic programming to build a 2D table (dp) that tracks the LCS length up to each pair of indices. After filling the table, the function backtracks through it to reconstruct the LCS. The result is the length of the LCS and the sequence itself.
+<pre><code class="language-python">def longest_common_subsequence(str1, str2):
+    dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+
+    # Fill the dp array
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    # Reconstruct the LCS from the dp table
+    i, j = len(str1), len(str2)
+    lcs = []
+
+    while i > 0 and j > 0:
+        if str1[i - 1] == str2[j - 1]:
+            lcs.append(str1[i - 1])
+            i -= 1
+            j -= 1
+        elif dp[i - 1][j] > dp[i][j - 1]:
+            i -= 1
+        else:
+            j -= 1
+
+    # The lcs list will be in reverse order, so reverse it
+    lcs.reverse()
+
+    return dp[-1][-1], ''.join(lcs)
+
+# Example usage
+str1 = "ABCBDAB"
+str2 = "BDCAB"
+
+lcs_length, lcs_sequence = longest_common_subsequence(str1, str2)
+print(f"The length of the longest common subsequence is: {lcs_length}")
+print(f"The longest common subsequence is: {lcs_sequence}")
+
+# OUTPUT
+# The length of the longest common subsequence is: 4
+T# he longest common subsequence is: BDAB
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Palindrome Check</h2>
+The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.
+<pre><code class="language-python">def is_palindrome(str):
+        return str == str[::-1]
+    
+    print(is_palindrome("121"))  # True
+    print(is_palindrome("122"))  # False
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Anagram Algorithm</h2>
+The Anagram algorithm checks if two strings are anagrams by sorting the characters in both strings and then comparing the sorted versions. If the sorted strings are equal, the function returns True, indicating that the strings are anagrams. Otherwise, it returns False.
+<pre><code class="language-python">def anagram(str1, str2):
+    # Sort both strings and compare them
+    return sorted(str1) == sorted(str2)
+
+str1a = "listen"
+str1b = "silent"
+
+result = anagram(str1a, str1b)
+print(f"Are '{str1a}' and '{str1b}' anagrams? {result}")
+
+# Another example with non-anagrams
+str2a = "hello"
+str2b = "world"
+
+result2 = anagram(str2a, str2b)
+print(f"Are '{str2a}' and '{str2b}' anagrams? {result2}")
+
+# OUTPUT
+# Are 'listen' and 'silent' anagrams? True
+# Are 'hello' and 'world' anagrams? False
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>FizzBuzz</h2>
+The FizzBuzz algorithm works by defining a function that takes an integer argument n. If n is divisible by 3, we return the string "Fizz". If n is divisible by 5, we return the string "Buzz". Otherwise, we return the string representation of n.
+<pre><code class="language-python">def fizzbuzz(n):
+    if n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
+    else:
+        return str(n)
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Longest Common Subsequence</h2>
+The longest common subsequence algorithm works by defining a dynamic programming array dp of size m x n, where m is the length of string str1 and n is the length of string str2. We initialize all elements of dp to 0. Then, for each element in str1, we iterate through all elements in str2 and check if they are equal. If they are equal, we set the value of dp[i][j] to 1 + the value of dp[i-1][j-1]. Otherwise, we compare the values of dp[i-1][j] and dp[i][j-1] and take the maximum value. Finally, we return the last element of the last row of dp as the result.
+<pre><code class="language-python">def longest_common_subsequence(str1, str2):
+    dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    return dp[-1][-1]
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Hamming distance between two strings</h2>
+The Hamming distance between two strings of equal length is the number of positions at which the corresponding characters differ. It is typically used in error detection and correction, and in measuring the similarity between two binary sequences or DNA sequences.
+<pre><code class="language-python">def hamming_distance(str1, str2):
+    """Calculate the Hamming distance between two strings of equal length.
+    Args:
+        str1 (string): The first string for comparison.
+        str2 (string): The second string for comparison.
+
+    Returns:
+        int: The Hamming distance between the two strings.
+    """
+    # Check if strings are of equal length
+    if len(str1) != len(str2):
+        raise ValueError("Strings must be of the same length")
+
+    # Calculate the Hamming distance by comparing each character in the two strings
+    distance = sum(c1 != c2 for c1, c2 in zip(str1, str2))
+
+    return distance
+
+# --------------------------------------------------------------------------------- #
+str1 = "karolin"
+str2 = "kathrin"
+
+distance = hamming_distance(str1, str2)
+print(f"The Hamming distance between '{str1}' and '{str2}' is: {distance}")
+
+# OUTPUT 
+# The Hamming distance between 'karolin' and 'kathrin' is: 3
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Levenshtein Distance between two strings</h2>
+The Levenshtein distance between two strings is a measure of the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into the other. This is a common metric used in spell-checking, DNA sequence analysis, and natural language processing.
+<pre><code class="language-python">import numpy as np
+
+def levenshtein_distance(str1, str2):
+    """Calculate the Levenshtein distance between two strings.
+
+    Args:
+        str1 (string): The first string for comparison.
+        str2 (string): The second string for comparison.
+    
+    Returns: 
+        int: The Levenshtein distance between the two strings.
+    """
+    m = len(str1)
+    n = len(str2)
+    
+    # Create a 2D array to store the distances
+    dp = np.zeros((m + 1, n + 1))
+
+    # Initialize the base cases
+    for i in range(m + 1):
+        dp[i][0] = i  # Cost of deleting all characters from str1
+    for j in range(n + 1):
+        dp[0][j] = j  # Cost of inserting all characters into str1
+
+    # Fill the dp array
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]  # No operation needed
+            else:
+                dp[i][j] = min(dp[i - 1][j - 1] + 1,  # Substitution
+                               dp[i - 1][j] + 1,    # Deletion
+                               dp[i][j - 1] + 1)    # Insertion
+
+    return int(dp[m][n])
+# ---------------------------------------------------------------------------- #
+str1 = "kitten"
+str2 = "sitting"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'kitten' and 'sitting' is: 3
+# ---------------------------------------------------------------------------- #
+
+str1 = "flaw"
+str2 = "lawn"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'flaw' and 'lawn' is: 2
+# ---------------------------------------------------------------------------- #
+</code></pre>
+
+
+<h1>Python Search Algorithms</h1>
+
+<p><hr align=left width=1000>
+<h2>Find the Intersection of Two Lists</h2>
+<pre><code class="language-python">def list_intersection(list1: list, list2: list) -> list:
+    return list(set(list1) & set(list2))
+
+print(list_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [3, 4]
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Binary Search</h2>
+The binary search algorithm works by repeatedly dividing the array into two halves until the target element is found or a single element remains. In each iteration, we compare the middle element of the current half with the target element. If they are equal, we return the index of the middle element as the result. If the middle element is less than the target element, we discard the first half of the array and repeat the same process on the second half. Similarly, if the middle element is greater than the target element, we discard the second half of the array and repeat the same process on the first half.
+<pre><code class="language-python">def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Quick Sort</h2>
+The quick sort algorithm works by selecting a pivot element from the array and partitioning it into two halves, one containing elements less than or equal to the pivot and another containing elements greater than the pivot. We then recursively call the quick sort function on both halves.
+<pre><code class="language-python">def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x <= pivot]
+    right = [x for x in arr[1:] if x > pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Merge Sort</h2>
+The merge sort algorithm works by dividing the array into two halves, sorting each half recursively and then merging them back together. In the base case, an array of length 1 or less is considered sorted and returned as is.
+<pre><code class="language-python">def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    while left and right:
+        if left[0] <= right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    if left:
+        result += left
+    if right:
+        result += right
+    return result
+</code></pre>
+
+<p><hr align=left width=1000>
+<h1>Fibonacci Generator</h1>
+<pre><code class="language-python">def fibonacci_generator():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+fib_gen = fibonacci_generator()
+
+# Generate and print the first 10 Fibonacci numbers
+for _ in range(10):
+    print(next(fib_gen))
+</code></pre>
+
+<hr>
+<h1>Fibonacci Generator Explained</h1>
+
+<p>This Python code defines a generator function that produces Fibonacci numbers indefinitely:</p>
+
+<ol>
+    <li><b>Function Definition</b>: The function <code>fibonacci_generator()</code> is defined to yield an infinite sequence of Fibonacci numbers.</li>
+    <li><b>Yield Statement</b>: The <code>yield</code> statement produces the current value of <code>a</code> and pauses the function's execution, preserving its state for the next iteration.</li>
+    <li><b>Updating Values</b>: After yielding, <code>a</code> and <code>b</code> are updated to the next two values in the Fibonacci sequence: <code>a</code> takes the value of <code>b</code>, and <code>b</code> takes the sum of the old <code>a</code> and <code>b</code>.</li>
+    <li><b>Example Usage</b>: The generator is used to print the first 10 Fibonacci numbers by iterating over it with a <code>for</code> loop.</li>
+</ol>
+
+
+{% include footer.html %}
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+---
+---
+{% include menu.html title="Apache Spark" %}
+
+<img src="/images/spark-architecture.png">
+
+  <h1>Apache Spark</h1>
+
+  <h2>1. Spark Basics</h2>
+  <ul>
+    <li><strong>What is Apache Spark?</strong> 
+      <p>A unified analytics engine designed for large-scale data processing. It provides an interface for programming clusters with data parallelism and fault tolerance.</p>
+    </li>
+    <li><strong>Core Concepts:</strong>
+      <ul>
+        <li><strong>Resilient Distributed Dataset (RDD):</strong> Immutable collections of objects partitioned across the nodes in a cluster.</li>
+        <li><strong>Directed Acyclic Graph (DAG):</strong> Spark's execution model, representing RDD operations as a series of stages with a lineage of transformations.</li>
+        <li><strong>Lazy Evaluation:</strong> Spark only executes computations when an action (like <code>collect</code> or <code>save</code>) is triggered.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>2. Spark Architecture</h2>
+  <ul>
+    <li><strong>Components:</strong>
+      <ul>
+        <li><strong>Driver Program:</strong> Manages SparkContext and executes the DAG.</li>
+        <li><strong>Cluster Manager:</strong> Allocates resources across applications (can be YARN, Mesos, or Kubernetes).</li>
+        <li><strong>Executors:</strong> Run on worker nodes to execute tasks and store RDD partitions.</li>
+        <li><strong>Tasks:</strong> Units of work assigned to executors.</li>
+      </ul>
+    </li>
+    <li><strong>Execution Workflow:</strong>
+      <ol>
+        <li><strong>Submit Job:</strong> The driver program initiates a Spark job.</li>
+        <li><strong>Task Scheduling:</strong> The DAG scheduler breaks the job into stages, creating tasks for each RDD partition.</li>
+        <li><strong>Execution:</strong> Executors perform the tasks and return results to the driver.</li>
+      </ol>
+    </li>
+  </ul>
+
+  <h2>3. Spark Components and Libraries</h2>
+  <ul>
+    <li><strong>Spark SQL:</strong> Enables querying of structured data using SQL or DataFrames.</li>
+    <li><strong>Spark Streaming:</strong> Real-time data processing with micro-batching.</li>
+    <li><strong>MLlib:</strong> Spark's scalable machine learning library for common ML algorithms.</li>
+    <li><strong>GraphX:</strong> API for graph processing and analytics.</li>
+  </ul>
+
+  <h2>4. RDDs, DataFrames, and Datasets</h2>
+  <ul>
+    <li><strong>RDDs (Resilient Distributed Datasets):</strong> 
+      <p>Basic data structure with operations like <code>map</code>, <code>filter</code>, and <code>reduce</code>. Provides fault tolerance through lineage.</p>
+    </li>
+    <li><strong>DataFrames:</strong> 
+      <p>High-level data structure optimized for querying, backed by Catalyst optimizer. Supports SQL queries, making it a preferred choice for structured data.</p>
+    </li>
+    <li><strong>Datasets:</strong> 
+      <p>Type-safe, object-oriented API available in languages like Scala. Offers benefits of both RDDs and DataFrames but is limited in Python.</p>
+    </li>
+  </ul>
+
+  <h2>5. Key Transformations and Actions</h2>
+  <ul>
+    <li><strong>Transformations:</strong> 
+      <p>Examples: <code>map</code>, <code>filter</code>, <code>flatMap</code>, <code>union</code>, <code>groupByKey</code>. These are lazy operations that produce new RDDs but don’t execute until an action is called.</p>
+    </li>
+    <li><strong>Actions:</strong> 
+      <p>Examples: <code>collect</code>, <code>count</code>, <code>reduce</code>, <code>saveAsTextFile</code>. Actions trigger the execution of transformations and return results to the driver.</p>
+    </li>
+  </ul>
+
+  <h2>6. Optimizations in Spark</h2>
+  <p><strong>Catalyst Optimizer (for SQL and DataFrames):</strong> Uses rule-based and cost-based optimization to produce efficient query plans.</p>
+  <p><strong>Memory Management:</strong> Manages caching, shuffle files, and resource allocation for performance.</p>
+
+{% include footer.html %}

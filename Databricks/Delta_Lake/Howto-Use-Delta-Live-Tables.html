@@ -1,0 +1,76 @@
+---
+---
+{% include menu.html title="WHEN TO USE DELTA LIVE TABLES" %}
+
+<body>
+
+<h1>WHEN TO USE DELTA LIVE TABLES (DLT)</h1>
+
+<p>Delta Live Tables (DLT) is most useful when you want automated, reliable, and declarative ETL pipelines with built-in data quality and orchestration. Below are the primary scenarios where DLT is the best choice.</p>
+
+<h2><strong>1. Continuous or Streaming Ingestion</strong></h2>
+<ul>
+  <li>Data arrives frequently (minutes or seconds).</li>
+  <li>You need automated incremental ingestion.</li>
+  <li>DLT works naturally with <strong>Auto Loader</strong> and <strong>STREAMING LIVE TABLES</strong>.</li>
+</ul>
+
+<h2><strong>2. Built-in Data Quality (Expectations)</strong></h2>
+<ul>
+  <li>You want to validate data with declarative rules.</li>
+  <li>DLT can <strong>warn</strong>, <strong>drop</strong>, or <strong>fail</strong> on bad records.</li>
+  <li>No custom validation framework needed.</li>
+</ul>
+
+<h2><strong>3. Automatic Bronze → Silver → Gold Orchestration</strong></h2>
+<ul>
+  <li>DLT builds dependency DAGs automatically.</li>
+  <li>Ensures correct ETL ordering.</li>
+  <li>Retries, error handling, and job coordination handled by Databricks.</li>
+</ul>
+
+<h2><strong>4. Data Lineage, Monitoring, and Observability</strong></h2>
+<ul>
+  <li>DLT provides a full graphical lineage view.</li>
+  <li>You can monitor row counts, errors, and latency.</li>
+  <li>Ideal for production-grade auditing and compliance.</li>
+</ul>
+
+<h2><strong>5. Automatic Table Optimization</strong></h2>
+<ul>
+  <li>DLT performs background <strong>OPTIMIZE</strong> and <strong>VACUUM</strong>.</li>
+  <li>Improves performance without manual maintenance jobs.</li>
+</ul>
+
+<h2><strong>6. Managing SCD Type 2 with Minimal Code</strong></h2>
+<ul>
+  <li><strong>dlt.apply_changes</strong> can implement SCD Type 2 automatically.</li>
+  <li>No need to write long MERGE statements.</li>
+  <li>DLT handles versioning, current flags, and historical tracking.</li>
+</ul>
+
+<h2><strong>7. Declarative Pipelines Instead of Manual Jobs</strong></h2>
+<ul>
+  <li>You define what the tables should be, DLT figures out how to build them.</li>
+  <li>Reduces boilerplate and makes pipelines easier to maintain.</li>
+</ul>
+
+<h2><strong>8. Teams That Prefer Low-Code / No-Ops Data Engineering</strong></h2>
+<ul>
+  <li>DLT reduces operational overhead.</li>
+  <li>Good for teams without heavy Spark expertise.</li>
+  <li>Ensures consistent engineering practices across the project.</li>
+</ul>
+
+<h1>Summary</h1>
+<ol>
+  <li>Use DLT for streaming, continuous, or reliable incremental pipelines.</li>
+  <li>Use DLT when you want built-in data quality, monitoring, and orchestration.</li>
+  <li>Use DLT to simplify complex logic such as SCD Type 2.</li>
+  <li>Use DLT when you want automatic optimization and fewer maintenance tasks.</li>
+</ol>
+
+</body>
+
+
+{% include footer.html %}

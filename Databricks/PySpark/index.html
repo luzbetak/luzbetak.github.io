@@ -1,0 +1,207 @@
+---
+---
+{% include menu.html title="Apache Spark" %}
+
+<body>
+
+<h1>Apache Spark – Detailed Overview and Key Takeaways</h1>
+
+<h2>Overview of Apache Spark</h2>
+
+<p>
+<strong>Apache Spark</strong> is an open-source, distributed data processing engine designed for large-scale data analytics.
+It provides fast, in-memory computation and supports batch processing, real-time stream processing, machine learning,
+graph processing, and SQL-based analytics within a unified framework.
+</p>
+
+<p>
+Originally developed at UC Berkeley’s AMPLab and later donated to the Apache Software Foundation,
+Spark has become a foundational technology in modern data engineering, analytics, and big data platforms.
+</p>
+
+<h2>Core Design Principles</h2>
+
+<ul>
+  <li>
+    <strong>In-Memory Processing</strong>
+    <ul>
+      <li>Data is cached in memory across the cluster to avoid repeated disk I/O.</li>
+      <li>Significantly faster than disk-based engines like traditional MapReduce.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Distributed Computing</strong>
+    <ul>
+      <li>Workloads are split into tasks and executed in parallel across multiple nodes.</li>
+      <li>Automatic task scheduling, fault tolerance, and retry mechanisms.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Unified Analytics Engine</strong>
+    <ul>
+      <li>Single engine for batch, streaming, SQL, ML, and graph workloads.</li>
+      <li>Reduces operational complexity and data duplication.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Spark Architecture</h2>
+
+<h3>Driver Program</h3>
+<ul>
+  <li>Runs the main application logic.</li>
+  <li>Creates the SparkSession / SparkContext.</li>
+  <li>Builds the execution plan (DAG).</li>
+  <li>Coordinates task execution and collects results.</li>
+</ul>
+
+<h3>Cluster Manager</h3>
+<ul>
+  <li>Manages cluster resources and allocates executors.</li>
+  <li>Supported managers include:
+    <ul>
+      <li>Standalone</li>
+      <li>YARN</li>
+      <li>Kubernetes</li>
+      <li>Mesos (legacy)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Executors</h3>
+<ul>
+  <li>Run on worker nodes.</li>
+  <li>Execute tasks assigned by the driver.</li>
+  <li>Store data in memory or disk for caching and shuffle operations.</li>
+</ul>
+
+<h2>Core Abstractions</h2>
+
+<h3>RDD (Resilient Distributed Dataset)</h3>
+<ul>
+  <li>Low-level, immutable distributed data structure.</li>
+  <li>Fault tolerance via lineage (recomputation instead of replication).</li>
+  <li>Provides fine-grained control but requires more manual optimization.</li>
+</ul>
+
+<h3>DataFrames</h3>
+<ul>
+  <li>Distributed collections of data organized into named columns.</li>
+  <li>Similar to tables in relational databases.</li>
+  <li>Optimized by Spark’s Catalyst optimizer.</li>
+</ul>
+
+<h3>Datasets</h3>
+<ul>
+  <li>Strongly typed version of DataFrames (mainly used in Scala and Java).</li>
+  <li>Combines compile-time type safety with Catalyst optimizations.</li>
+</ul>
+
+<h2>Spark Execution Model</h2>
+
+<ol>
+  <li>
+    <strong>Transformations</strong>
+    <ul>
+      <li>Lazy operations that define a computation (e.g., map, filter, join).</li>
+      <li>Build a logical execution plan (DAG).</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Actions</strong>
+    <ul>
+      <li>Trigger execution (e.g., count, collect, write).</li>
+      <li>Convert the logical plan into a physical execution plan.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Stages and Tasks</strong>
+    <ul>
+      <li>Jobs are broken into stages based on shuffle boundaries.</li>
+      <li>Stages consist of multiple parallel tasks.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>Spark SQL and Catalyst Optimizer</h2>
+
+<ul>
+  <li>
+    <strong>Catalyst Optimizer</strong>
+    <ul>
+      <li>Rule-based and cost-based query optimization.</li>
+      <li>Optimizes logical plans before execution.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Tungsten Execution Engine</strong>
+    <ul>
+      <li>Optimized memory management and CPU efficiency.</li>
+      <li>Uses off-heap memory and code generation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Spark Streaming Capabilities</h2>
+
+<h3>Spark Structured Streaming</h3>
+<ul>
+  <li>High-level API built on Spark SQL.</li>
+  <li>Processes data as unbounded tables.</li>
+  <li>Supports exactly-once semantics.</li>
+  <li>Common sources: Kafka, files, cloud storage.</li>
+</ul>
+
+<h2>Fault Tolerance</h2>
+
+<ul>
+  <li>
+    <strong>Lineage-Based Recovery</strong>
+    <ul>
+      <li>RDDs can be recomputed from original data and transformations.</li>
+      <li>Avoids expensive data replication.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Task Retries</strong>
+    <ul>
+      <li>Failed tasks are automatically retried on other executors.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Performance Optimization Techniques</h2>
+
+<ul>
+  <li>Proper partition sizing and data distribution.</li>
+  <li>Broadcast joins for small dimension tables.</li>
+  <li>Caching and persistence of hot datasets.</li>
+  <li>Avoiding unnecessary shuffles.</li>
+  <li>Using columnar formats like Parquet and ORC.</li>
+</ul>
+
+<h2>Common Use Cases</h2>
+
+<ul>
+  <li>Large-scale ETL pipelines.</li>
+  <li>Interactive analytics and ad-hoc querying.</li>
+  <li>Real-time data processing and streaming analytics.</li>
+  <li>Machine learning feature engineering.</li>
+  <li>Data lake and lakehouse architectures.</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+  <li><strong>High Performance:</strong> In-memory execution delivers significant speed improvements.</li>
+  <li><strong>Unified Platform:</strong> One engine for batch, streaming, SQL, ML, and graph workloads.</li>
+  <li><strong>Scalable:</strong> Designed to scale horizontally across large clusters.</li>
+  <li><strong>Fault Tolerant:</strong> Lineage-based recovery ensures resilience.</li>
+  <li><strong>Developer Friendly:</strong> APIs available in Python, Scala, Java, and R.</li>
+  <li><strong>Production Proven:</strong> Widely adopted in enterprise and cloud-native data platforms.</li>
+</ul>
+
+</body>
+
+
+{% include footer.html %}

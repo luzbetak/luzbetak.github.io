@@ -1,0 +1,23 @@
+---
+---
+{% include menu.html title="PySpark Data Streaming" %}
+
+<h1>PySpark Data Streaming</h1>
+    <ul>
+        <li><p><h3>Real-Time Data Processing:</h3> PySpark Streaming enables the processing of live data streams, allowing you to handle continuous data input, like logs, sensor data, or tweets.</li>
+        <li><p><h3>DStream (Discretized Stream):</h3>The core abstraction in PySpark Streaming is the DStream, which represents a continuous stream of data divided into small batches (micro-batches). Each batch is a Resilient Distributed Dataset (RDD).</li>
+        <li><p><h3>Window Operations:</h3>PySpark Streaming allows window-based operations on DStreams. This means you can apply transformations over a sliding window of data, useful for analyzing trends or patterns within specific time frames.</li>
+        <li><p><h3>Fault Tolerance:</h3>PySpark Streaming is fault-tolerant. If a node fails, Spark’s RDDs ensure that the lost data can be recomputed from the original source, providing resilience against hardware or network failures.</li>
+        <li><p><h3>Integration with Batch and SQL Processing:</h3>PySpark Streaming integrates seamlessly with Spark's batch and SQL processing capabilities. You can use the same API for batch and stream processing, simplifying the development process.</li>
+        <li><p><h3>Stateful Transformations:</h3>PySpark Streaming supports stateful transformations, allowing you to maintain and update state information over time. This is useful for tracking running counts, averages, or other metrics over a period.</li>
+        <li><p><h3>Backpressure Handling:</h3>PySpark Streaming handles backpressure, ensuring that the system can adjust the rate at which data is ingested and processed to avoid overwhelming resources.</li>
+        <li><p><h3>Support for Various Data Sources:</h3>PySpark Streaming can ingest data from various sources, including Kafka, Kinesis, Flume, HDFS, and TCP sockets, providing flexibility in integrating with different data ecosystems.</li>
+        <li><p><h3>Ease of Scalability:</h3>PySpark Streaming is designed to scale horizontally, meaning you can add more nodes to the cluster to handle larger volumes of data without changing the application code.</li>
+        <li><p><h3>Checkpoints:</h3>PySpark Streaming supports checkpointing to save the state of the streaming computation periodically. This is crucial for recovering from failures and restarting the application without data loss.</li>
+        <li><p><h3>Structured Streaming:</h3>PySpark also supports Structured Streaming, an evolution of DStreams, which provides a more declarative and consistent API for stream processing using DataFrames and Datasets.</li>
+    </ul>
+  {% include footer.html %}
+
+  </body>
+</html>
+    

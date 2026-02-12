@@ -1,0 +1,805 @@
+---
+---
+{% include menu.html title="RAG Use Case" %}
+
+
+<h1>RAG Use Case: Team Park Hollywood Customer Support</h1>
+
+<p>This document demonstrates how to implement a Retrieval-Augmented Generation (RAG) system using Snowflake Cortex for Team Park Hollywood customer support, covering tickets, restaurants, attractions, and general visitor assistance.</p>
+
+<h2>Business Scenario</h2>
+<p>Team Park Hollywood needs an intelligent chatbot that can answer visitor questions about:</p>
+<ul>
+    <li>Ticket types, pricing, and purchasing</li>
+    <li>Restaurant locations, menus, and dining reservations</li>
+    <li>Ride wait times and height requirements</li>
+    <li>Park hours and special events</li>
+    <li>Accessibility services and accommodations</li>
+    <li>Parking and transportation</li>
+</ul>
+
+<h2>Step 1: Set Up the Database Infrastructure</h2>
+<pre><code class="language-sql">-- Create dedicated database for Team Park support
+CREATE DATABASE IF NOT EXISTS team_park.db;
+
+CREATE OR REPLACE WAREHOUSE universal_support_wh WITH
+    WAREHOUSE_SIZE = 'SMALL'
+    AUTO_SUSPEND = 300
+    AUTO_RESUME = TRUE;
+
+CREATE OR REPLACE SCHEMA team_park.db.customer_support;
+
+USE DATABASE team_park.db;
+USE SCHEMA customer_support;
+</code></pre>
+
+<h2>Step 2: Create Knowledge Base Tables</h2>
+
+<h3>2.1 Tickets Information Table</h3>
+<pre><code class="language-sql">CREATE OR REPLACE TABLE tickets_info (
+    ticket_id VARCHAR(20),
+    ticket_type VARCHAR(100),
+    category VARCHAR(50),
+    description TEXT,
+    price_adult DECIMAL(10,2),
+    price_child DECIMAL(10,2),
+    valid_days VARCHAR(50),
+    includes TEXT,
+    restrictions TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+
+INSERT INTO tickets_info VALUES
+('TKT001', 'General Admission', 'Standard', 
+ 'Single day access to Team Park Hollywood theme park. Includes all rides and attractions except special ticketed events. Valid for one day only on the date selected.',
+ 109.00, 103.00, 'Single Day', 
+ 'All rides, shows, and attractions in the main park',
+ 'Does not include parking, Universal Express, or special events'),
+
+('TKT002', 'Universal Express', 'Premium',
+ 'Skip the regular lines with Universal Express. One-time express access to each participating ride and attraction. Must be used with valid theme park admission.',
+ 189.00, 189.00, 'Single Day',
+ 'One-time priority access to each participating ride, reserved seating at select shows',
+ 'Some attractions may not participate. Does not include theme park admission.'),
+
+('TKT003', 'Universal Express Unlimited', 'Premium',
+ 'Unlimited express access to all participating rides and attractions throughout the day. Best value for visitors who want to experience everything multiple times.',
+ 289.00, 289.00, 'Single Day',
+ 'Unlimited priority access to all participating rides, reserved seating at all shows, exclusive entrance',
+ 'Does not include theme park admission. Subject to availability.'),
+
+('TKT004', 'Annual Pass - Silver', 'Annual',
+ 'Entry on select dates throughout the year with blockout dates during peak seasons. Perfect for occasional visitors who want to enjoy the park multiple times.',
+ 399.00, 369.00, '365 Days with Blockouts',
+ 'Unlimited visits on non-blocked dates, 10% merchandise discount, 10% food discount, free parking on weekdays',
+ 'Blockout dates apply during summer, holidays, and special events'),
+
+('TKT005', 'Annual Pass - Gold', 'Annual',
+ 'Year-round access with minimal blockout dates. Includes exclusive perks and discounts throughout the resort.',
+ 549.00, 499.00, '365 Days with Limited Blockouts',
+ 'Unlimited visits with few blockouts, 15% merchandise discount, 15% food discount, free standard parking',
+ 'Limited blockout dates during major holidays'),
+
+('TKT006', 'Annual Pass - Platinum', 'Annual',
+ 'Ultimate annual pass with zero blockout dates. Premium benefits including preferred parking and special event access.',
+ 749.00, 699.00, '365 Days No Blockouts',
+ 'Unlimited visits any day, 20% merchandise discount, 20% food discount, free preferred parking, early park entry, exclusive events access',
+ 'No restrictions'),
+
+('TKT007', 'VIP Experience', 'VIP',
+ 'Exclusive guided tour with a personal VIP guide. Behind-the-scenes access, gourmet lunch, unlimited express access, and premium reserved seating.',
+ 399.00, 379.00, 'Single Day',
+ 'Personal VIP guide, behind-the-scenes tour, gourmet lunch at exclusive locations, unlimited express, valet parking, exclusive gift',
+ 'Minimum 2 guests required. Advance reservation required.'),
+
+('TKT008', 'After 2PM Ticket', 'Value',
+ 'Discounted admission for guests arriving after 2:00 PM. Perfect for evening visits to enjoy nighttime attractions and shows.',
+ 89.00, 83.00, 'Single Day After 2PM',
+ 'All rides and attractions after 2:00 PM, evening shows and entertainment',
+ 'Entry only after 2:00 PM. Park closes at regular time.');
+</code></pre>
+
+<h3>2.2 Restaurants Information Table</h3>
+<pre><code class="language-sql">CREATE OR REPLACE TABLE restaurants_info (
+    restaurant_id VARCHAR(20),
+    name VARCHAR(100),
+    location VARCHAR(100),
+    cuisine_type VARCHAR(50),
+    description TEXT,
+    price_range VARCHAR(20),
+    hours VARCHAR(100),
+    reservations_required BOOLEAN,
+    dietary_options TEXT,
+    signature_dishes TEXT,
+    seating_capacity INT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+
+INSERT INTO restaurants_info VALUES
+('REST001', 'Three Broomsticks', 'The Wizarding World of Harry Potter',
+ 'British Pub', 
+ 'Step into the iconic Three Broomsticks tavern from the Harry Potter films. Enjoy authentic British fare in a magical atmosphere complete with floating candles and rustic wooden interiors.',
+ '$$', '11:00 AM - Park Close', FALSE,
+ 'Vegetarian options available, gluten-free bread available upon request',
+ 'Butterbeer, Fish and Chips, Shepherds Pie, Beef Sunday Roast, Cornish Pasties',
+ 350),
+
+('REST002', 'Hogs Head Pub', 'The Wizarding World of Harry Potter',
+ 'Pub/Bar',
+ 'Cozy pub adjacent to Three Broomsticks serving Butterbeer, Pumpkin Juice, and alcoholic beverages for adults. Features the animatronic Hogs Head mounted on the wall.',
+ '$', '11:00 AM - Park Close', FALSE,
+ 'Non-alcoholic beverages available',
+ 'Butterbeer (frozen or regular), Fire Whisky, Pumpkin Juice, Dragons Scale beer',
+ 50),
+
+('REST003', 'Krusty Burger', 'Springfield USA',
+ 'American Fast Food',
+ 'The famous fast food joint from The Simpsons! Enjoy oversized burgers, curly fries, and Buzz Cola in this iconic Springfield eatery.',
+ '$', '10:30 AM - Park Close', FALSE,
+ 'Impossible Burger available for vegetarians',
+ 'Krusty Burger, Clogger Burger, Sideshow Bob Foot Long, Chicken and Waffle Sandwich, Buzz Cola',
+ 200),
+
+('REST004', 'Moes Tavern', 'Springfield USA',
+ 'Bar/Tavern',
+ 'The legendary dive bar from The Simpsons. Adults can enjoy Duff Beer while the whole family enjoys specialty drinks like Flaming Moe.',
+ '$', '11:00 AM - Park Close', FALSE,
+ 'Non-alcoholic Flaming Moe available',
+ 'Duff Beer, Flaming Moe, Duffman lager, Homer-sized donuts',
+ 75),
+
+('REST005', 'Jurassic Cafe', 'Jurassic World',
+ 'American/Grilled',
+ 'Dine among dinosaurs at this prehistoric-themed restaurant. Features flame-grilled specialties and refreshing tropical drinks.',
+ '$$', '11:00 AM - 7:00 PM', FALSE,
+ 'Vegan burger available, allergy-friendly menu',
+ 'Tricera-Tots, Raptor Ribs, Bronto Burger, Dino Bites chicken nuggets, Amber Ale',
+ 180),
+
+('REST006', 'Studio Grill', 'Upper Lot',
+ 'American Contemporary',
+ 'Full-service restaurant offering American classics with a Hollywood twist. Outdoor patio with views of the park.',
+ '$$$', '11:30 AM - 3:00 PM, 5:00 PM - 9:00 PM', TRUE,
+ 'Full allergen menu available, vegan and vegetarian options',
+ 'Filet Mignon, Grilled Salmon, Hollywood Cobb Salad, Artisan Flatbreads',
+ 120),
+
+('REST007', 'Minion Cafe', 'Despicable Me Minion Mayhem Area',
+ 'International',
+ 'Banana-themed chaos awaits at this Minion-inspired eatery! Family-friendly menu with items shaped and named after your favorite Minions.',
+ '$$', '10:30 AM - Park Close', FALSE,
+ 'Kids menu with healthy options, gluten-free available',
+ 'Banana Pudding, Despicable Delights Nachos, Minion Cupcakes, Evil Vector Tacos, Grus Grilled Cheese',
+ 250),
+
+('REST008', 'Cocina Mexicana', 'Lower Lot',
+ 'Mexican',
+ 'Authentic Mexican cuisine featuring fresh ingredients and traditional recipes. Perfect stop near the Transformers and Mummy attractions.',
+ '$$', '11:00 AM - 8:00 PM', FALSE,
+ 'Vegetarian burritos and tacos, dairy-free cheese available',
+ 'Carnitas Street Tacos, Chicken Burrito Bowl, Churros with chocolate, Fresh Guacamole, Mexican Street Corn',
+ 150);
+</code></pre>
+
+<h3>2.3 Attractions and Rides Table</h3>
+<pre><code class="language-sql">CREATE OR REPLACE TABLE attractions_info (
+    attraction_id VARCHAR(20),
+    name VARCHAR(100),
+    location VARCHAR(100),
+    type VARCHAR(50),
+    description TEXT,
+    height_requirement VARCHAR(50),
+    thrill_level VARCHAR(20),
+    duration_minutes INT,
+    express_available BOOLEAN,
+    accessibility_info TEXT,
+    tips TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+
+INSERT INTO attractions_info VALUES
+('ATTR001', 'Harry Potter and the Forbidden Journey', 'The Wizarding World of Harry Potter',
+ 'Dark Ride/Simulation',
+ 'Soar above Hogwarts castle on this groundbreaking attraction. Experience the magic of Quidditch, encounter dragons, Dementors, and the Whomping Willow in stunning detail.',
+ '48 inches (122 cm)', 'High',
+ 5, TRUE,
+ 'Wheelchair accessible queue. Must transfer to ride vehicle. Companion restrooms available. Service animals cannot accompany guests.',
+ 'Use single rider line for shorter waits. Loose articles must be stored in free lockers.'),
+
+('ATTR002', 'Hagrids Magical Creatures Motorbike Adventure', 'The Wizarding World of Harry Potter',
+ 'Roller Coaster',
+ 'Race through the Forbidden Forest on Hagrids motorbike or in the sidecar. Encounter magical creatures including Fluffy, Cornish Pixies, and Centaurs.',
+ '48 inches (122 cm)', 'High',
+ 3, TRUE,
+ 'Must be able to grip handlebars. Not recommended for guests with heart conditions, back problems, or motion sickness.',
+ 'One of the most popular rides. Arrive early or use Express. Sidecar seats offer a different experience than the motorbike.'),
+
+('ATTR003', 'Jurassic World - The Ride', 'Jurassic World',
+ 'Water Ride',
+ 'Navigate through the Jurassic World lagoon and encounter life-sized dinosaurs including the mighty T-Rex and Mosasaurus. Features an 84-foot splashdown.',
+ '42 inches (107 cm)', 'Moderate',
+ 7, TRUE,
+ 'Wheelchair accessible queue and boarding. Water-resistant ponchos available for purchase. Storage available for loose items.',
+ 'You will get wet! Sit in the front for maximum splashing. Ponchos available at nearby shops.'),
+
+('ATTR004', 'Revenge of the Mummy - The Ride', 'Lower Lot',
+ 'Indoor Roller Coaster',
+ 'High-speed indoor coaster through ancient Egyptian tombs. Encounter Imhotep and his army of the undead with special effects including fire and mummies.',
+ '48 inches (122 cm)', 'High',
+ 3, TRUE,
+ 'Not recommended for guests with claustrophobia. Strobe lights and dark scenes. Must transfer from wheelchair.',
+ 'One of the most thrilling indoor coasters. Unexpected drops and backwards sections.'),
+
+('ATTR005', 'Transformers: The Ride 3D', 'Lower Lot',
+ '3D Dark Ride',
+ 'Join Optimus Prime and the Autobots in an epic battle against Megatron and the Decepticons. State-of-the-art 3D technology and immersive special effects.',
+ '40 inches (102 cm)', 'Moderate',
+ 5, TRUE,
+ 'Wheelchair accessible boarding available. 3D glasses provided. May cause motion sickness in sensitive guests.',
+ 'Single rider line available. 3D effects are very realistic - hold onto your belongings!'),
+
+('ATTR006', 'The Simpsons Ride', 'Springfield USA',
+ 'Simulation Ride',
+ 'Join the Simpson family on a wild adventure through Krustyland. Hilarious original animation and motion simulation technology.',
+ '40 inches (102 cm)', 'Moderate',
+ 6, TRUE,
+ 'Wheelchair accessible with transfer. Motion sickness warning. Stationary seating available upon request.',
+ 'The queue features tons of Simpsons jokes and Easter eggs. Take your time walking through!'),
+
+('ATTR007', 'Despicable Me Minion Mayhem', 'Upper Lot',
+ '3D Motion Simulator',
+ 'Transform into a Minion and join Gru, his daughters, and the Minions for a heartwarming and hilarious adventure.',
+ '40 inches (102 cm)', 'Mild',
+ 5, TRUE,
+ 'Stationary seating available for guests with motion sensitivity. Wheelchair accessible queue.',
+ 'Great for families! Stay for the Minion dance party at the exit.'),
+
+('ATTR008', 'Studio Tour', 'Upper Lot',
+ 'Tram Tour',
+ 'The worlds largest working movie studio tour. See real sets, experience King Kong 360 3D, survive a shark attack from Jaws, and witness flash floods and earthquakes.',
+ 'None', 'Mild',
+ 60, FALSE,
+ 'Fully wheelchair accessible trams available. ASL interpretation available with advance notice. Audio description available.',
+ 'Takes about an hour. Best experienced earlier in the day when the backlot is most active. Sit on the right side for best views of most attractions.'),
+
+('ATTR009', 'Super Nintendo World - Mario Kart: Bowsers Challenge', 'Super Nintendo World',
+ 'AR Dark Ride',
+ 'Race through iconic Mario Kart courses using augmented reality technology. Compete against Team Bowser while collecting coins and throwing shells.',
+ '40 inches (102 cm)', 'Moderate',
+ 5, TRUE,
+ 'AR headset required. Wheelchair accessible queue and vehicle. Adjustable headsets available for glasses wearers.',
+ 'Use the Power-Up Band to track your coins and compete on the leaderboard! Practice your shell-throwing arm movements before riding.');
+</code></pre>
+
+<h3>2.4 General Park Information Table</h3>
+<pre><code class="language-sql">CREATE OR REPLACE TABLE park_info (
+    info_id VARCHAR(20),
+    category VARCHAR(50),
+    topic VARCHAR(100),
+    description TEXT,
+    details TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+
+INSERT INTO park_info VALUES
+('INFO001', 'Hours', 'Park Operating Hours',
+ 'Team Park Hollywood operating hours vary by season and day of week.',
+ 'Regular hours: 9:00 AM - 7:00 PM. Extended hours during peak season: 8:00 AM - 10:00 PM. Summer and holidays may have extended hours until 11:00 PM. Check the Team Park Hollywood website or app for specific dates.'),
+
+('INFO002', 'Parking', 'Parking Options and Pricing',
+ 'Multiple parking options available at Team Park Hollywood.',
+ 'General Parking: $30. Preferred Parking (closer to entrance): $50. Front Gate Parking (closest): $70. Valet Parking: $100. Annual Passholders receive free parking based on pass level. Parking structures open 1 hour before park opening.'),
+
+('INFO003', 'Accessibility', 'Guest Accessibility Services',
+ 'Team Park Hollywood is committed to providing an accessible experience for all guests.',
+ 'Wheelchair and ECV rentals available at the park entrance. Attraction Assistance Pass available at Guest Services for guests who cannot wait in conventional queues. Assistive listening devices available. Service animals welcome. Companion restrooms located throughout the park. Sign language interpretation available with 2 weeks advance notice.'),
+
+('INFO004', 'Child Safety', 'Child Swap and Lost Children',
+ 'Services available for families with young children.',
+ 'Child Swap allows parents to take turns riding without waiting in line twice. Available at all major attractions. Lost children should be reported to the nearest Team Member or Guest Services immediately. Guest Services can issue child ID wristbands for free at the park entrance.'),
+
+('INFO005', 'Mobile App', 'Team Park Hollywood App',
+ 'Download the official app for the best park experience.',
+ 'Features include: Real-time ride wait times, mobile food ordering, interactive park map, show times and schedules, virtual queue access for select attractions, mobile wallet for tickets and Express passes. Available for iOS and Android.'),
+
+('INFO006', 'Weather Policy', 'Inclement Weather Information',
+ 'Park operations during various weather conditions.',
+ 'The park operates rain or shine. Some outdoor attractions may temporarily close during lightning or heavy rain. Indoor attractions remain open. No rain checks or refunds for weather. Ponchos and umbrellas available for purchase throughout the park.'),
+
+('INFO007', 'Prohibited Items', 'Items Not Allowed in Park',
+ 'For guest safety, certain items are not permitted inside Team Park Hollywood.',
+ 'Prohibited items include: Weapons of any kind, illegal drugs, glass containers, hard coolers, large umbrellas, selfie sticks, drones, professional camera equipment, costumes for guests 14+, inline skates or skateboards. Small soft coolers with baby food and medically necessary items are allowed.'),
+
+('INFO008', 'First Aid', 'Medical Services',
+ 'Medical assistance available throughout the park.',
+ 'First Aid stations located near the park entrance (Upper Lot) and Lower Lot. Staffed by registered nurses. AED devices located throughout the park. Emergency services dial 911 or contact any Team Member. Refrigeration available for medications at First Aid.'),
+
+('INFO009', 'Special Events', 'Seasonal Events and Celebrations',
+ 'Team Park Hollywood hosts special events throughout the year.',
+ 'Halloween Horror Nights (September-October): Separately ticketed evening event featuring haunted houses and scare zones. Grinchmas (November-December): Holiday celebration in Universal Plaza with the Grinch. Universal Mardi Gras (February-March): Cajun food and live music celebration. Check website for specific dates and ticket information.'),
+
+('INFO010', 'Photo Services', 'Photo Connect and My Universal Photos',
+ 'Capture your memories with Universal photo services.',
+ 'Photo Connect Star Card: $49.99 for unlimited digital downloads of all photos taken during your visit. On-ride photos captured automatically at major attractions. Character meet and greet photos available. Photo locations throughout the park with professional photographers. Photos available via the Universal app or photo kiosks.');
+</code></pre>
+
+<h3>2.5 Frequently Asked Questions Table</h3>
+<pre><code class="language-sql">CREATE OR REPLACE TABLE faq_info (
+    faq_id VARCHAR(20),
+    category VARCHAR(50),
+    question TEXT,
+    answer TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+
+INSERT INTO faq_info VALUES
+('FAQ001', 'Tickets', 
+ 'Can I get a refund if I cant make it to the park?',
+ 'Tickets are non-refundable but can be rescheduled. Standard tickets can be rescheduled up to 24 hours before your visit date at no additional charge. Contact Guest Services at 1-800-UNIVERSAL or through the website to reschedule. Annual Passes have a 30-day return policy if unused.'),
+
+('FAQ002', 'Tickets',
+ 'What is the best ticket for a first-time visitor?',
+ 'For first-time visitors, we recommend the General Admission ticket combined with Universal Express (if budget allows). This combination lets you experience all the main attractions without long waits. If visiting during peak season (summer, holidays), Universal Express Unlimited provides the best value for experiencing rides multiple times.'),
+
+('FAQ003', 'Food',
+ 'Can I bring my own food into the park?',
+ 'Outside food and beverages are not permitted inside Team Park Hollywood, with exceptions for baby food, small snacks, and medically necessary items. Bottled water is allowed. Guests may store coolers in their vehicles and exit for meals if desired (hand stamp required for re-entry). Picnic areas available outside the park entrance.'),
+
+('FAQ004', 'Food',
+ 'Where can I get Butterbeer?',
+ 'Butterbeer is available exclusively in The Wizarding World of Harry Potter at Three Broomsticks, Hogs Head Pub, and outdoor carts throughout Hogsmeade. Available in regular (creamy soda) or frozen versions. Non-alcoholic. A souvenir Butterbeer mug is available for an additional charge. Butterbeer ice cream is also available at Honeydukes.'),
+
+('FAQ005', 'Rides',
+ 'My child is too short for some rides. What can they do?',
+ 'Team Park Hollywood offers many attractions for guests of all heights! No height requirement: Studio Tour, WaterWorld show, Special Effects Show, Animal Actors. 40 inches: Despicable Me, Simpsons Ride, Transformers. Child Swap available so parents can take turns on bigger rides while the other waits with the child.'),
+
+('FAQ006', 'Rides',
+ 'How do I avoid long wait times?',
+ 'Tips for shorter waits: 1) Arrive at park opening and head to popular rides first. 2) Use the Universal app to check real-time wait times. 3) Purchase Universal Express for priority access. 4) Visit on weekdays during non-holiday periods. 5) Use Single Rider lines where available. 6) Take advantage of lower wait times during parades and shows.'),
+
+('FAQ007', 'Accessibility',
+ 'I use a wheelchair. Can I still enjoy the rides?',
+ 'Most attractions at Team Park Hollywood are wheelchair accessible. Many rides have wheelchair-accessible vehicles or transfer options. An Attraction Assistance Pass is available at Guest Services for guests who cannot wait in conventional queues. Wheelchairs ($12/day) and ECVs ($70/day) are available for rent. Ask at individual attractions for specific accessibility information.'),
+
+('FAQ008', 'General',
+ 'Is there a smoking area in the park?',
+ 'Team Park Hollywood is largely smoke-free. Designated smoking areas are located outside the park entrance and in the parking structure. Smoking, including e-cigarettes and vaping, is prohibited inside the theme park, CityWalk restaurants, and indoor venues.'),
+
+('FAQ009', 'General',
+ 'What time should I arrive at the park?',
+ 'We recommend arriving 30-45 minutes before park opening. This allows time for parking, security screening, and walking to the entrance. During peak season or special events, arrive even earlier. Gates often open 15-30 minutes before official opening time, allowing guests to enter and be ready when attractions open.'),
+
+('FAQ010', 'Entertainment',
+ 'Where can I meet characters?',
+ 'Character meet and greets are located throughout the park! Minions: Near Despicable Me Minion Mayhem. Transformers: Outside the Transformers ride. The Simpsons characters: Springfield USA. Harry Potter characters are not available for meet and greets, but Hogwarts students perform in Hogsmeade. Check the app for daily character schedules and locations.');
+</code></pre>
+
+<h2>Step 3: Create Cortex Search Services</h2>
+
+<h3>3.1 Unified Knowledge Base View</h3>
+<pre><code class="language-sql">-- Create a unified view combining all knowledge sources
+CREATE OR REPLACE VIEW unified_knowledge_base AS
+SELECT 
+    ticket_id AS id,
+    'tickets' AS category,
+    ticket_type AS title,
+    CONCAT(
+        'Ticket Type: ', ticket_type, '. ',
+        'Category: ', category, '. ',
+        description, ' ',
+        'Adult Price: $', price_adult, '. ',
+        'Child Price: $', price_child, '. ',
+        'Valid: ', valid_days, '. ',
+        'Includes: ', includes, '. ',
+        'Restrictions: ', restrictions
+    ) AS content,
+    updated_at
+FROM tickets_info
+
+UNION ALL
+
+SELECT 
+    restaurant_id AS id,
+    'restaurants' AS category,
+    name AS title,
+    CONCAT(
+        'Restaurant: ', name, '. ',
+        'Location: ', location, '. ',
+        'Cuisine: ', cuisine_type, '. ',
+        description, ' ',
+        'Price Range: ', price_range, '. ',
+        'Hours: ', hours, '. ',
+        'Reservations Required: ', CASE WHEN reservations_required THEN 'Yes' ELSE 'No' END, '. ',
+        'Dietary Options: ', dietary_options, '. ',
+        'Signature Dishes: ', signature_dishes
+    ) AS content,
+    updated_at
+FROM restaurants_info
+
+UNION ALL
+
+SELECT 
+    attraction_id AS id,
+    'attractions' AS category,
+    name AS title,
+    CONCAT(
+        'Attraction: ', name, '. ',
+        'Location: ', location, '. ',
+        'Type: ', type, '. ',
+        description, ' ',
+        'Height Requirement: ', height_requirement, '. ',
+        'Thrill Level: ', thrill_level, '. ',
+        'Duration: ', duration_minutes, ' minutes. ',
+        'Express Available: ', CASE WHEN express_available THEN 'Yes' ELSE 'No' END, '. ',
+        'Accessibility: ', accessibility_info, '. ',
+        'Tips: ', tips
+    ) AS content,
+    updated_at
+FROM attractions_info
+
+UNION ALL
+
+SELECT 
+    info_id AS id,
+    category,
+    topic AS title,
+    CONCAT(topic, ': ', description, ' ', details) AS content,
+    updated_at
+FROM park_info
+
+UNION ALL
+
+SELECT 
+    faq_id AS id,
+    category,
+    question AS title,
+    CONCAT('Question: ', question, ' Answer: ', answer) AS content,
+    updated_at
+FROM faq_info;
+</code></pre>
+
+<h3>3.2 Create the Cortex Search Service</h3>
+<pre><code class="language-sql">-- Create the main search service for RAG
+CREATE OR REPLACE CORTEX SEARCH SERVICE universal_support_search
+    ON content
+    ATTRIBUTES category, title
+    WAREHOUSE = universal_support_wh
+    TARGET_LAG = '1 hour'
+    EMBEDDING_MODEL = 'snowflake-arctic-embed-l-v2.0'
+    AS (
+        SELECT
+            id,
+            category,
+            title,
+            content,
+            updated_at
+        FROM unified_knowledge_base
+    );
+
+-- Grant access to support team
+GRANT USAGE ON CORTEX SEARCH SERVICE universal_support_search TO ROLE customer_support_role;
+</code></pre>
+
+<h2>Step 4: Test the Search Service</h2>
+<pre><code class="language-sql">-- Test search for ticket information
+SELECT PARSE_JSON(
+    SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+        'team_park.db.customer_support.universal_support_search',
+        '{
+            "query": "What ticket should I buy for skipping lines?",
+            "columns": ["title", "content", "category"],
+            "limit": 3
+        }'
+    )
+)['results'] AS search_results;
+
+-- Test search for restaurant information
+SELECT PARSE_JSON(
+    SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+        'team_park.db.customer_support.universal_support_search',
+        '{
+            "query": "Where can I get Butterbeer in Harry Potter world?",
+            "columns": ["title", "content", "category"],
+            "filter": {"@eq": {"category": "restaurants"}},
+            "limit": 3
+        }'
+    )
+)['results'] AS search_results;
+
+-- Test search for ride accessibility
+SELECT PARSE_JSON(
+    SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+        'team_park.db.customer_support.universal_support_search',
+        '{
+            "query": "wheelchair accessible rides and attractions",
+            "columns": ["title", "content", "category"],
+            "limit": 5
+        }'
+    )
+)['results'] AS search_results;
+</code></pre>
+
+<h2>Step 5: Complete RAG Customer Support Function</h2>
+<pre><code class="language-sql">-- Create a stored procedure for the RAG chatbot
+CREATE OR REPLACE PROCEDURE universal_support_chatbot(user_question VARCHAR)
+RETURNS VARCHAR
+LANGUAGE SQL
+AS
+$$
+DECLARE
+    search_results VARCHAR;
+    llm_response VARCHAR;
+BEGIN
+    -- Step 1: Retrieve relevant context
+    SELECT PARSE_JSON(
+        SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+            'team_park.db.customer_support.universal_support_search',
+            OBJECT_CONSTRUCT(
+                'query', :user_question,
+                'columns', ARRAY_CONSTRUCT('title', 'content', 'category'),
+                'limit', 5
+            )::VARCHAR
+        )
+    )['results']::VARCHAR INTO search_results;
+    
+    -- Step 2: Generate response using LLM with retrieved context
+    SELECT SNOWFLAKE.CORTEX.COMPLETE(
+        'mistral-large',
+        CONCAT(
+            'You are a helpful customer support assistant for Team Park Hollywood theme park. ',
+            'Use the following information to answer the guests question accurately and helpfully. ',
+            'Be friendly, concise, and informative. If you dont have enough information to fully answer, ',
+            'say so and suggest contacting Guest Services at 1-800-UNIVERSAL.\n\n',
+            'CONTEXT INFORMATION:\n',
+            :search_results,
+            '\n\nGUEST QUESTION: ',
+            :user_question,
+            '\n\nHELPFUL RESPONSE:'
+        )
+    ) INTO llm_response;
+    
+    RETURN llm_response;
+END;
+$$;
+</code></pre>
+
+<h2>Step 6: Example Customer Interactions</h2>
+
+<h3>Example 1: Ticket Question</h3>
+<pre><code class="language-sql">CALL universal_support_chatbot('What is the best ticket to buy if I want to skip all the lines?');
+
+-- Expected Response:
+-- "For skipping lines, I recommend the Universal Express Unlimited pass! 
+-- At $289 for both adults and children, it gives you unlimited priority 
+-- access to all participating rides and attractions throughout the day. 
+-- This means you can ride your favorites multiple times without waiting 
+-- in regular queues. Note that this doesn't include park admission, 
+-- so you'll need to purchase that separately. If you only want to ride 
+-- each attraction once, the standard Universal Express at $189 might 
+-- be a more economical choice."
+</code></pre>
+
+<h3>Example 2: Restaurant Question</h3>
+<pre><code class="language-sql">CALL universal_support_chatbot('Where is the best place to eat in Harry Potter world?');
+
+-- Expected Response:
+-- "The Wizarding World of Harry Potter has two amazing dining options! 
+-- Three Broomsticks is the main restaurant, offering authentic British 
+-- fare like Fish and Chips, Shepherd's Pie, and the famous Butterbeer 
+-- in a magical atmosphere with floating candles. It's open from 11 AM 
+-- until park close and no reservations are needed. For a quick drink, 
+-- check out Hog's Head Pub next door where you can get Butterbeer 
+-- (frozen or regular), Pumpkin Juice, and for adults, Fire Whisky! 
+-- Don't miss the animatronic hog's head on the wall!"
+</code></pre>
+
+<h3>Example 3: Accessibility Question</h3>
+<pre><code class="language-sql">CALL universal_support_chatbot('I am in a wheelchair, what rides can I go on?');
+
+-- Expected Response:
+-- "Great news - most attractions at Team Park Hollywood are 
+-- wheelchair accessible! The Studio Tour has fully accessible trams, 
+-- and rides like Transformers 3D, The Simpsons Ride, and Despicable Me 
+-- Minion Mayhem offer wheelchair-accessible boarding. For some rides, 
+-- you may need to transfer to the ride vehicle. I'd recommend stopping 
+-- by Guest Services near the entrance to get an Attraction Assistance 
+-- Pass if you have difficulty waiting in conventional queues. Wheelchair 
+-- rentals are available for $12/day, and ECVs for $70/day. Each 
+-- attraction has Team Members who can explain specific accessibility 
+-- options!"
+</code></pre>
+
+<h3>Example 4: Child-Related Question</h3>
+<pre><code class="language-sql">CALL universal_support_chatbot('My kids are 5 and 7 years old, what can they ride?');
+
+-- Expected Response:
+-- "There's plenty for your little ones to enjoy! The Studio Tour has 
+-- no height requirement and is perfect for all ages - it's about an 
+-- hour of amazing movie magic! For rides with 40-inch height requirements 
+-- (typical for 5-7 year olds), check out Despicable Me Minion Mayhem, 
+-- The Simpsons Ride, Transformers 3D, and Mario Kart in Super Nintendo 
+-- World. The 42-inch Jurassic World ride is also great for slightly 
+-- taller kids. Don't forget the shows like WaterWorld and Animal Actors! 
+-- Pro tip: If one child meets a height requirement but the other doesn't, 
+-- ask about Child Swap - it lets parents take turns riding without 
+-- waiting in line twice!"
+</code></pre>
+
+<h2>Step 7: Python Streamlit Application</h2>
+<pre><code class="language-python">import streamlit as st
+from snowflake.core import Root
+from snowflake.snowpark import Session
+from snowflake.cortex import Complete
+
+# Connection parameters
+CONNECTION_PARAMS = {
+    "account": "your_account",
+    "user": "your_user",
+    "password": "your_password",
+    "warehouse": "universal_support_wh",
+    "database": "team_park.db",
+    "schema": "customer_support"
+}
+
+@st.cache_resource
+def get_session():
+    return Session.builder.configs(CONNECTION_PARAMS).create()
+
+def search_knowledge_base(session, query, category_filter=None, limit=5):
+    """Search the knowledge base using Cortex Search"""
+    root = Root(session)
+    search_service = (root
+        .databases["team_park.db"]
+        .schemas["customer_support"]
+        .cortex_search_services["universal_support_search"]
+    )
+    
+    search_params = {
+        "query": query,
+        "columns": ["title", "content", "category"],
+        "limit": limit
+    }
+    
+    if category_filter:
+        search_params["filter"] = {"@eq": {"category": category_filter}}
+    
+    return search_service.search(**search_params)
+
+def generate_response(session, question, context):
+    """Generate response using LLM with RAG context"""
+    prompt = f"""You are a friendly and helpful customer support assistant for 
+Team Park Hollywood theme park. Use the following information to answer 
+the guest's question accurately. Be warm, helpful, and concise. Include specific 
+details like prices, locations, and tips when relevant.
+
+If you don't have enough information, suggest the guest contact Guest Services 
+at 1-800-UNIVERSAL or visit the Team Park Hollywood website.
+
+CONTEXT INFORMATION:
+{context}
+
+GUEST QUESTION: {question}
+
+HELPFUL RESPONSE:"""
+    
+    return Complete(
+        model="mistral-large",
+        prompt=prompt,
+        session=session
+    )
+
+# Streamlit UI
+st.title("🎬 Team Park Hollywood")
+st.subheader("Virtual Guest Services Assistant")
+
+# Category filter
+category = st.selectbox(
+    "Filter by category (optional):",
+    ["All Categories", "tickets", "restaurants", "attractions", "Hours", "Accessibility", "General"]
+)
+
+# Chat interface
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# User input
+if user_question := st.chat_input("How can I help you today?"):
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": user_question})
+    with st.chat_message("user"):
+        st.markdown(user_question)
+    
+    # Generate response
+    with st.chat_message("assistant"):
+        with st.spinner("Let me find that information for you..."):
+            session = get_session()
+            
+            # Search for relevant context
+            cat_filter = None if category == "All Categories" else category
+            search_results = search_knowledge_base(session, user_question, cat_filter)
+            context = search_results.to_json()
+            
+            # Generate response
+            response = generate_response(session, user_question, context)
+            st.markdown(response)
+    
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": response})
+
+# Quick question buttons
+st.sidebar.header("Quick Questions")
+quick_questions = [
+    "What are today's park hours?",
+    "Where can I get Butterbeer?",
+    "What rides can my 5-year-old go on?",
+    "How much is parking?",
+    "Is there wheelchair accessibility?",
+    "What's included in the VIP Experience?"
+]
+
+for q in quick_questions:
+    if st.sidebar.button(q):
+        st.session_state.messages.append({"role": "user", "content": q})
+        st.rerun()
+</code></pre>
+
+<h2>Step 8: Monitoring and Analytics</h2>
+<pre><code class="language-sql">-- Create a table to log customer interactions
+CREATE OR REPLACE TABLE support_interactions (
+    interaction_id VARCHAR(36) DEFAULT UUID_STRING(),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    user_question TEXT,
+    retrieved_context TEXT,
+    llm_response TEXT,
+    category_detected VARCHAR(50),
+    response_time_ms INT,
+    user_feedback VARCHAR(20)
+);
+
+-- Query to analyze common question topics
+SELECT 
+    category_detected,
+    COUNT(*) AS question_count,
+    AVG(response_time_ms) AS avg_response_time
+FROM support_interactions
+WHERE timestamp >= DATEADD(day, -30, CURRENT_TIMESTAMP())
+GROUP BY category_detected
+ORDER BY question_count DESC;
+
+-- Find questions that might need knowledge base updates
+SELECT 
+    user_question,
+    llm_response,
+    user_feedback
+FROM support_interactions
+WHERE user_feedback = 'not_helpful'
+    AND timestamp >= DATEADD(day, -7, CURRENT_TIMESTAMP())
+ORDER BY timestamp DESC;
+</code></pre>
+
+<h2>Benefits of This RAG Implementation</h2>
+<ol>
+    <li><strong>Accurate, Up-to-Date Responses:</strong> Information is pulled from structured knowledge bases that can be easily updated</li>
+    <li><strong>Consistent Customer Experience:</strong> All guests receive accurate information based on official park data</li>
+    <li><strong>Scalable Support:</strong> Handles thousands of inquiries simultaneously without additional staff</li>
+    <li><strong>Multi-Category Support:</strong> Single system handles tickets, dining, attractions, and general questions</li>
+    <li><strong>Easy Maintenance:</strong> Update knowledge base tables to reflect new prices, hours, or attractions</li>
+    <li><strong>Analytics Insight:</strong> Track common questions to improve park services and information</li>
+</ol>
+
+<h2>Maintenance Best Practices</h2>
+<ul>
+    <li>Update price information at the beginning of each season</li>
+    <li>Add new attractions and restaurants as they open</li>
+    <li>Review FAQ logs weekly to identify knowledge gaps</li>
+    <li>Test the chatbot with common seasonal questions before peak periods</li>
+    <li>Monitor search service refresh status to ensure data freshness</li>
+</ul>
+
+
+{% include footer.html %}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Image Slideshow</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            flex-direction: column;
+        }
+        .filename {
+            font-size: 22px;
+            color: white;
+            position: absolute;
+            top: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .active {
+            display: block;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+        }
+        .prev {
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next {
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .disabled {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="filename" id="filename"></div>
+
+<div class="slideshow-container">
+   <a href="databricks-01.png" target="_blank"><img class="slides active" src="databricks-01.png" alt="databricks-01.png"></a>
+   <a href="databricks-02.png" target="_blank"><img class="slides" src="databricks-02.png" alt="databricks-02.png"></a>
+   <a href="databricks-03.png" target="_blank"><img class="slides" src="databricks-03.png" alt="databricks-03.png"></a>
+   <a href="databricks-04.png" target="_blank"><img class="slides" src="databricks-04.png" alt="databricks-04.png"></a>
+   <a href="databricks-05.png" target="_blank"><img class="slides" src="databricks-05.png" alt="databricks-05.png"></a>
+   <a href="databricks-06.png" target="_blank"><img class="slides" src="databricks-06.png" alt="databricks-06.png"></a>
+   <a href="databricks-07.png" target="_blank"><img class="slides" src="databricks-07.png" alt="databricks-07.png"></a>
+   <a href="databricks-08.png" target="_blank"><img class="slides" src="databricks-08.png" alt="databricks-08.png"></a>
+   <a href="databricks-09.png" target="_blank"><img class="slides" src="databricks-09.png" alt="databricks-09.png"></a>
+   <a href="databricks-10.png" target="_blank"><img class="slides" src="databricks-10.png" alt="databricks-10.png"></a>
+   <a href="databricks-11.png" target="_blank"><img class="slides" src="databricks-11.png" alt="databricks-11.png"></a>
+   <a href="databricks-12.png" target="_blank"><img class="slides" src="databricks-12.png" alt="databricks-12.png"></a>
+   <a href="databricks-13.png" target="_blank"><img class="slides" src="databricks-13.png" alt="databricks-13.png"></a>
+   <a href="databricks-16.png" target="_blank"><img class="slides" src="databricks-16.png" alt="databricks-16.png"></a>
+   <a href="databricks-17.png" target="_blank"><img class="slides" src="databricks-17.png" alt="databricks-17.png"></a>
+   <a href="databricks-18.png" target="_blank"><img class="slides" src="databricks-18.png" alt="databricks-18.png"></a>
+   <a href="databricks-19.png" target="_blank"><img class="slides" src="databricks-19.png" alt="databricks-19.png"></a>
+   <a href="databricks-21.png" target="_blank"><img class="slides" src="databricks-21.png" alt="databricks-21.png"></a>
+   <a href="databricks-22.png" target="_blank"><img class="slides" src="databricks-22.png" alt="databricks-22.png"></a>
+   <a href="databricks-24.png" target="_blank"><img class="slides" src="databricks-24.png" alt="databricks-24.png"></a>
+   <a href="databricks-25.png" target="_blank"><img class="slides" src="databricks-25.png" alt="databricks-25.png"></a>
+   <a href="databricks-26.png" target="_blank"><img class="slides" src="databricks-26.png" alt="databricks-26.png"></a>
+   <a href="databricks-27.png" target="_blank"><img class="slides" src="databricks-27.png" alt="databricks-27.png"></a>
+   <a href="databricks-28.png" target="_blank"><img class="slides" src="databricks-28.png" alt="databricks-28.png"></a>
+   <a href="databricks-29.png" target="_blank"><img class="slides" src="databricks-29.png" alt="databricks-29.png"></a>
+   <a href="databricks-30.png" target="_blank"><img class="slides" src="databricks-30.png" alt="databricks-30.png"></a>
+   <a href="databricks-32.png" target="_blank"><img class="slides" src="databricks-32.png" alt="databricks-32.png"></a>
+   <a href="databricks-33.png" target="_blank"><img class="slides" src="databricks-33.png" alt="databricks-33.png"></a>
+   <a href="databricks-34.png" target="_blank"><img class="slides" src="databricks-34.png" alt="databricks-34.png"></a>
+   <a href="databricks-35.png" target="_blank"><img class="slides" src="databricks-35.png" alt="databricks-35.png"></a>
+   <a href="databricks-37.png" target="_blank"><img class="slides" src="databricks-37.png" alt="databricks-37.png"></a>
+   <a href="databricks-38.png" target="_blank"><img class="slides" src="databricks-38.png" alt="databricks-38.png"></a>
+   <a href="databricks-39.png" target="_blank"><img class="slides" src="databricks-39.png" alt="databricks-39.png"></a>
+   <a href="databricks-40.png" target="_blank"><img class="slides" src="databricks-40.png" alt="databricks-40.png"></a>
+   <a href="databricks-41.png" target="_blank"><img class="slides" src="databricks-41.png" alt="databricks-41.png"></a>
+   <a href="databricks-42.png" target="_blank"><img class="slides" src="databricks-42.png" alt="databricks-42.png"></a>
+   <a href="databricks-43.png" target="_blank"><img class="slides" src="databricks-43.png" alt="databricks-43.png"></a>
+   <a href="databricks-44.png" target="_blank"><img class="slides" src="databricks-44.png" alt="databricks-44.png"></a>
+   <a href="databricks-45.png" target="_blank"><img class="slides" src="databricks-45.png" alt="databricks-45.png"></a>
+   <a href="databricks-46.png" target="_blank"><img class="slides" src="databricks-46.png" alt="databricks-46.png"></a>
+   <a href="databricks-47.png" target="_blank"><img class="slides" src="databricks-47.png" alt="databricks-47.png"></a>
+   <a href="databricks-48.png" target="_blank"><img class="slides" src="databricks-48.png" alt="databricks-48.png"></a>
+   <a href="databricks-49.png" target="_blank"><img class="slides" src="databricks-49.png" alt="databricks-49.png"></a>
+   <a href="databricks-50.png" target="_blank"><img class="slides" src="databricks-50.png" alt="databricks-50.png"></a>
+   <a href="databricks-51.png" target="_blank"><img class="slides" src="databricks-51.png" alt="databricks-51.png"></a>
+   <a href="databricks-52.png" target="_blank"><img class="slides" src="databricks-52.png" alt="databricks-52.png"></a>
+   <a href="databricks-53.png" target="_blank"><img class="slides" src="databricks-53.png" alt="databricks-53.png"></a>
+   <a href="databricks-54.png" target="_blank"><img class="slides" src="databricks-54.png" alt="databricks-54.png"></a>
+   <a href="databricks-55.png" target="_blank"><img class="slides" src="databricks-55.png" alt="databricks-55.png"></a>
+   <a href="databricks-56.png" target="_blank"><img class="slides" src="databricks-56.png" alt="databricks-56.png"></a>
+   <a href="databricks-57.png" target="_blank"><img class="slides" src="databricks-57.png" alt="databricks-57.png"></a>
+   <a href="databricks-58.png" target="_blank"><img class="slides" src="databricks-58.png" alt="databricks-58.png"></a>
+   <a href="databricks-60.png" target="_blank"><img class="slides" src="databricks-60.png" alt="databricks-60.png"></a>
+   <a href="databricks-61.png" target="_blank"><img class="slides" src="databricks-61.png" alt="databricks-61.png"></a>
+   <a href="databricks-62.png" target="_blank"><img class="slides" src="databricks-62.png" alt="databricks-62.png"></a>
+   <a href="databricks-63.png" target="_blank"><img class="slides" src="databricks-63.png" alt="databricks-63.png"></a>
+   <a href="databricks-64.png" target="_blank"><img class="slides" src="databricks-64.png" alt="databricks-64.png"></a>
+   <a href="databricks-65.png" target="_blank"><img class="slides" src="databricks-65.png" alt="databricks-65.png"></a>
+   <a href="databricks-66.png" target="_blank"><img class="slides" src="databricks-66.png" alt="databricks-66.png"></a>
+   <a href="databricks-67.png" target="_blank"><img class="slides" src="databricks-67.png" alt="databricks-67.png"></a>
+   <a href="databricks-69.png" target="_blank"><img class="slides" src="databricks-69.png" alt="databricks-69.png"></a>
+   <a href="databricks-70.png" target="_blank"><img class="slides" src="databricks-70.png" alt="databricks-70.png"></a>
+   <a href="databricks-71.png" target="_blank"><img class="slides" src="databricks-71.png" alt="databricks-71.png"></a>
+   <a href="databricks-72.png" target="_blank"><img class="slides" src="databricks-72.png" alt="databricks-72.png"></a>
+   <a href="databricks-73.png" target="_blank"><img class="slides" src="databricks-73.png" alt="databricks-73.png"></a>
+   <a href="databricks-74.png" target="_blank"><img class="slides" src="databricks-74.png" alt="databricks-74.png"></a>
+   <a href="databricks-76.png" target="_blank"><img class="slides" src="databricks-76.png" alt="databricks-76.png"></a>
+   <a href="databricks-77.png" target="_blank"><img class="slides" src="databricks-77.png" alt="databricks-77.png"></a>
+   <a href="databricks-78.png" target="_blank"><img class="slides" src="databricks-78.png" alt="databricks-78.png"></a>
+   <a href="databricks-79.png" target="_blank"><img class="slides" src="databricks-79.png" alt="databricks-79.png"></a>
+   <a href="databricks-80.png" target="_blank"><img class="slides" src="databricks-80.png" alt="databricks-80.png"></a>
+   <a href="databricks-81.png" target="_blank"><img class="slides" src="databricks-81.png" alt="databricks-81.png"></a>
+   <a href="databricks-82.png" target="_blank"><img class="slides" src="databricks-82.png" alt="databricks-82.png"></a>
+   <a href="databricks-83.png" target="_blank"><img class="slides" src="databricks-83.png" alt="databricks-83.png"></a>
+   <a href="databricks-84.png" target="_blank"><img class="slides" src="databricks-84.png" alt="databricks-84.png"></a>
+   <a href="databricks-85.png" target="_blank"><img class="slides" src="databricks-85.png" alt="databricks-85.png"></a>
+   <a href="databricks-86.png" target="_blank"><img class="slides" src="databricks-86.png" alt="databricks-86.png"></a>
+   <a href="databricks-87.png" target="_blank"><img class="slides" src="databricks-87.png" alt="databricks-87.png"></a>
+   <a href="databricks-88.png" target="_blank"><img class="slides" src="databricks-88.png" alt="databricks-88.png"></a>
+
+    <!-- Previous and next buttons -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName('slides');
+    const filenameDisplay = document.getElementById('filename');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    const filenames = ['databricks-01.png', 'databricks-02.png', 'databricks-03.png', 'databricks-04.png', 'databricks-05.png', 'databricks-06.png', 'databricks-07.png', 'databricks-08.png', 'databricks-09.png', 'databricks-10.png', 'databricks-11.png', 'databricks-12.png', 'databricks-13.png', 'databricks-16.png', 'databricks-17.png', 'databricks-18.png', 'databricks-19.png', 'databricks-21.png', 'databricks-22.png', 'databricks-24.png', 'databricks-25.png', 'databricks-26.png', 'databricks-27.png', 'databricks-28.png', 'databricks-29.png', 'databricks-30.png', 'databricks-32.png', 'databricks-33.png', 'databricks-34.png', 'databricks-35.png', 'databricks-37.png', 'databricks-38.png', 'databricks-39.png', 'databricks-40.png', 'databricks-41.png', 'databricks-42.png', 'databricks-43.png', 'databricks-44.png', 'databricks-45.png', 'databricks-46.png', 'databricks-47.png', 'databricks-48.png', 'databricks-49.png', 'databricks-50.png', 'databricks-51.png', 'databricks-52.png', 'databricks-53.png', 'databricks-54.png', 'databricks-55.png', 'databricks-56.png', 'databricks-57.png', 'databricks-58.png', 'databricks-60.png', 'databricks-61.png', 'databricks-62.png', 'databricks-63.png', 'databricks-64.png', 'databricks-65.png', 'databricks-66.png', 'databricks-67.png', 'databricks-69.png', 'databricks-70.png', 'databricks-71.png', 'databricks-72.png', 'databricks-73.png', 'databricks-74.png', 'databricks-76.png', 'databricks-77.png', 'databricks-78.png', 'databricks-79.png', 'databricks-80.png', 'databricks-81.png', 'databricks-82.png', 'databricks-83.png', 'databricks-84.png', 'databricks-85.png', 'databricks-86.png', 'databricks-87.png', 'databricks-88.png'];  // Array of filenames
+
+    function updateButtons() {
+        prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
+        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+    }
+
+    function updateFilename() {
+        filenameDisplay.textContent = filenames[currentSlide];
+    }
+
+    function showSlide(index) {
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        // Ensure the slide index is within bounds
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        updateButtons();
+        updateFilename();
+    }
+
+    function changeSlide(direction) {
+        const newSlide = currentSlide + direction;
+        if (newSlide >= 0 && newSlide < slides.length) {
+            showSlide(newSlide);
+        }
+    }
+
+    // Add event listener for left and right arrow key presses
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+            changeSlide(1);
+        } else if (event.key === 'ArrowLeft' && currentSlide > 0) {
+            changeSlide(-1);
+        }
+    });
+
+    // Initialize the buttons and filename on page load
+    updateButtons();
+    updateFilename();
+</script>
+
+</body>
+</html>

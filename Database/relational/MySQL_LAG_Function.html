@@ -1,0 +1,70 @@
+---
+---
+{% include menu.html title="MySQL LAG Function" %}
+
+<h1>MySQL <code>LAG</code> Function Explanation</h1>
+
+<h2>Overview</h2>
+<p>The <code>LAG</code> function in MySQL is a window function that allows you to access data from a previous row within the same result set. It is particularly useful for calculating differences between sequential rows, such as in time series analysis.</p>
+
+<h2>SQL Query Explanation</h2>
+<pre class="sql"><code><span class="keyword">SELECT</span> ROUND(<span class="function">AVG</span>(daily_increase), 4) <span class="keyword">AS</span> avg_daily_increase
+<span class="keyword">FROM</span> (
+    <span class="keyword">SELECT</span> dt1, (price - <span class="function">LAG</span>(price) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> dt1)) <span class="keyword">AS</span> daily_increase
+    <span class="keyword">FROM</span> binance.klines_1d
+    <span class="keyword">WHERE</span> dt1 &gt;= <span class="function">CURDATE</span>() - <span class="keyword">INTERVAL</span> %d <span class="datatype">DAY</span>
+) <span class="keyword">AS</span> price_changes
+<span class="keyword">WHERE</span> daily_increase <span class="keyword">IS NOT NULL</span>;
+</code></pre>
+
+<h3>1. Inner Query</h3>
+<ul>
+    <li>
+        <p><strong>Purpose:</strong> To calculate the daily price increase by comparing the current day's price (<code>price</code>) with the previous day's price.</p>
+    </li>
+    <li>
+        <p><code>LAG(price) OVER (ORDER BY dt1)</code>:</p>
+        <ul>
+            <li>The <code>LAG</code> function retrieves the value of the <code>price</code> column from the previous row.</li>
+            <li>The <code>ORDER BY dt1</code> clause ensures that the rows are processed in chronological order based on the <code>dt1</code> (date) column.</li>
+        </ul>
+    </li>
+    <li>
+        <p><code>price - LAG(price) OVER (ORDER BY dt1)</code>:</p>
+        <ul>
+            <li>This calculates the difference between the current day's price and the previous day's price, giving the <code>daily_increase</code>.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>2. Filtering Dates</h3>
+<ul>
+    <li>
+        <p><code>WHERE dt1 &gt;= CURDATE() - INTERVAL %d DAY</code>:</p>
+        <ul>
+            <li>This clause filters the rows to include only those within the last <code>%d</code> days from the current date.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>3. Outer Query</h3>
+<ul>
+    <li>
+        <p><strong>Purpose:</strong> To calculate the average of the daily price increases.</p>
+    </li>
+    <li>
+        <p><code>ROUND(AVG(daily_increase), 4)</code>:</p>
+        <ul>
+            <li>This calculates the average (<code>AVG</code>) of the daily increases and rounds the result to four decimal places.</li>
+        </ul>
+    </li>
+    <li>
+        <p><code>WHERE daily_increase IS NOT NULL</code>:</p>
+        <ul>
+            <li>This excludes any rows where <code>daily_increase</code> is <code>NULL</code> to ensure that the average is calculated only on valid values.</li>
+        </ul>
+    </li>
+</ul>
+
+</body>
+</html>

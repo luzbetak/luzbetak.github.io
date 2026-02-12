@@ -1,0 +1,30 @@
+---
+---
+{% include menu.html title="Apache Iceberg" %}
+
+    <h1>Apache Iceberg</h1>
+    
+    <p><strong>Apache Iceberg</strong> is a modern data management framework built to support large-scale data lakes with ACID transactions and flexible partitioning, making it highly scalable and efficient for managing complex datasets.</p>
+    
+    <h2>Key Features:</h2>
+    <ul>
+        <li><strong>ACID Transactions:</strong> Iceberg ensures atomic, consistent, isolated, and durable (ACID) operations on data lakes, enabling reliable updates, deletes, and upserts.</li>
+        <li><strong>Schema Evolution:</strong> Supports schema changes (adding/removing columns) without breaking existing queries, allowing the data model to evolve smoothly.</li>
+        <li><strong>Partition Evolution:</strong> Iceberg supports dynamic partitioning, allowing partitions to evolve over time without rewriting the entire dataset.</li>
+        <li><strong>Hidden Partitioning:</strong> Automatically manages partitions internally, improving query efficiency and eliminating the need for manual partition management.</li>
+        <li><strong>Versioning and Time Travel:</strong> Enables users to query previous versions of the dataset, making it possible to access historical data through "time travel" queries.</li>
+        <li><strong>Scalability:</strong> Designed to handle petabyte-scale datasets in cloud object storage, Iceberg optimizes queries and manages metadata efficiently for large-scale data lakes.</li>
+    </ul>
+
+    <h2>Use Cases:</h2>
+    <ul>
+        <li>Large-scale analytics with frequent updates and evolving schema or partitioning needs.</li>
+        <li>Time-travel queries to access historical versions of data.</li>
+        <li>Efficient querying in large-scale data lakes with complex data models and flexible partitioning.</li>
+    </ul>
+    
+  {% include footer.html %}
+
+  </body>
+</html>
+

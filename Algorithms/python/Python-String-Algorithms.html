@@ -1,0 +1,241 @@
+---
+---
+{% include menu.html title="Python Algorithms" %}
+
+
+<h1>Python String Algorithms</h1>
+
+<p><hr align=left width=1000>
+<h2>Reverse a String</h2>
+<pre><code class="language-python">def reverse_string(s: str) -> str:
+        return s[::-1]
+    
+print(reverse_string("hello"))  # Output: "olleh"
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Count the Number of Vowels in a String</h2>
+<pre><code class="language-python">def count_vowels(s: str) -> int:
+    vowels = 'aeiouAEIOU'
+    return sum(1 for char in s if char in vowels)
+    
+ print(count_vowels("hello world"))  # Output: 3
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Find the First Non-Repeated Character in a String</h2>
+<pre><code class="language-python">def first_non_repeated_char(s: str) -> str:
+    counts = {}
+    for char in s:
+        counts[char] = counts.get(char, 0) + 1
+    for char in s:
+        if counts[char] == 1:
+            return char
+    return None
+print(first_non_repeated_char("swiss"))  # Output: "w"
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Longest Common Subsequence</h2>
+The longest_common_subsequence function calculates the length and the actual sequence of the longest common subsequence (LCS) between two input strings. It uses dynamic programming to build a 2D table (dp) that tracks the LCS length up to each pair of indices. After filling the table, the function backtracks through it to reconstruct the LCS. The result is the length of the LCS and the sequence itself.
+<pre><code class="language-python">def longest_common_subsequence(str1, str2):
+    dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+
+    # Fill the dp array
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    # Reconstruct the LCS from the dp table
+    i, j = len(str1), len(str2)
+    lcs = []
+
+    while i > 0 and j > 0:
+        if str1[i - 1] == str2[j - 1]:
+            lcs.append(str1[i - 1])
+            i -= 1
+            j -= 1
+        elif dp[i - 1][j] > dp[i][j - 1]:
+            i -= 1
+        else:
+            j -= 1
+
+    # The lcs list will be in reverse order, so reverse it
+    lcs.reverse()
+
+    return dp[-1][-1], ''.join(lcs)
+
+# Example usage
+str1 = "ABCBDAB"
+str2 = "BDCAB"
+
+lcs_length, lcs_sequence = longest_common_subsequence(str1, str2)
+print(f"The length of the longest common subsequence is: {lcs_length}")
+print(f"The longest common subsequence is: {lcs_sequence}")
+
+# OUTPUT
+# The length of the longest common subsequence is: 4
+T# he longest common subsequence is: BDAB
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Palindrome Check</h2>
+The palindrome check algorithm works by returning a boolean value indicating whether the string is a palindrome or not. We use slicing to access the characters of the string in reverse order and compare it with the original string.
+<pre><code class="language-python">def is_palindrome(str):
+        return str == str[::-1]
+    
+    print(is_palindrome("121"))  # True
+    print(is_palindrome("122"))  # False
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Anagram Algorithm</h2>
+The Anagram algorithm checks if two strings are anagrams by sorting the characters in both strings and then comparing the sorted versions. If the sorted strings are equal, the function returns True, indicating that the strings are anagrams. Otherwise, it returns False.
+<pre><code class="language-python">def anagram(str1, str2):
+    # Sort both strings and compare them
+    return sorted(str1) == sorted(str2)
+
+str1a = "listen"
+str1b = "silent"
+
+result = anagram(str1a, str1b)
+print(f"Are '{str1a}' and '{str1b}' anagrams? {result}")
+
+# Another example with non-anagrams
+str2a = "hello"
+str2b = "world"
+
+result2 = anagram(str2a, str2b)
+print(f"Are '{str2a}' and '{str2b}' anagrams? {result2}")
+
+# OUTPUT
+# Are 'listen' and 'silent' anagrams? True
+# Are 'hello' and 'world' anagrams? False
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>FizzBuzz</h2>
+The FizzBuzz algorithm works by defining a function that takes an integer argument n. If n is divisible by 3, we return the string "Fizz". If n is divisible by 5, we return the string "Buzz". Otherwise, we return the string representation of n.
+<pre><code class="language-python">def fizzbuzz(n):
+    if n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
+    else:
+        return str(n)
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Longest Common Subsequence</h2>
+The longest common subsequence algorithm works by defining a dynamic programming array dp of size m x n, where m is the length of string str1 and n is the length of string str2. We initialize all elements of dp to 0. Then, for each element in str1, we iterate through all elements in str2 and check if they are equal. If they are equal, we set the value of dp[i][j] to 1 + the value of dp[i-1][j-1]. Otherwise, we compare the values of dp[i-1][j] and dp[i][j-1] and take the maximum value. Finally, we return the last element of the last row of dp as the result.
+<pre><code class="language-python">def longest_common_subsequence(str1, str2):
+    dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+    for i in range(1, len(str1) + 1):
+        for j in range(1, len(str2) + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    return dp[-1][-1]
+</code></pre>
+
+<p><hr align=left width=1000>
+<h2>Hamming distance between two strings</h2>
+The Hamming distance between two strings of equal length is the number of positions at which the corresponding characters differ. It is typically used in error detection and correction, and in measuring the similarity between two binary sequences or DNA sequences.
+<pre><code class="language-python">def hamming_distance(str1, str2):
+    """Calculate the Hamming distance between two strings of equal length.
+    Args:
+        str1 (string): The first string for comparison.
+        str2 (string): The second string for comparison.
+
+    Returns:
+        int: The Hamming distance between the two strings.
+    """
+    # Check if strings are of equal length
+    if len(str1) != len(str2):
+        raise ValueError("Strings must be of the same length")
+
+    # Calculate the Hamming distance by comparing each character in the two strings
+    distance = sum(c1 != c2 for c1, c2 in zip(str1, str2))
+
+    return distance
+
+# --------------------------------------------------------------------------------- #
+str1 = "karolin"
+str2 = "kathrin"
+
+distance = hamming_distance(str1, str2)
+print(f"The Hamming distance between '{str1}' and '{str2}' is: {distance}")
+
+# OUTPUT 
+# The Hamming distance between 'karolin' and 'kathrin' is: 3
+</code></pre>
+
+
+<p><hr align=left width=1000>
+<h2>Levenshtein Distance between two strings</h2>
+The Levenshtein distance between two strings is a measure of the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into the other. This is a common metric used in spell-checking, DNA sequence analysis, and natural language processing.
+<pre><code class="language-python">import numpy as np
+
+def levenshtein_distance(str1, str2):
+    """Calculate the Levenshtein distance between two strings.
+
+    Args:
+        str1 (string): The first string for comparison.
+        str2 (string): The second string for comparison.
+    
+    Returns: 
+        int: The Levenshtein distance between the two strings.
+    """
+    m = len(str1)
+    n = len(str2)
+    
+    # Create a 2D array to store the distances
+    dp = np.zeros((m + 1, n + 1))
+
+    # Initialize the base cases
+    for i in range(m + 1):
+        dp[i][0] = i  # Cost of deleting all characters from str1
+    for j in range(n + 1):
+        dp[0][j] = j  # Cost of inserting all characters into str1
+
+    # Fill the dp array
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]  # No operation needed
+            else:
+                dp[i][j] = min(dp[i - 1][j - 1] + 1,  # Substitution
+                               dp[i - 1][j] + 1,    # Deletion
+                               dp[i][j - 1] + 1)    # Insertion
+
+    return int(dp[m][n])
+# ---------------------------------------------------------------------------- #
+str1 = "kitten"
+str2 = "sitting"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'kitten' and 'sitting' is: 3
+# ---------------------------------------------------------------------------- #
+
+str1 = "flaw"
+str2 = "lawn"
+
+distance = levenshtein_distance(str1, str2)
+print(f"The Levenshtein distance between '{str1}' and '{str2}' is: {distance}")
+# ---------------------------------------------------------------------------- #
+# OUTPUT
+# The Levenshtein distance between 'flaw' and 'lawn' is: 2
+# ---------------------------------------------------------------------------- #
+</code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>

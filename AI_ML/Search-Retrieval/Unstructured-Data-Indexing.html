@@ -1,0 +1,57 @@
+---
+---
+{% include menu.html title="Unstructured Data to Indexing" %}
+
+<h1>Unstructured Data Indexing</h1>
+
+<h2>1. Data Ingestion</h2>
+<ul>
+    <li><strong>Collection:</strong> Gather data from various sources like documents, web pages, audio files, or social media feeds.</li>
+    <li><strong>Preprocessing:</strong> Convert all data into a common format, such as plain text, by stripping away unnecessary elements (e.g., HTML tags).</li>
+</ul>
+
+<h2>2. Data Cleaning</h2>
+<ul>
+    <li><strong>Noise Removal:</strong> Eliminate irrelevant content such as advertisements, non-textual elements, and redundant data.</li>
+    <li><strong>Normalization:</strong> Standardize text by converting it to lowercase, removing special characters, and expanding contractions.</li>
+    <li><strong>Tokenization:</strong> Split the text into meaningful units (e.g., words or sentences) for further processing.</li>
+</ul>
+
+<h2>3. Text Summarization</h2>
+<ul>
+    <li><strong>Extraction Techniques:</strong> Identify and extract key sentences or phrases from the text based on frequency or importance.</li>
+    <li><strong>Abstractive Summarization:</strong> Use machine learning models to create new summaries that paraphrase the main points while retaining meaning.</li>
+    <li><strong>Keyword Extraction:</strong> Identify essential keywords to highlight major topics in the data.</li>
+</ul>
+
+<h2>4. Text Structuring and Annotation</h2>
+<ul>
+    <li><strong>Part-of-Speech Tagging:</strong> Label words with their respective parts of speech (e.g., noun, verb) to understand sentence structure.</li>
+    <li><strong>Named Entity Recognition (NER):</strong> Identify and categorize key entities such as names, locations, and organizations.</li>
+    <li><strong>Metadata Generation:</strong> Add relevant metadata, like author and date, to make the data easier to categorize and search.</li>
+</ul>
+
+<h2>5. Vectorization</h2>
+<ul>
+    <li><strong>Embedding Techniques:</strong> Convert text into numerical representations (vectors) using methods such as TF-IDF, BM25, Word2Vec, or BERT. These vectors capture semantic information, enabling similarity searches.</li>
+    <li><strong>Dimensionality Reduction (optional):</strong> Techniques like PCA or t-SNE may be applied to reduce the vector's dimensionality for storage and efficiency.</li>
+</ul>
+
+<h2>6. Indexing</h2>
+<ul>
+    <li><strong>Index Creation:</strong> Store the processed text and vector representations in an index using search tools like Xapian or vector databases (e.g., FAISS).</li>
+    <li><strong>Inverted Index:</strong> For keyword-based searches, create an inverted index that maps words to their locations within documents.</li>
+    <li><strong>Embedding Index:</strong> For semantic search, create an embedding index that allows for fast retrieval of similar vectors.</li>
+</ul>
+
+<h2>7. Verification and Quality Control</h2>
+<ul>
+    <li><strong>Validation:</strong> Ensure the indexed data accurately reflects the original content and that summaries maintain fidelity to key points.</li>
+    <li><strong>Performance Testing:</strong> Check the efficiency of search and retrieval operations to optimize query speed and accuracy.</li>
+</ul>
+
+<h2>End Result</h2>
+<p>This process results in a structured, indexed data store that enables efficient search, retrieval, and analysis of previously unstructured information. By summarizing content and embedding semantic relationships, the system supports advanced applications like question-answering, information retrieval, and analytics.</p>
+
+
+{% include footer.html %}

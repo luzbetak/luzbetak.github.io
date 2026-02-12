@@ -1,0 +1,225 @@
+---
+---
+{% include menu.html title="NVIDIA + CUDA + cuDNN + TensorFlow" %}
+
+<img src="images/nvtop.png" width=1100>
+<p>
+<h1>NVIDIA + CUDA + cuDNN + TensorFlow (Py311) Setup on Fresh Ubuntu</h1>
+
+<h2>Overview</h2>
+<ul>
+  <li><strong>OS:</strong> Fresh Ubuntu (22.04 or 24.04)</li>
+  <li><strong>GPU:</strong> NVIDIA (example: RTX 3060)</li>
+  <li><strong>Python:</strong> 3.11 (Conda environment: <strong>Py311</strong>)</li>
+  <li><strong>CUDA Toolkit:</strong> 12.1</li>
+  <li><strong>cuDNN:</strong> 8.9.7 (TensorFlow-compatible)</li>
+  <li><strong>TensorFlow:</strong> 2.16.x (GPU)</li>
+  <li><strong>NO Docker</strong>, <strong>NO apt CUDA</strong></li>
+</ul>
+
+<hr>
+
+<h1>Step 1: Base System Preparation</h1>
+
+<h2>Update Ubuntu</h2>
+<pre><code class="language-bash">
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y build-essential wget curl git
+</code></pre>
+
+<h2>Reboot</h2>
+<pre><code class="language-bash">
+sudo reboot
+</code></pre>
+
+<hr>
+
+<h1>Step 2: Install NVIDIA Driver</h1>
+
+<h2>Detect Recommended Driver</h2>
+<pre><code class="language-bash">
+ubuntu-drivers devices
+</code></pre>
+
+<h2>Install NVIDIA Driver (example: 535)</h2>
+<pre><code class="language-bash">
+sudo apt install -y nvidia-driver-535
+sudo reboot
+</code></pre>
+
+<h2>Verify Driver</h2>
+<pre><code class="language-bash">
+nvidia-smi
+</code></pre>
+
+<hr>
+
+<h1>Step 3: Install Miniconda</h1>
+
+<h2>Download Miniconda</h2>
+<pre><code class="language-bash">
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
+
+<h2>Restart Shell</h2>
+<pre><code class="language-bash">
+exec bash
+</code></pre>
+
+<hr>
+
+<h1>Step 4: Create Python 3.11 Environment</h1>
+
+<h2>Create and Activate Py311</h2>
+<pre><code class="language-bash">
+conda create -n Py311 python=3.11 -y
+conda activate Py311
+</code></pre>
+
+<h2>Verify Python</h2>
+<pre><code class="language-bash">
+python -V
+</code></pre>
+
+<hr>
+
+<h1>Step 5: Install CUDA Toolkit 12.1 (Runfile)</h1>
+
+<h2>Download CUDA 12.1 Runfile</h2>
+<pre><code class="language-bash">
+wget https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda_12.1.1_530.30.02_linux.run
+</code></pre>
+
+<h2>Run Installer (Toolkit Only)</h2>
+<ul>
+  <li>Uncheck <strong>Driver</strong></li>
+  <li>Leave <strong>CUDA Toolkit</strong> checked</li>
+</ul>
+
+<pre><code class="language-bash">
+sudo sh cuda_12.1.1_530.30.02_linux.run
+</code></pre>
+
+<h2>Persist CUDA Environment</h2>
+<pre><code class="language-bash">
+sudo tee /etc/profile.d/cuda-12.1.sh << 'EOF'
+export CUDA_HOME=/usr/local/cuda-12.1
+export PATH=/usr/local/cuda-12.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
+EOF
+
+source /etc/profile.d/cuda-12.1.sh
+</code></pre>
+
+<h2>Verify CUDA</h2>
+<pre><code class="language-bash">
+nvcc --version
+</code></pre>
+
+<hr>
+
+<h1>Step 6: Install cuDNN 8.9.7 (Correct Version)</h1>
+
+<h2>Download cuDNN</h2>
+<pre><code class="language-bash">
+wget https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz
+</code></pre>
+
+<h2>Extract and Install</h2>
+<pre><code class="language-bash">
+tar -xf cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz
+sudo cp -r cudnn-linux-x86_64-8.9.7.29_cuda12-archive/include/* /usr/local/cuda-12.1/include/
+sudo cp -r cudnn-linux-x86_64-8.9.7.29_cuda12-archive/lib/* /usr/local/cuda-12.1/lib64/
+sudo ldconfig
+</code></pre>
+
+<h2>Verify cuDNN</h2>
+<pre><code class="language-bash">
+ls /usr/local/cuda-12.1/lib64/libcudnn*
+</code></pre>
+
+<hr>
+
+<h1>Step 7: Install TensorFlow (GPU)</h1>
+
+<h2>Install TensorFlow</h2>
+<pre><code class="language-bash">
+pip install --upgrade pip
+pip install tensorflow==2.16.2
+</code></pre>
+
+<hr>
+
+<h1>Step 8: Verify TensorFlow GPU</h1>
+
+<h2>GPU Test Script</h2>
+<pre><code class="language-python">
+import tensorflow as tf
+
+gpus = tf.config.list_physical_devices("GPU")
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+
+print("TensorFlow:", tf.__version__)
+print("Built with CUDA:", tf.test.is_built_with_cuda())
+print("GPUs:", tf.config.list_physical_devices("GPU"))
+</code></pre>
+
+<h2>Run</h2>
+<pre><code class="language-bash">
+python gpu_test.py
+</code></pre>
+
+<h3>Expected Output</h3>
+<ul>
+  <li><strong>Built with CUDA: True</strong></li>
+  <li><strong>GPU listed (GPU:0)</strong></li>
+</ul>
+
+<hr>
+
+<h1>Step 9: Sample Training Script (GPU)</h1>
+
+<pre><code class="language-python">
+import tensorflow as tf
+import time
+
+gpus = tf.config.list_physical_devices("GPU")
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+
+x = tf.random.normal((1_000_000, 10))
+y = tf.reduce_sum(x, axis=1, keepdims=True)
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(256, activation="relu"),
+    tf.keras.layers.Dense(128, activation="relu"),
+    tf.keras.layers.Dense(1),
+])
+
+model.compile(optimizer="adam", loss="mse")
+
+with tf.device("/GPU:0"):
+    start = time.time()
+    model.fit(x, y, epochs=3, batch_size=4096)
+    print("Training time:", time.time() - start)
+</code></pre>
+
+<hr>
+
+<h1>Final State</h1>
+<ul>
+  <li><strong>Python:</strong> 3.11 (Py311)</li>
+  <li><strong>NVIDIA Driver:</strong> 535</li>
+  <li><strong>CUDA:</strong> 12.1</li>
+  <li><strong>cuDNN:</strong> 8.9.7</li>
+  <li><strong>TensorFlow:</strong> 2.16 GPU</li>
+  <li><strong>Status:</strong> Production-ready</li>
+</ul>
+
+
+
+{% include footer.html %}
+

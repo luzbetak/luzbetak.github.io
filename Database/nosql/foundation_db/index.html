@@ -1,0 +1,64 @@
+---
+---
+{% include menu.html title="Databricks" %}
+
+<hr>
+<h1>FoundationDB</h1>
+<h2>Functions to insert, retrieve all, and retrieve a specific key</h2>
+
+<pre><code class="language-python">
+import foundationdb
+import json
+
+foundationdb.api_version(630)
+db = foundationdb.open()
+
+# Helper: Convert integer ID to bytes
+def id_to_key(student_id: int) -> bytes:
+    return str(student_id).encode()
+
+# Insert multiple students
+@foundationdb.transactional
+def insert_students(tr):
+    students = {
+        1001: {"first": "Alice",   "last": "Smith",   "email": "alice@example.com",   "city": "Seattle",  "state": "WA"},
+        1002: {"first": "Bob",     "last": "Johnson", "email": "bob@example.com",     "city": "Portland", "state": "OR"},
+        1003: {"first": "Charlie", "last": "Lee",     "email": "charlie@example.com", "city": "San Jose", "state": "CA"}
+    }
+    for student_id, info in students.items():
+        key = id_to_key(student_id)
+        tr[key] = json.dumps(info).encode()
+
+# Read all students
+@foundationdb.transactional
+def read_all_students(tr):
+    print("All student records:")
+    for key, value in tr.get_range(b'', b'\xff'):
+        student_id = key.decode()
+        info = json.loads(value.decode())
+        print(f"ID: {student_id}, Name: {info['first']} {info['last']}, Email: {info['email']}, City: {info['city']}, State: {info['state']}")
+
+# Retrieve a specific student by ID
+@foundationdb.transactional
+def get_student_by_id(tr, student_id: int):
+    key = id_to_key(student_id)
+    value = tr.get(key).wait()
+    if value:
+        info = json.loads(value.decode())
+        print(f"Record for ID {student_id}: {info['first']} {info['last']}, {info['email']}, {info['city']}, {info['state']}")
+    else:
+        print(f"No record found for ID {student_id}")
+
+# Main entry
+def main():
+    insert_students(db)
+    read_all_students(db)
+    get_student_by_id(db, 1002)  # Retrieve Bob's record
+
+if __name__ == '__main__':
+    main()
+
+
+</code></pre>
+
+

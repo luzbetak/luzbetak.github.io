@@ -1,0 +1,320 @@
+/* Remove body margin/padding to eliminate gap above navbar */
+body {
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset navbar link styles to prevent inheritance from style.css */
+.navbar li {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
+/* Override base style.css with higher specificity */
+nav.navbar {
+  overflow: visible !important;
+}
+
+nav.navbar a {
+  float: none !important;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 14px;
+  gap: 6px;
+  margin: 8px 12px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  background-color: #0066cc;
+  border-bottom: 1px solid #004499;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  position: relative;
+  z-index: 9999;
+  overflow: visible !important;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.navbar > ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar > ul > li {
+  position: relative;
+}
+
+.navbar a {
+  display: block;
+  padding: 12px 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover on top-level items */
+.navbar > ul > li:hover > a {
+  background-color: #004499;
+  color: #ffffff;
+}
+
+/* Main dropdown menu */
+.navbar .dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1a1a1a;
+  min-width: 180px;
+  width: auto;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  z-index: 10000;
+  border: 1px solid #333;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: visible !important;
+}
+
+/* Compact dropdown for smaller menus */
+.dropdown-compact {
+  min-width: 160px !important;
+}
+
+/* Show dropdown on hover */
+.navbar > ul > li:hover > .dropdown {
+  display: block !important;
+}
+
+.navbar .dropdown li {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: auto;
+  position: relative;
+}
+
+.navbar .dropdown li a {
+  padding: 8px 28px 8px 16px;
+  font-size: 14px;
+  text-align: left !important;
+  white-space: nowrap;
+  display: block;
+  color: #00ccff;
+  position: relative;
+  z-index: 1;
+}
+
+.navbar .dropdown li a:hover {
+  background-color: #333;
+  color: #ffcc00;
+}
+
+/* Section headers inside dropdown */
+.dropdown-section-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #66b3ff;
+  padding: 8px 16px 4px 16px;
+  margin-top: 8px;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  cursor: default;
+  pointer-events: none;
+}
+
+.dropdown-section-header:first-child {
+  margin-top: 0;
+}
+
+/* Items with submenus - FIXED */
+.has-submenu {
+  position: relative !important;
+}
+
+.has-submenu > a {
+  padding-right: 28px !important;
+}
+
+.has-submenu > a::after {
+  content: "→";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #66b3ff;
+  font-size: 14px;
+}
+
+/* Nested submenu - FIXED POSITIONING */
+.submenu {
+  display: none !important;
+  position: absolute !important;
+  left: 100% !important;
+  top: -8px !important;
+  background-color: #262626;
+  min-width: 200px;
+  width: auto;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.9);
+  z-index: 10001 !important;
+  border: 1px solid #444;
+  border-left: 3px solid #00ccff;
+}
+
+/* Show submenu on hover - FIXED */
+.has-submenu:hover > .submenu,
+.submenu:hover {
+  display: block !important;
+}
+
+/* Ensure parent stays highlighted when hovering submenu */
+.has-submenu:hover > a {
+  background-color: #333;
+  color: #ffcc00;
+}
+
+.submenu li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.submenu li a {
+  padding: 10px 20px;
+  font-size: 13px;
+  color: #80d4ff;
+  display: block;
+  text-decoration: none;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+.submenu li a:hover {
+  background-color: #404040;
+  color: #ffcc00;
+}
+
+/* Optional folder icon for items with submenus */
+.has-submenu > a::before {
+  content: "📁 ";
+  font-size: 12px;
+  opacity: 0.7;
+  margin-right: 4px;
+}
+
+/* Scrollbar styling for dropdown menus */
+.dropdown::-webkit-scrollbar,
+.submenu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown::-webkit-scrollbar-track,
+.submenu::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.dropdown::-webkit-scrollbar-thumb,
+.submenu::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover,
+.submenu::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Animation for smooth dropdown appearance */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dropdown {
+  animation: slideDown 0.2s ease-out;
+}
+
+.submenu {
+  animation: slideRight 0.2s ease-out;
+}
+
+/* Visual separation between sections */
+.dropdown li + .dropdown-section-header {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #444;
+}
+
+/* Ensure dropdown container doesn't clip submenus */
+.navbar .dropdown {
+  overflow: visible !important;
+}
+
+/* Add scrolling only to dropdown content if needed */
+.dropdown-scrollable {
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: visible !important;
+}
+
+/* Ensure proper stacking context */
+.navbar,
+.navbar * {
+  transform: translateZ(0);
+}
+
+/* Additional specificity to override any conflicting styles */
+nav.navbar .has-submenu:hover > ul.submenu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

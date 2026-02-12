@@ -1,0 +1,116 @@
+---
+---
+{% include menu.html title="Top Selling Products By Regions" %}
+<hr align=left width=1100>
+
+<h2>Python Script to Find Top-selling Products in Each Region (2023)</h2>
+
+<p>This Python script utilizes the <code>sqlite3</code> library to create a SQLite database, store sales data, and query the database to find the top-selling products in each region for the year 2023 based on total sales revenue.</p>
+
+<h3>Python Script Description:</h3>
+
+<ul>
+    <li>The script creates a SQLite database and a table called <code>sales</code> with sample data.</li>
+    <li>It calculates the total sales revenue by multiplying the <code>quantity</code> sold and the <code>price</code> of the product for the year 2023.</li>
+    <li>A ranking query is executed to find the top-selling product (highest sales revenue) in each region.</li>
+    <li>The result is displayed, showing the <code>region_id</code>, <code>product_id</code>, and <code>total_sales_revenue</code>.</li>
+</ul>
+
+<pre><code class="language-python">#!/usr/bin/env python
+
+import sqlite3
+
+# Connect to SQLite3 database (it will create the database if it doesn't exist)
+conn   = sqlite3.connect('sales_data.db')
+cursor = conn.cursor()
+
+# Create the sales table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS sales (
+    transaction_id INT,
+    product_id INT,
+    region_id INT,
+    sale_date DATE,
+    quantity INT,
+    price DECIMAL(10, 2)
+);
+''')
+
+# Insert the sample data
+cursor.executemany('''
+INSERT INTO sales VALUES (?, ?, ?, ?, ?, ?);
+''', [
+    (1, 101, 1, '2023-01-05', 100, 10.50),
+    (2, 102, 1, '2023-02-10', 150, 15.75),
+    (3, 103, 1, '2023-03-15', 200, 20.00),
+    (4, 101, 2, '2023-01-05', 120, 11.25),
+    (5, 102, 2, '2023-02-10', 180, 18.50),
+    (6, 103, 2, '2023-03-15', 220, 22.75),
+    (7, 101, 3, '2023-01-05', 80, 9.75),
+    (8, 102, 3, '2023-02-10', 100, 12.25),
+    (9, 103, 3, '2023-03-15', 150, 17.00)
+])
+
+# Commit the transaction
+conn.commit()
+
+# SQL query to find the top-selling product in each region for the year 2023
+query = '''
+WITH 
+sales_2023 AS (
+    SELECT 
+        product_id,
+        region_id,
+        SUM(quantity * price) AS total_sales_revenue
+    FROM 
+        sales
+    WHERE 
+        strftime('%Y', sale_date) = '2023'
+    GROUP BY 
+        product_id, region_id
+),
+ranked_sales AS (
+    SELECT 
+        product_id,
+        region_id,
+        total_sales_revenue,
+        RANK() OVER (PARTITION BY region_id ORDER BY total_sales_revenue DESC) AS rank
+    FROM 
+        sales_2023
+)
+SELECT 
+    region_id,
+    product_id,
+    total_sales_revenue
+FROM 
+    ranked_sales
+WHERE 
+    rank = 1;
+'''
+
+# Execute the query
+cursor.execute(query)
+results = cursor.fetchall()
+
+# Display the results
+print("Top-selling products in each region for 2023:")
+for row in results:
+    print(f"Region ID: {row[0]}, Product ID: {row[1]}, Total Sales Revenue: {row[2]}")
+
+# Close the connection
+conn.close()</code></pre>
+
+<pre><code class="language-markdown">Top-selling products in each region for 2023:
+Region ID: 1, Product ID: 103, Total Sales Revenue: 4000
+Region ID: 2, Product ID: 103, Total Sales Revenue: 5005.0
+Region ID: 3, Product ID: 103, Total Sales Revenue: 2550</code></pre>
+
+
+<h3>Explanation:</h3>
+<p>The script begins by creating a connection to a SQLite database. If the database does not exist, it creates one named <code>sales_data.db</code>. After connecting to the database, the <code>sales</code> table is created with the specified columns: <code>transaction_id</code>, <code>product_id</code>, <code>region_id</code>, <code>sale_date</code>, <code>quantity</code>, and <code>price</code>. The sample data is then inserted into the table.</p>
+
+<p>Once the data is inserted, the script runs an SQL query to calculate the total sales revenue for each product in each region for the year 2023. It uses a window function <code>RANK()</code> to rank the products by their total sales revenue within each region. The script then selects the product with the highest sales revenue in each region and displays the result.</p>
+
+
+{% include footer.html %}
+

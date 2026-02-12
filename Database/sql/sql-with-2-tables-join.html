@@ -1,0 +1,88 @@
+---
+---
+{% include menu.html title="WITH 2 Tables JOIN" %}
+
+<pre><code class="language-sql">DROP TABLE IF EXISTS tmp_Filter_Students;
+
+-- ---------------------------------------------------------------------------- --
+CREATE OR REPLACE TABLE tmp_Filter_Students AS
+SELECT 
+    student_id, first_name, last_name, email, major 
+FROM students 
+WHERE 
+       LOWER(major) LIKE LOWER('%Artificial Intelligence%') 
+    OR LOWER(major) LIKE LOWER('%Large Language Model%');
+
+</code></pre>
+<hr>
+<pre><code class="language-sql">WITH 
+-- ---------------------------------------------------------------------------- --
+Filter_Students AS (
+    SELECT * FROM students
+    WHERE LOWER(subject) LIKE LOWER('%Artificial Intelligence%')
+       OR LOWER(subject) LIKE LOWER('%Large Lnaguage Model%')
+),
+-- ---------------------------------------------------------------------------- --
+Filter_Curriculum AS (
+    SELECT * FROM curriculum
+    WHERE LOWER(body) LIKE LOWER('%Graduated%')
+)
+-- ---------------------------------------------------------------------------- --
+SELECT *
+FROM Filter_Students 
+JOIN Filter_Curriculum ON Filter_Students.student_id = Filter_Curriculum.student_id
+
+ORDER BY RAND() LIMIT 100;
+-- ---------------------------------------------------------------------------- --
+</code></pre>
+<hr>
+<pre><code class="language-sql">WITH 
+-- ---------------------------------------------------------------------------- --
+Filter_Students AS (
+    SELECT student_id, first_name, last_name, email, major 
+    FROM students 
+    WHERE 
+           LOWER(major) LIKE LOWER('%Artificial Intelligence%') 
+        OR LOWER(major) LIKE LOWER('%Large Language Model%')
+),
+-- ---------------------------------------------------------------------------- --
+Filter_Curriculum AS (
+    SELECT curriculum_id, student_id, curriculum_name, program_type 
+    FROM curriculum 
+    WHERE 
+        LOWER(program_type) LIKE LOWER('%Graduated%')
+),
+-- ---------------------------------------------------------------------------- --
+Grades_Table AS (
+    SELECT student_id, course_id, grade, semester 
+    FROM grades 
+    WHERE grade IS NOT NULL
+),
+-- ---------------------------------------------------------------------------- --
+Courses_Table AS (
+    SELECT course_id, course_name, instructor 
+    FROM courses
+),
+-- ---------------------------------------------------------------------------- --
+Joined_Results AS (
+    SELECT s.student_id, s.first_name, s.last_name, s.email, 
+           c.curriculum_name, 
+           g.grade, g.semester, 
+           cr.course_name, cr.instructor
+
+    FROM Filter_Students   AS s
+    JOIN Filter_Curriculum AS c  ON s.student_id = c.student_id
+    JOIN Grades_Table      AS g  ON s.student_id = g.student_id
+    JOIN Courses_Table     AS cr ON g.course_id  = cr.course_id
+)
+-- ---------------------------------------------------------------------------- --
+SELECT * 
+FROM Joined_Results
+ORDER BY RAND() LIMIT 100;
+-- ---------------------------------------------------------------------------- --
+</code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>

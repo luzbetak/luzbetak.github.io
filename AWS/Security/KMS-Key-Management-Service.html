@@ -1,0 +1,44 @@
+---
+---
+{% include menu.html title="KMS - Key Management Service" %}
+<hr align=left width=1100>
+
+<section>
+  <h3>AWS Key Management Service (KMS)</h3>
+  <p>AWS Key Management Service (KMS) is a managed service that enables you to create, control, and manage encryption keys used to secure your data across AWS services and applications. KMS integrates seamlessly with various AWS services to provide a unified and consistent approach to encryption, making it easier to protect sensitive data in the cloud.</p>
+
+  <h4>Key Features:</h4>
+  <ul>
+    <li><strong>Centralized Key Management:</strong> KMS provides a centralized repository for creating, storing, and managing cryptographic keys, allowing you to control encryption across your AWS environment from a single service.</li>
+    <li><strong>Integration with AWS Services:</strong> KMS integrates with a wide range of AWS services, including S3, RDS, EBS, Lambda, and others, enabling you to encrypt data at rest and in transit with minimal configuration.</li>
+    <li><strong>Granular Access Control:</strong> Control access to your keys using IAM policies and KMS key policies, ensuring that only authorized users and services can use or manage your encryption keys.</li>
+    <li><strong>Automatic Key Rotation:</strong> KMS supports automatic key rotation, which helps to enhance security by periodically rotating the cryptographic keys without disrupting ongoing operations.</li>
+    <li><strong>Audit and Compliance:</strong> KMS integrates with AWS CloudTrail, logging all key usage and management activities, which helps you meet compliance and auditing requirements.</li>
+    <li><strong>Custom Key Store:</strong> KMS offers a custom key store feature that allows you to create and manage keys in hardware security modules (HSMs) that you control, providing an additional layer of security for highly sensitive data.</li>
+  </ul>
+
+  <h4>Common Use Cases:</h4>
+  <ul>
+    <li><strong>Data Encryption:</strong> Encrypt data stored in AWS services like S3, RDS, EBS, and DynamoDB to protect sensitive information at rest.</li>
+    <li><strong>Application-Level Encryption:</strong> Use KMS to manage encryption keys for application-level encryption, ensuring that sensitive data processed by your applications is secured.</li>
+    <li><strong>Digital Signing:</strong> Use KMS for digital signing operations to verify the integrity and authenticity of data, code, and communications.</li>
+    <li><strong>Key Management for SaaS Providers:</strong> SaaS providers can use KMS to manage and control encryption keys on behalf of their customers, offering encryption as a feature of their service.</li>
+    <li><strong>Compliance and Regulatory Requirements:</strong> Meet industry-specific compliance requirements for data protection by managing encryption keys securely with KMS.</li>
+  </ul>
+
+  <h4>Example Workflow:</h4>
+  <ol>
+    <li><strong>Create a Key:</strong> Use the AWS Management Console, SDK, or CLI to create a Customer Master Key (CMK) in KMS.</li>
+    <li><strong>Define Key Policies:</strong> Set up key policies to define who can use and manage the key, specifying permissions at a granular level.</li>
+    <li><strong>Encrypt Data:</strong> Use the created CMK to encrypt data in services like S3, RDS, or directly in your applications using the KMS API.</li>
+    <li><strong>Manage Keys:</strong> Regularly monitor key usage and manage key lifecycle activities, such as rotation and deletion, to ensure ongoing security.</li>
+    <li><strong>Audit Key Usage:</strong> Use AWS CloudTrail to audit all key usage and management activities, ensuring compliance with security policies and regulations.</li>
+  </ol>
+
+  <p>AWS KMS provides a robust, scalable, and integrated solution for managing encryption keys and securing data across your AWS environment. By leveraging KMS, you can ensure that your sensitive data is protected and compliant with industry standards and best practices.</p>
+</section>
+
+
+{% include footer.html %}
+</body>
+</html>

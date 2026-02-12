@@ -1,0 +1,513 @@
+---
+---
+{% include menu.html title="How Vector Embeddings Work in RAG" %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Vector Embeddings Work in RAG</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0a0e1a;
+            color: #e0e4f0;
+            min-height: 100vh;
+            padding: 40px;
+            background-image: 
+                radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .number {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Embedding Model Section */
+        .embedding-demo {
+            background: rgba(30, 35, 50, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .model-label {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #60a5fa;
+            margin-bottom: 25px;
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .words-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .word-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .word-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100px;
+            text-align: right;
+            color: #f0f4ff;
+        }
+
+        .arrow {
+            color: #4b5563;
+            font-size: 1.5rem;
+        }
+
+        .vector-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vector-box {
+            display: flex;
+            gap: 4px;
+            background: rgba(15, 20, 35, 0.8);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .vector-num {
+            color: #60a5fa;
+        }
+
+        .vector-num.negative {
+            color: #f472b6;
+        }
+
+        .dimension-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #6b7280;
+            white-space: nowrap;
+        }
+
+        /* Same Dimensions Callout */
+        .callout {
+            margin-top: 25px;
+            padding: 16px 20px;
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 3px solid #a78bfa;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .callout strong {
+            color: #a78bfa;
+        }
+
+        /* Similarity Section */
+        .similarity-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .similarity-card {
+            background: rgba(30, 35, 50, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .similarity-pair {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sim-word {
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 8px;
+        }
+
+        .sim-vs {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .similarity-score {
+            text-align: center;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .score-high {
+            color: #34d399;
+        }
+
+        .score-low {
+            color: #f87171;
+        }
+
+        .score-label {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+
+        .formula-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(15, 20, 35, 0.8);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        /* RAG Flow Section */
+        .rag-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(30, 35, 50, 0.6);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #4b5563;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .step-example {
+            margin-top: 12px;
+            padding: 10px;
+            background: rgba(15, 20, 35, 0.8);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #60a5fa;
+        }
+
+        /* Key Insight */
+        .key-insight {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(168, 85, 247, 0.15));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .key-insight h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #f0f4ff;
+        }
+
+        .key-insight p {
+            font-size: 1rem;
+            color: #c4c9d9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .similarity-demo {
+                grid-template-columns: 1fr;
+            }
+            
+            .rag-flow {
+                flex-direction: column;
+            }
+            
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -15px;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How Vector Embeddings Work in RAG</h1>
+
+        <!-- Section 1: Embedding -->
+        <div class="section">
+            <div class="section-title">
+                <span class="number">1</span>
+                Text → Vector (Fixed Dimensions)
+            </div>
+            <div class="embedding-demo">
+                <div class="model-label">multi-qa-mpnet model → 768 dimensions per text</div>
+                <div class="words-grid">
+                    <div class="word-row">
+                        <span class="word-label">cat</span>
+                        <span class="arrow">→</span>
+                        <div class="vector-container">
+                            <div class="vector-box">
+                                <span class="vector-num">0.23</span>,
+                                <span class="vector-num negative">-0.45</span>,
+                                <span class="vector-num">0.12</span>,
+                                <span class="vector-num negative">-0.08</span>,
+                                <span class="vector-num">0.67</span>,
+                                <span style="color: #6b7280">...</span>
+                            </div>
+                            <span class="dimension-label">768 numbers total</span>
+                        </div>
+                    </div>
+                    <div class="word-row">
+                        <span class="word-label">dog</span>
+                        <span class="arrow">→</span>
+                        <div class="vector-container">
+                            <div class="vector-box">
+                                <span class="vector-num">0.18</span>,
+                                <span class="vector-num negative">-0.32</span>,
+                                <span class="vector-num">0.08</span>,
+                                <span class="vector-num">0.15</span>,
+                                <span class="vector-num">0.59</span>,
+                                <span style="color: #6b7280">...</span>
+                            </div>
+                            <span class="dimension-label">768 numbers total</span>
+                        </div>
+                    </div>
+                    <div class="word-row">
+                        <span class="word-label">car</span>
+                        <span class="arrow">→</span>
+                        <div class="vector-container">
+                            <div class="vector-box">
+                                <span class="vector-num negative">-0.41</span>,
+                                <span class="vector-num">0.22</span>,
+                                <span class="vector-num negative">-0.33</span>,
+                                <span class="vector-num">0.54</span>,
+                                <span class="vector-num negative">-0.12</span>,
+                                <span style="color: #6b7280">...</span>
+                            </div>
+                            <span class="dimension-label">768 numbers total</span>
+                        </div>
+                    </div>
+                    <div class="word-row">
+                        <span class="word-label" style="font-size: 0.85rem; color: #a78bfa;">"vitamin C deficiency"</span>
+                        <span class="arrow">→</span>
+                        <div class="vector-container">
+                            <div class="vector-box">
+                                <span class="vector-num">0.35</span>,
+                                <span class="vector-num">0.61</span>,
+                                <span class="vector-num negative">-0.18</span>,
+                                <span class="vector-num">0.42</span>,
+                                <span class="vector-num">0.09</span>,
+                                <span style="color: #6b7280">...</span>
+                            </div>
+                            <span class="dimension-label">768 numbers total</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="callout">
+                    <strong>Key Point:</strong> Every text (word, sentence, paragraph) becomes exactly <strong>768 numbers</strong>. 
+                    The dimension count is fixed by the model, not by your data. 1 word or 1 million documents → same 768 dimensions each.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Similarity -->
+        <div class="section">
+            <div class="section-title">
+                <span class="number">2</span>
+                Cosine Similarity (Comparing Vectors)
+            </div>
+            <div class="similarity-demo">
+                <div class="similarity-card">
+                    <div class="similarity-pair">
+                        <span class="sim-word">cat</span>
+                        <span class="sim-vs">vs</span>
+                        <span class="sim-word">dog</span>
+                    </div>
+                    <div class="similarity-score">
+                        <div class="score-value score-high">0.66</div>
+                        <div class="score-label">Similar (both animals)</div>
+                    </div>
+                    <div class="formula-box">
+                        Both vectors point in similar directions<br>in 768-dimensional space
+                    </div>
+                </div>
+                <div class="similarity-card">
+                    <div class="similarity-pair">
+                        <span class="sim-word">cat</span>
+                        <span class="sim-vs">vs</span>
+                        <span class="sim-word">smartphone</span>
+                    </div>
+                    <div class="similarity-score">
+                        <div class="score-value score-low">0.24</div>
+                        <div class="score-label">Different (unrelated concepts)</div>
+                    </div>
+                    <div class="formula-box">
+                        Vectors point in different directions<br>in 768-dimensional space
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: RAG Flow -->
+        <div class="section">
+            <div class="section-title">
+                <span class="number">3</span>
+                RAG System Flow
+            </div>
+            <div class="rag-flow">
+                <div class="flow-step">
+                    <div class="step-icon">📄</div>
+                    <div class="step-title">Index Documents</div>
+                    <div class="step-desc">Chunk your medical documents and convert each chunk to a 768-dim vector</div>
+                    <div class="step-example">1000 chunks → 1000 vectors stored</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">❓</div>
+                    <div class="step-title">User Query</div>
+                    <div class="step-desc">Convert the user's question to a vector using the same model</div>
+                    <div class="step-example">"scurvy symptoms" → [0.35, ...]</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-title">Vector Search</div>
+                    <div class="step-desc">Find chunks with highest cosine similarity to query vector</div>
+                    <div class="step-example">Top 5 chunks: 0.89, 0.84, 0.81...</div>
+                </div>
+                <div class="flow-step">
+                    <div class="step-icon">🤖</div>
+                    <div class="step-title">Generate Answer</div>
+                    <div class="step-desc">Pass retrieved chunks as context to LLM for answer generation</div>
+                    <div class="step-example">LLM + context → accurate answer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insight -->
+        <div class="section">
+            <div class="key-insight">
+                <h3>💡 Why This Works</h3>
+                <p>
+                    The embedding model learned from billions of text examples to place 
+                    <span class="highlight">semantically similar text</span> at nearby positions in 768-dimensional space. 
+                    So "scurvy" and "vitamin C deficiency" end up close together, even though they share no words. 
+                    That's why <span class="highlight">semantic search beats keyword matching</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% include footer.html %}

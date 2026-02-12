@@ -1,0 +1,370 @@
+---
+---
+{% include menu.html title="Snoflake Production" %}
+
+
+<body>
+<h1>Snoflake Production Guide</h1>
+
+<p>Comprehensive guide covering essential Snowflake concepts, features, and common interview topics for data engineering, data analyst, and architect positions.</p>
+
+<h2>1. Core Architecture Components</h2>
+
+<h3>Key Concepts to Master:</h3>
+<ul>
+    <li><strong>Multi-cluster Shared Data Architecture:</strong> Understand separation of storage and compute</li>
+    <li><strong>Virtual Warehouses:</strong>
+        <ul>
+            <li>Sizes (XS to 4XL) and scaling patterns</li>
+            <li>Auto-suspend and auto-resume functionality</li>
+            <li>Multi-cluster warehouses for concurrency</li>
+            <li>Scaling policies (Standard vs Economy)</li>
+        </ul>
+    </li>
+    <li><strong>Micro-partitions:</strong>
+        <ul>
+            <li>50-500MB of uncompressed data</li>
+            <li>Automatic clustering and pruning</li>
+            <li>Columnar storage format</li>
+            <li>Immutable nature</li>
+        </ul>
+    </li>
+    <li><strong>Cloud Services Layer:</strong> Authentication, query optimization, metadata management</li>
+</ul>
+
+<h2>2. Performance Optimization Techniques</h2>
+
+<h3>Query Performance:</h3>
+<ul>
+    <li><strong>Query Pruning:</strong> How Snowflake eliminates unnecessary micro-partitions</li>
+    <li><strong>Result Caching:</strong>
+        <ul>
+            <li>24-hour cache retention</li>
+            <li>Deterministic query requirements</li>
+            <li>Cache invalidation scenarios</li>
+        </ul>
+    </li>
+    <li><strong>Metadata Cache:</strong> Cloud services layer caching</li>
+    <li><strong>Data Cache:</strong> Virtual warehouse local disk caching</li>
+    <li><strong>Clustering Keys:</strong>
+        <ul>
+            <li>When to use clustering</li>
+            <li>Maximum 4 columns per key</li>
+            <li>Automatic reclustering</li>
+            <li>Clustering depth monitoring</li>
+        </ul>
+    </li>
+    <li><strong>Search Optimization Service:</strong> Point lookup queries enhancement</li>
+    <li><strong>Query Acceleration Service:</strong> Automatic query optimization for outliers</li>
+</ul>
+
+<h3>Common Performance Interview Questions:</h3>
+<ol>
+    <li>How would you optimize a slow-running query?</li>
+    <li>When would you use clustering keys vs partitioning?</li>
+    <li>Explain the difference between scaling up vs scaling out</li>
+    <li>How does result caching work and when does it apply?</li>
+</ol>
+
+<h2>3. Data Loading and Unloading</h2>
+
+<h3>Loading Methods:</h3>
+<ul>
+    <li><strong>COPY Command:</strong>
+        <ul>
+            <li>Bulk loading best practice</li>
+            <li>File format specifications</li>
+            <li>Error handling (ON_ERROR options)</li>
+            <li>VALIDATION_MODE for testing</li>
+        </ul>
+    </li>
+    <li><strong>Snowpipe:</strong>
+        <ul>
+            <li>Continuous data ingestion</li>
+            <li>REST API vs Auto-ingest</li>
+            <li>Event notifications (AWS SQS, Azure Event Grid)</li>
+            <li>Billing per core-second</li>
+        </ul>
+    </li>
+    <li><strong>Snowpipe Streaming:</strong>
+        <ul>
+            <li>Real-time streaming ingestion</li>
+            <li>Kafka and Kinesis connectors</li>
+            <li>Exactly-once semantics</li>
+        </ul>
+    </li>
+    <li><strong>External Tables:</strong> Query data without loading</li>
+    <li><strong>Data Sharing:</strong> Zero-copy cloning across accounts</li>
+</ul>
+
+<h3>File Formats and Stages:</h3>
+<ul>
+    <li><strong>File Formats:</strong> CSV, JSON, Avro, ORC, Parquet, XML</li>
+    <li><strong>Stage Types:</strong>
+        <ul>
+            <li>User stages (@~)</li>
+            <li>Table stages (@%tablename)</li>
+            <li>Named internal stages</li>
+            <li>External stages (S3, Azure, GCS)</li>
+        </ul>
+    </li>
+    <li><strong>PUT/GET Commands:</strong> Local file operations</li>
+</ul>
+
+<h2>4. Security Features</h2>
+
+<h3>Access Control:</h3>
+<ul>
+    <li><strong>RBAC (Role-Based Access Control):</strong>
+        <ul>
+            <li>System-defined roles (ACCOUNTADMIN, SYSADMIN, SECURITYADMIN)</li>
+            <li>Role hierarchy and inheritance</li>
+            <li>Principle of least privilege</li>
+        </ul>
+    </li>
+    <li><strong>Discretionary Access Control (DAC):</strong> Object ownership model</li>
+    <li><strong>Row Access Policies:</strong> Row-level security implementation</li>
+    <li><strong>Column-level Security:</strong>
+        <ul>
+            <li>Dynamic Data Masking</li>
+            <li>External tokenization</li>
+            <li>Column-level encryption</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Data Protection:</h3>
+<ul>
+    <li><strong>Encryption:</strong>
+        <ul>
+            <li>At-rest: AES-256 encryption</li>
+            <li>In-transit: TLS 1.2+</li>
+            <li>Tri-Secret Secure with customer-managed keys</li>
+        </ul>
+    </li>
+    <li><strong>Network Policies:</strong> IP allowlisting/blocking</li>
+    <li><strong>Private Link:</strong> AWS PrivateLink, Azure Private Link</li>
+    <li><strong>OAuth Integration:</strong> External authentication</li>
+    <li><strong>MFA Support:</strong> Multi-factor authentication</li>
+</ul>
+
+<h2>5. Time Travel and Data Protection</h2>
+
+<h3>Time Travel:</h3>
+<ul>
+    <li><strong>Retention Periods:</strong>
+        <ul>
+            <li>Standard Edition: 1 day</li>
+            <li>Enterprise Edition: Up to 90 days</li>
+            <li>Transient/Temporary tables: 0-1 day</li>
+        </ul>
+    </li>
+    <li><strong>Operations:</strong>
+        <ul>
+            <li>Query historical data (AT/BEFORE)</li>
+            <li>Clone historical objects</li>
+            <li>Undrop tables/schemas/databases</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Fail-safe:</h3>
+<ul>
+    <li>7-day period after Time Travel</li>
+    <li>Only accessible by Snowflake Support</li>
+    <li>Not available for transient/temporary tables</li>
+</ul>
+
+<h2>6. Cost Optimization Strategies</h2>
+
+<h3>Compute Cost Management:</h3>
+<ul>
+    <li><strong>Warehouse Sizing:</strong> Start small, monitor, and scale as needed</li>
+    <li><strong>Auto-suspend:</strong> Set appropriate timeouts (5-10 minutes typical)</li>
+    <li><strong>Resource Monitors:</strong> Set credit quotas and alerts</li>
+    <li><strong>Query Optimization:</strong> Use EXPLAIN plans and Query Profile</li>
+    <li><strong>Warehouse Segregation:</strong> Separate workloads by warehouse</li>
+</ul>
+
+<h3>Storage Cost Management:</h3>
+<ul>
+    <li><strong>Data Retention:</strong> Implement appropriate Time Travel settings</li>
+    <li><strong>Compression:</strong> Automatic, but monitor compression ratios</li>
+    <li><strong>Cloning:</strong> Use zero-copy clones instead of copying data</li>
+    <li><strong>Table Types:</strong> Use transient for non-critical data</li>
+    <li><strong>Fail-safe Costs:</strong> Understand the 7-day additional storage</li>
+</ul>
+
+<h2>7. Advanced Features</h2>
+
+<h3>Data Sharing:</h3>
+<ul>
+    <li><strong>Secure Data Sharing:</strong> No data movement or copying</li>
+    <li><strong>Data Marketplace:</strong> Monetize and discover datasets</li>
+    <li><strong>Data Exchange:</strong> Private data sharing hub</li>
+    <li><strong>Reader Accounts:</strong> Share with non-Snowflake users</li>
+</ul>
+
+<h3>Semi-structured Data:</h3>
+<ul>
+    <li><strong>VARIANT Data Type:</strong> Store JSON, Avro, ORC, Parquet, XML</li>
+    <li><strong>Querying:</strong> Dot notation and bracket notation</li>
+    <li><strong>FLATTEN Function:</strong> Explode nested arrays</li>
+    <li><strong>Automatic Schema Detection:</strong> INFER_SCHEMA function</li>
+</ul>
+
+<h3>Programmability:</h3>
+<ul>
+    <li><strong>Stored Procedures:</strong> JavaScript, SQL, Python, Java, Scala</li>
+    <li><strong>User-Defined Functions (UDFs):</strong> Scalar and tabular functions</li>
+    <li><strong>Snowpark:</strong> DataFrame API for Python, Java, Scala</li>
+    <li><strong>Tasks:</strong> Scheduled SQL execution</li>
+    <li><strong>Streams:</strong> Change Data Capture (CDC)</li>
+    <li><strong>External Functions:</strong> AWS Lambda, Azure Functions integration</li>
+</ul>
+
+<h2>8. Common Interview Scenarios</h2>
+
+<h3>Scenario-based Questions:</h3>
+<ol>
+    <li><strong>High Concurrency Issue:</strong>
+        <ul>
+            <li>Solution: Multi-cluster warehouses</li>
+            <li>Consider scaling policy (Standard vs Economy)</li>
+        </ul>
+    </li>
+    <li><strong>Large Data Migration:</strong>
+        <ul>
+            <li>Use COPY with parallel processing</li>
+            <li>Stage files in cloud storage</li>
+            <li>Consider file sizing (100-250MB compressed)</li>
+        </ul>
+    </li>
+    <li><strong>Real-time Analytics:</strong>
+        <ul>
+            <li>Implement Snowpipe or Snowpipe Streaming</li>
+            <li>Use Streams and Tasks for CDC</li>
+            <li>Consider Dynamic Tables</li>
+        </ul>
+    </li>
+    <li><strong>Cost Spike Investigation:</strong>
+        <ul>
+            <li>Check warehouse utilization</li>
+            <li>Review query history and duration</li>
+            <li>Analyze storage growth</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>9. SQL and Query Patterns</h2>
+
+<h3>Important SQL Features:</h3>
+<ul>
+    <li><strong>CTEs (Common Table Expressions):</strong> WITH clause usage</li>
+    <li><strong>Window Functions:</strong> ROW_NUMBER, RANK, LAG, LEAD</li>
+    <li><strong>QUALIFY Clause:</strong> Filter window function results</li>
+    <li><strong>PIVOT/UNPIVOT:</strong> Data transformation</li>
+    <li><strong>MERGE Statement:</strong> Upsert operations</li>
+    <li><strong>Recursive CTEs:</strong> Hierarchical queries</li>
+    <li><strong>MATCH_RECOGNIZE:</strong> Pattern matching in sequences</li>
+</ul>
+
+<h2>10. Monitoring and Troubleshooting</h2>
+
+<h3>Key Views and Functions:</h3>
+<ul>
+    <li><strong>Information Schema:</strong> Database metadata queries</li>
+    <li><strong>Account Usage Schema:</strong>
+        <ul>
+            <li>QUERY_HISTORY view</li>
+            <li>WAREHOUSE_METERING_HISTORY</li>
+            <li>STORAGE_USAGE</li>
+            <li>LOGIN_HISTORY</li>
+        </ul>
+    </li>
+    <li><strong>Query Profile:</strong> Visual execution plan analysis</li>
+    <li><strong>SYSTEM Functions:</strong>
+        <ul>
+            <li>SYSTEM$CLUSTERING_DEPTH</li>
+            <li>SYSTEM$CLUSTERING_INFORMATION</li>
+            <li>SYSTEM$PIPE_STATUS</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>11. Best Practices to Mention</h2>
+
+<h3>Development Best Practices:</h3>
+<ol>
+    <li><strong>Use appropriate warehouse sizes</strong> - Don't over-provision</li>
+    <li><strong>Implement proper role hierarchy</strong> - Security first approach</li>
+    <li><strong>Design efficient data models</strong> - Consider denormalization</li>
+    <li><strong>Use clustering keys wisely</strong> - Only for large tables with specific access patterns</li>
+    <li><strong>Monitor and set resource monitors</strong> - Prevent runaway costs</li>
+    <li><strong>Leverage caching</strong> - Understand three-layer caching</li>
+    <li><strong>Use COPY instead of INSERT</strong> - For bulk operations</li>
+    <li><strong>Partition large files</strong> - 100-250MB compressed ideal</li>
+    <li><strong>Clean up temporary objects</strong> - Reduce storage costs</li>
+    <li><strong>Document data lineage</strong> - Use tags and comments</li>
+</ol>
+
+<h2>12. Recent Features to Know</h2>
+
+<h3>Latest Additions (2024-2025):</h3>
+<ul>
+    <li><strong>Dynamic Tables:</strong> Declarative data pipelines</li>
+    <li><strong>Hybrid Tables (Unistore):</strong> OLTP + OLAP workloads</li>
+    <li><strong>Iceberg Tables:</strong> Open table format support</li>
+    <li><strong>Snowpark ML:</strong> Machine learning frameworks</li>
+    <li><strong>Container Services:</strong> Run containerized workloads</li>
+    <li><strong>Document AI:</strong> Extract data from documents</li>
+    <li><strong>Alert and Notification:</strong> Event-driven architecture</li>
+    <li><strong>Git Integration:</strong> Version control for SQL scripts</li>
+</ul>
+
+<h2>13. Sample Technical Questions</h2>
+
+<h3>Architecture:</h3>
+<ol>
+    <li>Explain how Snowflake's architecture differs from traditional data warehouses</li>
+    <li>What happens when you submit a query in Snowflake?</li>
+    <li>How does Snowflake handle concurrency?</li>
+</ol>
+
+<h3>Performance:</h3>
+<ol>
+    <li>How would you improve the performance of a slow query?</li>
+    <li>When would you use a larger warehouse vs. a multi-cluster warehouse?</li>
+    <li>Explain the different caching layers in Snowflake</li>
+</ol>
+
+<h3>Data Loading:</h3>
+<ol>
+    <li>Compare COPY command vs Snowpipe for data ingestion</li>
+    <li>How would you handle semi-structured data in Snowflake?</li>
+    <li>Design a solution for real-time data ingestion</li>
+</ol>
+
+<h3>Security:</h3>
+<ol>
+    <li>How would you implement row-level security?</li>
+    <li>Explain the role hierarchy in Snowflake</li>
+    <li>How does Snowflake encrypt data?</li>
+</ol>
+
+<h2>14. Hands-on Skills to Demonstrate</h2>
+
+<ul>
+    <li><strong>Write efficient SQL queries</strong> using CTEs and window functions</li>
+    <li><strong>Design a data loading pipeline</strong> using stages and COPY</li>
+    <li><strong>Implement security</strong> with roles and access policies</li>
+    <li><strong>Optimize query performance</strong> using Query Profile</li>
+    <li><strong>Set up monitoring</strong> with resource monitors and alerts</li>
+    <li><strong>Handle JSON data</strong> using VARIANT and FLATTEN</li>
+    <li><strong>Create clones</strong> for development environments</li>
+    <li><strong>Implement CDC</strong> using Streams and Tasks</li>
+</ul>
+
+</body>
+
+{% include footer.html %}

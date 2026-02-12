@@ -1,0 +1,95 @@
+---
+---
+{% include menu.html title="Relational Databases and Data Warehousing" %}
+
+<h1>Relational Databases and Data Warehousing</h1>
+    
+    <h2>1. Relational Databases</h2>
+    <p>Relational databases are structured to store data in tables (or relations) where rows represent records and columns represent attributes. They are based on relational algebra, a theory proposed by Edgar Codd in 1970.</p>
+
+    <h3>Key Features of Relational Databases</h3>
+    <ul>
+        <li><strong>Tables, Rows, and Columns</strong>: Data is organized into tables with predefined columns and rows. Each row represents a unique record, and each column holds an attribute of that record.</li>
+        <li><strong>Primary and Foreign Keys</strong>: 
+            <ul>
+                <li><strong>Primary Key</strong>: A unique identifier for each row in a table.</li>
+                <li><strong>Foreign Key</strong>: A reference to a primary key in another table, establishing relationships between tables.</li>
+            </ul>
+        </li>
+        <li><strong>ACID Compliance</strong>: 
+            <ul>
+                <li><strong>Atomicity</strong>: Ensures that each transaction is all-or-nothing.</li>
+                <li><strong>Consistency</strong>: Guarantees that a transaction brings the database from one valid state to another.</li>
+                <li><strong>Isolation</strong>: Transactions are executed independently of one another.</li>
+                <li><strong>Durability</strong>: Once a transaction is committed, it is permanently recorded in the database.</li>
+            </ul>
+        </li>
+        <li><strong>SQL (Structured Query Language)</strong>: SQL is the primary language for interacting with relational databases, allowing for querying, updating, and managing data.</li>
+    </ul>
+
+    <h3>Advantages of Relational Databases</h3>
+    <ul>
+        <li><strong>Structured Data</strong>: Well-suited for structured data with a clear schema and relationships between data entities.</li>
+        <li><strong>Data Integrity</strong>: Enforced by constraints such as primary and foreign keys, ensuring the accuracy and consistency of data.</li>
+        <li><strong>ACID Properties</strong>: Transactions are reliable and guarantee data consistency.</li>
+        <li><strong>Standardized Language</strong>: SQL is widely accepted and standardized for managing relational data.</li>
+    </ul>
+
+    <h2>2. Data Warehousing</h2>
+    <p>Data warehousing refers to the process of collecting and managing large volumes of structured data from multiple sources, specifically for analytics and business intelligence purposes. Unlike operational databases, data warehouses are optimized for querying and reporting.</p>
+
+    <h3>Key Concepts in Data Warehousing</h3>
+    <ul>
+        <li><strong>ETL (Extract, Transform, Load)</strong>: 
+            <ul>
+                <li><strong>Extract</strong>: Data is extracted from various sources such as databases, flat files, or APIs.</li>
+                <li><strong>Transform</strong>: Data is cleaned, transformed, and aggregated to match the schema of the target warehouse.</li>
+                <li><strong>Load</strong>: Transformed data is loaded into the data warehouse, ready for querying and analysis.</li>
+            </ul>
+        </li>
+        <li><strong>Data Marts</strong>: Subsets of a data warehouse, often organized around specific business functions such as sales or finance.</li>
+        <li><strong>OLAP (Online Analytical Processing)</strong>: A category of data processing that allows users to interactively analyze multidimensional data (e.g., performing "slice and dice" operations).</li>
+        <li><strong>Star Schema and Snowflake Schema</strong>: 
+            <ul>
+                <li><strong>Star Schema</strong>: A simple design with a central fact table connected to dimension tables.</li>
+                <li><strong>Snowflake Schema</strong>: A more complex design with normalized dimension tables, reducing redundancy.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Benefits of Data Warehousing</h3>
+    <ul>
+        <li><strong>Centralized Data</strong>: Consolidates data from multiple sources, providing a single source of truth for analytics.</li>
+        <li><strong>Optimized for Querying</strong>: Designed for read-heavy operations, allowing fast querying and reporting on large datasets.</li>
+        <li><strong>Historical Data</strong>: Stores historical data, enabling trend analysis and business intelligence over time.</li>
+        <li><strong>Improved Decision Making</strong>: Provides a comprehensive view of business data, supporting better decision-making.</li>
+    </ul>
+
+    <h2>3. Differences Between Relational Databases and Data Warehouses</h2>
+    <ul>
+        <li><strong>Purpose</strong>: 
+            <ul>
+                <li>Relational databases are used for transaction processing (OLTP) where data is frequently updated.</li>
+                <li>Data warehouses are used for analytics and reporting (OLAP) where data is mainly read and rarely updated.</li>
+            </ul>
+        </li>
+        <li><strong>Data Structure</strong>: 
+            <ul>
+                <li>Relational databases store current transactional data with a normalized structure to minimize redundancy.</li>
+                <li>Data warehouses store large volumes of historical data, often in a denormalized structure to improve query performance.</li>
+            </ul>
+        </li>
+        <li><strong>Performance</strong>: 
+            <ul>
+                <li>Relational databases are optimized for fast reads and writes of transactional data.</li>
+                <li>Data warehouses are optimized for complex queries on large datasets, using indexing, partitioning, and caching techniques.</li>
+            </ul>
+        </li>
+    </ul>
+
+{% include footer.html %}
+
+  </body>
+</html>
+
+

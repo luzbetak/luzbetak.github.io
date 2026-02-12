@@ -1,0 +1,259 @@
+---
+---
+{% include menu.html title="Snowflake Cortex RAG" %}
+
+<h1>Retrieval-Augmented Generation (RAG) Using Snowflake Cortex</h1>
+
+<h2>What is RAG?</h2>
+<p>Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation. Instead of relying solely on a standalone large language model (LLM), RAG first retrieves relevant data from a knowledge base and provides that context to the LLM. This approach makes responses more accurate and grounded in up-to-date information without requiring model retraining.</p>
+
+<h2>Why Use Snowflake Cortex for RAG?</h2>
+<ul>
+    <li><strong>Fully Managed Service:</strong> No need to set up integrations, manage infrastructure, or move data outside Snowflake's governance boundary</li>
+    <li><strong>Data Security:</strong> Your data stays within Snowflake, maintaining performance, scalability, and governance</li>
+    <li><strong>Hybrid Search:</strong> Combines vector (semantic) search with keyword search for optimal retrieval quality</li>
+    <li><strong>Automatic Embeddings:</strong> Cortex Search automatically generates embeddings without manual configuration</li>
+    <li><strong>Semantic Reranking:</strong> Automatically reranks results for higher relevance</li>
+</ul>
+
+<h2>Key Components of Snowflake Cortex for RAG</h2>
+
+<h3>1. Cortex Search Service</h3>
+<p>A fully managed hybrid search service that powers the retrieval component of RAG applications.</p>
+<ul>
+    <li>Enables low-latency, high-quality "fuzzy" search over Snowflake data</li>
+    <li>Automatically handles embedding, infrastructure maintenance, and index refreshes</li>
+    <li>Supports filtering based on metadata tags</li>
+</ul>
+
+<h3>2. Cortex LLM Functions</h3>
+<p>SQL and Python functions that provide access to industry-leading LLMs for the generation component.</p>
+<ul>
+    <li><strong>COMPLETE:</strong> Generates responses from prompts using LLMs like Mistral, Llama, Claude, and more</li>
+    <li><strong>EMBED_TEXT:</strong> Converts text into vector embeddings</li>
+    <li><strong>SUMMARIZE:</strong> Summarizes text content</li>
+    <li><strong>EXTRACT_ANSWER:</strong> Extracts answers from unstructured data</li>
+</ul>
+
+<h2>RAG Architecture with Snowflake Cortex</h2>
+<ol>
+    <li><strong>Data Ingestion:</strong> Store your documents in Snowflake tables</li>
+    <li><strong>Chunking:</strong> Split documents into smaller contextually rich blocks (recommended: 512 tokens or less)</li>
+    <li><strong>Indexing:</strong> Create a Cortex Search Service that automatically embeds and indexes your text</li>
+    <li><strong>Retrieval:</strong> Query the search service to find relevant document chunks</li>
+    <li><strong>Augmentation:</strong> Combine retrieved context with the user query</li>
+    <li><strong>Generation:</strong> Pass the augmented prompt to an LLM via the COMPLETE function</li>
+</ol>
+
+<h2>Implementation Steps</h2>
+
+<h3>Step 1: Set Up Database and Warehouse</h3>
+<pre><code class="language-sql">-- Create database and warehouse
+CREATE DATABASE IF NOT EXISTS cortex_search_db;
+
+CREATE OR REPLACE WAREHOUSE cortex_search_wh WITH
+   WAREHOUSE_SIZE='X-SMALL';
+
+CREATE OR REPLACE SCHEMA cortex_search_db.services;
+</code></pre>
+
+<h3>Step 2: Create and Populate Your Knowledge Base Table</h3>
+<pre><code class="language-sql">-- Create table for documents
+CREATE OR REPLACE TABLE support_transcripts (
+    transcript_text VARCHAR,
+    region VARCHAR,
+    agent_id VARCHAR
+);
+
+-- Insert sample data
+INSERT INTO support_transcripts VALUES
+    ('My internet has been down since yesterday, can you help?', 'North America', 'AG1001'),
+    ('I was overcharged for my last bill, need an explanation.', 'Europe', 'AG1002'),
+    ('How do I reset my password? The email link is not working.', 'Asia', 'AG1003'),
+    ('I received a faulty router, can I get it replaced?', 'North America', 'AG1004');
+</code></pre>
+
+<h3>Step 3: Create the Cortex Search Service</h3>
+<pre><code class="language-sql">-- Create Cortex Search Service for RAG retrieval
+CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
+  ON transcript_text
+  ATTRIBUTES region
+  WAREHOUSE = cortex_search_wh
+  TARGET_LAG = '1 day'
+  EMBEDDING_MODEL = 'snowflake-arctic-embed-l-v2.0'
+  AS (
+    SELECT
+        transcript_text,
+        region,
+        agent_id
+    FROM support_transcripts
+);
+</code></pre>
+
+<h3>Step 4: Query the Search Service (Retrieval)</h3>
+<pre><code class="language-sql">-- Preview search results
+SELECT PARSE_JSON(
+  SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+      'cortex_search_db.services.transcript_search_service',
+      '{
+        "query": "internet issues",
+        "columns":["transcript_text", "region"],
+        "filter": {"@eq": {"region": "North America"} },
+        "limit": 5
+      }'
+  )
+)['results'] as results;
+</code></pre>
+
+<h3>Step 5: Generate Response Using LLM (Generation)</h3>
+<pre><code class="language-sql">-- Use COMPLETE function for RAG response generation
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'mistral-large',
+    CONCAT(
+        'Based on the following context, answer the user question.\n\n',
+        'Context: ', retrieved_context, '\n\n',
+        'Question: ', user_question, '\n\n',
+        'Answer:'
+    )
+) AS response;
+</code></pre>
+
+<h3>Complete RAG Query Example</h3>
+<pre><code class="language-sql">-- Full RAG pipeline combining retrieval and generation
+WITH retrieved_docs AS (
+    SELECT PARSE_JSON(
+        SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+            'cortex_search_db.services.transcript_search_service',
+            '{
+                "query": "billing overcharge",
+                "columns": ["transcript_text", "region"],
+                "limit": 3
+            }'
+        )
+    )['results'] AS results
+)
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+    'mistral-large',
+    CONCAT(
+        'You are a helpful customer support assistant. ',
+        'Based on the following support transcripts, provide a helpful response.\n\n',
+        'Relevant transcripts: ', results::VARCHAR, '\n\n',
+        'Customer question: How do I dispute a billing charge?\n\n',
+        'Response:'
+    )
+) AS rag_response
+FROM retrieved_docs;
+</code></pre>
+
+<h2>Python Implementation with Snowpark</h2>
+<pre><code class="language-python">from snowflake.core import Root
+from snowflake.snowpark import Session
+from snowflake.cortex import Complete
+
+# Create session
+CONNECTION_PARAMETERS = {
+    "account": "your_account",
+    "user": "your_user",
+    "password": "your_password",
+    "warehouse": "cortex_search_wh",
+    "database": "cortex_search_db",
+    "schema": "services"
+}
+
+session = Session.builder.configs(CONNECTION_PARAMETERS).create()
+root = Root(session)
+
+# Get the search service
+search_service = (root
+    .databases["cortex_search_db"]
+    .schemas["services"]
+    .cortex_search_services["transcript_search_service"]
+)
+
+# Retrieval: Search for relevant documents
+user_query = "internet connection problems"
+search_response = search_service.search(
+    query=user_query,
+    columns=["transcript_text", "region"],
+    filter={"@eq": {"region": "North America"}},
+    limit=3
+)
+
+# Get retrieved context
+retrieved_context = search_response.to_json()
+
+# Generation: Use LLM with retrieved context
+prompt = f"""Based on the following customer support transcripts, 
+provide a helpful response to the user's question.
+
+Retrieved transcripts: {retrieved_context}
+
+User question: {user_query}
+
+Response:"""
+
+response = Complete(
+    model="mistral-large",
+    prompt=prompt,
+    session=session
+)
+
+print(response)
+</code></pre>
+
+<h2>Available Embedding Models for Cortex Search</h2>
+<ul>
+    <li><strong>snowflake-arctic-embed-m-v1.5:</strong> Default model, English-only, 512 token context, fastest indexing</li>
+    <li><strong>snowflake-arctic-embed-l-v2.0:</strong> Multilingual support, 512 token context, high quality</li>
+    <li><strong>snowflake-arctic-embed-l-v2.0-8k:</strong> Multilingual, 8192 token context for longer documents</li>
+    <li><strong>voyage-multilingual-2:</strong> Voyage AI model, multilingual, 32,000 token context</li>
+</ul>
+
+<h2>Available LLMs for Generation</h2>
+<ul>
+    <li><strong>mistral-large:</strong> High capability, good baseline for most tasks</li>
+    <li><strong>mixtral-8x7b:</strong> Efficient mixture-of-experts model</li>
+    <li><strong>llama3.1-70b:</strong> Meta's powerful open model</li>
+    <li><strong>claude-3-5-sonnet:</strong> Anthropic's model for complex reasoning</li>
+    <li><strong>snowflake-arctic:</strong> Snowflake's enterprise-grade open model</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<h3>For Optimal Retrieval Quality</h3>
+<ul>
+    <li>Split text into chunks of no more than 512 tokens (approximately 385 English words)</li>
+    <li>Use Snowflake's <code>SPLIT_TEXT_RECURSIVE_CHARACTER</code> function for chunking</li>
+    <li>Enable change tracking on source tables for automatic index updates</li>
+    <li>Use metadata filters to narrow search scope when applicable</li>
+</ul>
+
+<h3>For Better Generation</h3>
+<ul>
+    <li>Provide clear instructions in your prompt</li>
+    <li>Include relevant context from retrieval results</li>
+    <li>Specify the desired output format</li>
+    <li>Use temperature settings to control response creativity</li>
+</ul>
+
+<h2>Cost Considerations</h2>
+<ul>
+    <li><strong>Virtual Warehouse Compute:</strong> Used for refreshing the search service</li>
+    <li><strong>Embedding Tokens:</strong> Cost per token embedded into vector space</li>
+    <li><strong>Serving Compute:</strong> Per GB/month of indexed data</li>
+    <li><strong>LLM Inference:</strong> Cost per token processed by COMPLETE function</li>
+    <li><strong>Storage:</strong> For materialized tables and index structures</li>
+</ul>
+
+<h2>Key Benefits Summary</h2>
+<ol>
+    <li><strong>No External Dependencies:</strong> Everything runs within Snowflake</li>
+    <li><strong>Enterprise Security:</strong> Data never leaves Snowflake's governance boundary</li>
+    <li><strong>Automatic Updates:</strong> Search index refreshes automatically when data changes</li>
+    <li><strong>Hybrid Search:</strong> Combines semantic and keyword search for best results</li>
+    <li><strong>Scalability:</strong> Supports up to 100M rows per search service</li>
+    <li><strong>SQL-First Approach:</strong> Build RAG applications using familiar SQL syntax</li>
+</ol>
+
+
+{% include footer.html %}

@@ -1,0 +1,48 @@
+---
+---
+{% include menu.html title="RDBMS Star Schema" %}
+
+
+    <h1>RDBMS Star Schema</h1>
+    <p>The Star Schema is a popular database schema design used in data warehousing. It is named for its resemblance to a star, where a central fact table is surrounded by dimension tables.</p>
+
+    <h2>Components of Star Schema</h2>
+    <ul>
+        <li><strong>Fact Table</strong>: Contains the quantitative data for analysis, such as sales amounts or quantities. The fact table links to dimension tables through foreign keys.</li>
+        <li><strong>Dimension Tables</strong>: Store descriptive attributes related to the facts, such as product names, customer details, or dates.</li>
+    </ul>
+
+    <h2>Example of Star Schema</h2>
+    <p>Consider an e-commerce sales data warehouse:</p>
+    <ul>
+        <li><strong>Fact Table</strong>: Sales</li>
+        <li><strong>Dimension Tables</strong>:</li>
+        <ul>
+            <li>Product (ProductID, ProductName, Category, Price)</li>
+            <li>Customer (CustomerID, CustomerName, Region, AgeGroup)</li>
+            <li>Date (DateID, Date, Year, Quarter, Month)</li>
+            <li>Store (StoreID, StoreName, Location)</li>
+        </ul>
+    </ul>
+
+    <h2>Advantages</h2>
+    <ul>
+        <li><strong>Simplicity</strong>: Easy to understand and query.</li>
+        <li><strong>Optimized Query Performance</strong>: Efficient joins between fact and dimension tables.</li>
+        <li><strong>De-normalization</strong>: Reduces the number of joins needed for queries.</li>
+    </ul>
+
+    <h2>Disadvantages</h2>
+    <ul>
+        <li><strong>Redundancy</strong>: Can lead to increased storage requirements.</li>
+        <li><strong>Limited Flexibility</strong>: Best suited for simple queries.</li>
+    </ul>
+
+    <p>
+
+    <img src="/images/rdbms-star-schema.png" width=800>
+
+{% include footer.html %}
+
+  </body>
+</html>

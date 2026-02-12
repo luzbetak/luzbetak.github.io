@@ -1,0 +1,140 @@
+---
+---
+{% include menu.html title="index" %}
+
+
+<h1>How to Set Up Ollama for Agent Zero</h1>
+
+<h2>Overview</h2>
+<p>
+This guide explains how to correctly set up <strong>Ollama</strong> as the language model backend for <strong>Agent Zero (Agent 0)</strong>.
+It assumes Agent Zero is already running (Docker or local) and focuses only on Ollama integration.
+</p>
+
+<h2>Prerequisites</h2>
+<ul>
+  <li><strong>Agent Zero</strong> running and accessible in a browser</li>
+  <li><strong>Docker</strong> installed (if Agent Zero runs in Docker)</li>
+  <li>Network access between Agent Zero and Ollama</li>
+</ul>
+
+<h2>Step 1: Install Ollama</h2>
+
+<h3>macOS</h3>
+<ul>
+  <li>Download Ollama from the official website</li>
+  <li>Install the application normally</li>
+  <li>Ollama runs automatically as a background service</li>
+</ul>
+
+<h3>Linux</h3>
+<ul>
+  <li>Install using the official install script</li>
+  <li>Ensure the Ollama service is running</li>
+</ul>
+
+<h2>Step 2: Verify Ollama Is Running</h2>
+<ul>
+  <li>Confirm Ollama listens on port <strong>11434</strong></li>
+  <li>Ensure the API endpoint is reachable</li>
+  <li>The default API base URL is:<br>
+    <strong>http://192.168.1.190:11434</strong>
+  </li>
+</ul>
+
+<h2>Step 3: Pull a Model</h2>
+<p>Pull at least one model that Agent Zero will use.</p>
+
+<ul>
+  <li><strong>Example models:</strong></li>
+  <ul>
+    <li>gemma3:12b</li>
+    <li>llama3</li>
+    <li>mistral</li>
+  </ul>
+</ul>
+
+<p>
+After pulling, verify the model exists and can respond using the Ollama CLI.
+</p>
+
+<h2>Step 4: Open Agent Zero Settings</h2>
+<ul>
+  <li>Open Agent Zero in your browser</li>
+  <li>Click <strong>Settings</strong></li>
+  <li>Go to <strong>Agent Settings</strong></li>
+  <li>Select <strong>Chat Model</strong></li>
+</ul>
+
+<h2>Step 5: Configure Chat Model</h2>
+
+<h3>Main Chat Model</h3>
+<ul>
+  <li><strong>Chat model provider:</strong> Ollama</li>
+  <li><strong>Chat model name:</strong> gemma3:12b (or your chosen model)</li>
+  <li><strong>Chat model API base URL:</strong>
+    <ul>
+      <li>Local Agent Zero: <strong>http://192.168.1.190:11434</strong></li>
+      <li>Docker Agent Zero: <strong>http://host.docker.internal:11434</strong> or host LAN IP</li>
+    </ul>
+  </li>
+  <li><strong>Context length:</strong> Set according to your model (example: 8192 or higher)</li>
+</ul>
+
+<h2>Step 6: Configure Utility Model</h2>
+<p>
+Agent Zero requires a utility model for memory, summarization, and internal tasks.
+</p>
+
+<ul>
+  <li><strong>Utility model provider:</strong> Ollama</li>
+  <li><strong>Utility model name:</strong> Same as chat model or smaller model</li>
+  <li><strong>Utility model API base URL:</strong> Same as chat model</li>
+</ul>
+
+<h2>Step 7: Save and Restart</h2>
+<ul>
+  <li>Click <strong>Save</strong> in Settings</li>
+  <li>Restart Agent Zero</li>
+  <li>If using Docker, restart the container</li>
+</ul>
+
+<h2>Step 8: Test the Setup</h2>
+<ul>
+  <li>Start a new chat</li>
+  <li>Send a simple message such as:</li>
+</ul>
+
+<p><strong>What is 2 + 2?</strong></p>
+
+<ul>
+  <li>If Ollama is configured correctly, Agent Zero will respond normally</li>
+</ul>
+
+<h2>Troubleshooting</h2>
+<ul>
+  <li><strong>No response or errors:</strong> Check API base URL</li>
+  <li><strong>Docker issues:</strong> Ensure Ollama is reachable from the container</li>
+  <li><strong>Repeated tool errors:</strong> Verify Agent 0 prompt files are not enforcing tool-only output</li>
+  <li><strong>Slow responses:</strong> Ensure the model fits your system resources</li>
+</ul>
+
+<h2>Summary</h2>
+<ul>
+  <li>Ollama runs the LLM locally</li>
+  <li>Agent Zero connects via HTTP API</li>
+  <li>Both chat and utility models must be configured</li>
+  <li>Restart is required after changes</li>
+</ul>
+
+<pre><code class=language-bash>
+#-----------------------------------------#
+# gemma3:12b
+# http://192.168.1.190:11434
+#-----------------------------------------#
+$ docker exec -it modest_jones bash
+$ docker restart modest_jones
+#-----------------------------------------#
+</code></pre>
+
+{% include footer.html %}
