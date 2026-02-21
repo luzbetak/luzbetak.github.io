@@ -1,0 +1,350 @@
+#------------------------------------------------------------------------------------------------------#
+merge() {
+    git fetch origin main && git merge origin/main
+}
+#------------------------------------------------------------------------------------------------------#
+fetch() {
+    git fetch origin
+    git reset --hard origin/master
+}
+#------------------------------------------------------------------------------------------------------#
+force() {
+   git push --force origin HEAD
+}
+#------------------------------------------------------------------------------------------------------#
+dif-local() {
+  # Special keyword: local
+  if [ "$1" = "local" ]; then
+    git difftool --tool=vimdiff --no-prompt HEAD
+    return
+  fi
+
+  local file="$1"
+  local rev="${2:-HEAD}"
+
+  # No args → vimdiff working tree vs HEAD
+  if [ -z "$file" ]; then
+    git difftool --tool=vimdiff --no-prompt "$rev"
+    return
+  fi
+
+  # File vs revision
+  git difftool --tool=vimdiff --no-prompt "$rev" -- "$file"
+}
+
+#------------------------------------------------------------------------------------------------------#
+dif() {
+  clear
+
+  # No arguments → local changes vs. last commit (all files)
+  if [ $# -eq 0 ]; then
+    git --no-pager diff --color HEAD
+    return
+  fi
+
+  # Last vs. Previus Commit (all files)
+  if [ "$1" = "last" ]; then
+    git --no-pager diff --color HEAD~1 HEAD
+    return
+  fi
+
+
+  # First argument is a file
+  if [ -f "$1" ]; then
+    local file="$1"
+    local rev1="${2:-HEAD~1}"
+    local rev2="${3:-HEAD}"
+    git --no-pager diff --color "$rev1" "$rev2" -- "$file"
+    return
+  fi
+
+  # Revisions only (no file)
+  local rev1="${1:-HEAD~1}"
+  local rev2="${2:-HEAD}"
+  git --no-pager diff --color "$rev1" "$rev2"
+}
+
+#------------------------------------------------------------------------------------------------------#
+# Compare current file vs last commit (HEAD is default)
+# dif2 static/style.css   (dif static/style.css HEAD)
+# 
+# Compare current file vs 2 commits ago
+# dif2 static/style.css HEAD~2
+# 
+# Compare current file vs 5 commits ago
+# dif2 static/style.css HEAD~5
+# 
+# Compare current file vs specific commit hash
+# dif2 static/style.css a1b2c3d
+# 
+# Compare current file vs a branch
+# dif2 static/style.css main
+# 
+# Compare current file vs a tag
+# dif2 static/style.css v1.0.0
+#------------------------------------------------------------------------------------------------------#
+vimdiff2() {
+
+    git difftool --tool=vimdiff --no-prompt "${2:-HEAD}" -- "$1"
+    # git difftool --tool=vimdiff --no-prompt HEAD -- "$1"
+}
+#------------------------------------------------------------------------------------------------------#
+git-reset-main() {
+  if [ -z "$1" ]; then
+    echo "Usage: git-reset-main <commit-sha>"
+    return 1
+  fi
+
+  local COMMIT="$1"
+
+  git checkout main || return 1
+  git reset --hard "$COMMIT" || return 1
+  git push origin main --force
+}
+
+#------------------------------------------------------------------------------------------------------#
+function rename_branch() {
+    # git branch -m normalizing-emails
+    git branch -m "$1" 
+}
+#------------------------------------------------------------------------------------------------------#
+function next() {
+    # Get all branches and extract version numbers
+    latest_version=$(git branch --all | grep -Eo 'v[0-9]+\.[0-9]+' | sort -t. -k1,1n -k2,2n | tail -n 1)
+
+    if [[ -z "$latest_version" ]]; then
+        # If no version branch exists, start with v0.01
+        new_branch="v0.01"
+    else
+        # Extract major and minor versions
+        if [[ $latest_version =~ v([0-9]+)\.([0-9]+) ]]; then
+            major=${BASH_REMATCH[1]}
+            minor=${BASH_REMATCH[2]}
+            
+            # Increment minor version
+            new_minor=$(printf "%02d" $((10#$minor + 1)))
+            new_branch="v$major.$new_minor"
+        else
+            echo "Error: Could not parse version number from $latest_version"
+            return 1
+        fi
+    fi
+
+    # Create the new branch
+    git checkout -b "$new_branch"
+    echo "Created new branch: $new_branch"
+}
+#------------------------------------------------------------------------------------------------------#
+nopage() {
+    git config --global core.pager ""
+}
+#------------------------------------------------------------------------------------------------------#
+force_merge() {
+    # Get current branch name
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+    
+    # Check for uncommitted changes in current branch
+    if ! git diff-index --quiet HEAD --; then
+        echo "Uncommitted changes detected in current branch: $current_branch"
+        echo "Committing changes before merge..."
+        
+        # Commit all changes with timestamp
+        current_date=$(date +"%Y-%m-%d %H:%M")
+        git add .
+        if ! git commit -m "$current_date"; then
+            echo "Error: Failed to commit changes in current branch"
+            return 1
+        fi
+        
+        # Push changes to current branch
+        echo "Pushing changes to $current_branch..."
+        if ! git push origin "$current_branch"; then
+            echo "Error: Failed to push changes to $current_branch"
+            return 1
+        fi
+    fi
+    
+    # Determine if main or master is the default branch
+    local default_branch=""
+    if git ls-remote --heads origin main | grep -q main; then
+        default_branch="main"
+    elif git ls-remote --heads origin master | grep -q master; then
+        default_branch="master"
+    else
+        # Check local branches if remote check fails
+        if git show-ref --verify --quiet refs/heads/main; then
+            default_branch="main"
+        elif git show-ref --verify --quiet refs/heads/master; then
+            default_branch="master"
+        else
+            echo "Error: Neither main nor master branch found"
+            return 1
+        fi
+    fi
+    
+    # Verify we're not already on the default branch
+    if [ "$current_branch" == "$default_branch" ]; then
+        echo "Error: Please checkout the branch you want to merge first."
+        return 1
+    fi
+    
+    echo "Current branch: $current_branch"
+    echo "Target branch: $default_branch"
+    echo "Starting force merge..."
+    
+    # Fetch latest changes from remote
+    echo "Fetching latest changes..."
+    if ! git fetch origin; then
+        echo "Error: Failed to fetch from remote"
+        return 1
+    fi
+    
+    # Checkout default branch and pull latest changes
+    echo "Checking out $default_branch branch..."
+    if ! git checkout "$default_branch"; then
+        echo "Error: Failed to checkout $default_branch branch"
+        return 1
+    fi
+    
+    if ! git pull origin "$default_branch"; then
+        echo "Error: Failed to pull $default_branch branch"
+        return 1
+    fi
+    
+    # Merge the current branch with -X theirs strategy and explicit commit message
+    echo "Merging $current_branch into $default_branch with force overwrite..."
+    if ! git merge -X theirs "$current_branch" --no-ff -m "Merged $current_branch into $default_branch (forced)"; then
+        # If there are conflicts, resolve them by taking all changes from the current branch
+        echo "Resolving conflicts by taking changes from $current_branch..."
+        git checkout --ours .
+        git add .
+        git commit -m "Force merged $current_branch into $default_branch (resolved conflicts)" --no-edit
+    fi
+    
+    # Force push to remote default branch
+    echo "Force pushing to remote $default_branch..."
+    if ! git push origin "$default_branch" --force; then
+        echo "Error: Failed to force push to $default_branch"
+        return 1
+    fi
+    
+    # Check for any remaining changes and commit them
+    if ! git diff-index --quiet HEAD --; then
+        echo "Committing remaining changes..."
+        current_date=$(date +"%Y-%m-%d %H:%M")
+        git add .
+        git commit -m "$current_date" --no-edit
+        
+        echo "Pushing final changes to remote $default_branch..."
+        if ! git push origin "$default_branch"; then
+            echo "Error: Failed to push final changes"
+            return 1
+        fi
+    fi
+    
+    echo "Force merge completed successfully!"
+    return 0
+}
+#------------------------------------------------------------------------------------------------------#
+get() {
+    # Fetch the latest branches from the remote
+    git fetch
+
+    # Find the latest branch in the format 'vx.xx'
+    latest_branch=$(git branch -r | grep -o 'origin/v[0-9]\+\.[0-9]\+' | sort -V | tail -n 1)
+
+    if [ -z "$latest_branch" ]; then
+        echo "No versioned branch (vx.xx) found in remote branches."
+        return 1
+    fi
+
+    # Extract the branch name without 'origin/'
+    latest_branch_name=${latest_branch#origin/}
+
+    # Stash any local changes
+    git stash
+
+    # Check out the latest version branch
+    git checkout "$latest_branch_name"
+    echo "Checked out latest version branch: $latest_branch_name"
+}
+#-------------------------------------------------------------------------------------------#
+com () {
+    # Get the current branch name
+    BRANCH=$(git branch --show-current)
+
+    # Stage all changes
+    git add --all -v .
+
+    # Commit with a custom message if provided, or use the current date/time as the message
+    if [ "$1" ]; then
+        # Join all arguments with spaces to create the full commit message
+        commit_message="$*"
+        git commit -m "${commit_message}"
+    else
+        DATE=$(date "+%Y-%m-%d %H:%M")
+        git commit -m "${DATE}"
+    fi
+
+    # Check if the branch has an upstream
+    UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+
+    # If no upstream is set, push and set upstream to origin/BRANCH
+    if [ -z "$UPSTREAM" ]; then
+        echo "Setting upstream for branch $BRANCH to origin/$BRANCH"
+        git push --set-upstream origin "$BRANCH"
+    else
+        # If upstream is set, just push to the remote
+        git push origin "$BRANCH"
+    fi
+}
+#------------------------------------------------------------------------------------------------------#
+# Git function to pull the latest code and overwrite local changes
+#------------------------------------------------------------------------------------------------------#
+pull() {
+    echo "Fetching the latest code from remote and resetting the local branch..."
+
+    # Fetch the latest changes from the remote
+    git fetch --all
+
+    # Hard reset the local branch to match the latest remote branch, overwriting local changes
+    git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+
+    # Clean untracked files and directories
+    git clean -fd
+
+    echo "Pull complete. Local code now matches the remote."
+}
+#------------------------------------------------------------------------------------------------------#
+# Overwrite local branch with remote branch
+#------------------------------------------------------------------------------------------------------#
+pulloverwrite() {
+    local branch="${1:-main}"  # Defaults to 'main' if no branch is provided
+
+    echo "Fetching all updates from remote..."
+    git fetch --all
+
+    echo "Resetting local branch to origin/$branch..."
+    git reset --hard "origin/$branch"
+
+    echo "Local branch is now identical to origin/$branch."
+}
+#------------------------------------------------------------------------------------------------------#
+# Reset HEAD to previous branch based on hash
+#------------------------------------------------------------------------------------------------------#
+previous() {
+    if [ -z "$1" ]; then
+        echo "Error: Please provide a commit hash."
+        return 1
+    fi
+
+    # Reset to the specified commit locally
+    git reset --hard "$1"
+    echo "Reset to commit $1 locally."
+
+    # Push the reset commit to the remote branch, overwriting remote history
+    git push origin HEAD --force
+    echo "Forced push: Remote branch is now aligned with commit $1."
+}
+#------------------------------------------------------------------------------------------------------#
+
