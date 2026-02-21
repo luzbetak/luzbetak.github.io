@@ -1,0 +1,48 @@
+---
+---
+{% include menu.html title="Organize Screenshots" %}
+
+<main style="padding:20px;">
+    <h1>Help me organize recent screenshots on my Desktop.</h1>
+
+    <h2>Phase 1: Initial Desktop Scan</h2>
+    <p>First, scan my Desktop and count how many screenshots/images are there. Show me:</p>
+    <ul>
+        <li>Total count</li>
+        <li>Date range (oldest to newest)</li>
+    </ul>
+
+    <h2>Phase 2: Analyze Recent Screenshots</h2>
+    <p>Then, focus only on screenshots from the last 14 days. For each one:</p>
+    <ul>
+        <li>Identify what it shows</li>
+        <li>Suggest a descriptive filename</li>
+        <li>Propose which folder it belongs in (or if it can be deleted)</li>
+    </ul>
+
+    <h2>Phase 3: Organization Plan</h2>
+    <p>Group similar screenshots together. Show me the plan before making any changes.</p>
+
+    <h2>Phase 4: Preview Organization</h2>
+    <p>After I approve, start by organizing just <strong>10 files</strong> as a preview. If there are more than 10 files, check in with me before continuing with the rest.</p>
+
+    <h3>Key Constraints</h3>
+    <ol>
+        <li>Only process files from the last 14 days in Phase 2 onwards</li>
+        <li>Show the complete plan for my approval before making any file changes</li>
+        <li>Organize exactly 10 files in the preview phase (or fewer if total count is less than 10)</li>
+        <li>Wait for explicit confirmation before proceeding with remaining files</li>
+    </ol>
+
+    <h3>Expected Output Format</h3>
+    <p>For each screenshot, provide:</p>
+    <ul>
+        <li><strong>Current Name:</strong> Original filename</li>
+        <li><strong>Description:</strong> What the screenshot contains</li>
+        <li><strong>Suggested Name:</strong> New descriptive filename</li>
+        <li><strong>Destination:</strong> Target folder or deletion recommendation</li>
+    </ul>
+
+</main>
+
+{% include footer.html %}
