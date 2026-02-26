@@ -233,7 +233,7 @@ def generate_menu_html(directories: dict, output_file: str, backup_dir: str = No
         '      { path: "/Databricks",  id: "databricks" },',
         '      { path: "/AWS",         id: "aws" },',
         '      { path: "/Algorithms",  id: "algorithms" },',
-        '      { path: "/Info",        id: "info" },',
+        '      { path: "/Tools",       id: "tools" },',
         '      { path: "/Github",      id: "github" },',
         '      { path: "/search",      id: "search" }',
         '    ];',
@@ -325,8 +325,8 @@ def main():
             "has_dropdown": True,
             "class": " dropdown-compact"
         },
-        "Info": {
-            "path": "Info",
+        "Tools": {
+            "path": "Tools",
             "has_dropdown": True
         },
         "Github": {
