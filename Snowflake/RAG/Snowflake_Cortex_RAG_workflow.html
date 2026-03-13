@@ -1,0 +1,150 @@
+---
+---
+{% include menu.html title="Snowflake Cortex API" %}
+
+<body>
+  <h1>Cortex AI Document RAG Embeddings</h1>
+
+  <ul>
+      <li><strong>Snowflake Cortex AI</strong> behaves like an API layer stored <strong>inside Snowflake</strong>.</li>
+    <li>You call it through <strong>SQL functions</strong> like SNOWFLAKE.CORTEX.COMPLETE, SUMMARIZE, EMBED_TEXT, etc.</li>
+    <li>Applications call Cortex AI via <strong>Snowflake connectors</strong> (Python, JDBC, Node, Go).</li>
+    <li>There is no separate public HTTP model endpoint; the “API surface” is SQL.</li>
+  </ul>
+
+  <h2>High-Level Flow Inside Cortex AI</h2>
+  <ol>
+    <li><strong>Hosted Models</strong>
+      <ul>
+        <li>Snowflake hosts LLMs and ML tools (summarization, classification, embeddings).</li>
+      </ul>
+    </li>
+    <li><strong>SQL Functions</strong>
+      <ul>
+        <li>You call Cortex functions directly in SQL queries.</li>
+      </ul>
+    </li>
+    <li><strong>Execution in the AI Engine</strong>
+      <ul>
+        <li>Snowflake sends your inputs to the correct model internally and returns SQL results.</li>
+      </ul>
+    </li>
+    <li><strong>Applications</strong>
+      <ul>
+        <li>Apps call Snowflake normally using connectors and receive the AI output.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>End-to-End Example 1 – Ticket Summarization</h2>
+  <ol>
+    <li><strong>Create table</strong></li>
+    <li><strong>Add summary column</strong></li>
+    <li><strong>Use Cortex AI to populate summaries</strong></li>
+  </ol>
+
+  <h2>End-to-End Example 2 – Chat With Your Table (Python App)</h2>
+
+  <h3>Populate Table for Cortex AI</h3>
+  <pre><code class="language-sql">
+CREATE OR REPLACE TABLE SALES_DATA (
+    SALE_DATE DATE,
+    REGION STRING,
+    PRODUCT STRING,
+    QUANTITY NUMBER,
+    AMOUNT NUMBER
+);
+
+INSERT INTO SALES_DATA (SALE_DATE, REGION, PRODUCT, QUANTITY, AMOUNT) VALUES
+  ('2024-01-05', 'US', 'Laptop',   10,  15000),
+  ('2024-01-15', 'US', 'Mouse',    200, 4000),
+  ('2024-02-01', 'US', 'Keyboard', 150, 9000),
+  ('2024-03-20', 'US', 'Monitor',  50,  25000),
+  ('2024-03-28', 'EU', 'Laptop',   20,  30000),
+  ('2024-03-30', 'US', 'Laptop',   5,   7500);
+  </code></pre>
+
+
+  <h3>Connect to the TABLE</h3>
+  <pre><code class="language-python">import snowflake.connector
+
+conn = snowflake.connector.connect(
+    user      = "MY_USER",
+    password  = "MY_PASSWORD",
+    account   = "MY_ACCOUNT",
+    warehouse = "MY_WH",
+    database  = "MY_DB",
+    schema    = "PUBLIC",
+)
+
+def ask_table_question(table_name: str, question: str) -> str:
+    # Safely wrap the table name in quotes to avoid SQL errors
+    table_name = table_name.upper()
+
+    sql = f"""
+    SELECT SNOWFLAKE.CORTEX.COMPLETE(
+        'gpt-4.1-mini',
+        OBJECT_CONSTRUCT(
+            'prompt',
+            'You are a data analyst for the data in the {table_name} table. '
+            || 'Use only the data from {table_name} to answer. Question: ' || ?
+        )
+    ) AS ANSWER;
+    """
+
+    cur = conn.cursor()
+    cur.execute(sql, (question,))
+    row = cur.fetchone()
+    return row[0]["content"][0]["text"]
+
+
+print(ask_table_question(
+    "SALES_DATA",
+    "What were total sales for Q1 2024 in the US?"
+))
+  </code></pre>
+
+  <h3>Chat with the TABLES<h3>
+  <pre><code class="language-python">
+ask_table_question("SALES_DATA", "Show US laptop sales in January.")
+ask_table_question("ORDERS_2024", "Which day had the highest revenue?")
+  </code></pre>
+
+  <h2>End-to-End Example 3 – RAG with Document AI + Embeddings</h2>
+
+  <h3>Sample SQL Query</h3>
+  <pre><code class="language-sql">
+WITH QUESTION AS (
+  SELECT
+    'What is the termination notice period in the ACME contract?' AS Q,
+    SNOWFLAKE.CORTEX.EMBED_TEXT(
+      'text-embedding-model',
+      'What is the termination notice period in the ACME contract?'
+    ) AS QVEC
+),
+RANKED AS (
+  SELECT
+    c.CONTRACT_ID,
+    c.FILE_NAME,
+    c.TEXT,
+    VECTOR_DISTANCE('COSINE', c.VECTOR, q.QVEC) AS DIST
+  FROM CONTRACT_EMBEDDINGS c, QUESTION q
+  ORDER BY DIST
+  LIMIT 5
+)
+SELECT SNOWFLAKE.CORTEX.COMPLETE(
+  'gpt-4.1-mini',
+  OBJECT_CONSTRUCT(
+    'prompt',
+    'You are a contract analyst. Using ONLY the context below, answer the question.' ||
+    '\\n\\nCONTEXT:\\n' ||
+    LISTAGG(TEXT, '\\n\\n') || '\\n\\nQUESTION: ' ||
+    (SELECT Q FROM QUESTION)
+  )
+) AS ANSWER
+FROM RANKED;
+  </code></pre>
+
+</body>
+
+{% include footer.html %}

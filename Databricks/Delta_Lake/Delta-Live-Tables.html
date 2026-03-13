@@ -1,0 +1,78 @@
+---
+---
+{% include menu.html title="Delta Live Tables (DLT) in Databricks" %}
+
+<body>
+
+    <h1>Delta Live Tables (DLT) in Databricks</h1>
+
+    <p><strong>Delta Live Tables (DLT)</strong> in Databricks is a framework for building reliable, scalable, and simple data pipelines. It is built on top of Delta Lake and simplifies creating, managing, and monitoring data pipelines.</p>
+
+    <h2>Key Features of Delta Live Tables</h2>
+
+    <ul>
+        <li><strong>Declarative Pipeline Development</strong>: Define transformations in a declarative way. Databricks manages dependencies and execution optimizations.
+            <pre><code>
+<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> col
+
+@dlt.table
+<span class="keyword">def</span> clean_data():
+    <span class="keyword">return</span> spark.read(<span class="string">"path/to/raw_data"</span>).filter(col(<span class="string">"age"</span>) > 18)
+            </code></pre>
+        </li>
+
+        <li><strong>Managed Pipelines</strong>: DLT handles the entire lifecycle of a pipeline, including monitoring, failure handling, and data lineage tracking.</li>
+
+        <li><strong>Incremental Data Processing</strong>: Supports incremental processing of new data, improving efficiency, especially for streaming workloads.</li>
+
+        <li><strong>Automatic Data Quality Checks</strong>: Define data quality constraints to ensure that only valid data enters the pipeline.
+            <pre><code>
+@dlt.expect(<span class="string">"valid_age"</span>, <span class="string">"age > 0"</span>)
+<span class="keyword">def</span> clean_data():
+    <span class="keyword">return</span> spark.read(<span class="string">"path/to/raw_data"</span>).filter(col(<span class="string">"age"</span>) > 18)
+            </code></pre>
+        </li>
+
+        <li><strong>Delta Lake Integration</strong>: Since DLT is built on Delta Lake, it benefits from Delta's ACID transactions, time travel, and schema enforcement.</li>
+
+        <li><strong>Pipeline Monitoring and Observability</strong>: Built-in tools provide visibility into the health and performance of the pipeline.</li>
+
+        <li><strong>Batch and Streaming Support</strong>: DLT supports both batch and streaming data sources, providing flexibility in how data is processed.</li>
+
+        <li><strong>Ease of Use</strong>: The declarative syntax simplifies the creation of ETL pipelines by abstracting away much of the complex orchestration.</li>
+    </ul>
+
+    <h2>Example Pipeline Workflow</h2>
+
+    <pre><code>
+<span class="keyword">import</span> dlt
+<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> *
+
+# Ingest raw data
+@dlt.table
+<span class="keyword">def</span> raw_data():
+    <span class="keyword">return</span> spark.read(<span class="string">"path/to/raw_data"</span>)
+
+# Clean data by filtering invalid rows
+@dlt.table
+<span class="keyword">def</span> clean_data():
+    <span class="keyword">return</span> dlt.read(<span class="string">"raw_data"</span>).filter(col(<span class="string">"age"</span>) > 18)
+
+# Aggregate the cleaned data
+@dlt.table
+<span class="keyword">def</span> aggregated_data():
+    <span class="keyword">return</span> dlt.read(<span class="string">"clean_data"</span>).groupBy(<span class="string">"country"</span>).agg(count(<span class="string">"*"</span>).alias(<span class="string">"user_count"</span>))
+    </code></pre>
+
+    <h2>Use Cases for Delta Live Tables</h2>
+    <ul>
+        <li><strong>ETL Pipelines</strong>: Automate data ingestion, transformation, and output for analytics or machine learning.</li>
+        <li><strong>Data Quality Enforcement</strong>: Enforce rules to ensure only clean and valid data is processed.</li>
+        <li><strong>Real-Time Streaming</strong>: Handle real-time data ingestion for immediate processing and analytics.</li>
+        <li><strong>Simplified Data Pipelines</strong>: Reduce manual operational overhead with automatic dependency management and optimizations.</li>
+    </ul>
+
+  {% include footer.html %}
+
+  </body>
+</html>

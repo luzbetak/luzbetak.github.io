@@ -1,0 +1,486 @@
+---
+---
+{% include menu.html title="Kevin Luzbetak, MSc - Data & Machine Learning Engineer" %}
+<img src="/images/brain-made-circuit-boards-neural-pathways-holographic-data-particles-clean-minimalist-design-sci-fi.png" width=1100 height=160>
+
+<table border="0" cellpadding="10" cellspacing="0">
+    <tr>
+        <td valign="center">
+            <img src="/images/kevin-luzbetak.jpg" alt="Kevin Luzbetak" class="profile-photo" width="240">
+        </td>
+        <td valign="top" style="padding-left:70px;">
+            <h1 style="color: #ffffff !important;">Kevin Thomas Luzbetak, MSc</h1>
+            <div class="contact-info">
+                <table border="1" cellpadding="6" cellspacing="0" style="border-color: #444444;">
+                  <tr><td style="border-color: #444444;">Education</td><td style="border-color: #444444;">Master's Degree in Artificial Intelligence</td></tr>
+                  <tr><td style="border-color: #444444;">Location</td><td style="border-color: #444444;">Los Angeles, California</td></tr>
+                  <tr><td style="border-color: #444444;">Email</td><td style="border-color: #444444;"><a href="mailto:Luzbetak5739@gmail.com">Luzbetak5739@gmail.com</a></td></tr>
+                  <tr><td style="border-color: #444444;">Public Github</td><td style="border-color: #444444;"><a href="https://github.com/luzbetak" target="_blank">https://github.com/luzbetak</a></td></tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>        
+
+<body>
+
+<h2>AI/ML &amp; Deep Learning</h2>
+
+<p>
+Developing production-grade <strong>AI</strong> and <strong>Machine Learning</strong> applications with a focus on
+<strong>time-series forecasting</strong> and <strong>predictive modeling</strong>. Architecting and optimizing deep learning
+systems, including <strong>LSTM neural networks</strong> for sequential data analysis with multi-year lookback.
+</p>
+
+<p>
+Designing and implementing <strong>retrieval-augmented generation (RAG)</strong> systems, <strong>agentic AI architectures</strong>,
+and <strong>generative AI applications</strong>, including Stable Diffusion for image generation. Building autonomous agents
+such as <strong>Clawdbot</strong> for task automation and intelligent workflows. Working with local LLM deployment via
+<strong>Ollama</strong>, model fine-tuning and selection through <strong>Hugging Face</strong>, and complete <strong>MLOps pipelines</strong>
+from data preprocessing through model deployment.
+</p>
+
+<p>
+Developing advanced neural networks leveraging:
+</p>
+
+<ul>
+  <li><strong>Huber loss</strong> optimization</li>
+  <li><strong>Monte Carlo dropout</strong> for uncertainty estimation</li>
+  <li><strong>Data weighting strategies</strong></li>
+  <li>Time-series feature engineering</li>
+  <li>Outlier detection and mitigation</li>
+  <li>Prediction bias correction</li>
+  <li>Uncertainty quantification implementations</li>
+</ul>
+
+
+<hr />
+
+<h1>Deep Learning - LSTM Networks</h1>
+<h2>Long Short-Term Memory — A Deep Learning Architecture for Sequential Data</h2>
+
+<p>
+    LSTM stands for <strong>Long Short-Term Memory</strong>. It is a type of
+    <strong>Recurrent Neural Network (RNN)</strong>, which places it firmly within the
+    field of <strong>deep learning</strong> — a subset of machine learning that uses
+    multi-layered neural networks to learn patterns from data.
+</p>
+
+<h3>Where LSTM Fits in the AI Landscape</h3>
+<pre><code class="language-none">
+Artificial Intelligence
+  └── Machine Learning
+        └── Deep Learning
+              ├── CNNs        (images, spatial data)
+              ├── Transformers (language models, attention-based)
+              └── RNNs        (sequential / time-series data)
+                    ├── Vanilla RNN   (simple, suffers from vanishing gradients)
+                    ├── GRU           (simplified gating, faster)
+                    └── LSTM          (full gating mechanism, best for long sequences)
+</code></pre>
+
+<h3>The Problem LSTM Solves</h3>
+<p>
+    Standard neural networks treat each input independently — they have no concept of
+    <strong>order</strong> or <strong>memory</strong>. But many real-world problems are
+    sequential: stock prices, weather, language, sensor readings, music. The current
+    value depends on what came before it.
+</p>
+<p>
+    Vanilla RNNs attempted to solve this by feeding output back into the network as
+    input, but they suffer from the <strong>vanishing gradient problem</strong> — during
+    training, gradients shrink exponentially as they propagate backward through time,
+    making it impossible to learn long-range dependencies. An RNN trained on 365 days of
+    data effectively "forgets" what happened 60+ days ago.
+</p>
+<p>
+    LSTM was introduced by <strong>Hochreiter &amp; Schmidhuber in 1997</strong>
+    specifically to fix this. It uses a gating mechanism that allows it to
+    <strong>selectively remember or forget</strong> information over long sequences —
+    hundreds or even thousands of time steps.
+</p>
+
+<h3>LSTM Cell Architecture</h3>
+<p>
+    Each LSTM cell has three gates and a cell state. Think of the cell state as a
+    conveyor belt — information flows along it largely unchanged, and the gates decide
+    what to add or remove.
+</p>
+
+<pre><code class="language-none">
+                    ┌─────────────────────────────────────────┐
+                    │             LSTM Cell                    │
+                    │                                         │
+   Cell State ─────┤── × ──────────── + ──────────────────────┤──── Cell State
+   (long-term      │   │              │                       │     (updated)
+    memory)        │   │              │                       │
+                    │ ┌─┴──┐   ┌──────┴──────┐   ┌────────┐  │
+                    │ │ Fg │   │  Ig  × Cand │   │   Og   │  │
+                    │ │gate│   │ gate   gate  │   │  gate  │  │
+                    │ └─┬──┘   └──┬────┬─────┘   └───┬────┘  │
+                    │   │         │    │              │        │
+                    │   └────┬────┘    │         ┌───┘        │
+                    │        │         │         │            │
+   Hidden State ───┤────────┴─────────┴─────────┤────────────┤──── Hidden State
+   (short-term     │     [h(t-1), x(t)] concat  │   tanh()   │     (output)
+    memory)        │                             │            │
+                    └─────────────────────────────────────────┘
+
+                           Input: x(t)
+
+   Fg = Forget Gate   →  "What old info should I discard?"    σ(0 to 1)
+   Ig = Input Gate    →  "What new info is worth storing?"    σ(0 to 1)
+   Cand = Candidate   →  "What are the new candidate values?" tanh(-1 to 1)
+   Og = Output Gate   →  "What part of cell state to output?" σ(0 to 1)
+</code></pre>
+
+<h3>The Three Gates Explained</h3>
+<ol>
+    <li>
+        <strong>Forget Gate (Fg)</strong> — looks at the previous hidden state and current
+        input, outputs a number between 0 and 1 for each value in the cell state. A value
+        of 0 means "completely forget this" and 1 means "keep this entirely."
+    </li>
+    <li>
+        <strong>Input Gate (Ig)</strong> — decides which new information to store. It has
+        two parts: a sigmoid layer that decides which values to update, and a tanh layer
+        that creates a vector of candidate values. They are multiplied together.
+    </li>
+    <li>
+        <strong>Output Gate (Og)</strong> — determines what the cell outputs. The cell state
+        is passed through tanh (squashing to -1 to 1) and multiplied by the sigmoid output
+        of this gate, so only the chosen parts are sent forward.
+    </li>
+</ol>
+
+<h3>LSTM in Code — A Minimal Example</h3>
+<p>Here is a simple LSTM for time-series prediction using TensorFlow/Keras:</p>
+
+<pre><code class="language-python">
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+
+# Suppose X_train has shape: (samples, timesteps, features)
+# e.g. 1000 samples, 60-day lookback, 8 features per day
+model = Sequential([
+    LSTM(128, return_sequences=True, input_shape=(60, 8)),
+    Dropout(0.2),
+
+    LSTM(128, return_sequences=True),
+    Dropout(0.2),
+
+    LSTM(128, return_sequences=False),  # last layer returns single output
+    Dropout(0.2),
+
+    Dense(64, activation='relu'),
+    Dense(32, activation='relu'),
+    Dense(1),  # predict one value (e.g. tomorrow's price)
+])
+
+model.compile(optimizer='adam', loss='huber', metrics=['mae'])
+model.fit(X_train, y_train, epochs=100, batch_size=64,
+          validation_split=0.1)
+</code></pre>
+
+<h3>Key Concepts to Understand</h3>
+<ul>
+    <li>
+        <strong>Lookback window</strong> — the number of past time steps the model sees
+        at each prediction. A lookback of 60 means the model receives the last 60 days
+        of data and predicts day 61.
+    </li>
+    <li>
+        <strong>Stacked LSTM layers</strong> — multiple LSTM layers on top of each other.
+        Lower layers learn short-term patterns; upper layers learn abstract, longer-term
+        patterns. Use <code>return_sequences=True</code> on all layers except the last.
+    </li>
+    <li>
+        <strong>Features</strong> — each time step can have multiple input values. For
+        financial data this might be price, volume, RSI, MACD, etc. For weather: temperature,
+        humidity, wind speed.
+    </li>
+    <li>
+        <strong>Scaling</strong> — LSTM gates use sigmoid and tanh activations which
+        operate in the 0–1 and -1–1 range. Input data must be scaled (typically with
+        MinMaxScaler) for the network to train effectively.
+    </li>
+</ul>
+
+<h3>Common Use Cases</h3>
+<ul>
+    <li><strong>Time-series forecasting</strong> — stock prices, energy demand, sales</li>
+    <li><strong>Natural language processing</strong> — text generation, sentiment analysis</li>
+    <li><strong>Speech recognition</strong> — audio waveform to text</li>
+    <li><strong>Anomaly detection</strong> — detecting unusual patterns in sensor data</li>
+    <li><strong>Music generation</strong> — learning and reproducing musical sequences</li>
+</ul>
+
+<hr>
+
+<h1>Practical LSTM Improvements for Time-Series Forecasting</h1>
+<p>
+    Below are five targeted improvements that significantly impact prediction quality,
+    especially when working with long lookback windows and volatile time-series data.
+</p>
+
+<h2>1. Huber Loss Instead of MSE</h2>
+<p>
+    Mean Squared Error (MSE) squares every error, which means large price moves
+    (crashes, spikes) dominate the loss function. The model learns to "play it safe"
+    and revert toward historical averages to minimize those squared penalties.
+</p>
+<p>
+    <strong>Huber loss</strong> behaves like MSE for small errors but switches to
+    linear (MAE-like) behavior for large errors, controlled by a <code>delta</code>
+    threshold. This makes the model robust to outlier moves without ignoring them entirely.
+</p>
+
+<pre><code class="language-python">
+# MSE: loss = (y_true - y_pred)²         ← large errors get squared
+# MAE: loss = |y_true - y_pred|           ← linear, but not smooth at 0
+# Huber: best of both worlds
+
+import tensorflow as tf
+
+# delta controls the switchover point
+loss_fn = tf.keras.losses.Huber(delta=1.0)
+
+model.compile(optimizer='adam', loss=loss_fn, metrics=['mae'])
+</code></pre>
+
+<pre><code class="language-none">
+Loss
+  │
+  │   MSE ╱
+  │      ╱         Huber loss: quadratic near zero,
+  │     ╱          linear for large errors
+  │    ╱  ╱ Huber
+  │   ╱  ╱
+  │  ╱  ╱
+  │ ╱ ╱  ╱ MAE
+  │╱╱╱
+  └───────────── Error
+       δ
+</code></pre>
+
+<h2>2. Sample Weighting — Recency Bias</h2>
+<p>
+    With a long lookback (e.g. 1460 days), the model treats all historical data
+    equally. But market conditions from 3 years ago may be irrelevant today. Sample
+    weighting lets you tell the model: <strong>"recent data matters more."</strong>
+</p>
+
+<pre><code class="language-python">
+import numpy as np
+
+def make_sample_weights(n_samples, method='linear'):
+    """Weight recent training samples more heavily."""
+    t = np.linspace(0, 1, n_samples)
+
+    if method == 'linear':
+        w = 0.5 + 0.5 * t         # range: 0.5 → 1.0
+    elif method == 'exponential':
+        w = np.exp(3 * t)          # ~20× heavier at the end
+    else:
+        return None
+
+    w /= w.mean()                  # normalise so mean weight = 1
+    return w
+
+weights = make_sample_weights(len(X_train), method='linear')
+
+model.fit(X_train, y_train,
+          sample_weight=weights,   # ← pass to .fit()
+          epochs=100, batch_size=64)
+</code></pre>
+
+<pre><code class="language-none">
+Weight
+ 1.0 │                              ╱ linear
+     │                          ╱╱╱
+     │                      ╱╱╱
+     │                  ╱╱╱
+ 0.5 │──────────────╱╱╱
+     │
+     └──────────────────────────────── Time
+     oldest                      newest
+     sample                      sample
+</code></pre>
+
+<h2>3. Log Returns as a Feature</h2>
+<p>
+    When data grows exponentially over time, MinMaxScaler compresses early values into
+    a tiny band near zero and recent values near one. The LSTM struggles to learn from
+    this distorted distribution. <strong>Log returns</strong> transform multiplicative
+    price changes into additive ones, producing a roughly stationary series that the
+    network can learn from much more effectively.
+</p>
+
+<pre><code class="language-python">
+import numpy as np
+import pandas as pd
+
+# Raw price: [100, 110, 105, 120, 115]
+# After MinMaxScaler: compressed, non-stationary
+
+# Log returns: captures the *rate of change* regardless of price level
+df['log_returns'] = np.log(df['price'] / df['price'].shift(1))
+
+# A 10% gain at $100 and a 10% gain at $100,000
+# both produce log_return ≈ 0.0953
+# Without log returns, the $100 move is invisible to the scaler
+</code></pre>
+
+<pre><code class="language-none">
+Raw price (exponential growth):     Log returns (stationary):
+  │            ╱                      │
+  │           ╱                   0.1 │  ╷   ╷       ╷
+  │         ╱╱                        │  │╷  │╷  ╷╷  │╷
+  │       ╱╱                      0.0 │──┼┼──┼┼──┼┼──┼┼──
+  │    ╱╱╱                            │  ╵│  ╵│  │╵  ╵
+  │╱╱╱╱                          -0.1 │   ╵   ╵  ╵
+  └────────── Time                    └────────────── Time
+
+  Hard to learn from                  Easy to learn from
+</code></pre>
+
+<h2>4. Monte Carlo Dropout for Uncertainty Estimation</h2>
+<p>
+    Standard LSTM prediction gives you a single line — no indication of
+    <strong>how confident</strong> the model is. Monte Carlo Dropout runs the prediction
+    multiple times (e.g. 50 runs) with dropout kept ON during inference. Each run
+    produces a slightly different forecast. The spread of those forecasts gives you
+    a real, data-driven confidence interval.
+</p>
+
+<pre><code class="language-python">
+import numpy as np
+
+def predict_monte_carlo(model, input_sequence, n_days, n_runs=50):
+    """Run n_runs stochastic forward passes with dropout active."""
+    all_forecasts = []
+
+    for _ in range(n_runs):
+        predictions = []
+        seq = input_sequence.copy()
+
+        for _ in range(n_days):
+            # training=True keeps dropout ON → stochastic output
+            pred = model(seq.reshape(1, *seq.shape), training=True).numpy()
+            predictions.append(pred[0, 0])
+
+            new_row = seq[-1].copy()
+            new_row[0] = pred[0, 0]
+            seq = np.vstack([seq[1:], new_row])
+
+        all_forecasts.append(predictions)
+
+    all_forecasts = np.array(all_forecasts)  # shape: (n_runs, n_days)
+
+    median = np.median(all_forecasts, axis=0)
+    lower  = np.percentile(all_forecasts, 5, axis=0)    # 5th percentile
+    upper  = np.percentile(all_forecasts, 95, axis=0)   # 95th percentile
+
+    return median, lower, upper
+</code></pre>
+
+<pre><code class="language-none">
+Price
+  │          ╱╱╱╱╲╲ ← upper 95th percentile
+  │        ╱╱╱╱╱╱╱╱╲╲
+  │       ╱╱╱╱╱╱╱╱╱╱╱╱
+  │     ╱╱╱ ── median ──╲╲
+  │    ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱
+  │   ╱╱╱╱╱╱╱╱╱╱╲╲
+  │  ╱╱╱╱╲╲        ← lower 5th percentile
+  │ │
+  │─┤
+  │ │ ← today
+  └──────────────────── Time
+     Wider band = more uncertainty
+     (grows further into the future)
+</code></pre>
+
+<h2>5. Bollinger Band Division-by-Zero Guard</h2>
+<p>
+    The Bollinger Band position feature calculates where the current price sits
+    relative to the upper and lower bands. When volatility drops to near zero (flat
+    price action), the bands collapse and the denominator approaches zero, producing
+    <code>inf</code> or <code>NaN</code> values. These poison the MinMaxScaler and
+    corrupt the entire training dataset.
+</p>
+
+<pre><code class="language-python">
+import numpy as np
+
+sma_20 = df['price'].rolling(20).mean()
+std_20 = df['price'].rolling(20).std()
+upper_band = sma_20 + 2 * std_20
+lower_band = sma_20 - 2 * std_20
+band_width = upper_band - lower_band
+
+# BEFORE (dangerous):
+# bb_position = (price - lower) / (upper - lower)
+# → inf when upper == lower
+
+# AFTER (safe):
+bb_position = np.where(
+    band_width > 0,
+    (df['price'] - lower_band) / band_width,
+    0.5  # neutral position when bands collapse
+)
+</code></pre>
+
+<pre><code class="language-none">
+                  Normal bands:           Collapsed bands:
+Price             upper ─────────         upper ═══════════
+  │              ╱               ╲        lower ═══════════
+  │         ────╱── price ────────╲──     price ═══════════
+  │              ╲               ╱
+  │               lower ────────          band_width ≈ 0
+  │                                       division → inf ✗
+  │               band_width > 0          use 0.5 instead ✓
+  └──────────── Time
+</code></pre>
+
+<hr>
+
+<h3>Summary Table</h3>
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>Improvement</th>
+        <th>Problem Solved</th>
+        <th>Impact</th>
+    </tr>
+    <tr>
+        <td><strong>Huber Loss</strong></td>
+        <td>MSE over-penalizes large moves</td>
+        <td>Model stops reverting to mean</td>
+    </tr>
+    <tr>
+        <td><strong>Sample Weighting</strong></td>
+        <td>Old data drowns out recent trends</td>
+        <td>Learns current market structure</td>
+    </tr>
+    <tr>
+        <td><strong>Log Returns</strong></td>
+        <td>Scaler compresses exponential data</td>
+        <td>Captures multiplicative patterns</td>
+    </tr>
+    <tr>
+        <td><strong>MC Dropout</strong></td>
+        <td>No confidence measure</td>
+        <td>Real uncertainty bands</td>
+    </tr>
+    <tr>
+        <td><strong>BB Zero Guard</strong></td>
+        <td>inf values corrupt training</td>
+        <td>Stable feature engineering</td>
+    </tr>
+</table>
+
+ 
+{% include footer.html %}
+

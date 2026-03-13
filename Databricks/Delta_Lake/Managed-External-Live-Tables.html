@@ -1,0 +1,89 @@
+---
+---
+{% include menu.html title="Delta Live (DLT), Managed, External Tables" %}
+
+
+<body>
+
+    <h1>Databricks<br>Delta Live (DLT), Managed, External Tables</h1>
+
+    <h2>Key Differences:</h2>
+    <table class="comparison-table">
+        <tr>
+            <th>Feature</th>
+            <th>Delta Live Tables (DLT)</th>
+            <th>Managed Tables</th>
+            <th>External Tables</th>
+        </tr>
+        <tr>
+            <td><strong>Data Management</strong></td>
+            <td>Managed pipelines with automation for data ingestion, transformation, and output</td>
+            <td>Fully managed by Databricks</td>
+            <td>Data stored externally, metadata managed by Databricks</td>
+        </tr>
+        <tr>
+            <td><strong>Storage Location</strong></td>
+            <td>Can use managed or external storage</td>
+            <td>Databricks File System (DBFS) or default cloud storage</td>
+            <td>External storage (e.g., S3, Blob, HDFS)</td>
+        </tr>
+        <tr>
+            <td><strong>Data Lifecycle</strong></td>
+            <td>Lifecycle managed by DLT pipelines</td>
+            <td>Data is deleted when the table is dropped</td>
+            <td>Data remains after the table is dropped</td>
+        </tr>
+        <tr>
+            <td><strong>Use Case</strong></td>
+            <td>Automated ETL pipelines and real-time data processing</td>
+            <td>Temporary or internal datasets managed by Databricks</td>
+            <td>Persistent or shared datasets</td>
+        </tr>
+        <tr>
+            <td><strong>Automation & Monitoring</strong></td>
+            <td>Automated pipeline execution, monitoring, and quality checks</td>
+            <td>No automation for tasks</td>
+            <td>No automation for tasks</td>
+        </tr>
+    </table>
+
+    <h2>1. Delta Live Tables (DLT)</h2>
+    <p>Delta Live Tables (DLT) is a framework designed for building and managing ETL pipelines. It automates data processing, handling dependencies, and optimizing workflows in both batch and streaming data pipelines.</p>
+    
+    <h3>Example of Delta Live Tables Pipeline:</h3>
+    <pre><code class="python">
+<span class="keyword">import</span> dlt
+<span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> *
+
+@dlt.table
+<span class="keyword">def</span> clean_data():
+    <span class="keyword">return</span> spark.read(<span class="string">"path/to/raw_data"</span>).filter(col(<span class="string">"age"</span>) > 18)
+    </code></pre>
+
+
+    <h2>2. Managed Tables</h2>
+    <p>Managed tables are fully controlled by Databricks. Databricks manages both the metadata and data storage. When you drop a managed table, both the metadata and the underlying data files are deleted.</p>
+    
+    <h3>Example of Creating a Managed Table:</h3>
+    <pre><code class="sql">
+<span class="keyword">CREATE TABLE</span> my_managed_table (
+    id <span class="datatype">INT</span>,
+    name <span class="datatype">STRING</span>
+) <span class="keyword">USING</span> DELTA;
+    </code></pre>
+
+    <h2>3. External Tables</h2>
+    <p>External tables allow users to store data externally and only manage metadata within Databricks. The actual data remains in external storage, such as AWS S3, Azure Blob, or HDFS.</p>
+    
+    <h3>Example of Creating an External Table:</h3>
+    <pre><code class="sql">
+<span class="keyword">CREATE TABLE</span> my_external_table (
+    id <span class="datatype">INT</span>,
+    name <span class="datatype">STRING</span>
+) <span class="keyword">USING</span> DELTA LOCATION <span class="string">'/mnt/external_data/'</span>;
+    </code></pre>
+
+  {% include footer.html %}
+
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+---
+{% include menu.html title="Patterns Analysis Prompt" %}
+
+<h1>Patterns Analysis Prompt</h1>
+
+<main style="padding:20px;">
+    <h1>Help me find patterns and insights across my files.</h1>
+    <p>I have messy, unstructured files and want to understand what themes are emerging.</p>
+
+    <h2>Phase 1: Folder Scan and Summary</h2>
+    <p>First, scan the folder and show me a summary:</p>
+    <ul>
+        <li>Total files</li>
+        <li>Date range (oldest to newest)</li>
+        <li>Types of content</li>
+    </ul>
+
+    <h2>Phase 2: Clarifying Questions</h2>
+    <p>Before analyzing, ask me:</p>
+    <ul>
+        <li>What I'm hoping to discover (recurring themes, contradictions, evolution of thinking, action items, or something else)</li>
+        <li>Whether certain files or time periods should be prioritized</li>
+        <li>What format would be most useful for the final analysis</li>
+    </ul>
+
+    <h2>Phase 3: Initial Pattern Analysis</h2>
+    <p>If there are <strong>more than 20 files</strong>, start by analyzing just the <strong>10 most recent files</strong>.</p>
+    <p>Show me the top <strong>3–5 patterns</strong> you found with <strong>2–3 specific examples</strong> for each pattern.</p>
+
+    <h3>Pattern Presentation Format</h3>
+    <p>For each pattern, include:</p>
+    <ol>
+        <li><strong>Pattern name:</strong> A clear label for the theme</li>
+        <li><strong>Description:</strong> What this pattern represents</li>
+        <li><strong>Examples:</strong> 2–3 specific quotes or references from the files</li>
+        <li><strong>Frequency:</strong> How often this pattern appears in the analyzed files</li>
+        <li><strong>Significance:</strong> Why this pattern matters</li>
+    </ol>
+
+    <h2>Phase 4: Validation and Continuation</h2>
+    <p>Once I confirm you're on the right track, analyze the remaining files.</p>
+
+    <h3>Key Process Notes</h3>
+    <ul>
+        <li>Do not analyze all files at once if there are more than 20—start with the 10 most recent</li>
+        <li>Wait for confirmation before proceeding to remaining files</li>
+        <li>Ground all patterns in specific examples from the source material</li>
+        <li>Prioritize files and time periods as indicated by the user</li>
+        <li>Format the final analysis according to user preferences</li>
+    </ul>
+
+    <h3>Supported File Types</h3>
+    <p>Analyze content from:</p>
+    <ul>
+        <li>Voice memos (transcribed or audio)</li>
+        <li>Meeting transcripts</li>
+        <li>Documents and notes</li>
+        <li>Journal entries</li>
+        <li>Any other folder specified by the user</li>
+    </ul>
+
+</main>
+
+{% include footer.html %}

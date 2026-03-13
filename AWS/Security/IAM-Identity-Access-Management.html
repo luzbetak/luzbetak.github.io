@@ -1,0 +1,44 @@
+---
+---
+{% include menu.html title="IAM - Identity Access Management" %}
+<hr align=left width=1100>
+
+<section>
+  <h3>AWS Identity and Access Management (IAM)</h3>
+  <p>AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. IAM enables you to manage users, groups, and roles, and set permissions to allow or deny access to specific AWS services and resources. It is a foundational security feature in AWS, allowing you to enforce the principle of least privilege across your cloud environment.</p>
+
+  <h4>Key Features:</h4>
+  <ul>
+    <li><strong>Fine-Grained Access Control:</strong> IAM allows you to define granular permissions, enabling you to specify exactly what actions a user, group, or role can perform on specific AWS resources.</li>
+    <li><strong>Multi-Factor Authentication (MFA):</strong> Enhance security by requiring users to provide a second form of authentication in addition to their password, ensuring stronger protection against unauthorized access.</li>
+    <li><strong>Roles and Temporary Security Credentials:</strong> IAM roles allow you to grant temporary access to AWS resources without needing to share long-term credentials, useful for applications, services, and users.</li>
+    <li><strong>Identity Federation:</strong> IAM supports identity federation, allowing you to grant AWS access to users authenticated by an external identity provider, such as Microsoft Active Directory, Google, or other SAML-compliant providers.</li>
+    <li><strong>Policy Management:</strong> IAM uses policies—written in JSON—to define permissions. These policies can be attached to users, groups, or roles, and you can create custom policies tailored to your specific security needs.</li>
+    <li><strong>Audit and Compliance:</strong> IAM integrates with AWS CloudTrail to log all API calls made on IAM resources, helping you audit access and compliance across your AWS environment.</li>
+  </ul>
+
+  <h4>Common Use Cases:</h4>
+  <ul>
+    <li><strong>User and Access Management:</strong> Create and manage individual IAM users and groups, assign specific permissions, and enforce MFA for secure access to AWS resources.</li>
+    <li><strong>Application and Service Access:</strong> Use IAM roles to grant AWS services (like EC2 or Lambda) the permissions needed to interact with other AWS resources securely.</li>
+    <li><strong>Cross-Account Access:</strong> Set up IAM roles that allow users or services in one AWS account to access resources in another account securely.</li>
+    <li><strong>Temporary Access for Third Parties:</strong> Create IAM roles with temporary security credentials for external consultants or services that need limited access to your AWS environment.</li>
+    <li><strong>Compliance and Audit:</strong> Implement strict access controls and continuously monitor IAM activities through CloudTrail to meet regulatory compliance requirements.</li>
+  </ul>
+
+  <h4>Example Workflow:</h4>
+  <ol>
+    <li><strong>Create Users and Groups:</strong> Define IAM users for individual access and organize them into groups, applying policies that define permissions based on their role in the organization.</li>
+    <li><strong>Set Up Roles:</strong> Create IAM roles to be assumed by AWS services, applications, or users needing temporary access to AWS resources, without using long-term credentials.</li>
+    <li><strong>Define and Attach Policies:</strong> Write custom IAM policies to control access to specific resources and actions, and attach these policies to users, groups, or roles.</li>
+    <li><strong>Enable MFA:</strong> For added security, enable multi-factor authentication (MFA) on critical IAM users and roles to require an additional authentication step.</li>
+    <li><strong>Monitor and Audit:</strong> Use AWS CloudTrail to monitor API calls related to IAM and analyze access patterns to ensure compliance with security policies.</li>
+  </ol>
+
+  <p>AWS IAM is a powerful tool for managing and securing access to AWS resources. By implementing IAM best practices, you can ensure that only authorized users and services have access to the resources they need, helping to maintain a secure and compliant cloud environment.</p>
+</section>
+
+
+{% include footer.html %}
+</body>
+</html>

@@ -1,0 +1,122 @@
+---
+---
+{% include menu.html title="Fail2Ban Uninstall" %}
+
+<h1>Complete Fail2Ban Uninstall Guide</h1>
+<p>Remove Fail2Ban and all configuration files from Ubuntu Server for a clean system.</p>
+
+<h2>1. Stop Fail2Ban Service</h2>
+<pre><code class="language-bash">sudo systemctl stop fail2ban</code></pre>
+
+<h2>2. Unban All IPs</h2>
+<p>Clear all current bans before uninstalling:</p>
+<pre><code class="language-bash">sudo fail2ban-client unban --all</code></pre>
+
+<h2>3. Disable the Service</h2>
+<pre><code class="language-bash">sudo systemctl disable fail2ban</code></pre>
+
+<h2>4. Remove Fail2Ban Package</h2>
+<p>Use <code>purge</code> to remove the package and its configuration files:</p>
+<pre><code class="language-bash">sudo apt purge fail2ban -y</code></pre>
+
+<h2>5. Remove Dependencies</h2>
+<p>Remove packages that were installed as dependencies:</p>
+<pre><code class="language-bash">sudo apt purge python3-pyinotify python3-pyasyncore -y</code></pre>
+
+<h2>6. Clean Up Unused Packages</h2>
+<pre><code class="language-bash">sudo apt autoremove -y</code></pre>
+
+<h2>7. Remove Configuration Directories</h2>
+<p>Delete all remaining configuration files and directories:</p>
+<pre><code class="language-bash">sudo rm -rf /etc/fail2ban</code></pre>
+
+<h2>8. Remove Log Files</h2>
+<pre><code class="language-bash">sudo rm -f /var/log/fail2ban.log
+sudo rm -f /var/log/fail2ban.log.*</code></pre>
+
+<h2>9. Remove Runtime Files</h2>
+<pre><code class="language-bash">sudo rm -rf /var/run/fail2ban
+sudo rm -rf /var/lib/fail2ban</code></pre>
+
+<h2>10. Clean IPTables Rules</h2>
+<p>Remove any remaining iptables rules created by fail2ban:</p>
+
+<h3>10.1 View Current Rules</h3>
+<pre><code class="language-bash">sudo iptables -L -n --line-numbers</code></pre>
+
+<h3>10.2 Flush All Custom Rules (if needed)</h3>
+<p><strong>Warning:</strong> This removes ALL custom iptables rules, not just fail2ban rules.</p>
+<pre><code class="language-bash">sudo iptables -F</code></pre>
+
+<h3>10.3 Remove Specific /24 Subnet Bans</h3>
+<p>If you only want to remove the /24 subnet bans:</p>
+<pre><code class="language-bash"># List rules with line numbers
+sudo iptables -L INPUT -n --line-numbers
+
+# Remove specific rule by line number (example: line 1)
+sudo iptables -D INPUT 1</code></pre>
+
+<h3>10.4 Remove All DROP Rules</h3>
+<p>Remove all DROP rules from INPUT chain:</p>
+<pre><code class="language-bash">while sudo iptables -D INPUT -j DROP 2>/dev/null; do :; done</code></pre>
+
+<h2>11. Remove Systemd Service Files</h2>
+<pre><code class="language-bash">sudo rm -f /etc/systemd/system/fail2ban.service
+sudo rm -f /etc/systemd/system/multi-user.target.wants/fail2ban.service
+sudo systemctl daemon-reload</code></pre>
+
+<h2>12. Verify Complete Removal</h2>
+
+<h3>12.1 Check Package Status</h3>
+<pre><code class="language-bash">dpkg -l | grep fail2ban</code></pre>
+<p>Expected output: No results or status shows "rc" (removed, config files remain)</p>
+
+<h3>12.2 Check Configuration Directory</h3>
+<pre><code class="language-bash">ls -la /etc/fail2ban</code></pre>
+<p>Expected output: <code>ls: cannot access '/etc/fail2ban': No such file or directory</code></p>
+
+<h3>12.3 Check Log Files</h3>
+<pre><code class="language-bash">ls -la /var/log/fail2ban*</code></pre>
+<p>Expected output: <code>ls: cannot access '/var/log/fail2ban*': No such file or directory</code></p>
+
+<h3>12.4 Check Service Status</h3>
+<pre><code class="language-bash">sudo systemctl status fail2ban</code></pre>
+<p>Expected output: <code>Unit fail2ban.service could not be found.</code></p>
+
+<h3>12.5 Check IPTables</h3>
+<pre><code class="language-bash">sudo iptables -L INPUT -n</code></pre>
+<p>Expected output: No fail2ban related DROP rules</p>
+
+<h2>Quick One-Liner</h2>
+<p>Complete uninstall in a single command sequence:</p>
+<pre><code class="language-bash">sudo systemctl stop fail2ban && \
+sudo fail2ban-client unban --all 2>/dev/null; \
+sudo systemctl disable fail2ban 2>/dev/null; \
+sudo apt purge fail2ban python3-pyinotify python3-pyasyncore -y && \
+sudo apt autoremove -y && \
+sudo rm -rf /etc/fail2ban /var/run/fail2ban /var/lib/fail2ban && \
+sudo rm -f /var/log/fail2ban.log* && \
+sudo iptables -F && \
+sudo systemctl daemon-reload</code></pre>
+
+<h2>Summary Checklist</h2>
+<ol>
+    <li><strong>Stop service</strong> — <code>systemctl stop fail2ban</code></li>
+    <li><strong>Unban all IPs</strong> — <code>fail2ban-client unban --all</code></li>
+    <li><strong>Disable service</strong> — <code>systemctl disable fail2ban</code></li>
+    <li><strong>Purge package</strong> — <code>apt purge fail2ban</code></li>
+    <li><strong>Remove dependencies</strong> — <code>apt purge python3-pyinotify python3-pyasyncore</code></li>
+    <li><strong>Autoremove</strong> — <code>apt autoremove</code></li>
+    <li><strong>Delete /etc/fail2ban</strong> — <code>rm -rf /etc/fail2ban</code></li>
+    <li><strong>Delete logs</strong> — <code>rm -f /var/log/fail2ban.log*</code></li>
+    <li><strong>Delete runtime</strong> — <code>rm -rf /var/run/fail2ban /var/lib/fail2ban</code></li>
+    <li><strong>Clean iptables</strong> — <code>iptables -F</code></li>
+    <li><strong>Reload systemd</strong> — <code>systemctl daemon-reload</code></li>
+</ol>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+
+{% include footer.html %}

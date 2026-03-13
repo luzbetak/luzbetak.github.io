@@ -1,0 +1,345 @@
+/* Base Styles */
+body {
+    width: 1100px; /* Set width to 900 pixels */
+    font-family: Verdana, sans-serif;
+    background-color: #000000; /* Set background to black */
+    color: #ffffff; /* Set font color to white */
+    margin: 0;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+a:hover {
+    background-color: #444444; /* Darken background on hover */
+    color: #ffcc00; /* Bright yellow text on hover */
+}
+
+.green-text { color: green; }
+
+/* Styling the comparison table as a separate class */
+.table {
+    width: 1100;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #222; /* Darker background to stand out against black body */
+}
+.table,
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.table th {
+    background-color: #444; /* Slightly lighter than table body */
+    color: #fff;
+}
+.table td {
+    background-color: #333; /* Make the table rows darker to contrast with body */
+    color: #fff;
+}
+.table tr:hover {
+    background-color: #555; /* Lighter background on hover for better visibility */
+}
+
+
+/* Styling the comparison table as a separate class */
+.comparison-table {
+    width: 1100px;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #222; /* Darker background to stand out against black body */
+}
+.comparison-table,
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.comparison-table th {
+    background-color: #444; /* Slightly lighter than table body */
+    color: #fff;
+}
+.comparison-table td {
+    background-color: #333; /* Make the table rows darker to contrast with body */
+    color: #fff;
+}
+.comparison-table tr:hover {
+    background-color: #555; /* Lighter background on hover for better visibility */
+}
+
+/* Style for search box and submit button */
+.search-box {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 750;             /* Make the search box wider */
+    height: 40px;           /* Increase the height of the search box */
+    padding: 10px;          /* Add padding inside the search box */
+    font-size: 24px;        /* Increase font size */
+    border: none;           /* Remove borders */
+    border-radius: 4px;     /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Add a subtle shadow for depth */
+    padding-left: 15px;
+}
+
+input[type="submit"] {
+    height: 40px;           /* Match the height of the text input */
+    font-size: 24px;        /* Increase font size */
+    padding: 10px 30px;     /* Add padding for the button */
+    background-color: #28a745;  /* Green background */
+    color: white;           /* White text */
+    border: none;           /* Remove borders */
+    border-radius: 4px;     /* Add rounded corners */
+    cursor: pointer;        /* Show a pointer when hovering over the button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Add a subtle shadow for depth */
+    padding-left: 15px;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;  /* Darker green on hover */
+}
+
+/* Styles for the footer */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  font-size: 12px; /* Adjusts the text to be smaller */
+  font-weight: normal; /* Ensures the text is not bold */
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer {
+  text-align: center;
+}
+
+.counter-container {
+  display: flex;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Adjust as needed */
+  margin-top: 0px;
+}
+
+.question { font-weight: bold; color: #ffcc00; }
+.answer { margin-bottom: 20px; color: white; }
+
+/* .datatype { color: white; } */
+
+/*----------------------------------------------------------------
+ * Use style.css for documentation and code highlighting 
+ * --------------------------------------------------------------- */
+h1 { color: #00ccff; font-size: 24px; font-weight: 500; } /* Azure  */
+h2 { color: #ff7f50; font-size: 22px; font-weight: 500; } /* Coral  */
+h3 { color: #90ee90; font-size: 20px; font-weight: 500; } /* Green  */
+h4 { color: #9b59b6; font-size: 18px; font-weight: 500; } /* Purple */
+
+ul, ol { margin: 0 0 20px 20px; padding-left: 10px; color: #ffffff; } 
+li     { margin-bottom: 15px; color: #ffffff; }
+p      { color: #ffffff; }
+
+code {
+    background-color: #262626;
+    padding: 0px 0px;
+    border-radius: 0px;
+    color: #f8f8f2;
+    font-family: Consolas, "Courier New", monospace;
+}
+
+pre {
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    color: #f8f8f2;
+    font-family: Consolas, "Courier New", monospace; 
+    line-height: 1.5;
+}
+
+.keyword  { color: #e6db74;  }
+.string   { color: #ff00ff;  }
+.function { color: #66d9ef;  }
+.comment  { color: #6A8A87; font-style: italic; }
+/* --------------------------------------------------------------- */
+/* 
+a {
+    display: block;
+    color: #ffffff;
+    padding: 8px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+*/
+
+
+.tagline {
+    color: #FFFF00;  /* Bright yellow */
+    font-size: 22px;
+    /*font-weight: bold;*/
+}
+
+/* Expertise Area Sections */
+.expertise-area {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #1a1a1a;  /* Slightly lighter than black background */
+    border-left: 3px solid #FFFF00;  /* Yellow accent border */
+    border-radius: 4px;
+}
+
+.expertise-area h3 {
+    margin-top: 0;
+}
+
+.expertise-area p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Experience Block Sections */
+.experience-block {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #0d0d0d;  /* Very dark gray */
+    border-left: 3px solid #ff7f50;  /* Coral accent to match your h2 color */
+    border-radius: 4px;
+}
+
+.experience-block h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Technical Stack Categories */
+.tech-category {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border-left: 3px solid #90ee90;  /* Green accent to match your h4 color */
+    border-radius: 4px;
+}
+
+.tech-category h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.tech-category p {
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Education Items */
+.education-item {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-left: 3px solid #00ccff;  /* Azure accent to match your h1 color */
+    border-radius: 4px;
+}
+
+.education-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #00ccff; /* Azure color */
+}
+
+.education-item p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.education-item strong {
+    /* Soft muted yellow (good readability, less harsh) test */
+    /* color: #E6D86A; */
+
+    /* Warm, subdued yellow (slightly darker) */
+    /* color: #D4C15A; */
+
+    /* Amber-leaning, easy on eyes */
+    color: #CBBE6A;
+
+    /* Low-vibrance gold (professional look) */
+    /* color: #BFB35A; */
+
+    /* HSL-based reduced vibrance */
+    /* color: hsl(54, 60%, 60%); */
+}
+
+a {
+    color: #00D4FF;  /* Cyan for better visibility on black */
+    text-decoration: none;
+}
+
+strong { 
+    color: yellow !important; 
+    font-weight: 500; 
+}
+/*------------------------------------------------------------------------------------------*/
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+}
+.video-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.video-item a {
+    text-decoration: none;
+    color: #0073e6;
+    font-weight: bold;
+}
+
+.video-item a:hover {
+    text-decoration: underline;
+}
+
+.video-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-media img,
+.video-media iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+}
+
+
+.video-description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #aaa;
+}
+/*------------------------------------------------------------------------------------------*/
